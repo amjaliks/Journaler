@@ -11,6 +11,8 @@
 		17DB0BD21075444F00155636 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BD01075444F00155636 /* AccountsViewController.xib */; };
 		17DB0BF31075462000155636 /* EditAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BF11075462000155636 /* EditAccountViewController.xib */; };
 		17DB0C031075491C00155636 /* EditAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0C021075491C00155636 /* EditAccountViewController.m */; };
+		17DB0C961076616400155636 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C951076616400155636 /* Entitlements.plist */; };
+		17DB0CC210768D2900155636 /* LiveJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0CC110768D2900155636 /* LiveJournal.m */; };
 		1D3623260D0F684500981E51 /* JournalerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -26,6 +28,9 @@
 		17DB0BEF1075462000155636 /* EditAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAccountViewController.h; sourceTree = "<group>"; };
 		17DB0BF11075462000155636 /* EditAccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditAccountViewController.xib; path = Classes/EditAccountViewController.xib; sourceTree = "<group>"; };
 		17DB0C021075491C00155636 /* EditAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAccountViewController.m; sourceTree = "<group>"; };
+		17DB0C951076616400155636 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		17DB0CC010768D2900155636 /* LiveJournal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveJournal.h; sourceTree = "<group>"; };
+		17DB0CC110768D2900155636 /* LiveJournal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveJournal.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* JournalerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalerAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* JournalerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalerAppDelegate.m; sourceTree = "<group>"; };
@@ -61,6 +66,8 @@
 				17DB0BCF1075444F00155636 /* AccountsViewController.m */,
 				17DB0BEF1075462000155636 /* EditAccountViewController.h */,
 				17DB0C021075491C00155636 /* EditAccountViewController.m */,
+				17DB0CC010768D2900155636 /* LiveJournal.h */,
+				17DB0CC110768D2900155636 /* LiveJournal.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -81,6 +88,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				17DB0C951076616400155636 /* Entitlements.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -167,6 +175,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				17DB0BD21075444F00155636 /* AccountsViewController.xib in Resources */,
 				17DB0BF31075462000155636 /* EditAccountViewController.xib in Resources */,
+				17DB0C961076616400155636 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,12 +190,40 @@
 				1D3623260D0F684500981E51 /* JournalerAppDelegate.m in Sources */,
 				17DB0BD11075444F00155636 /* AccountsViewController.m in Sources */,
 				17DB0C031075491C00155636 /* EditAccountViewController.m in Sources */,
+				17DB0CC210768D2900155636 /* LiveJournal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		17DB0C8110765F9300155636 /* Distribution (Ad Hoc) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: A25 Ltd.";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F8DAF4E4-E32D-452E-B314-010BC85C6E1A";
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = "Distribution (Ad Hoc)";
+		};
+		17DB0C8210765F9300155636 /* Distribution (Ad Hoc) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
+				INFOPLIST_FILE = "Journaler-Info.plist";
+				PRODUCT_NAME = Journaler;
+			};
+			name = "Distribution (Ad Hoc)";
+		};
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -247,6 +284,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				17DB0C8210765F9300155636 /* Distribution (Ad Hoc) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -256,6 +294,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				17DB0C8110765F9300155636 /* Distribution (Ad Hoc) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -7,13 +7,17 @@
 //
 
 #import "EditAccountViewController.h"
-
+#import "LiveJournal.h"
 
 @implementation EditAccountViewController
 
 @synthesize usernameCell;
 @synthesize passwordCell;
 @synthesize serverCell;
+
+@synthesize usernameText;
+@synthesize passwordText;
+@synthesize serverText;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -84,7 +88,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 3;
 }
 
 
@@ -92,6 +96,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == 0) {
 		return usernameCell;
+	} else if (indexPath.row == 1) {
+		return passwordCell;
+	} else if (indexPath.row == 2) {
+		return serverCell;
 	}
     return nil;
 }
@@ -149,6 +157,17 @@
     [super dealloc];
 }
 
+- (IBAction) saveAccount:(id)sender {
+	NSString *server = serverText.text;
+	if (![server length]) {
+		server = @"livejournal.com";
+	}
+	
+	LJFlatGetChallenge *req = [LJFlatGetChallenge requestWithServer:server];
+	[req doRequest];
+	LJFlatLogin *login = [LJFlatLogin requestWithServer:server user:usernameText.text password:passwordText.text challenge:req.challenge];
+	[login doRequest];
+}
 
 @end
 

@@ -7,7 +7,7 @@
 //
 
 #import "JournalerAppDelegate.h"
-#import "RootViewController.h"
+//#import "RootViewController.h"
 
 
 @implementation JournalerAppDelegate
