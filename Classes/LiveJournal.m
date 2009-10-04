@@ -9,6 +9,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "LiveJournal.h"
 
+
 NSString* md5(NSString *str)
 {
 	const char *cStr = [str UTF8String];
@@ -20,6 +21,15 @@ NSString* md5(NSString *str)
 			result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15]
 	];
 } 
+
+
+@implementation LJAccount
+
+@synthesize user;
+@synthesize password;
+@synthesize server;
+
+@end
 
 
 @implementation LJFlatRequest

@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@interface LJAccount : NSObject {
+	NSString *user;
+	NSString *password;
+	NSString *server;
+}
+
+@property NSString *user;
+@property NSString *password;
+@property NSString *server;
+
+@end
+
 
 @interface LJFlatRequest : NSObject {
 	NSString *_server;

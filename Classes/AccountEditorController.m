@@ -6,10 +6,10 @@
 //  Copyright 2009 A25. All rights reserved.
 //
 
-#import "EditAccountViewController.h"
+#import "AccountEditorController.h"
 #import "LiveJournal.h"
 
-@implementation EditAccountViewController
+@implementation AccountEditorController
 
 @synthesize usernameCell;
 @synthesize passwordCell;

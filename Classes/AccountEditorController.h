@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface EditAccountViewController : UITableViewController {
+@interface AccountEditorController : UITableViewController {
 	UITableViewCell *usernameCell;
 	UITableViewCell *passwordCell;
 	UITableViewCell *serverCell;
