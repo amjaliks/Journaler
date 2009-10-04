@@ -7,12 +7,16 @@
 //
 
 #import "AccountsViewController.h"
+#import "LiveJournal.h"
 
 
 @implementation AccountsViewController
 
 
 @synthesize editAccountViewController;
+@synthesize accountViewController;
+
+@synthesize table;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -23,14 +27,14 @@
 }
 */
 
-/*
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+ 
+	accounts = [[NSMutableArray alloc] init];
 }
-*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -83,19 +87,20 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [accounts count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    LJAccount *account = [accounts objectAtIndex:indexPath.row];
+	
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:account.title];
     if (cell == nil) {
         //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell = [[UITableViewCell alloc] init];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.text = account.title;
 	}
     
     // Set up the cell...
@@ -105,10 +110,8 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+    selectedAccount = [accounts objectAtIndex:indexPath.row];
+	[self.navigationController pushViewController:accountViewController animated:YES];
 }
 
 
@@ -154,6 +157,7 @@
 
 - (void)dealloc {
     [super dealloc];
+	[accounts dealloc];
 }
 
 // Parāda konta parametrus
@@ -161,6 +165,19 @@
 	[self presentModalViewController:editAccountViewController animated:YES];
 }
 
+- (void)accountEditorController:(AccountEditorController *)controller didFinishedEditingAccount:(LJAccount *)account {
+	[accounts addObject:account];
+	[table reloadData];
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)accountEditorControllerDidCancel:(AccountEditorController *)controller {
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (LJAccount *)selectedAccountForAccountViewController:(AccountViewController *)accountViewController {
+	return selectedAccount;
+}
 
 @end
 

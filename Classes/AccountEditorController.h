@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class LJAccount;
+@protocol AccountEditorControllerDelegate;
+
 
 @interface AccountEditorController : UITableViewController {
 	UITableViewCell *usernameCell;
@@ -17,6 +20,10 @@
 	UITextField *usernameText;
 	UITextField *passwordText;
 	UITextField *serverText;
+	
+	UIBarButtonItem *doneButton;
+	
+	id<AccountEditorControllerDelegate> delegate;
 }
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *usernameCell;
@@ -27,6 +34,22 @@
 @property (nonatomic, retain) IBOutlet UITextField *passwordText;
 @property (nonatomic, retain) IBOutlet UITextField *serverText;
 
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
+
+@property (nonatomic, retain) IBOutlet id<AccountEditorControllerDelegate> delegate;
+
+- (IBAction) cancel:(id)sender;
 - (IBAction) saveAccount:(id)sender;
+- (IBAction) textFieldChanged:(id)sender;
 
 @end
+
+
+@protocol AccountEditorControllerDelegate<NSObject> 
+
+@optional
+- (void)accountEditorController:(AccountEditorController *)controller didFinishedEditingAccount:(LJAccount *)account;
+- (void)accountEditorControllerDidCancel:(AccountEditorController *)controller;
+
+@end
+

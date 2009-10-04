@@ -8,31 +8,49 @@
 
 #import <Foundation/Foundation.h>
 
+
+enum {
+	LJErrorUnknown,
+	LJErrorHostNotFound,
+	LJErrorConnectionFailed,
+	LJErrorInvalidUsername,
+	LJErrorInvalidPassword
+};
+
+
+// LJ server account info
 @interface LJAccount : NSObject {
 	NSString *user;
 	NSString *password;
 	NSString *server;
 }
 
-@property NSString *user;
-@property NSString *password;
-@property NSString *server;
+@property (retain) NSString *user;
+@property (retain) NSString *password;
+@property (retain) NSString *server;
+
+@property (readonly) NSString *title;
 
 @end
 
 
+// A raw object for LJ Flat API request. Use as superclass for all requests.
 @interface LJFlatRequest : NSObject {
 	NSString *_server;
 	NSString *_mode;
 	
 	NSMutableDictionary *parameters;
 	NSMutableDictionary *result;
+	
+	NSUInteger error;
 }
 
 - (id)initWithServer:(NSString *)server mode:(NSString *)mode;
 - (BOOL)doRequest;
+- (void)proceedError;
 
 @property (readonly) BOOL success;
+@property (readonly) NSUInteger error;
 
 @end
 
@@ -53,5 +71,17 @@
 }
 
 + (LJFlatLogin *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
+
+@end
+
+
+@interface LJFlatSessionGenerate : LJFlatRequest {
+	NSString *challenge;
+	NSString *password;
+}
+
++ (LJFlatSessionGenerate *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
+
+@property (readonly) NSString *ljsession;
 
 @end

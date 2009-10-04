@@ -29,15 +29,23 @@ NSString* md5(NSString *str)
 @synthesize password;
 @synthesize server;
 
+- (NSString *)title {
+	return [NSString stringWithFormat:@"%@@%@", user, server];
+}
+
 @end
 
 
 @implementation LJFlatRequest
 
+@synthesize error;
+
 - (id)initWithServer:(NSString *)server mode:(NSString *)mode; {
 	if (self = [super init]) {
 		_server = server;
 		_mode = mode;
+		
+		error = 0;
 		
 		parameters = [NSMutableDictionary dictionary];
 	}
@@ -68,6 +76,20 @@ NSString* md5(NSString *str)
 	
 	NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
+	if (err && [NSURLErrorDomain isEqualToString:[err domain]]) {
+		NSInteger errcode = [err code];
+		if (errcode == NSURLErrorCannotFindHost) {
+			error = LJErrorHostNotFound;
+		} else if (errcode == NSURLErrorTimedOut) {
+			error = LJErrorConnectionFailed;
+		} else {
+			error = LJErrorUnknown;
+			NSLog(@"Error: %d", errcode);
+		}
+		
+		return NO;
+	}
+	
 	NSLog(@"respone:\n%@", response);
 		
 	NSArray *lines = [response componentsSeparatedByString:@"\n"];
@@ -78,15 +100,19 @@ NSString* md5(NSString *str)
 		[result setValue:[lines objectAtIndex:(i * 2) + 1] forKey:[lines objectAtIndex:(i * 2)]];
 	}
 	
+	if (![@"OK" isEqualToString:[result valueForKey:@"success"]]) {
+		[self proceedError];
+	}
+	
 	return self.success;
 }
 
 - (BOOL)success {
-	if (result) {
-		return [@"OK" isEqual:[result valueForKey:@"success"]];
-	} else {
-		return NO;
-	}
+	return !error;
+}
+
+- (void)proceedError {
+	error = LJErrorUnknown;
 }
 
 @end
@@ -95,7 +121,7 @@ NSString* md5(NSString *str)
 @implementation LJFlatGetChallenge
 
 + (LJFlatGetChallenge *)requestWithServer:(NSString *)server {
-	LJFlatGetChallenge *request = [[LJFlatGetChallenge alloc] initWithServer:server mode:@"getchallenge"];
+	LJFlatGetChallenge *request = [[[LJFlatGetChallenge alloc] initWithServer:server mode:@"getchallenge"] autorelease];
 	return request;
 }
 
@@ -109,7 +135,7 @@ NSString* md5(NSString *str)
 @implementation LJFlatLogin
 
 + (LJFlatLogin *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
-	LJFlatLogin *request = [[LJFlatLogin alloc] initWithServer:server mode:@"login"];
+	LJFlatLogin *request = [[[LJFlatLogin alloc] initWithServer:server mode:@"login"] autorelease];
 	
 	[request->parameters setValue:user forKey:@"user"];
 	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
@@ -127,6 +153,58 @@ NSString* md5(NSString *str)
 	[parameters setValue:authResponse forKey:@"auth_response"];
 	
 	return [super doRequest];
+}
+
+- (void)proceedError {
+	NSString *errmsg = [result valueForKey:@"errmsg"];
+	if ([@"Invalid username" isEqualToString:errmsg]) {
+		error = LJErrorInvalidUsername;
+	} else if ([@"Invalid password" isEqualToString:errmsg]) {
+		error = LJErrorInvalidPassword;
+	} else {
+		error = LJErrorUnknown;
+	}
+}
+
+@end
+
+
+@implementation LJFlatSessionGenerate
+
++ (LJFlatSessionGenerate *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
+	LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"sessiongenerate"] autorelease];
+	
+	[request->parameters setValue:user forKey:@"user"];
+	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
+	[request->parameters setValue:challenge forKey:@"auth_challenge"];
+	
+	request->password = password;
+	request->challenge = challenge;
+	
+	return request;
+}
+
+- (BOOL)doRequest {
+	
+	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
+	[parameters setValue:authResponse forKey:@"auth_response"];
+	
+	return [super doRequest];
+}
+
+- (void)proceedError {
+	NSString *errmsg = [result valueForKey:@"errmsg"];
+	if ([@"Invalid username" isEqualToString:errmsg]) {
+		error = LJErrorInvalidUsername;
+	} else if ([@"Invalid password" isEqualToString:errmsg]) {
+		error = LJErrorInvalidPassword;
+	} else {
+		error = LJErrorUnknown;
+	}
+}
+
+- (NSString *)ljsession {
+	return [result valueForKey:@"ljsession"];
 }
 
 @end

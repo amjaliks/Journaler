@@ -9,6 +9,27 @@
 #import "AccountEditorController.h"
 #import "LiveJournal.h"
 
+
+void showErrorMessage(NSUInteger code) {
+	NSString *text;
+	if (LJErrorHostNotFound == code) {
+		text = @"Can't find server";
+	} else if (LJErrorConnectionFailed == code) {
+		text = @"Can't connect to server";
+	} else if (LJErrorInvalidUsername == code) {
+		text = @"Invalid username";
+	} else if (LJErrorInvalidPassword == code) {
+		text = @"Invalid password";
+	} else {
+		text = @"Unknown error";
+	}
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login error" message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
+
 @implementation AccountEditorController
 
 @synthesize usernameCell;
@@ -19,6 +40,10 @@
 @synthesize passwordText;
 @synthesize serverText;
 
+@synthesize doneButton;
+
+@synthesize delegate;
+
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -27,7 +52,6 @@
     return self;
 }
 */
-
 /*
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,12 +60,16 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 */
-
-/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	
+	usernameText.text = nil;
+	passwordText.text = nil;
+	serverText.text = nil;
+	
+	[usernameText becomeFirstResponder];
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -157,6 +185,11 @@
     [super dealloc];
 }
 
+- (IBAction) cancel:(id)sender {
+	[delegate accountEditorControllerDidCancel:self];
+}
+
+// Saving account. Handles event of "Done".
 - (IBAction) saveAccount:(id)sender {
 	NSString *server = serverText.text;
 	if (![server length]) {
@@ -164,9 +197,31 @@
 	}
 	
 	LJFlatGetChallenge *req = [LJFlatGetChallenge requestWithServer:server];
-	[req doRequest];
+	if (![req doRequest]) {
+		showErrorMessage(req.error);
+		return;
+	}
+	
 	LJFlatLogin *login = [LJFlatLogin requestWithServer:server user:usernameText.text password:passwordText.text challenge:req.challenge];
-	[login doRequest];
+	if (![login doRequest]) {
+		showErrorMessage(login.error);
+		return;
+	}
+	
+	LJAccount *account = [[LJAccount alloc] init];
+	account.user = usernameText.text;
+	account.password = passwordText.text;
+	account.server = server;
+	
+	[delegate accountEditorController:self didFinishedEditingAccount:account];
+	
+	[account release];
+}
+
+// Check text fields. If required fields has some text, than makes "Done" enabled.
+// Mandatory fields are: username and password.
+- (IBAction) textFieldChanged:(id)sender {
+	doneButton.enabled = usernameText.text.length && passwordText.text.length;
 }
 
 @end

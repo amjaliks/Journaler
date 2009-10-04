@@ -7,13 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AccountEditorController.h"
+#import "AccountViewController.h"
 
-
-@interface AccountsViewController : UITableViewController {
+// kontu saraksta kontrolieris
+@interface AccountsViewController : UITableViewController<AccountEditorControllerDelegate, AccountViewControllerDataSource> {
 	UIViewController *editAccountViewController;
+	UIViewController *accountViewController;
+	
+	UITableView *table;
+	
+	NSMutableArray *accounts;
+	LJAccount *selectedAccount;
 }
 
 @property (nonatomic, retain) IBOutlet UIViewController *editAccountViewController;
+@property (nonatomic, retain) IBOutlet UIViewController *accountViewController;
+
+@property (nonatomic, retain) IBOutlet UITableView *table;
 
 - (IBAction) addAccount:(id)sender;
 
