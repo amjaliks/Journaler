@@ -26,6 +26,9 @@
 
 @property (nonatomic, retain) IBOutlet UITableView *table;
 
+- (NSMutableArray *) loadAccounts;
+- (void) saveAccounts;
+
 - (IBAction) addAccount:(id)sender;
 
 @end

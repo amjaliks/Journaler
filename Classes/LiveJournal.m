@@ -29,6 +29,23 @@ NSString* md5(NSString *str)
 @synthesize password;
 @synthesize server;
 
+- (id)initWithCoder:(NSCoder *)coder {
+	if (self = [self init]) {
+		user = [[coder decodeObjectForKey:@"user"] retain];
+		password = [[coder decodeObjectForKey:@"password"] retain];
+		server = [[coder decodeObjectForKey:@"server"] retain];
+	}
+	
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeInt:1 forKey:@"version"];
+	[coder encodeObject:user forKey:@"user"];
+	[coder encodeObject:password forKey:@"password"];
+	[coder encodeObject:server forKey:@"server"];
+}
+
 - (NSString *)title {
 	return [NSString stringWithFormat:@"%@@%@", user, server];
 }
@@ -136,11 +153,12 @@ NSString* md5(NSString *str)
 
 + (LJFlatLogin *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
 	LJFlatLogin *request = [[[LJFlatLogin alloc] initWithServer:server mode:@"login"] autorelease];
+	//LJFlatLogin *request = [[[LJFlatLogin alloc] initWithServer:server mode:@"getevents"] autorelease];
 	
 	[request->parameters setValue:user forKey:@"user"];
 	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
 	[request->parameters setValue:challenge forKey:@"auth_challenge"];
-	
+
 	request->password = password;
 	request->challenge = challenge;
 	

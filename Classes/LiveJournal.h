@@ -19,7 +19,7 @@ enum {
 
 
 // LJ server account info
-@interface LJAccount : NSObject {
+@interface LJAccount : NSObject<NSCoding> {
 	NSString *user;
 	NSString *password;
 	NSString *server;

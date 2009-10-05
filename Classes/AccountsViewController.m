@@ -32,8 +32,10 @@
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
- 
-	accounts = [[NSMutableArray alloc] init];
+	accounts = [self loadAccounts];
+	if (!accounts) {
+		accounts = [[NSMutableArray alloc] init];
+	}
 }
 
 /*
@@ -160,6 +162,21 @@
 	[accounts dealloc];
 }
 
+- (NSMutableArray *) loadAccounts {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *path = [paths objectAtIndex:0];
+	path = [path stringByAppendingPathComponent:@"accounts.bin"];
+	NSMutableArray *restoredAccounts = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+	return [restoredAccounts retain];
+}
+
+- (void) saveAccounts {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *path = [paths objectAtIndex:0];
+	path = [path stringByAppendingPathComponent:@"accounts.bin"];
+	[NSKeyedArchiver archiveRootObject:accounts toFile:path];
+}
+
 // Parāda konta parametrus
 - (IBAction) addAccount:(id)sender {
 	[self presentModalViewController:editAccountViewController animated:YES];
@@ -167,6 +184,7 @@
 
 - (void)accountEditorController:(AccountEditorController *)controller didFinishedEditingAccount:(LJAccount *)account {
 	[accounts addObject:account];
+	[self saveAccounts];
 	[table reloadData];
 	[self dismissModalViewControllerAnimated:YES];
 }
