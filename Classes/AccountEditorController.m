@@ -67,6 +67,8 @@ void showErrorMessage(NSUInteger code) {
 	passwordText.text = nil;
 	serverText.text = nil;
 	
+	doneButton.enabled = NO;
+	
 	[usernameText becomeFirstResponder];
 }
 

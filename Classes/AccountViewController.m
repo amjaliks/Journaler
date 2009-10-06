@@ -11,8 +11,17 @@
 
 @implementation AccountViewController
 
-
 @synthesize webView;
+
+@synthesize toolbar;
+@synthesize backButton;
+@synthesize fixedSpace;
+@synthesize forwardButton;
+@synthesize flexibleSpace;
+@synthesize refreshButton;
+@synthesize stopButton;
+
+//@synthesize title;
 @synthesize dataSource;
 
 /*
@@ -32,18 +41,21 @@
 }
 */
 
-/*
+
 // Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+//    // Return YES for supported orientations
+//    return YES;//(interfaceOrientation == UIInterfaceOrientationPortrait);
+//}
+
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
+	
+	//title.title = account.title;
+	self.title = account.title;
 	
 	LJFlatGetChallenge *challenge = [LJFlatGetChallenge requestWithServer:account.server];
 	[challenge doRequest];
@@ -84,5 +96,30 @@
     [super dealloc];
 }
 
+- (IBAction) goToUpdate {
+	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
+	
+	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/update.bml", account.server]]];
+	[webView loadRequest:req];
+}
+
+
+- (void)webViewDidStartLoad:(UIWebView *)webView_ {
+	backButton.enabled = webView.canGoBack;
+	forwardButton.enabled = webView.canGoForward;
+	
+	[toolbar setItems:[NSArray arrayWithObjects:
+					   backButton, fixedSpace, forwardButton, flexibleSpace, stopButton, nil]
+			 animated:NO];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView_ {
+	backButton.enabled = webView.canGoBack;
+	forwardButton.enabled = webView.canGoForward;
+
+	[toolbar setItems:[NSArray arrayWithObjects:
+					   backButton, fixedSpace, forwardButton, flexibleSpace, refreshButton, nil]
+									   animated:NO];
+}
 
 @end
