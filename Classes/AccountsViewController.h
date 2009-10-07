@@ -11,7 +11,7 @@
 #import "AccountViewController.h"
 
 // kontu saraksta kontrolieris
-@interface AccountsViewController : UITableViewController<AccountEditorControllerDelegate, AccountViewControllerDataSource> {
+@interface AccountsViewController : UITableViewController<AccountEditorControllerDataSource, AccountEditorControllerDelegate, AccountViewControllerDataSource> {
 	UIViewController *editAccountViewController;
 	UIViewController *accountViewController;
 	

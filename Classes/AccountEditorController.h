@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class LJAccount;
-@protocol AccountEditorControllerDelegate;
+@protocol AccountEditorControllerDataSource, AccountEditorControllerDelegate;
 
 
 @interface AccountEditorController : UITableViewController {
@@ -23,6 +23,7 @@
 	
 	UIBarButtonItem *doneButton;
 	
+	id<AccountEditorControllerDataSource> dataSource;
 	id<AccountEditorControllerDelegate> delegate;
 }
 
@@ -36,11 +37,20 @@
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
 
+@property (nonatomic, retain) IBOutlet id<AccountEditorControllerDataSource> dataSource;
 @property (nonatomic, retain) IBOutlet id<AccountEditorControllerDelegate> delegate;
 
 - (IBAction) cancel:(id)sender;
 - (IBAction) saveAccount:(id)sender;
 - (IBAction) textFieldChanged:(id)sender;
+
+@end
+
+
+@protocol AccountEditorControllerDataSource<NSObject> 
+
+@optional
+- (LJAccount *)selectedAccountForAccountEditorController:(AccountEditorController *)controller;
 
 @end
 

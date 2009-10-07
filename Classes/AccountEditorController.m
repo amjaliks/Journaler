@@ -42,6 +42,7 @@ void showErrorMessage(NSUInteger code) {
 
 @synthesize doneButton;
 
+@synthesize dataSource;
 @synthesize delegate;
 
 /*
@@ -63,9 +64,19 @@ void showErrorMessage(NSUInteger code) {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
-	usernameText.text = nil;
-	passwordText.text = nil;
-	serverText.text = nil;
+	LJAccount *account = [dataSource selectedAccountForAccountEditorController:self];
+	
+	if (account) {
+		self.title = @"Edit account";
+		usernameText.text = account.user;
+		passwordText.text = account.password;
+		serverText.text = account.server;
+	} else {
+		self.title = @"Add account";
+		usernameText.text = nil;
+		passwordText.text = nil;
+		serverText.text = nil;
+	}
 	
 	doneButton.enabled = NO;
 	

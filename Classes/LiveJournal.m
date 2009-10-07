@@ -191,10 +191,13 @@ NSString* md5(NSString *str)
 
 + (LJFlatSessionGenerate *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
 	LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"sessiongenerate"] autorelease];
+	//LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
 	
 	[request->parameters setValue:user forKey:@"user"];
 	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
 	[request->parameters setValue:challenge forKey:@"auth_challenge"];
+
+	//[request->parameters setValue:@"2009-10-01 00:00:00" forKey:@"lastsync"];
 	
 	request->password = password;
 	request->challenge = challenge;

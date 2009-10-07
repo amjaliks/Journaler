@@ -113,8 +113,12 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    selectedAccount = [accounts objectAtIndex:indexPath.row];
-	[self.navigationController pushViewController:accountViewController animated:YES];
+	selectedAccount = [accounts objectAtIndex:indexPath.row];
+	if (tableView.editing) {
+		[self presentModalViewController:editAccountViewController animated:YES];
+	} else {
+		[self.navigationController pushViewController:accountViewController animated:YES];
+	}
 }
 
 
@@ -180,18 +184,30 @@
 
 // Parāda konta parametrus
 - (IBAction) addAccount:(id)sender {
+	selectedAccount = nil;
 	[self presentModalViewController:editAccountViewController animated:YES];
 }
 
 - (void)accountEditorController:(AccountEditorController *)controller didFinishedEditingAccount:(LJAccount *)account {
-	[accounts addObject:account];
+	if (selectedAccount) {
+		NSUInteger index = [accounts indexOfObject:selectedAccount];
+		[accounts removeObjectAtIndex:index];
+		[accounts insertObject:account atIndex:index];
+	} else {
+		[accounts addObject:account];
+	}
 	[self saveAccounts];
 	[table reloadData];
+	
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)accountEditorControllerDidCancel:(AccountEditorController *)controller {
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (LJAccount *)selectedAccountForAccountEditorController:(AccountEditorController *)controller {
+	return selectedAccount;
 }
 
 - (LJAccount *)selectedAccountForAccountViewController:(AccountViewController *)accountViewController {

@@ -49,6 +49,7 @@
 				<bool key="IBUIBouncesZoom">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
+				<bool key="IBUIAllowsSelectionDuringEditing">YES</bool>
 				<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
 				<float key="IBUIRowHeight">4.400000e+01</float>
 				<float key="IBUISectionHeaderHeight">2.200000e+01</float>
@@ -95,7 +96,7 @@
 					<bool key="IBUIClipsSubviews">YES</bool>
 					<bool key="IBUIMultipleTouchEnabled">YES</bool>
 				</object>
-				<object class="IBUIToolbar" key="IBUIToolbar" id="919283222">
+				<object class="IBUIToolbar" key="IBUIToolbar" id="154932219">
 					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<string key="NSFrame">{{0, 416}, {320, 44}}</string>
@@ -109,7 +110,7 @@
 					<object class="IBUIViewController" id="805400134">
 						<object class="IBUINavigationItem" key="IBUINavigationItem" id="305069978">
 							<reference key="IBUINavigationBar"/>
-							<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="18656556">
+							<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="429740277">
 								<int key="IBUIStyle">1</int>
 								<int key="IBUISystemItemIdentifier">7</int>
 							</object>
@@ -215,10 +216,18 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">goToUpdate</string>
-						<reference key="source" ref="18656556"/>
+						<reference key="source" ref="429740277"/>
 						<reference key="destination" ref="805400134"/>
 					</object>
 					<int key="connectionID">61</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="255634161"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">62</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -300,7 +309,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="805400134"/>
 							<reference ref="180263198"/>
-							<reference ref="919283222"/>
+							<reference ref="154932219"/>
 						</object>
 						<reference key="parent" ref="725635434"/>
 						<string key="objectName">Account View</string>
@@ -324,18 +333,18 @@
 						<reference key="object" ref="305069978"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="18656556"/>
+							<reference ref="429740277"/>
 						</object>
 						<reference key="parent" ref="805400134"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">59</int>
-						<reference key="object" ref="919283222"/>
+						<reference key="object" ref="154932219"/>
 						<reference key="parent" ref="799007136"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">60</int>
-						<reference key="object" ref="18656556"/>
+						<reference key="object" ref="429740277"/>
 						<reference key="parent" ref="305069978"/>
 					</object>
 				</object>
@@ -407,7 +416,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">61</int>
+			<int key="maxID">62</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -434,6 +443,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>dataSource</string>
 							<string>delegate</string>
 							<string>doneButton</string>
 							<string>passwordCell</string>
@@ -445,6 +455,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>UIBarButtonItem</string>
 							<string>UITableViewCell</string>
