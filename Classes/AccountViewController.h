@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PostEditorController.h"
 
 
 @class LJAccount;
@@ -14,7 +15,7 @@
 @protocol AccountViewControllerDataSource;
 
 
-@interface AccountViewController : UIViewController <UIWebViewDelegate> {
+@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDelegate> {
 	UIWebView *webView;
 	
 	UIToolbar *toolbar;
@@ -28,6 +29,8 @@
 	//UINavigationItem *title;
 	
 	id<AccountViewControllerDataSource> dataSource;
+	
+	UIViewController *postEditorController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
@@ -42,6 +45,8 @@
 
 //@property (nonatomic, retain) IBOutlet UINavigationItem *title;
 @property (nonatomic, retain) IBOutlet id<AccountViewControllerDataSource> dataSource;
+
+@property (nonatomic, retain) IBOutlet UIViewController *postEditorController;
 
 - (IBAction) goToUpdate;
 

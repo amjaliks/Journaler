@@ -24,6 +24,8 @@
 //@synthesize title;
 @synthesize dataSource;
 
+@synthesize postEditorController;
+
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -97,10 +99,11 @@
 }
 
 - (IBAction) goToUpdate {
-	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
-	
-	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/update.bml", account.server]]];
-	[webView loadRequest:req];
+	[self presentModalViewController:postEditorController animated:YES];
+}
+
+- (void)postEditorControllerDidFinish:(PostEditorController *)controller {
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 
