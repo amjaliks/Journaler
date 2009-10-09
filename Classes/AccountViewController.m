@@ -102,6 +102,10 @@
 	[self presentModalViewController:postEditorController animated:YES];
 }
 
+- (LJAccount *)selectedAccountForPostEditorController:(PostEditorController *)controller {
+	return [dataSource selectedAccountForAccountViewController:self];
+}
+
 - (void)postEditorControllerDidFinish:(PostEditorController *)controller {
 	[self dismissModalViewControllerAnimated:YES];
 }

@@ -10,7 +10,7 @@
 #import "LiveJournal.h"
 
 
-void showErrorMessage(NSUInteger code) {
+void showErrorMessage(NSString *title, NSUInteger code) {
 	NSString *text;
 	if (LJErrorHostNotFound == code) {
 		text = @"Can't find server";
@@ -24,7 +24,7 @@ void showErrorMessage(NSUInteger code) {
 		text = @"Unknown error";
 	}
 	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login error" message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
 }
@@ -211,13 +211,13 @@ void showErrorMessage(NSUInteger code) {
 	
 	LJFlatGetChallenge *req = [LJFlatGetChallenge requestWithServer:server];
 	if (![req doRequest]) {
-		showErrorMessage(req.error);
+		showErrorMessage(@"Login error", req.error);
 		return;
 	}
 	
 	LJFlatLogin *login = [LJFlatLogin requestWithServer:server user:usernameText.text password:passwordText.text challenge:req.challenge];
 	if (![login doRequest]) {
-		showErrorMessage(login.error);
+		showErrorMessage(@"Login error", login.error);
 		return;
 	}
 	

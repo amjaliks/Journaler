@@ -15,7 +15,7 @@
 @protocol AccountViewControllerDataSource;
 
 
-@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDelegate> {
+@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate> {
 	UIWebView *webView;
 	
 	UIToolbar *toolbar;

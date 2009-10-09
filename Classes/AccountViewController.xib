@@ -104,9 +104,9 @@
 			<object class="IBUIBarButtonItem" id="952337074">
 				<int key="IBUISystemItemIdentifier">14</int>
 			</object>
-			<object class="IBUINavigationController" id="56210927">
+			<object class="IBUINavigationController" id="990383593">
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUINavigationBar" key="IBUINavigationBar" id="822059889">
+				<object class="IBUINavigationBar" key="IBUINavigationBar" id="268414455">
 					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<string key="NSFrameSize">{0, 0}</string>
@@ -116,20 +116,20 @@
 				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIViewController" id="495687734">
-						<object class="IBUINavigationItem" key="IBUINavigationItem" id="872864753">
+					<object class="IBUIViewController" id="350727475">
+						<object class="IBUINavigationItem" key="IBUINavigationItem" id="1069688114">
 							<reference key="IBUINavigationBar"/>
 							<string key="IBUITitle">New post</string>
-							<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="584616101">
+							<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="770246586">
 								<int key="IBUIStyle">1</int>
 								<int key="IBUISystemItemIdentifier">1</int>
 							</object>
-							<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="19172978">
+							<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="586508878">
 								<string key="IBUITitle">Post</string>
 								<int key="IBUIStyle">1</int>
 							</object>
 						</object>
-						<reference key="IBUIParentViewController" ref="56210927"/>
+						<reference key="IBUIParentViewController" ref="990383593"/>
 						<string key="IBUINibName">PostEditorController</string>
 					</object>
 				</object>
@@ -254,33 +254,57 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">postEditorController</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="56210927"/>
+						<reference key="destination" ref="990383593"/>
 					</object>
 					<int key="connectionID">46</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">cancel:</string>
-						<reference key="source" ref="584616101"/>
-						<reference key="destination" ref="495687734"/>
+						<reference key="source" ref="770246586"/>
+						<reference key="destination" ref="350727475"/>
 					</object>
 					<int key="connectionID">51</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">post:</string>
-						<reference key="source" ref="19172978"/>
-						<reference key="destination" ref="495687734"/>
+						<reference key="source" ref="586508878"/>
+						<reference key="destination" ref="350727475"/>
 					</object>
 					<int key="connectionID">52</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="56210927"/>
+						<reference key="source" ref="990383593"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">53</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="350727475"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">54</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="350727475"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">55</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">postButton</string>
+						<reference key="source" ref="350727475"/>
+						<reference key="destination" ref="586508878"/>
+					</object>
+					<int key="connectionID">56</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -364,48 +388,48 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">42</int>
-						<reference key="object" ref="56210927"/>
+						<reference key="object" ref="990383593"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="495687734"/>
-							<reference ref="822059889"/>
+							<reference ref="350727475"/>
+							<reference ref="268414455"/>
 						</object>
 						<reference key="parent" ref="269629049"/>
 						<string key="objectName">Post editor</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">43</int>
-						<reference key="object" ref="495687734"/>
+						<reference key="object" ref="350727475"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="872864753"/>
+							<reference ref="1069688114"/>
 						</object>
-						<reference key="parent" ref="56210927"/>
+						<reference key="parent" ref="990383593"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">44</int>
-						<reference key="object" ref="822059889"/>
-						<reference key="parent" ref="56210927"/>
+						<reference key="object" ref="268414455"/>
+						<reference key="parent" ref="990383593"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">45</int>
-						<reference key="object" ref="872864753"/>
+						<reference key="object" ref="1069688114"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="584616101"/>
-							<reference ref="19172978"/>
+							<reference ref="770246586"/>
+							<reference ref="586508878"/>
 						</object>
-						<reference key="parent" ref="495687734"/>
+						<reference key="parent" ref="350727475"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">47</int>
-						<reference key="object" ref="584616101"/>
-						<reference key="parent" ref="872864753"/>
+						<reference key="object" ref="770246586"/>
+						<reference key="parent" ref="1069688114"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">48</int>
-						<reference key="object" ref="19172978"/>
-						<reference key="parent" ref="872864753"/>
+						<reference key="object" ref="586508878"/>
+						<reference key="parent" ref="1069688114"/>
 					</object>
 				</object>
 			</object>
@@ -478,7 +502,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">53</int>
+			<int key="maxID">56</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -533,9 +557,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cancel:</string>
 							<string>post:</string>
+							<string>textFieldChanged:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -544,7 +570,9 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>dataSource</string>
 							<string>delegate</string>
+							<string>postButton</string>
 							<string>subjectCell</string>
 							<string>subjectField</string>
 							<string>textCell</string>
@@ -553,6 +581,8 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>id</string>
+							<string>id</string>
+							<string>UIBarButtonItem</string>
 							<string>UITableViewCell</string>
 							<string>UITextField</string>
 							<string>UITableViewCell</string>

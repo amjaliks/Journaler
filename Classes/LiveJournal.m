@@ -229,3 +229,58 @@ NSString* md5(NSString *str)
 }
 
 @end
+
+
+@implementation LJFlatPostEvent
+
++ (LJFlatPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event {
+	LJFlatPostEvent *request = [[[LJFlatPostEvent alloc] initWithServer:server mode:@"postevent"] autorelease];
+	//LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
+	
+	[request->parameters setValue:user forKey:@"user"];
+	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
+	[request->parameters setValue:challenge forKey:@"auth_challenge"];
+
+	[request->parameters setValue:subject forKey:@"subject"];
+	[request->parameters setValue:event forKey:@"event"];
+	
+	NSCalendar *cal = [NSCalendar currentCalendar];
+	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+	NSDate *date = [NSDate date];
+	NSDateComponents *comps = [cal components:unitFlags fromDate:date];
+
+	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps year]] forKey:@"year"];
+	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps month]] forKey:@"mon"];
+	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps day]] forKey:@"day"];
+	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps hour]] forKey:@"hour"];
+	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps minute]] forKey:@"min"];
+	
+	
+	//[request->parameters setValue:@"2009-10-01 00:00:00" forKey:@"lastsync"];
+	
+	request->password = password;
+	request->challenge = challenge;
+	
+	return request;
+}
+
+- (BOOL)doRequest {
+	
+	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
+	[parameters setValue:authResponse forKey:@"auth_response"];
+	
+	return [super doRequest];
+}
+
+- (void)proceedError {
+	NSString *errmsg = [result valueForKey:@"errmsg"];
+	if ([@"Invalid username" isEqualToString:errmsg]) {
+		error = LJErrorInvalidUsername;
+	} else if ([@"Invalid password" isEqualToString:errmsg]) {
+		error = LJErrorInvalidPassword;
+	} else {
+		error = LJErrorUnknown;
+	}
+}
+
+@end

@@ -10,7 +10,7 @@
 
 
 enum {
-	LJErrorUnknown,
+	LJErrorUnknown = 1,
 	LJErrorHostNotFound,
 	LJErrorConnectionFailed,
 	LJErrorInvalidUsername,
@@ -83,5 +83,15 @@ enum {
 + (LJFlatSessionGenerate *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
 
 @property (readonly) NSString *ljsession;
+
+@end
+
+
+@interface LJFlatPostEvent : LJFlatRequest {
+	NSString *challenge;
+	NSString *password;
+}
+
++ (LJFlatPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event;
 
 @end

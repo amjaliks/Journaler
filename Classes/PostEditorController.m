@@ -7,6 +7,27 @@
 //
 
 #import "PostEditorController.h"
+#import "LiveJournal.h"
+#import "AccountsViewController.h"
+
+//void showErrorMessage(NSUInteger code) {
+//	NSString *text;
+//	if (LJErrorHostNotFound == code) {
+//		text = @"Can't find server";
+//	} else if (LJErrorConnectionFailed == code) {
+//		text = @"Can't connect to server";
+//	} else if (LJErrorInvalidUsername == code) {
+//		text = @"Invalid username";
+//	} else if (LJErrorInvalidPassword == code) {
+//		text = @"Invalid password";
+//	} else {
+//		text = @"Unknown error";
+//	}
+//	
+//	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login error" message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//	[alert show];
+//	[alert release];
+//}
 
 
 @implementation PostEditorController
@@ -17,6 +38,9 @@
 @synthesize subjectField;
 @synthesize textField;
 
+@synthesize postButton;
+
+@synthesize dataSource;
 @synthesize delegate;
 
 /*
@@ -42,6 +66,8 @@
 	
 	subjectField.text = nil;
 	textField.text = nil;
+	
+	postButton.enabled = NO;
 	
 	[subjectField becomeFirstResponder];
 }
@@ -172,8 +198,31 @@
 }
 
 - (IBAction) post:(id)sender {
+	LJAccount *account = [dataSource selectedAccountForPostEditorController:self];
+	
+	LJFlatGetChallenge *req = [LJFlatGetChallenge requestWithServer:account.server];
+	if (![req doRequest]) {
+		showErrorMessage(@"Post error", req.error);
+		return;
+	}
+	
+	LJFlatPostEvent *login = [LJFlatPostEvent requestWithServer:account.server user:account.user password:account.password challenge:req.challenge subject:subjectField.text event:textField.text];
+	if (![login doRequest]) {
+		showErrorMessage(@"Post error", login.error);
+		return;
+	}
+	
 	[delegate postEditorControllerDidFinish:self];
 }
+
+- (void)textViewDidChange:(UITextView *)textView {
+	postButton.enabled = [textField.text length] > 0;
+}
+
+//- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+//	return YES;
+//}
+
 
 @end
 
