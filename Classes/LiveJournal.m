@@ -8,6 +8,7 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import "LiveJournal.h"
+#import "RegexKitLite.h"
 
 
 NSString* md5(NSString *str)
@@ -48,6 +49,76 @@ NSString* md5(NSString *str)
 
 - (NSString *)title {
 	return [NSString stringWithFormat:@"%@@%@", user, server];
+}
+
+@end
+
+
+@implementation LJEvent
+
+@synthesize journalName;
+@synthesize journalType;
+@synthesize posterName;
+@synthesize posterType;
+@synthesize subject;
+@synthesize event;
+@synthesize eventPreview;
+
++ (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format {
+	while (true) {
+		NSLog(string);
+		NSString *match = [string stringByMatching:tag options:RKLDotAll inRange:NSMakeRange(0, [string length]) capture:0 error:nil];
+		if (!match) {
+			break;
+		}
+		
+		NSString *user = [match stringByMatching:replacement capture:1];
+		if (format) {
+			user = [NSString stringWithFormat:format, user];
+		}
+		string = [string stringByReplacingOccurrencesOfString:match withString:user];
+	}
+	return string;
+}
+
+- (void) setEvent:(NSString *)_event {
+	event = [_event retain];
+	eventPreview = [event stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<b>" withString:@""];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<u>" withString:@""];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"</u>" withString:@""];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<em>" withString:@""];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
+	
+	NSRange notFoundRange;
+	notFoundRange.location = NSNotFound;
+	notFoundRange.length = 0;
+	
+	NSRange forward;
+	forward.location = 0;
+	forward.length = [eventPreview length];
+	
+	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<lj user=\".+\">" replacement:@"\"(.+)\"" format:nil];
+	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<a.*?>.+?</a>" replacement:@">(.+)<" format:nil];
+	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<lj-cut text=\".+\">.*</lj-cut>" replacement:@"text=\"(.+)\"" format:@"( %@ )"];
+	
+	[eventPreview retain];
+
+	//NSLog(NSStringFromRange());
+//	while (true) {
+//		NSRange pos = [eventPreview rangeOfString:@"<lj " options:0 range:forward];
+//		if (pos.location == NSNotFound) {
+//			break;
+//		}
+//		forward.location = pos.location + 1;
+//		
+//	}
 }
 
 @end
@@ -241,6 +312,7 @@ NSString* md5(NSString *str)
 	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
 	[request->parameters setValue:challenge forKey:@"auth_challenge"];
 
+	[request->parameters setValue:@"1" forKey:@"ver"];
 	[request->parameters setValue:subject forKey:@"subject"];
 	[request->parameters setValue:event forKey:@"event"];
 	
@@ -270,6 +342,69 @@ NSString* md5(NSString *str)
 	[parameters setValue:authResponse forKey:@"auth_response"];
 	
 	return [super doRequest];
+}
+
+- (void)proceedError {
+	NSString *errmsg = [result valueForKey:@"errmsg"];
+	if ([@"Invalid username" isEqualToString:errmsg]) {
+		error = LJErrorInvalidUsername;
+	} else if ([@"Invalid password" isEqualToString:errmsg]) {
+		error = LJErrorInvalidPassword;
+	} else {
+		error = LJErrorUnknown;
+	}
+}
+
+@end
+
+
+@implementation LJFlatGetFriendsPage
+
+@synthesize entries;
+
++ (LJFlatGetFriendsPage *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
+	LJFlatGetFriendsPage *request = [[[LJFlatGetFriendsPage alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
+	//LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
+	
+	[request->parameters setValue:user forKey:@"user"];
+	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
+	[request->parameters setValue:challenge forKey:@"auth_challenge"];
+
+	[request->parameters setValue:@"1" forKey:@"ver"];
+	[request->parameters setValue:@"25" forKey:@"itemshow"];
+	[request->parameters setValue:@"2009-01-01 00:00:00" forKey:@"lastsync"];
+	
+	request->password = password;
+	request->challenge = challenge;
+	
+	return request;
+}
+
+- (BOOL)doRequest {
+	
+	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
+	[parameters setValue:authResponse forKey:@"auth_response"];
+
+	[super doRequest];
+
+	if (self.success) {
+		NSString *entriesCountStr = [result valueForKey:@"entries_count"];
+		int count = [entriesCountStr intValue];
+		
+		entries = [NSMutableArray arrayWithCapacity:count];
+		
+		for (int i = 1; i <= count; i++) {
+			LJEvent *event = [[LJEvent alloc] init];
+			event.subject = [[((NSString *) [result valueForKey:[NSString stringWithFormat:@"entries_%d_subject_raw", i]]) stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+			event.event = [[((NSString *) [result valueForKey:[NSString stringWithFormat:@"entries_%d_event", i]]) stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+			event.journalName = [result valueForKey:[NSString stringWithFormat:@"entries_%d_journalname", i]];
+			event.journalType = [result valueForKey:[NSString stringWithFormat:@"entries_%d_journaltype", i]];
+			event.posterName = [result valueForKey:[NSString stringWithFormat:@"entries_%d_postername", i]];
+			event.posterType = [result valueForKey:[NSString stringWithFormat:@"entries_%d_postertype", i]];
+			[entries addObject:event];
+		}
+	}
+	return self.success;
 }
 
 - (void)proceedError {

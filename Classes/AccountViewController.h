@@ -15,7 +15,10 @@
 @protocol AccountViewControllerDataSource;
 
 
-@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate> {
+@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
+	UIView *ljAccountView;
+	UIView *otherAccountView;
+	
 	UIWebView *webView;
 	
 	UIToolbar *toolbar;
@@ -26,12 +29,16 @@
 	UIBarButtonItem *refreshButton;
 	UIBarButtonItem *stopButton;
 	
-	//UINavigationItem *title;
+	NSArray *events;
+	UITableViewCell *templateCell;
 	
 	id<AccountViewControllerDataSource> dataSource;
 	
 	UIViewController *postEditorController;
 }
+
+@property (nonatomic, retain) IBOutlet UIView *ljAccountView;
+@property (nonatomic, retain) IBOutlet UIView *otherAccountView;
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 
@@ -43,7 +50,8 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *stopButton;
 
-//@property (nonatomic, retain) IBOutlet UINavigationItem *title;
+@property (nonatomic, retain) IBOutlet UITableViewCell *templateCell;
+
 @property (nonatomic, retain) IBOutlet id<AccountViewControllerDataSource> dataSource;
 
 @property (nonatomic, retain) IBOutlet UIViewController *postEditorController;

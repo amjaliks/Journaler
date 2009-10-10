@@ -33,6 +33,28 @@ enum {
 
 @end
 
+@interface LJEvent : NSObject {
+	NSString *journalName;
+	NSString *journalType;
+	NSString *posterName;
+	NSString *posterType;
+	NSString *subject;
+	NSString *event;
+	NSString *eventPreview;
+}
+
+@property (retain) NSString *journalName;
+@property (retain) NSString *journalType;
+@property (retain) NSString *posterName;
+@property (retain) NSString *posterType;
+@property (retain) NSString *subject;
+@property (retain) NSString *event;
+@property (readonly) NSString *eventPreview;
+
++ (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format;
+
+@end
+
 
 // A raw object for LJ Flat API request. Use as superclass for all requests.
 @interface LJFlatRequest : NSObject {
@@ -93,5 +115,18 @@ enum {
 }
 
 + (LJFlatPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event;
+
+@end
+
+
+@interface LJFlatGetFriendsPage : LJFlatRequest {
+	NSString *challenge;
+	NSString *password;
+	NSMutableArray *entries;
+}
+
++ (LJFlatGetFriendsPage *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
+
+@property (readonly) NSArray *entries;
 
 @end

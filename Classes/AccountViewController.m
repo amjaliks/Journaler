@@ -11,6 +11,9 @@
 
 @implementation AccountViewController
 
+@synthesize ljAccountView;
+@synthesize otherAccountView;
+
 @synthesize webView;
 
 @synthesize toolbar;
@@ -21,7 +24,8 @@
 @synthesize refreshButton;
 @synthesize stopButton;
 
-//@synthesize title;
+@synthesize templateCell;
+
 @synthesize dataSource;
 
 @synthesize postEditorController;
@@ -55,30 +59,43 @@
 	[super viewWillAppear:animated];
 	
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
-	
-	//title.title = account.title;
 	self.title = account.title;
 	
 	LJFlatGetChallenge *challenge = [LJFlatGetChallenge requestWithServer:account.server];
 	[challenge doRequest];
-	LJFlatSessionGenerate *session = [LJFlatSessionGenerate requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
-	[session doRequest];
 	
-	NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-	NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-	[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-
-	cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljmastersession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-	cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-	[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-
-	NSArray *parts = [session.ljsession componentsSeparatedByString:@":"];
-	cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljloggedin", NSHTTPCookieName, [NSString stringWithFormat:@"%@:%@", [parts objectAtIndex:1], [parts objectAtIndex:2]], NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-	cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-	[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+	[otherAccountView removeFromSuperview];
+	[ljAccountView removeFromSuperview];
 	
-	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/~%@/friends", account.server, account.user]]];
-	[webView loadRequest:req];
+	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
+		LJFlatGetFriendsPage *friendPage = [LJFlatGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
+		[friendPage doRequest];
+		
+		events = [friendPage.entries retain]	;
+		
+		[self.view addSubview:ljAccountView];
+	} else {
+		[self.view addSubview:otherAccountView];	
+
+		LJFlatSessionGenerate *session = [LJFlatSessionGenerate requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
+		[session doRequest];
+		
+		NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+		NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+		[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+
+		cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljmastersession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+		cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+		[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+
+		NSArray *parts = [session.ljsession componentsSeparatedByString:@":"];
+		cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljloggedin", NSHTTPCookieName, [NSString stringWithFormat:@"%@:%@", [parts objectAtIndex:1], [parts objectAtIndex:2]], NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+		cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+		[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+		
+		NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/~%@/friends", account.server, account.user]]];
+		[webView loadRequest:req];
+	}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,6 +144,55 @@
 	[toolbar setItems:[NSArray arrayWithObjects:
 					   backButton, fixedSpace, forwardButton, flexibleSpace, refreshButton, nil]
 									   animated:NO];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [events count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *MyIdentifier = @"PostSummary";
+	
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    if (cell == nil) {
+        [[NSBundle mainBundle] loadNibNamed:@"PostSummaryView" owner:self options:nil];
+        cell = templateCell;
+        self.templateCell = nil;
+    }
+	
+	LJEvent *event = [events objectAtIndex:indexPath.row];
+	
+    UILabel *label;
+    label = (UILabel *)[cell viewWithTag:1];
+	if ([event.subject length]) {
+		label.text = event.subject;
+	} else {
+		label.text = @"no subject";
+		//label.textColor = [UIColor grayColor];
+	}
+	
+    label = (UILabel *)[cell viewWithTag:2];
+	if ([event.journalName isEqualTo:event.posterName]) {
+		label.text = event.journalName;
+	} else {
+		label.text = [NSString stringWithFormat:@"%@ in %@", event.posterName, event.journalName];
+	}
+
+	label = (UILabel *)[cell viewWithTag:3];
+    label.text = event.eventPreview;
+	
+	CGSize size = [label sizeThatFits:label.frame.size];
+	CGFloat delta = size.height - label.frame.size.height;
+	label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, size.height);
+	
+	cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height + delta);
+
+	return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell *cell = [tableView.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
+	return cell.frame.size.height;
 }
 
 @end
