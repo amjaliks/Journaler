@@ -387,7 +387,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{480, 184}, {320, 480}}</string>
+					<string>{{417, 184}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>AccountViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -416,7 +416,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">66</int>
+			<int key="maxID">68</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -487,9 +487,12 @@
 							<string>fixedSpace</string>
 							<string>flexibleSpace</string>
 							<string>forwardButton</string>
+							<string>ljAccountView</string>
+							<string>otherAccountView</string>
 							<string>postEditorController</string>
 							<string>refreshButton</string>
 							<string>stopButton</string>
+							<string>templateCell</string>
 							<string>toolbar</string>
 							<string>webView</string>
 						</object>
@@ -500,9 +503,12 @@
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
+							<string>UITableView</string>
+							<string>UIView</string>
 							<string>UIViewController</string>
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
+							<string>UITableViewCell</string>
 							<string>UIToolbar</string>
 							<string>UIWebView</string>
 						</object>
@@ -524,12 +530,14 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>accountViewController</string>
+							<string>activity</string>
 							<string>editAccountViewController</string>
 							<string>table</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIViewController</string>
+							<string>UIActivityIndicatorView</string>
 							<string>UIViewController</string>
 							<string>UITableView</string>
 						</object>

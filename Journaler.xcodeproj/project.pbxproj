@@ -11,9 +11,10 @@
 		1789BE62107A89F200964DA2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
 		1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
 		1789BFE3107E73BA00964DA2 /* PostEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1789BFE1107E73BA00964DA2 /* PostEditorController.xib */; };
-		1789BFE6107E866E00964DA2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BFE5107E866E00964DA2 /* Icon.png */; };
 		17B4C487108111500005660E /* PostSummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B4C486108111500005660E /* PostSummaryView.xib */; };
 		17B4C53A108132E80005660E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C538108132E80005660E /* RegexKitLite.m */; };
+		17B4C63F10827C360005660E /* IconLite.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B4C63E10827C360005660E /* IconLite.png */; };
+		17B4C71E1082A8340005660E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B4C71D1082A8340005660E /* Icon.png */; };
 		17DB0BD11075444F00155636 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BCF1075444F00155636 /* AccountsViewController.m */; };
 		17DB0BD21075444F00155636 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BD01075444F00155636 /* AccountsViewController.xib */; };
 		17DB0BF31075462000155636 /* AccountEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BF11075462000155636 /* AccountEditorController.xib */; };
@@ -36,10 +37,11 @@
 		1789BFDF107E73BA00964DA2 /* PostEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEditorController.h; sourceTree = "<group>"; };
 		1789BFE0107E73BA00964DA2 /* PostEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostEditorController.m; sourceTree = "<group>"; };
 		1789BFE1107E73BA00964DA2 /* PostEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostEditorController.xib; path = Classes/PostEditorController.xib; sourceTree = "<group>"; };
-		1789BFE5107E866E00964DA2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		17B4C486108111500005660E /* PostSummaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostSummaryView.xib; sourceTree = "<group>"; };
 		17B4C538108132E80005660E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		17B4C539108132E80005660E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		17B4C63E10827C360005660E /* IconLite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconLite.png; sourceTree = "<group>"; };
+		17B4C71D1082A8340005660E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		17DB0BCE1075444F00155636 /* AccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountsViewController.h; sourceTree = "<group>"; };
 		17DB0BCF1075444F00155636 /* AccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsViewController.m; sourceTree = "<group>"; };
 		17DB0BD01075444F00155636 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountsViewController.xib; path = Classes/AccountsViewController.xib; sourceTree = "<group>"; };
@@ -140,7 +142,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1789BFE5107E866E00964DA2 /* Icon.png */,
+				17B4C71D1082A8340005660E /* Icon.png */,
+				17B4C63E10827C360005660E /* IconLite.png */,
 				17DB0BD01075444F00155636 /* AccountsViewController.xib */,
 				17DB0BF11075462000155636 /* AccountEditorController.xib */,
 				17FCD9B410793F9F00806088 /* AccountViewController.xib */,
@@ -221,8 +224,9 @@
 				1789BE60107A894B00964DA2 /* forward.png in Resources */,
 				1789BE62107A89F200964DA2 /* back.png in Resources */,
 				1789BFE3107E73BA00964DA2 /* PostEditorController.xib in Resources */,
-				1789BFE6107E866E00964DA2 /* Icon.png in Resources */,
 				17B4C487108111500005660E /* PostSummaryView.xib in Resources */,
+				17B4C63F10827C360005660E /* IconLite.png in Resources */,
+				17B4C71E1082A8340005660E /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +261,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F8DAF4E4-E32D-452E-B314-010BC85C6E1A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18BDE38A-F618-4DE3-8CEE-4D7D22FFF6E0";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = "Distribution (Ad Hoc)";

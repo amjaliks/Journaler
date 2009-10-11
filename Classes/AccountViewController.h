@@ -16,7 +16,7 @@
 
 
 @interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
-	UIView *ljAccountView;
+	UITableView *ljAccountView;
 	UIView *otherAccountView;
 	
 	UIWebView *webView;
@@ -37,7 +37,7 @@
 	UIViewController *postEditorController;
 }
 
-@property (nonatomic, retain) IBOutlet UIView *ljAccountView;
+@property (nonatomic, retain) IBOutlet UITableView *ljAccountView;
 @property (nonatomic, retain) IBOutlet UIView *otherAccountView;
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;

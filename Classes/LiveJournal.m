@@ -72,7 +72,7 @@ NSString* md5(NSString *str)
 			break;
 		}
 		
-		NSString *user = [match stringByMatching:replacement capture:1];
+		NSString *user = [match stringByMatching:replacement options:RKLDotAll inRange:NSMakeRange(0, [match length]) capture:1 error:nil];
 		if (format) {
 			user = [NSString stringWithFormat:format, user];
 		}
@@ -83,18 +83,7 @@ NSString* md5(NSString *str)
 
 - (void) setEvent:(NSString *)_event {
 	event = [_event retain];
-	eventPreview = [event stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
-	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<b>" withString:@""];
-	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
-	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
-	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
-	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<u>" withString:@""];
-	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"</u>" withString:@""];
-	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
-	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
-	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<em>" withString:@""];
-	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
-	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
+	eventPreview = [_event retain];
 	
 	NSRange notFoundRange;
 	notFoundRange.location = NSNotFound;
@@ -104,10 +93,18 @@ NSString* md5(NSString *str)
 	forward.location = 0;
 	forward.length = [eventPreview length];
 	
-	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<lj user=\".+\">" replacement:@"\"(.+)\"" format:nil];
-	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<a.*?>.+?</a>" replacement:@">(.+)<" format:nil];
-	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<lj-cut text=\".+\">.*</lj-cut>" replacement:@"text=\"(.+)\"" format:@"( %@ )"];
+	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<lj user=\".+?\">" replacement:@"\"(.+?)\"" format:nil];
+	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<lj-cut text=\".+?\">.*?</lj-cut>" replacement:@"text=\"(.+?)\"" format:@"( %@ )"];
 	
+	NSMutableString *meventPreview = [NSMutableString stringWithString:eventPreview];
+
+	[meventPreview replaceOccurrencesOfRegex:@"<br\\s*/?>" withString:@"\n" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
+	[meventPreview replaceOccurrencesOfRegex:@"<img\\s?.*/?>" withString:@"( img )" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
+
+	[meventPreview replaceOccurrencesOfRegex:@"<.+?>" withString:@""  options:(RKLDotAll | RKLCaseless)range:NSMakeRange(0, [meventPreview length]) error:nil];
+
+	eventPreview = [meventPreview stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+
 	[eventPreview retain];
 
 	//NSLog(NSStringFromRange());

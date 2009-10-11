@@ -61,22 +61,16 @@
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
 	self.title = account.title;
 	
-	LJFlatGetChallenge *challenge = [LJFlatGetChallenge requestWithServer:account.server];
-	[challenge doRequest];
-	
 	[otherAccountView removeFromSuperview];
 	[ljAccountView removeFromSuperview];
 	
 	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
-		LJFlatGetFriendsPage *friendPage = [LJFlatGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
-		[friendPage doRequest];
-		
-		events = [friendPage.entries retain]	;
-		
-		[self.view addSubview:ljAccountView];
 	} else {
 		[self.view addSubview:otherAccountView];	
 
+		LJFlatGetChallenge *challenge = [LJFlatGetChallenge requestWithServer:account.server];
+		[challenge doRequest];
+		
 		LJFlatSessionGenerate *session = [LJFlatSessionGenerate requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
 		[session doRequest];
 		
@@ -96,6 +90,25 @@
 		NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/~%@/friends", account.server, account.user]]];
 		[webView loadRequest:req];
 	}
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+
+	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
+	
+	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
+		LJFlatGetChallenge *challenge = [LJFlatGetChallenge requestWithServer:account.server];
+		[challenge doRequest];
+		
+		LJFlatGetFriendsPage *friendPage = [LJFlatGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
+		[friendPage doRequest];
+		
+		events = [friendPage.entries retain];
+		[self.ljAccountView reloadData];
+		
+		[self.view addSubview:ljAccountView];
+	};
 }
 
 - (void)didReceiveMemoryWarning {
@@ -172,7 +185,7 @@
 	}
 	
     label = (UILabel *)[cell viewWithTag:2];
-	if ([event.journalName isEqualTo:event.posterName]) {
+	if ([event.journalName isEqualToString:event.posterName]) {
 		label.text = event.journalName;
 	} else {
 		label.text = [NSString stringWithFormat:@"%@ in %@", event.posterName, event.journalName];
