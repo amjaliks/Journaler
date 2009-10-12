@@ -9,7 +9,8 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "LiveJournal.h"
 #import "RegexKitLite.h"
-
+#import "XMLRPCRequest.h"
+#import "XMLRPCResponse.h"
 
 NSString* md5(NSString *str)
 {
@@ -62,6 +63,8 @@ NSString* md5(NSString *str)
 @synthesize posterType;
 @synthesize subject;
 @synthesize event;
+@synthesize datetime;
+@synthesize replyCount;
 @synthesize eventPreview;
 
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format {
@@ -107,15 +110,6 @@ NSString* md5(NSString *str)
 
 	[eventPreview retain];
 
-	//NSLog(NSStringFromRange());
-//	while (true) {
-//		NSRange pos = [eventPreview rangeOfString:@"<lj " options:0 range:forward];
-//		if (pos.location == NSNotFound) {
-//			break;
-//		}
-//		forward.location = pos.location + 1;
-//		
-//	}
 }
 
 @end
@@ -203,10 +197,109 @@ NSString* md5(NSString *str)
 @end
 
 
+@implementation LJRequest
+
+@synthesize error;
+
+- (id)initWithServer:(NSString *)server method:(NSString *)method; {
+	if (self = [super init]) {
+		_server = server;
+		_method = method;
+		
+		error = 0;
+		
+		parameters = [NSMutableDictionary dictionary];
+	}
+	return self;
+}
+
+- (BOOL)doRequest {
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/interface/xmlrpc", _server]];
+	XMLRPCRequest *xmlreq = [[XMLRPCRequest alloc] initWithURL:url];
+	//[[XMLRPCRequest alloc] initWithHost:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/interface/xmlrpc", _server]]];
+	//[xmlreq setMethod:_method withObject:parameters];
+	[xmlreq setMethod:_method withParameter:parameters];
+	NSLog(@"request:\n%@", [xmlreq body]);
+	NSURLRequest *req = [xmlreq request];
+	
+	NSURLResponse *res;
+	NSError *err;
+	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
+	
+	NSLog([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+	if (err && [NSURLErrorDomain isEqualToString:[err domain]]) {
+		NSInteger errcode = [err code];
+		if (errcode == NSURLErrorCannotFindHost) {
+			error = LJErrorHostNotFound;
+		} else if (errcode == NSURLErrorTimedOut) {
+			error = LJErrorConnectionFailed;
+		} else {
+			error = LJErrorUnknown;
+			NSLog(@"Error: %d", errcode);
+		}
+		
+		[xmlreq release];
+		return NO;
+	}
+
+	[xmlreq release];
+	
+	XMLRPCResponse *xmlres = [[XMLRPCResponse alloc] initWithData:data];
+	result = [[xmlres object] retain];
+	NSLog(@"respone:\n%@", [xmlres body]);
+	
+	if ([xmlres isFault]) {
+		error = LJErrorUnknown;
+	}
+	
+	[xmlres release];
+	
+//	NSLog(@"respone:\n%@", response);
+//	
+//	NSArray *lines = [response componentsSeparatedByString:@"\n"];
+//	NSUInteger count = [lines count] / 2;
+//	result = [NSMutableDictionary dictionaryWithCapacity:count];
+//	
+//	for (NSUInteger i = 0; i < count; i++) {
+//		[result setValue:[lines objectAtIndex:(i * 2) + 1] forKey:[lines objectAtIndex:(i * 2)]];
+//	}
+//	
+//	if (![@"OK" isEqualToString:[result valueForKey:@"success"]]) {
+//		[self proceedError];
+//	}
+	
+	return self.success;
+}
+
+- (BOOL)success {
+	return !error;
+}
+
+- (void)proceedError {
+	error = LJErrorUnknown;
+}
+
+@end
+
+
 @implementation LJFlatGetChallenge
 
 + (LJFlatGetChallenge *)requestWithServer:(NSString *)server {
 	LJFlatGetChallenge *request = [[[LJFlatGetChallenge alloc] initWithServer:server mode:@"getchallenge"] autorelease];
+	return request;
+}
+
+- (NSString *)challenge {
+	return [result valueForKey:@"challenge"];
+}
+
+@end
+
+
+@implementation LJGetChallenge
+
++ (LJGetChallenge *)requestWithServer:(NSString *)server {
+	LJGetChallenge *request = [[[LJGetChallenge alloc] initWithServer:server method:@"LJ.XMLRPC.getchallenge"] autorelease];
 	return request;
 }
 
@@ -355,15 +448,15 @@ NSString* md5(NSString *str)
 @end
 
 
-@implementation LJFlatGetFriendsPage
+@implementation LJGetFriendsPage
 
 @synthesize entries;
 
-+ (LJFlatGetFriendsPage *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
-	LJFlatGetFriendsPage *request = [[[LJFlatGetFriendsPage alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
++ (LJGetFriendsPage *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
+	LJGetFriendsPage *request = [[[LJGetFriendsPage alloc] initWithServer:server method:@"LJ.XMLRPC.getfriendspage"] autorelease];
 	//LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
 	
-	[request->parameters setValue:user forKey:@"user"];
+	[request->parameters setValue:user forKey:@"username"];
 	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
 	[request->parameters setValue:challenge forKey:@"auth_challenge"];
 
@@ -385,21 +478,104 @@ NSString* md5(NSString *str)
 	[super doRequest];
 
 	if (self.success) {
-		NSString *entriesCountStr = [result valueForKey:@"entries_count"];
-		int count = [entriesCountStr intValue];
+		NSArray *xmlEntries = [result valueForKey:@"entries"];
+		entries = [NSMutableArray arrayWithCapacity:[xmlEntries count]];
 		
-		entries = [NSMutableArray arrayWithCapacity:count];
-		
-		for (int i = 1; i <= count; i++) {
+		for (NSDictionary *entry in xmlEntries) {
 			LJEvent *event = [[LJEvent alloc] init];
-			event.subject = [[((NSString *) [result valueForKey:[NSString stringWithFormat:@"entries_%d_subject_raw", i]]) stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-			event.event = [[((NSString *) [result valueForKey:[NSString stringWithFormat:@"entries_%d_event", i]]) stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-			event.journalName = [result valueForKey:[NSString stringWithFormat:@"entries_%d_journalname", i]];
-			event.journalType = [result valueForKey:[NSString stringWithFormat:@"entries_%d_journaltype", i]];
-			event.posterName = [result valueForKey:[NSString stringWithFormat:@"entries_%d_postername", i]];
-			event.posterType = [result valueForKey:[NSString stringWithFormat:@"entries_%d_postertype", i]];
+			id subjectRaw = [entry valueForKey:@"subject_raw"];
+			event.subject = [subjectRaw isKindOfClass:[NSString class]] ? subjectRaw : [[NSString alloc] initWithData:subjectRaw encoding:NSUTF8StringEncoding];;
+			id eventRaw = [entry valueForKey:@"event_raw"];
+			event.event = [eventRaw isKindOfClass:[NSString class]] ? eventRaw : [[NSString alloc] initWithData:eventRaw encoding:NSUTF8StringEncoding];
+			event.journalName = [entry valueForKey:@"journalname"];
+			event.journalType = [entry valueForKey:@"journaltype"];
+			event.posterName = [entry valueForKey:@"postername"];
+			event.posterType = [entry valueForKey:@"postertype"];
+			event.datetime = [NSDate dateWithTimeIntervalSince1970:[((NSNumber *) [entry valueForKey:@"logtime"]) integerValue]];
+			event.replyCount = [((NSNumber *) [entry valueForKey:@"reply_count"]) integerValue];
 			[entries addObject:event];
 		}
+		
+//		NSString *entriesCountStr = [result valueForKey:@"entries_count"];
+//		int count = [entriesCountStr intValue];
+//		
+//		entries = [NSMutableArray arrayWithCapacity:count];
+//		
+//		for (int i = 1; i <= count; i++) {
+//			LJEvent *event = [[LJEvent alloc] init];
+//			event.subject = [[((NSString *) [result valueForKey:[NSString stringWithFormat:@"entries_%d_subject_raw", i]]) stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//			event.event = [[((NSString *) [result valueForKey:[NSString stringWithFormat:@"entries_%d_event", i]]) stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//			event.journalName = [result valueForKey:[NSString stringWithFormat:@"entries_%d_journalname", i]];
+//			event.journalType = [result valueForKey:[NSString stringWithFormat:@"entries_%d_journaltype", i]];
+//			event.posterName = [result valueForKey:[NSString stringWithFormat:@"entries_%d_postername", i]];
+//			event.posterType = [result valueForKey:[NSString stringWithFormat:@"entries_%d_postertype", i]];
+//			[entries addObject:event];
+//		}
+	}
+	return self.success;
+}
+
+- (void)proceedError {
+	NSString *errmsg = [result valueForKey:@"errmsg"];
+	if ([@"Invalid username" isEqualToString:errmsg]) {
+		error = LJErrorInvalidUsername;
+	} else if ([@"Invalid password" isEqualToString:errmsg]) {
+		error = LJErrorInvalidPassword;
+	} else {
+		error = LJErrorUnknown;
+	}
+}
+
+@end
+
+
+@implementation LJFlatGetEvents
+
+@synthesize entries;
+
++ (LJFlatGetEvents *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
+	LJFlatGetEvents *request = [[[LJFlatGetEvents alloc] initWithServer:server mode:@"getevents"] autorelease];
+	//LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
+	
+	[request->parameters setValue:user forKey:@"user"];
+	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
+	[request->parameters setValue:challenge forKey:@"auth_challenge"];
+	
+	[request->parameters setValue:@"1" forKey:@"ver"];
+	[request->parameters setValue:@"lastn" forKey:@"selecttype"];
+	[request->parameters setValue:@"1" forKey:@"howmany"];
+	[request->parameters setValue:@"cosysoftware_en" forKey:@"usejournal"];
+	[request->parameters setValue:@"2009-01-01 00:00:00" forKey:@"lastsync"];
+	
+	request->password = password;
+	request->challenge = challenge;
+	
+	return request;
+}
+
+- (BOOL)doRequest {
+	
+	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
+	[parameters setValue:authResponse forKey:@"auth_response"];
+	
+	[super doRequest];
+	
+	if (self.success) {
+//		NSString *entriesCountStr = [result valueForKey:@"entries_count"];
+//		int count = [entriesCountStr intValue];
+//		
+//		entries = [NSMutableArray arrayWithCapacity:count];
+//		
+//		for (int i = 1; i <= count; i++) {
+//			LJEvent *event = [[LJEvent alloc] init];
+//			event.subject = [[((NSString *) [result valueForKey:[NSString stringWithFormat:@"entries_%d_subject_raw", i]]) stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//			event.event = [[((NSString *) [result valueForKey:[NSString stringWithFormat:@"entries_%d_event", i]]) stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//			event.journalName = [result valueForKey:[NSString stringWithFormat:@"entries_%d_journalname", i]];
+//			event.journalType = [result valueForKey:[NSString stringWithFormat:@"entries_%d_journaltype", i]];
+//			event.posterName = [result valueForKey:[NSString stringWithFormat:@"entries_%d_postername", i]];
+//			event.posterType = [result valueForKey:[NSString stringWithFormat:@"entries_%d_postertype", i]];
+//			[entries addObject:event];
+//		}
 	}
 	return self.success;
 }

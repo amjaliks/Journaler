@@ -40,6 +40,8 @@ enum {
 	NSString *posterType;
 	NSString *subject;
 	NSString *event;
+	NSDate *datetime;
+	NSUInteger replyCount;
 	NSString *eventPreview;
 }
 
@@ -49,6 +51,8 @@ enum {
 @property (retain) NSString *posterType;
 @property (retain) NSString *subject;
 @property (retain) NSString *event;
+@property (retain) NSDate *datetime;
+@property NSUInteger replyCount;
 @property (readonly) NSString *eventPreview;
 
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format;
@@ -77,10 +81,40 @@ enum {
 @end
 
 
+@interface LJRequest : NSObject {
+	NSString *_server;
+	NSString *_method;
+	
+	NSMutableDictionary *parameters;
+	NSMutableDictionary *result;
+	
+	NSUInteger error;
+}
+
+- (id)initWithServer:(NSString *)server method:(NSString *)method;
+- (BOOL)doRequest;
+- (void)proceedError;
+
+@property (readonly) BOOL success;
+@property (readonly) NSUInteger error;
+
+@end
+
+
 @interface LJFlatGetChallenge : LJFlatRequest {
 }
 
 + (LJFlatGetChallenge *)requestWithServer:(NSString *)server;
+
+@property (readonly) NSString *challenge;
+
+@end
+
+
+@interface LJGetChallenge : LJRequest {
+}
+
++ (LJGetChallenge *)requestWithServer:(NSString *)server;
 
 @property (readonly) NSString *challenge;
 
@@ -119,13 +153,25 @@ enum {
 @end
 
 
-@interface LJFlatGetFriendsPage : LJFlatRequest {
+@interface LJGetFriendsPage : LJRequest {
 	NSString *challenge;
 	NSString *password;
 	NSMutableArray *entries;
 }
 
-+ (LJFlatGetFriendsPage *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
++ (LJGetFriendsPage *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
+
+@property (readonly) NSArray *entries;
+
+@end
+
+@interface LJFlatGetEvents : LJFlatRequest {
+	NSString *challenge;
+	NSString *password;
+	NSMutableArray *entries;
+}
+
++ (LJFlatGetEvents *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
 
 @property (readonly) NSArray *entries;
 

@@ -58,9 +58,10 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
+	
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
 	self.title = account.title;
-	
+
 	[otherAccountView removeFromSuperview];
 	[ljAccountView removeFromSuperview];
 	
@@ -98,14 +99,16 @@
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
 	
 	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
-		LJFlatGetChallenge *challenge = [LJFlatGetChallenge requestWithServer:account.server];
+		LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
 		[challenge doRequest];
-		
-		LJFlatGetFriendsPage *friendPage = [LJFlatGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
+ 		NSString *c = [challenge.challenge retain];
+		//LJFlatGetEvents *friendPage = [LJFlatGetEvents requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];		
+		LJGetFriendsPage *friendPage = [LJGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:c];
 		[friendPage doRequest];
 		
 		events = [friendPage.entries retain];
 		[self.ljAccountView reloadData];
+		[self.ljAccountView scrollsToTop];
 		
 		[self.view addSubview:ljAccountView];
 	};
@@ -199,6 +202,16 @@
 	label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, size.height);
 	
 	cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height + delta);
+
+	label = (UILabel *)[cell viewWithTag:4];
+	NSDateFormatter *f = [[NSDateFormatter alloc] init];
+	[f setDateStyle:NSDateFormatterShortStyle];
+	[f setTimeStyle:NSDateFormatterShortStyle];
+	label.text = [f stringFromDate:event.datetime];
+	[f release];
+	
+	label = (UILabel *)[cell viewWithTag:5];
+    label.text = [NSString stringWithFormat:@"%d replies", event.replyCount];
 
 	return cell;
 }
