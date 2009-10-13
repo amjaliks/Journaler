@@ -70,12 +70,12 @@ NSString* md5(NSString *str)
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format {
 	while (true) {
 		NSLog(string);
-		NSString *match = [string stringByMatching:tag options:RKLDotAll inRange:NSMakeRange(0, [string length]) capture:0 error:nil];
+		NSString *match = [string stringByMatching:tag options:RKLDotAll | RKLCaseless inRange:NSMakeRange(0, [string length]) capture:0 error:nil];
 		if (!match) {
 			break;
 		}
 		
-		NSString *user = [match stringByMatching:replacement options:RKLDotAll inRange:NSMakeRange(0, [match length]) capture:1 error:nil];
+		NSString *user = [match stringByMatching:replacement options:RKLDotAll | RKLCaseless inRange:NSMakeRange(0, [match length]) capture:1 error:nil];
 		if (format) {
 			user = [NSString stringWithFormat:format, user];
 		}
@@ -98,18 +98,52 @@ NSString* md5(NSString *str)
 	
 	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<lj user=\".+?\">" replacement:@"\"(.+?)\"" format:nil];
 	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<lj-cut text=\".+?\">.*?</lj-cut>" replacement:@"text=\"(.+?)\"" format:@"( %@ )"];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
 	
 	NSMutableString *meventPreview = [NSMutableString stringWithString:eventPreview];
 
 	[meventPreview replaceOccurrencesOfRegex:@"<br\\s*/?>" withString:@"\n" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
-	[meventPreview replaceOccurrencesOfRegex:@"<img\\s?.*/?>" withString:@"( img )" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
+	[meventPreview replaceOccurrencesOfRegex:@"<img\\s?.*?/?>" withString:@"( img )" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
 
 	[meventPreview replaceOccurrencesOfRegex:@"<.+?>" withString:@""  options:(RKLDotAll | RKLCaseless)range:NSMakeRange(0, [meventPreview length]) error:nil];
+
+	[meventPreview replaceOccurrencesOfRegex:@"&.+?;" withString:@""  options:(RKLDotAll | RKLCaseless)range:NSMakeRange(0, [meventPreview length]) error:nil];
 
 	eventPreview = [meventPreview stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
 
 	[eventPreview retain];
 
+}
+
+- (NSString *) eventView {
+	if (!eventView) {
+		eventView = [event retain];
+		
+		NSRange notFoundRange;
+		notFoundRange.location = NSNotFound;
+		notFoundRange.length = 0;
+		
+		NSRange forward;
+		forward.location = 0;
+		forward.length = [eventPreview length];
+		
+		eventView = [LJEvent removeTagFromString:eventView tag:@"<lj user=\".+?\">" replacement:@"\"(.+?)\"" format:nil];
+		eventView = [LJEvent removeTagFromString:eventView tag:@"<img\\s?.*?/?>" replacement:@"src=\"(.+?)\"" format:@"( <a href=\"%@\">img</a> )"];
+		
+		//NSMutableString *meventPreview = [NSMutableString stringWithString:eventPreview];
+		
+		//[meventPreview replaceOccurrencesOfRegex:@"<br\\s*/?>" withString:@"\n" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
+		//[meventPreview replaceOccurrencesOfRegex:@"<img\\s?.*?/?>" withString:@"( img )" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
+		
+		//[meventPreview replaceOccurrencesOfRegex:@"<.+?>" withString:@""  options:(RKLDotAll | RKLCaseless)range:NSMakeRange(0, [meventPreview length]) error:nil];
+		
+		eventView = [eventView stringByReplacingOccurrencesOfString:@"\n" withString:@"<br />"];
+		
+		[eventView retain];
+	}
+	
+	return eventView;
 }
 
 @end
@@ -463,6 +497,7 @@ NSString* md5(NSString *str)
 	[request->parameters setValue:@"1" forKey:@"ver"];
 	[request->parameters setValue:@"25" forKey:@"itemshow"];
 	[request->parameters setValue:@"2009-01-01 00:00:00" forKey:@"lastsync"];
+//	[request->parameters setValue:@"1" forKey:@"parseljtags"];
 	
 	request->password = password;
 	request->challenge = challenge;
@@ -544,7 +579,6 @@ NSString* md5(NSString *str)
 	[request->parameters setValue:@"1" forKey:@"ver"];
 	[request->parameters setValue:@"lastn" forKey:@"selecttype"];
 	[request->parameters setValue:@"1" forKey:@"howmany"];
-	[request->parameters setValue:@"cosysoftware_en" forKey:@"usejournal"];
 	[request->parameters setValue:@"2009-01-01 00:00:00" forKey:@"lastsync"];
 	
 	request->password = password;

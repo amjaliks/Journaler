@@ -43,6 +43,7 @@ enum {
 	NSDate *datetime;
 	NSUInteger replyCount;
 	NSString *eventPreview;
+	NSString *eventView;
 }
 
 @property (retain) NSString *journalName;
@@ -54,6 +55,7 @@ enum {
 @property (retain) NSDate *datetime;
 @property NSUInteger replyCount;
 @property (readonly) NSString *eventPreview;
+@property (readonly) NSString *eventView;
 
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format;
 

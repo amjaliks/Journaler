@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "PostEditorController.h"
-
+#import "PostViewController.h"
 
 @class LJAccount;
 
 @protocol AccountViewControllerDataSource;
 
 
-@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate, PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate> {
 	UITableView *ljAccountView;
 	UIView *otherAccountView;
 	
@@ -34,7 +34,10 @@
 	
 	id<AccountViewControllerDataSource> dataSource;
 	
+	LJEvent *selectedEvent;
+	
 	UIViewController *postEditorController;
+	UIViewController *postViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *ljAccountView;
@@ -55,6 +58,7 @@
 @property (nonatomic, retain) IBOutlet id<AccountViewControllerDataSource> dataSource;
 
 @property (nonatomic, retain) IBOutlet UIViewController *postEditorController;
+@property (nonatomic, retain) IBOutlet UIViewController *postViewController;
 
 - (IBAction) goToUpdate;
 

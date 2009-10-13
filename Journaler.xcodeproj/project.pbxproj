@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1713230A1085168F007F6C24 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171323081085168F007F6C24 /* PostViewController.m */; };
+		1713230B1085168F007F6C24 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171323091085168F007F6C24 /* PostViewController.xib */; };
+		171323DF10852BBA007F6C24 /* userinfo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 171323DE10852BBA007F6C24 /* userinfo.gif */; };
+		171323E110852BC2007F6C24 /* community.gif in Resources */ = {isa = PBXBuildFile; fileRef = 171323E010852BC2007F6C24 /* community.gif */; };
 		1789BE60107A894B00964DA2 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE5F107A894B00964DA2 /* forward.png */; };
 		1789BE62107A89F200964DA2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
 		1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
@@ -41,6 +45,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		171323071085168F007F6C24 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		171323081085168F007F6C24 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		171323091085168F007F6C24 /* PostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostViewController.xib; path = Classes/PostViewController.xib; sourceTree = "<group>"; };
+		171323DE10852BBA007F6C24 /* userinfo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = userinfo.gif; sourceTree = "<group>"; };
+		171323E010852BC2007F6C24 /* community.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = community.gif; sourceTree = "<group>"; };
 		1789BE5F107A894B00964DA2 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
 		1789BE61107A89F200964DA2 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		1789BFDF107E73BA00964DA2 /* PostEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEditorController.h; sourceTree = "<group>"; };
@@ -123,6 +132,8 @@
 				17FCD7151078C70700806088 /* AccountEditorController.m */,
 				17FCD9B210793F9F00806088 /* AccountViewController.h */,
 				17FCD9B310793F9F00806088 /* AccountViewController.m */,
+				171323071085168F007F6C24 /* PostViewController.h */,
+				171323081085168F007F6C24 /* PostViewController.m */,
 				1789BFDF107E73BA00964DA2 /* PostEditorController.h */,
 				1789BFE0107E73BA00964DA2 /* PostEditorController.m */,
 				17DB0CC010768D2900155636 /* LiveJournal.h */,
@@ -209,11 +220,14 @@
 				17DB0BF11075462000155636 /* AccountEditorController.xib */,
 				17FCD9B410793F9F00806088 /* AccountViewController.xib */,
 				17B4C486108111500005660E /* PostSummaryView.xib */,
+				171323091085168F007F6C24 /* PostViewController.xib */,
 				1789BFE1107E73BA00964DA2 /* PostEditorController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Journaler-Info.plist */,
 				1789BE61107A89F200964DA2 /* back.png */,
 				1789BE5F107A894B00964DA2 /* forward.png */,
+				171323DE10852BBA007F6C24 /* userinfo.gif */,
+				171323E010852BC2007F6C24 /* community.gif */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -288,6 +302,9 @@
 				17B4C487108111500005660E /* PostSummaryView.xib in Resources */,
 				17B4C63F10827C360005660E /* IconLite.png in Resources */,
 				17B4C71E1082A8340005660E /* Icon.png in Resources */,
+				1713230B1085168F007F6C24 /* PostViewController.xib in Resources */,
+				171323DF10852BBA007F6C24 /* userinfo.gif in Resources */,
+				171323E110852BC2007F6C24 /* community.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +332,7 @@
 				17B4C9BC1083C8BC0005660E /* XMLRPCResponse.m in Sources */,
 				17B4C9C31083C8DA0005660E /* NSStringAdditions.m in Sources */,
 				17B4C9C41083C8DA0005660E /* NSDataAdditions.m in Sources */,
+				1713230A1085168F007F6C24 /* PostViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

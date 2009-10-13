@@ -29,6 +29,7 @@
 @synthesize dataSource;
 
 @synthesize postEditorController;
+@synthesize postViewController;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -220,5 +221,16 @@
 	UITableViewCell *cell = [tableView.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
 	return cell.frame.size.height;
 }
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	selectedEvent = [events objectAtIndex:indexPath.row];
+	[self.navigationController pushViewController:postViewController animated:YES];
+}
+
+- (LJEvent *) selectEventForPostViewController:(PostViewController *)controller {
+	return selectedEvent;
+}
+
 
 @end
