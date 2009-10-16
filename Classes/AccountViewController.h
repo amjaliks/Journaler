@@ -10,7 +10,7 @@
 #import "PostEditorController.h"
 #import "PostViewController.h"
 
-@class LJAccount;
+@class LJAccount, UserPicCache;
 
 @protocol AccountViewControllerDataSource;
 
@@ -38,6 +38,8 @@
 	
 	UIViewController *postEditorController;
 	UIViewController *postViewController;
+	
+	UserPicCache *userPicCache;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *ljAccountView;
@@ -70,4 +72,13 @@
 @optional
 	- (LJAccount *)selectedAccountForAccountViewController:(AccountViewController *)accountViewController;
 
-@end;
+@end
+
+
+@interface UserPicCache : NSObject {
+	NSMutableDictionary *cache;
+}
+
+- (UIImage *) userPicFromURL:(NSString *)url;
+
+@end

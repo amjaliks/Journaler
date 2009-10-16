@@ -9,6 +9,14 @@
 #import "AccountViewController.h"
 #import "LiveJournal.h"
 
+enum {
+	PSSubject = 1,
+	PSAuthor,
+	PSDateTimeReplies,
+	PSText,
+	PSUserPic
+};
+
 @implementation AccountViewController
 
 @synthesize ljAccountView;
@@ -41,12 +49,13 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	userPicCache = [[UserPicCache alloc] init];
 }
-*/
 
 
 // Override to allow orientations other than the default portrait orientation.
@@ -130,6 +139,8 @@
 
 - (void)dealloc {
     [super dealloc];
+	
+	[userPicCache release];
 }
 
 - (IBAction) goToUpdate {
@@ -180,47 +191,51 @@
 	LJEvent *event = [events objectAtIndex:indexPath.row];
 	
     UILabel *label;
-    label = (UILabel *)[cell viewWithTag:1];
+    label = (UILabel *)[cell viewWithTag:PSSubject];
 	if ([event.subject length]) {
 		label.text = event.subject;
 	} else {
 		label.text = @"no subject";
-		//label.textColor = [UIColor grayColor];
 	}
 	
-    label = (UILabel *)[cell viewWithTag:2];
+    label = (UILabel *)[cell viewWithTag:PSAuthor];
 	if ([event.journalName isEqualToString:event.posterName]) {
 		label.text = event.journalName;
 	} else {
 		label.text = [NSString stringWithFormat:@"%@ in %@", event.posterName, event.journalName];
 	}
+	CGRect frame = label.frame;
+	CGSize size = [label sizeThatFits:frame.size];
+	frame.size.width = size.width;
+	label.frame = frame;
 
-	label = (UILabel *)[cell viewWithTag:3];
+	label = (UILabel *)[cell viewWithTag:PSText];
     label.text = event.eventPreview;
 	
-	CGSize size = [label sizeThatFits:label.frame.size];
-	CGFloat delta = size.height - label.frame.size.height;
-	label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, size.height);
-	
-	cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height + delta);
+//	CGSize size = [label sizeThatFits:label.frame.size];
+//	CGFloat delta = size.height - label.frame.size.height;
+//	label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, size.height);
+//	
+//	cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height + delta);
 
-	label = (UILabel *)[cell viewWithTag:4];
 	NSDateFormatter *f = [[NSDateFormatter alloc] init];
 	[f setDateStyle:NSDateFormatterShortStyle];
 	[f setTimeStyle:NSDateFormatterShortStyle];
-	label.text = [f stringFromDate:event.datetime];
+	
+	label = (UILabel *)[cell viewWithTag:PSDateTimeReplies];
+    label.text = [NSString stringWithFormat:@"%@, %d replies", [f stringFromDate:event.datetime], event.replyCount];
 	[f release];
 	
-	label = (UILabel *)[cell viewWithTag:5];
-    label.text = [NSString stringWithFormat:@"%d replies", event.replyCount];
-
+	UIImageView *imageView = (UIImageView *)[cell viewWithTag:PSUserPic];
+	imageView.image = [userPicCache userPicFromURL:event.userPicUrl];
+	
 	return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell = [tableView.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
-	return cell.frame.size.height;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//	UITableViewCell *cell = [tableView.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
+//	return cell.frame.size.height;
+//}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -232,5 +247,40 @@
 	return selectedEvent;
 }
 
+
+@end
+
+
+@implementation UserPicCache
+
+- (id) init {
+	if (self = [super init]) {
+		cache = [[NSMutableDictionary alloc] init];
+	}
+	return self;
+}
+
+- (void) dealloc {
+	[super dealloc];
+	[cache release];
+}
+	
+- (UIImage *) userPicFromURL:(NSString *)url {
+	UIImage *image = [cache valueForKey:url];
+	if (image) {
+		return image;
+	} else {
+		NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+		
+		NSURLResponse *res;
+		NSError *err;
+		NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
+		
+		image = [[UIImage alloc] initWithData:data];
+		[cache setValue:image forKey:url];
+		
+		return image;
+	}
+}
 
 @end

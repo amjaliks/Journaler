@@ -66,6 +66,7 @@ NSString* md5(NSString *str)
 @synthesize datetime;
 @synthesize replyCount;
 @synthesize eventPreview;
+@synthesize userPicUrl;
 
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format {
 	while (true) {
@@ -98,22 +99,18 @@ NSString* md5(NSString *str)
 	
 	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<lj user=\".+?\">" replacement:@"\"(.+?)\"" format:nil];
 	eventPreview = [LJEvent removeTagFromString:eventPreview tag:@"<lj-cut text=\".+?\">.*?</lj-cut>" replacement:@"text=\"(.+?)\"" format:@"( %@ )"];
+	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
 	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
 	eventPreview = [eventPreview stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
 	
 	NSMutableString *meventPreview = [NSMutableString stringWithString:eventPreview];
 
-	[meventPreview replaceOccurrencesOfRegex:@"<br\\s*/?>" withString:@"\n" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
+	[meventPreview replaceOccurrencesOfRegex:@"<br\\s*/?>" withString:@" " options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
 	[meventPreview replaceOccurrencesOfRegex:@"<img\\s?.*?/?>" withString:@"( img )" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
-
 	[meventPreview replaceOccurrencesOfRegex:@"<.+?>" withString:@""  options:(RKLDotAll | RKLCaseless)range:NSMakeRange(0, [meventPreview length]) error:nil];
-
 	[meventPreview replaceOccurrencesOfRegex:@"&.+?;" withString:@""  options:(RKLDotAll | RKLCaseless)range:NSMakeRange(0, [meventPreview length]) error:nil];
 
-	eventPreview = [meventPreview stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
-
-	[eventPreview retain];
-
+	eventPreview = [meventPreview retain];
 }
 
 - (NSString *) eventView {
@@ -528,6 +525,7 @@ NSString* md5(NSString *str)
 			event.posterType = [entry valueForKey:@"postertype"];
 			event.datetime = [NSDate dateWithTimeIntervalSince1970:[((NSNumber *) [entry valueForKey:@"logtime"]) integerValue]];
 			event.replyCount = [((NSNumber *) [entry valueForKey:@"reply_count"]) integerValue];
+			event.userPicUrl = [entry valueForKey:@"poster_userpic_url"];
 			[entries addObject:event];
 		}
 		

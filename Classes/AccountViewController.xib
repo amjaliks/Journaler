@@ -8,10 +8,10 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="63"/>
-			<integer value="1"/>
 			<integer value="43"/>
 			<integer value="79"/>
+			<integer value="1"/>
+			<integer value="63"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -178,7 +178,7 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 				<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
-				<float key="IBUIRowHeight">4.400000e+01</float>
+				<float key="IBUIRowHeight">8.800000e+01</float>
 				<float key="IBUISectionHeaderHeight">2.200000e+01</float>
 				<float key="IBUISectionFooterHeight">2.200000e+01</float>
 			</object>
@@ -640,7 +640,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>AccountViewController</string>
 					<string>UIResponder</string>
-					<string>{{456, 281}, {320, 480}}</string>
+					<string>{{417, 281}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -650,7 +650,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{489, 343}, {320, 480}}</string>
+					<string>{{417, 343}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>PostEditorController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
