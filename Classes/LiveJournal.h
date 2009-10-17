@@ -45,6 +45,7 @@ enum {
 	NSString *eventPreview;
 	NSString *eventView;
 	NSString *userPicUrl;
+	NSNumber *ditemid;
 }
 
 @property (retain) NSString *journalName;
@@ -58,6 +59,7 @@ enum {
 @property (readonly) NSString *eventPreview;
 @property (readonly) NSString *eventView;
 @property (retain) NSString *userPicUrl;
+@property (retain) NSNumber *ditemid;
 
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format;
 
@@ -95,6 +97,7 @@ enum {
 	NSUInteger error;
 }
 
++ (id)proceedRawValue:(id)value;
 - (id)initWithServer:(NSString *)server method:(NSString *)method;
 - (BOOL)doRequest;
 - (void)proceedError;

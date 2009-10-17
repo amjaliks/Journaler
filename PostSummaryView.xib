@@ -44,7 +44,7 @@
 							<object class="IBUILabel" id="847525042">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{74, 5}, {215, 16}}</string>
+								<string key="NSFrame">{{74, 5}, {220, 16}}</string>
 								<reference key="NSSuperview" ref="939847949"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -89,7 +89,7 @@
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 							</object>
-							<object class="IBUILabel" id="714193693">
+							<object class="IBUILabel" id="206890153">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{143, 21}, {11, 15}}</string>
@@ -99,7 +99,7 @@
 								<int key="IBUITag">6</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">in</string>
-								<object class="NSFont" key="IBUIFont" id="377361506">
+								<object class="NSFont" key="IBUIFont" id="65079472">
 									<string key="NSName">Helvetica</string>
 									<double key="NSSize">1.200000e+01</double>
 									<int key="NSfFlags">16</int>
@@ -114,7 +114,7 @@
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 								<int key="IBUITextAlignment">1</int>
 							</object>
-							<object class="IBUILabel" id="517922960">
+							<object class="IBUILabel" id="974261245">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{183, 21}, {50, 15}}</string>
@@ -124,7 +124,7 @@
 								<int key="IBUITag">8</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">mmmmmmmmmmmmmmm</string>
-								<reference key="IBUIFont" ref="377361506"/>
+								<reference key="IBUIFont" ref="65079472"/>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4zMzY3MzQ3MSAwLjMzNjczNDcxIDAuMzM2NzM0NzEAA</bytes>
@@ -137,7 +137,7 @@
 							<object class="IBUILabel" id="1039515608">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{74, 49}, {215, 32}}</string>
+								<string key="NSFrame">{{74, 49}, {220, 32}}</string>
 								<reference key="NSSuperview" ref="939847949"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -162,7 +162,7 @@
 							<object class="IBUILabel" id="672884160">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{74, 36}, {149, 13}}</string>
+								<string key="NSFrame">{{74, 36}, {220, 13}}</string>
 								<reference key="NSSuperview" ref="939847949"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -182,7 +182,7 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 							</object>
-							<object class="IBUIImageView" id="208175381">
+							<object class="IBUIImageView" id="852184680">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{7, 7}, {60, 60}}</string>
@@ -192,7 +192,7 @@
 								<int key="IBUITag">5</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 							</object>
-							<object class="IBUIImageView" id="569864499">
+							<object class="IBUIImageView" id="552500209">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{75, 22}, {13, 13}}</string>
@@ -205,7 +205,7 @@
 									<string key="NSResourceName">userinfo.gif</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="460736869">
+							<object class="IBUIImageView" id="271530307">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{162, 22}, {13, 13}}</string>
@@ -286,14 +286,14 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="847525042"/>
-							<reference ref="208175381"/>
-							<reference ref="569864499"/>
+							<reference ref="852184680"/>
+							<reference ref="552500209"/>
 							<reference ref="2673509"/>
 							<reference ref="1039515608"/>
-							<reference ref="460736869"/>
+							<reference ref="271530307"/>
 							<reference ref="672884160"/>
-							<reference ref="714193693"/>
-							<reference ref="517922960"/>
+							<reference ref="206890153"/>
+							<reference ref="974261245"/>
 						</object>
 						<reference key="parent" ref="709241668"/>
 					</object>
@@ -319,27 +319,27 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
-						<reference key="object" ref="208175381"/>
+						<reference key="object" ref="852184680"/>
 						<reference key="parent" ref="787286558"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="569864499"/>
+						<reference key="object" ref="552500209"/>
 						<reference key="parent" ref="787286558"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
-						<reference key="object" ref="460736869"/>
+						<reference key="object" ref="271530307"/>
 						<reference key="parent" ref="787286558"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
-						<reference key="object" ref="714193693"/>
+						<reference key="object" ref="206890153"/>
 						<reference key="parent" ref="787286558"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
-						<reference key="object" ref="517922960"/>
+						<reference key="object" ref="974261245"/>
 						<reference key="parent" ref="787286558"/>
 					</object>
 				</object>

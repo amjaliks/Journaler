@@ -12,6 +12,8 @@
 
 @implementation JournalerAppDelegate
 
+@synthesize model;
+
 @synthesize window;
 @synthesize navigationController;
 
@@ -21,22 +23,23 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     
-    // Override point for customization after app launch    
+	model = [[Model alloc] init];
 	
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
 }
 
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-	// Save data if appropriate
+- (void)applicationWillTerminate:(UIApplication *)application {	
+	[model saveAll];
 }
-
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
+	[model release];
+	
 	[navigationController release];
 	[window release];
 	[super dealloc];

@@ -11,6 +11,10 @@
 		1713230B1085168F007F6C24 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171323091085168F007F6C24 /* PostViewController.xib */; };
 		171323DF10852BBA007F6C24 /* userinfo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 171323DE10852BBA007F6C24 /* userinfo.gif */; };
 		171323E110852BC2007F6C24 /* community.gif in Resources */ = {isa = PBXBuildFile; fileRef = 171323E010852BC2007F6C24 /* community.gif */; };
+		17132615108A1203007F6C24 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17132614108A1203007F6C24 /* CoreData.framework */; };
+		17132681108A163B007F6C24 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 1713267F108A163B007F6C24 /* Post.m */; };
+		171326D0108A238E007F6C24 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 171326CF108A238E007F6C24 /* Model.m */; };
+		17132866108A4A89007F6C24 /* Journaler.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 17132865108A4A89007F6C24 /* Journaler.xcdatamodel */; };
 		1789BE60107A894B00964DA2 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE5F107A894B00964DA2 /* forward.png */; };
 		1789BE62107A89F200964DA2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
 		1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
@@ -50,6 +54,12 @@
 		171323091085168F007F6C24 /* PostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostViewController.xib; path = Classes/PostViewController.xib; sourceTree = "<group>"; };
 		171323DE10852BBA007F6C24 /* userinfo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = userinfo.gif; sourceTree = "<group>"; };
 		171323E010852BC2007F6C24 /* community.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = community.gif; sourceTree = "<group>"; };
+		17132614108A1203007F6C24 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1713267E108A163B007F6C24 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		1713267F108A163B007F6C24 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		171326CE108A238E007F6C24 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		171326CF108A238E007F6C24 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		17132865108A4A89007F6C24 /* Journaler.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Journaler.xcdatamodel; sourceTree = "<group>"; };
 		1789BE5F107A894B00964DA2 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
 		1789BE61107A89F200964DA2 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		1789BFDF107E73BA00964DA2 /* PostEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEditorController.h; sourceTree = "<group>"; };
@@ -114,6 +124,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				17132615108A1203007F6C24 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +134,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				17B4C536108132D90005660E /* RegexKitLite */,
+				17132682108A1644007F6C24 /* Model */,
 				17B4C78C1083AC8D0005660E /* XMLRPC */,
 				1D3623240D0F684500981E51 /* JournalerAppDelegate.h */,
 				1D3623250D0F684500981E51 /* JournalerAppDelegate.m */,
@@ -142,6 +155,17 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		17132682108A1644007F6C24 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1713267E108A163B007F6C24 /* Post.h */,
+				1713267F108A163B007F6C24 /* Post.m */,
+				171326CE108A238E007F6C24 /* Model.h */,
+				171326CF108A238E007F6C24 /* Model.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		17B4C536108132D90005660E /* RegexKitLite */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +173,7 @@
 				17B4C538108132E80005660E /* RegexKitLite.m */,
 			);
 			name = RegexKitLite;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		17B4C78C1083AC8D0005660E /* XMLRPC */ = {
@@ -191,7 +216,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				17B4C536108132D90005660E /* RegexKitLite */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -228,6 +252,7 @@
 				1789BE5F107A894B00964DA2 /* forward.png */,
 				171323DE10852BBA007F6C24 /* userinfo.gif */,
 				171323E010852BC2007F6C24 /* community.gif */,
+				17132865108A4A89007F6C24 /* Journaler.xcdatamodel */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -235,6 +260,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				17132614108A1203007F6C24 /* CoreData.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
@@ -333,6 +359,9 @@
 				17B4C9C31083C8DA0005660E /* NSStringAdditions.m in Sources */,
 				17B4C9C41083C8DA0005660E /* NSDataAdditions.m in Sources */,
 				1713230A1085168F007F6C24 /* PostViewController.m in Sources */,
+				17132681108A163B007F6C24 /* Post.m in Sources */,
+				171326D0108A238E007F6C24 /* Model.m in Sources */,
+				17132866108A4A89007F6C24 /* Journaler.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,9 +377,10 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18BDE38A-F618-4DE3-8CEE-4D7D22FFF6E0";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = "Distribution (Ad Hoc)";
 		};
@@ -403,8 +433,9 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -416,8 +447,9 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};

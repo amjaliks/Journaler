@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PostEditorController.h"
 #import "PostViewController.h"
+#import "Model.h"
 
 @class LJAccount, UserPicCache;
 
@@ -29,12 +30,12 @@
 	UIBarButtonItem *refreshButton;
 	UIBarButtonItem *stopButton;
 	
-	NSArray *events;
+	NSMutableArray *posts;
 	UITableViewCell *templateCell;
 	
 	id<AccountViewControllerDataSource> dataSource;
 	
-	LJEvent *selectedEvent;
+	Post *selectedPosts;
 	
 	UIViewController *postEditorController;
 	UIViewController *postViewController;

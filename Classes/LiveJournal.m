@@ -67,6 +67,7 @@ NSString* md5(NSString *str)
 @synthesize replyCount;
 @synthesize eventPreview;
 @synthesize userPicUrl;
+@synthesize ditemid;
 
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format {
 	while (true) {
@@ -232,6 +233,16 @@ NSString* md5(NSString *str)
 
 @synthesize error;
 
++ (id)proceedRawValue:(id) value {
+	if ([value isKindOfClass:[NSData class]]) {
+		return [[[NSString alloc] initWithData:value encoding:NSUTF8StringEncoding] autorelease];
+	} else if ([value isKindOfClass:[NSNumber class]]) {
+		return [((NSNumber *) value) stringValue];
+	} else {
+		return value;
+	}
+}
+
 - (id)initWithServer:(NSString *)server method:(NSString *)method; {
 	if (self = [super init]) {
 		_server = server;
@@ -284,20 +295,6 @@ NSString* md5(NSString *str)
 	}
 	
 	[xmlres release];
-	
-//	NSLog(@"respone:\n%@", response);
-//	
-//	NSArray *lines = [response componentsSeparatedByString:@"\n"];
-//	NSUInteger count = [lines count] / 2;
-//	result = [NSMutableDictionary dictionaryWithCapacity:count];
-//	
-//	for (NSUInteger i = 0; i < count; i++) {
-//		[result setValue:[lines objectAtIndex:(i * 2) + 1] forKey:[lines objectAtIndex:(i * 2)]];
-//	}
-//	
-//	if (![@"OK" isEqualToString:[result valueForKey:@"success"]]) {
-//		[self proceedError];
-//	}
 	
 	return self.success;
 }
@@ -492,7 +489,7 @@ NSString* md5(NSString *str)
 	[request->parameters setValue:challenge forKey:@"auth_challenge"];
 
 	[request->parameters setValue:@"1" forKey:@"ver"];
-	[request->parameters setValue:@"25" forKey:@"itemshow"];
+	[request->parameters setValue:@"10" forKey:@"itemshow"];
 	[request->parameters setValue:@"2009-01-01 00:00:00" forKey:@"lastsync"];
 //	[request->parameters setValue:@"1" forKey:@"parseljtags"];
 	
@@ -515,10 +512,10 @@ NSString* md5(NSString *str)
 		
 		for (NSDictionary *entry in xmlEntries) {
 			LJEvent *event = [[LJEvent alloc] init];
-			id subjectRaw = [entry valueForKey:@"subject_raw"];
-			event.subject = [subjectRaw isKindOfClass:[NSString class]] ? subjectRaw : [[NSString alloc] initWithData:subjectRaw encoding:NSUTF8StringEncoding];;
-			id eventRaw = [entry valueForKey:@"event_raw"];
-			event.event = [eventRaw isKindOfClass:[NSString class]] ? eventRaw : [[NSString alloc] initWithData:eventRaw encoding:NSUTF8StringEncoding];
+			//id subjectRaw = [entry valueForKey:@"subject_raw"];
+			event.subject = [LJRequest proceedRawValue:[entry valueForKey:@"subject_raw"]]; //[subjectRaw isKindOfClass:[NSString class]] ? subjectRaw : [[NSString alloc] initWithData:subjectRaw encoding:NSUTF8StringEncoding];;
+			//id eventRaw = [entry valueForKey:@"event_raw"];
+			event.event = [LJRequest proceedRawValue:[entry valueForKey:@"event_raw"]]; //[eventRaw isKindOfClass:[NSString class]] ? eventRaw : [[NSString alloc] initWithData:eventRaw encoding:NSUTF8StringEncoding];
 			event.journalName = [entry valueForKey:@"journalname"];
 			event.journalType = [entry valueForKey:@"journaltype"];
 			event.posterName = [entry valueForKey:@"postername"];
@@ -526,6 +523,7 @@ NSString* md5(NSString *str)
 			event.datetime = [NSDate dateWithTimeIntervalSince1970:[((NSNumber *) [entry valueForKey:@"logtime"]) integerValue]];
 			event.replyCount = [((NSNumber *) [entry valueForKey:@"reply_count"]) integerValue];
 			event.userPicUrl = [entry valueForKey:@"poster_userpic_url"];
+			event.ditemid = [entry valueForKey:@"ditemid"];
 			[entries addObject:event];
 		}
 		

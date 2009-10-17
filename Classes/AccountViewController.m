@@ -8,6 +8,8 @@
 
 #import "AccountViewController.h"
 #import "LiveJournal.h"
+#import "Model.h"
+#import "JournalerAppDelegate.h"
 
 enum {
 	PSSubject = 1,
@@ -73,12 +75,18 @@ enum {
 	
 	
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
-	self.title = account.title;
+	self.title = account.user;
 
 	[otherAccountView removeFromSuperview];
 	[ljAccountView removeFromSuperview];
 	
 	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
+		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
+
+		posts = [[model findPostsByAccount:account.title] mutableCopy];
+		[ljAccountView reloadData];
+
+		[self.view addSubview:ljAccountView];
 	} else {
 		[self.view addSubview:otherAccountView];	
 
@@ -119,11 +127,36 @@ enum {
 		LJGetFriendsPage *friendPage = [LJGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:c];
 		[friendPage doRequest];
 		
-		events = [friendPage.entries retain];
-		[self.ljAccountView reloadData];
-		[self.ljAccountView scrollsToTop];
+		NSArray *events = [friendPage.entries retain];
 		
-		[self.view addSubview:ljAccountView];
+		NSUInteger idx = 0;
+		
+		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
+		for (LJEvent *event in events) {
+			Post *post = [model findPostByAccount:account.title journal:event.journalName dItemId:event.ditemid];
+			if (!post) {
+				post = [model createPost];
+				post.account = account.title;
+				post.journal = event.journalName;
+				post.journalType = event.journalType;
+				post.ditemid = event.ditemid;
+				post.poster = event.posterName;
+				[posts insertObject:post atIndex:idx];
+				idx++;
+			}
+			post.dateTime = event.datetime;
+			post.subject = event.subject;
+			post.text = event.event;
+			post.replyCount = [NSNumber numberWithInt:event.replyCount];
+			post.userPicURL = event.userPicUrl;
+			
+			[model saveAll];
+		}
+		
+		[self.ljAccountView reloadData];
+//		[self.ljAccountView scrollsToTop];
+//		
+//		[self.view addSubview:ljAccountView];
 	};
 }
 
@@ -178,7 +211,7 @@ enum {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [events count];
+	return [posts count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -191,18 +224,18 @@ enum {
         self.templateCell = nil;
     }
 	
-	LJEvent *event = [events objectAtIndex:indexPath.row];
+	Post *post = [posts objectAtIndex:indexPath.row];
 	
     UILabel *label;
     label = (UILabel *)[cell viewWithTag:PSSubject];
-	if ([event.subject length]) {
-		label.text = event.subject;
+	if ([post.subject length]) {
+		label.text = post.subject;
 	} else {
 		label.text = @"no subject";
 	}
 	
     label = (UILabel *)[cell viewWithTag:PSAuthor];
-	label.text = event.posterName;
+	label.text = post.poster;
 //	if ([event.journalName isEqualToString:event.posterName]) {
 //		label.text = event.journalName;
 //	} else {
@@ -210,7 +243,7 @@ enum {
 //	}
 	CGRect frame = label.frame;
 	CGSize size = [label sizeThatFits:frame.size];
-	if ([@"C" isEqualToString:event.journalType] && size.width > 150) {
+	if ([@"C" isEqualToString:post.journalType] && size.width > 150) {
 		size.width = 150;
 	}
 	frame.size.width = size.width;
@@ -220,7 +253,7 @@ enum {
 	UILabel *communityIn = (UILabel *)[cell viewWithTag:PSCommunityIn];
 	UIImageView *communityIcon = (UIImageView *)[cell viewWithTag:PSCommunityIcon];
 	UILabel *communityName = (UILabel *)[cell viewWithTag:PSCommunityName];
-	if ([@"C" isEqualToString:event.journalType] || [@"N" isEqualToString:event.journalType]) {
+	if ([@"C" isEqualToString:post.journalType] || [@"N" isEqualToString:post.journalType]) {
 		communityIn.hidden = NO;
 		communityIcon.hidden = NO;
 		communityName.hidden = NO;
@@ -235,12 +268,12 @@ enum {
 		communityIcon.frame = frame;
 		last = frame.origin.x + frame.size.width;
 
-		communityName.text = event.journalName;
+		communityName.text = post.journal;
 		frame = communityName.frame;
 		size = [label sizeThatFits:frame.size];
 		frame.size = size;
 		frame.origin.x = last + 2;
-		CGFloat over = 289 - frame.origin.x - frame.size.width;
+		CGFloat over = 294 - frame.origin.x - frame.size.width;
 		if (over < 0) {
 			frame.size.width += over;
 		}
@@ -252,7 +285,7 @@ enum {
 	}
 
 	label = (UILabel *)[cell viewWithTag:PSText];
-    label.text = event.eventPreview;
+    label.text = post.textPreview;
 	
 //	CGSize size = [label sizeThatFits:label.frame.size];
 //	CGFloat delta = size.height - label.frame.size.height;
@@ -265,11 +298,11 @@ enum {
 	[f setTimeStyle:NSDateFormatterShortStyle];
 	
 	label = (UILabel *)[cell viewWithTag:PSDateTimeReplies];
-    label.text = [NSString stringWithFormat:@"%@, %d replies", [f stringFromDate:event.datetime], event.replyCount];
+    label.text = [NSString stringWithFormat:@"%@, %d replies", [f stringFromDate:post.dateTime], [post.replyCount integerValue]];
 	[f release];
 	
 	UIImageView *imageView = (UIImageView *)[cell viewWithTag:PSUserPic];
-	imageView.image = [userPicCache userPicFromURL:event.userPicUrl];
+	imageView.image = [userPicCache userPicFromURL:post.userPicURL];
 	
 	return cell;
 }
@@ -281,12 +314,12 @@ enum {
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	selectedEvent = [events objectAtIndex:indexPath.row];
-	[self.navigationController pushViewController:postViewController animated:YES];
+//	selectedEvent = [events objectAtIndex:indexPath.row];
+//	[self.navigationController pushViewController:postViewController animated:YES];
 }
 
 - (LJEvent *) selectEventForPostViewController:(PostViewController *)controller {
-	return selectedEvent;
+	return nil;
 }
 
 
