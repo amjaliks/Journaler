@@ -8,6 +8,7 @@
 
 #import "PostViewController.h"
 #import "LiveJournal.h"
+#import "Model.h"
 
 @implementation PostViewController
 
@@ -41,7 +42,7 @@
 */
 
 - (void)viewWillAppear:(BOOL)animated {
-	LJEvent *event = [dataSource selectEventForPostViewController:self];
+	Post *post = [dataSource selectEventForPostViewController:self];
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"back" ofType:@"png"];
 	path = [path stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
 	
@@ -49,7 +50,7 @@
 	
 	NSString *template = @"<style>* {font-family: Helvetica} h1 {font-size: 15px}</style><h1>%@</h1>%@";
 	
-	[webView loadHTMLString:[NSString stringWithFormat:template, event.subject, event.eventView] baseURL:nil];
+	[webView loadHTMLString:[NSString stringWithFormat:template, post.subject, post.textView] baseURL:nil];
 	//[webView loadHTMLString:[NSString stringWithFormat:@"<img src=\"file://%@\" />", path] baseURL:nil];
 }
 

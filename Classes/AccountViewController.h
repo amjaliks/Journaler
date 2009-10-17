@@ -35,12 +35,14 @@
 	
 	id<AccountViewControllerDataSource> dataSource;
 	
-	Post *selectedPosts;
+	Post *selectedPost;
 	
 	UIViewController *postEditorController;
 	UIViewController *postViewController;
 	
 	UserPicCache *userPicCache;
+	
+	LJAccount *previousAccount;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *ljAccountView;

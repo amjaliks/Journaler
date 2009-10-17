@@ -72,8 +72,7 @@ enum {
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
-	
+		
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
 	self.title = account.user;
 
@@ -81,12 +80,14 @@ enum {
 	[ljAccountView removeFromSuperview];
 	
 	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
-		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
-
-		posts = [[model findPostsByAccount:account.title] mutableCopy];
-		[ljAccountView reloadData];
-
 		[self.view addSubview:ljAccountView];
+		if (previousAccount != account) {
+			previousAccount = account;
+			Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
+			posts = [[model findPostsByAccount:account.title] mutableCopy];
+			[ljAccountView reloadData];
+			[ljAccountView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		}
 	} else {
 		[self.view addSubview:otherAccountView];	
 
@@ -119,7 +120,9 @@ enum {
 
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
 	
-	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
+	if (!account.synchronized && [@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
 		LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
 		[challenge doRequest];
  		NSString *c = [challenge.challenge retain];
@@ -154,9 +157,10 @@ enum {
 		}
 		
 		[self.ljAccountView reloadData];
-//		[self.ljAccountView scrollsToTop];
-//		
-//		[self.view addSubview:ljAccountView];
+
+		account.synchronized = YES;
+
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	};
 }
 
@@ -270,13 +274,8 @@ enum {
 
 		communityName.text = post.journal;
 		frame = communityName.frame;
-		size = [label sizeThatFits:frame.size];
-		frame.size = size;
 		frame.origin.x = last + 2;
-		CGFloat over = 294 - frame.origin.x - frame.size.width;
-		if (over < 0) {
-			frame.size.width += over;
-		}
+		frame.size.width = 294 - frame.origin.x;
 		communityName.frame = frame;
 	} else {
 		communityIn.hidden = YES;
@@ -314,12 +313,13 @@ enum {
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//	selectedEvent = [events objectAtIndex:indexPath.row];
-//	[self.navigationController pushViewController:postViewController animated:YES];
+	selectedPost = [posts objectAtIndex:indexPath.row];
+	[self.navigationController pushViewController:postViewController animated:YES];
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (LJEvent *) selectEventForPostViewController:(PostViewController *)controller {
-	return nil;
+- (Post *) selectEventForPostViewController:(PostViewController *)controller {
+	return selectedPost;
 }
 
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol PostViewControllerDataSource;
-@class LJEvent;
+@class Post;
 
 @interface PostViewController : UIViewController {
 	UIWebView *webView;
@@ -24,6 +24,6 @@
 
 @protocol PostViewControllerDataSource<NSObject>;
 
-- (LJEvent *) selectEventForPostViewController:(PostViewController *)controller;
+- (Post *) selectEventForPostViewController:(PostViewController *)controller;
 
 @end

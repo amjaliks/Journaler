@@ -31,6 +31,8 @@ NSString* md5(NSString *str)
 @synthesize password;
 @synthesize server;
 
+@synthesize synchronized;
+
 - (id)initWithCoder:(NSCoder *)coder {
 	if (self = [self init]) {
 		user = [[coder decodeObjectForKey:@"user"] retain];
@@ -71,7 +73,9 @@ NSString* md5(NSString *str)
 
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format {
 	while (true) {
+#ifdef DEBUG
 		NSLog(string);
+#endif
 		NSString *match = [string stringByMatching:tag options:RKLDotAll | RKLCaseless inRange:NSMakeRange(0, [string length]) capture:0 error:nil];
 		if (!match) {
 			break;
@@ -175,7 +179,9 @@ NSString* md5(NSString *str)
 		request = [request stringByAppendingFormat:@"&%@=%@", key, value]; 
 	}
 	
+#ifdef DEBUG
 	NSLog(@"request: %@", request);
+#endif
 	
 	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 	[req setHTTPMethod:@"POST"];
@@ -195,13 +201,17 @@ NSString* md5(NSString *str)
 			error = LJErrorConnectionFailed;
 		} else {
 			error = LJErrorUnknown;
+#ifdef DEBUG
 			NSLog(@"Error: %d", errcode);
+#endif
 		}
 		
 		return NO;
 	}
 	
+#ifdef DEBUG
 	NSLog(@"respone:\n%@", response);
+#endif
 		
 	NSArray *lines = [response componentsSeparatedByString:@"\n"];
 	NSUInteger count = [lines count] / 2;
@@ -261,7 +271,9 @@ NSString* md5(NSString *str)
 	//[[XMLRPCRequest alloc] initWithHost:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/interface/xmlrpc", _server]]];
 	//[xmlreq setMethod:_method withObject:parameters];
 	[xmlreq setMethod:_method withParameter:parameters];
+#ifdef DEBUG
 	NSLog(@"request:\n%@", [xmlreq body]);
+#endif
 	NSURLRequest *req = [xmlreq request];
 	
 	NSURLResponse *res;
@@ -277,7 +289,9 @@ NSString* md5(NSString *str)
 			error = LJErrorConnectionFailed;
 		} else {
 			error = LJErrorUnknown;
+#ifdef DEBUG
 			NSLog(@"Error: %d", errcode);
+#endif
 		}
 		
 		[xmlreq release];
@@ -288,7 +302,9 @@ NSString* md5(NSString *str)
 	
 	XMLRPCResponse *xmlres = [[XMLRPCResponse alloc] initWithData:data];
 	result = [[xmlres object] retain];
+#ifdef DEBUG
 	NSLog(@"respone:\n%@", [xmlres body]);
+#endif
 	
 	if ([xmlres isFault]) {
 		error = LJErrorUnknown;

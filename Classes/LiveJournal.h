@@ -23,11 +23,14 @@ enum {
 	NSString *user;
 	NSString *password;
 	NSString *server;
+	
+	BOOL synchronized;
 }
 
 @property (retain) NSString *user;
 @property (retain) NSString *password;
 @property (retain) NSString *server;
+@property BOOL synchronized;
 
 @property (readonly) NSString *title;
 

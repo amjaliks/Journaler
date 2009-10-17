@@ -89,7 +89,7 @@
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 							</object>
-							<object class="IBUILabel" id="206890153">
+							<object class="IBUILabel" id="724804168">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{143, 21}, {11, 15}}</string>
@@ -99,7 +99,7 @@
 								<int key="IBUITag">6</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">in</string>
-								<object class="NSFont" key="IBUIFont" id="65079472">
+								<object class="NSFont" key="IBUIFont" id="59965689">
 									<string key="NSName">Helvetica</string>
 									<double key="NSSize">1.200000e+01</double>
 									<int key="NSfFlags">16</int>
@@ -114,7 +114,7 @@
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 								<int key="IBUITextAlignment">1</int>
 							</object>
-							<object class="IBUILabel" id="974261245">
+							<object class="IBUILabel" id="528654720">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{183, 21}, {50, 15}}</string>
@@ -124,7 +124,7 @@
 								<int key="IBUITag">8</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">mmmmmmmmmmmmmmm</string>
-								<reference key="IBUIFont" ref="65079472"/>
+								<reference key="IBUIFont" ref="59965689"/>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4zMzY3MzQ3MSAwLjMzNjczNDcxIDAuMzM2NzM0NzEAA</bytes>
@@ -182,17 +182,18 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 							</object>
-							<object class="IBUIImageView" id="852184680">
+							<object class="IBUIImageView" id="807265137">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{7, 7}, {60, 60}}</string>
 								<reference key="NSSuperview" ref="939847949"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<int key="IBUIContentMode">1</int>
 								<int key="IBUITag">5</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 							</object>
-							<object class="IBUIImageView" id="552500209">
+							<object class="IBUIImageView" id="320480339">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{75, 22}, {13, 13}}</string>
@@ -205,7 +206,7 @@
 									<string key="NSResourceName">userinfo.gif</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="271530307">
+							<object class="IBUIImageView" id="721597865">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{162, 22}, {13, 13}}</string>
@@ -240,7 +241,6 @@
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUISeparatorStyle">1</int>
-				<int key="IBUISelectionStyle">0</int>
 				<int key="IBUIAccessoryType">1</int>
 				<reference key="IBUIContentView" ref="939847949"/>
 				<string key="IBUIReuseIdentifier">PostSummary</string>
@@ -286,14 +286,14 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="847525042"/>
-							<reference ref="852184680"/>
-							<reference ref="552500209"/>
+							<reference ref="807265137"/>
+							<reference ref="320480339"/>
 							<reference ref="2673509"/>
 							<reference ref="1039515608"/>
-							<reference ref="271530307"/>
+							<reference ref="721597865"/>
 							<reference ref="672884160"/>
-							<reference ref="206890153"/>
-							<reference ref="974261245"/>
+							<reference ref="724804168"/>
+							<reference ref="528654720"/>
 						</object>
 						<reference key="parent" ref="709241668"/>
 					</object>
@@ -319,27 +319,27 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
-						<reference key="object" ref="852184680"/>
+						<reference key="object" ref="807265137"/>
 						<reference key="parent" ref="787286558"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="552500209"/>
+						<reference key="object" ref="320480339"/>
 						<reference key="parent" ref="787286558"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
-						<reference key="object" ref="271530307"/>
+						<reference key="object" ref="721597865"/>
 						<reference key="parent" ref="787286558"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
-						<reference key="object" ref="206890153"/>
+						<reference key="object" ref="724804168"/>
 						<reference key="parent" ref="787286558"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
-						<reference key="object" ref="974261245"/>
+						<reference key="object" ref="528654720"/>
 						<reference key="parent" ref="787286558"/>
 					</object>
 				</object>
