@@ -14,7 +14,10 @@ enum {
 	PSAuthor,
 	PSDateTimeReplies,
 	PSText,
-	PSUserPic
+	PSUserPic,
+	PSCommunityIn,
+	PSCommunityIcon,
+	PSCommunityName
 };
 
 @implementation AccountViewController
@@ -199,15 +202,54 @@ enum {
 	}
 	
     label = (UILabel *)[cell viewWithTag:PSAuthor];
-	if ([event.journalName isEqualToString:event.posterName]) {
-		label.text = event.journalName;
-	} else {
-		label.text = [NSString stringWithFormat:@"%@ in %@", event.posterName, event.journalName];
-	}
+	label.text = event.posterName;
+//	if ([event.journalName isEqualToString:event.posterName]) {
+//		label.text = event.journalName;
+//	} else {
+//		label.text = [NSString stringWithFormat:@"%@ in %@", event.posterName, event.journalName];
+//	}
 	CGRect frame = label.frame;
 	CGSize size = [label sizeThatFits:frame.size];
+	if ([@"C" isEqualToString:event.journalType] && size.width > 150) {
+		size.width = 150;
+	}
 	frame.size.width = size.width;
 	label.frame = frame;
+	CGFloat last = frame.origin.x + frame.size.width;
+	
+	UILabel *communityIn = (UILabel *)[cell viewWithTag:PSCommunityIn];
+	UIImageView *communityIcon = (UIImageView *)[cell viewWithTag:PSCommunityIcon];
+	UILabel *communityName = (UILabel *)[cell viewWithTag:PSCommunityName];
+	if ([@"C" isEqualToString:event.journalType] || [@"N" isEqualToString:event.journalType]) {
+		communityIn.hidden = NO;
+		communityIcon.hidden = NO;
+		communityName.hidden = NO;
+		
+		frame = communityIn.frame;
+		frame.origin.x = last + 1;
+		communityIn.frame = frame;
+		last = frame.origin.x + frame.size.width;
+		
+		frame = communityIcon.frame;
+		frame.origin.x = last + 1;
+		communityIcon.frame = frame;
+		last = frame.origin.x + frame.size.width;
+
+		communityName.text = event.journalName;
+		frame = communityName.frame;
+		size = [label sizeThatFits:frame.size];
+		frame.size = size;
+		frame.origin.x = last + 2;
+		CGFloat over = 289 - frame.origin.x - frame.size.width;
+		if (over < 0) {
+			frame.size.width += over;
+		}
+		communityName.frame = frame;
+	} else {
+		communityIn.hidden = YES;
+		communityIcon.hidden = YES;
+		communityName.hidden = YES;
+	}
 
 	label = (UILabel *)[cell viewWithTag:PSText];
     label.text = event.eventPreview;
