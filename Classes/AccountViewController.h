@@ -39,9 +39,7 @@
 	
 	UIViewController *postEditorController;
 	UIViewController *postViewController;
-	
-	UserPicCache *userPicCache;
-	
+		
 	LJAccount *previousAccount;
 }
 
@@ -74,14 +72,5 @@
 
 @optional
 	- (LJAccount *)selectedAccountForAccountViewController:(AccountViewController *)accountViewController;
-
-@end
-
-
-@interface UserPicCache : NSObject {
-	NSMutableDictionary *cache;
-}
-
-- (UIImage *) userPicFromURL:(NSString *)url;
 
 @end

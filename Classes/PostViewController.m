@@ -9,6 +9,9 @@
 #import "PostViewController.h"
 #import "LiveJournal.h"
 #import "Model.h"
+#import "JournalerAppDelegate.h"
+#import "UserPicCache.h"
+#import "NSStringAdditions.h"
 
 @implementation PostViewController
 
@@ -26,12 +29,15 @@
 }
 */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	postTemplate = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SinglePostTemplate" ofType:@"html"]] retain];
+	userIconPath = [[[NSBundle mainBundle] pathForResource:@"user" ofType:@"png"] retain];
+	communityIconPath = [[[NSBundle mainBundle] pathForResource:@"community" ofType:@"png"] retain];
 }
-*/
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -48,9 +54,39 @@
 	
 	NSLog(path);
 	
-	NSString *template = @"<style>* {font-family: Helvetica} h1 {font-size: 15px}</style><h1>%@</h1>%@";
+	NSMutableString *postHtml = [postTemplate mutableCopy];
+
+	NSString *userPicHtml;
+	if (post.userPicURL && [post.userPicURL length]) {
+		UserPicCache *userPicCache = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).userPicCache;
+		userPicHtml = [NSString stringWithFormat:@"<div class=\"userpic\"><img class=\"userpic\" src=\"data:image/png;base64,%@\"/></div>", [userPicCache base64DataFromURL:post.userPicURL]];
+	} else {
+		userPicHtml = @"";
+	}
+	[postHtml replaceOccurrencesOfString:@"@userpic@" withString:userPicHtml options:0 range:NSMakeRange(0, [postHtml length])];
+	[postHtml replaceOccurrencesOfString:@"@subject@" withString:post.subject options:0 range:NSMakeRange(0, [postHtml length])];
+	[postHtml replaceOccurrencesOfString:@"@usericon@" withString:userIconPath options:0 range:NSMakeRange(0, [postHtml length])];
+	[postHtml replaceOccurrencesOfString:@"@postername@" withString:post.poster options:0 range:NSMakeRange(0, [postHtml length])];
+
+	NSString *journal;
+	if ([@"C" isEqualToString:post.journalType] || [@"N" isEqualToString:post.journalType]) {
+		journal = [NSString stringWithFormat:@"in <img class=\"icon\" src=\"file://%@\" /> %@", communityIconPath, post.journal];
+	} else {
+		journal = @"";
+	}
+	[postHtml replaceOccurrencesOfString:@"@journalname@" withString:journal options:0 range:NSMakeRange(0, [postHtml length])];
 	
-	[webView loadHTMLString:[NSString stringWithFormat:template, post.subject, post.textView] baseURL:nil];
+	NSDateFormatter *f = [[NSDateFormatter alloc] init];
+	[f setDateStyle:NSDateFormatterShortStyle];
+	[f setTimeStyle:NSDateFormatterShortStyle];
+	[postHtml replaceOccurrencesOfString:@"@datetime@" withString:[f stringFromDate:post.dateTime] options:0 range:NSMakeRange(0, [postHtml length])];
+	[f release];
+	[postHtml replaceOccurrencesOfString:@"@replycount@" withString:[post.replyCount stringValue] options:0 range:NSMakeRange(0, [postHtml length])];
+
+	[postHtml replaceOccurrencesOfString:@"@post@" withString:post.textView options:0 range:NSMakeRange(0, [postHtml length])];
+
+	[webView loadHTMLString:postHtml baseURL:nil];
+	//[webView loadHTMLString:[NSString stringWithFormat:template, post.subject, post.textView] baseURL:nil];
 	//[webView loadHTMLString:[NSString stringWithFormat:@"<img src=\"file://%@\" />", path] baseURL:nil];
 }
 
@@ -68,6 +104,9 @@
 
 
 - (void)dealloc {
+	[postTemplate release];
+	[userIconPath release];
+	[communityIconPath release];
     [super dealloc];
 }
 

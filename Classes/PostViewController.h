@@ -14,6 +14,10 @@
 @interface PostViewController : UIViewController {
 	UIWebView *webView;
 	
+	NSString *postTemplate;
+	NSString *userIconPath;
+	NSString *communityIconPath;
+	
 	id<PostViewControllerDataSource> dataSource;
 }
 

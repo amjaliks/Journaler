@@ -10,6 +10,7 @@
 #import "LiveJournal.h"
 #import "Model.h"
 #import "JournalerAppDelegate.h"
+#import "UserPicCache.h"
 
 enum {
 	PSSubject = 1,
@@ -56,11 +57,9 @@ enum {
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	
-	userPicCache = [[UserPicCache alloc] init];
-}
+//- (void)viewDidLoad {
+//    [super viewDidLoad];	
+//}
 
 
 // Override to allow orientations other than the default portrait orientation.
@@ -182,11 +181,9 @@ enum {
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-	
-	[userPicCache release];
-}
+//- (void)dealloc {
+//    [super dealloc];
+//}
 
 - (IBAction) goToUpdate {
 	[self presentModalViewController:postEditorController animated:YES];
@@ -306,7 +303,8 @@ enum {
 	[f release];
 	
 	UIImageView *imageView = (UIImageView *)[cell viewWithTag:PSUserPic];
-	imageView.image = [userPicCache userPicFromURL:post.userPicURL];
+	UserPicCache *userPicCache = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).userPicCache;
+	imageView.image = [userPicCache imageFromURL:post.userPicURL];
 	
 	return cell;
 }
@@ -327,40 +325,5 @@ enum {
 	return selectedPost;
 }
 
-
-@end
-
-
-@implementation UserPicCache
-
-- (id) init {
-	if (self = [super init]) {
-		cache = [[NSMutableDictionary alloc] init];
-	}
-	return self;
-}
-
-- (void) dealloc {
-	[super dealloc];
-	[cache release];
-}
-	
-- (UIImage *) userPicFromURL:(NSString *)url {
-	UIImage *image = [cache valueForKey:url];
-	if (image) {
-		return image;
-	} else {
-		NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-		
-		NSURLResponse *res;
-		NSError *err;
-		NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
-		
-		image = [[UIImage alloc] initWithData:data];
-		[cache setValue:image forKey:url];
-		
-		return image;
-	}
-}
 
 @end

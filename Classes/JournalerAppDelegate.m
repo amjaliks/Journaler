@@ -13,6 +13,7 @@
 @implementation JournalerAppDelegate
 
 @synthesize model;
+@synthesize userPicCache;
 
 @synthesize window;
 @synthesize navigationController;
@@ -24,6 +25,7 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     
 	model = [[Model alloc] init];
+	userPicCache = [[UserPicCache alloc] init];
 	
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
@@ -39,6 +41,7 @@
 
 - (void)dealloc {
 	[model release];
+	[userPicCache release];
 	
 	[navigationController release];
 	[window release];
