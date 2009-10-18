@@ -180,6 +180,16 @@
 				<reference key="IBUIContentView" ref="797412867"/>
 				<string key="IBUIReuseIdentifier">Text</string>
 			</object>
+			<object class="IBUIBarButtonItem" id="995688678">
+				<int key="IBUITag">100</int>
+				<string key="IBUITitle">Post</string>
+				<int key="IBUIStyle">1</int>
+			</object>
+			<object class="IBUIBarButtonItem" id="285555866">
+				<int key="IBUITag">101</int>
+				<int key="IBUIStyle">1</int>
+				<int key="IBUISystemItemIdentifier">0</int>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -311,6 +321,16 @@
 						<reference key="object" ref="301247697"/>
 						<reference key="parent" ref="328876458"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">18</int>
+						<reference key="object" ref="995688678"/>
+						<reference key="parent" ref="557804761"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">19</int>
+						<reference key="object" ref="285555866"/>
+						<reference key="parent" ref="557804761"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -323,6 +343,8 @@
 					<string>11.IBEditorWindowLastContentRect</string>
 					<string>11.IBPluginDependency</string>
 					<string>12.IBPluginDependency</string>
+					<string>18.IBPluginDependency</string>
+					<string>19.IBPluginDependency</string>
 					<string>4.IBEditorWindowLastContentRect</string>
 					<string>4.IBPluginDependency</string>
 					<string>8.IBEditorWindowLastContentRect</string>
@@ -335,6 +357,8 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{497, 418}, {320, 167}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{329, 376}, {320, 480}}</string>
@@ -364,7 +388,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">19</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

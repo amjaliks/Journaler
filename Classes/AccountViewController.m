@@ -25,6 +25,9 @@ enum {
 
 @implementation AccountViewController
 
+@synthesize tabBar;
+@synthesize masterView;
+
 @synthesize ljAccountView;
 @synthesize otherAccountView;
 
@@ -37,6 +40,8 @@ enum {
 @synthesize flexibleSpace;
 @synthesize refreshButton;
 @synthesize stopButton;
+
+@synthesize newPostOther;
 
 @synthesize templateCell;
 
@@ -57,9 +62,11 @@ enum {
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-//- (void)viewDidLoad {
-//    [super viewDidLoad];	
-//}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	tabBar.view.frame = CGRectMake(0, 0, 320, 416);
+	//[self.view addSubview:tabBar.view];
+}
 
 
 // Override to allow orientations other than the default portrait orientation.
@@ -77,8 +84,10 @@ enum {
 
 	[otherAccountView removeFromSuperview];
 	[ljAccountView removeFromSuperview];
+	[tabBar.view removeFromSuperview];
 	
 	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
+		[self.view addSubview:tabBar.view];
 		if (previousAccount != account) {
 			previousAccount = account;
 			Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
@@ -89,9 +98,12 @@ enum {
 			}
 		}
 		if (account.synchronized) {
-			[self.view addSubview:ljAccountView];
+			[self.masterView addSubview:ljAccountView];
 		}
+		self.navigationItem.rightBarButtonItem = nil;
 	} else {
+		self.navigationItem.rightBarButtonItem = newPostOther;
+		
 		[self.view addSubview:otherAccountView];	
 
 		LJFlatGetChallenge *challenge = [LJFlatGetChallenge requestWithServer:account.server];
@@ -168,7 +180,7 @@ enum {
 		}
 		
 		[self.ljAccountView reloadData];
-		[self.view addSubview:ljAccountView];
+		[self.masterView addSubview:ljAccountView];
 
 		account.synchronized = YES;
 

@@ -18,6 +18,8 @@
 		17132AA7108B3017007F6C24 /* UserPicCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */; };
 		17132B30108B386E007F6C24 /* community.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132B2F108B386E007F6C24 /* community.png */; };
 		17132B34108B3A47007F6C24 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132B33108B3A47007F6C24 /* user.png */; };
+		17132C74108BB5B8007F6C24 /* newpost.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132C73108BB5B8007F6C24 /* newpost.png */; };
+		17132C77108BB6EA007F6C24 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132C76108BB6EA007F6C24 /* friends.png */; };
 		1789BE60107A894B00964DA2 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE5F107A894B00964DA2 /* forward.png */; };
 		1789BE62107A89F200964DA2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
 		1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
@@ -66,6 +68,8 @@
 		17132AA6108B3017007F6C24 /* UserPicCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPicCache.m; sourceTree = "<group>"; };
 		17132B2F108B386E007F6C24 /* community.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = community.png; sourceTree = "<group>"; };
 		17132B33108B3A47007F6C24 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		17132C73108BB5B8007F6C24 /* newpost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newpost.png; sourceTree = "<group>"; };
+		17132C76108BB6EA007F6C24 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
 		1789BE5F107A894B00964DA2 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
 		1789BE61107A89F200964DA2 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		1789BFDF107E73BA00964DA2 /* PostEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEditorController.h; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 				17B4C63E10827C360005660E /* IconLite.png */,
 				1789BE61107A89F200964DA2 /* back.png */,
 				1789BE5F107A894B00964DA2 /* forward.png */,
+				17132C76108BB6EA007F6C24 /* friends.png */,
+				17132C73108BB5B8007F6C24 /* newpost.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -348,6 +354,8 @@
 				17132A56108B240B007F6C24 /* SinglePostTemplate.html in Resources */,
 				17132B30108B386E007F6C24 /* community.png in Resources */,
 				17132B34108B3A47007F6C24 /* user.png in Resources */,
+				17132C74108BB5B8007F6C24 /* newpost.png in Resources */,
+				17132C77108BB6EA007F6C24 /* friends.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +460,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_CFLAGS = "-DDEBUG";
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.0;
 			};

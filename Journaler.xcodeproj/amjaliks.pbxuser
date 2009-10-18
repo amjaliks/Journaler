@@ -2,16 +2,16 @@
 {
 	171323071085168F007F6C24 /* PostViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1089, 476}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1089, 501}}";
 			sepNavSelRange = "{366, 0}";
 			sepNavVisRange = "{0, 708}";
 		};
 	};
 	171323081085168F007F6C24 /* PostViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1152, 1484}}";
-			sepNavSelRange = "{1955, 0}";
-			sepNavVisRange = "{1243, 1803}";
+			sepNavIntBoundsRect = "{{0, 0}, {1152, 1582}}";
+			sepNavSelRange = "{1540, 37}";
+			sepNavVisRange = "{1805, 2230}";
 		};
 	};
 	17132311108516A7007F6C24 /* PBXTextBookmark */ = {
@@ -95,7 +95,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 59";
 		rLen = 0;
-		rLoc = 2050;
+		rLoc = 2330;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 736;
@@ -115,7 +115,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 135";
 		rLen = 23;
-		rLoc = 6604;
+		rLoc = 7173;
 		rType = 0;
 		vrLen = 1017;
 		vrLoc = 4867;
@@ -135,7 +135,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 227";
 		rLen = 0;
-		rLoc = 11310;
+		rLoc = 11072;
 		rType = 0;
 		vrLen = 1232;
 		vrLoc = 6950;
@@ -215,7 +215,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 59";
 		rLen = 0;
-		rLoc = 2050;
+		rLoc = 2330;
 		rType = 0;
 		vrLen = 1234;
 		vrLoc = 882;
@@ -225,7 +225,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 227";
 		rLen = 0;
-		rLoc = 11310;
+		rLoc = 11072;
 		rType = 0;
 		vrLen = 1232;
 		vrLoc = 6950;
@@ -265,7 +265,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 59";
 		rLen = 40;
-		rLoc = 1666;
+		rLoc = 1819;
 		rType = 0;
 		vrLen = 2026;
 		vrLoc = 1452;
@@ -315,7 +315,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 59";
 		rLen = 40;
-		rLoc = 1666;
+		rLoc = 1819;
 		rType = 0;
 		vrLen = 2517;
 		vrLoc = 1860;
@@ -375,7 +375,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 59";
 		rLen = 40;
-		rLoc = 1666;
+		rLoc = 1819;
 		rType = 0;
 		vrLen = 2213;
 		vrLoc = 1860;
@@ -385,7 +385,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 37";
 		rLen = 0;
-		rLoc = 959;
+		rLoc = 1043;
 		rType = 0;
 		vrLen = 977;
 		vrLoc = 166;
@@ -395,7 +395,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 232";
 		rLen = 0;
-		rLoc = 11553;
+		rLoc = 11315;
 		rType = 0;
 		vrLen = 1204;
 		vrLoc = 7141;
@@ -445,7 +445,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 59";
 		rLen = 40;
-		rLoc = 1666;
+		rLoc = 1819;
 		rType = 0;
 		vrLen = 2213;
 		vrLoc = 1860;
@@ -465,7 +465,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 59";
 		rLen = 40;
-		rLoc = 1666;
+		rLoc = 1819;
 		rType = 0;
 		vrLen = 1041;
 		vrLoc = 7141;
@@ -485,7 +485,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 231";
 		rLen = 0;
-		rLoc = 11555;
+		rLoc = 11317;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 7141;
@@ -495,7 +495,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 37";
 		rLen = 0;
-		rLoc = 959;
+		rLoc = 1043;
 		rType = 0;
 		vrLen = 977;
 		vrLoc = 166;
@@ -505,7 +505,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 232";
 		rLen = 0;
-		rLoc = 11553;
+		rLoc = 11315;
 		rType = 0;
 		vrLen = 1204;
 		vrLoc = 7141;
@@ -715,7 +715,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 466";
 		rLen = 0;
-		rLoc = 15763;
+		rLoc = 15733;
 		rType = 0;
 		vrLen = 1322;
 		vrLoc = 13161;
@@ -744,8 +744,8 @@
 		isa = PBXTextBookmark;
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 466";
-		rLen = 2;
-		rLoc = 15702;
+		rLen = 0;
+		rLoc = 15672;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 7754;
@@ -927,7 +927,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 549";
 		rLen = 0;
-		rLoc = 18600;
+		rLoc = 18798;
 		rType = 0;
 		vrLen = 2018;
 		vrLoc = 1965;
@@ -936,7 +936,7 @@
 		isa = PBXTextBookmark;
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		rLen = 1;
-		rLoc = 441;
+		rLoc = 440;
 		rType = 1;
 	};
 	1713248310890401007F6C24 /* PBXBookmark */ = {
@@ -964,7 +964,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 549";
 		rLen = 0;
-		rLoc = 18600;
+		rLoc = 18798;
 		rType = 0;
 		vrLen = 2018;
 		vrLoc = 1965;
@@ -1011,8 +1011,8 @@
 		isa = PBXTextBookmark;
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 228";
-		rLen = 239;
-		rLoc = 10920;
+		rLen = 0;
+		rLoc = 10924;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 7218;
@@ -1062,7 +1062,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 218";
 		rLen = 0;
-		rLoc = 10445;
+		rLoc = 10449;
 		rType = 0;
 		vrLen = 1197;
 		vrLoc = 6640;
@@ -1072,7 +1072,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 218";
 		rLen = 0;
-		rLoc = 10445;
+		rLoc = 10449;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 5663;
@@ -1082,7 +1082,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 196";
 		rLen = 0;
-		rLoc = 8348;
+		rLoc = 8917;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 6078;
@@ -1092,7 +1092,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 206";
 		rLen = 0;
-		rLoc = 8828;
+		rLoc = 9186;
 		rType = 0;
 		vrLen = 1253;
 		vrLoc = 6671;
@@ -1102,7 +1102,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 206";
 		rLen = 0;
-		rLoc = 8828;
+		rLoc = 9186;
 		rType = 0;
 		vrLen = 1253;
 		vrLoc = 6671;
@@ -1122,7 +1122,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 206";
 		rLen = 0;
-		rLoc = 8828;
+		rLoc = 9186;
 		rType = 0;
 		vrLen = 1253;
 		vrLoc = 6671;
@@ -1162,7 +1162,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 528";
 		rLen = 0;
-		rLoc = 17317;
+		rLoc = 17515;
 		rType = 0;
 		vrLen = 1530;
 		vrLoc = 15843;
@@ -1192,7 +1192,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 82";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 1376;
@@ -1202,7 +1202,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 268";
 		rLen = 0;
-		rLoc = 11563;
+		rLoc = 11325;
 		rType = 0;
 		vrLen = 662;
 		vrLoc = 8724;
@@ -1232,7 +1232,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 76";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 1263;
@@ -1242,7 +1242,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 266";
 		rLen = 0;
-		rLoc = 11563;
+		rLoc = 11325;
 		rType = 0;
 		vrLen = 546;
 		vrLoc = 8316;
@@ -1262,7 +1262,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 267";
 		rLen = 0;
-		rLoc = 11563;
+		rLoc = 11325;
 		rType = 0;
 		vrLen = 615;
 		vrLoc = 8316;
@@ -1282,7 +1282,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 265";
 		rLen = 0;
-		rLoc = 11563;
+		rLoc = 11325;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 398;
@@ -1292,7 +1292,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 76";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 998;
 		vrLoc = 1345;
@@ -1302,7 +1302,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 262";
 		rLen = 0;
-		rLoc = 11563;
+		rLoc = 11325;
 		rType = 0;
 		vrLen = 612;
 		vrLoc = 8515;
@@ -1312,7 +1312,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 42";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1157;
 		rType = 0;
 		vrLen = 1000;
 		vrLoc = 308;
@@ -1322,7 +1322,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 251";
 		rLen = 0;
-		rLoc = 11563;
+		rLoc = 11325;
 		rType = 0;
 		vrLen = 580;
 		vrLoc = 8615;
@@ -1332,7 +1332,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 82";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 1376;
@@ -1342,7 +1342,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 57";
 		rLen = 0;
-		rLoc = 1357;
+		rLoc = 1510;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 695;
@@ -1362,7 +1362,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 528";
 		rLen = 0;
-		rLoc = 17317;
+		rLoc = 17515;
 		rType = 0;
 		vrLen = 1530;
 		vrLoc = 15843;
@@ -1382,7 +1382,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 528";
 		rLen = 0;
-		rLoc = 17317;
+		rLoc = 17515;
 		rType = 0;
 		vrLen = 1530;
 		vrLoc = 15843;
@@ -1412,7 +1412,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 232";
 		rLen = 0;
-		rLoc = 10916;
+		rLoc = 10920;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 7200;
@@ -1432,7 +1432,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 232";
 		rLen = 0;
-		rLoc = 10916;
+		rLoc = 10920;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 7200;
@@ -1442,7 +1442,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 82";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 998;
 		vrLoc = 1376;
@@ -1452,7 +1452,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 268";
 		rLen = 0;
-		rLoc = 11563;
+		rLoc = 11325;
 		rType = 0;
 		vrLen = 661;
 		vrLoc = 8708;
@@ -1462,7 +1462,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 82";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 1376;
@@ -1472,7 +1472,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 268";
 		rLen = 0;
-		rLoc = 11563;
+		rLoc = 11325;
 		rType = 0;
 		vrLen = 661;
 		vrLoc = 8725;
@@ -1482,7 +1482,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 82";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 1376;
@@ -1492,7 +1492,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 230";
 		rLen = 0;
-		rLoc = 10882;
+		rLoc = 10886;
 		rType = 0;
 		vrLen = 1380;
 		vrLoc = 7145;
@@ -1502,7 +1502,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 231";
 		rLen = 0;
-		rLoc = 10901;
+		rLoc = 10905;
 		rType = 0;
 		vrLen = 1428;
 		vrLoc = 7097;
@@ -1512,7 +1512,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 231";
 		rLen = 0;
-		rLoc = 10901;
+		rLoc = 10905;
 		rType = 0;
 		vrLen = 1509;
 		vrLoc = 7097;
@@ -1532,7 +1532,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 82";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 1308;
@@ -1542,7 +1542,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 231";
 		rLen = 0;
-		rLoc = 10901;
+		rLoc = 10905;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 3456;
@@ -1552,7 +1552,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 231";
 		rLen = 0;
-		rLoc = 10901;
+		rLoc = 10905;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 3456;
@@ -1572,7 +1572,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 82";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 1308;
@@ -1582,7 +1582,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 223";
 		rLen = 0;
-		rLoc = 9484;
+		rLoc = 9842;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 6792;
@@ -1592,7 +1592,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 220";
 		rLen = 0;
-		rLoc = 9031;
+		rLoc = 9389;
 		rType = 0;
 		vrLen = 1114;
 		vrLoc = 6792;
@@ -1602,7 +1602,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 220";
 		rLen = 0;
-		rLoc = 9031;
+		rLoc = 9389;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 6792;
@@ -1612,7 +1612,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 225";
 		rLen = 0;
-		rLoc = 9315;
+		rLoc = 9673;
 		rType = 0;
 		vrLen = 1101;
 		vrLoc = 6792;
@@ -1622,7 +1622,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 223";
 		rLen = 0;
-		rLoc = 9193;
+		rLoc = 9551;
 		rType = 0;
 		vrLen = 1108;
 		vrLoc = 7191;
@@ -1632,7 +1632,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 242";
 		rLen = 0;
-		rLoc = 9730;
+		rLoc = 10088;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 7363;
@@ -1642,7 +1642,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 239";
 		rLen = 0;
-		rLoc = 9674;
+		rLoc = 10032;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 7363;
@@ -1652,7 +1652,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 241";
 		rLen = 0;
-		rLoc = 9658;
+		rLoc = 10016;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 7839;
@@ -1662,7 +1662,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 242";
 		rLen = 0;
-		rLoc = 9685;
+		rLoc = 10043;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 7839;
@@ -1672,7 +1672,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 242";
 		rLen = 0;
-		rLoc = 9685;
+		rLoc = 10043;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 7839;
@@ -1686,7 +1686,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 242";
 		rLen = 0;
-		rLoc = 9685;
+		rLoc = 10043;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 7839;
@@ -4736,7 +4736,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 82";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 1308;
@@ -4766,7 +4766,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 516";
 		rLen = 0;
-		rLoc = 17367;
+		rLoc = 17565;
 		rType = 0;
 		vrLen = 605;
 		vrLoc = 6682;
@@ -4786,7 +4786,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 128";
 		rLen = 15;
-		rLoc = 5531;
+		rLoc = 6094;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 3908;
@@ -4816,7 +4816,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 481";
 		rLen = 0;
-		rLoc = 15604;
+		rLoc = 15572;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 14406;
@@ -4826,7 +4826,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 82";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 1308;
@@ -4836,7 +4836,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 125";
 		rLen = 0;
-		rLoc = 6060;
+		rLoc = 6623;
 		rType = 0;
 		vrLen = 1322;
 		vrLoc = 3647;
@@ -4896,7 +4896,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 128";
 		rLen = 15;
-		rLoc = 5531;
+		rLoc = 6094;
 		rType = 0;
 		vrLen = 1251;
 		vrLoc = 3905;
@@ -4916,7 +4916,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 516";
 		rLen = 0;
-		rLoc = 17367;
+		rLoc = 17565;
 		rType = 0;
 		vrLen = 605;
 		vrLoc = 6682;
@@ -4936,7 +4936,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 141";
 		rLen = 0;
-		rLoc = 6059;
+		rLoc = 6622;
 		rType = 0;
 		vrLen = 1394;
 		vrLoc = 3948;
@@ -5189,7 +5189,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 138";
 		rLen = 0;
-		rLoc = 5877;
+		rLoc = 6440;
 		rType = 0;
 		vrLen = 1394;
 		vrLoc = 3948;
@@ -5199,7 +5199,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 138";
 		rLen = 0;
-		rLoc = 5877;
+		rLoc = 6440;
 		rType = 0;
 		vrLen = 1394;
 		vrLoc = 3948;
@@ -5404,7 +5404,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 140";
 		rLen = 0;
-		rLoc = 5995;
+		rLoc = 6558;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 3948;
@@ -5414,7 +5414,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 140";
 		rLen = 0;
-		rLoc = 5995;
+		rLoc = 6558;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 3948;
@@ -5424,7 +5424,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 140";
 		rLen = 0;
-		rLoc = 5995;
+		rLoc = 6558;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 3948;
@@ -5434,7 +5434,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 140";
 		rLen = 0;
-		rLoc = 5995;
+		rLoc = 6558;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 3948;
@@ -5444,7 +5444,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 140";
 		rLen = 0;
-		rLoc = 5995;
+		rLoc = 6558;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 3948;
@@ -5454,7 +5454,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 140";
 		rLen = 0;
-		rLoc = 5995;
+		rLoc = 6558;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 3948;
@@ -5474,7 +5474,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 140";
 		rLen = 0;
-		rLoc = 5995;
+		rLoc = 6558;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 3948;
@@ -5484,7 +5484,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 265";
 		rLen = 0;
-		rLoc = 9711;
+		rLoc = 10069;
 		rType = 0;
 		vrLen = 1081;
 		vrLoc = 8154;
@@ -5494,7 +5494,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 78";
 		rLen = 0;
-		rLoc = 1850;
+		rLoc = 2003;
 		rType = 0;
 		vrLen = 917;
 		vrLoc = 1121;
@@ -5504,7 +5504,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 78";
 		rLen = 0;
-		rLoc = 1850;
+		rLoc = 2003;
 		rType = 0;
 		vrLen = 1017;
 		vrLoc = 4628;
@@ -5514,7 +5514,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 78";
 		rLen = 0;
-		rLoc = 1850;
+		rLoc = 2003;
 		rType = 0;
 		vrLen = 1017;
 		vrLoc = 4628;
@@ -5584,7 +5584,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 886;
 		vrLoc = 0;
@@ -5594,7 +5594,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 85";
 		rLen = 0;
-		rLoc = 2534;
+		rLoc = 2815;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 478;
@@ -5644,7 +5644,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 37";
 		rLen = 0;
-		rLoc = 940;
+		rLoc = 1024;
 		rType = 0;
 		vrLen = 926;
 		vrLoc = 263;
@@ -5704,7 +5704,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1253;
 		vrLoc = 732;
@@ -5714,7 +5714,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 85";
 		rLen = 0;
-		rLoc = 2534;
+		rLoc = 2815;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 478;
@@ -5724,7 +5724,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 886;
 		vrLoc = 0;
@@ -5734,7 +5734,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 209";
 		rLen = 5;
-		rLoc = 7678;
+		rLoc = 8247;
 		rType = 0;
 		vrLen = 1049;
 		vrLoc = 6594;
@@ -5744,7 +5744,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 209";
 		rLen = 0;
-		rLoc = 7683;
+		rLoc = 8252;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 7132;
@@ -5754,7 +5754,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 222";
 		rLen = 0;
-		rLoc = 8143;
+		rLoc = 8712;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 7132;
@@ -5764,7 +5764,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 233";
 		rLen = 0;
-		rLoc = 8430;
+		rLoc = 8999;
 		rType = 0;
 		vrLen = 1073;
 		vrLoc = 7742;
@@ -5971,7 +5971,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 317";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -6001,7 +6001,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 516";
 		rLen = 0;
-		rLoc = 17367;
+		rLoc = 17565;
 		rType = 0;
 		vrLen = 609;
 		vrLoc = 6678;
@@ -6061,7 +6061,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 300";
 		rLen = 0;
-		rLoc = 10887;
+		rLoc = 10891;
 		rType = 0;
 		vrLen = 1273;
 		vrLoc = 9502;
@@ -6298,7 +6298,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 317";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -6328,7 +6328,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 516";
 		rLen = 0;
-		rLoc = 17367;
+		rLoc = 17565;
 		rType = 0;
 		vrLen = 609;
 		vrLoc = 6678;
@@ -6476,7 +6476,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 317";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -6685,7 +6685,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 317";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -7234,7 +7234,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 59";
 		rLen = 0;
-		rLoc = 1303;
+		rLoc = 1375;
 		rType = 0;
 		vrLen = 1056;
 		vrLoc = 703;
@@ -7429,7 +7429,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 147";
 		rLen = 0;
-		rLoc = 6035;
+		rLoc = 6598;
 		rType = 0;
 		vrLen = 1436;
 		vrLoc = 4213;
@@ -7439,7 +7439,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 147";
 		rLen = 0;
-		rLoc = 6035;
+		rLoc = 6598;
 		rType = 0;
 		vrLen = 660;
 		vrLoc = 5544;
@@ -7449,7 +7449,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 284";
 		rLen = 4;
-		rLoc = 9927;
+		rLoc = 10285;
 		rType = 0;
 		vrLen = 1312;
 		vrLoc = 9092;
@@ -7509,7 +7509,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 284";
 		rLen = 4;
-		rLoc = 9927;
+		rLoc = 10285;
 		rType = 0;
 		vrLen = 1312;
 		vrLoc = 9092;
@@ -7649,7 +7649,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 284";
 		rLen = 4;
-		rLoc = 9927;
+		rLoc = 10285;
 		rType = 0;
 		vrLen = 1246;
 		vrLoc = 9092;
@@ -7679,7 +7679,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 297";
 		rLen = 0;
-		rLoc = 10632;
+		rLoc = 10636;
 		rType = 0;
 		vrLen = 1318;
 		vrLoc = 9361;
@@ -7689,7 +7689,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 0;
@@ -7699,7 +7699,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 297";
 		rLen = 0;
-		rLoc = 10632;
+		rLoc = 10636;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 9361;
@@ -7709,7 +7709,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 297";
 		rLen = 0;
-		rLoc = 10632;
+		rLoc = 10636;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 9361;
@@ -7719,7 +7719,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 0;
@@ -7728,8 +7728,8 @@
 		isa = PBXTextBookmark;
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 156";
-		rLen = 180;
-		rLoc = 6067;
+		rLen = 186;
+		rLoc = 6630;
 		rType = 0;
 		vrLen = 1071;
 		vrLoc = 4938;
@@ -7739,7 +7739,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 389";
 		rLen = 0;
-		rLoc = 12057;
+		rLoc = 11981;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 10953;
@@ -7749,7 +7749,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 699;
@@ -7759,7 +7759,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 97";
 		rLen = 0;
-		rLoc = 2873;
+		rLoc = 3214;
 		rType = 0;
 		vrLen = 2268;
 		vrLoc = 1869;
@@ -7769,7 +7769,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 156";
 		rLen = 0;
-		rLoc = 6067;
+		rLoc = 6630;
 		rType = 0;
 		vrLen = 961;
 		vrLoc = 4858;
@@ -7779,7 +7779,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 389";
 		rLen = 0;
-		rLoc = 12057;
+		rLoc = 11981;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 10953;
@@ -7789,7 +7789,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 97";
 		rLen = 0;
-		rLoc = 2873;
+		rLoc = 3214;
 		rType = 0;
 		vrLen = 2268;
 		vrLoc = 1869;
@@ -7799,7 +7799,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 389";
 		rLen = 0;
-		rLoc = 12057;
+		rLoc = 11981;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 10953;
@@ -7809,7 +7809,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 97";
 		rLen = 0;
-		rLoc = 2873;
+		rLoc = 3214;
 		rType = 0;
 		vrLen = 2268;
 		vrLoc = 1869;
@@ -7819,7 +7819,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 699;
@@ -7829,7 +7829,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 158";
 		rLen = 0;
-		rLoc = 6247;
+		rLoc = 6816;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 5173;
@@ -7839,7 +7839,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 158";
 		rLen = 0;
-		rLoc = 6247;
+		rLoc = 6816;
 		rType = 0;
 		vrLen = 866;
 		vrLoc = 5254;
@@ -7849,7 +7849,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 156";
 		rLen = 0;
-		rLoc = 6067;
+		rLoc = 6630;
 		rType = 0;
 		vrLen = 868;
 		vrLoc = 5254;
@@ -7859,7 +7859,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 156";
 		rLen = 0;
-		rLoc = 6067;
+		rLoc = 6630;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 6123;
@@ -7869,7 +7869,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 156";
 		rLen = 0;
-		rLoc = 6067;
+		rLoc = 6630;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 6123;
@@ -8044,7 +8044,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 156";
 		rLen = 0;
-		rLoc = 6067;
+		rLoc = 6630;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 6123;
@@ -8755,7 +8755,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 86";
 		rLen = 0;
-		rLoc = 2534;
+		rLoc = 2815;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 1598;
@@ -8782,7 +8782,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 86";
 		rLen = 0;
-		rLoc = 2534;
+		rLoc = 2815;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 1598;
@@ -9062,7 +9062,7 @@
 					chosenTableWidths = (
 						103.000000,
 						22.000000,
-						94.080078,
+						93.080078,
 					);
 				};
 				UIContextForLayoutManager = {
@@ -9072,8 +9072,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {749, 218}}",
-							"{{754, 0}, {394, 218}}",
+							"{{0, 0}, {749, 220}}",
+							"{{754, 0}, {394, 220}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -9083,7 +9083,7 @@
 						isCollapsed = yes;
 						sizes = (
 							"{{0, 0}, {1148, 220}}",
-							"{{0, 225}, {1148, 280}}",
+							"{{0, 225}, {1148, 257}}",
 						);
 					};
 					tableSplitGeometry = {
@@ -9092,8 +9092,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {244, 218}}",
-							"{{249, 0}, {500, 218}}",
+							"{{0, 0}, {243, 218}}",
+							"{{248, 0}, {499, 218}}",
 						);
 					};
 				};
@@ -9182,7 +9182,7 @@
 					chosenTableWidthsPT = (
 						128.000000,
 						108.110840,
-						237.570801,
+						236.570801,
 					);
 					chosenTableWidthsRT = (
 						128.000000,
@@ -9190,7 +9190,7 @@
 					);
 				};
 				"xdesign model browser state key - shown/hidden" = 1;
-				"xdesign model diagram view visible rect key" = "{{-218, 17}, {1133, 265}}";
+				"xdesign model diagram view visible rect key" = "{{-218, 17}, {1133, 242}}";
 			};
 		};
 	};
@@ -9771,7 +9771,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 1270;
@@ -9781,7 +9781,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 86";
 		rLen = 0;
-		rLoc = 2534;
+		rLoc = 2815;
 		rType = 0;
 		vrLen = 1668;
 		vrLoc = 1675;
@@ -9821,7 +9821,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 1329;
@@ -9831,7 +9831,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 86";
 		rLen = 0;
-		rLoc = 2534;
+		rLoc = 2815;
 		rType = 0;
 		vrLen = 1721;
 		vrLoc = 1551;
@@ -9841,7 +9841,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 1270;
@@ -9851,7 +9851,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 86";
 		rLen = 0;
-		rLoc = 2534;
+		rLoc = 2815;
 		rType = 0;
 		vrLen = 1736;
 		vrLoc = 1675;
@@ -9861,7 +9861,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 1270;
@@ -9871,7 +9871,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 86";
 		rLen = 0;
-		rLoc = 2534;
+		rLoc = 2815;
 		rType = 0;
 		vrLen = 1668;
 		vrLoc = 1675;
@@ -9891,7 +9891,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 86";
 		rLen = 0;
-		rLoc = 2534;
+		rLoc = 2815;
 		rType = 0;
 		vrLen = 1668;
 		vrLoc = 1675;
@@ -9901,7 +9901,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 1270;
@@ -9911,7 +9911,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 144";
 		rLen = 54;
-		rLoc = 5778;
+		rLoc = 6341;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 4456;
@@ -9921,7 +9921,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 144";
 		rLen = 54;
-		rLoc = 5778;
+		rLoc = 6341;
 		rType = 0;
 		vrLen = 1241;
 		vrLoc = 4456;
@@ -9938,7 +9938,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 144";
 		rLen = 54;
-		rLoc = 5778;
+		rLoc = 6341;
 		rType = 0;
 		vrLen = 1241;
 		vrLoc = 4456;
@@ -9968,7 +9968,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 1270;
@@ -9988,7 +9988,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 1270;
@@ -9998,7 +9998,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 73";
 		rLen = 37;
-		rLoc = 1666;
+		rLoc = 1819;
 		rType = 0;
 		vrLen = 1586;
 		vrLoc = 1375;
@@ -10008,7 +10008,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 73";
 		rLen = 37;
-		rLoc = 1666;
+		rLoc = 1819;
 		rType = 0;
 		vrLen = 1501;
 		vrLoc = 1375;
@@ -10018,7 +10018,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 73";
 		rLen = 37;
-		rLoc = 1666;
+		rLoc = 1819;
 		rType = 0;
 		vrLen = 2038;
 		vrLoc = 3030;
@@ -10038,7 +10038,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 128";
 		rLen = 9;
-		rLoc = 5220;
+		rLoc = 5783;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 3272;
@@ -10047,7 +10047,7 @@
 		isa = PBXTextBookmark;
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		rLen = 1;
-		rLoc = 517;
+		rLoc = 520;
 		rType = 1;
 	};
 	1713289F108A4D50007F6C24 /* PBXTextBookmark */ = {
@@ -10055,7 +10055,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 128";
 		rLen = 9;
-		rLoc = 5220;
+		rLoc = 5783;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 3272;
@@ -10065,7 +10065,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 492";
 		rLen = 20;
-		rLoc = 15852;
+		rLoc = 15874;
 		rType = 0;
 		vrLen = 1544;
 		vrLoc = 14723;
@@ -10075,7 +10075,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 74";
 		rLen = 0;
-		rLoc = 1706;
+		rLoc = 1859;
 		rType = 0;
 		vrLen = 1977;
 		vrLoc = 2961;
@@ -10084,7 +10084,7 @@
 		isa = PBXTextBookmark;
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		rLen = 0;
-		rLoc = 519;
+		rLoc = 522;
 		rType = 1;
 	};
 	171328A4108A4D63007F6C24 /* PBXTextBookmark */ = {
@@ -10092,7 +10092,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 492";
 		rLen = 20;
-		rLoc = 15852;
+		rLoc = 15874;
 		rType = 0;
 		vrLen = 1544;
 		vrLoc = 14723;
@@ -10102,7 +10102,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 74";
 		rLen = 0;
-		rLoc = 1706;
+		rLoc = 1859;
 		rType = 0;
 		vrLen = 1977;
 		vrLoc = 2961;
@@ -10112,7 +10112,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 494";
 		rLen = 0;
-		rLoc = 15874;
+		rLoc = 15896;
 		rType = 0;
 		vrLen = 1416;
 		vrLoc = 14851;
@@ -10122,7 +10122,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 505";
 		rLen = 0;
-		rLoc = 16282;
+		rLoc = 16480;
 		rType = 0;
 		vrLen = 1686;
 		vrLoc = 15382;
@@ -10132,7 +10132,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 1270;
@@ -10172,7 +10172,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 33";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 924;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 1270;
@@ -10231,7 +10231,7 @@
 		isa = PBXTextBookmark;
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		rLen = 0;
-		rLoc = 135;
+		rLoc = 155;
 		rType = 1;
 	};
 	171328BD108A5073007F6C24 /* PBXTextBookmark */ = {
@@ -10249,7 +10249,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 130";
 		rLen = 0;
-		rLoc = 5235;
+		rLoc = 5798;
 		rType = 0;
 		vrLen = 1974;
 		vrLoc = 2961;
@@ -10259,7 +10259,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 156";
 		rLen = 0;
-		rLoc = 6067;
+		rLoc = 6630;
 		rType = 0;
 		vrLen = 1017;
 		vrLoc = 4935;
@@ -10269,7 +10269,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 156";
 		rLen = 0;
-		rLoc = 6067;
+		rLoc = 6630;
 		rType = 0;
 		vrLen = 1017;
 		vrLoc = 4935;
@@ -10279,7 +10279,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 145";
 		rLen = 0;
-		rLoc = 5821;
+		rLoc = 6384;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 4935;
@@ -10289,7 +10289,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 145";
 		rLen = 0;
-		rLoc = 5821;
+		rLoc = 6384;
 		rType = 0;
 		vrLen = 1013;
 		vrLoc = 4935;
@@ -10299,7 +10299,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 145";
 		rLen = 0;
-		rLoc = 5821;
+		rLoc = 6384;
 		rType = 0;
 		vrLen = 1013;
 		vrLoc = 4935;
@@ -10309,7 +10309,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 145";
 		rLen = 0;
-		rLoc = 5821;
+		rLoc = 6384;
 		rType = 0;
 		vrLen = 1472;
 		vrLoc = 4214;
@@ -10329,7 +10329,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 145";
 		rLen = 0;
-		rLoc = 5821;
+		rLoc = 6384;
 		rType = 0;
 		vrLen = 1472;
 		vrLoc = 4214;
@@ -10349,7 +10349,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 38";
 		rLen = 0;
-		rLoc = 958;
+		rLoc = 1042;
 		rType = 0;
 		vrLen = 987;
 		vrLoc = 282;
@@ -10369,7 +10369,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 322";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 799;
 		vrLoc = 10504;
@@ -10409,7 +10409,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 322";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 799;
 		vrLoc = 10504;
@@ -10487,7 +10487,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 322";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1518;
 		vrLoc = 9579;
@@ -10517,7 +10517,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 322";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1518;
 		vrLoc = 9579;
@@ -10537,7 +10537,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 322";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1177;
 		vrLoc = 8398;
@@ -10547,7 +10547,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 322";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 8398;
@@ -10557,7 +10557,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 322";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 8398;
@@ -10567,7 +10567,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 323";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 8398;
@@ -10577,7 +10577,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 323";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 8398;
@@ -10587,7 +10587,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 317";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 8398;
@@ -10597,7 +10597,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 317";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 8398;
@@ -10607,7 +10607,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 317";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 8398;
@@ -10617,7 +10617,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 317";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 8398;
@@ -10627,7 +10627,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 317";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 8398;
@@ -10637,7 +10637,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 426";
 		rLen = 109;
-		rLoc = 12838;
+		rLoc = 12762;
 		rType = 0;
 		vrLen = 1262;
 		vrLoc = 11890;
@@ -10657,7 +10657,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 426";
 		rLen = 109;
-		rLoc = 12838;
+		rLoc = 12762;
 		rType = 0;
 		vrLen = 1321;
 		vrLoc = 11890;
@@ -10677,7 +10677,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 426";
 		rLen = 109;
-		rLoc = 12838;
+		rLoc = 12762;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 13477;
@@ -10727,7 +10727,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 317";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 8398;
@@ -10737,7 +10737,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 426";
 		rLen = 109;
-		rLoc = 12838;
+		rLoc = 12762;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 18758;
@@ -10787,7 +10787,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 317";
 		rLen = 0;
-		rLoc = 11552;
+		rLoc = 11314;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 8398;
@@ -10817,7 +10817,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 77";
 		rLen = 0;
-		rLoc = 1741;
+		rLoc = 1894;
 		rType = 0;
 		vrLen = 1112;
 		vrLoc = 1278;
@@ -10827,7 +10827,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 77";
 		rLen = 0;
-		rLoc = 1741;
+		rLoc = 1894;
 		rType = 0;
 		vrLen = 1112;
 		vrLoc = 1278;
@@ -10855,7 +10855,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 77";
 		rLen = 0;
-		rLoc = 1741;
+		rLoc = 1894;
 		rType = 0;
 		vrLen = 1112;
 		vrLoc = 1278;
@@ -10973,7 +10973,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 161";
 		rLen = 0;
-		rLoc = 6247;
+		rLoc = 6816;
 		rType = 0;
 		vrLen = 854;
 		vrLoc = 5289;
@@ -10983,7 +10983,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 161";
 		rLen = 0;
-		rLoc = 6246;
+		rLoc = 6815;
 		rType = 0;
 		vrLen = 864;
 		vrLoc = 5354;
@@ -10993,7 +10993,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 161";
 		rLen = 0;
-		rLoc = 6246;
+		rLoc = 6815;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -11013,7 +11013,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 161";
 		rLen = 0;
-		rLoc = 6246;
+		rLoc = 6815;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 0;
@@ -11057,7 +11057,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 161";
 		rLen = 0;
-		rLoc = 6246;
+		rLoc = 6815;
 		rType = 0;
 		vrLen = 1078;
 		vrLoc = 1044;
@@ -11099,7 +11099,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 161";
 		rLen = 0;
-		rLoc = 6246;
+		rLoc = 6815;
 		rType = 0;
 		vrLen = 1078;
 		vrLoc = 1044;
@@ -11109,7 +11109,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 45";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1157;
 		rType = 0;
 		vrLen = 890;
 		vrLoc = 537;
@@ -11119,7 +11119,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 45";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1157;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 1075;
@@ -11129,7 +11129,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 161";
 		rLen = 0;
-		rLoc = 6246;
+		rLoc = 6815;
 		rType = 0;
 		vrLen = 1078;
 		vrLoc = 1044;
@@ -11139,7 +11139,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 45";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1157;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 1075;
@@ -11149,7 +11149,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 84";
 		rLen = 0;
-		rLoc = 2078;
+		rLoc = 2305;
 		rType = 0;
 		vrLen = 1834;
 		vrLoc = 1721;
@@ -11159,7 +11159,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 84";
 		rLen = 0;
-		rLoc = 2078;
+		rLoc = 2305;
 		rType = 0;
 		vrLen = 2211;
 		vrLoc = 1721;
@@ -11169,7 +11169,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 88";
 		rLen = 0;
-		rLoc = 2081;
+		rLoc = 2308;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 1721;
@@ -11179,61 +11179,27 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 318";
 		rLen = 0;
-		rLoc = 11449;
+		rLoc = 11211;
 		rType = 0;
 		vrLen = 1123;
 		vrLoc = 10258;
-	};
-	1713296F108A7CB8007F6C24 /* AccountViewController.m:84 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
-		functionName = "-viewWillAppear:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 84;
-		location = Journaler;
-		modificationTime = 277566385.428935;
-		state = 2;
 	};
 	17132970108A7CBE007F6C24 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 118";
 		rLen = 37;
-		rLoc = 4413;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 1721;
-	};
-	17132973108A7CC5007F6C24 /* AccountViewController.m:82 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
-		functionName = "-viewWillAppear:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 82;
-		location = Journaler;
-		modificationTime = 277566385.43002;
-		state = 2;
 	};
 	17132974108A7CC6007F6C24 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 118";
 		rLen = 37;
-		rLoc = 4413;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 1721;
@@ -11243,7 +11209,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 118";
 		rLen = 37;
-		rLoc = 4413;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 1721;
@@ -11260,7 +11226,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 118";
 		rLen = 37;
-		rLoc = 4413;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 1721;
@@ -11278,7 +11244,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 118";
 		rLen = 37;
-		rLoc = 4413;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 1721;
@@ -11344,7 +11310,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 299";
 		rLen = 0;
-		rLoc = 9257;
+		rLoc = 9181;
 		rType = 0;
 		vrLen = 653;
 		vrLoc = 7192;
@@ -11366,7 +11332,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 299";
 		rLen = 0;
-		rLoc = 9257;
+		rLoc = 9181;
 		rType = 0;
 		vrLen = 653;
 		vrLoc = 7192;
@@ -11436,7 +11402,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 84";
 		rLen = 0;
-		rLoc = 2012;
+		rLoc = 2239;
 		rType = 0;
 		vrLen = 1834;
 		vrLoc = 1681;
@@ -11446,7 +11412,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 84";
 		rLen = 0;
-		rLoc = 2012;
+		rLoc = 2239;
 		rType = 0;
 		vrLen = 1834;
 		vrLoc = 1681;
@@ -11456,7 +11422,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 84";
 		rLen = 0;
-		rLoc = 2012;
+		rLoc = 2239;
 		rType = 0;
 		vrLen = 1834;
 		vrLoc = 1681;
@@ -11466,7 +11432,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 84";
 		rLen = 0;
-		rLoc = 2012;
+		rLoc = 2239;
 		rType = 0;
 		vrLen = 2166;
 		vrLoc = 1867;
@@ -11484,7 +11450,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 84";
 		rLen = 0;
-		rLoc = 2012;
+		rLoc = 2239;
 		rType = 0;
 		vrLen = 2166;
 		vrLoc = 1867;
@@ -11574,7 +11540,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 45";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1157;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 1359;
@@ -11584,7 +11550,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 84";
 		rLen = 0;
-		rLoc = 2012;
+		rLoc = 2239;
 		rType = 0;
 		vrLen = 2207;
 		vrLoc = 2296;
@@ -11640,7 +11606,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 84";
 		rLen = 0;
-		rLoc = 2012;
+		rLoc = 2239;
 		rType = 0;
 		vrLen = 2207;
 		vrLoc = 2296;
@@ -11650,7 +11616,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 45";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1157;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 1359;
@@ -11660,7 +11626,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 89";
 		rLen = 0;
-		rLoc = 2081;
+		rLoc = 2308;
 		rType = 0;
 		vrLen = 2440;
 		vrLoc = 1909;
@@ -11670,7 +11636,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 89";
 		rLen = 0;
-		rLoc = 2081;
+		rLoc = 2308;
 		rType = 0;
 		vrLen = 2440;
 		vrLoc = 1909;
@@ -11710,7 +11676,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 45";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1157;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 1359;
@@ -11720,7 +11686,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 159";
 		rLen = 0;
-		rLoc = 6101;
+		rLoc = 6664;
 		rType = 0;
 		vrLen = 782;
 		vrLoc = 6002;
@@ -11730,7 +11696,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 89";
 		rLen = 0;
-		rLoc = 2081;
+		rLoc = 2308;
 		rType = 0;
 		vrLen = 2440;
 		vrLoc = 1909;
@@ -11750,7 +11716,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 159";
 		rLen = 0;
-		rLoc = 6101;
+		rLoc = 6664;
 		rType = 0;
 		vrLen = 784;
 		vrLoc = 6002;
@@ -11760,7 +11726,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 45";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1157;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 1300;
@@ -11770,7 +11736,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 159";
 		rLen = 0;
-		rLoc = 6101;
+		rLoc = 6664;
 		rType = 0;
 		vrLen = 782;
 		vrLoc = 6002;
@@ -11800,7 +11766,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 159";
 		rLen = 0;
-		rLoc = 6101;
+		rLoc = 6664;
 		rType = 0;
 		vrLen = 782;
 		vrLoc = 6002;
@@ -11810,7 +11776,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 45";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1157;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 1300;
@@ -11820,7 +11786,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 159";
 		rLen = 0;
-		rLoc = 6101;
+		rLoc = 6664;
 		rType = 0;
 		vrLen = 782;
 		vrLoc = 6002;
@@ -11830,7 +11796,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 45";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1157;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 1300;
@@ -11840,7 +11806,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 159";
 		rLen = 0;
-		rLoc = 6101;
+		rLoc = 6664;
 		rType = 0;
 		vrLen = 782;
 		vrLoc = 6002;
@@ -11860,7 +11826,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 159";
 		rLen = 0;
-		rLoc = 6101;
+		rLoc = 6664;
 		rType = 0;
 		vrLen = 782;
 		vrLoc = 6002;
@@ -11870,7 +11836,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 45";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1157;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 1359;
@@ -11880,7 +11846,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 85";
 		rLen = 163;
-		rLoc = 2078;
+		rLoc = 2305;
 		rType = 0;
 		vrLen = 1985;
 		vrLoc = 1681;
@@ -11890,7 +11856,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 85";
 		rLen = 0;
-		rLoc = 2089;
+		rLoc = 2316;
 		rType = 0;
 		vrLen = 1846;
 		vrLoc = 1681;
@@ -11900,7 +11866,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 162";
 		rLen = 0;
-		rLoc = 6141;
+		rLoc = 6710;
 		rType = 0;
 		vrLen = 975;
 		vrLoc = 5389;
@@ -11910,7 +11876,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 162";
 		rLen = 0;
-		rLoc = 6141;
+		rLoc = 6710;
 		rType = 0;
 		vrLen = 1038;
 		vrLoc = 5389;
@@ -11920,7 +11886,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 162";
 		rLen = 0;
-		rLoc = 6141;
+		rLoc = 6710;
 		rType = 0;
 		vrLen = 746;
 		vrLoc = 5887;
@@ -12105,7 +12071,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 162";
 		rLen = 0;
-		rLoc = 6141;
+		rLoc = 6710;
 		rType = 0;
 		vrLen = 746;
 		vrLoc = 5887;
@@ -12850,40 +12816,6 @@
 		vrLen = 647;
 		vrLoc = 0;
 	};
-	17132A2A108A9351007F6C24 /* AccountViewController.m:87 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
-		functionName = "-viewWillAppear:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 87;
-		location = Journaler;
-		modificationTime = 277566386.461666;
-		state = 1;
-	};
-	17132A2C108A9352007F6C24 /* AccountViewController.m:87 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
-		functionName = "-viewWillAppear:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 87;
-		location = Journaler;
-		modificationTime = 277566386.521659;
-		state = 1;
-	};
 	17132A2E108A935D007F6C24 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1713267F108A163B007F6C24 /* Post.m */;
@@ -12969,7 +12901,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 90";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 1918;
 		vrLoc = 1680;
@@ -12979,7 +12911,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 90";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 1605;
 		vrLoc = 1680;
@@ -12989,7 +12921,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 90";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 1605;
 		vrLoc = 1680;
@@ -12999,7 +12931,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 90";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 1605;
 		vrLoc = 1680;
@@ -13009,7 +12941,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 90";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 1569;
 		vrLoc = 1680;
@@ -13044,7 +12976,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 90";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 1569;
 		vrLoc = 1680;
@@ -13054,7 +12986,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 90";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 1569;
 		vrLoc = 1680;
@@ -13205,40 +13137,6 @@
 		vrLen = 1318;
 		vrLoc = 778;
 	};
-	17132A6D108B2A75007F6C24 /* PostViewController.m:36 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 171323081085168F007F6C24 /* PostViewController.m */;
-		functionName = "-viewDidLoad";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 36;
-		location = Journaler;
-		modificationTime = 277566385.432261;
-		state = 2;
-	};
-	17132A6F108B2A78007F6C24 /* PostViewController.m:57 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 171323081085168F007F6C24 /* PostViewController.m */;
-		functionName = "-viewWillAppear:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 57;
-		location = Journaler;
-		modificationTime = 277566385.432832;
-		state = 2;
-	};
 	17132A70108B2A7A007F6C24 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 171323081085168F007F6C24 /* PostViewController.m */;
@@ -13338,23 +13236,6 @@
 		rType = 0;
 		vrLen = 1352;
 		vrLoc = 957;
-	};
-	17132A88108B2D25007F6C24 /* PostViewController.m:59 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 171323081085168F007F6C24 /* PostViewController.m */;
-		functionName = "-viewWillAppear:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 59;
-		location = Journaler;
-		modificationTime = 277566385.433565;
-		state = 2;
 	};
 	17132A89108B2D26007F6C24 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -13485,9 +13366,9 @@
 	};
 	17132AA6108B3017007F6C24 /* UserPicCache.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1089, 1022}}";
-			sepNavSelRange = "{594, 0}";
-			sepNavVisRange = "{219, 846}";
+			sepNavIntBoundsRect = "{{0, 0}, {1089, 980}}";
+			sepNavSelRange = "{820, 0}";
+			sepNavVisRange = "{475, 967}";
 		};
 	};
 	17132AAE108B3212007F6C24 /* PBXTextBookmark */ = {
@@ -13605,7 +13486,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 42";
 		rLen = 0;
-		rLoc = 1043;
+		rLoc = 1127;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 1045;
@@ -13773,7 +13654,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 90";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 1569;
 		vrLoc = 1680;
@@ -13813,7 +13694,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 90";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 1278;
@@ -13823,7 +13704,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 81";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 1427;
@@ -13853,7 +13734,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 90";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 2037;
 		vrLoc = 2465;
@@ -13873,7 +13754,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 90";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 2143;
 		vrLoc = 2545;
@@ -13883,7 +13764,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 79";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 1104;
@@ -13903,7 +13784,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 332";
 		rLen = 0;
-		rLoc = 11563;
+		rLoc = 11325;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 10336;
@@ -13943,7 +13824,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 42";
 		rLen = 0;
-		rLoc = 1043;
+		rLoc = 1127;
 		rType = 0;
 		vrLen = 970;
 		vrLoc = 566;
@@ -14053,7 +13934,7 @@
 		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
 		name = "AccountViewController.h: 42";
 		rLen = 0;
-		rLoc = 1043;
+		rLoc = 1127;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 1045;
@@ -14063,7 +13944,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 332";
 		rLen = 0;
-		rLoc = 11563;
+		rLoc = 11325;
 		rType = 0;
 		vrLen = 1511;
 		vrLoc = 4501;
@@ -14083,7 +13964,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 332";
 		rLen = 0;
-		rLoc = 11563;
+		rLoc = 11325;
 		rType = 0;
 		vrLen = 1511;
 		vrLoc = 4501;
@@ -14323,7 +14204,7 @@
 		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
 		name = "UserPicCache.m: 39";
 		rLen = 0;
-		rLoc = 1224;
+		rLoc = 1291;
 		rType = 0;
 		vrLen = 664;
 		vrLoc = 158;
@@ -14343,7 +14224,7 @@
 		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
 		name = "UserPicCache.m: 39";
 		rLen = 0;
-		rLoc = 1224;
+		rLoc = 1291;
 		rType = 0;
 		vrLen = 688;
 		vrLoc = 133;
@@ -14383,7 +14264,7 @@
 		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
 		name = "UserPicCache.m: 52";
 		rLen = 0;
-		rLoc = 1195;
+		rLoc = 1262;
 		rType = 0;
 		vrLen = 726;
 		vrLoc = 412;
@@ -14433,7 +14314,7 @@
 		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
 		name = "UserPicCache.m: 52";
 		rLen = 0;
-		rLoc = 1195;
+		rLoc = 1262;
 		rType = 0;
 		vrLen = 726;
 		vrLoc = 412;
@@ -14453,7 +14334,7 @@
 		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
 		name = "UserPicCache.m: 52";
 		rLen = 0;
-		rLoc = 1195;
+		rLoc = 1262;
 		rType = 0;
 		vrLen = 748;
 		vrLoc = 390;
@@ -14562,7 +14443,7 @@
 		isa = PBXTextBookmark;
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		rLen = 0;
-		rLoc = 306;
+		rLoc = 314;
 		rType = 1;
 	};
 	17132B2C108B3570007F6C24 /* PBXTextBookmark */ = {
@@ -14580,7 +14461,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 307";
 		rLen = 0;
-		rLoc = 10875;
+		rLoc = 10879;
 		rType = 0;
 		vrLen = 1496;
 		vrLoc = 10061;
@@ -14590,7 +14471,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 307";
 		rLen = 0;
-		rLoc = 10875;
+		rLoc = 10879;
 		rType = 0;
 		vrLen = 1263;
 		vrLoc = 10300;
@@ -14600,7 +14481,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 307";
 		rLen = 0;
-		rLoc = 10875;
+		rLoc = 10879;
 		rType = 0;
 		vrLen = 1263;
 		vrLoc = 10300;
@@ -14610,7 +14491,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 307";
 		rLen = 0;
-		rLoc = 10875;
+		rLoc = 10879;
 		rType = 0;
 		vrLen = 1263;
 		vrLoc = 10300;
@@ -14770,7 +14651,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 262";
 		rLen = 91;
-		rLoc = 9141;
+		rLoc = 9499;
 		rType = 0;
 		vrLen = 1142;
 		vrLoc = 8720;
@@ -14820,7 +14701,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 262";
 		rLen = 91;
-		rLoc = 9141;
+		rLoc = 9499;
 		rType = 0;
 		vrLen = 1142;
 		vrLoc = 8720;
@@ -14900,7 +14781,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 297";
 		rLen = 347;
-		rLoc = 10301;
+		rLoc = 10305;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 9658;
@@ -14980,7 +14861,7 @@
 		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
 		name = "AccountViewController.m: 297";
 		rLen = 347;
-		rLoc = 10301;
+		rLoc = 10305;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 9658;
@@ -15025,40 +14906,6 @@
 		vrLen = 1917;
 		vrLoc = 2416;
 	};
-	17132B79108B4628007F6C24 /* PostViewController.m:61 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 171323081085168F007F6C24 /* PostViewController.m */;
-		functionName = "-viewWillAppear:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 61;
-		location = Journaler;
-		modificationTime = 277566385.434135;
-		state = 2;
-	};
-	17132B7D108B467D007F6C24 /* UserPicCache.m:31 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
-		functionName = "-dataFromURL:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 31;
-		location = Journaler;
-		modificationTime = 277566385.434781;
-		state = 2;
-	};
 	17132B80108B5012007F6C24 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 171323081085168F007F6C24 /* PostViewController.m */;
@@ -15091,7 +14938,7 @@
 		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
 		name = "UserPicCache.m: 59";
 		rLen = 51;
-		rLoc = 1246;
+		rLoc = 1313;
 		rType = 0;
 		vrLen = 800;
 		vrLoc = 497;
@@ -15146,6 +14993,2204 @@
 		vrLen = 846;
 		vrLoc = 219;
 	};
+	17132B91108B55A3007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
+		name = "UserPicCache.m: 31";
+		rLen = 0;
+		rLoc = 594;
+		rType = 0;
+		vrLen = 846;
+		vrLoc = 219;
+	};
+	17132B92108B55A3007F6C24 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 17132865108A4A89007F6C24 /* Journaler.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					94.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {749, 220}}",
+						"{{754, 0}, {394, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1148, 220}}",
+						"{{0, 225}, {1148, 257}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {244, 220}}",
+						"{{249, 0}, {500, 220}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					237.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-218, 17}, {1133, 242}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x32b80e0>{name=Post, package=}",
+			);
+			"xdesign model selected properties key" = (
+				"<XDPMAttribute: 0x5cb6100>{name=isRead, type=(null)}",
+			);
+		};
+	};
+	17132B93108B55A3007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
+		name = "UserPicCache.m: 31";
+		rLen = 0;
+		rLoc = 594;
+		rType = 0;
+		vrLen = 846;
+		vrLoc = 219;
+	};
+	17132B94108B55A3007F6C24 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 17132865108A4A89007F6C24 /* Journaler.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					94.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {749, 220}}",
+						"{{754, 0}, {394, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1148, 220}}",
+						"{{0, 225}, {1148, 257}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {244, 220}}",
+						"{{249, 0}, {500, 220}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					237.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-218, 17}, {1133, 242}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x32b80e0>{name=Post, package=}",
+			);
+			"xdesign model selected properties key" = (
+				"<XDPMAttribute: 0x5cb6100>{name=isRead, type=(null)}",
+			);
+		};
+	};
+	17132B95108B55A3007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSRequiresIPhoneOS,
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132B9A108B5EAC007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17B4C63E10827C360005660E /* IconLite.png */;
+	};
+	17132B9B108B5EAC007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132994108A82A4007F6C24 /* Icon.png */;
+	};
+	17132B9C108B5EAC007F6C24 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 17132865108A4A89007F6C24 /* Journaler.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					93.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {749, 220}}",
+						"{{754, 0}, {394, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1148, 220}}",
+						"{{0, 225}, {1148, 257}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {243, 218}}",
+						"{{248, 0}, {499, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					236.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-218, 17}, {1133, 242}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x32b80e0>{name=Post, package=}",
+			);
+			"xdesign model selected properties key" = (
+				"<XDPMAttribute: 0x5cb6100>{name=isRead, type=(null)}",
+			);
+		};
+	};
+	17132B9D108B5EAC007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleShortVersionString,
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132B9E108B5EAC007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		rLen = 0;
+		rLoc = 95;
+		rType = 1;
+	};
+	17132B9F108B5EAC007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSRequiresIPhoneOS,
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132BA0108B5EAC007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132994108A82A4007F6C24 /* Icon.png */;
+	};
+	17132BA1108B5EAC007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17B4C63E10827C360005660E /* IconLite.png */;
+	};
+	17132BA2108B5EAC007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132994108A82A4007F6C24 /* Icon.png */;
+	};
+	17132BA3108B5EAC007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17B4C63E10827C360005660E /* IconLite.png */;
+	};
+	17132BA4108B5EAC007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132994108A82A4007F6C24 /* Icon.png */;
+	};
+	17132BA5108B5EAC007F6C24 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 17132865108A4A89007F6C24 /* Journaler.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					93.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {749, 220}}",
+						"{{754, 0}, {394, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1148, 220}}",
+						"{{0, 225}, {1148, 257}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {243, 218}}",
+						"{{248, 0}, {499, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					236.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-218, 17}, {1133, 242}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x32b80e0>{name=Post, package=}",
+			);
+			"xdesign model selected properties key" = (
+				"<XDPMAttribute: 0x5cb6100>{name=isRead, type=(null)}",
+			);
+		};
+	};
+	17132BA6108B5EAC007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleShortVersionString,
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132BA7108B5EAC007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 87";
+		rLen = 0;
+		rLoc = 2499;
+		rType = 0;
+		vrLen = 1839;
+		vrLoc = 1706;
+	};
+	17132BA8108B5ECB007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0BCF1075444F00155636 /* AccountsViewController.m */;
+		name = "AccountsViewController.m: 106";
+		rLen = 29;
+		rLoc = 2749;
+		rType = 0;
+		vrLen = 660;
+		vrLoc = 2175;
+	};
+	17132BA9108B5ECB007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: property 'userPicCache' requires method '-userPicCache' to be defined - use @synthesize, @dynamic or provide a method implementation";
+		fRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */;
+		rLen = 1;
+		rLoc = 51;
+		rType = 1;
+	};
+	17132BAA108B5ECB007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0BCF1075444F00155636 /* AccountsViewController.m */;
+		name = "AccountsViewController.m: 106";
+		rLen = 29;
+		rLoc = 2749;
+		rType = 0;
+		vrLen = 660;
+		vrLoc = 2175;
+	};
+	17132BAB108B5ECB007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */;
+		name = "JournalerAppDelegate.m: 16";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 349;
+		vrLoc = 0;
+	};
+	17132BAC108B5ECB007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132BAD108B5ECE007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 87";
+		rLen = 0;
+		rLoc = 2499;
+		rType = 0;
+		vrLen = 1839;
+		vrLoc = 1706;
+	};
+	17132BAE108B5EE0007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */;
+		name = "JournalerAppDelegate.m: 16";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 349;
+		vrLoc = 0;
+	};
+	17132BAF108B5EE0007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132BB0108B5EE1007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 87";
+		rLen = 0;
+		rLoc = 2499;
+		rType = 0;
+		vrLen = 1839;
+		vrLoc = 1706;
+	};
+	17132BB1108B695C007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */;
+		name = "JournalerAppDelegate.m: 16";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 349;
+		vrLoc = 0;
+	};
+	17132BB2108B695C007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132BB4108B6A51007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 87";
+		rLen = 0;
+		rLoc = 2499;
+		rType = 0;
+		vrLen = 1978;
+		vrLoc = 1706;
+	};
+	17132BB5108B6A51007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC010768D2900155636 /* LiveJournal.h */;
+		name = "LiveJournal.h: 179";
+		rLen = 0;
+		rLoc = 3932;
+		rType = 0;
+		vrLen = 984;
+		vrLoc = 3216;
+	};
+	17132BB6108B6A51007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 78";
+		rLen = 0;
+		rLoc = 1897;
+		rType = 0;
+		vrLen = 1069;
+		vrLoc = 1425;
+	};
+	17132BB7108B6A51007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 87";
+		rLen = 0;
+		rLoc = 2499;
+		rType = 0;
+		vrLen = 1978;
+		vrLoc = 1706;
+	};
+	17132BB8108B6A51007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC010768D2900155636 /* LiveJournal.h */;
+		name = "LiveJournal.h: 179";
+		rLen = 0;
+		rLoc = 3932;
+		rType = 0;
+		vrLen = 984;
+		vrLoc = 3216;
+	};
+	17132BB9108B6A51007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 512";
+		rLen = 0;
+		rLoc = 15672;
+		rType = 0;
+		vrLen = 1229;
+		vrLoc = 14851;
+	};
+	17132BBB108B6A5A007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 512";
+		rLen = 0;
+		rLoc = 15672;
+		rType = 0;
+		vrLen = 1209;
+		vrLoc = 14851;
+	};
+	17132BBE108B6B1F007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 525";
+		rLen = 0;
+		rLoc = 16042;
+		rType = 0;
+		vrLen = 1584;
+		vrLoc = 15878;
+	};
+	17132BBF108B6B3E007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */;
+		name = "JournalerAppDelegate.m: 16";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 349;
+		vrLoc = 0;
+	};
+	17132BC0108B6B3E007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132BC6108B6B9A007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 212";
+		rLen = 5;
+		rLoc = 6797;
+		rType = 0;
+		vrLen = 1057;
+		vrLoc = 6092;
+	};
+	17132BC8108B6BAF007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 212";
+		rLen = 5;
+		rLoc = 6797;
+		rType = 0;
+		vrLen = 1173;
+		vrLoc = 7854;
+	};
+	17132BCB108B6BEB007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 212";
+		rLen = 5;
+		rLoc = 6797;
+		rType = 0;
+		vrLen = 891;
+		vrLoc = 8369;
+	};
+	17132BCC108B6C1C007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 283";
+		rLen = 0;
+		rLoc = 8604;
+		rType = 0;
+		vrLen = 462;
+		vrLoc = 8955;
+	};
+	17132BCF108B6D71007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 283";
+		rLen = 0;
+		rLoc = 8604;
+		rType = 0;
+		vrLen = 643;
+		vrLoc = 8955;
+	};
+	17132BD0108B6D71007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 171323081085168F007F6C24 /* PostViewController.m */;
+		name = "PostViewController.m: 50";
+		rLen = 37;
+		rLoc = 1540;
+		rType = 0;
+		vrLen = 1824;
+		vrLoc = 1242;
+	};
+	17132BD1108B6D71007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 87";
+		rLen = 0;
+		rLoc = 2499;
+		rType = 0;
+		vrLen = 1978;
+		vrLoc = 1706;
+	};
+	17132BD2108B6D71007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 283";
+		rLen = 0;
+		rLoc = 8604;
+		rType = 0;
+		vrLen = 643;
+		vrLoc = 8955;
+	};
+	17132BD3108B6D71007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 171323081085168F007F6C24 /* PostViewController.m */;
+		name = "PostViewController.m: 50";
+		rLen = 37;
+		rLoc = 1540;
+		rType = 0;
+		vrLen = 1824;
+		vrLoc = 1242;
+	};
+	17132BD4108B6D71007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 87";
+		rLen = 0;
+		rLoc = 2499;
+		rType = 0;
+		vrLen = 1978;
+		vrLoc = 1706;
+	};
+	17132BD5108B6D71007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 171323081085168F007F6C24 /* PostViewController.m */;
+		name = "PostViewController.m: 50";
+		rLen = 37;
+		rLoc = 1540;
+		rType = 0;
+		vrLen = 1824;
+		vrLoc = 1242;
+	};
+	17132BD6108B6D71007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 294";
+		rLen = 0;
+		rLoc = 10655;
+		rType = 0;
+		vrLen = 1304;
+		vrLoc = 9447;
+	};
+	17132BD7108B70B8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 295";
+		rLen = 179;
+		rLoc = 10726;
+		rType = 0;
+		vrLen = 1225;
+		vrLoc = 7942;
+	};
+	17132BD8108B70B8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC010768D2900155636 /* LiveJournal.h */;
+		name = "LiveJournal.h: 179";
+		rLen = 0;
+		rLoc = 3932;
+		rType = 0;
+		vrLen = 1047;
+		vrLoc = 933;
+	};
+	17132BD9108B70B8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 526";
+		rLen = 0;
+		rLoc = 16214;
+		rType = 0;
+		vrLen = 1649;
+		vrLoc = 15348;
+	};
+	17132BDA108B70B8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
+		name = "UserPicCache.m: 31";
+		rLen = 0;
+		rLoc = 594;
+		rType = 0;
+		vrLen = 863;
+		vrLoc = 218;
+	};
+	17132BDB108B70B8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 295";
+		rLen = 179;
+		rLoc = 10726;
+		rType = 0;
+		vrLen = 1225;
+		vrLoc = 7942;
+	};
+	17132BDC108B70B8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC010768D2900155636 /* LiveJournal.h */;
+		name = "LiveJournal.h: 179";
+		rLen = 0;
+		rLoc = 3932;
+		rType = 0;
+		vrLen = 1047;
+		vrLoc = 933;
+	};
+	17132BDD108B70B8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 526";
+		rLen = 0;
+		rLoc = 16214;
+		rType = 0;
+		vrLen = 1649;
+		vrLoc = 15348;
+	};
+	17132BDE108B70B8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
+		name = "UserPicCache.m: 35";
+		rLen = 0;
+		rLoc = 768;
+		rType = 0;
+		vrLen = 886;
+		vrLoc = 311;
+	};
+	17132BDF108B70F6007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
+		name = "UserPicCache.m: 35";
+		rLen = 0;
+		rLoc = 820;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 311;
+	};
+	17132BE0108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
+		name = "UserPicCache.m: 35";
+		rLen = 0;
+		rLoc = 820;
+		rType = 0;
+		vrLen = 967;
+		vrLoc = 475;
+	};
+	17132BE1108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC010768D2900155636 /* LiveJournal.h */;
+		name = "LiveJournal.h: 175";
+		rLen = 142;
+		rLoc = 3673;
+		rType = 0;
+		vrLen = 978;
+		vrLoc = 3268;
+	};
+	17132BE2108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 171323071085168F007F6C24 /* PostViewController.h */;
+		name = "PostViewController.h: 19";
+		rLen = 0;
+		rLoc = 366;
+		rType = 0;
+		vrLen = 708;
+		vrLoc = 0;
+	};
+	17132BE3108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 19";
+		rLen = 21;
+		rLoc = 338;
+		rType = 0;
+		vrLen = 952;
+		vrLoc = 93;
+	};
+	17132BE4108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 286";
+		rLen = 348;
+		rLoc = 10305;
+		rType = 0;
+		vrLen = 1267;
+		vrLoc = 9378;
+	};
+	17132BE5108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 528";
+		rLen = 0;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1535;
+		vrLoc = 15485;
+	};
+	17132BE6108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */;
+		name = "UserPicCache.m: 35";
+		rLen = 0;
+		rLoc = 820;
+		rType = 0;
+		vrLen = 967;
+		vrLoc = 475;
+	};
+	17132BE7108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC010768D2900155636 /* LiveJournal.h */;
+		name = "LiveJournal.h: 175";
+		rLen = 142;
+		rLoc = 3673;
+		rType = 0;
+		vrLen = 978;
+		vrLoc = 3268;
+	};
+	17132BE8108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 528";
+		rLen = 0;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1535;
+		vrLoc = 15485;
+	};
+	17132BE9108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 171323071085168F007F6C24 /* PostViewController.h */;
+		name = "PostViewController.h: 19";
+		rLen = 0;
+		rLoc = 366;
+		rType = 0;
+		vrLen = 708;
+		vrLoc = 0;
+	};
+	17132BEA108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 42";
+		rLen = 0;
+		rLoc = 1127;
+		rType = 0;
+		vrLen = 1266;
+		vrLoc = 1003;
+	};
+	17132BEB108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 171323071085168F007F6C24 /* PostViewController.h */;
+		name = "PostViewController.h: 19";
+		rLen = 0;
+		rLoc = 366;
+		rType = 0;
+		vrLen = 708;
+		vrLoc = 0;
+	};
+	17132BEC108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 19";
+		rLen = 21;
+		rLoc = 338;
+		rType = 0;
+		vrLen = 952;
+		vrLoc = 93;
+	};
+	17132BED108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 286";
+		rLen = 348;
+		rLoc = 10305;
+		rType = 0;
+		vrLen = 1267;
+		vrLoc = 9378;
+	};
+	17132BEE108B7351007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 528";
+		rLen = 0;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1238;
+		vrLoc = 15537;
+	};
+	17132BF2108B7425007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 530";
+		rLen = 0;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1222;
+		vrLoc = 15291;
+	};
+	17132BF3108B767C007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 530";
+		rLen = 0;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1348;
+		vrLoc = 15485;
+	};
+	17132BF4108B767C007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 171323081085168F007F6C24 /* PostViewController.m */;
+		name = "PostViewController.m: 50";
+		rLen = 37;
+		rLoc = 1540;
+		rType = 0;
+		vrLen = 2230;
+		vrLoc = 1805;
+	};
+	17132BF5108B767C007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 530";
+		rLen = 0;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1348;
+		vrLoc = 15485;
+	};
+	17132BF6108B767C007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 171323081085168F007F6C24 /* PostViewController.m */;
+		name = "PostViewController.m: 50";
+		rLen = 37;
+		rLoc = 1540;
+		rType = 0;
+		vrLen = 2230;
+		vrLoc = 1805;
+	};
+	17132BF7108B767C007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 137";
+		rLen = 0;
+		rLoc = 5631;
+		rType = 0;
+		vrLen = 1403;
+		vrLoc = 4412;
+	};
+	17132BFB108B770C007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 136";
+		rLen = 0;
+		rLoc = 5625;
+		rType = 0;
+		vrLen = 1476;
+		vrLoc = 4412;
+	};
+	17132BFC108B7727007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */;
+		name = "JournalerAppDelegate.m: 16";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 349;
+		vrLoc = 0;
+	};
+	17132BFD108B7727007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132BFE108B7729007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 136";
+		rLen = 0;
+		rLoc = 5625;
+		rType = 0;
+		vrLen = 1476;
+		vrLoc = 4412;
+	};
+	17132C03108B77FC007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 136";
+		rLen = 0;
+		rLoc = 5625;
+		rType = 0;
+		vrLen = 1476;
+		vrLoc = 4412;
+	};
+	17132C05108B785E007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 137";
+		rLen = 0;
+		rLoc = 5649;
+		rType = 0;
+		vrLen = 1476;
+		vrLoc = 4412;
+	};
+	17132C07108B78A6007F6C24 /* LiveJournal.m:527 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		functionName = "-doRequest";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 527;
+		location = Journaler;
+		modificationTime = 277585316.473907;
+		state = 2;
+	};
+	17132C08108B78AE007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 19";
+		rLen = 21;
+		rLoc = 338;
+		rType = 0;
+		vrLen = 1224;
+		vrLoc = 1045;
+	};
+	17132C09108B78AE007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 137";
+		rLen = 0;
+		rLoc = 5649;
+		rType = 0;
+		vrLen = 1406;
+		vrLoc = 4749;
+	};
+	17132C0A108B78AE007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC010768D2900155636 /* LiveJournal.h */;
+		name = "LiveJournal.h: 175";
+		rLen = 142;
+		rLoc = 3673;
+		rType = 0;
+		vrLen = 629;
+		vrLoc = 0;
+	};
+	17132C0B108B78AE007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 137";
+		rLen = 0;
+		rLoc = 5649;
+		rType = 0;
+		vrLen = 1406;
+		vrLoc = 4749;
+	};
+	17132C0C108B78AE007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 19";
+		rLen = 21;
+		rLoc = 338;
+		rType = 0;
+		vrLen = 1224;
+		vrLoc = 1045;
+	};
+	17132C0D108B78AE007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 137";
+		rLen = 0;
+		rLoc = 5649;
+		rType = 0;
+		vrLen = 1406;
+		vrLoc = 4749;
+	};
+	17132C0E108B78AE007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC010768D2900155636 /* LiveJournal.h */;
+		name = "LiveJournal.h: 175";
+		rLen = 142;
+		rLoc = 3673;
+		rType = 0;
+		vrLen = 629;
+		vrLoc = 0;
+	};
+	17132C0F108B78AE007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 530";
+		rLen = 0;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 14451;
+	};
+	17132C14108B7CA6007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 528";
+		rLen = 0;
+		rLoc = 16190;
+		rType = 0;
+		vrLen = 1401;
+		vrLoc = 15595;
+	};
+	17132C16108B7CB4007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 528";
+		rLen = 0;
+		rLoc = 16190;
+		rType = 0;
+		vrLen = 1401;
+		vrLoc = 15595;
+	};
+	17132C17108B7D0B007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */;
+		name = "JournalerAppDelegate.m: 16";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 349;
+		vrLoc = 0;
+	};
+	17132C18108B7D0B007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132C19108B7D15007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 529";
+		rLen = 0;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1470;
+		vrLoc = 15734;
+	};
+	17132C1B108B7F68007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 529";
+		rLen = 0;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1508;
+		vrLoc = 15734;
+	};
+	17132C1D108B8419007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */;
+		name = "JournalerAppDelegate.m: 16";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 349;
+		vrLoc = 0;
+	};
+	17132C1E108B8419007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132C20108B841D007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 529";
+		rLen = 0;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1691;
+		vrLoc = 15672;
+	};
+	17132C21108B841D007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 137";
+		rLen = 0;
+		rLoc = 5649;
+		rType = 0;
+		vrLen = 1471;
+		vrLoc = 4748;
+	};
+	17132C22108B841D007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
+		name = "LiveJournal.m: 529";
+		rLen = 0;
+		rLoc = 16212;
+		rType = 0;
+		vrLen = 1691;
+		vrLoc = 15672;
+	};
+	17132C23108B841D007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 137";
+		rLen = 0;
+		rLoc = 5649;
+		rType = 0;
+		vrLen = 1379;
+		vrLoc = 4748;
+	};
+	17132C2A108B8492007F6C24 /* refresh.png */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.png;
+		name = refresh.png;
+		path = /Users/amjaliks/xcode/Jounaler/refresh.png;
+		sourceTree = "<absolute>";
+	};
+	17132C2D108B99B3007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132C2A108B8492007F6C24 /* refresh.png */;
+	};
+	17132C2E108B99B3007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 48";
+		rLen = 0;
+		rLoc = 1284;
+		rType = 0;
+		vrLen = 1185;
+		vrLoc = 728;
+	};
+	17132C2F108B99B3007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 137";
+		rLen = 0;
+		rLoc = 5649;
+		rType = 0;
+		vrLen = 1379;
+		vrLoc = 4748;
+	};
+	17132C30108B99B3007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 137";
+		rLen = 0;
+		rLoc = 5649;
+		rType = 0;
+		vrLen = 1379;
+		vrLoc = 4748;
+	};
+	17132C31108B99B3007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132C2A108B8492007F6C24 /* refresh.png */;
+	};
+	17132C32108B99B3007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 48";
+		rLen = 0;
+		rLoc = 1284;
+		rType = 0;
+		vrLen = 1185;
+		vrLoc = 728;
+	};
+	17132C33108B99B3007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 28";
+		rLen = 0;
+		rLoc = 465;
+		rType = 0;
+		vrLen = 606;
+		vrLoc = 142;
+	};
+	17132C36108B9A12007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 64";
+		rLen = 0;
+		rLoc = 1509;
+		rType = 0;
+		vrLen = 1245;
+		vrLoc = 844;
+	};
+	17132C38108B9AB7007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 50";
+		rLen = 0;
+		rLoc = 1283;
+		rType = 0;
+		vrLen = 1066;
+		vrLoc = 645;
+	};
+	17132C39108B9AB7007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 64";
+		rLen = 0;
+		rLoc = 1509;
+		rType = 0;
+		vrLen = 935;
+		vrLoc = 546;
+	};
+	17132C3A108B9AB7007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 64";
+		rLen = 0;
+		rLoc = 1509;
+		rType = 0;
+		vrLen = 935;
+		vrLoc = 546;
+	};
+	17132C3B108B9AB7007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 50";
+		rLen = 0;
+		rLoc = 1283;
+		rType = 0;
+		vrLen = 1066;
+		vrLoc = 645;
+	};
+	17132C3C108B9AB7007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 175";
+		rLen = 0;
+		rLoc = 6683;
+		rType = 0;
+		vrLen = 801;
+		vrLoc = 6204;
+	};
+	17132C41108B9B37007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 65";
+		rLen = 0;
+		rLoc = 1475;
+		rType = 0;
+		vrLen = 1123;
+		vrLoc = 797;
+	};
+	17132C44108B9B4E007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */;
+		name = "JournalerAppDelegate.m: 16";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 349;
+		vrLoc = 0;
+	};
+	17132C45108B9B4E007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132C46108B9B5C007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 65";
+		rLen = 0;
+		rLoc = 1475;
+		rType = 0;
+		vrLen = 1123;
+		vrLoc = 797;
+	};
+	17132C4A108B9BFF007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 65";
+		rLen = 0;
+		rLoc = 1508;
+		rType = 0;
+		vrLen = 1132;
+		vrLoc = 797;
+	};
+	17132C4C108B9CA5007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 65";
+		rLen = 0;
+		rLoc = 1470;
+		rType = 0;
+		vrLen = 1180;
+		vrLoc = 797;
+	};
+	17132C4E108B9D11007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 65";
+		rLen = 0;
+		rLoc = 1468;
+		rType = 0;
+		vrLen = 1179;
+		vrLoc = 797;
+	};
+	17132C4F108B9D1E007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 65";
+		rLen = 0;
+		rLoc = 1468;
+		rType = 0;
+		vrLen = 1179;
+		vrLoc = 797;
+	};
+	17132C55108B9DED007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */;
+		name = "JournalerAppDelegate.m: 16";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 349;
+		vrLoc = 0;
+	};
+	17132C56108B9DED007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	17132C57108B9DEF007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 65";
+		rLen = 0;
+		rLoc = 1468;
+		rType = 0;
+		vrLen = 1179;
+		vrLoc = 797;
+	};
+	17132C59108B9F76007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 66";
+		rLen = 39;
+		rLoc = 1471;
+		rType = 0;
+		vrLen = 1330;
+		vrLoc = 1253;
+	};
+	17132C5A108B9F76007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 88";
+		rLen = 0;
+		rLoc = 2238;
+		rType = 0;
+		vrLen = 1397;
+		vrLoc = 1253;
+	};
+	17132C5C108B9FA2007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 65";
+		rLen = 0;
+		rLoc = 1468;
+		rType = 0;
+		vrLen = 1188;
+		vrLoc = 832;
+	};
+	17132C5F108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD7151078C70700806088 /* AccountEditorController.m */;
+		name = "AccountEditorController.m: 206";
+		rLen = 35;
+		rLoc = 5478;
+		rType = 0;
+		vrLen = 1074;
+		vrLoc = 5431;
+	};
+	17132C60108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD7141078C70700806088 /* AccountEditorController.h */;
+		name = "AccountEditorController.h: 26";
+		rLen = 0;
+		rLoc = 601;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 53;
+	};
+	17132C61108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 171323071085168F007F6C24 /* PostViewController.h */;
+		name = "PostViewController.h: 19";
+		rLen = 0;
+		rLoc = 366;
+		rType = 0;
+		vrLen = 708;
+		vrLoc = 0;
+	};
+	17132C62108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 64";
+		rLen = 0;
+		rLoc = 1421;
+		rType = 0;
+		vrLen = 1230;
+		vrLoc = 864;
+	};
+	17132C63108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 36";
+		rLen = 0;
+		rLoc = 880;
+		rType = 0;
+		vrLen = 913;
+		vrLoc = 281;
+	};
+	17132C64108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 65";
+		rLen = 0;
+		rLoc = 1468;
+		rType = 0;
+		vrLen = 1262;
+		vrLoc = 832;
+	};
+	17132C65108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD7151078C70700806088 /* AccountEditorController.m */;
+		name = "AccountEditorController.m: 206";
+		rLen = 35;
+		rLoc = 5478;
+		rType = 0;
+		vrLen = 1074;
+		vrLoc = 5431;
+	};
+	17132C66108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD7141078C70700806088 /* AccountEditorController.h */;
+		name = "AccountEditorController.h: 26";
+		rLen = 0;
+		rLoc = 601;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 53;
+	};
+	17132C67108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 36";
+		rLen = 0;
+		rLoc = 880;
+		rType = 0;
+		vrLen = 912;
+		vrLoc = 282;
+	};
+	17132C68108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 171323071085168F007F6C24 /* PostViewController.h */;
+		name = "PostViewController.h: 19";
+		rLen = 0;
+		rLoc = 366;
+		rType = 0;
+		vrLen = 708;
+		vrLoc = 0;
+	};
+	17132C69108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 64";
+		rLen = 0;
+		rLoc = 1421;
+		rType = 0;
+		vrLen = 1230;
+		vrLoc = 864;
+	};
+	17132C6A108BAEA8007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 36";
+		rLen = 0;
+		rLoc = 880;
+		rType = 0;
+		vrLen = 880;
+		vrLoc = 281;
+	};
+	17132C6B108BAFBB007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 69";
+		rLen = 0;
+		rLoc = 2096;
+		rType = 0;
+		vrLen = 1353;
+		vrLoc = 912;
+	};
+	17132C6C108BAFBB007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 102";
+		rLen = 0;
+		rLoc = 2885;
+		rType = 0;
+		vrLen = 2315;
+		vrLoc = 2094;
+	};
+	17132C6D108BAFBB007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 36";
+		rLen = 0;
+		rLoc = 880;
+		rType = 0;
+		vrLen = 880;
+		vrLoc = 281;
+	};
+	17132C6E108BAFBB007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 102";
+		rLen = 0;
+		rLoc = 2885;
+		rType = 0;
+		vrLen = 2315;
+		vrLoc = 2094;
+	};
+	17132C6F108BAFBB007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B210793F9F00806088 /* AccountViewController.h */;
+		name = "AccountViewController.h: 69";
+		rLen = 0;
+		rLoc = 2096;
+		rType = 0;
+		vrLen = 1353;
+		vrLoc = 912;
+	};
+	17132C70108BAFBB007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 44";
+		rLen = 0;
+		rLoc = 771;
+		rType = 0;
+		vrLen = 595;
+		vrLoc = 300;
+	};
+	17132C72108BB01D007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 103";
+		rLen = 0;
+		rLoc = 2813;
+		rType = 0;
+		vrLen = 2269;
+		vrLoc = 2275;
+	};
+	17132C81108BC469007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 103";
+		rLen = 0;
+		rLoc = 2813;
+		rType = 0;
+		vrLen = 2269;
+		vrLoc = 2275;
+	};
+	17132C82108BC469007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132C73108BB5B8007F6C24 /* newpost.png */;
+	};
+	17132C83108BC469007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132C76108BB6EA007F6C24 /* friends.png */;
+	};
+	17132C84108BC469007F6C24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */;
+		name = "AccountViewController.m: 103";
+		rLen = 0;
+		rLoc = 2813;
+		rType = 0;
+		vrLen = 2269;
+		vrLoc = 2275;
+	};
+	17132C85108BC469007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132C73108BB5B8007F6C24 /* newpost.png */;
+	};
+	17132C86108BC469007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132C76108BB6EA007F6C24 /* friends.png */;
+	};
+	17132C87108BC469007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132C73108BB5B8007F6C24 /* newpost.png */;
+	};
+	17132C88108BC469007F6C24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 17132C76108BB6EA007F6C24 /* friends.png */;
+	};
+	17132C89108BC469007F6C24 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSRequiresIPhoneOS,
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
 	1787D91610753E350037B7D8 /* Journaler */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -15153,7 +17198,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 1;
+		breakpointsEnabled = 0;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
@@ -15876,7 +17921,7 @@
 		fRef = 17DB0CC110768D2900155636 /* LiveJournal.m */;
 		name = "LiveJournal.m: 514";
 		rLen = 0;
-		rLoc = 18600;
+		rLoc = 18798;
 		rType = 0;
 		vrLen = 1710;
 		vrLoc = 2551;
@@ -15982,17 +18027,17 @@
 	};
 	17DB0CC010768D2900155636 /* LiveJournal.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1089, 2758}}";
-			sepNavSelRange = "{630, 5}";
-			sepNavVisRange = "{297, 681}";
+			sepNavIntBoundsRect = "{{0, 0}, {1176, 2716}}";
+			sepNavSelRange = "{3673, 142}";
+			sepNavVisRange = "{0, 629}";
 			sepNavWindowFrame = "{{15, 70}, {1020, 803}}";
 		};
 	};
 	17DB0CC110768D2900155636 /* LiveJournal.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1089, 9240}}";
-			sepNavSelRange = "{1897, 0}";
-			sepNavVisRange = "{1425, 1036}";
+			sepNavIntBoundsRect = "{{0, 0}, {1374, 8750}}";
+			sepNavSelRange = "{16212, 0}";
+			sepNavVisRange = "{15672, 1691}";
 			sepNavWindowFrame = "{{207, 86}, {1020, 792}}";
 		};
 	};
@@ -16028,16 +18073,16 @@
 	};
 	17FCD7141078C70700806088 /* AccountEditorController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1089, 952}}";
-			sepNavSelRange = "{214, 0}";
-			sepNavVisRange = "{0, 914}";
+			sepNavIntBoundsRect = "{{0, 0}, {1089, 924}}";
+			sepNavSelRange = "{601, 0}";
+			sepNavVisRange = "{53, 1126}";
 		};
 	};
 	17FCD7151078C70700806088 /* AccountEditorController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1089, 3234}}";
 			sepNavSelRange = "{5478, 35}";
-			sepNavVisRange = "{5433, 1070}";
+			sepNavVisRange = "{5431, 1074}";
 		};
 	};
 	17FCD7281078C72600806088 /* PBXTextBookmark */ = {
@@ -16123,16 +18168,16 @@
 	};
 	17FCD9B210793F9F00806088 /* AccountViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1266, 1078}}";
-			sepNavSelRange = "{1043, 0}";
-			sepNavVisRange = "{1045, 1224}";
+			sepNavIntBoundsRect = "{{0, 0}, {1266, 1204}}";
+			sepNavSelRange = "{2096, 0}";
+			sepNavVisRange = "{912, 1353}";
 		};
 	};
 	17FCD9B310793F9F00806088 /* AccountViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1379, 4956}}";
-			sepNavSelRange = "{9828, 0}";
-			sepNavVisRange = "{8543, 864}";
+			sepNavIntBoundsRect = "{{0, 0}, {1379, 5068}}";
+			sepNavSelRange = "{10924, 0}";
+			sepNavVisRange = "{9499, 658}";
 			sepNavWindowFrame = "{{15, 70}, {1020, 803}}";
 		};
 	};
@@ -16165,9 +18210,9 @@
 	};
 	1D3623250D0F684500981E51 /* JournalerAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1379, 728}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1379, 742}}";
 			sepNavSelRange = "{291, 0}";
-			sepNavVisRange = "{0, 349}";
+			sepNavVisRange = "{0, 399}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* Journaler */ = {
@@ -16184,23 +18229,15 @@
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = "Distribution (Ad Hoc)";
 		activeExecutable = 1787D91610753E350037B7D8 /* Journaler */;
-		activeSDKPreference = iphonesimulator3.0;
+		activeSDKPreference = iphoneos3.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Journaler */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* Journaler */,
 		);
 		breakpoints = (
-			1713296F108A7CB8007F6C24 /* AccountViewController.m:84 */,
-			17132973108A7CC5007F6C24 /* AccountViewController.m:82 */,
-			17132A2A108A9351007F6C24 /* AccountViewController.m:87 */,
-			17132A2C108A9352007F6C24 /* AccountViewController.m:87 */,
-			17132A6D108B2A75007F6C24 /* PostViewController.m:36 */,
-			17132A6F108B2A78007F6C24 /* PostViewController.m:57 */,
-			17132A88108B2D25007F6C24 /* PostViewController.m:59 */,
-			17132B79108B4628007F6C24 /* PostViewController.m:61 */,
-			17132B7D108B467D007F6C24 /* UserPicCache.m:31 */,
+			17132C07108B78A6007F6C24 /* LiveJournal.m:527 */,
 		);
 		codeSenseManager = 1787D92510753E680037B7D8 /* Code sense */;
 		executables = (
@@ -17256,6 +19293,169 @@
 			17132B86108B5012007F6C24 /* PBXTextBookmark */ = 17132B86108B5012007F6C24 /* PBXTextBookmark */;
 			17132B87108B5012007F6C24 /* PBXTextBookmark */ = 17132B87108B5012007F6C24 /* PBXTextBookmark */;
 			17132B8D108B5318007F6C24 /* PBXTextBookmark */ = 17132B8D108B5318007F6C24 /* PBXTextBookmark */;
+			17132B91108B55A3007F6C24 /* PBXTextBookmark */ = 17132B91108B55A3007F6C24 /* PBXTextBookmark */;
+			17132B92108B55A3007F6C24 /* XDModelBookmark */ = 17132B92108B55A3007F6C24 /* XDModelBookmark */;
+			17132B93108B55A3007F6C24 /* PBXTextBookmark */ = 17132B93108B55A3007F6C24 /* PBXTextBookmark */;
+			17132B94108B55A3007F6C24 /* XDModelBookmark */ = 17132B94108B55A3007F6C24 /* XDModelBookmark */;
+			17132B95108B55A3007F6C24 /* PlistBookmark */ = 17132B95108B55A3007F6C24 /* PlistBookmark */;
+			17132B9A108B5EAC007F6C24 /* PBXBookmark */ = 17132B9A108B5EAC007F6C24 /* PBXBookmark */;
+			17132B9B108B5EAC007F6C24 /* PBXBookmark */ = 17132B9B108B5EAC007F6C24 /* PBXBookmark */;
+			17132B9C108B5EAC007F6C24 /* XDModelBookmark */ = 17132B9C108B5EAC007F6C24 /* XDModelBookmark */;
+			17132B9D108B5EAC007F6C24 /* PlistBookmark */ = 17132B9D108B5EAC007F6C24 /* PlistBookmark */;
+			17132B9E108B5EAC007F6C24 /* PBXTextBookmark */ = 17132B9E108B5EAC007F6C24 /* PBXTextBookmark */;
+			17132B9F108B5EAC007F6C24 /* PlistBookmark */ = 17132B9F108B5EAC007F6C24 /* PlistBookmark */;
+			17132BA0108B5EAC007F6C24 /* PBXBookmark */ = 17132BA0108B5EAC007F6C24 /* PBXBookmark */;
+			17132BA1108B5EAC007F6C24 /* PBXBookmark */ = 17132BA1108B5EAC007F6C24 /* PBXBookmark */;
+			17132BA2108B5EAC007F6C24 /* PBXBookmark */ = 17132BA2108B5EAC007F6C24 /* PBXBookmark */;
+			17132BA3108B5EAC007F6C24 /* PBXBookmark */ = 17132BA3108B5EAC007F6C24 /* PBXBookmark */;
+			17132BA4108B5EAC007F6C24 /* PBXBookmark */ = 17132BA4108B5EAC007F6C24 /* PBXBookmark */;
+			17132BA5108B5EAC007F6C24 /* XDModelBookmark */ = 17132BA5108B5EAC007F6C24 /* XDModelBookmark */;
+			17132BA6108B5EAC007F6C24 /* PlistBookmark */ = 17132BA6108B5EAC007F6C24 /* PlistBookmark */;
+			17132BA7108B5EAC007F6C24 /* PBXTextBookmark */ = 17132BA7108B5EAC007F6C24 /* PBXTextBookmark */;
+			17132BA8108B5ECB007F6C24 /* PBXTextBookmark */ = 17132BA8108B5ECB007F6C24 /* PBXTextBookmark */;
+			17132BA9108B5ECB007F6C24 /* PBXTextBookmark */ = 17132BA9108B5ECB007F6C24 /* PBXTextBookmark */;
+			17132BAA108B5ECB007F6C24 /* PBXTextBookmark */ = 17132BAA108B5ECB007F6C24 /* PBXTextBookmark */;
+			17132BAB108B5ECB007F6C24 /* PBXTextBookmark */ = 17132BAB108B5ECB007F6C24 /* PBXTextBookmark */;
+			17132BAC108B5ECB007F6C24 /* PlistBookmark */ = 17132BAC108B5ECB007F6C24 /* PlistBookmark */;
+			17132BAD108B5ECE007F6C24 /* PBXTextBookmark */ = 17132BAD108B5ECE007F6C24 /* PBXTextBookmark */;
+			17132BAE108B5EE0007F6C24 /* PBXTextBookmark */ = 17132BAE108B5EE0007F6C24 /* PBXTextBookmark */;
+			17132BAF108B5EE0007F6C24 /* PlistBookmark */ = 17132BAF108B5EE0007F6C24 /* PlistBookmark */;
+			17132BB0108B5EE1007F6C24 /* PBXTextBookmark */ = 17132BB0108B5EE1007F6C24 /* PBXTextBookmark */;
+			17132BB1108B695C007F6C24 /* PBXTextBookmark */ = 17132BB1108B695C007F6C24 /* PBXTextBookmark */;
+			17132BB2108B695C007F6C24 /* PlistBookmark */ = 17132BB2108B695C007F6C24 /* PlistBookmark */;
+			17132BB4108B6A51007F6C24 /* PBXTextBookmark */ = 17132BB4108B6A51007F6C24 /* PBXTextBookmark */;
+			17132BB5108B6A51007F6C24 /* PBXTextBookmark */ = 17132BB5108B6A51007F6C24 /* PBXTextBookmark */;
+			17132BB6108B6A51007F6C24 /* PBXTextBookmark */ = 17132BB6108B6A51007F6C24 /* PBXTextBookmark */;
+			17132BB7108B6A51007F6C24 /* PBXTextBookmark */ = 17132BB7108B6A51007F6C24 /* PBXTextBookmark */;
+			17132BB8108B6A51007F6C24 /* PBXTextBookmark */ = 17132BB8108B6A51007F6C24 /* PBXTextBookmark */;
+			17132BB9108B6A51007F6C24 /* PBXTextBookmark */ = 17132BB9108B6A51007F6C24 /* PBXTextBookmark */;
+			17132BBB108B6A5A007F6C24 /* PBXTextBookmark */ = 17132BBB108B6A5A007F6C24 /* PBXTextBookmark */;
+			17132BBE108B6B1F007F6C24 /* PBXTextBookmark */ = 17132BBE108B6B1F007F6C24 /* PBXTextBookmark */;
+			17132BBF108B6B3E007F6C24 /* PBXTextBookmark */ = 17132BBF108B6B3E007F6C24 /* PBXTextBookmark */;
+			17132BC0108B6B3E007F6C24 /* PlistBookmark */ = 17132BC0108B6B3E007F6C24 /* PlistBookmark */;
+			17132BC6108B6B9A007F6C24 /* PBXTextBookmark */ = 17132BC6108B6B9A007F6C24 /* PBXTextBookmark */;
+			17132BC8108B6BAF007F6C24 /* PBXTextBookmark */ = 17132BC8108B6BAF007F6C24 /* PBXTextBookmark */;
+			17132BCB108B6BEB007F6C24 /* PBXTextBookmark */ = 17132BCB108B6BEB007F6C24 /* PBXTextBookmark */;
+			17132BCC108B6C1C007F6C24 /* PBXTextBookmark */ = 17132BCC108B6C1C007F6C24 /* PBXTextBookmark */;
+			17132BCF108B6D71007F6C24 /* PBXTextBookmark */ = 17132BCF108B6D71007F6C24 /* PBXTextBookmark */;
+			17132BD0108B6D71007F6C24 /* PBXTextBookmark */ = 17132BD0108B6D71007F6C24 /* PBXTextBookmark */;
+			17132BD1108B6D71007F6C24 /* PBXTextBookmark */ = 17132BD1108B6D71007F6C24 /* PBXTextBookmark */;
+			17132BD2108B6D71007F6C24 /* PBXTextBookmark */ = 17132BD2108B6D71007F6C24 /* PBXTextBookmark */;
+			17132BD3108B6D71007F6C24 /* PBXTextBookmark */ = 17132BD3108B6D71007F6C24 /* PBXTextBookmark */;
+			17132BD4108B6D71007F6C24 /* PBXTextBookmark */ = 17132BD4108B6D71007F6C24 /* PBXTextBookmark */;
+			17132BD5108B6D71007F6C24 /* PBXTextBookmark */ = 17132BD5108B6D71007F6C24 /* PBXTextBookmark */;
+			17132BD6108B6D71007F6C24 /* PBXTextBookmark */ = 17132BD6108B6D71007F6C24 /* PBXTextBookmark */;
+			17132BD7108B70B8007F6C24 /* PBXTextBookmark */ = 17132BD7108B70B8007F6C24 /* PBXTextBookmark */;
+			17132BD8108B70B8007F6C24 /* PBXTextBookmark */ = 17132BD8108B70B8007F6C24 /* PBXTextBookmark */;
+			17132BD9108B70B8007F6C24 /* PBXTextBookmark */ = 17132BD9108B70B8007F6C24 /* PBXTextBookmark */;
+			17132BDA108B70B8007F6C24 /* PBXTextBookmark */ = 17132BDA108B70B8007F6C24 /* PBXTextBookmark */;
+			17132BDB108B70B8007F6C24 /* PBXTextBookmark */ = 17132BDB108B70B8007F6C24 /* PBXTextBookmark */;
+			17132BDC108B70B8007F6C24 /* PBXTextBookmark */ = 17132BDC108B70B8007F6C24 /* PBXTextBookmark */;
+			17132BDD108B70B8007F6C24 /* PBXTextBookmark */ = 17132BDD108B70B8007F6C24 /* PBXTextBookmark */;
+			17132BDE108B70B8007F6C24 /* PBXTextBookmark */ = 17132BDE108B70B8007F6C24 /* PBXTextBookmark */;
+			17132BDF108B70F6007F6C24 /* PBXTextBookmark */ = 17132BDF108B70F6007F6C24 /* PBXTextBookmark */;
+			17132BE0108B7351007F6C24 /* PBXTextBookmark */ = 17132BE0108B7351007F6C24 /* PBXTextBookmark */;
+			17132BE1108B7351007F6C24 /* PBXTextBookmark */ = 17132BE1108B7351007F6C24 /* PBXTextBookmark */;
+			17132BE2108B7351007F6C24 /* PBXTextBookmark */ = 17132BE2108B7351007F6C24 /* PBXTextBookmark */;
+			17132BE3108B7351007F6C24 /* PBXTextBookmark */ = 17132BE3108B7351007F6C24 /* PBXTextBookmark */;
+			17132BE4108B7351007F6C24 /* PBXTextBookmark */ = 17132BE4108B7351007F6C24 /* PBXTextBookmark */;
+			17132BE5108B7351007F6C24 /* PBXTextBookmark */ = 17132BE5108B7351007F6C24 /* PBXTextBookmark */;
+			17132BE6108B7351007F6C24 /* PBXTextBookmark */ = 17132BE6108B7351007F6C24 /* PBXTextBookmark */;
+			17132BE7108B7351007F6C24 /* PBXTextBookmark */ = 17132BE7108B7351007F6C24 /* PBXTextBookmark */;
+			17132BE8108B7351007F6C24 /* PBXTextBookmark */ = 17132BE8108B7351007F6C24 /* PBXTextBookmark */;
+			17132BE9108B7351007F6C24 /* PBXTextBookmark */ = 17132BE9108B7351007F6C24 /* PBXTextBookmark */;
+			17132BEA108B7351007F6C24 /* PBXTextBookmark */ = 17132BEA108B7351007F6C24 /* PBXTextBookmark */;
+			17132BEB108B7351007F6C24 /* PBXTextBookmark */ = 17132BEB108B7351007F6C24 /* PBXTextBookmark */;
+			17132BEC108B7351007F6C24 /* PBXTextBookmark */ = 17132BEC108B7351007F6C24 /* PBXTextBookmark */;
+			17132BED108B7351007F6C24 /* PBXTextBookmark */ = 17132BED108B7351007F6C24 /* PBXTextBookmark */;
+			17132BEE108B7351007F6C24 /* PBXTextBookmark */ = 17132BEE108B7351007F6C24 /* PBXTextBookmark */;
+			17132BF2108B7425007F6C24 /* PBXTextBookmark */ = 17132BF2108B7425007F6C24 /* PBXTextBookmark */;
+			17132BF3108B767C007F6C24 /* PBXTextBookmark */ = 17132BF3108B767C007F6C24 /* PBXTextBookmark */;
+			17132BF4108B767C007F6C24 /* PBXTextBookmark */ = 17132BF4108B767C007F6C24 /* PBXTextBookmark */;
+			17132BF5108B767C007F6C24 /* PBXTextBookmark */ = 17132BF5108B767C007F6C24 /* PBXTextBookmark */;
+			17132BF6108B767C007F6C24 /* PBXTextBookmark */ = 17132BF6108B767C007F6C24 /* PBXTextBookmark */;
+			17132BF7108B767C007F6C24 /* PBXTextBookmark */ = 17132BF7108B767C007F6C24 /* PBXTextBookmark */;
+			17132BFB108B770C007F6C24 /* PBXTextBookmark */ = 17132BFB108B770C007F6C24 /* PBXTextBookmark */;
+			17132BFC108B7727007F6C24 /* PBXTextBookmark */ = 17132BFC108B7727007F6C24 /* PBXTextBookmark */;
+			17132BFD108B7727007F6C24 /* PlistBookmark */ = 17132BFD108B7727007F6C24 /* PlistBookmark */;
+			17132BFE108B7729007F6C24 /* PBXTextBookmark */ = 17132BFE108B7729007F6C24 /* PBXTextBookmark */;
+			17132C03108B77FC007F6C24 /* PBXTextBookmark */ = 17132C03108B77FC007F6C24 /* PBXTextBookmark */;
+			17132C05108B785E007F6C24 /* PBXTextBookmark */ = 17132C05108B785E007F6C24 /* PBXTextBookmark */;
+			17132C08108B78AE007F6C24 /* PBXTextBookmark */ = 17132C08108B78AE007F6C24 /* PBXTextBookmark */;
+			17132C09108B78AE007F6C24 /* PBXTextBookmark */ = 17132C09108B78AE007F6C24 /* PBXTextBookmark */;
+			17132C0A108B78AE007F6C24 /* PBXTextBookmark */ = 17132C0A108B78AE007F6C24 /* PBXTextBookmark */;
+			17132C0B108B78AE007F6C24 /* PBXTextBookmark */ = 17132C0B108B78AE007F6C24 /* PBXTextBookmark */;
+			17132C0C108B78AE007F6C24 /* PBXTextBookmark */ = 17132C0C108B78AE007F6C24 /* PBXTextBookmark */;
+			17132C0D108B78AE007F6C24 /* PBXTextBookmark */ = 17132C0D108B78AE007F6C24 /* PBXTextBookmark */;
+			17132C0E108B78AE007F6C24 /* PBXTextBookmark */ = 17132C0E108B78AE007F6C24 /* PBXTextBookmark */;
+			17132C0F108B78AE007F6C24 /* PBXTextBookmark */ = 17132C0F108B78AE007F6C24 /* PBXTextBookmark */;
+			17132C14108B7CA6007F6C24 /* PBXTextBookmark */ = 17132C14108B7CA6007F6C24 /* PBXTextBookmark */;
+			17132C16108B7CB4007F6C24 /* PBXTextBookmark */ = 17132C16108B7CB4007F6C24 /* PBXTextBookmark */;
+			17132C17108B7D0B007F6C24 /* PBXTextBookmark */ = 17132C17108B7D0B007F6C24 /* PBXTextBookmark */;
+			17132C18108B7D0B007F6C24 /* PlistBookmark */ = 17132C18108B7D0B007F6C24 /* PlistBookmark */;
+			17132C19108B7D15007F6C24 /* PBXTextBookmark */ = 17132C19108B7D15007F6C24 /* PBXTextBookmark */;
+			17132C1B108B7F68007F6C24 /* PBXTextBookmark */ = 17132C1B108B7F68007F6C24 /* PBXTextBookmark */;
+			17132C1D108B8419007F6C24 /* PBXTextBookmark */ = 17132C1D108B8419007F6C24 /* PBXTextBookmark */;
+			17132C1E108B8419007F6C24 /* PlistBookmark */ = 17132C1E108B8419007F6C24 /* PlistBookmark */;
+			17132C20108B841D007F6C24 /* PBXTextBookmark */ = 17132C20108B841D007F6C24 /* PBXTextBookmark */;
+			17132C21108B841D007F6C24 /* PBXTextBookmark */ = 17132C21108B841D007F6C24 /* PBXTextBookmark */;
+			17132C22108B841D007F6C24 /* PBXTextBookmark */ = 17132C22108B841D007F6C24 /* PBXTextBookmark */;
+			17132C23108B841D007F6C24 /* PBXTextBookmark */ = 17132C23108B841D007F6C24 /* PBXTextBookmark */;
+			17132C2D108B99B3007F6C24 /* PBXBookmark */ = 17132C2D108B99B3007F6C24 /* PBXBookmark */;
+			17132C2E108B99B3007F6C24 /* PBXTextBookmark */ = 17132C2E108B99B3007F6C24 /* PBXTextBookmark */;
+			17132C2F108B99B3007F6C24 /* PBXTextBookmark */ = 17132C2F108B99B3007F6C24 /* PBXTextBookmark */;
+			17132C30108B99B3007F6C24 /* PBXTextBookmark */ = 17132C30108B99B3007F6C24 /* PBXTextBookmark */;
+			17132C31108B99B3007F6C24 /* PBXBookmark */ = 17132C31108B99B3007F6C24 /* PBXBookmark */;
+			17132C32108B99B3007F6C24 /* PBXTextBookmark */ = 17132C32108B99B3007F6C24 /* PBXTextBookmark */;
+			17132C33108B99B3007F6C24 /* PBXTextBookmark */ = 17132C33108B99B3007F6C24 /* PBXTextBookmark */;
+			17132C36108B9A12007F6C24 /* PBXTextBookmark */ = 17132C36108B9A12007F6C24 /* PBXTextBookmark */;
+			17132C38108B9AB7007F6C24 /* PBXTextBookmark */ = 17132C38108B9AB7007F6C24 /* PBXTextBookmark */;
+			17132C39108B9AB7007F6C24 /* PBXTextBookmark */ = 17132C39108B9AB7007F6C24 /* PBXTextBookmark */;
+			17132C3A108B9AB7007F6C24 /* PBXTextBookmark */ = 17132C3A108B9AB7007F6C24 /* PBXTextBookmark */;
+			17132C3B108B9AB7007F6C24 /* PBXTextBookmark */ = 17132C3B108B9AB7007F6C24 /* PBXTextBookmark */;
+			17132C3C108B9AB7007F6C24 /* PBXTextBookmark */ = 17132C3C108B9AB7007F6C24 /* PBXTextBookmark */;
+			17132C41108B9B37007F6C24 /* PBXTextBookmark */ = 17132C41108B9B37007F6C24 /* PBXTextBookmark */;
+			17132C44108B9B4E007F6C24 /* PBXTextBookmark */ = 17132C44108B9B4E007F6C24 /* PBXTextBookmark */;
+			17132C45108B9B4E007F6C24 /* PlistBookmark */ = 17132C45108B9B4E007F6C24 /* PlistBookmark */;
+			17132C46108B9B5C007F6C24 /* PBXTextBookmark */ = 17132C46108B9B5C007F6C24 /* PBXTextBookmark */;
+			17132C4A108B9BFF007F6C24 /* PBXTextBookmark */ = 17132C4A108B9BFF007F6C24 /* PBXTextBookmark */;
+			17132C4C108B9CA5007F6C24 /* PBXTextBookmark */ = 17132C4C108B9CA5007F6C24 /* PBXTextBookmark */;
+			17132C4E108B9D11007F6C24 /* PBXTextBookmark */ = 17132C4E108B9D11007F6C24 /* PBXTextBookmark */;
+			17132C4F108B9D1E007F6C24 /* PBXTextBookmark */ = 17132C4F108B9D1E007F6C24 /* PBXTextBookmark */;
+			17132C55108B9DED007F6C24 /* PBXTextBookmark */ = 17132C55108B9DED007F6C24 /* PBXTextBookmark */;
+			17132C56108B9DED007F6C24 /* PlistBookmark */ = 17132C56108B9DED007F6C24 /* PlistBookmark */;
+			17132C57108B9DEF007F6C24 /* PBXTextBookmark */ = 17132C57108B9DEF007F6C24 /* PBXTextBookmark */;
+			17132C59108B9F76007F6C24 /* PBXTextBookmark */ = 17132C59108B9F76007F6C24 /* PBXTextBookmark */;
+			17132C5A108B9F76007F6C24 /* PBXTextBookmark */ = 17132C5A108B9F76007F6C24 /* PBXTextBookmark */;
+			17132C5C108B9FA2007F6C24 /* PBXTextBookmark */ = 17132C5C108B9FA2007F6C24 /* PBXTextBookmark */;
+			17132C5F108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C5F108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C60108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C60108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C61108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C61108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C62108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C62108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C63108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C63108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C64108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C64108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C65108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C65108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C66108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C66108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C67108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C67108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C68108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C68108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C69108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C69108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C6A108BAEA8007F6C24 /* PBXTextBookmark */ = 17132C6A108BAEA8007F6C24 /* PBXTextBookmark */;
+			17132C6B108BAFBB007F6C24 /* PBXTextBookmark */ = 17132C6B108BAFBB007F6C24 /* PBXTextBookmark */;
+			17132C6C108BAFBB007F6C24 /* PBXTextBookmark */ = 17132C6C108BAFBB007F6C24 /* PBXTextBookmark */;
+			17132C6D108BAFBB007F6C24 /* PBXTextBookmark */ = 17132C6D108BAFBB007F6C24 /* PBXTextBookmark */;
+			17132C6E108BAFBB007F6C24 /* PBXTextBookmark */ = 17132C6E108BAFBB007F6C24 /* PBXTextBookmark */;
+			17132C6F108BAFBB007F6C24 /* PBXTextBookmark */ = 17132C6F108BAFBB007F6C24 /* PBXTextBookmark */;
+			17132C70108BAFBB007F6C24 /* PBXTextBookmark */ = 17132C70108BAFBB007F6C24 /* PBXTextBookmark */;
+			17132C72108BB01D007F6C24 /* PBXTextBookmark */ = 17132C72108BB01D007F6C24 /* PBXTextBookmark */;
+			17132C81108BC469007F6C24 /* PBXTextBookmark */ = 17132C81108BC469007F6C24 /* PBXTextBookmark */;
+			17132C82108BC469007F6C24 /* PBXBookmark */ = 17132C82108BC469007F6C24 /* PBXBookmark */;
+			17132C83108BC469007F6C24 /* PBXBookmark */ = 17132C83108BC469007F6C24 /* PBXBookmark */;
+			17132C84108BC469007F6C24 /* PBXTextBookmark */ = 17132C84108BC469007F6C24 /* PBXTextBookmark */;
+			17132C85108BC469007F6C24 /* PBXBookmark */ = 17132C85108BC469007F6C24 /* PBXBookmark */;
+			17132C86108BC469007F6C24 /* PBXBookmark */ = 17132C86108BC469007F6C24 /* PBXBookmark */;
+			17132C87108BC469007F6C24 /* PBXBookmark */ = 17132C87108BC469007F6C24 /* PBXBookmark */;
+			17132C88108BC469007F6C24 /* PBXBookmark */ = 17132C88108BC469007F6C24 /* PBXBookmark */;
+			17132C89108BC469007F6C24 /* PlistBookmark */ = 17132C89108BC469007F6C24 /* PlistBookmark */;
 			1789BE6D107A8A8A00964DA2 = 1789BE6D107A8A8A00964DA2 /* PBXBookmark */;
 			1789BE77107A8B0200964DA2 = 1789BE77107A8B0200964DA2 /* PBXBookmark */;
 			1789BFF2107E8AEF00964DA2 = 1789BFF2107E8AEF00964DA2 /* PBXTextBookmark */;

@@ -17,6 +17,9 @@
 
 
 @interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate, PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate> {
+	UIViewController *tabBar;
+	
+	UIView *masterView;
 	UITableView *ljAccountView;
 	UIView *otherAccountView;
 	
@@ -30,6 +33,8 @@
 	UIBarButtonItem *refreshButton;
 	UIBarButtonItem *stopButton;
 	
+	UIBarButtonItem *newPostOther;
+	
 	NSMutableArray *posts;
 	UITableViewCell *templateCell;
 	
@@ -42,6 +47,9 @@
 		
 	LJAccount *previousAccount;
 }
+
+@property (nonatomic, retain) IBOutlet UIViewController *tabBar;
+@property (nonatomic, retain) IBOutlet UIView *masterView;
 
 @property (nonatomic, retain) IBOutlet UITableView *ljAccountView;
 @property (nonatomic, retain) IBOutlet UIView *otherAccountView;
@@ -57,6 +65,8 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *stopButton;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *templateCell;
+
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *newPostOther;
 
 @property (nonatomic, retain) IBOutlet id<AccountViewControllerDataSource> dataSource;
 
