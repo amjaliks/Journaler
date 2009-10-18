@@ -80,13 +80,17 @@ enum {
 	[ljAccountView removeFromSuperview];
 	
 	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
-		[self.view addSubview:ljAccountView];
 		if (previousAccount != account) {
 			previousAccount = account;
 			Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
 			posts = [[model findPostsByAccount:account.title] mutableCopy];
-			[ljAccountView reloadData];
-			[ljAccountView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+			if (account.synchronized) {
+				[ljAccountView reloadData];
+				[ljAccountView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+			}
+		}
+		if (account.synchronized) {
+			[self.view addSubview:ljAccountView];
 		}
 	} else {
 		[self.view addSubview:otherAccountView];	
@@ -157,6 +161,7 @@ enum {
 		}
 		
 		[self.ljAccountView reloadData];
+		[self.view addSubview:ljAccountView];
 
 		account.synchronized = YES;
 

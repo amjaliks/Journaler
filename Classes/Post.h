@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSString * account;
 @property (nonatomic, retain) NSNumber * ditemid;
 @property (nonatomic, retain) NSString * userPicURL;
+@property (nonatomic, retain) NSNumber * isRead;
 
 @end
 

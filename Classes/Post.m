@@ -22,6 +22,7 @@
 @dynamic account;
 @dynamic ditemid;
 @dynamic userPicURL;
+@dynamic isRead;
 
 - (NSString *)textPreview {
 	if (!textPreview) {
