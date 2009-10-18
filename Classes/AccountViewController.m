@@ -131,6 +131,14 @@ enum {
  		NSString *c = [challenge.challenge retain];
 		//LJFlatGetEvents *friendPage = [LJFlatGetEvents requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];		
 		LJGetFriendsPage *friendPage = [LJGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:c];
+		
+		if ([posts count]) {
+			friendPage.itemShow = [NSNumber numberWithInt:100];
+			friendPage.lastSync = ((Post *)[posts objectAtIndex:0]).dateTime;
+		} else {
+			friendPage.itemShow = [NSNumber numberWithInt:25];
+		}
+		
 		[friendPage doRequest];
 		
 		NSArray *events = [friendPage.entries retain];
@@ -242,11 +250,6 @@ enum {
 	
     label = (UILabel *)[cell viewWithTag:PSAuthor];
 	label.text = post.poster;
-//	if ([event.journalName isEqualToString:event.posterName]) {
-//		label.text = event.journalName;
-//	} else {
-//		label.text = [NSString stringWithFormat:@"%@ in %@", event.posterName, event.journalName];
-//	}
 	CGRect frame = label.frame;
 	CGSize size = [label sizeThatFits:frame.size];
 	if ([@"C" isEqualToString:post.journalType] && size.width > 150) {
@@ -288,12 +291,6 @@ enum {
 	label = (UILabel *)[cell viewWithTag:PSText];
     label.text = post.textPreview;
 	
-//	CGSize size = [label sizeThatFits:label.frame.size];
-//	CGFloat delta = size.height - label.frame.size.height;
-//	label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, size.height);
-//	
-//	cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height + delta);
-
 	NSDateFormatter *f = [[NSDateFormatter alloc] init];
 	[f setDateStyle:NSDateFormatterShortStyle];
 	[f setTimeStyle:NSDateFormatterShortStyle];
@@ -308,12 +305,6 @@ enum {
 	
 	return cell;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//	UITableViewCell *cell = [tableView.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
-//	return cell.frame.size.height;
-//}
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	selectedPost = [posts objectAtIndex:indexPath.row];

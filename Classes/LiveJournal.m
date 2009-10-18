@@ -280,7 +280,6 @@ NSString* md5(NSString *str)
 	NSError *err;
 	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
 	
-	NSLog([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	if (err && [NSURLErrorDomain isEqualToString:[err domain]]) {
 		NSInteger errcode = [err code];
 		if (errcode == NSURLErrorCannotFindHost) {
@@ -495,6 +494,8 @@ NSString* md5(NSString *str)
 @implementation LJGetFriendsPage
 
 @synthesize entries;
+@synthesize lastSync;
+@synthesize itemShow;
 
 + (LJGetFriendsPage *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
 	LJGetFriendsPage *request = [[[LJGetFriendsPage alloc] initWithServer:server method:@"LJ.XMLRPC.getfriendspage"] autorelease];
@@ -506,11 +507,13 @@ NSString* md5(NSString *str)
 
 	[request->parameters setValue:@"1" forKey:@"ver"];
 	[request->parameters setValue:@"10" forKey:@"itemshow"];
-	[request->parameters setValue:@"2009-01-01 00:00:00" forKey:@"lastsync"];
-//	[request->parameters setValue:@"1" forKey:@"parseljtags"];
+	//[request->parameters setValue:@"2009-01-01 00:00:00" forKey:@"lastsync"];
+	//[request->parameters setValue:@"1" forKey:@"parseljtags"];
 	
 	request->password = password;
 	request->challenge = challenge;
+	
+	request->itemShow = [NSNumber numberWithInt:10];
 	
 	return request;
 }
@@ -519,6 +522,11 @@ NSString* md5(NSString *str)
 	
 	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
 	[parameters setValue:authResponse forKey:@"auth_response"];
+	
+	[parameters setValue:itemShow forKey:@"itemshow"];
+	if (lastSync) {
+		[parameters setValue:[NSNumber numberWithInt:[lastSync timeIntervalSince1970]] forKey:@"lastsync"];
+	}
 
 	[super doRequest];
 

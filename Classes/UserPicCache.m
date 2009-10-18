@@ -32,7 +32,7 @@
 	if (data) {
 		return data;
 	} else {
-		NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+		NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
 		
 		NSURLResponse *res;
 		NSError *err;
