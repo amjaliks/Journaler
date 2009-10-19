@@ -8,11 +8,11 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="92"/>
-			<integer value="79"/>
-			<integer value="1"/>
-			<integer value="63"/>
+			<integer value="93"/>
 			<integer value="42"/>
+			<integer value="63"/>
+			<integer value="1"/>
+			<integer value="79"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -207,34 +207,36 @@
 			<object class="IBUITabBarController" id="803970205">
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUIViewController" key="IBUISelectedViewController" id="925659776">
-					<string key="IBUITitle">Friends</string>
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="290123316">
-						<string key="IBUITitle">Friends</string>
+				<object class="IBUIViewController" key="IBUISelectedViewController" id="918562262">
+					<string key="IBUITitle">New post</string>
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="881395822">
+						<int key="IBUITag">2</int>
+						<string key="IBUITitle">New post</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">friends.png</string>
+							<string key="NSResourceName">newpost.png</string>
 						</object>
 						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="803970205"/>
+					<string key="IBUINibName">PostEditorController</string>
 				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<reference ref="925659776"/>
-					<object class="IBUIViewController" id="918562262">
-						<string key="IBUITitle">New post</string>
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="881395822">
-							<string key="IBUITitle">New post</string>
+					<object class="IBUIViewController" id="925659776">
+						<string key="IBUITitle">Friends</string>
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="290123316">
+							<int key="IBUITag">1</int>
+							<string key="IBUITitle">Friends</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">newpost.png</string>
+								<string key="NSResourceName">friends.png</string>
 							</object>
 							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="803970205"/>
-						<string key="IBUINibName">PostEditorController</string>
 					</object>
+					<reference ref="918562262"/>
 				</object>
 				<object class="IBUITabBar" key="IBUITabBar" id="852508849">
 					<nil key="NSNextResponder"/>
@@ -264,8 +266,18 @@
 				<int key="IBUISystemItemIdentifier">7</int>
 			</object>
 			<object class="IBUIBarButtonItem" id="713837867">
-				<string key="IBUITitle">Item</string>
+				<int key="IBUITag">102</int>
+				<bool key="IBUIEnabled">NO</bool>
+				<string key="IBUITitle">Post</string>
 				<int key="IBUIStyle">1</int>
+			</object>
+			<object class="IBUIBarButtonItem" id="503387869">
+				<int key="IBUIStyle">1</int>
+				<int key="IBUISystemItemIdentifier">13</int>
+			</object>
+			<object class="IBUIBarButtonItem" id="716144553">
+				<int key="IBUIStyle">1</int>
+				<int key="IBUISystemItemIdentifier">0</int>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -527,6 +539,94 @@
 					</object>
 					<int key="connectionID">106</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">postButton</string>
+						<reference key="source" ref="918562262"/>
+						<reference key="destination" ref="713837867"/>
+					</object>
+					<int key="connectionID">109</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">postButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="713837867"/>
+					</object>
+					<int key="connectionID">111</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">refreshPostsButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="503387869"/>
+					</object>
+					<int key="connectionID">112</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="803970205"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">113</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">postEditorTabController</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="918562262"/>
+					</object>
+					<int key="connectionID">114</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">friendsTabController</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="925659776"/>
+					</object>
+					<int key="connectionID">116</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">doneButton</string>
+						<reference key="source" ref="918562262"/>
+						<reference key="destination" ref="716144553"/>
+					</object>
+					<int key="connectionID">118</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">navItem</string>
+						<reference key="source" ref="918562262"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">119</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">done:</string>
+						<reference key="source" ref="716144553"/>
+						<reference key="destination" ref="918562262"/>
+					</object>
+					<int key="connectionID">120</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">post:</string>
+						<reference key="source" ref="713837867"/>
+						<reference key="destination" ref="918562262"/>
+					</object>
+					<int key="connectionID">121</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="918562262"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">122</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -761,6 +861,19 @@
 						<int key="objectID">108</int>
 						<reference key="object" ref="713837867"/>
 						<reference key="parent" ref="269629049"/>
+						<string key="objectName">Post</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">110</int>
+						<reference key="object" ref="503387869"/>
+						<reference key="parent" ref="269629049"/>
+						<string key="objectName">Refresh Posts</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">117</int>
+						<reference key="object" ref="716144553"/>
+						<reference key="parent" ref="269629049"/>
+						<string key="objectName">Done</string>
 					</object>
 				</object>
 			</object>
@@ -775,6 +888,9 @@
 					<string>10.IBPluginDependency</string>
 					<string>104.IBPluginDependency</string>
 					<string>108.IBPluginDependency</string>
+					<string>108.showNotes</string>
+					<string>110.IBPluginDependency</string>
+					<string>117.IBPluginDependency</string>
 					<string>14.IBPluginDependency</string>
 					<string>15.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
@@ -817,6 +933,9 @@
 					<string>{{417, 301}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -875,7 +994,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">108</int>
+			<int key="maxID">122</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -896,13 +1015,18 @@
 							<string>fixedSpace</string>
 							<string>flexibleSpace</string>
 							<string>forwardButton</string>
+							<string>friendsTabController</string>
 							<string>ljAccountView</string>
 							<string>masterView</string>
 							<string>newPostOther</string>
 							<string>otherAccountView</string>
+							<string>postButton</string>
 							<string>postEditorController</string>
+							<string>postEditorTabController</string>
 							<string>postViewController</string>
+							<string>previousController</string>
 							<string>refreshButton</string>
+							<string>refreshPostsButton</string>
 							<string>stopButton</string>
 							<string>tabBar</string>
 							<string>templateCell</string>
@@ -916,12 +1040,17 @@
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
+							<string>UIViewController</string>
 							<string>UITableView</string>
 							<string>UIView</string>
 							<string>UIBarButtonItem</string>
 							<string>UIView</string>
+							<string>UIBarButtonItem</string>
 							<string>UIViewController</string>
 							<string>UIViewController</string>
+							<string>UIViewController</string>
+							<string>UIViewController</string>
+							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIViewController</string>
@@ -943,10 +1072,12 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cancel:</string>
+							<string>done:</string>
 							<string>post:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -957,6 +1088,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>dataSource</string>
 							<string>delegate</string>
+							<string>doneButton</string>
+							<string>navItem</string>
 							<string>postButton</string>
 							<string>subjectCell</string>
 							<string>subjectField</string>
@@ -967,6 +1100,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>id</string>
 							<string>id</string>
+							<string>UIBarButtonItem</string>
+							<string>UIViewController</string>
 							<string>UIBarButtonItem</string>
 							<string>UITableViewCell</string>
 							<string>UITextField</string>

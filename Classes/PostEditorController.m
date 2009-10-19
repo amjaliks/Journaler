@@ -39,6 +39,8 @@
 @synthesize textField;
 
 @synthesize postButton;
+@synthesize doneButton;
+@synthesize navItem;
 
 @synthesize dataSource;
 @synthesize delegate;
@@ -215,13 +217,28 @@
 	[delegate postEditorControllerDidFinish:self];
 }
 
-- (void)textViewDidChange:(UITextView *)textView {
-	postButton.enabled = [textField.text length] > 0;
+- (IBAction)done:(id)sender {
+	[textField resignFirstResponder];
+	[subjectField resignFirstResponder];
+	navItem.navigationItem.rightBarButtonItem = postButton;
 }
 
-//- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-//	return YES;
-//}
+- (void)textViewDidChange:(UITextView *)textView {
+	postButton.enabled = [textField.text length] > 0;
+	if (doneButton) {
+		navItem.navigationItem.rightBarButtonItem = doneButton;
+	}
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+	if (doneButton) {
+		navItem.navigationItem.rightBarButtonItem = doneButton;
+	}
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)_textField {
+	return [textField becomeFirstResponder];
+}
 
 
 @end

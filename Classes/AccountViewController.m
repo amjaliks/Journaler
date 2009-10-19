@@ -42,11 +42,16 @@ enum {
 @synthesize stopButton;
 
 @synthesize newPostOther;
+@synthesize postButton;
+@synthesize refreshPostsButton;
 
 @synthesize templateCell;
 
 @synthesize dataSource;
 
+@synthesize previousController;
+@synthesize friendsTabController;
+@synthesize postEditorTabController;
 @synthesize postEditorController;
 @synthesize postViewController;
 
@@ -328,5 +333,15 @@ enum {
 	return selectedPost;
 }
 
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+	if (previousController != viewController) {
+		previousController = viewController;
+		if (viewController == friendsTabController) {
+			self.navigationItem.rightBarButtonItem = refreshPostsButton;
+		} else if (viewController == postEditorTabController) {
+			self.navigationItem.rightBarButtonItem = postButton;
+		}
+	}
+}
 
 @end

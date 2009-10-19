@@ -16,7 +16,7 @@
 @protocol AccountViewControllerDataSource;
 
 
-@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate, PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate> {
+@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate, PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate> {
 	UIViewController *tabBar;
 	
 	UIView *masterView;
@@ -34,6 +34,8 @@
 	UIBarButtonItem *stopButton;
 	
 	UIBarButtonItem *newPostOther;
+	UIBarButtonItem *postButton;
+	UIBarButtonItem *refreshPostsButton;
 	
 	NSMutableArray *posts;
 	UITableViewCell *templateCell;
@@ -42,8 +44,11 @@
 	
 	Post *selectedPost;
 	
+	UIViewController *previousController;
 	UIViewController *postEditorController;
 	UIViewController *postViewController;
+	UIViewController *friendsTabController;
+	UIViewController *postEditorTabController;
 		
 	LJAccount *previousAccount;
 }
@@ -67,11 +72,16 @@
 @property (nonatomic, retain) IBOutlet UITableViewCell *templateCell;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *newPostOther;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *postButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshPostsButton;
 
 @property (nonatomic, retain) IBOutlet id<AccountViewControllerDataSource> dataSource;
 
+@property (nonatomic, retain) IBOutlet UIViewController *previousController;
 @property (nonatomic, retain) IBOutlet UIViewController *postEditorController;
 @property (nonatomic, retain) IBOutlet UIViewController *postViewController;
+@property (nonatomic, retain) IBOutlet UIViewController *friendsTabController;
+@property (nonatomic, retain) IBOutlet UIViewController *postEditorTabController;
 
 - (IBAction) goToUpdate;
 
