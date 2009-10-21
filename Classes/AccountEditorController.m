@@ -78,16 +78,14 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 		serverText.text = nil;
 	}
 	
-	doneButton.enabled = NO;
-	
+	doneButton.enabled = NO;	
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 	[usernameText becomeFirstResponder];
 }
 
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
 /*
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
@@ -151,6 +149,10 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
 	// [anotherViewController release];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+	return @"Enter username and password for your account. If you used some LJ-clone server, enter server too.";
 }
 
 
