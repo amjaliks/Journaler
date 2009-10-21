@@ -70,15 +70,19 @@
 	textField.text = nil;
 	
 	postButton.enabled = NO;
+	textField.frame = CGRectMake(0, 0, 320, 167);
+	textCell.frame = CGRectMake(0, 0, 320, 167);
+	[self.tableView reloadData];
+	//[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:0];
 	
+	//[subjectField becomeFirstResponder];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 	[subjectField becomeFirstResponder];
 }
 
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
 /*
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
@@ -221,18 +225,21 @@
 	[textField resignFirstResponder];
 	[subjectField resignFirstResponder];
 	navItem.navigationItem.rightBarButtonItem = postButton;
+	textField.frame = CGRectMake(0, 0, 320, 315);
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
 	postButton.enabled = [textField.text length] > 0;
 	if (doneButton) {
 		navItem.navigationItem.rightBarButtonItem = doneButton;
+		textField.frame = CGRectMake(0, 0, 320, 167);
 	}
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)_textField {
 	if (doneButton) {
 		navItem.navigationItem.rightBarButtonItem = doneButton;
+		textField.frame = CGRectMake(0, 0, 320, 167);
 	}
 }
 

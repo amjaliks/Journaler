@@ -153,7 +153,7 @@
 							<object class="IBUITextView" id="301247697">
 								<reference key="NSNextResponder" ref="797412867"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{320, 166}</string>
+								<string key="NSFrameSize">{320, 315}</string>
 								<reference key="NSSuperview" ref="797412867"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -168,7 +168,7 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 166}</string>
+						<string key="NSFrameSize">{320, 363}</string>
 						<reference key="NSSuperview" ref="328876458"/>
 						<reference key="IBUIBackgroundColor" ref="188657537"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -177,7 +177,7 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 167}</string>
+				<string key="NSFrameSize">{320, 364}</string>
 				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="889698375"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -359,7 +359,7 @@
 					<string>PostEditorController</string>
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{497, 418}, {320, 167}}</string>
+					<string>{{497, 221}, {320, 364}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -403,10 +403,12 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cancel:</string>
+							<string>done:</string>
 							<string>post:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
