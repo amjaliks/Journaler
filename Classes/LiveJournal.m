@@ -506,14 +506,14 @@ NSString* md5(NSString *str)
 	[request->parameters setValue:challenge forKey:@"auth_challenge"];
 
 	[request->parameters setValue:@"1" forKey:@"ver"];
-	[request->parameters setValue:@"10" forKey:@"itemshow"];
+	//[request->parameters setValue:@"10" forKey:@"itemshow"];
 	//[request->parameters setValue:@"2009-01-01 00:00:00" forKey:@"lastsync"];
 	//[request->parameters setValue:@"1" forKey:@"parseljtags"];
 	
 	request->password = password;
 	request->challenge = challenge;
 	
-	request->itemShow = [NSNumber numberWithInt:10];
+	request->itemShow = [[NSNumber numberWithInt:10] retain];
 	
 	return request;
 }
