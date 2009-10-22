@@ -102,9 +102,9 @@ enum {
 				[ljAccountView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 			}
 		}
-		if (account.synchronized) {
-			[self.masterView addSubview:ljAccountView];
-		}
+//		if (account.synchronized) {
+//			[self.masterView addSubview:ljAccountView];
+//		}
 		self.navigationItem.rightBarButtonItem = nil;
 	} else {
 		self.navigationItem.rightBarButtonItem = newPostOther;
@@ -140,56 +140,58 @@ enum {
 
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
 	
-	if (!account.synchronized && [@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
+		if (!account.synchronized) {
+			[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-		LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
-		[challenge doRequest];
- 		NSString *c = [challenge.challenge retain];
-		//LJFlatGetEvents *friendPage = [LJFlatGetEvents requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];		
-		LJGetFriendsPage *friendPage = [LJGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:c];
-		
-		if ([posts count]) {
-			friendPage.itemShow = [NSNumber numberWithInt:100];
-			friendPage.lastSync = ((Post *)[posts objectAtIndex:0]).dateTime;
-		} else {
-			friendPage.itemShow = [NSNumber numberWithInt:25];
-		}
-		
-		[friendPage doRequest];
-		
-		NSArray *events = [friendPage.entries retain];
-		
-		NSUInteger idx = 0;
-		
-		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
-		for (LJEvent *event in events) {
-			Post *post = [model findPostByAccount:account.title journal:event.journalName dItemId:event.ditemid];
-			if (!post) {
-				post = [model createPost];
-				post.account = account.title;
-				post.journal = event.journalName;
-				post.journalType = event.journalType;
-				post.ditemid = event.ditemid;
-				post.poster = event.posterName;
-				[posts insertObject:post atIndex:idx];
-				idx++;
-			}
-			post.dateTime = event.datetime;
-			post.subject = event.subject;
-			post.text = event.event;
-			post.replyCount = [NSNumber numberWithInt:event.replyCount];
-			post.userPicURL = event.userPicUrl;
+			LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
+			[challenge doRequest];
+			NSString *c = [challenge.challenge retain];
+			//LJFlatGetEvents *friendPage = [LJFlatGetEvents requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];		
+			LJGetFriendsPage *friendPage = [LJGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:c];
 			
-			[model saveAll];
-		}
-		
-		[self.ljAccountView reloadData];
+			if ([posts count]) {
+				friendPage.itemShow = [NSNumber numberWithInt:100];
+				friendPage.lastSync = ((Post *)[posts objectAtIndex:0]).dateTime;
+			} else {
+				friendPage.itemShow = [NSNumber numberWithInt:25];
+			}
+			
+			[friendPage doRequest];
+			
+			NSArray *events = [friendPage.entries retain];
+			
+			NSUInteger idx = 0;
+			
+			Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
+			for (LJEvent *event in events) {
+				Post *post = [model findPostByAccount:account.title journal:event.journalName dItemId:event.ditemid];
+				if (!post) {
+					post = [model createPost];
+					post.account = account.title;
+					post.journal = event.journalName;
+					post.journalType = event.journalType;
+					post.ditemid = event.ditemid;
+					post.poster = event.posterName;
+					[posts insertObject:post atIndex:idx];
+					idx++;
+				}
+				post.dateTime = event.datetime;
+				post.subject = event.subject;
+				post.text = event.event;
+				post.replyCount = [NSNumber numberWithInt:event.replyCount];
+				post.userPicURL = event.userPicUrl;
+				
+				[model saveAll];
+			}
+			
+			[self.ljAccountView reloadData];
+
+			account.synchronized = YES;
+
+			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+		};
 		[self.masterView addSubview:ljAccountView];
-
-		account.synchronized = YES;
-
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	};
 }
 

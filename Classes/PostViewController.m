@@ -48,8 +48,11 @@
 */
 
 - (void)viewWillAppear:(BOOL)animated {
+	if (lastWebView) {
+		[lastWebView removeFromSuperview];
+		[lastWebView release];
+	}
 	[self.view addSubview:waitView];
-	[webView removeFromSuperview];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -124,7 +127,8 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
 	[waitView removeFromSuperview];
-	[self.view addSubview:[webView autorelease]];
+	[self.view addSubview:webView];
+	lastWebView = webView;
 }
 
 @end

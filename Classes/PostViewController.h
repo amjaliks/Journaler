@@ -12,11 +12,12 @@
 @class Post;
 
 @interface PostViewController : UIViewController <UIWebViewDelegate> {
-	UIWebView *webView;
-	
 	NSString *postTemplate;
 	NSString *userIconPath;
 	NSString *communityIconPath;
+	
+	UIView *waitView;
+	UIWebView *lastWebView;
 	
 	id<PostViewControllerDataSource> dataSource;
 }
