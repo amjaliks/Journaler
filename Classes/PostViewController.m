@@ -15,7 +15,7 @@
 
 @implementation PostViewController
 
-@synthesize webView;
+@synthesize waitView;
 
 @synthesize dataSource;
 
@@ -48,11 +48,19 @@
 */
 
 - (void)viewWillAppear:(BOOL)animated {
+	[self.view addSubview:waitView];
+	[webView removeFromSuperview];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
 	Post *post = [dataSource selectEventForPostViewController:self];
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"back" ofType:@"png"];
 	path = [path stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
 	
 	NSLog(path);
+	
+	UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];
+	webView.delegate = self;
 	
 	NSMutableString *postHtml = [postTemplate mutableCopy];
 
@@ -110,5 +118,13 @@
     [super dealloc];
 }
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+	return YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+	[waitView removeFromSuperview];
+	[self.view addSubview:[webView autorelease]];
+}
 
 @end

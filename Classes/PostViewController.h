@@ -11,7 +11,7 @@
 @protocol PostViewControllerDataSource;
 @class Post;
 
-@interface PostViewController : UIViewController {
+@interface PostViewController : UIViewController <UIWebViewDelegate> {
 	UIWebView *webView;
 	
 	NSString *postTemplate;
@@ -21,8 +21,9 @@
 	id<PostViewControllerDataSource> dataSource;
 }
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet id<PostViewControllerDataSource> dataSource;
+
+@property (nonatomic, retain) IBOutlet UIView *waitView;
 
 @end
 
