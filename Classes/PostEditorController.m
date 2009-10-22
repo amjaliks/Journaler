@@ -217,10 +217,10 @@
 		showErrorMessage(@"Post error", login.error);
 		return;
 	}
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your post has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 	if (doneButton) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your post has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
-		[alert release];
 		subjectField.text = nil;
 		textField.text = nil;
 	} else {
