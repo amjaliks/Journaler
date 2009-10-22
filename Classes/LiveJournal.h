@@ -10,11 +10,13 @@
 
 
 enum {
-	LJErrorUnknown = 1,
-	LJErrorHostNotFound,
-	LJErrorConnectionFailed,
-	LJErrorInvalidUsername,
-	LJErrorInvalidPassword
+	LJErrorUnknown = -1,
+	LJErrorHostNotFound = -2,
+	LJErrorConnectionFailed = -3,
+	LJErrorServerSide = -6,
+	LJErrorClientSide = -7,
+	LJErrorInvalidUsername = 100,
+	LJErrorInvalidPassword = 101,
 };
 
 
@@ -103,7 +105,6 @@ enum {
 + (id)proceedRawValue:(id)value;
 - (id)initWithServer:(NSString *)server method:(NSString *)method;
 - (BOOL)doRequest;
-- (void)proceedError;
 
 @property (readonly) BOOL success;
 @property (readonly) NSUInteger error;
@@ -153,12 +154,12 @@ enum {
 @end
 
 
-@interface LJFlatPostEvent : LJFlatRequest {
+@interface LJPostEvent : LJRequest {
 	NSString *challenge;
 	NSString *password;
 }
 
-+ (LJFlatPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event;
++ (LJPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event;
 
 @end
 

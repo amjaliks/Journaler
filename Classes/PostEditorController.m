@@ -212,7 +212,7 @@
 		return;
 	}
 	
-	LJFlatPostEvent *login = [LJFlatPostEvent requestWithServer:account.server user:account.user password:account.password challenge:req.challenge subject:subjectField.text event:textField.text];
+	LJPostEvent *login = [LJPostEvent requestWithServer:account.server user:account.user password:account.password challenge:req.challenge subject:subjectField.text event:textField.text];
 	if (![login doRequest]) {
 		showErrorMessage(@"Post error", login.error);
 		return;

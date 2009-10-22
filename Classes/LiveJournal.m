@@ -307,6 +307,12 @@ NSString* md5(NSString *str)
 	
 	if ([xmlres isFault]) {
 		error = LJErrorUnknown;
+		id faultCode = [xmlres faultCode];
+		if ([faultCode isKindOfClass:[NSString class]]) {
+			error = [faultCode isEqualToString:@"Server"] ? LJErrorServerSide : LJErrorClientSide;
+		} else {
+			error = [((NSNumber *) faultCode) integerValue];
+		}
 	}
 	
 	[xmlres release];
@@ -316,10 +322,6 @@ NSString* md5(NSString *str)
 
 - (BOOL)success {
 	return !error;
-}
-
-- (void)proceedError {
-	error = LJErrorUnknown;
 }
 
 @end
@@ -435,19 +437,20 @@ NSString* md5(NSString *str)
 @end
 
 
-@implementation LJFlatPostEvent
+@implementation LJPostEvent
 
-+ (LJFlatPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event {
-	LJFlatPostEvent *request = [[[LJFlatPostEvent alloc] initWithServer:server mode:@"postevent"] autorelease];
++ (LJPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event {
+	LJPostEvent *request = [[[LJPostEvent alloc] initWithServer:server method:@"LJ.XMLRPC.postevent"] autorelease];
 	//LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
 	
-	[request->parameters setValue:user forKey:@"user"];
+	[request->parameters setValue:user forKey:@"username"];
 	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
 	[request->parameters setValue:challenge forKey:@"auth_challenge"];
 
 	[request->parameters setValue:@"1" forKey:@"ver"];
 	[request->parameters setValue:subject forKey:@"subject"];
 	[request->parameters setValue:event forKey:@"event"];
+	//[request->parameters setValue:user forKey:@"usejournal"];
 	
 	NSCalendar *cal = [NSCalendar currentCalendar];
 	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;

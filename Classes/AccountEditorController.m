@@ -12,16 +12,18 @@
 
 void showErrorMessage(NSString *title, NSUInteger code) {
 	NSString *text;
-	if (LJErrorHostNotFound == code) {
-		text = @"Can't find server";
+	if (LJErrorServerSide == code) {
+		text = @"There is something wrong with the server.";
+	} else if (LJErrorHostNotFound == code) {
+		text = @"Can't find server.";
 	} else if (LJErrorConnectionFailed == code) {
-		text = @"Can't connect to server";
+		text = @"Can't connect to server.";
 	} else if (LJErrorInvalidUsername == code) {
-		text = @"Invalid username";
+		text = @"Invalid username.";
 	} else if (LJErrorInvalidPassword == code) {
-		text = @"Invalid password";
+		text = @"Invalid password.";
 	} else {
-		text = @"Unknown error";
+		text = [NSString stringWithFormat:@"Unknown error (%d).", code];
 	}
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
