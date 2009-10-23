@@ -44,6 +44,7 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 @synthesize passwordText;
 @synthesize serverText;
 
+@synthesize cancelButton;
 @synthesize doneButton;
 
 @synthesize dataSource;
@@ -82,7 +83,8 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 		serverText.text = nil;
 	}
 	
-	doneButton.enabled = NO;	
+	doneButton.enabled = NO;
+	self.navigationItem.leftBarButtonItem = [dataSource hasNoAccounts] ? nil : cancelButton;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -40,11 +40,13 @@
 	}
 }
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	if ([accounts count] == 0) {
+		[self addAccount:nil];
+	}
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -97,14 +99,16 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *ident = @"account";
     LJAccount *account = [accounts objectAtIndex:indexPath.row];
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:account.title];
     if (cell == nil) {
         //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-		cell = [[UITableViewCell alloc] init];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ident];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		cell.text = account.title;
+		cell.textLabel.text = account.user;
+		cell.detailTextLabel.text = account.server;
 	}
     
     // Set up the cell...
@@ -146,6 +150,10 @@
 		[accounts removeObject:account];
 		[self saveAccounts];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+		
+		if ([accounts count] == 0) {
+			[self addAccount:nil];
+		}		
     }   
    // else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -214,7 +222,9 @@
 		[accounts addObject:account];
 		selectedAccount = account;
 		if (table.editing) {
-			[table setEditing:NO];
+			[self setEditing:NO];
+			//[self.navigationItem.rightBarButtonItem select:nil];
+			//[self.navigationItem.leftBarButtonItem = [UIBarButtonItem alloc]
 		}
 		[self.navigationController pushViewController:accountViewController animated:YES];			
 	}
@@ -243,6 +253,10 @@
 		}
 	}
 	return NO;
+}
+
+- (BOOL)hasNoAccounts {
+	return [accounts count] == 0;
 }
 
 @end

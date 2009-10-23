@@ -23,6 +23,7 @@ void showErrorMessage(NSString *title, NSUInteger code);
 	UITextField *passwordText;
 	UITextField *serverText;
 	
+	UIBarButtonItem *cancelButton;
 	UIBarButtonItem *doneButton;
 	
 	id<AccountEditorControllerDataSource> dataSource;
@@ -37,6 +38,7 @@ void showErrorMessage(NSString *title, NSUInteger code);
 @property (nonatomic, retain) IBOutlet UITextField *passwordText;
 @property (nonatomic, retain) IBOutlet UITextField *serverText;
 
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *cancelButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
 
 @property (nonatomic, retain) IBOutlet id<AccountEditorControllerDataSource> dataSource;
@@ -53,6 +55,7 @@ void showErrorMessage(NSString *title, NSUInteger code);
 
 - (LJAccount *)selectedAccountForAccountEditorController:(AccountEditorController *)controller;
 - (BOOL)isDublicateAccount:(NSString *)title;
+- (BOOL)hasNoAccounts;
 
 @end
 

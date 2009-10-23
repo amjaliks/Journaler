@@ -8,9 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="39"/>
 			<integer value="55"/>
 			<integer value="4"/>
+			<integer value="38"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -217,6 +217,14 @@
 					</object>
 					<int key="connectionID">62</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">cancelButton</string>
+						<reference key="source" ref="255634161"/>
+						<reference key="destination" ref="550652893"/>
+					</object>
+					<int key="connectionID">69</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -396,7 +404,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">68</int>
+			<int key="maxID">69</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -423,6 +431,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cancelButton</string>
 							<string>dataSource</string>
 							<string>delegate</string>
 							<string>doneButton</string>
@@ -435,6 +444,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIBarButtonItem</string>
 							<string>id</string>
 							<string>id</string>
 							<string>UIBarButtonItem</string>
@@ -455,8 +465,17 @@
 					<string key="className">AccountViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">goToUpdate</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>goToUpdate</string>
+							<string>refreshPosts:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -467,12 +486,18 @@
 							<string>fixedSpace</string>
 							<string>flexibleSpace</string>
 							<string>forwardButton</string>
+							<string>friendsTabController</string>
 							<string>ljAccountView</string>
 							<string>masterView</string>
+							<string>newPostOther</string>
 							<string>otherAccountView</string>
+							<string>postButton</string>
 							<string>postEditorController</string>
+							<string>postEditorTabController</string>
 							<string>postViewController</string>
+							<string>previousController</string>
 							<string>refreshButton</string>
+							<string>refreshPostsButton</string>
 							<string>stopButton</string>
 							<string>tabBar</string>
 							<string>templateCell</string>
@@ -486,14 +511,20 @@
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
+							<string>UIViewController</string>
 							<string>UITableView</string>
 							<string>UIView</string>
+							<string>UIBarButtonItem</string>
 							<string>UIView</string>
+							<string>UIBarButtonItem</string>
+							<string>UIViewController</string>
+							<string>UIViewController</string>
 							<string>UIViewController</string>
 							<string>UIViewController</string>
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
-							<string>UIViewController</string>
+							<string>UIBarButtonItem</string>
+							<string>UITabBarController</string>
 							<string>UITableViewCell</string>
 							<string>UIToolbar</string>
 							<string>UIWebView</string>
