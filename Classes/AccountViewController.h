@@ -84,6 +84,10 @@
 @property (nonatomic, retain) IBOutlet UIViewController *postEditorTabController;
 
 - (IBAction) goToUpdate;
+- (IBAction) refreshPosts:(id) sender;
+
+- (void) addNewOrUpdateWithPosts:(NSArray *)events forAccount:(LJAccount *)account;
+- (NSArray *) requestPostsFromServerForAccount:(LJAccount *)account lastSync:(NSDate *)lastSync skip:(NSUInteger)skip items:(NSUInteger)items;
 
 @end
 

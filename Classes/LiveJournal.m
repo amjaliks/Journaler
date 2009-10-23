@@ -499,6 +499,7 @@ NSString* md5(NSString *str)
 @synthesize entries;
 @synthesize lastSync;
 @synthesize itemShow;
+@synthesize skip;
 
 + (LJGetFriendsPage *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
 	LJGetFriendsPage *request = [[[LJGetFriendsPage alloc] initWithServer:server method:@"LJ.XMLRPC.getfriendspage"] autorelease];
@@ -517,6 +518,7 @@ NSString* md5(NSString *str)
 	request->challenge = challenge;
 	
 	request->itemShow = [[NSNumber numberWithInt:10] retain];
+	request->skip = [[NSNumber numberWithInt:0] retain];
 	
 	return request;
 }
@@ -527,6 +529,7 @@ NSString* md5(NSString *str)
 	[parameters setValue:authResponse forKey:@"auth_response"];
 	
 	[parameters setValue:itemShow forKey:@"itemshow"];
+	[parameters setValue:skip forKey:@"skip"];
 	if (lastSync) {
 		[parameters setValue:[NSNumber numberWithInt:[lastSync timeIntervalSince1970]] forKey:@"lastsync"];
 	}
@@ -573,16 +576,12 @@ NSString* md5(NSString *str)
 	return self.success;
 }
 
-- (void)proceedError {
-	NSString *errmsg = [result valueForKey:@"errmsg"];
-	if ([@"Invalid username" isEqualToString:errmsg]) {
-		error = LJErrorInvalidUsername;
-	} else if ([@"Invalid password" isEqualToString:errmsg]) {
-		error = LJErrorInvalidPassword;
-	} else {
-		error = LJErrorUnknown;
-	}
+- (void) dealloc {
+	[skip release];
+	[itemShow release];
+	[super dealloc];
 }
+
 
 @end
 

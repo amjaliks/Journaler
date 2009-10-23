@@ -171,6 +171,7 @@ enum {
 	
 	NSDate *lastSync;
 	NSNumber *itemShow;
+	NSNumber *skip;
 }
 
 + (LJGetFriendsPage *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
@@ -178,6 +179,7 @@ enum {
 @property (readonly) NSArray *entries;
 @property (retain) NSDate *lastSync;
 @property (retain) NSNumber *itemShow;
+@property (retain) NSNumber *skip;
 
 @end
 
