@@ -51,8 +51,8 @@ void showErrorMessage(NSString *title, NSUInteger code);
 
 @protocol AccountEditorControllerDataSource<NSObject> 
 
-@optional
 - (LJAccount *)selectedAccountForAccountEditorController:(AccountEditorController *)controller;
+- (BOOL)isDublicateAccount:(NSString *)title;
 
 @end
 

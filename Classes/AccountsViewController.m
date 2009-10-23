@@ -229,5 +229,14 @@
 	return selectedAccount;
 }
 
+- (BOOL)isDublicateAccount:(NSString *)title {
+	for (LJAccount *account in accounts) {
+		if ([account.title isEqualToString:title]) {
+			return YES;
+		}
+	}
+	return NO;
+}
+
 @end
 

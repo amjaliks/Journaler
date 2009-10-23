@@ -215,6 +215,20 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 		server = @"livejournal.com";
 	}
 	
+	LJAccount *account = [[LJAccount alloc] init];
+	account.user = usernameText.text;
+	account.password = passwordText.text;
+	account.server = server;
+
+	if ([dataSource isDublicateAccount:account.title]) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Account error" message:@"You have already added this account." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		
+		[account release];
+		return;
+	}
+	
 	LJFlatGetChallenge *req = [LJFlatGetChallenge requestWithServer:server];
 	if (![req doRequest]) {
 		showErrorMessage(@"Login error", req.error);
@@ -226,12 +240,7 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 		showErrorMessage(@"Login error", login.error);
 		return;
 	}
-	
-	LJAccount *account = [[LJAccount alloc] init];
-	account.user = usernameText.text;
-	account.password = passwordText.text;
-	account.server = server;
-	
+		
 	[delegate accountEditorController:self didFinishedEditingAccount:account];
 	
 	[account release];
