@@ -28,5 +28,7 @@
 - (Post *)createPost;
 - (NSArray *)findPostsByAccount:(NSString *)account;
 - (Post *)findPostByAccount:(NSString *)account journal:(NSString *)journal dItemId:(NSNumber *)dItemId;
+- (void)deletePost:(Post *)post;
+- (void)deleteAllPostsForAccount:(NSString *)account;
 
 @end

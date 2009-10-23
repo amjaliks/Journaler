@@ -19,6 +19,7 @@
 	
 	NSMutableArray *accounts;
 	LJAccount *selectedAccount;
+	NSString *selectedAccountTitle;
 }
 
 @property (nonatomic, retain) IBOutlet UIViewController *editAccountViewController;

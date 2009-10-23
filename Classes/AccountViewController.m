@@ -159,6 +159,13 @@ enum {
 		post.replyCount = [NSNumber numberWithInt:event.replyCount];
 		post.userPicURL = event.userPicUrl;
 		
+		while ([posts count] > 100) {
+			Post *last = [posts lastObject];
+			[model deletePost:last];
+			[posts removeLastObject];
+			//[last release];
+		}
+		
 		[model saveAll];
 	}
 }

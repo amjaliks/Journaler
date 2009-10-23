@@ -143,6 +143,17 @@
 	}
 }
 
+- (void)deletePost:(Post *)post {
+	[self.managedObjectContext deleteObject:post];
+}
+
+- (void)deleteAllPostsForAccount:(NSString *)account {
+	NSArray *posts = [self findPostsByAccount:account];
+	for (Post *post	in posts) {
+		[self deletePost:post];
+	}
+}
+
 #pragma mark Memory managment
 
 - (void) dealloc {

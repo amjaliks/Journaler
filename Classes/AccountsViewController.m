@@ -8,7 +8,8 @@
 
 #import "AccountsViewController.h"
 #import "LiveJournal.h"
-
+#import "Model.h"
+#import "JournalerAppDelegate.h"
 
 @implementation AccountsViewController
 
@@ -115,6 +116,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	selectedAccount = [accounts objectAtIndex:indexPath.row];
 	if (tableView.editing) {
+		selectedAccountTitle = [selectedAccount.title retain];
 		[self presentModalViewController:editAccountViewController animated:YES];
 	} else {
 		[self.navigationController pushViewController:accountViewController animated:YES];
@@ -135,7 +137,13 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-		[accounts removeObjectAtIndex:indexPath.row];
+		LJAccount *account = [accounts objectAtIndex:indexPath.row];
+		
+		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
+		[model deleteAllPostsForAccount:account.title];
+		[model saveAll];
+		
+		[accounts removeObject:account];
 		[self saveAccounts];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
     }   
@@ -193,6 +201,13 @@
 		NSUInteger index = [accounts indexOfObject:selectedAccount];
 		[accounts removeObjectAtIndex:index];
 		[accounts insertObject:account atIndex:index];
+		
+		if (![selectedAccountTitle isEqualToString:account.title]) {
+			Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
+			[model deleteAllPostsForAccount:selectedAccountTitle];
+			[model saveAll];
+		}
+		[selectedAccountTitle release];
 	} else {
 		[accounts addObject:account];
 	}
