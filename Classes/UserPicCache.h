@@ -13,10 +13,14 @@
 	NSMutableDictionary *dataCache;
 	NSMutableDictionary *imageCache;
 	NSMutableDictionary *base64DataCache;
+	
+	NSOperationQueue *queue;
 }
 
 - (NSData *) dataFromURL:(NSString *)url;
 - (UIImage *) imageFromURL:(NSString *)url;
 - (NSString *) base64DataFromURL:(NSString *)url;
+- (void) delayedAction:(NSString *)url;
+- (void) initDelayedAction:(NSString *)url;
 
 @end

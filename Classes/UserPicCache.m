@@ -16,15 +16,18 @@
 		dataCache = [[NSMutableDictionary alloc] init];
 		imageCache = [[NSMutableDictionary alloc] init];
 		base64DataCache = [[NSMutableDictionary alloc] init];
+		
+		queue = [[NSOperationQueue alloc] init];
 	}
 	return self;
 }
 
 - (void) dealloc {
-	[super dealloc];
 	[dataCache release];
 	[imageCache release];
 	[base64DataCache release];
+	[queue release];
+	[super dealloc];
 }
 
 - (NSData *) dataFromURL:(NSString *)url {
@@ -68,5 +71,16 @@
 		return base64Data;
 	}
 }
+
+- (void) delayedAction:(NSString *)url {
+	NSLog(@"DONE: %@", url);
+}
+
+- (void) initDelayedAction:(NSString *)url {
+	NSLog(@"INIT: %@", url);
+	[queue addOperation:[[[NSInvocationOperation alloc] initWithTarget:self
+										  selector:@selector(delayedAction:) object:url] autorelease]];
+}
+
 
 @end

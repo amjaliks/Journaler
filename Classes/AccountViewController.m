@@ -382,7 +382,8 @@ enum {
 	
 	UIImageView *imageView = (UIImageView *)[cell viewWithTag:PSUserPic];
 	UserPicCache *userPicCache = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).userPicCache;
-	imageView.image = [userPicCache imageFromURL:post.userPicURL];
+	[userPicCache initDelayedAction:post.userPicURL];
+//	imageView.image = [userPicCache imageFromURL:post.userPicURL];
 	
 	return cell;
 }
