@@ -11,6 +11,7 @@
 #import "Model.h"
 #import "JournalerAppDelegate.h"
 #import "UserPicCache.h"
+#import "AccountsViewController.h"
 
 enum {
 	PSSubject = 1,
@@ -183,7 +184,11 @@ enum {
 		
 		if ([friendPage doRequest]) {
 			return [friendPage.entries retain];
+		} else {
+			showErrorMessage(@"Sync error", friendPage.error);
 		}
+	} else {
+		showErrorMessage(@"Sync error", challenge.error);
 	}
 	return nil;
 }
@@ -203,9 +208,11 @@ enum {
 			} else {
 				events = [self requestPostsFromServerForAccount:account lastSync:nil skip:0 items:100];
 			}
-						
-			[self addNewOrUpdateWithPosts:events forAccount:account];
-			[events release];
+			
+			if (events) {
+				[self addNewOrUpdateWithPosts:events forAccount:account];
+				[events release];
+			}
 			
 			[self.ljAccountView reloadData];
 
@@ -227,16 +234,21 @@ enum {
 	
 	NSUInteger loaded = 0;
 	if ([posts count]) {
+		loaded = -1;
 		NSArray *events = [self requestPostsFromServerForAccount:account lastSync:((Post *)[posts objectAtIndex:0]).dateTime skip:0 items:100];
-		[self addNewOrUpdateWithPosts:events forAccount:account];
-		loaded = [events count];
-		[events release];
+		if (events) {
+			[self addNewOrUpdateWithPosts:events forAccount:account];
+			loaded = [events count];
+			[events release];
+		}
 	};
 	
-	if (loaded < 10) {
+	if (loaded >= 0 && loaded < 10) {
 		NSArray *events = [self requestPostsFromServerForAccount:account lastSync:nil skip:loaded items:10 - loaded];
-		[self addNewOrUpdateWithPosts:events forAccount:account];
-		[events release];
+		if (events) {
+			[self addNewOrUpdateWithPosts:events forAccount:account];
+			[events release];
+		}
 	};
 	
 	[ljAccountView reloadData];

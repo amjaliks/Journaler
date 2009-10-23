@@ -22,6 +22,8 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 		text = @"Invalid username.";
 	} else if (LJErrorInvalidPassword == code) {
 		text = @"Invalid password.";
+	} else if (LJErrorAccessIPBanDueLoginFailureRate == code) {
+		text = @"Your IP address is temporarily banned for exceeding the login failure rate.";
 	} else {
 		text = [NSString stringWithFormat:@"Unknown error (%d).", code];
 	}

@@ -17,6 +17,7 @@ enum {
 	LJErrorClientSide = -7,
 	LJErrorInvalidUsername = 100,
 	LJErrorInvalidPassword = 101,
+	LJErrorAccessIPBanDueLoginFailureRate = 402
 };
 
 
