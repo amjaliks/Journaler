@@ -154,20 +154,22 @@
 
 
 
-/*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+	LJAccount *account = [[accounts objectAtIndex:fromIndexPath.row] retain];
+	[accounts removeObjectAtIndex:fromIndexPath.row];
+	[accounts insertObject:account atIndex:toIndexPath.row];
+	[account release];
+	
+	[self saveAccounts];
 }
-*/
 
 
-/*
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
 
 
 - (void)dealloc {
@@ -207,9 +209,14 @@
 			[model deleteAllPostsForAccount:selectedAccountTitle];
 			[model saveAll];
 		}
-		[selectedAccountTitle release];
+		[selectedAccountTitle release];		
 	} else {
 		[accounts addObject:account];
+		selectedAccount = account;
+		if (table.editing) {
+			[table setEditing:NO];
+		}
+		[self.navigationController pushViewController:accountViewController animated:YES];			
 	}
 	[self saveAccounts];
 	[table reloadData];
