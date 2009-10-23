@@ -17,7 +17,7 @@
 
 
 @interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate, PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate> {
-	UIViewController *tabBar;
+	UITabBarController *tabBar;
 	
 	UIView *masterView;
 	UITableView *ljAccountView;
@@ -53,7 +53,7 @@
 	LJAccount *previousAccount;
 }
 
-@property (nonatomic, retain) IBOutlet UIViewController *tabBar;
+@property (nonatomic, retain) IBOutlet UITabBarController *tabBar;
 @property (nonatomic, retain) IBOutlet UIView *masterView;
 
 @property (nonatomic, retain) IBOutlet UITableView *ljAccountView;

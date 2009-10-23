@@ -93,6 +93,7 @@ enum {
 	
 	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
 		[self.view addSubview:tabBar.view];
+		tabBar.selectedIndex = 0;//[[NSNumber alloc] initWithInteger:0];
 		if (previousAccount != account) {
 			previousAccount = account;
 			Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
