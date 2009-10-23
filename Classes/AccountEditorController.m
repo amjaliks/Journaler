@@ -216,9 +216,9 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 	}
 	
 	LJAccount *account = [[LJAccount alloc] init];
-	account.user = usernameText.text;
+	account.user = [usernameText.text lowercaseString];
 	account.password = passwordText.text;
-	account.server = server;
+	account.server = [server lowercaseString];
 
 	if ([dataSource isDublicateAccount:account.title]) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Account error" message:@"You have already added this account." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
