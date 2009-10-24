@@ -11,12 +11,12 @@
 #import "PostViewController.h"
 #import "Model.h"
 
-@class LJAccount, UserPicCache;
+@class LJAccount, UserPicCache, PostSummaryCell;
 
 @protocol AccountViewControllerDataSource;
 
 
-@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate, PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate> {
+@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate, PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate, UIScrollViewDelegate> {
 	UITabBarController *tabBar;
 	
 	UIView *masterView;
@@ -38,7 +38,7 @@
 	UIBarButtonItem *refreshPostsButton;
 	
 	NSMutableArray *posts;
-	UITableViewCell *templateCell;
+	PostSummaryCell *templateCell;
 	
 	id<AccountViewControllerDataSource> dataSource;
 	
@@ -69,7 +69,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *stopButton;
 
-@property (nonatomic, retain) IBOutlet UITableViewCell *templateCell;
+@property (nonatomic, retain) IBOutlet PostSummaryCell *templateCell;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *newPostOther;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *postButton;

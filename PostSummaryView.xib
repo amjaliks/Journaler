@@ -355,6 +355,7 @@
 					<string>13.IBPluginDependency</string>
 					<string>14.IBPluginDependency</string>
 					<string>15.IBPluginDependency</string>
+					<string>2.CustomClassName</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
@@ -371,6 +372,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>PostSummaryCell</string>
 					<string>{{421, 412}, {320, 88}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -408,8 +410,17 @@
 					<string key="className">AccountViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">goToUpdate</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>goToUpdate</string>
+							<string>refreshPosts:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -420,12 +431,20 @@
 							<string>fixedSpace</string>
 							<string>flexibleSpace</string>
 							<string>forwardButton</string>
+							<string>friendsTabController</string>
 							<string>ljAccountView</string>
+							<string>masterView</string>
+							<string>newPostOther</string>
 							<string>otherAccountView</string>
+							<string>postButton</string>
 							<string>postEditorController</string>
+							<string>postEditorTabController</string>
 							<string>postViewController</string>
+							<string>previousController</string>
 							<string>refreshButton</string>
+							<string>refreshPostsButton</string>
 							<string>stopButton</string>
+							<string>tabBar</string>
 							<string>templateCell</string>
 							<string>toolbar</string>
 							<string>webView</string>
@@ -437,12 +456,20 @@
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
+							<string>UIViewController</string>
 							<string>UITableView</string>
 							<string>UIView</string>
+							<string>UIBarButtonItem</string>
+							<string>UIView</string>
+							<string>UIBarButtonItem</string>
+							<string>UIViewController</string>
+							<string>UIViewController</string>
 							<string>UIViewController</string>
 							<string>UIViewController</string>
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
+							<string>UIBarButtonItem</string>
+							<string>UITabBarController</string>
 							<string>UITableViewCell</string>
 							<string>UIToolbar</string>
 							<string>UIWebView</string>
@@ -451,6 +478,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/AccountViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PostSummaryCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/PostSummaryCell.h</string>
 					</object>
 				</object>
 			</object>

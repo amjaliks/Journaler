@@ -12,17 +12,7 @@
 #import "JournalerAppDelegate.h"
 #import "UserPicCache.h"
 #import "AccountsViewController.h"
-
-enum {
-	PSSubject = 1,
-	PSAuthor,
-	PSDateTimeReplies,
-	PSText,
-	PSUserPic,
-	PSCommunityIn,
-	PSCommunityIcon,
-	PSCommunityName
-};
+#import "PostSummaryCell.h"
 
 @implementation AccountViewController
 
@@ -214,7 +204,8 @@ enum {
 				[events release];
 			}
 			
-			[self.ljAccountView reloadData];
+			[ljAccountView reloadData];
+			[ljAccountView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 
 			account.synchronized = YES;
 			refreshPostsButton.enabled = YES;
@@ -222,6 +213,8 @@ enum {
 			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		};
 		[self.masterView addSubview:ljAccountView];
+		
+		[self scrollViewDidEndDecelerating:ljAccountView];
 	};
 }
 
@@ -312,78 +305,16 @@ enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *MyIdentifier = @"PostSummary";
 	
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    PostSummaryCell *cell = (PostSummaryCell *)[tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) {
         [[NSBundle mainBundle] loadNibNamed:@"PostSummaryView" owner:self options:nil];
         cell = templateCell;
+		cell.tableView = tableView;
         self.templateCell = nil;
     }
 	
 	Post *post = [posts objectAtIndex:indexPath.row];
-	
-    UILabel *label;
-    label = (UILabel *)[cell viewWithTag:PSSubject];
-	if ([post.subject length]) {
-		label.text = post.subject;
-	} else {
-		label.text = @"no subject";
-	}
-	
-    label = (UILabel *)[cell viewWithTag:PSAuthor];
-	label.text = post.poster;
-	CGRect frame = label.frame;
-	CGSize size = [label sizeThatFits:frame.size];
-	if ([@"C" isEqualToString:post.journalType] && size.width > 150) {
-		size.width = 150;
-	}
-	frame.size.width = size.width;
-	label.frame = frame;
-	CGFloat last = frame.origin.x + frame.size.width;
-	
-	UILabel *communityIn = (UILabel *)[cell viewWithTag:PSCommunityIn];
-	UIImageView *communityIcon = (UIImageView *)[cell viewWithTag:PSCommunityIcon];
-	UILabel *communityName = (UILabel *)[cell viewWithTag:PSCommunityName];
-	if ([@"C" isEqualToString:post.journalType] || [@"N" isEqualToString:post.journalType]) {
-		communityIn.hidden = NO;
-		communityIcon.hidden = NO;
-		communityName.hidden = NO;
-		
-		frame = communityIn.frame;
-		frame.origin.x = last + 1;
-		communityIn.frame = frame;
-		last = frame.origin.x + frame.size.width;
-		
-		frame = communityIcon.frame;
-		frame.origin.x = last + 1;
-		communityIcon.frame = frame;
-		last = frame.origin.x + frame.size.width;
-
-		communityName.text = post.journal;
-		frame = communityName.frame;
-		frame.origin.x = last + 2;
-		frame.size.width = 294 - frame.origin.x;
-		communityName.frame = frame;
-	} else {
-		communityIn.hidden = YES;
-		communityIcon.hidden = YES;
-		communityName.hidden = YES;
-	}
-
-	label = (UILabel *)[cell viewWithTag:PSText];
-    label.text = post.textPreview;
-	
-	NSDateFormatter *f = [[NSDateFormatter alloc] init];
-	[f setDateStyle:NSDateFormatterShortStyle];
-	[f setTimeStyle:NSDateFormatterShortStyle];
-	
-	label = (UILabel *)[cell viewWithTag:PSDateTimeReplies];
-    label.text = [NSString stringWithFormat:@"%@, %d replies", [f stringFromDate:post.dateTime], [post.replyCount integerValue]];
-	[f release];
-	
-	UIImageView *imageView = (UIImageView *)[cell viewWithTag:PSUserPic];
-	UserPicCache *userPicCache = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).userPicCache;
-	[userPicCache initDelayedAction:post.userPicURL];
-//	imageView.image = [userPicCache imageFromURL:post.userPicURL];
+	cell.post = post;
 	
 	return cell;
 }
@@ -407,6 +338,32 @@ enum {
 			self.navigationItem.rightBarButtonItem = postButton;
 		}
 	}
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+	UITableView *tableView = (UITableView *)scrollView;
+	NSArray *cells = [tableView visibleCells];
+	for (PostSummaryCell *cell in cells) {
+		if (cell.post.userPicURL && [cell.post.userPicURL length]) {
+			UserPicCache *userPicCache = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).userPicCache;
+			[cell setUserPic:[[userPicCache imageFromURL:cell.post.userPicURL forTableView:tableView] retain]];
+		}
+	}
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+	if (!decelerate) {
+		[self scrollViewDidEndDecelerating:scrollView];
+	}
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+	UserPicCache *userPicCache = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).userPicCache;
+	[userPicCache cancelPendingDownloads];
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
+	[self scrollViewDidEndDecelerating:scrollView];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "UserPicCache.h"
 #import "NSStringAdditions.h"
+#import "DelayedUserPicLoader.h"
 
 @implementation UserPicCache
 
@@ -46,9 +47,9 @@
 	}
 }
 
-- (UIImage *) imageFromURL:(NSString *)url {
+- (UIImage *) imageFromURL:(NSString *)url force:(BOOL)force {
 	UIImage *image = [imageCache valueForKey:url];
-	if (image) {
+	if (image || !force) {
 		return image;
 	} else {
 		NSData *data = [self dataFromURL:url];
@@ -72,14 +73,18 @@
 	}
 }
 
-- (void) delayedAction:(NSString *)url {
-	NSLog(@"DONE: %@", url);
+- (UIImage *) imageFromURL:(NSString *)url forTableView:(UITableView *)tableView {
+	UIImage *image = [imageCache valueForKey:url];
+	if (image) {
+		return image;
+	} else {
+		[queue addOperation:[[[DelayedUserPicLoader alloc] initWithUserPicCache:self URL:url tableView:tableView] autorelease]];
+		return nil;
+	}
 }
 
-- (void) initDelayedAction:(NSString *)url {
-	NSLog(@"INIT: %@", url);
-	[queue addOperation:[[[NSInvocationOperation alloc] initWithTarget:self
-										  selector:@selector(delayedAction:) object:url] autorelease]];
+- (void) cancelPendingDownloads {
+	[queue cancelAllOperations];
 }
 
 

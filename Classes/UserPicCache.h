@@ -18,9 +18,10 @@
 }
 
 - (NSData *) dataFromURL:(NSString *)url;
-- (UIImage *) imageFromURL:(NSString *)url;
+- (UIImage *) imageFromURL:(NSString *)url force:(BOOL)force;
 - (NSString *) base64DataFromURL:(NSString *)url;
-- (void) delayedAction:(NSString *)url;
-- (void) initDelayedAction:(NSString *)url;
+- (UIImage *) imageFromURL:(NSString *)url forTableView:(UITableView *)tableView;
+
+- (void) cancelPendingDownloads;
 
 @end
