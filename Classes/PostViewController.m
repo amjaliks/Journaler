@@ -12,9 +12,11 @@
 #import "JournalerAppDelegate.h"
 #import "UserPicCache.h"
 #import "NSStringAdditions.h"
+#import "WebViewController.h"
 
 @implementation PostViewController
 
+@synthesize webViewController;
 @synthesize waitView;
 
 @synthesize dataSource;
@@ -129,6 +131,13 @@
 	[waitView removeFromSuperview];
 	[self.view addSubview:webView];
 	lastWebView = webView;
+}
+
+- (IBAction) openWebView:(id)sender {
+	[self.navigationController pushViewController:webViewController animated:YES];
+	Post *post = [dataSource selectEventForPostViewController:self];
+	LJAccount *account = [dataSource selectedAccountForPostViewController:self];
+	[webViewController openURL:[NSString stringWithFormat:@"http://m.livejournal.com/login?back_uri=/read/user/%@/%@&mode=get&login=%@&password=%@", post.journal, post.ditemid, account.user, account.password]]; 
 }
 
 @end

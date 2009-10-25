@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol PostViewControllerDataSource;
-@class Post;
+@class Post, WebViewController, LJAccount;
 
 @interface PostViewController : UIViewController <UIWebViewDelegate> {
 	NSString *postTemplate;
@@ -19,17 +19,25 @@
 	UIView *waitView;
 	UIWebView *lastWebView;
 	
+	WebViewController *webViewController;
+	
 	id<PostViewControllerDataSource> dataSource;
 }
+
+@property (nonatomic, retain) IBOutlet WebViewController *webViewController;
 
 @property (nonatomic, retain) IBOutlet id<PostViewControllerDataSource> dataSource;
 
 @property (nonatomic, retain) IBOutlet UIView *waitView;
 
+- (IBAction) openWebView:(id)sender;
+
 @end
+
 
 @protocol PostViewControllerDataSource<NSObject>;
 
 - (Post *) selectEventForPostViewController:(PostViewController *)controller;
+- (LJAccount *) selectedAccountForPostViewController:(PostViewController *)controller;
 
 @end
