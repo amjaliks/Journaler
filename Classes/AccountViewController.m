@@ -106,26 +106,31 @@
 		[self.view addSubview:otherAccountView];	
 
 		LJFlatGetChallenge *challenge = [LJFlatGetChallenge requestWithServer:account.server];
-		[challenge doRequest];
+		if ([challenge doRequest]) {
 		
-		LJFlatSessionGenerate *session = [LJFlatSessionGenerate requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
-		[session doRequest];
-		
-		NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-		NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-		[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+			LJFlatSessionGenerate *session = [LJFlatSessionGenerate requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
+			if (NO && [session doRequest]) {
+				NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+				NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
 
-		cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljmastersession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-		cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-		[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+				cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljmastersession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+				cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
 
-		NSArray *parts = [session.ljsession componentsSeparatedByString:@":"];
-		cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljloggedin", NSHTTPCookieName, [NSString stringWithFormat:@"%@:%@", [parts objectAtIndex:1], [parts objectAtIndex:2]], NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-		cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-		[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-		
-		NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/~%@/friends", account.server, account.user]]];
-		[webView loadRequest:req];
+				NSArray *parts = [session.ljsession componentsSeparatedByString:@":"];
+				cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljloggedin", NSHTTPCookieName, [NSString stringWithFormat:@"%@:%@", [parts objectAtIndex:1], [parts objectAtIndex:2]], NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+				cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+				
+				NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/~%@/friends", account.server, account.user]]];
+				[webView loadRequest:req];
+			} else {
+				showErrorMessage(@"Friend page error", session.error);
+			}
+		} else {
+			showErrorMessage(@"Friend page error", challenge.error);
+		}
 	}
 }
 
