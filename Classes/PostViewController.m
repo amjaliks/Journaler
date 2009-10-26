@@ -124,7 +124,13 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	return YES;
+	NSString *url = [[request URL] absoluteString];
+	if ([url isEqualToString:@"about:blank"]) {
+		return YES;
+	} else {
+		[self openInWebView:[[request URL] absoluteString]];
+		return NO;
+	}
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -133,11 +139,16 @@
 	lastWebView = webView;
 }
 
-- (IBAction) openWebView:(id)sender {
+- (void) openInWebView:(NSString *)url {
 	[self.navigationController pushViewController:webViewController animated:YES];
+	[webViewController openURL:url]; 
+}
+
+
+- (IBAction) openWebView:(id)sender {
 	Post *post = [dataSource selectEventForPostViewController:self];
 	LJAccount *account = [dataSource selectedAccountForPostViewController:self];
-	[webViewController openURL:[NSString stringWithFormat:@"http://m.livejournal.com/login?mode=get&login=%@&password=%@&back_uri=/read/user/%@/%@/comments#comments", account.user, account.password, post.journal, post.ditemid]]; 
+	[self openInWebView:[NSString stringWithFormat:@"http://m.livejournal.com/login?mode=get&login=%@&password=%@&back_uri=/read/user/%@/%@/comments#comments", account.user, account.password, post.journal, post.ditemid]];
 }
 
 @end

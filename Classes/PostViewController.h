@@ -31,6 +31,7 @@
 @property (nonatomic, retain) IBOutlet UIView *waitView;
 
 - (IBAction) openWebView:(id)sender;
+- (void) openInWebView:(NSString *)url;
 
 @end
 

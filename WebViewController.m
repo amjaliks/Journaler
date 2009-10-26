@@ -87,7 +87,7 @@
 		} else if (i == 3) {
 			item.enabled = webView.canGoForward;
 		}
-		if ((i != 5 && loading) || (i != 6 && !loading)) {
+		if (((i != 5 && loading) || (i != 6 && !loading)) && i <= 6) {
 			[items addObject:item];
 		}
 	}
