@@ -24,6 +24,7 @@
 		1759F1E110930D5D0008AA60 /* PostSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1E010930D5D0008AA60 /* PostSummaryCell.m */; };
 		1759F31B1093674E0008AA60 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F3191093674E0008AA60 /* WebViewController.m */; };
 		1759F31C1093674E0008AA60 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1759F31A1093674E0008AA60 /* WebViewController.xib */; };
+		1759F49D1096514B0008AA60 /* comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 1759F49C1096514B0008AA60 /* comments.png */; };
 		1789BE60107A894B00964DA2 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE5F107A894B00964DA2 /* forward.png */; };
 		1789BE62107A89F200964DA2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
 		1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
@@ -81,6 +82,7 @@
 		1759F3181093674E0008AA60 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = ../WebViewController.h; sourceTree = "<group>"; };
 		1759F3191093674E0008AA60 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../WebViewController.m; sourceTree = "<group>"; };
 		1759F31A1093674E0008AA60 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		1759F49C1096514B0008AA60 /* comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comments.png; sourceTree = "<group>"; };
 		1789BE5F107A894B00964DA2 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
 		1789BE61107A89F200964DA2 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		1789BFDF107E73BA00964DA2 /* PostEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEditorController.h; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 		17132A54108B238C007F6C24 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1759F49C1096514B0008AA60 /* comments.png */,
 				17132B33108B3A47007F6C24 /* user.png */,
 				17132B2F108B386E007F6C24 /* community.png */,
 				17132994108A82A4007F6C24 /* Icon.png */,
@@ -383,6 +386,7 @@
 				17132C74108BB5B8007F6C24 /* newpost.png in Resources */,
 				17132C77108BB6EA007F6C24 /* friends.png in Resources */,
 				1759F31C1093674E0008AA60 /* WebViewController.xib in Resources */,
+				1759F49D1096514B0008AA60 /* comments.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

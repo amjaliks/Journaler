@@ -105,6 +105,7 @@
 						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						<bool key="IBUIScalesPageToFit">YES</bool>
 						<int key="IBUIDataDetectorTypes">1</int>
 						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
 					</object>
@@ -123,7 +124,7 @@
 					<bool key="IBUIPrompted">NO</bool>
 				</object>
 			</object>
-			<object class="IBUIActivityIndicatorView" id="672965148">
+			<object class="IBUIActivityIndicatorView" id="255495343">
 				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<string key="NSFrame">{{9, 9}, {20, 20}}</string>
@@ -188,7 +189,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">activityIndicatorView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="672965148"/>
+						<reference key="destination" ref="255495343"/>
 					</object>
 					<int key="connectionID">20</int>
 				</object>
@@ -296,7 +297,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
-						<reference key="object" ref="672965148"/>
+						<reference key="object" ref="255495343"/>
 						<reference key="parent" ref="367206086"/>
 					</object>
 				</object>
@@ -325,7 +326,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>WebViewController</string>
 					<string>UIResponder</string>
-					<string>{{386, 376}, {320, 480}}</string>
+					<string>{{386, 159}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

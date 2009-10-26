@@ -13,6 +13,8 @@
 	
 	UIWebView *webView;
 	UIActivityIndicatorView *activityIndicatorView;
+	
+	NSArray *toolbarItems;
 
 }
 
@@ -20,5 +22,6 @@
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 - (void) openURL:(NSString *)url;
+- (void) updateToolbarButtons:(BOOL)loading;
 
 @end

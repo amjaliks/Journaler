@@ -109,7 +109,7 @@
 		if ([challenge doRequest]) {
 		
 			LJFlatSessionGenerate *session = [LJFlatSessionGenerate requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
-			if (NO && [session doRequest]) {
+			if ([session doRequest]) {
 				NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
 				NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
 				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];

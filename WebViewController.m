@@ -25,9 +25,13 @@
 */
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-//- (void)viewDidLoad {
-//    [super viewDidLoad];	
-//}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	toolbarItems = [[((UIToolbar *)[self.view viewWithTag:10]).items copy] retain];
+	UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView];
+	self.navigationItem.rightBarButtonItem = item;
+	//[activityIndicatorView startAnimating];
+}
 
 
 /*
@@ -61,11 +65,33 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
+	[activityIndicatorView stopAnimating];
+	[self updateToolbarButtons:NO];
 	self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
+	[activityIndicatorView startAnimating];
+	[self updateToolbarButtons:YES];
+}
+
+- (void) updateToolbarButtons:(BOOL)loading {
+	UIToolbar *toolbar = (UIToolbar *)[self.view viewWithTag:10];
 	
+	NSMutableArray *items = [NSMutableArray arrayWithCapacity:7];
+	NSUInteger i = 0;
+	for (UIBarButtonItem *item in toolbarItems) {
+		i++;
+		if (i == 1) {
+			item.enabled = webView.canGoBack;
+		} else if (i == 3) {
+			item.enabled = webView.canGoForward;
+		}
+		if ((i != 5 && loading) || (i != 6 && !loading)) {
+			[items addObject:item];
+		}
+	}
+	[toolbar setItems:items animated:NO];
 }
 
 @end

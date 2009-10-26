@@ -137,7 +137,7 @@
 	[self.navigationController pushViewController:webViewController animated:YES];
 	Post *post = [dataSource selectEventForPostViewController:self];
 	LJAccount *account = [dataSource selectedAccountForPostViewController:self];
-	[webViewController openURL:[NSString stringWithFormat:@"http://m.livejournal.com/login?back_uri=/read/user/%@/%@&mode=get&login=%@&password=%@", post.journal, post.ditemid, account.user, account.password]]; 
+	[webViewController openURL:[NSString stringWithFormat:@"http://m.livejournal.com/login?mode=get&login=%@&password=%@&back_uri=/read/user/%@/%@/comments#comments", account.user, account.password, post.journal, post.ditemid]]; 
 }
 
 @end
