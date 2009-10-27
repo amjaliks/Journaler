@@ -449,7 +449,7 @@ NSString* md5(NSString *str)
 
 	[request->parameters setValue:@"1" forKey:@"ver"];
 	[request->parameters setValue:subject forKey:@"subject"];
-	[request->parameters setValue:event forKey:@"event"];
+	[request->parameters setValue:[event dataUsingEncoding:NSUTF8StringEncoding] forKey:@"event"];
 	//[request->parameters setValue:user forKey:@"usejournal"];
 	
 	NSCalendar *cal = [NSCalendar currentCalendar];
