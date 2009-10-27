@@ -38,6 +38,11 @@
 	postTemplate = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SinglePostTemplate" ofType:@"html"]] retain];
 	userIconPath = [[[NSBundle mainBundle] pathForResource:@"user" ofType:@"png"] retain];
 	communityIconPath = [[[NSBundle mainBundle] pathForResource:@"community" ofType:@"png"] retain];
+
+	NSString *imageIconPath = [[[NSBundle mainBundle] pathForResource:@"image" ofType:@"png"] retain];
+	imageIconReplace = [[NSString stringWithFormat:@"<img src=\"file://%@\" class=\"icon\"/>", imageIconPath] retain];
+	[imageIconPath release];
+	
 }
 
 
@@ -97,6 +102,7 @@
 	[postHtml replaceOccurrencesOfString:@"@replycount@" withString:[post.replyCount stringValue] options:0 range:NSMakeRange(0, [postHtml length])];
 
 	[postHtml replaceOccurrencesOfString:@"@post@" withString:post.textView options:0 range:NSMakeRange(0, [postHtml length])];
+	[postHtml replaceOccurrencesOfString:@"@imageicon@" withString:imageIconReplace options:0 range:NSMakeRange(0, [postHtml length])];
 
 	[webView loadHTMLString:postHtml baseURL:nil];
 	//[webView loadHTMLString:[NSString stringWithFormat:template, post.subject, post.textView] baseURL:nil];
@@ -124,11 +130,15 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	NSString *url = [[request URL] absoluteString];
-	if ([url isEqualToString:@"about:blank"]) {
+	NSURL *url = [request URL];
+	if ([[url scheme] isEqualToString:@"about"]) {
 		return YES;
+	} else if ([[url scheme] isEqualToString:@"tel"]) {
+		[[UIApplication sharedApplication] openURL:url];
+		return NO;
 	} else {
-		[self openInWebView:[[request URL] absoluteString]];
+		//[[UIApplication sharedApplication] openURL:url];
+		[self openInWebView:[url absoluteString]];
 		return NO;
 	}
 }

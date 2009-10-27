@@ -67,7 +67,7 @@
 		forward.length = [textView length];
 		
 		textView = [LJEvent removeTagFromString:textView tag:@"<lj user=\".+?\">" replacement:@"\"(.+?)\"" format:nil];
-		textView = [LJEvent removeTagFromString:textView tag:@"<img\\s?.*?/?>" replacement:@"src=\"(.+?)\"" format:@"( <a href=\"%@\">img</a> )"];
+		textView = [LJEvent removeTagFromString:textView tag:@"<img\\s?.*?/?>" replacement:@"src=\"?(.+?)[\"|\\s|>]" format:@"<a href=\"%@\">@imageicon@image</a>"];
 				
 		textView = [textView stringByReplacingOccurrencesOfString:@"\n" withString:@"<br />"];
 		

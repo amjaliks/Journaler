@@ -158,7 +158,7 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-	return @"Enter username and password for your account. If you used some LJ-clone server, enter server too.";
+	return @"Enter username and password for your account. If using a LiveJournal clone enter the server name as well.";
 }
 
 
