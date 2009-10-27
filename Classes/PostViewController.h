@@ -17,6 +17,7 @@
 	NSString *communityIconPath;
 	
 	NSString *imageIconReplace;
+	NSString *videoIconReplace;
 	
 	UIView *waitView;
 	UIWebView *lastWebView;

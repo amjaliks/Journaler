@@ -45,7 +45,8 @@
 		NSMutableString *meventPreview = [NSMutableString stringWithString:textPreview];
 		
 		[meventPreview replaceOccurrencesOfRegex:@"<br\\s*/?>" withString:@" " options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
-		[meventPreview replaceOccurrencesOfRegex:@"<img\\s?.*?/?>" withString:@"( img )" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
+		[meventPreview replaceOccurrencesOfRegex:@"<img\\s?.*?/?>" withString:@"image" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
+		[meventPreview replaceOccurrencesOfRegex:@"<lj-embed .+?/>" withString:@"video" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
 		[meventPreview replaceOccurrencesOfRegex:@"<.+?>" withString:@""  options:(RKLDotAll | RKLCaseless)range:NSMakeRange(0, [meventPreview length]) error:nil];
 		[meventPreview replaceOccurrencesOfRegex:@"&.+?;" withString:@""  options:(RKLDotAll | RKLCaseless)range:NSMakeRange(0, [meventPreview length]) error:nil];
 		
@@ -56,7 +57,7 @@
 
 - (NSString *)textView {
 	if (!textView) {
-		textView = [self.text retain];
+		textView = [self.text mutableCopy];
 		
 		NSRange notFoundRange;
 		notFoundRange.location = NSNotFound;
@@ -66,8 +67,10 @@
 		forward.location = 0;
 		forward.length = [textView length];
 		
+		[((NSMutableString *)textView) replaceOccurrencesOfRegex:@"<lj-embed .+?/>" withString:@"@videoicon@ video" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [textView length]) error:nil];
 		textView = [LJEvent removeTagFromString:textView tag:@"<lj user=\".+?\">" replacement:@"\"(.+?)\"" format:nil];
-		textView = [LJEvent removeTagFromString:textView tag:@"<img\\s?.*?/?>" replacement:@"src=\"?(.+?)[\"|\\s|>]" format:@"<a href=\"%@\">@imageicon@image</a>"];
+		textView = [LJEvent removeTagFromString:textView tag:@"<img\\s?.*?/?>" replacement:@"src=\"?(.+?)[\"|\\s|>]" format:@"<a href=\"%@\">@imageicon@ image</a>"];
+		//textView = [LJEvent removeTagFromString:textView tag:@"<lj-embed .+?/>" replacement:@"youtube.com/v/(.+?)&" format:@"<a href=\"%@\">@videoicon@ video</a>"];
 				
 		textView = [textView stringByReplacingOccurrencesOfString:@"\n" withString:@"<br />"];
 		

@@ -43,6 +43,9 @@
 	imageIconReplace = [[NSString stringWithFormat:@"<img src=\"file://%@\" class=\"icon\"/>", imageIconPath] retain];
 	[imageIconPath release];
 	
+	NSString *videoIconPath = [[[NSBundle mainBundle] pathForResource:@"video" ofType:@"png"] retain];
+	videoIconReplace = [[NSString stringWithFormat:@"<img src=\"file://%@\" class=\"icon\"/>", videoIconPath] retain];
+	[videoIconPath release];
 }
 
 
@@ -102,7 +105,9 @@
 	[postHtml replaceOccurrencesOfString:@"@replycount@" withString:[post.replyCount stringValue] options:0 range:NSMakeRange(0, [postHtml length])];
 
 	[postHtml replaceOccurrencesOfString:@"@post@" withString:post.textView options:0 range:NSMakeRange(0, [postHtml length])];
+	
 	[postHtml replaceOccurrencesOfString:@"@imageicon@" withString:imageIconReplace options:0 range:NSMakeRange(0, [postHtml length])];
+	[postHtml replaceOccurrencesOfString:@"@videoicon@" withString:videoIconReplace options:0 range:NSMakeRange(0, [postHtml length])];
 
 	[webView loadHTMLString:postHtml baseURL:nil];
 	//[webView loadHTMLString:[NSString stringWithFormat:template, post.subject, post.textView] baseURL:nil];
