@@ -22,6 +22,57 @@
 		17132C77108BB6EA007F6C24 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132C76108BB6EA007F6C24 /* friends.png */; };
 		1750B0D71097A3B200C1D2A8 /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 1750B0D61097A3B200C1D2A8 /* video.png */; };
 		1750B0D91097A41000C1D2A8 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 1750B0D81097A41000C1D2A8 /* image.png */; };
+		1750B14B1097B3F900C1D2A8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		1750B14C1097B3F900C1D2A8 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BD01075444F00155636 /* AccountsViewController.xib */; };
+		1750B14D1097B3F900C1D2A8 /* AccountEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BF11075462000155636 /* AccountEditorController.xib */; };
+		1750B14E1097B3F900C1D2A8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C951076616400155636 /* Entitlements.plist */; };
+		1750B14F1097B3F900C1D2A8 /* AccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FCD9B410793F9F00806088 /* AccountViewController.xib */; };
+		1750B1501097B3F900C1D2A8 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE5F107A894B00964DA2 /* forward.png */; };
+		1750B1511097B3F900C1D2A8 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
+		1750B1521097B3F900C1D2A8 /* PostEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1789BFE1107E73BA00964DA2 /* PostEditorController.xib */; };
+		1750B1531097B3F900C1D2A8 /* PostSummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B4C486108111500005660E /* PostSummaryView.xib */; };
+		1750B1541097B3F900C1D2A8 /* IconLite.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B4C63E10827C360005660E /* IconLite.png */; };
+		1750B1551097B3F900C1D2A8 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171323091085168F007F6C24 /* PostViewController.xib */; };
+		1750B1561097B3F900C1D2A8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132994108A82A4007F6C24 /* Icon.png */; };
+		1750B1571097B3F900C1D2A8 /* SinglePostTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 17132A55108B240B007F6C24 /* SinglePostTemplate.html */; };
+		1750B1581097B3F900C1D2A8 /* community.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132B2F108B386E007F6C24 /* community.png */; };
+		1750B1591097B3F900C1D2A8 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132B33108B3A47007F6C24 /* user.png */; };
+		1750B15A1097B3F900C1D2A8 /* newpost.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132C73108BB5B8007F6C24 /* newpost.png */; };
+		1750B15B1097B3F900C1D2A8 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132C76108BB6EA007F6C24 /* friends.png */; };
+		1750B15C1097B3F900C1D2A8 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1759F31A1093674E0008AA60 /* WebViewController.xib */; };
+		1750B15D1097B3F900C1D2A8 /* comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 1759F49C1096514B0008AA60 /* comments.png */; };
+		1750B15E1097B3F900C1D2A8 /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 1750B0D61097A3B200C1D2A8 /* video.png */; };
+		1750B15F1097B3F900C1D2A8 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 1750B0D81097A41000C1D2A8 /* image.png */; };
+		1750B1611097B3F900C1D2A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1750B1621097B3F900C1D2A8 /* JournalerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */; };
+		1750B1631097B3F900C1D2A8 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BCF1075444F00155636 /* AccountsViewController.m */; };
+		1750B1641097B3F900C1D2A8 /* LiveJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0CC110768D2900155636 /* LiveJournal.m */; };
+		1750B1651097B3F900C1D2A8 /* AccountEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD7151078C70700806088 /* AccountEditorController.m */; };
+		1750B1661097B3F900C1D2A8 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */; };
+		1750B1671097B3F900C1D2A8 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
+		1750B1681097B3F900C1D2A8 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C538108132E80005660E /* RegexKitLite.m */; };
+		1750B1691097B3F900C1D2A8 /* XMLRPCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9A61083C8BC0005660E /* XMLRPCConnection.m */; };
+		1750B16A1097B3F900C1D2A8 /* XMLRPCConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9A91083C8BC0005660E /* XMLRPCConnectionManager.m */; };
+		1750B16B1097B3F900C1D2A8 /* XMLRPCEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9AB1083C8BC0005660E /* XMLRPCEncoder.m */; };
+		1750B16C1097B3F900C1D2A8 /* XMLRPCEventBasedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9AD1083C8BC0005660E /* XMLRPCEventBasedParser.m */; };
+		1750B16D1097B3F900C1D2A8 /* XMLRPCEventBasedParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9AF1083C8BC0005660E /* XMLRPCEventBasedParserDelegate.m */; };
+		1750B16E1097B3F900C1D2A8 /* XMLRPCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9B11083C8BC0005660E /* XMLRPCRequest.m */; };
+		1750B16F1097B3F900C1D2A8 /* XMLRPCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9B31083C8BC0005660E /* XMLRPCResponse.m */; };
+		1750B1701097B3F900C1D2A8 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9BF1083C8DA0005660E /* NSStringAdditions.m */; };
+		1750B1711097B3F900C1D2A8 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9C11083C8DA0005660E /* NSDataAdditions.m */; };
+		1750B1721097B3F900C1D2A8 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171323081085168F007F6C24 /* PostViewController.m */; };
+		1750B1731097B3F900C1D2A8 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 1713267F108A163B007F6C24 /* Post.m */; };
+		1750B1741097B3F900C1D2A8 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 171326CF108A238E007F6C24 /* Model.m */; };
+		1750B1761097B3F900C1D2A8 /* UserPicCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */; };
+		1750B1771097B3F900C1D2A8 /* DelayedUserPicLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */; };
+		1750B1781097B3F900C1D2A8 /* PostSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1E010930D5D0008AA60 /* PostSummaryCell.m */; };
+		1750B1791097B3F900C1D2A8 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F3191093674E0008AA60 /* WebViewController.m */; };
+		1750B17B1097B3F900C1D2A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1750B17C1097B3F900C1D2A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		1750B17D1097B3F900C1D2A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		1750B17E1097B3F900C1D2A8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17132614108A1203007F6C24 /* CoreData.framework */; };
+		1750B1921097B45000C1D2A8 /* Journaler Lite-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1750B1911097B45000C1D2A8 /* Journaler Lite-Info.plist */; };
+		1750B1931097B46000C1D2A8 /* Journaler.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 17132865108A4A89007F6C24 /* Journaler.xcdatamodel */; };
 		1759F1831092F28B0008AA60 /* DelayedUserPicLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */; };
 		1759F1E110930D5D0008AA60 /* PostSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1E010930D5D0008AA60 /* PostSummaryCell.m */; };
 		1759F31B1093674E0008AA60 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F3191093674E0008AA60 /* WebViewController.m */; };
@@ -79,6 +130,8 @@
 		17132C76108BB6EA007F6C24 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
 		1750B0D61097A3B200C1D2A8 /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video.png; sourceTree = "<group>"; };
 		1750B0D81097A41000C1D2A8 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		1750B1831097B3F900C1D2A8 /* Journaler Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Journaler Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1750B1911097B45000C1D2A8 /* Journaler Lite-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Journaler Lite-Info.plist"; sourceTree = "<group>"; };
 		1759F1811092F28B0008AA60 /* DelayedUserPicLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayedUserPicLoader.h; sourceTree = "<group>"; };
 		1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayedUserPicLoader.m; sourceTree = "<group>"; };
 		1759F1DF10930D5D0008AA60 /* PostSummaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostSummaryCell.h; sourceTree = "<group>"; };
@@ -143,6 +196,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1750B17A1097B3F900C1D2A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1750B17B1097B3F900C1D2A8 /* Foundation.framework in Frameworks */,
+				1750B17C1097B3F900C1D2A8 /* UIKit.framework in Frameworks */,
+				1750B17D1097B3F900C1D2A8 /* CoreGraphics.framework in Frameworks */,
+				1750B17E1097B3F900C1D2A8 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -269,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Journaler.app */,
+				1750B1831097B3F900C1D2A8 /* Journaler Lite.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,6 +373,7 @@
 				1759F31A1093674E0008AA60 /* WebViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Journaler-Info.plist */,
+				1750B1911097B45000C1D2A8 /* Journaler Lite-Info.plist */,
 				17132865108A4A89007F6C24 /* Journaler.xcdatamodel */,
 				17132A55108B240B007F6C24 /* SinglePostTemplate.html */,
 			);
@@ -328,6 +394,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1750B1491097B3F900C1D2A8 /* Journaler Lite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1750B17F1097B3F900C1D2A8 /* Build configuration list for PBXNativeTarget "Journaler Lite" */;
+			buildPhases = (
+				1750B14A1097B3F900C1D2A8 /* Resources */,
+				1750B1601097B3F900C1D2A8 /* Sources */,
+				1750B17A1097B3F900C1D2A8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Journaler Lite";
+			productName = Journaler;
+			productReference = 1750B1831097B3F900C1D2A8 /* Journaler Lite.app */;
+			productType = "com.apple.product-type.application";
+		};
 		1D6058900D05DD3D006BFB54 /* Journaler */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Journaler" */;
@@ -365,11 +448,41 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Journaler */,
+				1750B1491097B3F900C1D2A8 /* Journaler Lite */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1750B14A1097B3F900C1D2A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1750B14B1097B3F900C1D2A8 /* MainWindow.xib in Resources */,
+				1750B14C1097B3F900C1D2A8 /* AccountsViewController.xib in Resources */,
+				1750B14D1097B3F900C1D2A8 /* AccountEditorController.xib in Resources */,
+				1750B14E1097B3F900C1D2A8 /* Entitlements.plist in Resources */,
+				1750B14F1097B3F900C1D2A8 /* AccountViewController.xib in Resources */,
+				1750B1501097B3F900C1D2A8 /* forward.png in Resources */,
+				1750B1511097B3F900C1D2A8 /* back.png in Resources */,
+				1750B1521097B3F900C1D2A8 /* PostEditorController.xib in Resources */,
+				1750B1531097B3F900C1D2A8 /* PostSummaryView.xib in Resources */,
+				1750B1541097B3F900C1D2A8 /* IconLite.png in Resources */,
+				1750B1551097B3F900C1D2A8 /* PostViewController.xib in Resources */,
+				1750B1561097B3F900C1D2A8 /* Icon.png in Resources */,
+				1750B1571097B3F900C1D2A8 /* SinglePostTemplate.html in Resources */,
+				1750B1581097B3F900C1D2A8 /* community.png in Resources */,
+				1750B1591097B3F900C1D2A8 /* user.png in Resources */,
+				1750B15A1097B3F900C1D2A8 /* newpost.png in Resources */,
+				1750B15B1097B3F900C1D2A8 /* friends.png in Resources */,
+				1750B15C1097B3F900C1D2A8 /* WebViewController.xib in Resources */,
+				1750B15D1097B3F900C1D2A8 /* comments.png in Resources */,
+				1750B15E1097B3F900C1D2A8 /* video.png in Resources */,
+				1750B15F1097B3F900C1D2A8 /* image.png in Resources */,
+				1750B1921097B45000C1D2A8 /* Journaler Lite-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,6 +514,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1750B1601097B3F900C1D2A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1750B1611097B3F900C1D2A8 /* main.m in Sources */,
+				1750B1621097B3F900C1D2A8 /* JournalerAppDelegate.m in Sources */,
+				1750B1631097B3F900C1D2A8 /* AccountsViewController.m in Sources */,
+				1750B1641097B3F900C1D2A8 /* LiveJournal.m in Sources */,
+				1750B1651097B3F900C1D2A8 /* AccountEditorController.m in Sources */,
+				1750B1661097B3F900C1D2A8 /* AccountViewController.m in Sources */,
+				1750B1671097B3F900C1D2A8 /* PostEditorController.m in Sources */,
+				1750B1681097B3F900C1D2A8 /* RegexKitLite.m in Sources */,
+				1750B1691097B3F900C1D2A8 /* XMLRPCConnection.m in Sources */,
+				1750B16A1097B3F900C1D2A8 /* XMLRPCConnectionManager.m in Sources */,
+				1750B16B1097B3F900C1D2A8 /* XMLRPCEncoder.m in Sources */,
+				1750B16C1097B3F900C1D2A8 /* XMLRPCEventBasedParser.m in Sources */,
+				1750B16D1097B3F900C1D2A8 /* XMLRPCEventBasedParserDelegate.m in Sources */,
+				1750B16E1097B3F900C1D2A8 /* XMLRPCRequest.m in Sources */,
+				1750B16F1097B3F900C1D2A8 /* XMLRPCResponse.m in Sources */,
+				1750B1701097B3F900C1D2A8 /* NSStringAdditions.m in Sources */,
+				1750B1711097B3F900C1D2A8 /* NSDataAdditions.m in Sources */,
+				1750B1721097B3F900C1D2A8 /* PostViewController.m in Sources */,
+				1750B1731097B3F900C1D2A8 /* Post.m in Sources */,
+				1750B1741097B3F900C1D2A8 /* Model.m in Sources */,
+				1750B1761097B3F900C1D2A8 /* UserPicCache.m in Sources */,
+				1750B1771097B3F900C1D2A8 /* DelayedUserPicLoader.m in Sources */,
+				1750B1781097B3F900C1D2A8 /* PostSummaryCell.m in Sources */,
+				1750B1791097B3F900C1D2A8 /* WebViewController.m in Sources */,
+				1750B1931097B46000C1D2A8 /* Journaler.xcdatamodel in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +581,47 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		1750B1801097B3F900C1D2A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
+				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/Journaler Lite-Info.plist";
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = "Journaler Lite";
+			};
+			name = Debug;
+		};
+		1750B1811097B3F900C1D2A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
+				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/Journaler Lite-Info.plist";
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = "Journaler Lite";
+			};
+			name = Release;
+		};
+		1750B1821097B3F900C1D2A8 /* Distribution (Ad Hoc) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
+				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/Journaler Lite-Info.plist";
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = "Journaler Lite";
+			};
+			name = "Distribution (Ad Hoc)";
+		};
 		17DB0C8110765F9300155636 /* Distribution (Ad Hoc) */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -525,6 +711,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1750B17F1097B3F900C1D2A8 /* Build configuration list for PBXNativeTarget "Journaler Lite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1750B1801097B3F900C1D2A8 /* Debug */,
+				1750B1811097B3F900C1D2A8 /* Release */,
+				1750B1821097B3F900C1D2A8 /* Distribution (Ad Hoc) */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Journaler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

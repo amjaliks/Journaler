@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>1750B1101097A58400C1D2A8</string>
+						<string>1750B1FF1097B8A100C1D2A8</string>
 						<key>history</key>
 						<array>
 							<string>1750B0E81097A4BE00C1D2A8</string>
@@ -323,14 +323,12 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>6</integer>
-									<integer>4</integer>
-									<integer>1</integer>
-									<integer>0</integer>
+									<integer>65</integer>
+									<integer>63</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {268, 681}}</string>
+							<string>{{0, 473}, {268, 681}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -362,14 +360,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Post.m</string>
+								<string>Journaler Lite-Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -377,11 +373,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Post.m</string>
+										<string>Journaler Lite-Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1750B10F1097A58400C1D2A8</string>
+										<string>1750B1FE1097B8A100C1D2A8</string>
 										<key>history</key>
 										<array>
 											<string>17FCD7CA107907BE00806088</string>
@@ -436,21 +432,22 @@
 											<string>1759F4EE109658740008AA60</string>
 											<string>1750AFED1097914B00C1D2A8</string>
 											<string>1750B0371097936300C1D2A8</string>
-											<string>1750B0381097936300C1D2A8</string>
-											<string>1750B0391097936300C1D2A8</string>
 											<string>1750B059109798B200C1D2A8</string>
-											<string>1750B09610979B5200C1D2A8</string>
 											<string>1750B09810979B5200C1D2A8</string>
 											<string>1750B0A610979B9800C1D2A8</string>
 											<string>1750B0B21097A0DB00C1D2A8</string>
 											<string>1750B0B31097A0DB00C1D2A8</string>
 											<string>1750B0F91097A52000C1D2A8</string>
 											<string>1750B0FA1097A52000C1D2A8</string>
-											<string>1750B0FB1097A52000C1D2A8</string>
-											<string>1750B1071097A57900C1D2A8</string>
 											<string>1750B1081097A57900C1D2A8</string>
 											<string>1750B1091097A57900C1D2A8</string>
-											<string>1750B0EA1097A4D300C1D2A8</string>
+											<string>1750B12B1097AD6700C1D2A8</string>
+											<string>1750B1341097ADC800C1D2A8</string>
+											<string>1750B13B1097B0B100C1D2A8</string>
+											<string>1750B1A01097B4C100C1D2A8</string>
+											<string>1750B1A11097B4C100C1D2A8</string>
+											<string>1750B1A21097B4C100C1D2A8</string>
+											<string>1750B1A31097B4C100C1D2A8</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -560,6 +557,23 @@
 											<string>1750B10A1097A57900C1D2A8</string>
 											<string>1750B10B1097A57900C1D2A8</string>
 											<string>1750B10C1097A57900C1D2A8</string>
+											<string>1750B1271097ACE100C1D2A8</string>
+											<string>1750B1281097ACE100C1D2A8</string>
+											<string>1750B12D1097AD6700C1D2A8</string>
+											<string>1750B12E1097AD6700C1D2A8</string>
+											<string>1750B1361097ADC800C1D2A8</string>
+											<string>1750B13D1097B0B100C1D2A8</string>
+											<string>1750B1891097B42C00C1D2A8</string>
+											<string>1750B18A1097B42C00C1D2A8</string>
+											<string>1750B18C1097B42C00C1D2A8</string>
+											<string>1750B1A41097B4C100C1D2A8</string>
+											<string>1750B1A51097B4C100C1D2A8</string>
+											<string>1750B1A61097B4C100C1D2A8</string>
+											<string>1750B1A71097B4C100C1D2A8</string>
+											<string>1750B1A81097B4C100C1D2A8</string>
+											<string>1750B1A91097B4C100C1D2A8</string>
+											<string>1750B1AA1097B4C100C1D2A8</string>
+											<string>1750B1AB1097B4C100C1D2A8</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
