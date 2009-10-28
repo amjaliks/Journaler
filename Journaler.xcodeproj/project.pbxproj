@@ -71,6 +71,14 @@
 		1750B17D1097B3F900C1D2A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		1750B17E1097B3F900C1D2A8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17132614108A1203007F6C24 /* CoreData.framework */; };
 		1750B1931097B46000C1D2A8 /* Journaler.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 17132865108A4A89007F6C24 /* Journaler.xcdatamodel */; };
+		1750B36D1098EF1400C1D2A8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3681098EF1400C1D2A8 /* AddressBook.framework */; };
+		1750B36E1098EF1400C1D2A8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3691098EF1400C1D2A8 /* AudioToolbox.framework */; };
+		1750B36F1098EF1400C1D2A8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B36A1098EF1400C1D2A8 /* CoreLocation.framework */; };
+		1750B3701098EF1400C1D2A8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B36B1098EF1400C1D2A8 /* MediaPlayer.framework */; };
+		1750B3711098EF1400C1D2A8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B36C1098EF1400C1D2A8 /* QuartzCore.framework */; };
+		1750B3AF1098EF3300C1D2A8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3AE1098EF3300C1D2A8 /* MessageUI.framework */; };
+		1750B3F91098F42300C1D2A8 /* libAdMobSimulator3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3F71098F42300C1D2A8 /* libAdMobSimulator3_0.a */; };
+		1750B3FA1098F42300C1D2A8 /* libAdMobDevice3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3F81098F42300C1D2A8 /* libAdMobDevice3_0.a */; };
 		1759F1831092F28B0008AA60 /* DelayedUserPicLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */; };
 		1759F1E110930D5D0008AA60 /* PostSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1E010930D5D0008AA60 /* PostSummaryCell.m */; };
 		1759F31B1093674E0008AA60 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F3191093674E0008AA60 /* WebViewController.m */; };
@@ -130,6 +138,16 @@
 		1750B0D81097A41000C1D2A8 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		1750B1831097B3F900C1D2A8 /* Journaler Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Journaler Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JournalerLite-Info.plist"; sourceTree = "<group>"; };
+		1750B3561098EDF200C1D2A8 /* AdMobView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobView.h; sourceTree = "<group>"; };
+		1750B3571098EDF200C1D2A8 /* AdMobDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobDelegateProtocol.h; sourceTree = "<group>"; };
+		1750B3681098EF1400C1D2A8 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		1750B3691098EF1400C1D2A8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1750B36A1098EF1400C1D2A8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1750B36B1098EF1400C1D2A8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		1750B36C1098EF1400C1D2A8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1750B3AE1098EF3300C1D2A8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		1750B3F71098F42300C1D2A8 /* libAdMobSimulator3_0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobSimulator3_0.a; sourceTree = "<group>"; };
+		1750B3F81098F42300C1D2A8 /* libAdMobDevice3_0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobDevice3_0.a; sourceTree = "<group>"; };
 		1759F1811092F28B0008AA60 /* DelayedUserPicLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayedUserPicLoader.h; sourceTree = "<group>"; };
 		1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayedUserPicLoader.m; sourceTree = "<group>"; };
 		1759F1DF10930D5D0008AA60 /* PostSummaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostSummaryCell.h; sourceTree = "<group>"; };
@@ -202,6 +220,14 @@
 				1750B17C1097B3F900C1D2A8 /* UIKit.framework in Frameworks */,
 				1750B17D1097B3F900C1D2A8 /* CoreGraphics.framework in Frameworks */,
 				1750B17E1097B3F900C1D2A8 /* CoreData.framework in Frameworks */,
+				1750B36D1098EF1400C1D2A8 /* AddressBook.framework in Frameworks */,
+				1750B36E1098EF1400C1D2A8 /* AudioToolbox.framework in Frameworks */,
+				1750B36F1098EF1400C1D2A8 /* CoreLocation.framework in Frameworks */,
+				1750B3701098EF1400C1D2A8 /* MediaPlayer.framework in Frameworks */,
+				1750B3711098EF1400C1D2A8 /* QuartzCore.framework in Frameworks */,
+				1750B3AF1098EF3300C1D2A8 /* MessageUI.framework in Frameworks */,
+				1750B3F91098F42300C1D2A8 /* libAdMobSimulator3_0.a in Frameworks */,
+				1750B3FA1098F42300C1D2A8 /* libAdMobDevice3_0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +248,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1750B34E1098ED1900C1D2A8 /* AdMob */,
 				17B4C536108132D90005660E /* RegexKitLite */,
 				17B4C78C1083AC8D0005660E /* XMLRPC */,
 				17132682108A1644007F6C24 /* Model */,
@@ -275,6 +302,30 @@
 				17132C73108BB5B8007F6C24 /* newpost.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		1750B34E1098ED1900C1D2A8 /* AdMob */ = {
+			isa = PBXGroup;
+			children = (
+				1750B3561098EDF200C1D2A8 /* AdMobView.h */,
+				1750B3571098EDF200C1D2A8 /* AdMobDelegateProtocol.h */,
+				1750B3F71098F42300C1D2A8 /* libAdMobSimulator3_0.a */,
+				1750B3F81098F42300C1D2A8 /* libAdMobDevice3_0.a */,
+			);
+			name = AdMob;
+			sourceTree = "<group>";
+		};
+		1750B3651098EED000C1D2A8 /* AdMob */ = {
+			isa = PBXGroup;
+			children = (
+				1750B3AE1098EF3300C1D2A8 /* MessageUI.framework */,
+				1750B3681098EF1400C1D2A8 /* AddressBook.framework */,
+				1750B3691098EF1400C1D2A8 /* AudioToolbox.framework */,
+				1750B36A1098EF1400C1D2A8 /* CoreLocation.framework */,
+				1750B36B1098EF1400C1D2A8 /* MediaPlayer.framework */,
+				1750B36C1098EF1400C1D2A8 /* QuartzCore.framework */,
+			);
+			name = AdMob;
 			sourceTree = "<group>";
 		};
 		1759F1801092F2510008AA60 /* UserPicCache */ = {
@@ -381,6 +432,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1750B3651098EED000C1D2A8 /* AdMob */,
 				17132614108A1203007F6C24 /* CoreData.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -587,6 +639,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes\"",
+				);
 				OTHER_CFLAGS = (
 					"-DLITEVERSION",
 					"-DDEBUG",
@@ -604,6 +660,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes\"",
+				);
 				OTHER_CFLAGS = "-DLITEVERSION";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "Journaler Lite";
@@ -618,6 +678,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes\"",
+				);
 				OTHER_CFLAGS = "-DLITEVERSION";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "Journaler Lite";

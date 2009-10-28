@@ -329,7 +329,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #ifdef LITEVERSION
-	return [posts count] + 1;
+	NSUInteger count = [posts count];
+	count += (count / 10 + 1);
+	return count;
 #else
 	return [posts count];
 #endif
@@ -337,12 +339,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 #ifdef LITEVERSION
-	if (indexPath.row == 0) {
+	if (indexPath.row % 10 == 0) {
 		static NSString *AdIdentifier = @"AdCell";
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AdIdentifier];
 		if (cell == nil) {
 			cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:AdIdentifier] autorelease];
-			[cell.contentView addSubview:[AdMobView requestAdWithDelegate:self]];			
+			[cell.contentView addSubview:[AdMobView requestAdWithDelegate:self]];
+			lastAdRequest = [[NSDate date] retain];
+		} else {
+			if ([lastAdRequest timeIntervalSinceNow] < -60.0) {
+				[lastAdRequest release];
+				lastAdRequest = [[NSDate date] retain];
+				AdMobView *adView = (AdMobView *)[cell.contentView.subviews lastObject];
+				[adView requestFreshAd];
+			}
 		}
 		return cell;
 	} else {
@@ -359,7 +369,9 @@
 			self.templateCell = nil;
 		}
 #ifdef LITEVERSION
-		Post *post = [posts objectAtIndex:indexPath.row - 1];
+		NSUInteger index = indexPath.row;
+		index -= (index / 10 + 1);
+		Post *post = [posts objectAtIndex:index];
 #else
 		Post *post = [posts objectAtIndex:indexPath.row];
 #endif
@@ -427,7 +439,7 @@
 #ifdef LITEVERSION
 	
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if((indexPath.section == 0) && (indexPath.row == 0)) {
+	if(indexPath.row % 10 == 0) {
 		return 48.0; // this is the height of the AdMob ad
 	}
 	return 88.0; // this is the generic cell height

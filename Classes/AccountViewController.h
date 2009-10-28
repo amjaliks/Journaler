@@ -65,6 +65,8 @@ PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabB
 	LJAccount *account;
 	
 	UIBarButtonItem *accountButton;
+	
+	NSDate *lastAdRequest;
 #endif
 }
 

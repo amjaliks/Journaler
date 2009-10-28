@@ -197,48 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>1750B0ED1097A4D300C1D2A8</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>PostViewController.h</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>1750B0EE1097A4D300C1D2A8</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>PostViewController.h</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>1750B3031098E75700C1D2A8</string>
-						<key>history</key>
-						<array>
-							<string>1750B0E81097A4BE00C1D2A8</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1020, 706}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>15 126 1020 747 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -312,10 +271,11 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
-								<string>17132682108A1644007F6C24</string>
+								<string>1750B34E1098ED1900C1D2A8</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>17132A54108B238C007F6C24</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
+								<string>1750B3651098EED000C1D2A8</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
@@ -323,13 +283,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>17</integer>
+									<integer>18</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 44}, {268, 681}}</string>
+							<string>{{0, 93}, {268, 681}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -380,7 +340,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1750B3021098E75700C1D2A8</string>
+										<string>1750B4281098FBCA00C1D2A8</string>
 										<key>history</key>
 										<array>
 											<string>17FCD7CA107907BE00806088</string>
@@ -419,7 +379,6 @@
 											<string>1759F30010932D070008AA60</string>
 											<string>1759F30110932D070008AA60</string>
 											<string>1759F30A10932DC60008AA60</string>
-											<string>1759F30B10932DC60008AA60</string>
 											<string>1759F3F810963DC00008AA60</string>
 											<string>1759F3F910963DC00008AA60</string>
 											<string>1759F4CC1096557E0008AA60</string>
@@ -448,9 +407,12 @@
 											<string>1750B2D11098E62A00C1D2A8</string>
 											<string>1750B2D31098E62A00C1D2A8</string>
 											<string>1750B2E71098E67300C1D2A8</string>
-											<string>1750B2FC1098E75700C1D2A8</string>
 											<string>1750B2FD1098E75700C1D2A8</string>
-											<string>1750B2FE1098E75700C1D2A8</string>
+											<string>1750B35D1098EE6300C1D2A8</string>
+											<string>1750B3B41098EFB100C1D2A8</string>
+											<string>1750B3B61098EFB100C1D2A8</string>
+											<string>1750B4121098F83000C1D2A8</string>
+											<string>1750B41F1098F89A00C1D2A8</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -643,6 +605,17 @@
 											<string>1750B2FF1098E75700C1D2A8</string>
 											<string>1750B3001098E75700C1D2A8</string>
 											<string>1750B3011098E75700C1D2A8</string>
+											<string>1750B35F1098EE6300C1D2A8</string>
+											<string>1750B3601098EE6300C1D2A8</string>
+											<string>1750B3B81098EFB100C1D2A8</string>
+											<string>1750B3B91098EFB100C1D2A8</string>
+											<string>1750B3BA1098EFB100C1D2A8</string>
+											<string>1750B3BB1098EFB100C1D2A8</string>
+											<string>1750B3BC1098EFB100C1D2A8</string>
+											<string>1750B3F41098F3E100C1D2A8</string>
+											<string>1750B3F51098F3E100C1D2A8</string>
+											<string>1750B4141098F83000C1D2A8</string>
+											<string>1750B4151098F83000C1D2A8</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -836,13 +809,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1750B3041098E75700C1D2A8</string>
 		<string>1750AFB110977D9000C1D2A8</string>
 		<string>1750AFB310977D9000C1D2A8</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>17DB0B7E1075405300155636</string>
-		<string>1750B0ED1097A4D300C1D2A8</string>
 		<string>/Users/amjaliks/xcode/Jounaler/Journaler.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
