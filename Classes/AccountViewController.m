@@ -14,6 +14,7 @@
 #import "AccountsViewController.h"
 #import "PostSummaryCell.h"
 #import "AccountEditorController.h"
+#import "AdMobView.h"
 
 @implementation AccountViewController
 
@@ -327,24 +328,45 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#ifdef LITEVERSION
+	return [posts count] + 1;
+#else
 	return [posts count];
+#endif
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *MyIdentifier = @"PostSummary";
-	
-    PostSummaryCell *cell = (PostSummaryCell *)[tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-    if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:@"PostSummaryView" owner:self options:nil];
-        cell = templateCell;
-		cell.tableView = tableView;
-        self.templateCell = nil;
-    }
-	
-	Post *post = [posts objectAtIndex:indexPath.row];
-	cell.post = post;
-	
-	return cell;
+#ifdef LITEVERSION
+	if (indexPath.row == 0) {
+		static NSString *AdIdentifier = @"AdCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AdIdentifier];
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:AdIdentifier] autorelease];
+			[cell.contentView addSubview:[AdMobView requestAdWithDelegate:self]];			
+		}
+		return cell;
+	} else {
+#else
+	{
+#endif
+		static NSString *MyIdentifier = @"PostSummary";
+		
+		PostSummaryCell *cell = (PostSummaryCell *)[tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+		if (cell == nil) {
+			[[NSBundle mainBundle] loadNibNamed:@"PostSummaryView" owner:self options:nil];
+			cell = templateCell;
+			cell.tableView = tableView;
+			self.templateCell = nil;
+		}
+#ifdef LITEVERSION
+		Post *post = [posts objectAtIndex:indexPath.row - 1];
+#else
+		Post *post = [posts objectAtIndex:indexPath.row];
+#endif
+		cell.post = post;
+		
+		return cell;
+	}
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -371,7 +393,15 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 	UITableView *tableView = (UITableView *)scrollView;
 	NSArray *cells = [tableView visibleCells];
+#ifdef LITEVERSION
+	for (UITableViewCell *rawCell in cells) {
+		if (![rawCell isKindOfClass:[PostSummaryCell class]]) {
+			continue;
+		}
+		PostSummaryCell *cell = (PostSummaryCell *)rawCell;
+#else
 	for (PostSummaryCell *cell in cells) {
+#endif
 		if (cell.post.userPicURL && [cell.post.userPicURL length]) {
 			UserPicCache *userPicCache = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).userPicCache;
 			[cell setUserPic:[[userPicCache imageFromURL:cell.post.userPicURL forTableView:tableView] retain]];
@@ -395,6 +425,14 @@
 }
 
 #ifdef LITEVERSION
+	
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if((indexPath.section == 0) && (indexPath.row == 0)) {
+		return 48.0; // this is the height of the AdMob ad
+	}
+	return 88.0; // this is the generic cell height
+}
+	
 - (LJAccount *)loadAccount {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *path = [paths objectAtIndex:0];
@@ -448,5 +486,50 @@
 - (void)accountEditorControllerDidCancel:(AccountEditorController *)controller {
 	[self dismissModalViewControllerAnimated:YES];
 }
+
+
+#ifdef LITEVERSION
+
+- (NSString *)publisherId {
+	return @"a14ae77c080ab49"; // this should be prefilled; if not, get it from www.admob.com
+}
+
+- (UIColor *)adBackgroundColor {
+	return [UIColor colorWithRed:0 green:0 blue:0 alpha:1]; // this should be prefilled; if not, provide a UIColor
+}
+
+
+- (UIColor *)primaryTextColor {
+	return [UIColor colorWithRed:1 green:1 blue:1 alpha:1]; // this should be prefilled; if not, provide a UIColor
+}
+
+- (UIColor *)secondaryTextColor {
+	return [UIColor colorWithRed:1 green:1 blue:1 alpha:1]; // this should be prefilled; if not, provide a UIColor
+}
+
+- (BOOL)mayAskForLocation {
+	return YES; // this should be prefilled; if not, see AdMobProtocolDelegate.h for instructions
+}
+
+// To receive test ads rather than real ads...
+#ifdef DEBUG
+- (BOOL)useTestAd {
+	return YES;
+}
+
+- (NSString *)testAdAction {
+	return @"url"; // see AdMobDelegateProtocol.h for a listing of valid values here
+}
+	
+- (void)didReceiveAd:(AdMobView *)adView {
+	NSLog(@"AdMob: Did receive ad");
+}
+
+- (void)didFailToReceiveAd:(AdMobView *)adView {
+	NSLog(@"AdMob: Did fail to receive ad");
+}
+#endif
+
+#endif
 
 @end

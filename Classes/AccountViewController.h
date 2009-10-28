@@ -11,6 +11,7 @@
 #import "PostViewController.h"
 #import "Model.h"
 #import "AccountEditorController.h"
+#import "AdMobDelegateProtocol.h"
 
 @class LJAccount, UserPicCache, PostSummaryCell;
 
@@ -18,7 +19,11 @@
 
 
 @interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate,
-PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate, UIScrollViewDelegate, AccountEditorControllerDataSource, AccountEditorControllerDelegate> {
+PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate, UIScrollViewDelegate, AccountEditorControllerDataSource, AccountEditorControllerDelegate
+#ifdef LITEVERSION
+, AdMobDelegate
+#endif
+> {
 	UITabBarController *tabBar;
 	
 	UIView *masterView;
