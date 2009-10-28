@@ -69,6 +69,11 @@
 	account = [self loadAccount];
 	accountButton = [[UIBarButtonItem alloc] initWithTitle:@"Account" style:UIBarButtonItemStyleBordered target:self action:@selector(editAccount)];
 	self.navigationItem.leftBarButtonItem = accountButton;
+	
+	CGRect frame = webView.frame;
+	frame.origin.y = 48;
+	frame.size.height -= 48;
+	webView.frame = frame;
 #endif
 }
 
@@ -118,6 +123,10 @@
 //		}
 		self.navigationItem.rightBarButtonItem = refreshPostsButton;
 	} else {
+		if (!otherAdView) {
+			otherAdView = [AdMobView requestAdWithDelegate:self];
+			[otherAccountView addSubview:otherAdView];
+		}
 		self.navigationItem.rightBarButtonItem = newPostOther;
 		
 		[self.view addSubview:otherAccountView];	
@@ -536,11 +545,17 @@
 - (void)didReceiveAd:(AdMobView *)adView {
 	NSLog(@"AdMob: Did receive ad");
 }
-
-- (void)didFailToReceiveAd:(AdMobView *)adView {
-	NSLog(@"AdMob: Did fail to receive ad");
-}
 #endif
+	
+- (void)didFailToReceiveAd:(AdMobView *)adView {
+	CGRect frame = webView.frame;
+	frame.origin.y = 0;
+	frame.size.height += 48;
+	webView.frame = frame;
+	
+//	[ljAccountView reloadData];
+}
+
 
 #endif
 

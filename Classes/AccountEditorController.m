@@ -18,6 +18,8 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 		text = @"Can't find server.";
 	} else if (LJErrorConnectionFailed == code) {
 		text = @"Can't connect to server.";
+	} else if (LJErrorNotConnectedToInternet == code) {
+		text = @"Not connected to Internet.";
 	} else if (LJErrorInvalidUsername == code) {
 		text = @"Invalid username.";
 	} else if (LJErrorInvalidPassword == code) {

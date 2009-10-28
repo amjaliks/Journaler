@@ -199,6 +199,8 @@ NSString* md5(NSString *str)
 			error = LJErrorHostNotFound;
 		} else if (errcode == NSURLErrorTimedOut) {
 			error = LJErrorConnectionFailed;
+		} else if (errcode == NSURLErrorNotConnectedToInternet) {
+			error = LJErrorNotConnectedToInternet;
 		} else {
 			error = LJErrorUnknown;
 #ifdef DEBUG
@@ -286,6 +288,8 @@ NSString* md5(NSString *str)
 			error = LJErrorHostNotFound;
 		} else if (errcode == NSURLErrorTimedOut) {
 			error = LJErrorConnectionFailed;
+		} else if (errcode == NSURLErrorNotConnectedToInternet) {
+			error = LJErrorNotConnectedToInternet;
 		} else {
 			error = LJErrorUnknown;
 #ifdef DEBUG

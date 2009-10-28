@@ -67,6 +67,8 @@ PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabB
 	UIBarButtonItem *accountButton;
 	
 	NSDate *lastAdRequest;
+	AdMobView *otherAdView;
+	BOOL noAd;
 #endif
 }
 

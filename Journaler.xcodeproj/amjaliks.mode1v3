@@ -232,6 +232,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -289,7 +291,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 93}, {268, 681}}</string>
+							<string>{{0, 0}, {268, 681}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -310,7 +312,7 @@
 							<real>246</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>3 137 1440 740 0 0 1440 878 </string>
+						<string>3 138 1440 740 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -321,14 +323,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AccountViewController.m</string>
+								<string>LiveJournal.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -336,11 +336,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>AccountViewController.m</string>
+										<string>LiveJournal.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1750B4281098FBCA00C1D2A8</string>
+										<string>1750B4791099076400C1D2A8</string>
 										<key>history</key>
 										<array>
 											<string>17FCD7CA107907BE00806088</string>
@@ -386,9 +386,7 @@
 											<string>1750B0371097936300C1D2A8</string>
 											<string>1750B09810979B5200C1D2A8</string>
 											<string>1750B0A610979B9800C1D2A8</string>
-											<string>1750B0B31097A0DB00C1D2A8</string>
 											<string>1750B0F91097A52000C1D2A8</string>
-											<string>1750B1081097A57900C1D2A8</string>
 											<string>1750B1091097A57900C1D2A8</string>
 											<string>1750B12B1097AD6700C1D2A8</string>
 											<string>1750B13B1097B0B100C1D2A8</string>
@@ -406,13 +404,15 @@
 											<string>1750B2711098E20F00C1D2A8</string>
 											<string>1750B2D11098E62A00C1D2A8</string>
 											<string>1750B2D31098E62A00C1D2A8</string>
-											<string>1750B2E71098E67300C1D2A8</string>
-											<string>1750B2FD1098E75700C1D2A8</string>
 											<string>1750B35D1098EE6300C1D2A8</string>
 											<string>1750B3B41098EFB100C1D2A8</string>
 											<string>1750B3B61098EFB100C1D2A8</string>
-											<string>1750B4121098F83000C1D2A8</string>
-											<string>1750B41F1098F89A00C1D2A8</string>
+											<string>1750B44B1099049300C1D2A8</string>
+											<string>1750B461109906DB00C1D2A8</string>
+											<string>1750B463109906DB00C1D2A8</string>
+											<string>1750B4711099075000C1D2A8</string>
+											<string>1750B4761099076400C1D2A8</string>
+											<string>1750B4771099076400C1D2A8</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -616,6 +616,23 @@
 											<string>1750B3F51098F3E100C1D2A8</string>
 											<string>1750B4141098F83000C1D2A8</string>
 											<string>1750B4151098F83000C1D2A8</string>
+											<string>1750B4301099004E00C1D2A8</string>
+											<string>1750B4311099004E00C1D2A8</string>
+											<string>1750B4321099004E00C1D2A8</string>
+											<string>1750B4381099010B00C1D2A8</string>
+											<string>1750B43E1099017B00C1D2A8</string>
+											<string>1750B43F1099017B00C1D2A8</string>
+											<string>1750B44D1099049300C1D2A8</string>
+											<string>1750B44E1099049300C1D2A8</string>
+											<string>1750B456109905B400C1D2A8</string>
+											<string>1750B464109906DB00C1D2A8</string>
+											<string>1750B465109906DB00C1D2A8</string>
+											<string>1750B466109906DB00C1D2A8</string>
+											<string>1750B467109906DB00C1D2A8</string>
+											<string>1750B46C109906E900C1D2A8</string>
+											<string>1750B4721099075000C1D2A8</string>
+											<string>1750B4731099075000C1D2A8</string>
+											<string>1750B4781099076400C1D2A8</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -629,7 +646,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1150, 571}}</string>
 								<key>RubberWindowFrame</key>
-								<string>3 137 1440 740 0 0 1440 878 </string>
+								<string>3 138 1440 740 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -649,7 +666,7 @@
 								<key>Frame</key>
 								<string>{{0, 576}, {1150, 123}}</string>
 								<key>RubberWindowFrame</key>
-								<string>3 137 1440 740 0 0 1440 878 </string>
+								<string>3 138 1440 740 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -809,6 +826,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1750B4751099075000C1D2A8</string>
 		<string>1750AFB110977D9000C1D2A8</string>
 		<string>1750AFB310977D9000C1D2A8</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -817,7 +835,7 @@
 		<string>/Users/amjaliks/xcode/Jounaler/Journaler.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>3 137 1440 740 0 0 1440 878 </string>
+	<string>3 138 1440 740 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
