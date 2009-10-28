@@ -13,6 +13,7 @@
 #import "UserPicCache.h"
 #import "AccountsViewController.h"
 #import "PostSummaryCell.h"
+#import "AccountEditorController.h"
 
 @implementation AccountViewController
 
@@ -45,6 +46,7 @@
 @synthesize postEditorTabController;
 @synthesize postEditorController;
 @synthesize postViewController;
+@synthesize accountEditor;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -62,6 +64,11 @@
     [super viewDidLoad];
 	tabBar.view.frame = CGRectMake(0, 0, 320, 416);
 	//[self.view addSubview:tabBar.view];
+#ifdef LITEVERSION
+	account = [self loadAccount];
+	accountButton = [[UIBarButtonItem alloc] initWithTitle:@"Account" style:UIBarButtonItemStyleBordered target:self action:@selector(editAccount)];
+	self.navigationItem.leftBarButtonItem = accountButton;
+#endif
 }
 
 
@@ -75,7 +82,15 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 		
+#ifdef LITEVERSION
+	if (!account) {
+		[self editAccount];
+		return;
+	}
+#else
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
+#endif
+	
 	self.title = account.user;
 
 	[otherAccountView removeFromSuperview];
@@ -135,14 +150,14 @@
 	}
 }
 
-- (void) addNewOrUpdateWithPosts:(NSArray *)events forAccount:(LJAccount *)account {
+- (void) addNewOrUpdateWithPosts:(NSArray *)events forAccount:(LJAccount *)acc {
 	NSUInteger idx = 0;
 	Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
 	for (LJEvent *event in events) {
-		Post *post = [model findPostByAccount:account.title journal:event.journalName dItemId:event.ditemid];
+		Post *post = [model findPostByAccount:acc.title journal:event.journalName dItemId:event.ditemid];
 		if (!post) {
 			post = [model createPost];
-			post.account = account.title;
+			post.account = acc.title;
 			post.journal = event.journalName;
 			post.journalType = event.journalType;
 			post.ditemid = event.ditemid;
@@ -167,11 +182,11 @@
 	}
 }
 
-- (NSArray *) requestPostsFromServerForAccount:(LJAccount *)account lastSync:(NSDate *)lastSync skip:(NSUInteger)skip items:(NSUInteger)items {
-	LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
+- (NSArray *) requestPostsFromServerForAccount:(LJAccount *)acc lastSync:(NSDate *)lastSync skip:(NSUInteger)skip items:(NSUInteger)items {
+	LJGetChallenge *challenge = [LJGetChallenge requestWithServer:acc.server];
 	if ([challenge doRequest]) {
 		NSString *c = [challenge.challenge retain];
-		LJGetFriendsPage *friendPage = [LJGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:c];
+		LJGetFriendsPage *friendPage = [LJGetFriendsPage requestWithServer:acc.server user:acc.user password:acc.password challenge:c];
 		if (lastSync) {
 			friendPage.lastSync = lastSync;
 		};
@@ -192,7 +207,9 @@
 - (void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 
+#ifndef LITEVERSION
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
+#endif
 	
 	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
 		if (!account.synchronized) {
@@ -228,9 +245,10 @@
 	refreshPostsButton.enabled = NO;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	
+#ifndef LITEVERSION
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
+#endif	
 
-	
 	NSUInteger loaded = 0;
 	if ([posts count]) {
 		loaded = -1;
@@ -375,5 +393,49 @@
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
 	[self scrollViewDidEndDecelerating:scrollView];
 }
+
+#ifdef LITEVERSION
+- (LJAccount *)loadAccount {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *path = [paths objectAtIndex:0];
+	path = [path stringByAppendingPathComponent:@"account.bin"];
+	LJAccount *acc = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+	return [acc retain];
+}
+
+- (void) saveAccount {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *path = [paths objectAtIndex:0];
+	path = [path stringByAppendingPathComponent:@"account.bin"];
+	[NSKeyedArchiver archiveRootObject:account toFile:path];
+}
+
+- (IBAction) editAccount {
+	[self presentModalViewController:accountEditor animated:YES];
+}
+
+- (LJAccount *)selectedAccountForAccountEditorController:(AccountEditorController *)controller {
+	return account;
+}
+
+- (BOOL)isDublicateAccount:(NSString *)title {
+	return NO;
+}
+
+- (BOOL)hasNoAccounts {
+	return !account;
+}
+
+- (void)accountEditorController:(AccountEditorController *)controller didFinishedEditingAccount:(LJAccount *)acc {
+	account = [acc retain];
+	[self saveAccount];
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)accountEditorControllerDidCancel:(AccountEditorController *)controller {
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+#endif
 
 @end

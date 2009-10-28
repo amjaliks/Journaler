@@ -17,6 +17,7 @@
 
 @synthesize window;
 @synthesize navigationController;
+@synthesize liteNavigationController;
 
 
 #pragma mark -
@@ -27,7 +28,11 @@
 	model = [[Model alloc] init];
 	userPicCache = [[UserPicCache alloc] init];
 	
+#ifdef LITEVERSION
+	[window addSubview:[liteNavigationController view]];
+#else
 	[window addSubview:[navigationController view]];
+#endif
     [window makeKeyAndVisible];
 }
 
@@ -43,6 +48,7 @@
 	[model release];
 	[userPicCache release];
 	
+	[liteNavigationController release];
 	[navigationController release];
 	[window release];
 	[super dealloc];

@@ -10,13 +10,15 @@
 #import "PostEditorController.h"
 #import "PostViewController.h"
 #import "Model.h"
+#import "AccountEditorController.h"
 
 @class LJAccount, UserPicCache, PostSummaryCell;
 
 @protocol AccountViewControllerDataSource;
 
 
-@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate, PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate, UIScrollViewDelegate> {
+@interface AccountViewController : UIViewController <UIWebViewDelegate, PostEditorControllerDataSource, PostEditorControllerDelegate,
+PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate, UIScrollViewDelegate, AccountEditorControllerDataSource, AccountEditorControllerDelegate> {
 	UITabBarController *tabBar;
 	
 	UIView *masterView;
@@ -51,6 +53,14 @@
 	UIViewController *postEditorTabController;
 		
 	LJAccount *previousAccount;
+				
+	UIViewController *accountEditor;
+
+#ifdef LITEVERSION
+	LJAccount *account;
+	
+	UIBarButtonItem *accountButton;
+#endif
 }
 
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBar;
@@ -83,11 +93,19 @@
 @property (nonatomic, retain) IBOutlet UIViewController *friendsTabController;
 @property (nonatomic, retain) IBOutlet UIViewController *postEditorTabController;
 
+@property (nonatomic, retain) IBOutlet UIViewController *accountEditor;
+
 - (IBAction) goToUpdate;
 - (IBAction) refreshPosts:(id) sender;
 
 - (void) addNewOrUpdateWithPosts:(NSArray *)events forAccount:(LJAccount *)account;
 - (NSArray *) requestPostsFromServerForAccount:(LJAccount *)account lastSync:(NSDate *)lastSync skip:(NSUInteger)skip items:(NSUInteger)items;
+
+#ifdef LITEVERSION
+- (LJAccount *)loadAccount;
+- (void)editAccount;
+- (void)saveAccount;
+#endif
 
 @end
 

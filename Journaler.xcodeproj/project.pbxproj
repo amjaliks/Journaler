@@ -45,7 +45,6 @@
 		1750B15F1097B3F900C1D2A8 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 1750B0D81097A41000C1D2A8 /* image.png */; };
 		1750B1611097B3F900C1D2A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1750B1621097B3F900C1D2A8 /* JournalerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */; };
-		1750B1631097B3F900C1D2A8 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BCF1075444F00155636 /* AccountsViewController.m */; };
 		1750B1641097B3F900C1D2A8 /* LiveJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0CC110768D2900155636 /* LiveJournal.m */; };
 		1750B1651097B3F900C1D2A8 /* AccountEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD7151078C70700806088 /* AccountEditorController.m */; };
 		1750B1661097B3F900C1D2A8 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */; };
@@ -71,7 +70,6 @@
 		1750B17C1097B3F900C1D2A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		1750B17D1097B3F900C1D2A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		1750B17E1097B3F900C1D2A8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17132614108A1203007F6C24 /* CoreData.framework */; };
-		1750B1921097B45000C1D2A8 /* Journaler Lite-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1750B1911097B45000C1D2A8 /* Journaler Lite-Info.plist */; };
 		1750B1931097B46000C1D2A8 /* Journaler.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 17132865108A4A89007F6C24 /* Journaler.xcdatamodel */; };
 		1759F1831092F28B0008AA60 /* DelayedUserPicLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */; };
 		1759F1E110930D5D0008AA60 /* PostSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1E010930D5D0008AA60 /* PostSummaryCell.m */; };
@@ -131,7 +129,7 @@
 		1750B0D61097A3B200C1D2A8 /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video.png; sourceTree = "<group>"; };
 		1750B0D81097A41000C1D2A8 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		1750B1831097B3F900C1D2A8 /* Journaler Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Journaler Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1750B1911097B45000C1D2A8 /* Journaler Lite-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Journaler Lite-Info.plist"; sourceTree = "<group>"; };
+		1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JournalerLite-Info.plist"; sourceTree = "<group>"; };
 		1759F1811092F28B0008AA60 /* DelayedUserPicLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayedUserPicLoader.h; sourceTree = "<group>"; };
 		1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayedUserPicLoader.m; sourceTree = "<group>"; };
 		1759F1DF10930D5D0008AA60 /* PostSummaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostSummaryCell.h; sourceTree = "<group>"; };
@@ -373,7 +371,7 @@
 				1759F31A1093674E0008AA60 /* WebViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Journaler-Info.plist */,
-				1750B1911097B45000C1D2A8 /* Journaler Lite-Info.plist */,
+				1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */,
 				17132865108A4A89007F6C24 /* Journaler.xcdatamodel */,
 				17132A55108B240B007F6C24 /* SinglePostTemplate.html */,
 			);
@@ -479,7 +477,6 @@
 				1750B15D1097B3F900C1D2A8 /* comments.png in Resources */,
 				1750B15E1097B3F900C1D2A8 /* video.png in Resources */,
 				1750B15F1097B3F900C1D2A8 /* image.png in Resources */,
-				1750B1921097B45000C1D2A8 /* Journaler Lite-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +517,6 @@
 			files = (
 				1750B1611097B3F900C1D2A8 /* main.m in Sources */,
 				1750B1621097B3F900C1D2A8 /* JournalerAppDelegate.m in Sources */,
-				1750B1631097B3F900C1D2A8 /* AccountsViewController.m in Sources */,
 				1750B1641097B3F900C1D2A8 /* LiveJournal.m in Sources */,
 				1750B1651097B3F900C1D2A8 /* AccountEditorController.m in Sources */,
 				1750B1661097B3F900C1D2A8 /* AccountViewController.m in Sources */,
@@ -590,7 +586,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
-				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/Journaler Lite-Info.plist";
+				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+				OTHER_CFLAGS = (
+					"-DLITEVERSION",
+					"-DDEBUG",
+				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "Journaler Lite";
 			};
@@ -603,7 +603,8 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
-				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/Journaler Lite-Info.plist";
+				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+				OTHER_CFLAGS = "-DLITEVERSION";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "Journaler Lite";
 			};
@@ -616,7 +617,8 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
-				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/Journaler Lite-Info.plist";
+				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+				OTHER_CFLAGS = "-DLITEVERSION";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "Journaler Lite";
 			};
