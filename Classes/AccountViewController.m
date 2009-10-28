@@ -414,28 +414,39 @@
 	[self presentModalViewController:accountEditor animated:YES];
 }
 
+#endif
+
 - (LJAccount *)selectedAccountForAccountEditorController:(AccountEditorController *)controller {
+#ifdef LITEVERSION
 	return account;
+#else
+	return nil;
+#endif
 }
+
 
 - (BOOL)isDublicateAccount:(NSString *)title {
 	return NO;
 }
 
 - (BOOL)hasNoAccounts {
+#ifdef LITEVERSION
 	return !account;
+#else
+	return NO;
+#endif
 }
 
 - (void)accountEditorController:(AccountEditorController *)controller didFinishedEditingAccount:(LJAccount *)acc {
+#ifdef LITEVERSION
 	account = [acc retain];
 	[self saveAccount];
 	[self dismissModalViewControllerAnimated:YES];
+#endif
 }
 
 - (void)accountEditorControllerDidCancel:(AccountEditorController *)controller {
 	[self dismissModalViewControllerAnimated:YES];
 }
-
-#endif
 
 @end
