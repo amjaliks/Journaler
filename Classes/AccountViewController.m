@@ -308,11 +308,19 @@
 }
 
 - (LJAccount *)selectedAccountForPostEditorController:(PostEditorController *)controller {
+#ifdef LITEVERSION
+	return account;
+#else
 	return [dataSource selectedAccountForAccountViewController:self];
+#endif
 }
 
 - (LJAccount *) selectedAccountForPostViewController:(PostViewController *)controller {
+#ifdef LITEVERSION
+	return account;
+#else
 	return [dataSource selectedAccountForAccountViewController:self];
+#endif
 }
 
 - (void)postEditorControllerDidFinish:(PostEditorController *)controller {
