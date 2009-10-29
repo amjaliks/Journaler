@@ -79,7 +79,11 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 		passwordText.text = account.password;
 		serverText.text = account.server;
 	} else {
+#ifdef LITEVERSION
+		self.title = @"Set account";
+#else
 		self.title = @"Add account";
+#endif
 		usernameText.text = nil;
 		passwordText.text = nil;
 		serverText.text = nil;
