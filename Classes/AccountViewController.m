@@ -123,10 +123,12 @@
 //		}
 		self.navigationItem.rightBarButtonItem = refreshPostsButton;
 	} else {
+#ifdef LITEVERSION
 		if (!otherAdView) {
 			otherAdView = [AdMobView requestAdWithDelegate:self];
 			[otherAccountView addSubview:otherAdView];
 		}
+#endif
 		self.navigationItem.rightBarButtonItem = newPostOther;
 		
 		[self.view addSubview:otherAccountView];	
