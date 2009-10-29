@@ -531,7 +531,7 @@
 }
 
 - (BOOL)mayAskForLocation {
-	return YES; // this should be prefilled; if not, see AdMobProtocolDelegate.h for instructions
+	return NO; // this should be prefilled; if not, see AdMobProtocolDelegate.h for instructions
 }
 
 // To receive test ads rather than real ads...
