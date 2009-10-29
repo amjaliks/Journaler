@@ -629,6 +629,54 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		174D89CF109A418D0055AA82 /* Distribution (App Store) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: A25 Ltd.";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67BC3A29-F724-45F9-974A-33D04C375EC2";
+				SDKROOT = iphoneos3.0;
+			};
+			name = "Distribution (App Store)";
+		};
+		174D89D0109A418D0055AA82 /* Distribution (App Store) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
+				INFOPLIST_FILE = "Journaler-Info.plist";
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = Journaler;
+			};
+			name = "Distribution (App Store)";
+		};
+		174D89D1109A418D0055AA82 /* Distribution (App Store) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
+				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes\"",
+				);
+				OTHER_CFLAGS = "-DLITEVERSION";
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = "Journaler Lite";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5EE54C79-D994-4C7E-8CC5-9E9EF523EB78";
+			};
+			name = "Distribution (App Store)";
+		};
 		1750B1801097B3F900C1D2A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -685,6 +733,7 @@
 				OTHER_CFLAGS = "-DLITEVERSION";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "Journaler Lite";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D368EE81-0AAE-4FF1-9CB3-A18373338E71";
 			};
 			name = "Distribution (Ad Hoc)";
 		};
@@ -783,6 +832,7 @@
 				1750B1801097B3F900C1D2A8 /* Debug */,
 				1750B1811097B3F900C1D2A8 /* Release */,
 				1750B1821097B3F900C1D2A8 /* Distribution (Ad Hoc) */,
+				174D89D1109A418D0055AA82 /* Distribution (App Store) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -793,6 +843,7 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				17DB0C8210765F9300155636 /* Distribution (Ad Hoc) */,
+				174D89D0109A418D0055AA82 /* Distribution (App Store) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -803,6 +854,7 @@
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
 				17DB0C8110765F9300155636 /* Distribution (Ad Hoc) */,
+				174D89CF109A418D0055AA82 /* Distribution (App Store) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
