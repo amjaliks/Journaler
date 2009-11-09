@@ -7,6 +7,7 @@
 //
 
 #import "JournalerAppDelegate.h"
+#import "ALReporter.h"
 //#import "RootViewController.h"
 
 
@@ -23,7 +24,13 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+#ifndef LITEVERSION
+	NSString *appUID = @"tM7hdncHys"; // pilnā versija
+#else
+	NSString *appUID = @"LrAKgAl3bA"; // lite versija
+#endif
+	reporter = [[ALReporter alloc] initWithAppUID:appUID reportURL:[NSURL URLWithString:@"http://tomcat.keeper.lv/anldev/report"]];	
     
 	model = [[Model alloc] init];
 	userPicCache = [[UserPicCache alloc] init];
@@ -45,6 +52,8 @@
 #pragma mark Memory management
 
 - (void)dealloc {
+	[reporter release];
+
 	[model release];
 	[userPicCache release];
 	

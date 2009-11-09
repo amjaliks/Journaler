@@ -10,6 +10,8 @@
 #import "Model.h"
 #import "UserPicCache.h"
 
+@class ALReporter;
+
 @interface JournalerAppDelegate : NSObject <UIApplicationDelegate> {
 
 	Model *model;
@@ -19,6 +21,7 @@
     UINavigationController *navigationController;
 	UINavigationController *liteNavigationController;
 	
+	ALReporter *reporter;
 }
 
 @property (nonatomic, retain) Model *model;

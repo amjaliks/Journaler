@@ -401,7 +401,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+#ifdef LITEVERSION
+	NSUInteger index = indexPath.row;
+	index -= (index / 10 + 1);
+	selectedPost = [posts objectAtIndex:index];
+#else
 	selectedPost = [posts objectAtIndex:indexPath.row];
+#endif
 	[self.navigationController pushViewController:postViewController animated:YES];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
