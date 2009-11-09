@@ -216,6 +216,46 @@
 	return nil;
 }
 
+#ifdef LITEVERSION
+- (void) loadLJPosts {
+	if (!account.synchronized) {
+		UIView *view = [[UIView alloc] initWithFrame:[self.view frame]];
+		[view setBackgroundColor:[UIColor blackColor]];
+		[view setOpaque:YES];
+		[view setAlpha:0.5];
+		[self.view addSubview:view];
+		
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+		
+		NSArray *events;
+		if ([posts count]) {
+			events = [self requestPostsFromServerForAccount:account lastSync:((Post *)[posts objectAtIndex:0]).dateTime skip:0 items:100];
+		} else {
+			events = [self requestPostsFromServerForAccount:account lastSync:nil skip:0 items:100];
+		}
+		
+		if (events) {
+			[self addNewOrUpdateWithPosts:events forAccount:account];
+			[events release];
+		}
+		
+		[ljAccountView reloadData];
+		[ljAccountView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		
+		account.synchronized = YES;
+		refreshPostsButton.enabled = YES;
+		
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+		
+		[view removeFromSuperview];
+		[view release];
+	};
+	[self.masterView addSubview:ljAccountView];
+	
+	[self scrollViewDidEndDecelerating:ljAccountView];
+}
+#endif
+
 - (void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 
@@ -224,7 +264,13 @@
 #endif
 	
 	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
+#ifndef LITEVERSION
 		if (!account.synchronized) {
+			UIView *view = [[UIView alloc] initWithFrame:[self.view frame]];
+			[view setBackgroundColor:[UIColor blackColor]];
+			[view setOpaque:YES];
+			[view setAlpha:0.5];
+			[self.view addSubview:view];
 			[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
 			NSArray *events;
@@ -248,8 +294,11 @@
 			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		};
 		[self.masterView addSubview:ljAccountView];
-		
+
 		[self scrollViewDidEndDecelerating:ljAccountView];
+#else
+		[self performSelectorInBackground:@selector(loadLJPosts) withObject:nil];
+#endif
 	};
 }
 

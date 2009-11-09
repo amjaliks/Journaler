@@ -84,6 +84,12 @@
 		1759F31B1093674E0008AA60 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F3191093674E0008AA60 /* WebViewController.m */; };
 		1759F31C1093674E0008AA60 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1759F31A1093674E0008AA60 /* WebViewController.xib */; };
 		1759F49D1096514B0008AA60 /* comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 1759F49C1096514B0008AA60 /* comments.png */; };
+		17704A5C10A238C100C1EFB2 /* ALAppUse.m in Sources */ = {isa = PBXBuildFile; fileRef = 17704A5710A238C100C1EFB2 /* ALAppUse.m */; };
+		17704A5D10A238C100C1EFB2 /* ALDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17704A5910A238C100C1EFB2 /* ALDeviceInfo.m */; };
+		17704A5E10A238C100C1EFB2 /* ALReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 17704A5B10A238C100C1EFB2 /* ALReporter.m */; };
+		17704A5F10A238C100C1EFB2 /* ALAppUse.m in Sources */ = {isa = PBXBuildFile; fileRef = 17704A5710A238C100C1EFB2 /* ALAppUse.m */; };
+		17704A6010A238C100C1EFB2 /* ALDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17704A5910A238C100C1EFB2 /* ALDeviceInfo.m */; };
+		17704A6110A238C100C1EFB2 /* ALReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 17704A5B10A238C100C1EFB2 /* ALReporter.m */; };
 		1789BE60107A894B00964DA2 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE5F107A894B00964DA2 /* forward.png */; };
 		1789BE62107A89F200964DA2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
 		1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
@@ -156,6 +162,12 @@
 		1759F3191093674E0008AA60 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../WebViewController.m; sourceTree = "<group>"; };
 		1759F31A1093674E0008AA60 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		1759F49C1096514B0008AA60 /* comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comments.png; sourceTree = "<group>"; };
+		17704A5610A238C100C1EFB2 /* ALAppUse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALAppUse.h; path = ../../ws/appnlytics/iphone/ALAppUse.h; sourceTree = SOURCE_ROOT; };
+		17704A5710A238C100C1EFB2 /* ALAppUse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALAppUse.m; path = ../../ws/appnlytics/iphone/ALAppUse.m; sourceTree = SOURCE_ROOT; };
+		17704A5810A238C100C1EFB2 /* ALDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALDeviceInfo.h; path = ../../ws/appnlytics/iphone/ALDeviceInfo.h; sourceTree = SOURCE_ROOT; };
+		17704A5910A238C100C1EFB2 /* ALDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALDeviceInfo.m; path = ../../ws/appnlytics/iphone/ALDeviceInfo.m; sourceTree = SOURCE_ROOT; };
+		17704A5A10A238C100C1EFB2 /* ALReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALReporter.h; path = ../../ws/appnlytics/iphone/ALReporter.h; sourceTree = SOURCE_ROOT; };
+		17704A5B10A238C100C1EFB2 /* ALReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALReporter.m; path = ../../ws/appnlytics/iphone/ALReporter.m; sourceTree = SOURCE_ROOT; };
 		1789BE5F107A894B00964DA2 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
 		1789BE61107A89F200964DA2 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		1789BFDF107E73BA00964DA2 /* PostEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEditorController.h; sourceTree = "<group>"; };
@@ -248,6 +260,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				17704A5210A2384400C1EFB2 /* Appnlytics */,
 				1750B34E1098ED1900C1D2A8 /* AdMob */,
 				17B4C536108132D90005660E /* RegexKitLite */,
 				17B4C78C1083AC8D0005660E /* XMLRPC */,
@@ -337,6 +350,19 @@
 				1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */,
 			);
 			name = UserPicCache;
+			sourceTree = "<group>";
+		};
+		17704A5210A2384400C1EFB2 /* Appnlytics */ = {
+			isa = PBXGroup;
+			children = (
+				17704A5610A238C100C1EFB2 /* ALAppUse.h */,
+				17704A5710A238C100C1EFB2 /* ALAppUse.m */,
+				17704A5810A238C100C1EFB2 /* ALDeviceInfo.h */,
+				17704A5910A238C100C1EFB2 /* ALDeviceInfo.m */,
+				17704A5A10A238C100C1EFB2 /* ALReporter.h */,
+				17704A5B10A238C100C1EFB2 /* ALReporter.m */,
+			);
+			name = Appnlytics;
 			sourceTree = "<group>";
 		};
 		17B4C536108132D90005660E /* RegexKitLite */ = {
@@ -591,6 +617,9 @@
 				1750B1781097B3F900C1D2A8 /* PostSummaryCell.m in Sources */,
 				1750B1791097B3F900C1D2A8 /* WebViewController.m in Sources */,
 				1750B1931097B46000C1D2A8 /* Journaler.xcdatamodel in Sources */,
+				17704A5C10A238C100C1EFB2 /* ALAppUse.m in Sources */,
+				17704A5D10A238C100C1EFB2 /* ALDeviceInfo.m in Sources */,
+				17704A5E10A238C100C1EFB2 /* ALReporter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +652,9 @@
 				1759F1831092F28B0008AA60 /* DelayedUserPicLoader.m in Sources */,
 				1759F1E110930D5D0008AA60 /* PostSummaryCell.m in Sources */,
 				1759F31B1093674E0008AA60 /* WebViewController.m in Sources */,
+				17704A5F10A238C100C1EFB2 /* ALAppUse.m in Sources */,
+				17704A6010A238C100C1EFB2 /* ALDeviceInfo.m in Sources */,
+				17704A6110A238C100C1EFB2 /* ALReporter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +694,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: A25 Ltd.";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
@@ -722,6 +755,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: A25 Ltd.";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
