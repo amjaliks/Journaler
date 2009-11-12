@@ -151,7 +151,13 @@
 				cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
 				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
 				
-				NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/~%@/friends", account.server, account.user]]];
+				NSString *URLFormat;
+				if ([@"dreamwidth.org" isEqualToString:account.server]) {
+					URLFormat = @"http://%@/~%@/read";
+				} else {
+					URLFormat = @"http://%@/~%@/friends";
+				}
+				NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:URLFormat, account.server, account.user]]];
 				[webView loadRequest:req];
 			} else {
 				showErrorMessage(@"Friend page error", session.error);
