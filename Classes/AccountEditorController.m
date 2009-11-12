@@ -237,13 +237,13 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 		return;
 	}
 	
-	LJFlatGetChallenge *req = [LJFlatGetChallenge requestWithServer:server];
+	LJGetChallenge *req = [LJGetChallenge requestWithServer:server];
 	if (![req doRequest]) {
 		showErrorMessage(@"Login error", req.error);
 		return;
 	}
 	
-	LJFlatLogin *login = [LJFlatLogin requestWithServer:server user:usernameText.text password:passwordText.text challenge:req.challenge];
+	LJLogin *login = [LJLogin requestWithServer:server user:usernameText.text password:passwordText.text challenge:req.challenge];
 	if (![login doRequest]) {
 		showErrorMessage(@"Login error", login.error);
 		return;

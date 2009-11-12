@@ -74,24 +74,24 @@ enum {
 
 
 // A raw object for LJ Flat API request. Use as superclass for all requests.
-@interface LJFlatRequest : NSObject {
-	NSString *_server;
-	NSString *_mode;
-	
-	NSMutableDictionary *parameters;
-	NSMutableDictionary *result;
-	
-	NSUInteger error;
-}
-
-- (id)initWithServer:(NSString *)server mode:(NSString *)mode;
-- (BOOL)doRequest;
-- (void)proceedError;
-
-@property (readonly) BOOL success;
-@property (readonly) NSUInteger error;
-
-@end
+//@interface LJFlatRequest : NSObject {
+//	NSString *_server;
+//	NSString *_mode;
+//	
+//	NSMutableDictionary *parameters;
+//	NSMutableDictionary *result;
+//	
+//	NSUInteger error;
+//}
+//
+//- (id)initWithServer:(NSString *)server mode:(NSString *)mode;
+//- (BOOL)doRequest;
+//- (void)proceedError;
+//
+//@property (readonly) BOOL success;
+//@property (readonly) NSUInteger error;
+//
+//@end
 
 
 @interface LJRequest : NSObject {
@@ -114,14 +114,14 @@ enum {
 @end
 
 
-@interface LJFlatGetChallenge : LJFlatRequest {
-}
-
-+ (LJFlatGetChallenge *)requestWithServer:(NSString *)server;
-
-@property (readonly) NSString *challenge;
-
-@end
+//@interface LJFlatGetChallenge : LJFlatRequest {
+//}
+//
+//+ (LJFlatGetChallenge *)requestWithServer:(NSString *)server;
+//
+//@property (readonly) NSString *challenge;
+//
+//@end
 
 
 @interface LJGetChallenge : LJRequest {
@@ -134,22 +134,22 @@ enum {
 @end
 
 
-@interface LJFlatLogin : LJFlatRequest {
+@interface LJLogin : LJRequest {
 	NSString *challenge;
 	NSString *password;
 }
 
-+ (LJFlatLogin *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
++ (LJLogin *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
 
 @end
 
 
-@interface LJFlatSessionGenerate : LJFlatRequest {
+@interface LJSessionGenerate : LJRequest {
 	NSString *challenge;
 	NSString *password;
 }
 
-+ (LJFlatSessionGenerate *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
++ (LJSessionGenerate *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
 
 @property (readonly) NSString *ljsession;
 
@@ -185,14 +185,14 @@ enum {
 
 @end
 
-@interface LJFlatGetEvents : LJFlatRequest {
-	NSString *challenge;
-	NSString *password;
-	NSMutableArray *entries;
-}
-
-+ (LJFlatGetEvents *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
-
-@property (readonly) NSArray *entries;
-
-@end
+//@interface LJFlatGetEvents : LJFlatRequest {
+//	NSString *challenge;
+//	NSString *password;
+//	NSMutableArray *entries;
+//}
+//
+//+ (LJFlatGetEvents *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
+//
+//@property (readonly) NSArray *entries;
+//
+//@end

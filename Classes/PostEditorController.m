@@ -206,7 +206,7 @@
 - (IBAction) post:(id)sender {
 	LJAccount *account = [dataSource selectedAccountForPostEditorController:self];
 	
-	LJFlatGetChallenge *req = [LJFlatGetChallenge requestWithServer:account.server];
+	LJGetChallenge *req = [LJGetChallenge requestWithServer:account.server];
 	if (![req doRequest]) {
 		showErrorMessage(@"Post error", req.error);
 		return;

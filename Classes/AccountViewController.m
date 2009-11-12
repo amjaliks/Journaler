@@ -133,10 +133,10 @@
 		
 		[self.view addSubview:otherAccountView];	
 
-		LJFlatGetChallenge *challenge = [LJFlatGetChallenge requestWithServer:account.server];
+		LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
 		if ([challenge doRequest]) {
 		
-			LJFlatSessionGenerate *session = [LJFlatSessionGenerate requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
+			LJSessionGenerate *session = [LJSessionGenerate requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
 			if ([session doRequest]) {
 				NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
 				NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
@@ -272,11 +272,6 @@
 	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
 #ifndef LITEVERSION
 		if (!account.synchronized) {
-			UIView *view = [[UIView alloc] initWithFrame:[self.view frame]];
-			[view setBackgroundColor:[UIColor blackColor]];
-			[view setOpaque:YES];
-			[view setAlpha:0.5];
-			[self.view addSubview:view];
 			[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
 			NSArray *events;
