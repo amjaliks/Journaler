@@ -31,6 +31,7 @@ PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabB
 	UIView *otherAccountView;
 	
 	UIWebView *webView;
+	NSMutableDictionary *webViews;
 	
 	UIToolbar *toolbar;
 	UIBarButtonItem *backButton;

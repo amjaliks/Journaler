@@ -54,6 +54,20 @@ NSString* md5(NSString *str)
 	return [NSString stringWithFormat:@"%@@%@", user, server];
 }
 
+- (BOOL) isEqual:(id)anObject {
+	if (self == anObject) {
+		return YES;
+	}
+	if (!anObject) {
+		return NO;
+	}
+	if ([anObject isKindOfClass:[LJAccount class]]) {
+		return [self.title isEqualToString:((LJAccount *) anObject).title];
+	} else {
+		return NO;
+	}
+}
+
 @end
 
 
