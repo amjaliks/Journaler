@@ -216,17 +216,31 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 	[delegate accountEditorControllerDidCancel:self];
 }
 
-// Saving account. Handles event of "Done".
+// Saglabājam kontu
 - (IBAction) saveAccount:(id)sender {
+	// dažas lokālas konstantes
+	//   noklusētais serveris
+	static NSString *defaultServer = @"livejournal.com";
+	//   www prefikss, kas jāņem nost
+	static NSString *wwwPrefix = @"www.";
+	
+	// veicam dažas servera nosaukuma pārbaudes
 	NSString *server = serverText.text;
-	if (![server length]) {
-		server = @"livejournal.com";
+	if (!server && ![server length]) {
+		// servera nosaukums nav norādīt, tad noklusēti tas ir livejournal.com
+		server = defaultServer;
+	} else {
+		server = [server lowercaseString];
+		if ([server hasPrefix:wwwPrefix]) {
+			// ja servera nosaukums sākas ar www, tad noņemam tos nost
+			server = [server substringFromIndex:4];
+		}
 	}
 	
 	LJAccount *account = [[LJAccount alloc] init];
 	account.user = [usernameText.text lowercaseString];
 	account.password = passwordText.text;
-	account.server = [server lowercaseString];
+	account.server = server;
 
 	if ([dataSource isDublicateAccount:account.title]) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Account error" message:@"You have already added this account." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

@@ -248,7 +248,7 @@
 
 - (BOOL)isDublicateAccount:(NSString *)title {
 	for (LJAccount *account in accounts) {
-		if ([account.title isEqualToString:title]) {
+		if (selectedAccount != account && [account.title isEqualToString:title]) {
 			return YES;
 		}
 	}
