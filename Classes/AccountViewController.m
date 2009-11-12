@@ -118,9 +118,6 @@
 				refreshPostsButton.enabled = NO;
 			}
 		}
-//		if (account.synchronized) {
-//			[self.masterView addSubview:ljAccountView];
-//		}
 		self.navigationItem.rightBarButtonItem = refreshPostsButton;
 	} else {
 #ifdef LITEVERSION
@@ -222,58 +219,28 @@
 	return nil;
 }
 
-#ifdef LITEVERSION
 - (void) loadLJPosts {
-	if (!account.synchronized) {
-		UIView *view = [[UIView alloc] initWithFrame:[self.view frame]];
-		[view setBackgroundColor:[UIColor blackColor]];
-		[view setOpaque:YES];
-		[view setAlpha:0.5];
-		[self.view addSubview:view];
-		
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-		
-		NSArray *events;
-		if ([posts count]) {
-			events = [self requestPostsFromServerForAccount:account lastSync:((Post *)[posts objectAtIndex:0]).dateTime skip:0 items:100];
-		} else {
-			events = [self requestPostsFromServerForAccount:account lastSync:nil skip:0 items:100];
-		}
-		
-		if (events) {
-			[self addNewOrUpdateWithPosts:events forAccount:account];
-			[events release];
-		}
-		
-		[ljAccountView reloadData];
-		[ljAccountView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-		
-		account.synchronized = YES;
-		refreshPostsButton.enabled = YES;
-		
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		
-		[view removeFromSuperview];
-		[view release];
-	};
-	[self.masterView addSubview:ljAccountView];
-	
-	[self scrollViewDidEndDecelerating:ljAccountView];
-}
-#endif
-
-- (void) viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-
 #ifndef LITEVERSION
 	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
 #endif
-	
-	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
-#ifndef LITEVERSION
-		if (!account.synchronized) {
-			[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
+	if (!account.synchronized) {
+#ifdef LITEVERSION
+		UIView *view = [[UIView alloc] initWithFrame:[self.view.window frame]];
+		[view setBackgroundColor:[UIColor blackColor]];
+		[view setOpaque:YES];
+		[view setAlpha:0.5];
+		[self.view.window addSubview:view];
+#endif
+	
+		// nolasam iestatījumus
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		BOOL refreshOnStart = [defaults boolForKey:@"refresh_on_start"];
+
+		if (refreshOnStart) {
+			// ja pie palaišanas vajag vajag atjaunot friendlisti, tad to daram
+			[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+			
 			NSArray *events;
 			if ([posts count]) {
 				events = [self requestPostsFromServerForAccount:account lastSync:((Post *)[posts objectAtIndex:0]).dateTime skip:0 items:100];
@@ -285,18 +252,36 @@
 				[self addNewOrUpdateWithPosts:events forAccount:account];
 				[events release];
 			}
-			
-			[ljAccountView reloadData];
-			[ljAccountView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		}
+		
+		[ljAccountView reloadData];
+		[ljAccountView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		
+		account.synchronized = YES;
+		refreshPostsButton.enabled = YES;
+		
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+		
+#ifdef LITEVERSION
+		[view removeFromSuperview];
+		[view release];
+#endif
+	};
+	[self.masterView addSubview:ljAccountView];
+	
+	[self scrollViewDidEndDecelerating:ljAccountView];
+}
 
-			account.synchronized = YES;
-			refreshPostsButton.enabled = YES;
+- (void) viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
 
-			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		};
-		[self.masterView addSubview:ljAccountView];
-
-		[self scrollViewDidEndDecelerating:ljAccountView];
+#ifndef LITEVERSION
+	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
+#endif
+	
+	if ([@"livejournal.com" isEqualToString:[account.server lowercaseString]]) {
+#ifndef LITEVERSION
+		[self loadLJPosts];
 #else
 		[self performSelectorInBackground:@selector(loadLJPosts) withObject:nil];
 #endif
