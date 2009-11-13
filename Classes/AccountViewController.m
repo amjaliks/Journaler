@@ -96,6 +96,13 @@
 	[lWebView loadRequest:req];
 }
 
+- (void)showMessageRefreshTurnedOffInWebView:(UIWebView *)lWebView {
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"RefreshTurnedOff" ofType:@"html"];
+	NSURL *URL = [NSURL fileURLWithPath:path];
+	NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+	[lWebView loadRequest:request];
+}
+
 - (void)initWebView:(UIWebView *)lWebView forAccount:(LJAccount *)lAccount {
 	LJGetChallenge *challenge = [LJGetChallenge requestWithServer:lAccount.server];
 	if ([challenge doRequest]) {
@@ -167,6 +174,10 @@
 #endif
 		self.navigationItem.rightBarButtonItem = newPostOther;
 		
+		// nolasam iestatījumus
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		BOOL refreshOnStart = [defaults boolForKey:@"refresh_on_start"];
+		
 #ifndef LITEVERSION
 		if (webView) {
 			[webView removeFromSuperview];
@@ -180,7 +191,11 @@
 			[webView setDelegate:self];
 			[webView setScalesPageToFit:YES];
 			
-			[self initWebView:webView forAccount:account];
+			if (refreshOnStart) {
+				[self initWebView:webView forAccount:account];
+			} else {
+				[self showMessageRefreshTurnedOffInWebView:webView];
+			}
 			
 			[webViews setObject:webView forKey:account.title];
 		}
@@ -189,8 +204,13 @@
 		backButton.enabled = webView.canGoBack;
 		forwardButton.enabled = webView.canGoForward;
 #else
-		[self initWebView:webView forAccount:account];
-#endif		
+		if (refreshOnStart) {
+			[self initWebView:webView forAccount:account];
+		} else {
+			[self showMessageRefreshTurnedOffInWebView:webView];
+		}
+#endif	
+		
 		[self.view addSubview:otherAccountView];
 	}
 }
@@ -412,6 +432,19 @@
 	[toolbar setItems:[NSArray arrayWithObjects:
 					   backButton, fixedSpace, forwardButton, flexibleSpace, refreshButton, flexibleSpace2, friendsButton, nil]
 									   animated:NO];
+}
+
+- (BOOL)webView:(UIWebView *)webView_ shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+	if ([@"initwebview" isEqualToString:[[request URL] scheme]]) {
+#ifndef LITEVERSION
+		LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
+#endif
+
+		[self initWebView:webView forAccount:account];
+		return NO;
+	} else {
+		return YES;
+	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
