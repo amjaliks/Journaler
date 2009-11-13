@@ -24,8 +24,6 @@
 @synthesize ljAccountView;
 @synthesize otherAccountView;
 
-@synthesize webView;
-
 @synthesize toolbar;
 @synthesize backButton;
 @synthesize fixedSpace;
@@ -33,6 +31,8 @@
 @synthesize flexibleSpace;
 @synthesize refreshButton;
 @synthesize stopButton;
+@synthesize flexibleSpace2;
+@synthesize friendsButton;
 
 @synthesize newPostOther;
 @synthesize postButton;
@@ -64,26 +64,65 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	tabBar.view.frame = CGRectMake(0, 0, 320, 416);
-	//[self.view addSubview:tabBar.view];
+	
+#ifndef LITEVERSION
+	webViews = [[NSMutableDictionary alloc] init];
+#endif
+	
 #ifdef LITEVERSION
 	account = [self loadAccount];
 	accountButton = [[UIBarButtonItem alloc] initWithTitle:@"Account" style:UIBarButtonItemStyleBordered target:self action:@selector(editAccount)];
 	self.navigationItem.leftBarButtonItem = accountButton;
 	
-	CGRect frame = webView.frame;
+	CGRect frame = otherAccountView.frame;
 	frame.origin.y = 48;
-	frame.size.height -= 48;
-	webView.frame = frame;
+	frame.size.height = 324;
+	webView = [[UIWebView alloc] initWithFrame:frame];
+	[webView setDelegate:self];
+	[webView setScalesPageToFit:YES];
+	
+	[otherAccountView addSubview:webView];
 #endif
 }
 
+- (void)loadFriendListInWebView:(UIWebView *)lWebView forAccount:(LJAccount *)lAccount {
+	NSString *URLFormat;
+	if ([@"dreamwidth.org" isEqualToString:lAccount.server]) {
+		URLFormat = @"http://%@/~%@/read";
+	} else {
+		URLFormat = @"http://%@/~%@/friends";
+	}
+	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:URLFormat, lAccount.server, lAccount.user]]];
+	[lWebView loadRequest:req];
+}
 
-// Override to allow orientations other than the default portrait orientation.
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-//    // Return YES for supported orientations
-//    return YES;//(interfaceOrientation == UIInterfaceOrientationPortrait);
-//}
-
+- (void)initWebView:(UIWebView *)lWebView forAccount:(LJAccount *)lAccount {
+	LJGetChallenge *challenge = [LJGetChallenge requestWithServer:lAccount.server];
+	if ([challenge doRequest]) {
+		
+		LJSessionGenerate *session = [LJSessionGenerate requestWithServer:lAccount.server user:lAccount.user password:lAccount.password challenge:challenge.challenge];
+		if ([session doRequest]) {
+			NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", lAccount.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+			NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+			[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+			
+			cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljmastersession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", lAccount.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+			cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+			[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+			
+			NSArray *parts = [session.ljsession componentsSeparatedByString:@":"];
+			cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljloggedin", NSHTTPCookieName, [NSString stringWithFormat:@"%@:%@", [parts objectAtIndex:1], [parts objectAtIndex:2]], NSHTTPCookieValue, [NSString stringWithFormat:@".%@", lAccount.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+			cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+			[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+			
+			[self loadFriendListInWebView:lWebView forAccount:lAccount];
+		} else {
+			showErrorMessage(@"Friend page error", session.error);
+		}
+	} else {
+		showErrorMessage(@"Friend page error", challenge.error);
+	}
+}
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -128,40 +167,31 @@
 #endif
 		self.navigationItem.rightBarButtonItem = newPostOther;
 		
-		[self.view addSubview:otherAccountView];	
-
-		LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
-		if ([challenge doRequest]) {
-		
-			LJSessionGenerate *session = [LJSessionGenerate requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
-			if ([session doRequest]) {
-				NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-				NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-
-				cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljmastersession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-				cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-
-				NSArray *parts = [session.ljsession componentsSeparatedByString:@":"];
-				cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljloggedin", NSHTTPCookieName, [NSString stringWithFormat:@"%@:%@", [parts objectAtIndex:1], [parts objectAtIndex:2]], NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-				cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-				
-				NSString *URLFormat;
-				if ([@"dreamwidth.org" isEqualToString:account.server]) {
-					URLFormat = @"http://%@/~%@/read";
-				} else {
-					URLFormat = @"http://%@/~%@/friends";
-				}
-				NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:URLFormat, account.server, account.user]]];
-				[webView loadRequest:req];
-			} else {
-				showErrorMessage(@"Friend page error", session.error);
-			}
-		} else {
-			showErrorMessage(@"Friend page error", challenge.error);
+#ifndef LITEVERSION
+		if (webView) {
+			[webView removeFromSuperview];
 		}
+		
+		webView = [webViews objectForKey:account.title];
+		if (!webView) {
+			CGRect frame = otherAccountView.frame;
+			frame.size.height = 372;
+			webView = [[UIWebView alloc] initWithFrame:frame];
+			[webView setDelegate:self];
+			[webView setScalesPageToFit:YES];
+			
+			[self initWebView:webView forAccount:account];
+			
+			[webViews setObject:webView forKey:account.title];
+		}
+
+		[otherAccountView addSubview:webView];
+		backButton.enabled = webView.canGoBack;
+		forwardButton.enabled = webView.canGoForward;
+#else
+		[self initWebView:webView forAccount:account];
+#endif		
+		[self.view addSubview:otherAccountView];
 	}
 }
 
@@ -328,15 +358,18 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-}
-
-
-//- (void)dealloc {
-//    [super dealloc];
+//- (void)viewDidUnload {
+//	// Release any retained subviews of the main view.
+//	// e.g. self.myOutlet = nil;
 //}
+
+
+- (void)dealloc {
+    [super dealloc];
+#ifndef LITEVERSION
+	[webViews release];
+#endif
+}
 
 - (IBAction) goToUpdate {
 	[self presentModalViewController:postEditorController animated:YES];
@@ -368,7 +401,7 @@
 	forwardButton.enabled = webView.canGoForward;
 	
 	[toolbar setItems:[NSArray arrayWithObjects:
-					   backButton, fixedSpace, forwardButton, flexibleSpace, stopButton, nil]
+					   backButton, fixedSpace, forwardButton, flexibleSpace, stopButton, flexibleSpace2, friendsButton, nil]
 			 animated:NO];
 }
 
@@ -377,7 +410,7 @@
 	forwardButton.enabled = webView.canGoForward;
 
 	[toolbar setItems:[NSArray arrayWithObjects:
-					   backButton, fixedSpace, forwardButton, flexibleSpace, refreshButton, nil]
+					   backButton, fixedSpace, forwardButton, flexibleSpace, refreshButton, flexibleSpace2, friendsButton, nil]
 									   animated:NO];
 }
 
@@ -609,5 +642,43 @@
 
 
 #endif
+	
+#pragma mark Atmiņas vadība
+
+//- (void) clearWebViewCache {
+//	for (UIWebView *lWebView in [webViews allValues]) {
+//		if (lWebView != webView) {
+//			[lWebView setDelegate:nil];
+//			[lWebView release];
+//		}
+//	}
+//	[webViews removeAllObjects];
+//}
+	
+#pragma mark UIWebView vadības komandas
+
+- (IBAction) webViewBack:(id) sender {
+	[webView goBack];
+}
+	
+- (IBAction) webViewForward:(id) sender {
+	[webView goForward];
+}
+	
+- (IBAction) webViewReload:(id) sender{
+	[webView reload];
+}
+
+- (IBAction) webViewStop:(id) sender{
+	[webView stopLoading];
+}
+
+- (IBAction) webViewFriends:(id) sender {
+#ifndef LITEVERSION
+	LJAccount *account = [dataSource selectedAccountForAccountViewController:self];
+#endif
+	[self loadFriendListInWebView:webView forAccount:account];
+}
+
 
 @end

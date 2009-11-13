@@ -31,7 +31,9 @@ PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabB
 	UIView *otherAccountView;
 	
 	UIWebView *webView;
+#ifndef LITEVERSION
 	NSMutableDictionary *webViews;
+#endif
 	
 	UIToolbar *toolbar;
 	UIBarButtonItem *backButton;
@@ -40,6 +42,8 @@ PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabB
 	UIBarButtonItem *flexibleSpace;
 	UIBarButtonItem *refreshButton;
 	UIBarButtonItem *stopButton;
+	UIBarButtonItem *flexibleSpace2;
+	UIBarButtonItem *friendsButton;
 	
 	UIBarButtonItem *newPostOther;
 	UIBarButtonItem *postButton;
@@ -79,8 +83,6 @@ PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabB
 @property (nonatomic, retain) IBOutlet UITableView *ljAccountView;
 @property (nonatomic, retain) IBOutlet UIView *otherAccountView;
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
-
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *fixedSpace;
@@ -88,6 +90,8 @@ PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabB
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *flexibleSpace;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *stopButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *flexibleSpace2;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *friendsButton;
 
 @property (nonatomic, retain) IBOutlet PostSummaryCell *templateCell;
 
@@ -110,6 +114,16 @@ PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabB
 
 - (void) addNewOrUpdateWithPosts:(NSArray *)events forAccount:(LJAccount *)account;
 - (NSArray *) requestPostsFromServerForAccount:(LJAccount *)account lastSync:(NSDate *)lastSync skip:(NSUInteger)skip items:(NSUInteger)items;
+
+- (IBAction) webViewBack:(id) sender;
+- (IBAction) webViewForward:(id) sender;
+- (IBAction) webViewReload:(id) sender;
+- (IBAction) webViewStop:(id) sender;
+- (IBAction) webViewFriends:(id) sender;
+
+//#ifndef LITEVERION
+//- (void) clearWebViewCache;
+//#endif
 
 #ifdef LITEVERSION
 - (LJAccount *)loadAccount;
