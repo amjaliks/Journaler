@@ -32,4 +32,6 @@
 
 - (IBAction) addAccount:(id)sender;
 
+- (void) sendReport;
+
 @end

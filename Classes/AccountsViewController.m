@@ -10,6 +10,7 @@
 #import "LiveJournal.h"
 #import "Model.h"
 #import "JournalerAppDelegate.h"
+#import "ALReporter.h"
 
 @implementation AccountsViewController
 
@@ -153,11 +154,11 @@
 		
 		if ([accounts count] == 0) {
 			[self addAccount:nil];
-		}		
+		} else {
+			// nosūtam informāciju par kontiem
+			[self sendReport];
+		}
     }   
-   // else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    //}   
 }
 
 
@@ -230,8 +231,11 @@
 	}
 	[self saveAccounts];
 	[table reloadData];
-	
+		
 	[self dismissModalViewControllerAnimated:YES];
+	
+	// nosūtam informāciju par kontiem
+	[self sendReport];
 }
 
 - (void)accountEditorControllerDidCancel:(AccountEditorController *)controller {
@@ -257,6 +261,11 @@
 
 - (BOOL)hasNoAccounts {
 	return [accounts count] == 0;
+}
+
+- (void) sendReport {
+	ALReporter *reporter = ((JournalerAppDelegate *)[UIApplication sharedApplication].delegate).reporter;
+	[reporter setInteger:[accounts count] forProperty:@"account_count"];
 }
 
 @end

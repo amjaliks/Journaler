@@ -24,6 +24,7 @@
 	ALReporter *reporter;
 }
 
+@property (nonatomic, retain) ALReporter *reporter;
 @property (nonatomic, retain) Model *model;
 @property (nonatomic, retain) UserPicCache *userPicCache;
 
