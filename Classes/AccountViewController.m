@@ -367,6 +367,7 @@
 	};
 	
 	[ljAccountView reloadData];
+	[ljAccountView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	refreshPostsButton.enabled = YES;
