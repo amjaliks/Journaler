@@ -300,7 +300,7 @@ NSString* md5(NSString *str)
 		NSInteger errcode = [err code];
 		if (errcode == NSURLErrorCannotFindHost) {
 			error = LJErrorHostNotFound;
-		} else if (errcode == NSURLErrorTimedOut) {
+		} else if (errcode == NSURLErrorTimedOut || errcode == NSURLErrorCannotConnectToHost) {
 			error = LJErrorConnectionFailed;
 		} else if (errcode == NSURLErrorNotConnectedToInternet) {
 			error = LJErrorNotConnectedToInternet;

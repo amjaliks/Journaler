@@ -15,6 +15,7 @@
 #import "PostSummaryCell.h"
 #import "AccountEditorController.h"
 #import "AdMobView.h"
+#import "ALReporter.h"
 
 @implementation AccountViewController
 
@@ -618,6 +619,9 @@
 	account = [acc retain];
 	[self saveAccount];
 	[self dismissModalViewControllerAnimated:YES];
+	
+	ALReporter *reporter = ((JournalerAppDelegate *)[UIApplication sharedApplication].delegate).reporter;
+	[reporter setObject:account.server forProperty:@"server"];
 #endif
 }
 

@@ -226,7 +226,7 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 	
 	// veicam dažas servera nosaukuma pārbaudes
 	NSString *server = serverText.text;
-	if (!server && ![server length]) {
+	if (!server || ![server length]) {
 		// servera nosaukums nav norādīt, tad noklusēti tas ir livejournal.com
 		server = defaultServer;
 	} else {
