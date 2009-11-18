@@ -266,6 +266,13 @@
 - (void) sendReport {
 	ALReporter *reporter = ((JournalerAppDelegate *)[UIApplication sharedApplication].delegate).reporter;
 	[reporter setInteger:[accounts count] forProperty:@"account_count"];
+	
+	NSMutableSet *servers = [[NSMutableSet alloc] init];
+	for (LJAccount *account in accounts) {
+		[servers addObject:account.server];
+	}
+	[reporter setObject:servers forProperty:@"server"];
+	[servers release];
 }
 
 @end
