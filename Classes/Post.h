@@ -11,6 +11,8 @@
 @interface Post :  NSManagedObject {
 	NSString *textPreview;
 	NSString *textView;
+	
+	NSUInteger posterNameWidth;
 }
 
 @property (nonatomic, retain) NSString * journal;
@@ -26,6 +28,8 @@
 @property (nonatomic, retain) NSNumber * ditemid;
 @property (nonatomic, retain) NSString * userPicURL;
 @property (nonatomic, retain) NSNumber * isRead;
+
+@property NSUInteger posterNameWidth;
 
 @end
 

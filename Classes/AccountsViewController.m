@@ -7,6 +7,8 @@
 //
 
 #import "AccountsViewController.h"
+
+#import "AccountTabBarController.h"
 #import "LiveJournal.h"
 #import "Model.h"
 #import "JournalerAppDelegate.h"
@@ -35,10 +37,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 	
-	accounts = [self loadAccounts];
-	if (!accounts) {
+	NSArray *loadedAccounts = [APP_DELEGATE loadAccounts];
+	if (loadedAccounts) {
+		accounts = [loadedAccounts mutableCopy];
+	} else {
 		accounts = [[NSMutableArray alloc] init];
 	}
+	
+	cacheTabBarControllers = [[NSMutableDictionary alloc] initWithCapacity:[accounts count]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,30 +53,6 @@
 		[self addAccount:nil];
 	}
 }
-
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -87,11 +69,6 @@
 
 #pragma mark Table view methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [accounts count];
@@ -105,14 +82,12 @@
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:account.title];
     if (cell == nil) {
-        //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ident];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		cell.textLabel.text = account.user;
-		cell.detailTextLabel.text = account.server;
 	}
-    
-    // Set up the cell...
+
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	cell.textLabel.text = account.user;
+	cell.detailTextLabel.text = account.server;
 	
     return cell;
 }
@@ -124,7 +99,16 @@
 		selectedAccountTitle = [selectedAccount.title retain];
 		[self presentModalViewController:editAccountViewController animated:YES];
 	} else {
-		[self.navigationController pushViewController:accountViewController animated:YES];
+		// ja nav labošanas režīms, tad veram vaļā konta skatījumu
+		AccountTabBarController *tabBarController = [[cacheTabBarControllers objectForKey:selectedAccount.title] retain];
+		if (!tabBarController) {
+			// ja skatījums nav atrasts, tad tādu izveidojam
+			tabBarController = [[AccountTabBarController alloc] initWithAccount:selectedAccount];
+			[cacheTabBarControllers setObject:tabBarController forKey:selectedAccount.title];
+		}
+		
+		[self.navigationController pushViewController:tabBarController animated:YES];
+		[tabBarController release];
 	}
 }
 
@@ -184,14 +168,6 @@
 - (void)dealloc {
     [super dealloc];
 	[accounts dealloc];
-}
-
-- (NSMutableArray *) loadAccounts {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *path = [paths objectAtIndex:0];
-	path = [path stringByAppendingPathComponent:@"accounts.bin"];
-	NSMutableArray *restoredAccounts = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-	return [restoredAccounts retain];
 }
 
 - (void) saveAccounts {

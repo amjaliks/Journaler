@@ -24,6 +24,8 @@
 @dynamic userPicURL;
 @dynamic isRead;
 
+@synthesize posterNameWidth;
+
 - (NSString *)textPreview {
 	if (!textPreview) {
 		textPreview = [self.text retain];

@@ -122,6 +122,29 @@
 	return result;
 }
 
+- (NSArray *)findPostsByAccount:(NSString *)account limit:(NSUInteger)limit offset:(NSUInteger)offset {
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Post" inManagedObjectContext:self.managedObjectContext];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(account = %@)", account];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateTime" ascending:NO];
+	[request setEntity:entity];
+	[request setPredicate:predicate];
+	[request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+	[sortDescriptor release];
+	
+	[request setFetchLimit:limit];
+	[request setFetchOffset:offset];
+	
+	NSError *error;
+	NSArray *result = [self.managedObjectContext executeFetchRequest:request error:&error];
+	if (!result) {
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		abort();
+	}
+	[request release];
+	return result;
+}
+
 - (Post *)findPostByAccount:(NSString *)account journal:(NSString *)journal dItemId:(NSNumber *)dItemId {
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Post" inManagedObjectContext:self.managedObjectContext];

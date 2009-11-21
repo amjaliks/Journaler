@@ -42,11 +42,14 @@ enum {
     label = (UILabel *)[self viewWithTag:PSAuthor];
 	label.text = post.poster;
 	CGRect frame = label.frame;
-	CGSize size = [label sizeThatFits:frame.size];
-	if ([@"C" isEqualToString:post.journalType] && size.width > 150) {
-		size.width = 150;
+	if (!post.posterNameWidth) {
+		CGSize size = [label sizeThatFits:frame.size];
+		if ([@"C" isEqualToString:post.journalType] && size.width > 150) {
+			size.width = 150;
+		}
+		post.posterNameWidth = size.width;
 	}
-	frame.size.width = size.width;
+	frame.size.width = post.posterNameWidth;
 	label.frame = frame;
 	CGFloat last = frame.origin.x + frame.size.width;
 	

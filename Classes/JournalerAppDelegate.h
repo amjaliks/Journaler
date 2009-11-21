@@ -10,7 +10,13 @@
 #import "Model.h"
 #import "UserPicCache.h"
 
+#define APP_DELEGATE ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate])
+
 @class ALReporter;
+
+#ifdef LITEVERSION
+@class LJAccount;
+#endif
 
 @interface JournalerAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -20,6 +26,8 @@
     UIWindow *window;
     UINavigationController *navigationController;
 	UINavigationController *liteNavigationController;
+	
+	UINavigationController *mainNavivationController;
 	
 	ALReporter *reporter;
 }
@@ -32,5 +40,12 @@
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, retain) IBOutlet UINavigationController *liteNavigationController;
 
+#ifndef LITEVERSION
+- (void) saveAccounts:(NSArray *)accounts;
+- (NSArray *) loadAccounts;
+#else
+- (void) saveAccount:(LJAccount *)account;
+- (LJAccount *) loadAccount;
+#endif
 @end
 

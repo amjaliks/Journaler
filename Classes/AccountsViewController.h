@@ -20,6 +20,9 @@
 	NSMutableArray *accounts;
 	LJAccount *selectedAccount;
 	NSString *selectedAccountTitle;
+	
+	// kešs inicializēto kontrolierus glabāšanai
+	NSMutableDictionary *cacheTabBarControllers;
 }
 
 @property (nonatomic, retain) IBOutlet UIViewController *editAccountViewController;
@@ -27,7 +30,6 @@
 
 @property (nonatomic, retain) IBOutlet UITableView *table;
 
-- (NSMutableArray *) loadAccounts;
 - (void) saveAccounts;
 
 - (IBAction) addAccount:(id)sender;

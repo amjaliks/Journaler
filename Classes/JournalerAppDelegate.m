@@ -10,6 +10,12 @@
 #import "ALReporter.h"
 //#import "RootViewController.h"
 
+#ifndef LITEVERSION
+	#import "AccountsViewController.h"
+#else
+	#import "AccountTabBarController.h"
+#endif
+
 
 @implementation JournalerAppDelegate
 
@@ -31,16 +37,22 @@
 #else
 	NSString *appUID = @"LrAKgAl3bA"; // lite versija
 #endif
-	reporter = [[ALReporter alloc] initWithAppUID:appUID reportURL:[NSURL URLWithString:@"http://localhost:8080/anl/report"]];	
+	reporter = [[ALReporter alloc] initWithAppUID:appUID reportURL:[NSURL URLWithString:@"http://tomcat.keeper.lv/anldev2/report"]];	
     
 	model = [[Model alloc] init];
 	userPicCache = [[UserPicCache alloc] init];
 	
-#ifdef LITEVERSION
-	[window addSubview:[liteNavigationController view]];
+#ifndef LITEVERSION
+	UIViewController *rootViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];
 #else
-	[window addSubview:[navigationController view]];
+	UIViewController *rootViewController = [[AccountTabBarController alloc] initWithAccount:[self loadAccount]];
 #endif
+	
+	mainNavivationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+	[rootViewController release];
+	
+	[window addSubview:mainNavivationController.view];
+	
     [window makeKeyAndVisible];
 }
 
@@ -64,6 +76,43 @@
 	[super dealloc];
 }
 
+#pragma mark Metodes darbam ar kontiem
+
+#ifndef LITEVERSION
+
+- (NSArray *) loadAccounts {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *path = [paths objectAtIndex:0];
+	path = [path stringByAppendingPathComponent:@"accounts.bin"];
+	NSArray *restoredAccounts = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+	return restoredAccounts;
+}
+
+- (void) saveAccounts:(NSArray *)accounts {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *path = [paths objectAtIndex:0];
+	path = [path stringByAppendingPathComponent:@"accounts.bin"];
+	[NSKeyedArchiver archiveRootObject:accounts toFile:path];
+}
+
+#else
+
+- (LJAccount *)loadAccount {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *path = [paths objectAtIndex:0];
+	path = [path stringByAppendingPathComponent:@"account.bin"];
+	LJAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+	return account;
+}
+
+- (void) saveAccount:(LJAccount *)account {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *path = [paths objectAtIndex:0];
+	path = [path stringByAppendingPathComponent:@"account.bin"];
+	[NSKeyedArchiver archiveRootObject:account toFile:path];
+}
+
+#endif
 
 @end
 
