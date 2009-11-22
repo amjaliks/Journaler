@@ -16,6 +16,8 @@
 	#define ADMOBDELEGATE
 #endif
 
+#define DEFAULT(x) [[NSUserDefaults standardUserDefaults] boolForKey:x]
+
 @class LJAccount, PostSummaryCell;
 
 @interface FriendListController : UIViewController <UITableViewDataSource, UITableViewDelegate ADMOBDELEGATE> {
@@ -27,12 +29,16 @@
 	// tabula
 	UITableView *tableView;
 	PostSummaryCell *templateCell;
+	UITableViewCell *loadMoreCell;
+	BOOL canLoadMore;
 	
 	// stāvokļa josla
 	UIView *statusLineView;
 	UILabel *statusLineLabel;
-	CGRect frameForTableViewWithStatusLine;
-	CGRect frameForTableViewWithOutStatusLine;
+	NSUInteger statusLineShowed;
+	
+	// pogas
+	UIBarButtonItem *refreshButtonItem;
 	
 #ifdef LITEVERSION
 	NSDate *lastRefresh;
@@ -45,6 +51,7 @@
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet PostSummaryCell *templateCell;
+@property (nonatomic, retain) IBOutlet UITableViewCell *loadMoreCell;
 
 // stāvokļa josla
 @property (nonatomic, retain) IBOutlet UIView *statusLineView;
@@ -57,8 +64,11 @@
 - (id)initWithAccount:(LJAccount *)account;
 // raksti
 - (void) firstSync;
-- (void) loadPostsFromCacheFromOffset:(NSUInteger)offset;
+- (void) refreshPosts;
+- (void) loadMorePosts;
+- (NSUInteger) loadPostsFromCacheFromOffset:(NSUInteger)offset;
 - (NSUInteger) loadPostsFromServerAfter:(NSDate *)lastSync skip:(NSUInteger)skip limit:(NSUInteger)limit;
+- (void) loadLastPostsFromServer;
 - (void) addNewOrUpdateWithPosts:(NSArray *)events;
 - (void) reloadTable;
 - (void) preprocessPosts;

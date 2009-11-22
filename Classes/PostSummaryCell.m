@@ -34,9 +34,9 @@ enum {
     UILabel *label;
     label = (UILabel *)[self viewWithTag:PSSubject];
 	if ([post.subject length]) {
-		label.text = post.subject;
+		label.text = post.subjectPreview;
 	} else {
-		label.text = @"no subject";
+		label.text = @"(no subject)";
 	}
 	
     label = (UILabel *)[self viewWithTag:PSAuthor];
@@ -90,7 +90,7 @@ enum {
 	[f setTimeStyle:NSDateFormatterShortStyle];
 	
 	label = (UILabel *)[self viewWithTag:PSDateTimeReplies];
-    label.text = [NSString stringWithFormat:@"%@, %d replies", [f stringFromDate:post.dateTime], [post.replyCount integerValue]];
+    label.text = [NSString stringWithFormat:@"%@, %d%@ replies", [f stringFromDate:post.dateTime], [post.replyCount integerValue], post.updated ? @"" : @"*"];
 	[f release];
 	
 	UIImageView *imageView = (UIImageView *)[self viewWithTag:PSUserPic];

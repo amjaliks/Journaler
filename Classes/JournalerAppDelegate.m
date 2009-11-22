@@ -24,9 +24,6 @@
 @synthesize userPicCache;
 
 @synthesize window;
-@synthesize navigationController;
-@synthesize liteNavigationController;
-
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -48,10 +45,10 @@
 	UIViewController *rootViewController = [[AccountTabBarController alloc] initWithAccount:[self loadAccount]];
 #endif
 	
-	mainNavivationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+	navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
 	[rootViewController release];
 	
-	[window addSubview:mainNavivationController.view];
+	[window addSubview:navigationController.view];
 	
     [window makeKeyAndVisible];
 }
@@ -70,7 +67,6 @@
 	[model release];
 	[userPicCache release];
 	
-	[liteNavigationController release];
 	[navigationController release];
 	[window release];
 	[super dealloc];

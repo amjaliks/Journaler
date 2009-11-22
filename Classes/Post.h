@@ -11,8 +11,10 @@
 @interface Post :  NSManagedObject {
 	NSString *textPreview;
 	NSString *textView;
+	NSString *subjectPreview;
 	
 	NSUInteger posterNameWidth;
+	BOOL updated;
 }
 
 @property (nonatomic, retain) NSString * journal;
@@ -20,16 +22,19 @@
 @property (nonatomic, retain) NSDate * dateTime;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * subject;
-@property (nonatomic, retain, readonly) NSString * textPreview;
 @property (nonatomic, retain) NSString * poster;
 @property (nonatomic, retain) NSNumber * replyCount;
-@property (nonatomic, retain, readonly) NSString * textView;
 @property (nonatomic, retain) NSString * account;
 @property (nonatomic, retain) NSNumber * ditemid;
 @property (nonatomic, retain) NSString * userPicURL;
 @property (nonatomic, retain) NSNumber * isRead;
 
+@property (nonatomic, retain, readonly) NSString * textPreview;
+@property (nonatomic, retain, readonly) NSString * textView;
+@property (nonatomic, retain, readonly) NSString * subjectPreview;
+
 @property NSUInteger posterNameWidth;
+@property BOOL updated;
 
 @end
 

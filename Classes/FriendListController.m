@@ -25,6 +25,7 @@
 // tabula
 @synthesize tableView;
 @synthesize templateCell;
+@synthesize loadMoreCell;
 // stāvokļa josla
 @synthesize statusLineView;
 @synthesize statusLineLabel;
@@ -42,6 +43,7 @@
 		// rakstu masīva inicializācija
 		loadedPosts = [[NSMutableArray alloc] init];
 		
+		canLoadMore = YES;
     }
     return self;
 }
@@ -49,8 +51,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	// izņemam tabulu, lai lietājs neredz to tukšu
+	[tableView setAlpha:0];
 	// stāvokļa josla
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, 320, 24);
+	
+	// pieliekam pogas
+	refreshButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+	self.parentViewController.navigationItem.rightBarButtonItem = refreshButtonItem;
 	
 #ifdef LITEVERSION
 	adMobView = [AdMobView requestAdWithDelegate:self];
@@ -115,32 +123,125 @@
 		[self loadPostsFromCacheFromOffset:0];
 		
 		// atjaunojam tabulu
-		[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
-
-		// ielādējam rakstus no servera
 		if ([loadedPosts count]) {
-			Post *topPost = [loadedPosts objectAtIndex:0];
-			NSUInteger count = [self loadPostsFromServerAfter:topPost.dateTime skip:0 limit:100]; 
-			if (count < 10) {
-				[self loadPostsFromServerAfter:nil skip:count limit:10 - count]; 
-			}
-		} else {
-			[self loadPostsFromServerAfter:nil skip:0 limit:10]; 
+			[tableView setAlpha:1.0];
+			[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
 		}
 
+		if (DEFAULT(@"refresh_on_start")) {
+			// atjaunojam pēdējos rakstus
+			[self loadLastPostsFromServer];
+			if ([loadedPosts count]) {
+				Post *topPost = [loadedPosts objectAtIndex:0];
+				NSUInteger count = [self loadPostsFromServerAfter:topPost.dateTime skip:0 limit:100]; 
+				if (count < 10) {
+					[self loadPostsFromServerAfter:nil skip:count limit:10 - count]; 
+				}
+			} else {
+				[self loadPostsFromServerAfter:nil skip:0 limit:10]; 
+			}
+
+			// atjaunojam tabulu
+			[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
+		}
+		
 		// veicam rakstu priekšapstrādi
 		[self performSelectorInBackground:@selector(preprocessPosts) withObject:nil];
-		// atjaunojam tabulu
-		[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
+		// pārliecinamies, ka tabula ir redzama
+		[tableView setAlpha:1.0];
 		
 		// paslēpjam stāvokļa joslu
-		[self performSelectorInBackground:@selector(hideStatusLine) withObject:nil];
+		[self hideStatusLine];
 		
 		[pool release];
 	}
 }
 
-- (void) loadPostsFromCacheFromOffset:(NSUInteger)offset {
+- (void) refresh {
+	refreshButtonItem.enabled = NO;
+	[self performSelectorInBackground:@selector(refreshPosts) withObject:nil];
+}
+
+- (void) refreshPosts {
+	@synchronized (self) {
+		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+		// parādam stāvokļa joslu
+		[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
+		//[self showStatusLine];
+
+		// atjaunojam rakstus
+		[self loadLastPostsFromServer];
+		
+		[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+		// veicam rakstu priekšapstrādi
+		[self performSelectorInBackground:@selector(preprocessPosts) withObject:nil];
+		// atjaunojam tabulu
+		[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
+
+		// parādam stāvokļa joslu
+		[self hideStatusLine];
+
+		refreshButtonItem.enabled = YES;
+		[pool release];
+	}
+}
+
+- (void) loadMorePosts {
+	@synchronized (self) {
+		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+		
+		// parādam stāvokļa joslu
+		[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
+		
+
+		// mērķis, cik daudz jābūt ierakstu pēc ielādes
+		NSUInteger goal = [loadedPosts count] + 10;
+		if (goal > 100) {
+			goal = 100;
+		}
+		
+		// vispirms mēģinam ielasīt rakstus no keša
+		[self loadPostsFromCacheFromOffset:[loadedPosts count]];
+		
+		if ([loadedPosts count] < goal) {
+			// ja ielādēto rakstu skaits ir mazāks par cerēto,
+			// tad cenšiemies ielādēt no servera
+			
+			// bet vispirms pārbaudam, vai vecākais raksts nav vecāks par 2 nedēļām
+			Post *oldestPost = [loadedPosts lastObject];
+			if ([oldestPost.dateTime timeIntervalSinceNow] <  -3600 * 24 * 14) {
+				// ja ir vecāks par 2 nedēļām, tad atzīmējam, ka vairāk ielādēt nevar
+				canLoadMore = NO;
+			} else {
+				NSUInteger skip = [loadedPosts count];
+				while ([loadedPosts count] < goal) {
+					// atkārtojam tik ilgi, līdz ir vajadzīgais ierakstu skaits
+					NSUInteger items = goal - [loadedPosts count];
+					if (items > [self loadPostsFromServerAfter:nil skip:skip limit:items]) {
+						// ja ielādējām mazāk nekā cerām, vairāk ielādēt arī nevar
+						canLoadMore = NO;
+						break;
+					} else {
+						skip += items;
+					}
+				}
+			}
+		}
+		
+		// veicam rakstu priekšapstrādi
+		[self performSelectorInBackground:@selector(preprocessPosts) withObject:nil];
+		// atjaunojam tabulu
+		[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
+		
+		// parādam stāvokļa joslu
+		[self hideStatusLine];
+		
+		[pool release];
+	}
+}
+
+- (NSUInteger) loadPostsFromCacheFromOffset:(NSUInteger)offset {
 	// ielasam rakstus no keša
 	Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
 	NSArray *posts = [model findPostsByAccount:account.title limit:10 offset:offset];
@@ -151,6 +252,8 @@
 			[loadedPosts addObject:post];
 		}
 	}
+	
+	return [posts count];
 }
 
 - (NSUInteger) loadPostsFromServerAfter:(NSDate *)lastSync skip:(NSUInteger)skip limit:(NSUInteger)limit {
@@ -176,6 +279,18 @@
 	return 0;
 }
 
+- (void) loadLastPostsFromServer {
+	if ([loadedPosts count]) {
+		Post *topPost = [loadedPosts objectAtIndex:0];
+		NSUInteger count = [self loadPostsFromServerAfter:topPost.dateTime skip:0 limit:100]; 
+		if (count < 10) {
+			[self loadPostsFromServerAfter:nil skip:count limit:10 - count]; 
+		}
+	} else {
+		[self loadPostsFromServerAfter:nil skip:0 limit:10]; 
+	}
+}
+
 - (void) addNewOrUpdateWithPosts:(NSArray *)events {
 	@synchronized(loadedPosts) {
 		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
@@ -195,6 +310,7 @@
 			post.text = event.event;
 			post.replyCount = [NSNumber numberWithInt:event.replyCount];
 			post.userPicURL = event.userPicUrl;
+			post.updated = YES;
 			
 			NSSortDescriptor *dateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateTime" ascending:NO];
 			[loadedPosts sortUsingDescriptors:[NSArray arrayWithObjects:dateSortDescriptor, nil]];
@@ -219,8 +335,9 @@
 
 - (void) preprocessPosts {
 	for (Post *post in loadedPosts) {
-		post.textPreview;
-		post.textView;
+		[post textPreview];
+		[post textView];
+		[post subjectPreview];
 	}
 }
 
@@ -228,14 +345,22 @@
 
 // parāda stāvokļa joslu
 - (void) showStatusLine {
-	//tableView.frame = frameForTableViewWithStatusLine;
-	[self.view addSubview:statusLineView];
+	@synchronized (statusLineView) {
+		if (!statusLineShowed) {
+			[self.view addSubview:statusLineView];
+		}
+		statusLineShowed++;
+	}
 }
 
 // paslēpj stāvokļa joslu
 - (void) hideStatusLine {
-	//tableView.frame = frameForTableViewWithOutStatusLine;
-	[statusLineView removeFromSuperview];
+	@synchronized (statusLineView) {
+		statusLineShowed--;
+		if (!statusLineShowed) {
+			[statusLineView removeFromSuperview];
+		}
+	}
 }
 
 // atjauno stāvokļa rindas tekstu
@@ -247,26 +372,36 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [loadedPosts count];
+	NSUInteger count = [loadedPosts count];
+	if (count) {
+		return count < 100 && canLoadMore ? count + 1 : count;
+	} else {
+		return 0;
+	}
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *MyIdentifier = @"PostSummary";
-	
-	PostSummaryCell *cell = (PostSummaryCell *)[aTableView dequeueReusableCellWithIdentifier:MyIdentifier];
-	if (cell == nil) {
-		[[NSBundle mainBundle] loadNibNamed:@"PostSummaryView" owner:self options:nil];
-		cell = templateCell;
-		cell.tableView = aTableView;
-		self.templateCell = nil;
+	if (indexPath.row < [loadedPosts count]) {
+		static NSString *MyIdentifier = @"PostSummary";
+		
+		PostSummaryCell *cell = (PostSummaryCell *)[aTableView dequeueReusableCellWithIdentifier:MyIdentifier];
+		if (cell == nil) {
+			[[NSBundle mainBundle] loadNibNamed:@"PostSummaryView" owner:self options:nil];
+			cell = templateCell;
+			cell.tableView = aTableView;
+			self.templateCell = nil;
+		}
+		
+		Post *post = [loadedPosts objectAtIndex:indexPath.row];
+		cell.post = post;
+		
+		return cell;
+	} else {
+		loadMoreCell.textLabel.text = @"Load more...";
+		return loadMoreCell;
 	}
-	
-	Post *post = [loadedPosts objectAtIndex:indexPath.row];
-	cell.post = post;
-	
-    return cell;
 }
 
 
@@ -275,6 +410,10 @@
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
 	// [anotherViewController release];
+	if (indexPath.row == [loadedPosts count]) {
+		loadMoreCell.textLabel.text = @"Loading...";
+		[self performSelectorInBackground:@selector(loadMorePosts) withObject:nil];
+	}
 }
 
 #pragma mark Reklāma

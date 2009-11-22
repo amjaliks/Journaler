@@ -25,9 +25,6 @@
 
     UIWindow *window;
     UINavigationController *navigationController;
-	UINavigationController *liteNavigationController;
-	
-	UINavigationController *mainNavivationController;
 	
 	ALReporter *reporter;
 }
@@ -37,8 +34,6 @@
 @property (nonatomic, retain) UserPicCache *userPicCache;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
-@property (nonatomic, retain) IBOutlet UINavigationController *liteNavigationController;
 
 #ifndef LITEVERSION
 - (void) saveAccounts:(NSArray *)accounts;
