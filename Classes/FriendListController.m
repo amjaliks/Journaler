@@ -19,6 +19,7 @@
 #import "AdMobView.h"
 #endif
 
+NSString* md5(NSString *str);
 
 @implementation FriendListController
 
@@ -342,6 +343,7 @@
 		[post textPreview];
 		[post textView];
 		[post subjectPreview];
+		[post userPicURLHash];
 	}
 	
 	[pool release];

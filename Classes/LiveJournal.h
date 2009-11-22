@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+NSString* md5(NSString *str);
 
 enum {
 	LJErrorUnknown = -1,

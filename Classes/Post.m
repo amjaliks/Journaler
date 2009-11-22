@@ -151,6 +151,13 @@
 	return subjectPreview;
 }
 
+- (NSString *) userPicURLHash {
+	if (!userPicURLHash && self.userPicURL) {
+		userPicURLHash = [md5(self.userPicURL) copy];
+	}
+	return userPicURLHash;
+}
+
 - (void) clearPreproceedStrings {
 	@synchronized(self) {
 		[textPreview release];
@@ -159,6 +166,8 @@
 		textView = nil;
 		[subjectPreview release];
 		subjectPreview = nil;
+		[userPicURLHash release];
+		userPicURLHash = nil;
 	}
 }
 

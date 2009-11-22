@@ -12,10 +12,12 @@
 
 @interface DelayedUserPicLoader : NSOperation {
 	NSString *url;
+	NSString *hash;
 	UITableView *tableView;
 	UserPicCache *userPicCache;
 }
 
 - (id) initWithUserPicCache:(UserPicCache *)userPicCache URL:(NSString *)url tableView:(UITableView *)tableView;
+- (id) initWithUserPicCache:(UserPicCache *)userPicCache URL:(NSString *)url hash:(NSString *)hash tableView:(UITableView *)tableView;
 
 @end

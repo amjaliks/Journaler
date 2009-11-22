@@ -28,13 +28,14 @@ enum {
 
 @synthesize tableView;
 @synthesize post;
+@synthesize missingUserPic;
 
 - (void) setPost:(Post *)_post {
 	post = _post;
 	
     UILabel *label;
     label = (UILabel *)[self viewWithTag:PSSubject];
-	label.frame = post.isPublic ? CGRectMake(74, 5, 220, 16) : CGRectMake(88, 5, 206, 16);
+	label.frame = post.isPublic ? CGRectMake(74, 5, 220, 16) : CGRectMake(90, 5, 204, 16);
 	if ([post.subject length]) {
 		label.text = post.subjectPreview;
 	} else {
@@ -97,8 +98,8 @@ enum {
 	
 	UIImageView *imageView = (UIImageView *)[self viewWithTag:PSUserPic];
 	if (post.userPicURL && [post.userPicURL length]) {
-		UserPicCache *userPicCache = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).userPicCache;
-		imageView.image = [[userPicCache imageFromURL:post.userPicURL force:NO] retain];
+		imageView.image = [[APP_USER_PIC_CACHE imageFromURL:post.userPicURL hash:post.userPicURLHash forTableView:tableView] retain];
+		missingUserPic = !imageView.image;
 	} else {
 		imageView.image = nil;
 	}
@@ -109,6 +110,7 @@ enum {
 - (void) setUserPic:(UIImage *)image {
 	UIImageView *imageView = (UIImageView *)[self viewWithTag:PSUserPic];
 	imageView.image = image;
+	missingUserPic = NO;
 }
 
 @end

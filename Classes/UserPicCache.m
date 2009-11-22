@@ -9,6 +9,8 @@
 #import "UserPicCache.h"
 #import "NSStringAdditions.h"
 #import "DelayedUserPicLoader.h"
+#import "LiveJournal.h"
+#import "JournalerAppDelegate.h"
 
 @implementation UserPicCache
 
@@ -87,5 +89,111 @@
 	[queue cancelAllOperations];
 }
 
+- (UIImage *) imageFromURL:(NSString *)URL hash:(NSString *)hash force:(BOOL)force {
+	// ja hešs nav tad, aprēķinam
+	if (!hash) {
+		hash = md5(URL);
+	}
+	
+	UIImage *image = [imageCache objectForKey:hash];
+	if (image) {
+		return image;
+	}
+	
+	NSString *path = [self pathForCacheImage:hash];
+	
+	if (force) {
+		return [self ensureImageAvailabilityFromURL:URL hash:hash];
+	} else {
+		NSFileManager *mng = [NSFileManager defaultManager];
+		if ([mng fileExistsAtPath:path]) {
+			UIImage *image = [UIImage imageWithContentsOfFile:path];
+			[imageCache setObject:image forKey:hash];
+			return image;
+		} else {
+			return nil;
+		}
+	}
+}
+
+- (UIImage *) imageFromURL:(NSString *)URL hash:(NSString *)hash forTableView:(UITableView *)tableView {
+	// ja hešs nav tad, aprēķinam
+	if (!hash) {
+		hash = md5(URL);
+	}
+	
+	UIImage *image = [imageCache objectForKey:hash];
+	if (image) {
+		return image;
+	} else {
+		[queue addOperation:[[[DelayedUserPicLoader alloc] initWithUserPicCache:self URL:URL hash:hash tableView:tableView] autorelease]];
+		return nil;
+	}
+
+//	NSString *path = [self pathForCacheImage:hash];
+//	
+//	NSFileManager *mng = [NSFileManager defaultManager];
+//	if ([mng fileExistsAtPath:path]) {
+//		UIImage *image = [UIImage imageWithContentsOfFile:path];
+//		[imageCache setObject:image forKey:hash];
+//		return image;
+//	} else {
+//		[queue addOperation:[[[DelayedUserPicLoader alloc] initWithUserPicCache:self URL:URL tableView:tableView] autorelease]];
+//		return nil;
+//	}
+}
+
+- (UIImage *) ensureImageAvailabilityFromURL:(NSString *)URL hash:(NSString *)hash {
+	// ja hešs nav tad, aprēķinam
+	if (!hash) {
+		hash = md5(URL);
+	}
+
+	@synchronized (imageCache) {
+		UIImage *image = [imageCache objectForKey:hash];
+		if (image) {
+			return image;
+		}
+		
+		NSString *path = [self pathForCacheImage:hash];
+		NSFileManager *mng = [NSFileManager defaultManager];
+		if (![mng fileExistsAtPath:path]) {
+			NSData *data = [self downloadDataFromURL:URL];
+			if (data) {
+				[data writeToFile:path atomically:YES];
+			}
+		}
+		image = [UIImage imageWithContentsOfFile:path];
+		[imageCache setObject:image forKey:hash];
+		return image;		
+	}
+}
+
+- (NSString *) pathForCacheImage:(NSString *)hash {
+	NSString *path = APP_CACHES_DIR;
+	
+	path = [path stringByAppendingPathComponent:@"images"];
+	NSFileManager *mng = [NSFileManager defaultManager];
+	if (![mng fileExistsAtPath:path]) {
+		[mng createDirectoryAtPath:path attributes:nil];
+	}
+	
+	path = [path stringByAppendingPathComponent:hash];
+	return path;
+}
+
+- (NSData *) downloadDataFromURL:(NSString *)URL {
+	NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+	
+	NSURLResponse *res;
+	NSError *err;
+	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
+	
+	if (err) {
+		return nil;
+	} else {
+		return data;
+	}
+}
 
 @end

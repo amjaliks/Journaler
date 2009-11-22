@@ -22,6 +22,13 @@
 - (NSString *) base64DataFromURL:(NSString *)url;
 - (UIImage *) imageFromURL:(NSString *)url forTableView:(UITableView *)tableView;
 
+- (UIImage *) imageFromURL:(NSString *)url hash:(NSString *)hash force:(BOOL)force;
+- (UIImage *) imageFromURL:(NSString *)url hash:(NSString *)hash forTableView:(UITableView *)tableView;
+
 - (void) cancelPendingDownloads;
+
+- (NSString *) pathForCacheImage:(NSString *)hash;
+- (UIImage *) ensureImageAvailabilityFromURL:(NSString *)url hash:(NSString *)hash;
+- (NSData *) downloadDataFromURL:(NSString *)URL;
 
 @end

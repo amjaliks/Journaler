@@ -13,10 +13,13 @@
 @interface PostSummaryCell : UITableViewCell {
 	UITableView *tableView;
 	Post *post;
+	
+	BOOL missingUserPic;
 }
 
 @property (retain) UITableView *tableView;
 @property (retain) Post *post;
+@property BOOL missingUserPic;
 
 - (void) setUserPic:(UIImage *)image;
 

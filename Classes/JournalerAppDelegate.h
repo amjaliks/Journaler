@@ -11,6 +11,8 @@
 #import "UserPicCache.h"
 
 #define APP_DELEGATE ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate])
+#define APP_CACHES_DIR [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
+#define APP_USER_PIC_CACHE APP_DELEGATE.userPicCache
 
 @class ALReporter;
 

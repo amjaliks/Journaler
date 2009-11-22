@@ -12,6 +12,7 @@
 	NSString *textPreview;
 	NSString *textView;
 	NSString *subjectPreview;
+	NSString *userPicURLHash;
 	
 	NSUInteger posterNameWidth;
 	BOOL updated;
@@ -33,6 +34,7 @@
 @property (readonly) NSString * textPreview;
 @property (readonly) NSString * textView;
 @property (readonly) NSString * subjectPreview;
+@property (readonly) NSString * userPicURLHash;
 @property (readonly) BOOL isPublic;
 
 @property NSUInteger posterNameWidth;
