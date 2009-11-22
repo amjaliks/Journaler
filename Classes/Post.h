@@ -28,13 +28,17 @@
 @property (nonatomic, retain) NSNumber * ditemid;
 @property (nonatomic, retain) NSString * userPicURL;
 @property (nonatomic, retain) NSNumber * isRead;
+@property (nonatomic, retain) NSString * security;
 
-@property (nonatomic, retain, readonly) NSString * textPreview;
-@property (nonatomic, retain, readonly) NSString * textView;
-@property (nonatomic, retain, readonly) NSString * subjectPreview;
+@property (readonly) NSString * textPreview;
+@property (readonly) NSString * textView;
+@property (readonly) NSString * subjectPreview;
+@property (readonly) BOOL isPublic;
 
 @property NSUInteger posterNameWidth;
 @property BOOL updated;
+
+- (void) clearPreproceedStrings;
 
 @end
 

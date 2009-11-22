@@ -53,6 +53,7 @@ enum {
 	NSString *eventView;
 	NSString *userPicUrl;
 	NSNumber *ditemid;
+	NSString *security;
 }
 
 @property (retain) NSString *journalName;
@@ -67,6 +68,7 @@ enum {
 @property (readonly) NSString *eventView;
 @property (retain) NSString *userPicUrl;
 @property (retain) NSNumber *ditemid;
+@property (retain) NSString *security;
 
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format;
 

@@ -209,6 +209,20 @@
 									<string key="NSResourceName">user.png</string>
 								</object>
 							</object>
+							<object class="IBUIImageView" id="106570579">
+								<reference key="NSNextResponder" ref="939847949"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{75, 7}, {13, 13}}</string>
+								<reference key="NSSuperview" ref="939847949"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<int key="IBUITag">9</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">lock.gif</string>
+								</object>
+							</object>
 							<object class="IBUIImageView" id="721597865">
 								<reference key="NSNextResponder" ref="939847949"/>
 								<int key="NSvFlags">292</int>
@@ -297,6 +311,7 @@
 							<reference ref="672884160"/>
 							<reference ref="724804168"/>
 							<reference ref="528654720"/>
+							<reference ref="106570579"/>
 						</object>
 						<reference key="parent" ref="709241668"/>
 					</object>
@@ -345,6 +360,11 @@
 						<reference key="object" ref="528654720"/>
 						<reference key="parent" ref="787286558"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">16</int>
+						<reference key="object" ref="106570579"/>
+						<reference key="parent" ref="787286558"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -358,6 +378,7 @@
 					<string>13.IBPluginDependency</string>
 					<string>14.IBPluginDependency</string>
 					<string>15.IBPluginDependency</string>
+					<string>16.IBPluginDependency</string>
 					<string>2.CustomClassName</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
@@ -375,8 +396,9 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>PostSummaryCell</string>
-					<string>{{421, 112}, {320, 88}}</string>
+					<string>{{255, 205}, {320, 88}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -404,7 +426,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">15</int>
+			<int key="maxID">16</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -416,6 +438,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>loadMoreCell</string>
 							<string>statusLineLabel</string>
 							<string>statusLineView</string>
 							<string>tableView</string>
@@ -423,6 +446,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UITableViewCell</string>
 							<string>UILabel</string>
 							<string>UIView</string>
 							<string>UITableView</string>

@@ -12,7 +12,6 @@
 		17132615108A1203007F6C24 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17132614108A1203007F6C24 /* CoreData.framework */; };
 		17132681108A163B007F6C24 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 1713267F108A163B007F6C24 /* Post.m */; };
 		171326D0108A238E007F6C24 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 171326CF108A238E007F6C24 /* Model.m */; };
-		17132866108A4A89007F6C24 /* Journaler.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 17132865108A4A89007F6C24 /* Journaler.xcdatamodel */; };
 		17132995108A82A4007F6C24 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132994108A82A4007F6C24 /* Icon.png */; };
 		17132A56108B240B007F6C24 /* SinglePostTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 17132A55108B240B007F6C24 /* SinglePostTemplate.html */; };
 		17132AA7108B3017007F6C24 /* UserPicCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */; };
@@ -72,7 +71,6 @@
 		1750B17C1097B3F900C1D2A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		1750B17D1097B3F900C1D2A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		1750B17E1097B3F900C1D2A8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17132614108A1203007F6C24 /* CoreData.framework */; };
-		1750B1931097B46000C1D2A8 /* Journaler.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 17132865108A4A89007F6C24 /* Journaler.xcdatamodel */; };
 		1750B36D1098EF1400C1D2A8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3681098EF1400C1D2A8 /* AddressBook.framework */; };
 		1750B36E1098EF1400C1D2A8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3691098EF1400C1D2A8 /* AudioToolbox.framework */; };
 		1750B36F1098EF1400C1D2A8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B36A1098EF1400C1D2A8 /* CoreLocation.framework */; };
@@ -118,6 +116,12 @@
 		17B62E1E10B741B500C974DE /* FriendListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B62E1C10B741B500C974DE /* FriendListController.m */; };
 		17B62E6910B74AA800C974DE /* FriendListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B62E6810B74AA800C974DE /* FriendListController.xib */; };
 		17B62E6A10B74AA800C974DE /* FriendListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B62E6810B74AA800C974DE /* FriendListController.xib */; };
+		17B633FD10B8CD6B00C974DE /* lock.gif in Resources */ = {isa = PBXBuildFile; fileRef = 17B633FC10B8CD6B00C974DE /* lock.gif */; };
+		17B633FE10B8CD6B00C974DE /* lock.gif in Resources */ = {isa = PBXBuildFile; fileRef = 17B633FC10B8CD6B00C974DE /* lock.gif */; };
+		17B6340810B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17B6340710B8CF8000C974DE /* Journaler.xcdatamodeld */; };
+		17B6340910B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17B6340710B8CF8000C974DE /* Journaler.xcdatamodeld */; };
+		17B6345410B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */; };
+		17B6345510B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */; };
 		17DB0BD11075444F00155636 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BCF1075444F00155636 /* AccountsViewController.m */; };
 		17DB0BD21075444F00155636 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BD01075444F00155636 /* AccountsViewController.xib */; };
 		17DB0BF31075462000155636 /* AccountEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BF11075462000155636 /* AccountEditorController.xib */; };
@@ -220,6 +224,9 @@
 		17B62E1B10B741B500C974DE /* FriendListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListController.h; sourceTree = "<group>"; };
 		17B62E1C10B741B500C974DE /* FriendListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListController.m; sourceTree = "<group>"; };
 		17B62E6810B74AA800C974DE /* FriendListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendListController.xib; sourceTree = "<group>"; };
+		17B633FC10B8CD6B00C974DE /* lock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lock.gif; sourceTree = "<group>"; };
+		17B6340A10B8CF8000C974DE /* Journaler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Journaler 2.xcdatamodel"; sourceTree = "<group>"; };
+		17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = "v1-v2.xcmappingmodel"; sourceTree = "<group>"; };
 		17DB0BCE1075444F00155636 /* AccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountsViewController.h; sourceTree = "<group>"; };
 		17DB0BCF1075444F00155636 /* AccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsViewController.m; sourceTree = "<group>"; };
 		17DB0BD01075444F00155636 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountsViewController.xib; path = Classes/AccountsViewController.xib; sourceTree = "<group>"; };
@@ -327,6 +334,7 @@
 		17132A54108B238C007F6C24 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				17B633FC10B8CD6B00C974DE /* lock.gif */,
 				1750B0D61097A3B200C1D2A8 /* video.png */,
 				1759F49C1096514B0008AA60 /* comments.png */,
 				1750B0D81097A41000C1D2A8 /* image.png */,
@@ -447,6 +455,15 @@
 			name = XIBs;
 			sourceTree = "<group>";
 		};
+		17B6345210B8D2F700C974DE /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				17B6340710B8CF8000C974DE /* Journaler.xcdatamodeld */,
+				17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,11 +499,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				17B6345210B8D2F700C974DE /* DataModel */,
 				17B62D9D10B733E000C974DE /* XIBs */,
 				17132A54108B238C007F6C24 /* Images */,
 				8D1107310486CEB800E47090 /* Journaler-Info.plist */,
 				1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */,
-				17132865108A4A89007F6C24 /* Journaler.xcdatamodel */,
 				17132A55108B240B007F6C24 /* SinglePostTemplate.html */,
 				1746704C10AD0353008298F8 /* RefreshTurnedOff.html */,
 			);
@@ -596,6 +613,7 @@
 				17A13DD410ACB15C008E5AEF /* Settings.bundle in Resources */,
 				1746704D10AD0353008298F8 /* RefreshTurnedOff.html in Resources */,
 				17B62E6910B74AA800C974DE /* FriendListController.xib in Resources */,
+				17B633FD10B8CD6B00C974DE /* lock.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +645,7 @@
 				17A13DD510ACB15C008E5AEF /* Settings.bundle in Resources */,
 				1746704E10AD0353008298F8 /* RefreshTurnedOff.html in Resources */,
 				17B62E6A10B74AA800C974DE /* FriendListController.xib in Resources */,
+				17B633FE10B8CD6B00C974DE /* lock.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,13 +679,14 @@
 				1750B1771097B3F900C1D2A8 /* DelayedUserPicLoader.m in Sources */,
 				1750B1781097B3F900C1D2A8 /* PostSummaryCell.m in Sources */,
 				1750B1791097B3F900C1D2A8 /* WebViewController.m in Sources */,
-				1750B1931097B46000C1D2A8 /* Journaler.xcdatamodel in Sources */,
+				17B6340910B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */,
 				17704A5C10A238C100C1EFB2 /* ALAppUse.m in Sources */,
 				17704A5D10A238C100C1EFB2 /* ALDeviceInfo.m in Sources */,
 				17704A5E10A238C100C1EFB2 /* ALReporter.m in Sources */,
 				176E729F10B1FE9E000B9127 /* ALProperty.m in Sources */,
 				17B62DB710B7355600C974DE /* AccountTabBarController.m in Sources */,
 				17B62E1D10B741B500C974DE /* FriendListController.m in Sources */,
+				17B6345410B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,7 +714,7 @@
 				1713230A1085168F007F6C24 /* PostViewController.m in Sources */,
 				17132681108A163B007F6C24 /* Post.m in Sources */,
 				171326D0108A238E007F6C24 /* Model.m in Sources */,
-				17132866108A4A89007F6C24 /* Journaler.xcdatamodel in Sources */,
+				17B6340810B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */,
 				17132AA7108B3017007F6C24 /* UserPicCache.m in Sources */,
 				1759F1831092F28B0008AA60 /* DelayedUserPicLoader.m in Sources */,
 				1759F1E110930D5D0008AA60 /* PostSummaryCell.m in Sources */,
@@ -705,6 +725,7 @@
 				176E72A010B1FE9E000B9127 /* ALProperty.m in Sources */,
 				17B62DB810B7355600C974DE /* AccountTabBarController.m in Sources */,
 				17B62E1E10B741B500C974DE /* FriendListController.m in Sources */,
+				17B6345510B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,6 +965,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		17B6340710B8CF8000C974DE /* Journaler.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				17132865108A4A89007F6C24 /* Journaler.xcdatamodel */,
+				17B6340A10B8CF8000C974DE /* Journaler 2.xcdatamodel */,
+			);
+			currentVersion = 17B6340A10B8CF8000C974DE /* Journaler 2.xcdatamodel */;
+			path = Journaler.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }

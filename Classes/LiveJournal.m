@@ -84,6 +84,7 @@ NSString* md5(NSString *str)
 @synthesize eventPreview;
 @synthesize userPicUrl;
 @synthesize ditemid;
+@synthesize security;
 
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format {
 	while (true) {
@@ -548,6 +549,7 @@ NSString* md5(NSString *str)
 			event.replyCount = [((NSNumber *) [entry valueForKey:@"reply_count"]) integerValue];
 			event.userPicUrl = [entry valueForKey:@"poster_userpic_url"];
 			event.ditemid = [entry valueForKey:@"ditemid"];
+			event.security = [entry valueForKey:@"security"];
 			[entries addObject:event];
 		}
 		

@@ -310,7 +310,9 @@
 			post.text = event.event;
 			post.replyCount = [NSNumber numberWithInt:event.replyCount];
 			post.userPicURL = event.userPicUrl;
+			post.security = event.security;
 			post.updated = YES;
+			[post clearPreproceedStrings];
 			
 			NSSortDescriptor *dateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateTime" ascending:NO];
 			[loadedPosts sortUsingDescriptors:[NSArray arrayWithObjects:dateSortDescriptor, nil]];
@@ -334,11 +336,15 @@
 }
 
 - (void) preprocessPosts {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	for (Post *post in loadedPosts) {
 		[post textPreview];
 		[post textView];
 		[post subjectPreview];
 	}
+	
+	[pool release];
 }
 
 #pragma mark Stāvokļa josla

@@ -19,7 +19,8 @@ enum {
 	PSUserPic,
 	PSCommunityIn,
 	PSCommunityIcon,
-	PSCommunityName
+	PSCommunityName,
+	PSLockIcon
 };
 
 
@@ -33,6 +34,7 @@ enum {
 	
     UILabel *label;
     label = (UILabel *)[self viewWithTag:PSSubject];
+	label.frame = post.isPublic ? CGRectMake(74, 5, 220, 16) : CGRectMake(88, 5, 206, 16);
 	if ([post.subject length]) {
 		label.text = post.subjectPreview;
 	} else {
@@ -100,6 +102,8 @@ enum {
 	} else {
 		imageView.image = nil;
 	}
+	
+	[self viewWithTag:PSLockIcon].hidden = post.isPublic;
 }
 
 - (void) setUserPic:(UIImage *)image {
