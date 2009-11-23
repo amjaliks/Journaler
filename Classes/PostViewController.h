@@ -9,39 +9,26 @@
 #import <UIKit/UIKit.h>
 
 @protocol PostViewControllerDataSource;
-@class Post, WebViewController, LJAccount;
+@class Post, LJAccount;
 
 @interface PostViewController : UIViewController <UIWebViewDelegate> {
+	LJAccount *account;
+	Post *post;
+	
 	NSString *postTemplate;
 	NSString *userIconPath;
 	NSString *communityIconPath;
 	
 	NSString *imageIconReplace;
 	NSString *videoIconReplace;
+	NSString *lockIconReplace;
 	
-	UIView *waitView;
-	UIWebView *lastWebView;
-	
-	WebViewController *webViewController;
-	
-	id<PostViewControllerDataSource> dataSource;
+	UIWebView *webView;
 }
 
-@property (nonatomic, retain) IBOutlet WebViewController *webViewController;
-
-@property (nonatomic, retain) IBOutlet id<PostViewControllerDataSource> dataSource;
-
-@property (nonatomic, retain) IBOutlet UIView *waitView;
-
-- (IBAction) openWebView:(id)sender;
-- (void) openInWebView:(NSString *)url;
+- (id)initWithPost:(Post *)post account:(LJAccount *)account;
+//- (IBAction) openWebView:(id)sender;
+//- (void) openInWebView:(NSString *)url;
 
 @end
 
-
-@protocol PostViewControllerDataSource<NSObject>;
-
-- (Post *) selectEventForPostViewController:(PostViewController *)controller;
-- (LJAccount *) selectedAccountForPostViewController:(PostViewController *)controller;
-
-@end

@@ -11,7 +11,8 @@
 #import "JournalerAppDelegate.h"
 #import "LiveJournal.h"
 #import "Model.h"
-#import "PostSummaryCell.h"
+#import "PostPreviewCell.h"
+#import "PostViewController.h"
 #import "AccountEditorController.h"
 
 #ifdef LITEVERSION
@@ -44,6 +45,9 @@ NSString* md5(NSString *str);
 		// rakstu masīva inicializācija
 		loadedPosts = [[NSMutableArray alloc] init];
 		
+		// kešs
+		cachedPostViewControllers = [[NSMutableDictionary alloc] init];
+		
 		canLoadMore = YES;
     }
     return self;
@@ -67,11 +71,11 @@ NSString* md5(NSString *str);
 #endif
 }
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	[tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 }
-*/
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -313,6 +317,7 @@ NSString* md5(NSString *str);
 			post.userPicURL = event.userPicUrl;
 			post.security = event.security;
 			post.updated = YES;
+			post.rendered = NO;
 			[post clearPreproceedStrings];
 			
 			NSSortDescriptor *dateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateTime" ascending:NO];
@@ -343,7 +348,18 @@ NSString* md5(NSString *str);
 		[post textPreview];
 		[post textView];
 		[post subjectPreview];
-		[post userPicURLHash];
+		
+		if (!post.userPic && post.userPicURL && [post.userPicURL length]) {
+			post.userPic = [APP_USER_PIC_CACHE imageFromCacheForHash:[post userPicURLHash]];
+			
+			if (post.userPic) {
+				if (post.view) {
+					[post.view setNeedsDisplay];
+				}
+			} else {
+				[APP_USER_PIC_CACHE performSelectorInBackground:@selector(downloadUserPicForPost:) withObject:post];
+			}
+		}
 	}
 	
 	[pool release];
@@ -392,19 +408,16 @@ NSString* md5(NSString *str);
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row < [loadedPosts count]) {
-		static NSString *MyIdentifier = @"PostSummary";
+		static NSString *MyIdentifier = @"PostPreview";
 		
-		PostSummaryCell *cell = (PostSummaryCell *)[aTableView dequeueReusableCellWithIdentifier:MyIdentifier];
+		PostPreviewCell *cell = (PostPreviewCell *)[aTableView dequeueReusableCellWithIdentifier:MyIdentifier];
 		if (cell == nil) {
-			[[NSBundle mainBundle] loadNibNamed:@"PostSummaryView" owner:self options:nil];
-			cell = templateCell;
-			cell.tableView = aTableView;
-			self.templateCell = nil;
+			cell = [[[PostPreviewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
 		}
-		
+
 		Post *post = [loadedPosts objectAtIndex:indexPath.row];
-		cell.post = post;
-		
+		[cell setPost:post];
+
 		return cell;
 	} else {
 		loadMoreCell.textLabel.text = @"Load more...";
@@ -421,6 +434,15 @@ NSString* md5(NSString *str);
 	if (indexPath.row == [loadedPosts count]) {
 		loadMoreCell.textLabel.text = @"Loading...";
 		[self performSelectorInBackground:@selector(loadMorePosts) withObject:nil];
+	} else {
+		Post *post = [loadedPosts objectAtIndex:indexPath.row];
+		PostViewController *postViewController = [[cachedPostViewControllers objectForKey:post.uniqueKey] retain];
+		if (!postViewController) {
+			postViewController = [[PostViewController alloc] initWithPost:[loadedPosts objectAtIndex:indexPath.row] account:account];
+			[cachedPostViewControllers setObject:postViewController forKey:post.uniqueKey];
+		}
+		[self.navigationController pushViewController:postViewController animated:YES];
+		[postViewController release];
 	}
 }
 
@@ -476,6 +498,7 @@ NSString* md5(NSString *str);
 
 - (void)dealloc {
 	[loadedPosts release];
+	[cachedPostViewControllers release];
 	
 #ifdef LITEVERSION
 	// ar reklāmām saistītie resursi

@@ -88,9 +88,9 @@ NSString* md5(NSString *str)
 
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format {
 	while (true) {
-#ifdef DEBUG
-		NSLog(string);
-#endif
+//#ifdef DEBUG
+//		NSLog(string);
+//#endif
 		NSString *match = [string stringByMatching:tag options:RKLDotAll | RKLCaseless inRange:NSMakeRange(0, [string length]) capture:0 error:nil];
 		if (!match) {
 			break;

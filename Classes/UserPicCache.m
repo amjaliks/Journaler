@@ -7,10 +7,12 @@
 //
 
 #import "UserPicCache.h"
+#import "Macros.h"
 #import "NSStringAdditions.h"
 #import "DelayedUserPicLoader.h"
 #import "LiveJournal.h"
 #import "JournalerAppDelegate.h"
+#import "Model.h"
 
 @implementation UserPicCache
 
@@ -167,6 +169,7 @@
 		[imageCache setObject:image forKey:hash];
 		return image;		
 	}
+	return nil;
 }
 
 - (NSString *) pathForCacheImage:(NSString *)hash {
@@ -194,6 +197,61 @@
 	} else {
 		return data;
 	}
+}
+
+- (UIImage *)imageFromCacheForHash:(NSString *)hash {
+	@synchronized (imageCache) {
+		UIImage *image = [imageCache objectForKey:hash];
+		if (image) {
+			return image;
+		}
+		image = [UIImage imageWithContentsOfFile:[self pathForCacheImage:hash]];
+		if (image) {
+			[imageCache setObject:image forKey:hash];
+			return image;
+		}
+	}
+	return nil;
+}
+
+- (void)downloadUserPicForPost:(Post *)post {
+	@synchronized (imageCache) {
+		// pirms, ko lejuplādējam, pārliecinamies, ka bildes joprojām nav
+		if (!post.userPic) {
+			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+			
+			// vispirms cenšamies vēlreiz bildi saņemt no keša
+			UIImage *image = [self userPicForPost:post];
+			
+			if (image) {
+				post.userPic = image;
+				if (post.view) {
+					[post.view setNeedsDisplay];
+				}
+			}
+			
+			[pool release];
+		}
+	}
+}
+
+- (UIImage *)userPicForPost:(Post *)post {
+	@synchronized(imageCache) {
+		// vispirms cenšamies bildi saņemt no keša
+		UIImage *image = [self imageFromCacheForHash:post.userPicURLHash];
+		if (!image) {
+			// bildes kešā nav, tad to lejuplādējam
+			NSData *data = [self downloadDataFromURL:post.userPicURL];
+			if (data) {
+				// ja lejuplādē veiksmīga, tad to datus saglabājam
+				[data writeToFile:[self pathForCacheImage:post.userPicURLHash] atomically:NO];
+				image = [UIImage imageWithData:data];
+				[imageCache setObject:image forKey:post.userPicURLHash];
+			}
+		}
+		return image;
+	}
+	return nil;
 }
 
 @end

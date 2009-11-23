@@ -9,13 +9,18 @@
 #import <CoreData/CoreData.h>
 
 @interface Post :  NSManagedObject {
+	NSString *uniqueKey;
+
 	NSString *textPreview;
 	NSString *textView;
 	NSString *subjectPreview;
 	NSString *userPicURLHash;
+	UIImage *userPic;
 	
+	UIView *view;
 	NSUInteger posterNameWidth;
 	BOOL updated;
+	BOOL rendered;
 }
 
 @property (nonatomic, retain) NSString * journal;
@@ -31,14 +36,19 @@
 @property (nonatomic, retain) NSNumber * isRead;
 @property (nonatomic, retain) NSString * security;
 
+@property (readonly) NSString * uniqueKey;
+
 @property (readonly) NSString * textPreview;
 @property (readonly) NSString * textView;
 @property (readonly) NSString * subjectPreview;
 @property (readonly) NSString * userPicURLHash;
+@property (retain) UIImage * userPic;
 @property (readonly) BOOL isPublic;
 
+@property (retain) UIView *view;
 @property NSUInteger posterNameWidth;
 @property BOOL updated;
+@property BOOL rendered;
 
 - (void) clearPreproceedStrings;
 

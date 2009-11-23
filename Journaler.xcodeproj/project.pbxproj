@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1713230A1085168F007F6C24 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171323081085168F007F6C24 /* PostViewController.m */; };
-		1713230B1085168F007F6C24 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171323091085168F007F6C24 /* PostViewController.xib */; };
 		17132615108A1203007F6C24 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17132614108A1203007F6C24 /* CoreData.framework */; };
 		17132681108A163B007F6C24 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 1713267F108A163B007F6C24 /* Post.m */; };
 		171326D0108A238E007F6C24 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 171326CF108A238E007F6C24 /* Model.m */; };
@@ -27,7 +26,6 @@
 		1750B14C1097B3F900C1D2A8 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BD01075444F00155636 /* AccountsViewController.xib */; };
 		1750B14D1097B3F900C1D2A8 /* AccountEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BF11075462000155636 /* AccountEditorController.xib */; };
 		1750B14E1097B3F900C1D2A8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C951076616400155636 /* Entitlements.plist */; };
-		1750B14F1097B3F900C1D2A8 /* AccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FCD9B410793F9F00806088 /* AccountViewController.xib */; };
 		1750B1501097B3F900C1D2A8 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE5F107A894B00964DA2 /* forward.png */; };
 		1750B1511097B3F900C1D2A8 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
 		1750B1521097B3F900C1D2A8 /* PostEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1789BFE1107E73BA00964DA2 /* PostEditorController.xib */; };
@@ -48,7 +46,6 @@
 		1750B1621097B3F900C1D2A8 /* JournalerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */; };
 		1750B1641097B3F900C1D2A8 /* LiveJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0CC110768D2900155636 /* LiveJournal.m */; };
 		1750B1651097B3F900C1D2A8 /* AccountEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD7151078C70700806088 /* AccountEditorController.m */; };
-		1750B1661097B3F900C1D2A8 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */; };
 		1750B1671097B3F900C1D2A8 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
 		1750B1681097B3F900C1D2A8 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C538108132E80005660E /* RegexKitLite.m */; };
 		1750B1691097B3F900C1D2A8 /* XMLRPCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9A61083C8BC0005660E /* XMLRPCConnection.m */; };
@@ -65,7 +62,6 @@
 		1750B1741097B3F900C1D2A8 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 171326CF108A238E007F6C24 /* Model.m */; };
 		1750B1761097B3F900C1D2A8 /* UserPicCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */; };
 		1750B1771097B3F900C1D2A8 /* DelayedUserPicLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */; };
-		1750B1781097B3F900C1D2A8 /* PostSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1E010930D5D0008AA60 /* PostSummaryCell.m */; };
 		1750B1791097B3F900C1D2A8 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F3191093674E0008AA60 /* WebViewController.m */; };
 		1750B17B1097B3F900C1D2A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1750B17C1097B3F900C1D2A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -80,7 +76,6 @@
 		1750B3F91098F42300C1D2A8 /* libAdMobSimulator3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3F71098F42300C1D2A8 /* libAdMobSimulator3_0.a */; };
 		1750B3FA1098F42300C1D2A8 /* libAdMobDevice3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3F81098F42300C1D2A8 /* libAdMobDevice3_0.a */; };
 		1759F1831092F28B0008AA60 /* DelayedUserPicLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */; };
-		1759F1E110930D5D0008AA60 /* PostSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1E010930D5D0008AA60 /* PostSummaryCell.m */; };
 		1759F31B1093674E0008AA60 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F3191093674E0008AA60 /* WebViewController.m */; };
 		1759F31C1093674E0008AA60 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1759F31A1093674E0008AA60 /* WebViewController.xib */; };
 		1759F49D1096514B0008AA60 /* comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 1759F49C1096514B0008AA60 /* comments.png */; };
@@ -98,7 +93,11 @@
 		1789BFE3107E73BA00964DA2 /* PostEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1789BFE1107E73BA00964DA2 /* PostEditorController.xib */; };
 		17A13DD410ACB15C008E5AEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A13DD310ACB15C008E5AEF /* Settings.bundle */; };
 		17A13DD510ACB15C008E5AEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A13DD310ACB15C008E5AEF /* Settings.bundle */; };
-		17B4C487108111500005660E /* PostSummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B4C486108111500005660E /* PostSummaryView.xib */; };
+		17B462E410BA2647004D0E0F /* PostPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E310BA2647004D0E0F /* PostPreviewCell.m */; };
+		17B462E510BA2647004D0E0F /* PostPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E310BA2647004D0E0F /* PostPreviewCell.m */; };
+		17B462E810BA2659004D0E0F /* PostPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E710BA2659004D0E0F /* PostPreviewView.m */; };
+		17B462E910BA2659004D0E0F /* PostPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E710BA2659004D0E0F /* PostPreviewView.m */; };
+		17B4651110BB2462004D0E0F /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4650F10BB2462004D0E0F /* AccountViewController.m */; };
 		17B4C53A108132E80005660E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C538108132E80005660E /* RegexKitLite.m */; };
 		17B4C63F10827C360005660E /* IconLite.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B4C63E10827C360005660E /* IconLite.png */; };
 		17B4C9B61083C8BC0005660E /* XMLRPCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9A61083C8BC0005660E /* XMLRPCConnection.m */; };
@@ -128,8 +127,6 @@
 		17DB0C961076616400155636 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C951076616400155636 /* Entitlements.plist */; };
 		17DB0CC210768D2900155636 /* LiveJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0CC110768D2900155636 /* LiveJournal.m */; };
 		17FCD7161078C70700806088 /* AccountEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD7151078C70700806088 /* AccountEditorController.m */; };
-		17FCD9B510793F9F00806088 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD9B310793F9F00806088 /* AccountViewController.m */; };
-		17FCD9B610793F9F00806088 /* AccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FCD9B410793F9F00806088 /* AccountViewController.xib */; };
 		1D3623260D0F684500981E51 /* JournalerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -193,6 +190,13 @@
 		1789BFE0107E73BA00964DA2 /* PostEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostEditorController.m; sourceTree = "<group>"; };
 		1789BFE1107E73BA00964DA2 /* PostEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostEditorController.xib; path = Classes/PostEditorController.xib; sourceTree = "<group>"; };
 		17A13DD310ACB15C008E5AEF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		17B462E210BA2647004D0E0F /* PostPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPreviewCell.h; sourceTree = "<group>"; };
+		17B462E310BA2647004D0E0F /* PostPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPreviewCell.m; sourceTree = "<group>"; };
+		17B462E610BA2659004D0E0F /* PostPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPreviewView.h; sourceTree = "<group>"; };
+		17B462E710BA2659004D0E0F /* PostPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPreviewView.m; sourceTree = "<group>"; };
+		17B462EF10BA28BA004D0E0F /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		17B4650F10BB2462004D0E0F /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
+		17B4651010BB2462004D0E0F /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		17B4C486108111500005660E /* PostSummaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostSummaryView.xib; sourceTree = "<group>"; };
 		17B4C538108132E80005660E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		17B4C539108132E80005660E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
@@ -236,8 +240,6 @@
 		17DB0CC110768D2900155636 /* LiveJournal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveJournal.m; sourceTree = "<group>"; };
 		17FCD7141078C70700806088 /* AccountEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountEditorController.h; sourceTree = "<group>"; };
 		17FCD7151078C70700806088 /* AccountEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountEditorController.m; sourceTree = "<group>"; };
-		17FCD9B210793F9F00806088 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
-		17FCD9B310793F9F00806088 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		17FCD9B410793F9F00806088 /* AccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountViewController.xib; path = Classes/AccountViewController.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* JournalerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalerAppDelegate.h; sourceTree = "<group>"; };
@@ -302,8 +304,8 @@
 				17B62DB610B7355600C974DE /* AccountTabBarController.m */,
 				17FCD7141078C70700806088 /* AccountEditorController.h */,
 				17FCD7151078C70700806088 /* AccountEditorController.m */,
-				17FCD9B210793F9F00806088 /* AccountViewController.h */,
-				17FCD9B310793F9F00806088 /* AccountViewController.m */,
+				17B4651010BB2462004D0E0F /* AccountViewController.h */,
+				17B4650F10BB2462004D0E0F /* AccountViewController.m */,
 				1759F1DF10930D5D0008AA60 /* PostSummaryCell.h */,
 				1759F1E010930D5D0008AA60 /* PostSummaryCell.m */,
 				171323071085168F007F6C24 /* PostViewController.h */,
@@ -316,6 +318,11 @@
 				17DB0CC110768D2900155636 /* LiveJournal.m */,
 				17B62E1B10B741B500C974DE /* FriendListController.h */,
 				17B62E1C10B741B500C974DE /* FriendListController.m */,
+				17B462E210BA2647004D0E0F /* PostPreviewCell.h */,
+				17B462E310BA2647004D0E0F /* PostPreviewCell.m */,
+				17B462E610BA2659004D0E0F /* PostPreviewView.h */,
+				17B462E710BA2659004D0E0F /* PostPreviewView.m */,
+				17B462EF10BA28BA004D0E0F /* Macros.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -593,7 +600,6 @@
 				1750B14C1097B3F900C1D2A8 /* AccountsViewController.xib in Resources */,
 				1750B14D1097B3F900C1D2A8 /* AccountEditorController.xib in Resources */,
 				1750B14E1097B3F900C1D2A8 /* Entitlements.plist in Resources */,
-				1750B14F1097B3F900C1D2A8 /* AccountViewController.xib in Resources */,
 				1750B1501097B3F900C1D2A8 /* forward.png in Resources */,
 				1750B1511097B3F900C1D2A8 /* back.png in Resources */,
 				1750B1521097B3F900C1D2A8 /* PostEditorController.xib in Resources */,
@@ -625,13 +631,10 @@
 				17DB0BD21075444F00155636 /* AccountsViewController.xib in Resources */,
 				17DB0BF31075462000155636 /* AccountEditorController.xib in Resources */,
 				17DB0C961076616400155636 /* Entitlements.plist in Resources */,
-				17FCD9B610793F9F00806088 /* AccountViewController.xib in Resources */,
 				1789BE60107A894B00964DA2 /* forward.png in Resources */,
 				1789BE62107A89F200964DA2 /* back.png in Resources */,
 				1789BFE3107E73BA00964DA2 /* PostEditorController.xib in Resources */,
-				17B4C487108111500005660E /* PostSummaryView.xib in Resources */,
 				17B4C63F10827C360005660E /* IconLite.png in Resources */,
-				1713230B1085168F007F6C24 /* PostViewController.xib in Resources */,
 				17132995108A82A4007F6C24 /* Icon.png in Resources */,
 				17132A56108B240B007F6C24 /* SinglePostTemplate.html in Resources */,
 				17132B30108B386E007F6C24 /* community.png in Resources */,
@@ -660,7 +663,6 @@
 				1750B1621097B3F900C1D2A8 /* JournalerAppDelegate.m in Sources */,
 				1750B1641097B3F900C1D2A8 /* LiveJournal.m in Sources */,
 				1750B1651097B3F900C1D2A8 /* AccountEditorController.m in Sources */,
-				1750B1661097B3F900C1D2A8 /* AccountViewController.m in Sources */,
 				1750B1671097B3F900C1D2A8 /* PostEditorController.m in Sources */,
 				1750B1681097B3F900C1D2A8 /* RegexKitLite.m in Sources */,
 				1750B1691097B3F900C1D2A8 /* XMLRPCConnection.m in Sources */,
@@ -677,7 +679,6 @@
 				1750B1741097B3F900C1D2A8 /* Model.m in Sources */,
 				1750B1761097B3F900C1D2A8 /* UserPicCache.m in Sources */,
 				1750B1771097B3F900C1D2A8 /* DelayedUserPicLoader.m in Sources */,
-				1750B1781097B3F900C1D2A8 /* PostSummaryCell.m in Sources */,
 				1750B1791097B3F900C1D2A8 /* WebViewController.m in Sources */,
 				17B6340910B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */,
 				17704A5C10A238C100C1EFB2 /* ALAppUse.m in Sources */,
@@ -687,6 +688,9 @@
 				17B62DB710B7355600C974DE /* AccountTabBarController.m in Sources */,
 				17B62E1D10B741B500C974DE /* FriendListController.m in Sources */,
 				17B6345410B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */,
+				17B462E410BA2647004D0E0F /* PostPreviewCell.m in Sources */,
+				17B462E810BA2659004D0E0F /* PostPreviewView.m in Sources */,
+				17B4651110BB2462004D0E0F /* AccountViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,7 +703,6 @@
 				17DB0BD11075444F00155636 /* AccountsViewController.m in Sources */,
 				17DB0CC210768D2900155636 /* LiveJournal.m in Sources */,
 				17FCD7161078C70700806088 /* AccountEditorController.m in Sources */,
-				17FCD9B510793F9F00806088 /* AccountViewController.m in Sources */,
 				1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */,
 				17B4C53A108132E80005660E /* RegexKitLite.m in Sources */,
 				17B4C9B61083C8BC0005660E /* XMLRPCConnection.m in Sources */,
@@ -717,7 +720,6 @@
 				17B6340810B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */,
 				17132AA7108B3017007F6C24 /* UserPicCache.m in Sources */,
 				1759F1831092F28B0008AA60 /* DelayedUserPicLoader.m in Sources */,
-				1759F1E110930D5D0008AA60 /* PostSummaryCell.m in Sources */,
 				1759F31B1093674E0008AA60 /* WebViewController.m in Sources */,
 				17704A5F10A238C100C1EFB2 /* ALAppUse.m in Sources */,
 				17704A6010A238C100C1EFB2 /* ALDeviceInfo.m in Sources */,
@@ -726,6 +728,8 @@
 				17B62DB810B7355600C974DE /* AccountTabBarController.m in Sources */,
 				17B62E1E10B741B500C974DE /* FriendListController.m in Sources */,
 				17B6345510B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */,
+				17B462E510BA2647004D0E0F /* PostPreviewCell.m in Sources */,
+				17B462E910BA2659004D0E0F /* PostPreviewView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

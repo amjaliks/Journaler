@@ -35,7 +35,7 @@ enum {
 	
     UILabel *label;
     label = (UILabel *)[self viewWithTag:PSSubject];
-	label.frame = post.isPublic ? CGRectMake(74, 5, 220, 16) : CGRectMake(90, 5, 204, 16);
+//	label.frame = post.isPublic ? CGRectMake(74, 5, 220, 16) : CGRectMake(90, 5, 204, 16);
 	if ([post.subject length]) {
 		label.text = post.subjectPreview;
 	} else {
@@ -53,7 +53,7 @@ enum {
 		post.posterNameWidth = size.width;
 	}
 	frame.size.width = post.posterNameWidth;
-	label.frame = frame;
+//	label.frame = frame;
 	CGFloat last = frame.origin.x + frame.size.width;
 	
 	UILabel *communityIn = (UILabel *)[self viewWithTag:PSCommunityIn];
@@ -66,19 +66,19 @@ enum {
 		
 		frame = communityIn.frame;
 		frame.origin.x = last + 1;
-		communityIn.frame = frame;
+//		communityIn.frame = frame;
 		last = frame.origin.x + frame.size.width;
 		
 		frame = communityIcon.frame;
 		frame.origin.x = last + 1;
-		communityIcon.frame = frame;
+//		communityIcon.frame = frame;
 		last = frame.origin.x + frame.size.width;
 		
 		communityName.text = post.journal;
 		frame = communityName.frame;
 		frame.origin.x = last + 2;
 		frame.size.width = 294 - frame.origin.x;
-		communityName.frame = frame;
+//		communityName.frame = frame;
 	} else {
 		communityIn.hidden = YES;
 		communityIcon.hidden = YES;

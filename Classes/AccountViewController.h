@@ -13,6 +13,7 @@
 #import "AccountEditorController.h"
 #import "AdMobDelegateProtocol.h"
 
+#ifdef USEIT
 @class LJAccount, UserPicCache, PostSummaryCell;
 
 @protocol AccountViewControllerDataSource;
@@ -140,3 +141,5 @@ PostViewControllerDataSource, UITableViewDataSource, UITableViewDelegate, UITabB
 	- (LJAccount *)selectedAccountForAccountViewController:(AccountViewController *)accountViewController;
 
 @end
+
+#endif

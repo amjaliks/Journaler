@@ -222,10 +222,6 @@
 	return selectedAccount;
 }
 
-- (LJAccount *)selectedAccountForAccountViewController:(AccountViewController *)accountViewController {
-	return selectedAccount;
-}
-
 - (BOOL)isDublicateAccount:(NSString *)title {
 	for (LJAccount *account in accounts) {
 		if (selectedAccount != account && [account.title isEqualToString:title]) {

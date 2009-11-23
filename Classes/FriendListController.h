@@ -40,6 +40,9 @@
 	// pogas
 	UIBarButtonItem *refreshButtonItem;
 	
+	// kešs ar rakstu skatījumiem
+	NSMutableDictionary *cachedPostViewControllers;
+	
 #ifdef LITEVERSION
 	NSDate *lastRefresh;
 	AdMobView *adMobView;

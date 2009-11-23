@@ -25,8 +25,18 @@
 @dynamic isRead;
 @dynamic security;
 
+@synthesize userPic;
+@synthesize view;
 @synthesize posterNameWidth;
 @synthesize updated;
+@synthesize rendered;
+
+- (NSString *)uniqueKey {
+	if (!uniqueKey) {
+		uniqueKey = [[NSString alloc] initWithFormat:@"%@+%@+%@", self.journal, self.poster, self.ditemid];
+	}
+	return uniqueKey;
+}
 
 - (NSString *)textPreview {
 	@synchronized(self) {

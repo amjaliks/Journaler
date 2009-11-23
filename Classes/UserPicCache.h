@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class Post;
 
 @interface UserPicCache : NSObject {
 	NSMutableDictionary *dataCache;
@@ -30,5 +31,9 @@
 - (NSString *) pathForCacheImage:(NSString *)hash;
 - (UIImage *) ensureImageAvailabilityFromURL:(NSString *)url hash:(NSString *)hash;
 - (NSData *) downloadDataFromURL:(NSString *)URL;
+
+- (UIImage *)imageFromCacheForHash:(NSString *)hash;
+- (void)downloadUserPicForPost:(Post *)post;
+- (UIImage *)userPicForPost:(Post *)post;
 
 @end
