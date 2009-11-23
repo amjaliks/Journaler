@@ -6,7 +6,7 @@
 //  Copyright 2009 A25. All rights reserved.
 //
 
-#import "FriendListController.h"
+#import "LJFriendsPageController.h"
 
 #import "JournalerAppDelegate.h"
 #import "LiveJournal.h"
@@ -22,7 +22,7 @@
 
 NSString* md5(NSString *str);
 
-@implementation FriendListController
+@implementation LJFriendsPageController
 
 // tabula
 @synthesize tableView;
@@ -33,13 +33,13 @@ NSString* md5(NSString *str);
 @synthesize statusLineLabel;
 
 - (id)initWithAccount:(LJAccount *)aAccount {
-    if (self = [super initWithNibName:@"FriendListController" bundle:nil]) {
+    if (self = [super initWithNibName:@"LJFriendsPageController" bundle:nil]) {
 		account = aAccount;
 		
 		// cilnes bildīte
 		UIImage *image = [UIImage imageNamed:@"friends.png"];
 		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Friends" image:image tag:0];
-		super.tabBarItem = tabBarItem;
+		self.tabBarItem = tabBarItem;
 		[tabBarItem release];
 		
 		// rakstu masīva inicializācija

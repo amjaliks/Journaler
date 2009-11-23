@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FriendsPageController.h"
 
 #ifdef LITEVERSION
 	#import "AdMobDelegateProtocol.h"
@@ -20,7 +21,7 @@
 
 @class LJAccount, PostSummaryCell;
 
-@interface FriendListController : UIViewController <UITableViewDataSource, UITableViewDelegate ADMOBDELEGATE> {
+@interface LJFriendsPageController : FriendsPageController <UITableViewDataSource, UITableViewDelegate ADMOBDELEGATE> {
 	// konts
 	LJAccount *account;
 	// ielasīti raksti

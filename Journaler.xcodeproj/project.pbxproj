@@ -18,6 +18,8 @@
 		17132B34108B3A47007F6C24 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132B33108B3A47007F6C24 /* user.png */; };
 		17132C74108BB5B8007F6C24 /* newpost.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132C73108BB5B8007F6C24 /* newpost.png */; };
 		17132C77108BB6EA007F6C24 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132C76108BB6EA007F6C24 /* friends.png */; };
+		173FB76610BB490600FD0652 /* LJFriendsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FB76510BB490600FD0652 /* LJFriendsPageController.m */; };
+		173FB76710BB490600FD0652 /* LJFriendsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FB76510BB490600FD0652 /* LJFriendsPageController.m */; };
 		1746704D10AD0353008298F8 /* RefreshTurnedOff.html in Resources */ = {isa = PBXBuildFile; fileRef = 1746704C10AD0353008298F8 /* RefreshTurnedOff.html */; };
 		1746704E10AD0353008298F8 /* RefreshTurnedOff.html in Resources */ = {isa = PBXBuildFile; fileRef = 1746704C10AD0353008298F8 /* RefreshTurnedOff.html */; };
 		1750B0D71097A3B200C1D2A8 /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 1750B0D61097A3B200C1D2A8 /* video.png */; };
@@ -98,6 +100,8 @@
 		17B462E810BA2659004D0E0F /* PostPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E710BA2659004D0E0F /* PostPreviewView.m */; };
 		17B462E910BA2659004D0E0F /* PostPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E710BA2659004D0E0F /* PostPreviewView.m */; };
 		17B4651110BB2462004D0E0F /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4650F10BB2462004D0E0F /* AccountViewController.m */; };
+		17B4666110BB4854004D0E0F /* FriendsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4666010BB4854004D0E0F /* FriendsPageController.m */; };
+		17B4666210BB4854004D0E0F /* FriendsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4666010BB4854004D0E0F /* FriendsPageController.m */; };
 		17B4C53A108132E80005660E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C538108132E80005660E /* RegexKitLite.m */; };
 		17B4C63F10827C360005660E /* IconLite.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B4C63E10827C360005660E /* IconLite.png */; };
 		17B4C9B61083C8BC0005660E /* XMLRPCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9A61083C8BC0005660E /* XMLRPCConnection.m */; };
@@ -111,10 +115,8 @@
 		17B4C9C41083C8DA0005660E /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9C11083C8DA0005660E /* NSDataAdditions.m */; };
 		17B62DB710B7355600C974DE /* AccountTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B62DB610B7355600C974DE /* AccountTabBarController.m */; };
 		17B62DB810B7355600C974DE /* AccountTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B62DB610B7355600C974DE /* AccountTabBarController.m */; };
-		17B62E1D10B741B500C974DE /* FriendListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B62E1C10B741B500C974DE /* FriendListController.m */; };
-		17B62E1E10B741B500C974DE /* FriendListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B62E1C10B741B500C974DE /* FriendListController.m */; };
-		17B62E6910B74AA800C974DE /* FriendListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B62E6810B74AA800C974DE /* FriendListController.xib */; };
-		17B62E6A10B74AA800C974DE /* FriendListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B62E6810B74AA800C974DE /* FriendListController.xib */; };
+		17B62E6910B74AA800C974DE /* LJFriendsPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B62E6810B74AA800C974DE /* LJFriendsPageController.xib */; };
+		17B62E6A10B74AA800C974DE /* LJFriendsPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B62E6810B74AA800C974DE /* LJFriendsPageController.xib */; };
 		17B633FD10B8CD6B00C974DE /* lock.gif in Resources */ = {isa = PBXBuildFile; fileRef = 17B633FC10B8CD6B00C974DE /* lock.gif */; };
 		17B633FE10B8CD6B00C974DE /* lock.gif in Resources */ = {isa = PBXBuildFile; fileRef = 17B633FC10B8CD6B00C974DE /* lock.gif */; };
 		17B6340810B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17B6340710B8CF8000C974DE /* Journaler.xcdatamodeld */; };
@@ -153,6 +155,7 @@
 		17132B33108B3A47007F6C24 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		17132C73108BB5B8007F6C24 /* newpost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newpost.png; sourceTree = "<group>"; };
 		17132C76108BB6EA007F6C24 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
+		173FB76510BB490600FD0652 /* LJFriendsPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJFriendsPageController.m; sourceTree = "<group>"; };
 		1746704C10AD0353008298F8 /* RefreshTurnedOff.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RefreshTurnedOff.html; sourceTree = "<group>"; };
 		1750B0D61097A3B200C1D2A8 /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video.png; sourceTree = "<group>"; };
 		1750B0D81097A41000C1D2A8 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 		17B462EF10BA28BA004D0E0F /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		17B4650F10BB2462004D0E0F /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		17B4651010BB2462004D0E0F /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
+		17B4665F10BB4854004D0E0F /* FriendsPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsPageController.h; sourceTree = "<group>"; };
+		17B4666010BB4854004D0E0F /* FriendsPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsPageController.m; sourceTree = "<group>"; };
 		17B4C486108111500005660E /* PostSummaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostSummaryView.xib; sourceTree = "<group>"; };
 		17B4C538108132E80005660E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		17B4C539108132E80005660E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
@@ -225,9 +230,8 @@
 		17B4C9C21083C8DA0005660E /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		17B62DB510B7355600C974DE /* AccountTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTabBarController.h; sourceTree = "<group>"; };
 		17B62DB610B7355600C974DE /* AccountTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTabBarController.m; sourceTree = "<group>"; };
-		17B62E1B10B741B500C974DE /* FriendListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListController.h; sourceTree = "<group>"; };
-		17B62E1C10B741B500C974DE /* FriendListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListController.m; sourceTree = "<group>"; };
-		17B62E6810B74AA800C974DE /* FriendListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendListController.xib; sourceTree = "<group>"; };
+		17B62E1B10B741B500C974DE /* LJFriendsPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJFriendsPageController.h; sourceTree = "<group>"; };
+		17B62E6810B74AA800C974DE /* LJFriendsPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LJFriendsPageController.xib; sourceTree = "<group>"; };
 		17B633FC10B8CD6B00C974DE /* lock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lock.gif; sourceTree = "<group>"; };
 		17B6340A10B8CF8000C974DE /* Journaler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Journaler 2.xcdatamodel"; sourceTree = "<group>"; };
 		17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = "v1-v2.xcmappingmodel"; sourceTree = "<group>"; };
@@ -316,8 +320,10 @@
 				1759F3191093674E0008AA60 /* WebViewController.m */,
 				17DB0CC010768D2900155636 /* LiveJournal.h */,
 				17DB0CC110768D2900155636 /* LiveJournal.m */,
-				17B62E1B10B741B500C974DE /* FriendListController.h */,
-				17B62E1C10B741B500C974DE /* FriendListController.m */,
+				17B62E1B10B741B500C974DE /* LJFriendsPageController.h */,
+				173FB76510BB490600FD0652 /* LJFriendsPageController.m */,
+				17B4665F10BB4854004D0E0F /* FriendsPageController.h */,
+				17B4666010BB4854004D0E0F /* FriendsPageController.m */,
 				17B462E210BA2647004D0E0F /* PostPreviewCell.h */,
 				17B462E310BA2647004D0E0F /* PostPreviewCell.m */,
 				17B462E610BA2659004D0E0F /* PostPreviewView.h */,
@@ -457,7 +463,7 @@
 				1789BFE1107E73BA00964DA2 /* PostEditorController.xib */,
 				1759F31A1093674E0008AA60 /* WebViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
-				17B62E6810B74AA800C974DE /* FriendListController.xib */,
+				17B62E6810B74AA800C974DE /* LJFriendsPageController.xib */,
 			);
 			name = XIBs;
 			sourceTree = "<group>";
@@ -618,7 +624,7 @@
 				1750B15F1097B3F900C1D2A8 /* image.png in Resources */,
 				17A13DD410ACB15C008E5AEF /* Settings.bundle in Resources */,
 				1746704D10AD0353008298F8 /* RefreshTurnedOff.html in Resources */,
-				17B62E6910B74AA800C974DE /* FriendListController.xib in Resources */,
+				17B62E6910B74AA800C974DE /* LJFriendsPageController.xib in Resources */,
 				17B633FD10B8CD6B00C974DE /* lock.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,7 +653,7 @@
 				1750B0D91097A41000C1D2A8 /* image.png in Resources */,
 				17A13DD510ACB15C008E5AEF /* Settings.bundle in Resources */,
 				1746704E10AD0353008298F8 /* RefreshTurnedOff.html in Resources */,
-				17B62E6A10B74AA800C974DE /* FriendListController.xib in Resources */,
+				17B62E6A10B74AA800C974DE /* LJFriendsPageController.xib in Resources */,
 				17B633FE10B8CD6B00C974DE /* lock.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -686,11 +692,12 @@
 				17704A5E10A238C100C1EFB2 /* ALReporter.m in Sources */,
 				176E729F10B1FE9E000B9127 /* ALProperty.m in Sources */,
 				17B62DB710B7355600C974DE /* AccountTabBarController.m in Sources */,
-				17B62E1D10B741B500C974DE /* FriendListController.m in Sources */,
 				17B6345410B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */,
 				17B462E410BA2647004D0E0F /* PostPreviewCell.m in Sources */,
 				17B462E810BA2659004D0E0F /* PostPreviewView.m in Sources */,
 				17B4651110BB2462004D0E0F /* AccountViewController.m in Sources */,
+				17B4666110BB4854004D0E0F /* FriendsPageController.m in Sources */,
+				173FB76610BB490600FD0652 /* LJFriendsPageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,10 +733,11 @@
 				17704A6110A238C100C1EFB2 /* ALReporter.m in Sources */,
 				176E72A010B1FE9E000B9127 /* ALProperty.m in Sources */,
 				17B62DB810B7355600C974DE /* AccountTabBarController.m in Sources */,
-				17B62E1E10B741B500C974DE /* FriendListController.m in Sources */,
 				17B6345510B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */,
 				17B462E510BA2647004D0E0F /* PostPreviewCell.m in Sources */,
 				17B462E910BA2659004D0E0F /* PostPreviewView.m in Sources */,
+				17B4666210BB4854004D0E0F /* FriendsPageController.m in Sources */,
+				173FB76710BB490600FD0652 /* LJFriendsPageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

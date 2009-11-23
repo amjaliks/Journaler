@@ -8,7 +8,8 @@
 
 #import "AccountTabBarController.h"
 
-#import "FriendListController.h"
+#import "LJFriendsPageController.h"
+#import "FriendsPageController.h"
 #import "LiveJournal.h"
 
 @implementation AccountTabBarController
@@ -20,7 +21,7 @@
 		// virsraksts
 		self.navigationItem.title = account.user;
 		
-		FriendListController *friendList = [[FriendListController alloc] initWithAccount:account];
+		FriendsPageController *friendList = [[LJFriendsPageController alloc] initWithAccount:account];
 		NSArray *arrays = [[NSArray alloc] initWithObjects:friendList, nil];
 		self.viewControllers = arrays;
 	}
