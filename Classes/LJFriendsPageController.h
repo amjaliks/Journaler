@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "FriendsPageController.h"
 
-#define DEFAULT(x) [[NSUserDefaults standardUserDefaults] boolForKey:x]
-
 @class LJAccount, PostSummaryCell;
 
 @interface LJFriendsPageController : FriendsPageController <UITableViewDataSource, UITableViewDelegate> {

@@ -8,6 +8,8 @@
 
 #import "LJFriendsPageController.h"
 
+#import "Macros.h"
+
 #import "JournalerAppDelegate.h"
 #import "LiveJournal.h"
 #import "Model.h"
@@ -115,7 +117,7 @@
 			[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
 		}
 
-		if (DEFAULT(@"refresh_on_start")) {
+		if (DEFAULT_BOOL(@"refresh_on_start")) {
 			// atjaunojam pēdējos rakstus
 			[self loadLastPostsFromServer];
 			if ([loadedPosts count]) {

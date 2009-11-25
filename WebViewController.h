@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class LJAccount;
 
 @interface WebViewController : UIViewController {
 	
@@ -16,12 +17,15 @@
 	
 	NSArray *toolbarItems;
 
+	// saraksts ar serveriem un kontiem, kuriem autorizācija ir izpildīta
+	NSMutableDictionary *loggedinServers;
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
-- (void) openURL:(NSURL *)url;
-- (void) updateToolbarButtons:(BOOL)loading;
+- (void)openURL:(NSURL *)url account:(LJAccount *)account;
+- (void)updateToolbarButtons:(BOOL)loading;
+- (BOOL)createSessionForAccount:(LJAccount *)account silent:(BOOL)silent;
 
 @end

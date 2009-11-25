@@ -27,6 +27,7 @@
 }
 
 - (id)initWithPost:(Post *)post account:(LJAccount *)account;
+- (void)openComments;
 //- (IBAction) openWebView:(id)sender;
 //- (void) openInWebView:(NSString *)url;
 

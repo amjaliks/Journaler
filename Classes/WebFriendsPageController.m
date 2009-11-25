@@ -8,6 +8,8 @@
 
 #import "WebFriendsPageController.h"
 
+#import "Macros.h"
+
 #import "LiveJournal.h"
 #import "AccountEditorController.h"
 #import "JournalerAppDelegate.h"
@@ -55,8 +57,15 @@
     [super viewDidAppear:animated];
 	
 	if (!loggedin) {
-		refreshButtonItem.enabled = NO;
-		[self performSelectorInBackground:@selector(login) withObject:nil];
+		if (DEFAULT_BOOL(@"refresh_on_start")) {
+			refreshButtonItem.enabled = NO;
+			[self performSelectorInBackground:@selector(login) withObject:nil];
+		} else {
+			NSString *path = [[NSBundle mainBundle] pathForResource:@"RefreshTurnedOff" ofType:@"html"];
+			NSURL *URL = [NSURL fileURLWithPath:path];
+			NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+			[webView loadRequest:request];
+		}
 	}
 }
 
@@ -75,32 +84,10 @@
 		if (!loggedin) {
 			loggedin = YES;
 			[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
-
-			LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
-			if ([challenge doRequest]) {
-				
-				LJSessionGenerate *session = [LJSessionGenerate requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
-				if ([session doRequest]) {
-					NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-					NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-					[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-					
-					cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljmastersession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-					cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-					[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-					
-					NSArray *parts = [session.ljsession componentsSeparatedByString:@":"];
-					cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljloggedin", NSHTTPCookieName, [NSString stringWithFormat:@"%@:%@", [parts objectAtIndex:1], [parts objectAtIndex:2]], NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-					cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-					[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-					
-					NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:friendsPageURL];
-					[webView loadRequest:req];
-				} else {
-					showErrorMessage(@"Friend page error", session.error);
-				}
-			} else {
-				showErrorMessage(@"Friend page error", challenge.error);
+			
+			if ([APP_WEB_VIEW_CONTROLLER createSessionForAccount:account silent:NO]) {
+				NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:friendsPageURL];
+				[webView loadRequest:req];
 			}
 		}
 	}
@@ -131,7 +118,7 @@
 	} else {
 		WebViewController *webViewController = APP_WEB_VIEW_CONTROLLER;
 		[self.navigationController pushViewController:webViewController animated:YES];
-		[webViewController openURL:URL];
+		[webViewController openURL:URL account:account];
 		
 		return NO;
 	}

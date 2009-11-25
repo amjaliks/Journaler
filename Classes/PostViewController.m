@@ -29,7 +29,12 @@
 - (id)initWithPost:(Post *)newPost account:(LJAccount *)newAccount {
 	if (self = [super init]) {
 		post = [newPost retain];
-		account = [newAccount retain];
+		account = [newAccount retain];		
+		
+		// komentāru poga
+		UIBarButtonItem *commentsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"comments.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(openComments)];
+		self.navigationItem.rightBarButtonItem = commentsButton;
+		[commentsButton release];
 	}
 	return self;
 }
@@ -124,7 +129,6 @@
 	[webView release];
 }
 
-
 - (void)dealloc {
 	[postTemplate release];
 	[userIconPath release];
@@ -136,6 +140,17 @@
     [super dealloc];
 }
 
+#pragma mark Pogas
+
+- (void)openComments {
+	NSURL *URL = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"http://m.livejournal.com/read/user/%@/%@/comments#comments", post.journal, post.ditemid]];
+	[self.navigationController pushViewController:APP_WEB_VIEW_CONTROLLER animated:YES];
+	[APP_WEB_VIEW_CONTROLLER openURL:URL account:account];
+	[URL release];
+}
+
+#pragma mark Web View Delegate
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	NSURL *URL = [request URL];
 	if ([[URL scheme] isEqualToString:@"about"]) {
@@ -144,28 +159,12 @@
 		[[UIApplication sharedApplication] openURL:URL];
 		return NO;
 	} else {
-		//[[UIApplication sharedApplication] openURL:url];
-		//[self openInWebView:[url absoluteString]];
 		WebViewController *webViewController = APP_WEB_VIEW_CONTROLLER;
 		[self.navigationController pushViewController:webViewController animated:YES];
-		[webViewController openURL:URL];
+		[webViewController openURL:URL account:account];
 		return NO;
 	}
 }
 
-//- (void)webViewDidFinishLoad:(UIWebView *)webView {
-//}
-
-//- (void) openInWebView:(NSString *)url {
-//	[self.navigationController pushViewController:webViewController animated:YES];
-//	[webViewController openURL:url]; 
-//}
-
-
-//- (IBAction) openWebView:(id)sender {
-//	Post *post = [dataSource selectEventForPostViewController:self];
-//	LJAccount *account = [dataSource selectedAccountForPostViewController:self];
-//	[self openInWebView:[NSString stringWithFormat:@"http://m.livejournal.com/login?mode=get&login=%@&password=%@&back_uri=/read/user/%@/%@/comments#comments", account.user, account.password, post.journal, post.ditemid]];
-//}
 
 @end
