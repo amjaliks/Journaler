@@ -12,8 +12,9 @@
 
 #define APP_DELEGATE ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate])
 #define APP_USER_PIC_CACHE APP_DELEGATE.userPicCache
+#define APP_WEB_VIEW_CONTROLLER APP_DELEGATE.webViewController
 
-@class ALReporter;
+@class ALReporter, WebViewController;
 
 #ifdef LITEVERSION
 @class LJAccount;
@@ -27,12 +28,15 @@
     UIWindow *window;
     UINavigationController *navigationController;
 	
+	WebViewController *webViewController;
+	
 	ALReporter *reporter;
 }
 
 @property (nonatomic, retain) ALReporter *reporter;
 @property (nonatomic, retain) Model *model;
 @property (nonatomic, retain) UserPicCache *userPicCache;
+@property (readonly) WebViewController *webViewController;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 

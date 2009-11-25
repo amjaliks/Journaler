@@ -21,7 +21,7 @@
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
-- (void) openURL:(NSString *)url;
+- (void) openURL:(NSURL *)url;
 - (void) updateToolbarButtons:(BOOL)loading;
 
 @end

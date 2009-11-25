@@ -51,7 +51,7 @@
 			forward.location = 0;
 			forward.length = [textPreview length];
 			
-			textPreview = [LJEvent removeTagFromString:textPreview tag:@"<lj user=\".+?\">" replacement:@"\"(.+?)\"" format:nil];
+			textPreview = [LJEvent removeTagFromString:textPreview tag:@"<lj\\s*?user=\".+?\"\\s*?/?>" replacement:@"\"(.+?)\"" format:nil];
 			textPreview = [LJEvent removeTagFromString:textPreview tag:@"<lj-cut text=\".+?\">.*?</lj-cut>" replacement:@"text=\"(.+?)\"" format:@"( %@ )"];
 			textPreview = [textPreview stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
 			textPreview = [textPreview stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
@@ -104,7 +104,7 @@
 			forward.length = [textView length];
 			
 			[((NSMutableString *)textView) replaceOccurrencesOfRegex:@"<lj-embed .+?/>" withString:@"@videoicon@ video" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [textView length]) error:nil];
-			textView = [LJEvent removeTagFromString:textView tag:@"<lj user=\".+?\">" replacement:@"\"(.+?)\"" format:nil];
+			textView = [LJEvent removeTagFromString:textView tag:@"<lj\\s*?user=\".+?\"\\s*?/?>" replacement:@"\"(.+?)\"" format:nil];
 			textView = [LJEvent removeTagFromString:textView tag:@"<img\\s?.*?/?>" replacement:@"src=\"?(.+?)[\"|\\s|>]" format:@"<a href=\"%@\">@imageicon@ image</a>"];
 					
 			textView = [textView stringByReplacingOccurrencesOfString:@"\n" withString:@"<br />"];

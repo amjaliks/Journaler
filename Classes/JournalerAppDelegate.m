@@ -8,7 +8,7 @@
 
 #import "JournalerAppDelegate.h"
 #import "ALReporter.h"
-//#import "RootViewController.h"
+#import "WebViewController.h"
 
 #ifndef LITEVERSION
 	#import "AccountsViewController.h"
@@ -66,10 +66,18 @@
 
 	[model release];
 	[userPicCache release];
+	[webViewController release];
 	
 	[navigationController release];
 	[window release];
 	[super dealloc];
+}
+
+- (WebViewController *)webViewController {
+	if (!webViewController) {
+		webViewController = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
+	}
+	return webViewController;
 }
 
 #pragma mark Metodes darbam ar kontiem

@@ -15,33 +15,10 @@
 #import "PostViewController.h"
 #import "AccountEditorController.h"
 
-#ifdef LITEVERSION
-// Lite versijā ir reklāma
-#import "AdMobView.h"
-#endif
-
-NSString* md5(NSString *str);
-
 @implementation LJFriendsPageController
 
-// tabula
-@synthesize tableView;
-@synthesize templateCell;
-@synthesize loadMoreCell;
-// stāvokļa josla
-@synthesize statusLineView;
-@synthesize statusLineLabel;
-
 - (id)initWithAccount:(LJAccount *)aAccount {
-    if (self = [super initWithNibName:@"LJFriendsPageController" bundle:nil]) {
-		account = aAccount;
-		
-		// cilnes bildīte
-		UIImage *image = [UIImage imageNamed:@"friends.png"];
-		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Friends" image:image tag:0];
-		self.tabBarItem = tabBarItem;
-		[tabBarItem release];
-		
+    if (self = [super initWithAccount:aAccount]) {
 		// rakstu masīva inicializācija
 		loadedPosts = [[NSMutableArray alloc] init];
 		
@@ -56,18 +33,23 @@ NSString* md5(NSString *str);
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+	tableView.dataSource = self;
+	tableView.delegate = self;
+	tableView.rowHeight = 88;
+	[self.view addSubview:tableView];
+	
+	friendsPageView = tableView;
+	
+	loadMoreCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LoadMoreCell"];
+	loadMoreCell.textLabel.textAlignment = UITextAlignmentCenter;
+	loadMoreCell.textLabel.textColor = [UIColor colorWithWhite:0.337 alpha:1.0];
+	
 	// izņemam tabulu, lai lietājs neredz to tukšu
 	[tableView setAlpha:0];
-	// stāvokļa josla
-	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, 320, 24);
-	
-	// pieliekam pogas
-	refreshButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-	self.parentViewController.navigationItem.rightBarButtonItem = refreshButtonItem;
 	
 #ifdef LITEVERSION
-	adMobView = [AdMobView requestAdWithDelegate:self];
-	[adMobView retain];
+	[self initAdMobView];
 #endif
 }
 
@@ -365,28 +347,6 @@ NSString* md5(NSString *str);
 	[pool release];
 }
 
-#pragma mark Stāvokļa josla
-
-// parāda stāvokļa joslu
-- (void) showStatusLine {
-	@synchronized (statusLineView) {
-		if (!statusLineShowed) {
-			[self.view addSubview:statusLineView];
-		}
-		statusLineShowed++;
-	}
-}
-
-// paslēpj stāvokļa joslu
-- (void) hideStatusLine {
-	@synchronized (statusLineView) {
-		statusLineShowed--;
-		if (!statusLineShowed) {
-			[statusLineView removeFromSuperview];
-		}
-	}
-}
-
 // atjauno stāvokļa rindas tekstu
 - (void) updateStatusLineText:(NSString *)text {
 	statusLineLabel.text = text;
@@ -446,55 +406,6 @@ NSString* md5(NSString *str);
 	}
 }
 
-#pragma mark Reklāma
-
-#ifdef LITEVERSION
-
-- (NSString *)publisherId {
-	return @"a14ae77c080ab49"; // this should be prefilled; if not, get it from www.admob.com
-}
-
-- (UIColor *)adBackgroundColor {
-	return [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
-}
-
-- (UIColor *)primaryTextColor {
-	return [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-}
-
-- (UIColor *)secondaryTextColor {
-	return [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-}
-
-- (BOOL)mayAskForLocation {
-	return NO;
-}
-
-- (void)didReceiveAd:(AdMobView *)adView {
-	CGRect frame = tableView.frame;
-	frame.origin.y += 48;
-	frame.size.height -= 48;
-	tableView.frame = frame;
-	
-	[self.view addSubview:adView];
-}
-
-- (void)didFailToReceiveAd:(AdMobView *)adView {
-	[adMobView release];
-}
-
-// To receive test ads rather than real ads...
-#ifdef DEBUG
-- (BOOL)useTestAd {
-	return YES;
-}
-
-- (NSString *)testAdAction {
-	return @"url"; // see AdMobDelegateProtocol.h for a listing of valid values here
-}
-#endif
-
-#endif
 
 - (void)dealloc {
 	[loadedPosts release];

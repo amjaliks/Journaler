@@ -108,7 +108,7 @@
 	if (!post.isPublic) {
 		// atslēdziņa
 		CGRect rect = CGRectMake(LOCK_ICON_X, LOCK_ICON_Y, ICON_W, ICON_H);
-		UIImage *lockIcon = [UIImage imageNamed:@"lock.gif"];
+		UIImage *lockIcon = [UIImage imageNamed:@"lock.png"];
 		[lockIcon drawInRect:rect];
 	}
 	

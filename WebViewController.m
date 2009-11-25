@@ -59,12 +59,14 @@
     [super dealloc];
 }
 
-- (void) openURL:(NSString *)url {
-	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
-	self.navigationItem.title = url;
+- (void) openURL:(NSURL *)url {
+	[webView removeFromSuperview];
+	[webView loadRequest:[NSURLRequest requestWithURL:url]];
+	self.navigationItem.title = [url absoluteString];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
+	[self.view addSubview:webView];
 	[activityIndicatorView stopAnimating];
 	[self updateToolbarButtons:NO];
 	self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];

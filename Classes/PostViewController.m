@@ -50,7 +50,7 @@
 	videoIconReplace = [[NSString stringWithFormat:@"<img src=\"file://%@\" class=\"icon\"/>", videoIconPath] retain];
 	[videoIconPath release];
 
-	NSString *lockIconPath = [[NSBundle mainBundle] pathForResource:@"lock" ofType:@"gif"];
+	NSString *lockIconPath = [[NSBundle mainBundle] pathForResource:@"lock" ofType:@"png"];
 	lockIconReplace = [[NSString stringWithFormat:@"<img src=\"file://%@\" class=\"icon\"/> ", lockIconPath] retain];
 	
 	webView = [[UIWebView alloc] initWithFrame:self.view.frame];
@@ -137,15 +137,18 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	NSURL *url = [request URL];
-	if ([[url scheme] isEqualToString:@"about"]) {
+	NSURL *URL = [request URL];
+	if ([[URL scheme] isEqualToString:@"about"]) {
 		return YES;
-	} else if ([[url scheme] isEqualToString:@"tel"]) {
-		[[UIApplication sharedApplication] openURL:url];
+	} else if ([[URL scheme] isEqualToString:@"tel"]) {
+		[[UIApplication sharedApplication] openURL:URL];
 		return NO;
 	} else {
 		//[[UIApplication sharedApplication] openURL:url];
 		//[self openInWebView:[url absoluteString]];
+		WebViewController *webViewController = APP_WEB_VIEW_CONTROLLER;
+		[self.navigationController pushViewController:webViewController animated:YES];
+		[webViewController openURL:URL];
 		return NO;
 	}
 }
