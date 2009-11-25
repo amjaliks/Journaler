@@ -45,6 +45,14 @@
 	}
 	
 	cacheTabBarControllers = [[NSMutableDictionary alloc] initWithCapacity:[accounts count]];
+	
+	// konta pievienošanas poga
+	UIBarButtonItem *addAccountButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAccount:)];
+	self.navigationItem.rightBarButtonItem = addAccountButton;
+	[addAccountButton release];
+	
+	// virsraksts
+	self.navigationItem.title = @"Accounts";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -66,6 +74,18 @@
 	// e.g. self.myOutlet = nil;
 }
 
+- (void)openAccount:(LJAccount *)account {
+	// ja nav labošanas režīms, tad veram vaļā konta skatījumu
+	AccountTabBarController *tabBarController = [[cacheTabBarControllers objectForKey:account.title] retain];
+	if (!tabBarController) {
+		// ja skatījums nav atrasts, tad tādu izveidojam
+		tabBarController = [[AccountTabBarController alloc] initWithAccount:account];
+		[cacheTabBarControllers setObject:tabBarController forKey:account.title];
+	}
+	
+	[self.navigationController pushViewController:tabBarController animated:YES];
+	[tabBarController release];
+}
 
 #pragma mark Table view methods
 
@@ -99,16 +119,7 @@
 		selectedAccountTitle = [selectedAccount.title retain];
 		[self presentModalViewController:editAccountViewController animated:YES];
 	} else {
-		// ja nav labošanas režīms, tad veram vaļā konta skatījumu
-		AccountTabBarController *tabBarController = [[cacheTabBarControllers objectForKey:selectedAccount.title] retain];
-		if (!tabBarController) {
-			// ja skatījums nav atrasts, tad tādu izveidojam
-			tabBarController = [[AccountTabBarController alloc] initWithAccount:selectedAccount];
-			[cacheTabBarControllers setObject:tabBarController forKey:selectedAccount.title];
-		}
-		
-		[self.navigationController pushViewController:tabBarController animated:YES];
-		[tabBarController release];
+		[self openAccount:selectedAccount];
 	}
 }
 
@@ -203,7 +214,7 @@
 			//[self.navigationItem.rightBarButtonItem select:nil];
 			//[self.navigationItem.leftBarButtonItem = [UIBarButtonItem alloc]
 		}
-		[self.navigationController pushViewController:accountViewController animated:YES];			
+		[self openAccount:account];
 	}
 	[self saveAccounts];
 	[table reloadData];

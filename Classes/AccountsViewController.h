@@ -30,10 +30,12 @@
 
 @property (nonatomic, retain) IBOutlet UITableView *table;
 
-- (void) saveAccounts;
+- (void)saveAccounts;
 
-- (IBAction) addAccount:(id)sender;
+- (IBAction)addAccount:(id)sender;
 
-- (void) sendReport;
+- (void)openAccount:(LJAccount *)account;
+
+- (void)sendReport;
 
 @end
