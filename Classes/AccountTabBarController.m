@@ -12,22 +12,21 @@
 #import "LJFriendsPageController.h"
 #import "WebFriendsPageController.h"
 #import "FriendsPageController.h"
+#import "PostEditorController.h"
 #import "LiveJournal.h"
 
 @implementation AccountTabBarController
 
 - (id) initWithAccount:(LJAccount *)aAccount {
 	if (self = [super init]) {
+		self.delegate = self;
+		
 		account = [aAccount retain];
 		
 		// virsraksts
 		self.navigationItem.title = account.user;
 		
-		FriendsPageController *friendList = [@"livejournal.com" isEqual:account.server] ? [[LJFriendsPageController alloc] initWithAccount:account] : [[WebFriendsPageController alloc] initWithAccount:account];
-		NSArray *arrays = [[NSArray alloc] initWithObjects:friendList, nil];
-		self.viewControllers = arrays;
-		[friendList release];
-		[arrays release];
+		[self setViewControllersForAccount:account];
 	}
 	return self;
 }
@@ -42,6 +41,32 @@
 #endif
 	
 }
+
+- (void) setViewControllersForAccount:(LJAccount *)newAccount {
+	FriendsPageController *friendList = [@"livejournal.com" isEqual:newAccount.server] ? [[LJFriendsPageController alloc] initWithAccount:account] : [[WebFriendsPageController alloc] initWithAccount:newAccount];
+	self.navigationItem.rightBarButtonItem = friendList.navigationItem.rightBarButtonItem;
+	
+	PostEditorController *postEditorController = [[PostEditorController alloc] initWithNibName:@"PostEditorController" bundle:nil];
+	postEditorController.dataSource = self;
+	
+	NSArray *arrays = [[NSArray alloc] initWithObjects:friendList, postEditorController, nil];
+	self.viewControllers = arrays;
+	
+	[friendList release];
+	[postEditorController release];
+	[arrays release];
+}
+
+#pragma mark Tab Bar Controller Delegate
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+	self.navigationItem.rightBarButtonItem = viewController.navigationItem.rightBarButtonItem;
+}
+
+- (LJAccount *)selectedAccount {
+	return account;
+}
+
 
 #ifdef LITEVERSION
 
@@ -60,16 +85,12 @@
 	[accountEditorController release];
 }
 
-- (LJAccount *)selectedAccount {
-	return account;
-}
-
 - (BOOL)isDublicateAccount:(NSString *)title {
 	return NO;
 }
 
 - (BOOL)hasNoAccounts {
-	return account == nxil;
+	return account == nil;
 }
 
 - (void)saveAccount:(LJAccount *)newAccount {
@@ -80,11 +101,7 @@
 			// iepriekš ievadītais konts atšķiras no jaunā, tad tīram laukā kešu
 			[APP_MODEL deleteAllPostsForAccount:account.title];
 			// pārlādējam arī saskarni
-			FriendsPageController *friendList = [@"livejournal.com" isEqual:newAccount.server] ? [[LJFriendsPageController alloc] initWithAccount:newAccount] : [[WebFriendsPageController alloc] initWithAccount:newAccount];
-			NSArray *arrays = [[NSArray alloc] initWithObjects:friendList, nil];
-			self.viewControllers = arrays;
-			[friendList release];
-			[arrays release];
+			[self setViewControllersForAccount:newAccount];
 		}
 		[account release];
 	}

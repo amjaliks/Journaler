@@ -48,8 +48,7 @@
 
 @protocol PostEditorControllerDataSource<NSObject> 
 
-@optional
-- (LJAccount *)selectedAccountForPostEditorController:(PostEditorController *)controller;
+- (LJAccount *)selectedAccount;
 
 @end
 

@@ -54,14 +54,25 @@
 }
 */
 
-/*
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle {
+	if (self = [super initWithNibName:nibName bundle:bundle]) {
+		
+		UIImage *image = [UIImage imageNamed:@"newpost.png"];
+		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"New post" image:image tag:1];
+		self.tabBarItem = tabBarItem;
+		[tabBarItem release];
+	}
+	
+	return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleBordered target:self action:@selector(post:)];
+	self.navigationItem.rightBarButtonItem = postButton;
 }
-*/
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -70,18 +81,18 @@
 	textField.text = nil;
 	
 	postButton.enabled = NO;
-	textField.frame = CGRectMake(0, 0, 320, 167);
-	textCell.frame = CGRectMake(0, 0, 320, 167);
+	textField.frame = CGRectMake(0, 0, 320, 169);
+	textCell.frame = CGRectMake(0, 0, 320, 169);
 	[self.tableView reloadData];
 	//[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:0];
 	
 	//[subjectField becomeFirstResponder];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-	[subjectField becomeFirstResponder];
-}
+//- (void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//	//[subjectField becomeFirstResponder];
+//}
 
 /*
 - (void)viewWillDisappear:(BOOL)animated {
@@ -110,8 +121,8 @@
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+	[super viewDidUnload];
+	[postButton release];
 }
 
 
@@ -147,12 +158,6 @@
     return 0;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
-}
 
 
 /*
@@ -204,7 +209,7 @@
 }
 
 - (IBAction) post:(id)sender {
-	LJAccount *account = [dataSource selectedAccountForPostEditorController:self];
+	LJAccount *account = [dataSource selectedAccount];
 	
 	LJGetChallenge *req = [LJGetChallenge requestWithServer:account.server];
 	if (![req doRequest]) {
@@ -220,12 +225,9 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your post has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
-	if (doneButton) {
-		subjectField.text = nil;
-		textField.text = nil;
-	} else {
-		[delegate postEditorControllerDidFinish:self];
-	}
+	
+	subjectField.text = nil;
+	textField.text = nil;
 }
 
 - (IBAction)done:(id)sender {

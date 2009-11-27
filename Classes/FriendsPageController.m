@@ -32,17 +32,16 @@
 		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Friends" image:image tag:0];
 		self.tabBarItem = tabBarItem;
 		[tabBarItem release];
-    }
+
+    	refreshButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+		self.navigationItem.rightBarButtonItem = refreshButtonItem;
+	}
     return self;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	// pieliekam pogas
-	refreshButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-	self.parentViewController.navigationItem.rightBarButtonItem = refreshButtonItem;
-
 	// stāvokļa josla
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, 320, 24);
 }
