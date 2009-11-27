@@ -13,6 +13,7 @@
 #define APP_DELEGATE ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate])
 #define APP_USER_PIC_CACHE APP_DELEGATE.userPicCache
 #define APP_WEB_VIEW_CONTROLLER APP_DELEGATE.webViewController
+#define APP_MODEL APP_DELEGATE.model
 
 @class ALReporter, WebViewController;
 

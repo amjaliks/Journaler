@@ -8,6 +8,10 @@
 
 #import "FriendsPageController.h"
 
+#import "JournalerAppDelegate.h"
+#import "LiveJournal.h"
+
+
 #ifdef LITEVERSION
 // Lite versijā ir reklāma
 #import "AdMobView.h"
@@ -38,7 +42,7 @@
 	// pieliekam pogas
 	refreshButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
 	self.parentViewController.navigationItem.rightBarButtonItem = refreshButtonItem;
-	
+
 	// stāvokļa josla
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, 320, 24);
 }
@@ -80,9 +84,9 @@
 }
 
 
-#pragma mark Reklāma
-
 #ifdef LITEVERSION
+
+#pragma mark Reklāma
 
 - (void)initAdMobView {
 	adMobView = [AdMobView requestAdWithDelegate:self];

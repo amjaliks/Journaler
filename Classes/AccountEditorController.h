@@ -53,7 +53,7 @@ void showErrorMessage(NSString *title, NSUInteger code);
 
 @protocol AccountEditorControllerDataSource<NSObject> 
 
-- (LJAccount *)selectedAccountForAccountEditorController:(AccountEditorController *)controller;
+- (LJAccount *)selectedAccount;
 - (BOOL)isDublicateAccount:(NSString *)title;
 - (BOOL)hasNoAccounts;
 
@@ -62,9 +62,7 @@ void showErrorMessage(NSString *title, NSUInteger code);
 
 @protocol AccountEditorControllerDelegate<NSObject> 
 
-@optional
-- (void)accountEditorController:(AccountEditorController *)controller didFinishedEditingAccount:(LJAccount *)account;
-- (void)accountEditorControllerDidCancel:(AccountEditorController *)controller;
+- (void)saveAccount:(LJAccount *)account;
 
 @end
 

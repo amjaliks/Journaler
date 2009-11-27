@@ -60,18 +60,23 @@ void showErrorMessage(NSString *title, NSUInteger code) {
     return self;
 }
 */
-/*
+
+#ifdef LITEVERSION
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+	self.navigationItem.leftBarButtonItem = cancelButton;
+
+	doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(saveAccount:)];
+	self.navigationItem.rightBarButtonItem = doneButton;
 }
-*/
+#endif
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
-	LJAccount *account = [dataSource selectedAccountForAccountEditorController:self];
+	LJAccount *account = [dataSource selectedAccount];
 	
 	if (account) {
 		self.title = @"Edit account";
@@ -124,11 +129,11 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 	// Release any cached data, images, etc that aren't in use.
 }
 
+#ifdef LITEVERSION
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+	[cancelButton release];
 }
-
+#endif
 
 #pragma mark Table view methods
 
@@ -213,7 +218,8 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 }
 
 - (IBAction) cancel:(id)sender {
-	[delegate accountEditorControllerDidCancel:self];
+	//[delegate accountEditorControllerDidCancel:self];
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 // Saglabājam kontu
@@ -223,7 +229,7 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 	static NSString *defaultServer = @"livejournal.com";
 	//   www prefikss, kas jāņem nost
 	static NSString *wwwPrefix = @"www.";
-	
+		
 	// veicam dažas servera nosaukuma pārbaudes
 	NSString *server = serverText.text;
 	if (!server || ![server length]) {
@@ -235,6 +241,13 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 			// ja servera nosaukums sākas ar www, tad noņemam tos nost
 			server = [server substringFromIndex:4];
 		}
+	}
+	
+	if ([@"dreamwidth.org" isEqualToString:server]) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"Dreamwidth.org currently is not supported." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		return;
 	}
 	
 	LJAccount *account = [[LJAccount alloc] init];
@@ -263,9 +276,11 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 		return;
 	}
 		
-	[delegate accountEditorController:self didFinishedEditingAccount:account];
+	[delegate saveAccount:account];
 	
 	[account release];
+	
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 // Check text fields. If required fields has some text, than makes "Done" enabled.

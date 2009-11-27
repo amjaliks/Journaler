@@ -391,7 +391,10 @@ NSString* md5(NSString *str)
 
 - (BOOL)doRequest {
 	
-	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
+	
+	NSString *authResponse = md5(password);
+	authResponse = [challenge stringByAppendingString:authResponse];
+	authResponse = md5(authResponse);
 	[parameters setValue:authResponse forKey:@"auth_response"];
 	
 	return [super doRequest];

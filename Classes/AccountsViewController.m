@@ -194,7 +194,7 @@
 	[self presentModalViewController:editAccountViewController animated:YES];
 }
 
-- (void)accountEditorController:(AccountEditorController *)controller didFinishedEditingAccount:(LJAccount *)account {
+- (void)saveAccount:(LJAccount *)account {
 	if (selectedAccount) {
 		NSUInteger index = [accounts indexOfObject:selectedAccount];
 		[accounts removeObjectAtIndex:index];
@@ -225,11 +225,7 @@
 	[self sendReport];
 }
 
-- (void)accountEditorControllerDidCancel:(AccountEditorController *)controller {
-	[self dismissModalViewControllerAnimated:YES];
-}
-
-- (LJAccount *)selectedAccountForAccountEditorController:(AccountEditorController *)controller {
+- (LJAccount *)selectedAccount {
 	return selectedAccount;
 }
 

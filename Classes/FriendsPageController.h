@@ -10,15 +10,15 @@
 
 #ifdef LITEVERSION
 	#import "AdMobDelegateProtocol.h"
-	#define ADMOBDELEGATE <AdMobDelegate>
+	#define LITEVERSION_PROTOCOLS <AdMobDelegate>
 	@class AdMobView;
 #else
-	#define ADMOBDELEGATE
+	#define LITEVERSION_PROTOCOLS
 #endif
 
 @class LJAccount;
 
-@interface FriendsPageController : UIViewController ADMOBDELEGATE {
+@interface FriendsPageController : UIViewController LITEVERSION_PROTOCOLS {
 	// konts
 	LJAccount *account;
 	
@@ -34,6 +34,7 @@
 	NSUInteger statusLineShowed;
 	
 #ifdef LITEVERSION
+	// reklāmas lauciņš
 	AdMobView *adMobView;
 #endif
 	

@@ -100,6 +100,12 @@
 
 #pragma mark Darbs ar rakstiem
 
+#ifdef LITEVERSION
+- (void)changeAccount {
+	[loadedPosts removeAllObjects];
+}
+#endif
+
 // pirmā sinhronizācija pēc palaišanas
 - (void) firstSync {
 	@synchronized(self) {		
@@ -115,6 +121,8 @@
 		if ([loadedPosts count]) {
 			[tableView setAlpha:1.0];
 			[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
+			// veicam rakstu priekšapstrādi
+			[self performSelectorInBackground:@selector(preprocessPosts) withObject:nil];
 		}
 
 		if (DEFAULT_BOOL(@"refresh_on_start")) {
@@ -132,10 +140,10 @@
 
 			// atjaunojam tabulu
 			[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
+			// veicam rakstu priekšapstrādi
+			[self performSelectorInBackground:@selector(preprocessPosts) withObject:nil];
 		}
 		
-		// veicam rakstu priekšapstrādi
-		[self performSelectorInBackground:@selector(preprocessPosts) withObject:nil];
 		// pārliecinamies, ka tabula ir redzama
 		[tableView setAlpha:1.0];
 		
