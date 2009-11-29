@@ -167,10 +167,14 @@
 		[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
 		//[self showStatusLine];
 
+		BOOL needToScroll = [loadedPosts count];
+		
 		// atjaunojam rakstus
 		[self loadLastPostsFromServer];
 		
-		[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+		if (needToScroll) {
+			[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+		}
 		// veicam rakstu priekšapstrādi
 		[self performSelectorInBackground:@selector(preprocessPosts) withObject:nil];
 		// atjaunojam tabulu
