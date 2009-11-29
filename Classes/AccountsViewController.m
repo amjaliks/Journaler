@@ -136,15 +136,21 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        // nosakam dzēšamo ierakstu
 		LJAccount *account = [accounts objectAtIndex:indexPath.row];
 		
+		// iedzēšam rakstus no keša
 		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
 		[model deleteAllPostsForAccount:account.title];
 		[model saveAll];
 		
+		// iztīram no keša konta "ekrānu"
+		[cacheTabBarControllers removeObjectForKey:account.title];
+		
+		// izdzešam kontu un saglabājam
 		[accounts removeObject:account];
 		[self saveAccounts];
+		
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 		
 		if ([accounts count] == 0) {
