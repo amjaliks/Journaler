@@ -20,10 +20,14 @@
 	
 	UIBarButtonItem *postButton;
 	UIBarButtonItem *doneButton;
+	UIBarButtonItem *optionsButton;
+	
 	UIViewController *navItem;
 	
 	id<PostEditorControllerDataSource> dataSource;
 	id<PostEditorControllerDelegate> delegate;
+	
+	BOOL editing;
 }
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *subjectCell;
@@ -42,6 +46,9 @@
 - (IBAction) cancel:(id)sender;
 - (IBAction) post:(id)sender;
 - (IBAction) done:(id)sender;
+
+- (void)startPostEditing;
+- (void)endPostEditing;
 
 @end
 

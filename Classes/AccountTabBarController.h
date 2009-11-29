@@ -21,7 +21,15 @@
 
 @interface AccountTabBarController : UITabBarController <LVP_ACCOUNT_EDITOR_CONTROLLER PostEditorControllerDataSource, UITabBarControllerDelegate> {
 	LJAccount *account;
+	
+#ifdef LITEVERSION
+	UIBarButtonItem *accountButton;
+#endif
 }
+
+#ifdef LITEVERSION
+@property (readonly) UIBarButtonItem *accountButton;
+#endif
 
 - (id) initWithAccount:(LJAccount *)account;
 - (void) setViewControllersForAccount:(LJAccount *)account;

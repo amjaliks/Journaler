@@ -17,6 +17,10 @@
 
 @implementation AccountTabBarController
 
+#ifdef LITEVERSION
+@synthesize accountButton;
+#endif
+
 - (id) initWithAccount:(LJAccount *)aAccount {
 	if (self = [super init]) {
 		self.delegate = self;
@@ -35,9 +39,8 @@
 	[super viewDidLoad];
 	
 #ifdef LITEVERSION 
-	UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithTitle:@"Account" style:UIBarButtonItemStyleBordered target:self action:@selector(editAccount)];
+	accountButton = [[UIBarButtonItem alloc] initWithTitle:@"Account" style:UIBarButtonItemStyleBordered target:self action:@selector(editAccount)];
 	self.navigationItem.leftBarButtonItem = accountButton;
-	[accountButton release];
 #endif
 	
 }
@@ -115,6 +118,10 @@
 
 - (void) dealloc {
 	[account release];
+	
+#ifdef LITEVERSION
+	[accountButton release];
+#endif
 	
 	[super dealloc];
 }

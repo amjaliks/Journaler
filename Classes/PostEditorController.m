@@ -9,6 +9,7 @@
 #import "PostEditorController.h"
 #import "LiveJournal.h"
 #import "AccountsViewController.h"
+#import "AccountTabBarController.h"
 
 //void showErrorMessage(NSUInteger code) {
 //	NSString *text;
@@ -71,6 +72,9 @@
 	
 	postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleBordered target:self action:@selector(post:)];
 	self.navigationItem.rightBarButtonItem = postButton;
+	
+	doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+	optionsButton = [[UIBarButtonItem alloc] initWithTitle:@"Options" style:UIBarButtonItemStyleBordered target:self action:nil];
 }
 
 
@@ -81,8 +85,8 @@
 	textField.text = nil;
 	
 	postButton.enabled = NO;
-	textField.frame = CGRectMake(0, 0, 320, 169);
-	textCell.frame = CGRectMake(0, 0, 320, 169);
+	textField.frame = CGRectMake(0, 0, 320, 336);
+	textCell.frame = CGRectMake(0, 0, 320, 336);
 	[self.tableView reloadData];
 	//[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:0];
 	
@@ -123,6 +127,7 @@
 - (void)viewDidUnload {
 	[super viewDidUnload];
 	[postButton release];
+	[doneButton release];
 }
 
 
@@ -231,31 +236,55 @@
 }
 
 - (IBAction)done:(id)sender {
-	[textField resignFirstResponder];
-	[subjectField resignFirstResponder];
-	navItem.navigationItem.rightBarButtonItem = postButton;
-	textField.frame = CGRectMake(0, 0, 320, 315);
+	[self endPostEditing];
 }
 
-- (void)textViewDidChange:(UITextView *)textView {
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
 	postButton.enabled = [textField.text length] > 0;
-	if (doneButton) {
-		navItem.navigationItem.rightBarButtonItem = doneButton;
-		textField.frame = CGRectMake(0, 0, 320, 167);
-	}
+	
+	[self startPostEditing];
+	
+	return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)_textField {
-	if (doneButton) {
-		navItem.navigationItem.rightBarButtonItem = doneButton;
-		textField.frame = CGRectMake(0, 0, 320, 167);
-	}
+	[self startPostEditing];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)_textField {
 	return [textField becomeFirstResponder];
 }
 
+- (void)startPostEditing {
+	if (!editing) {
+		editing = YES;
+		
+		[self.parentViewController.navigationItem setRightBarButtonItem:doneButton animated:YES];
+		[self.parentViewController.navigationItem setLeftBarButtonItem:optionsButton animated:YES];
+		textField.frame = CGRectMake(0, 0, 320, 168);
+		textCell.frame = CGRectMake(0, 0, 320, 168);
+		[self.tableView reloadData];
+	}
+}
+
+- (void)endPostEditing {
+	if (editing) {
+		editing = NO;
+		
+		[textField resignFirstResponder];
+		[subjectField resignFirstResponder];
+
+		[self.parentViewController.navigationItem setRightBarButtonItem:postButton animated:YES];
+#ifndef LITEVERSION
+		[self.parentViewController.navigationItem setLeftBarButtonItem:nil animated:YES];
+#else 
+		[self.parentViewController.navigationItem setLeftBarButtonItem:((AccountTabBarController *)self.tabBarController).accountButton animated:YES];
+#endif
+		textField.frame = CGRectMake(0, 0, 320, 336);
+		textCell.frame = CGRectMake(0, 0, 320, 336);
+		[self.tableView reloadData];
+	}
+}
 
 @end
 
