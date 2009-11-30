@@ -41,7 +41,6 @@
 
 @synthesize postButton;
 @synthesize doneButton;
-@synthesize navItem;
 
 @synthesize dataSource;
 @synthesize delegate;
@@ -74,7 +73,7 @@
 	self.navigationItem.rightBarButtonItem = postButton;
 	
 	doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
-	optionsButton = [[UIBarButtonItem alloc] initWithTitle:@"Options" style:UIBarButtonItemStyleBordered target:self action:nil];
+	optionsButton = [[UIBarButtonItem alloc] initWithTitle:@"Options" style:UIBarButtonItemStyleBordered target:self action:@selector(openOptions)];
 }
 
 
@@ -128,6 +127,8 @@
 	[super viewDidUnload];
 	[postButton release];
 	[doneButton release];
+	
+	[postOptionsController release];
 }
 
 
@@ -239,6 +240,16 @@
 	[self endPostEditing];
 }
 
+- (void)openOptions {
+	if (!postOptionsController) {
+		postOptionsController = [[PostOptionsController alloc] init];
+		postOptionsController.dataSource = self;
+	}
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:postOptionsController];
+	[self presentModalViewController:navigationController animated:YES];
+	[navigationController release];
+}
+
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
 	postButton.enabled = [textField.text length] > 0;
 	
@@ -284,6 +295,10 @@
 		textCell.frame = CGRectMake(0, 0, 320, 336);
 		[self.tableView reloadData];
 	}
+}
+
+- (LJAccount *)selectedAccount {
+	return [dataSource selectedAccount];
 }
 
 @end

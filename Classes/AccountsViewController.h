@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "AccountEditorController.h"
-#import "AccountViewController.h"
 
 // kontu saraksta kontrolieris
 @interface AccountsViewController : UITableViewController<AccountEditorControllerDataSource, AccountEditorControllerDelegate> {

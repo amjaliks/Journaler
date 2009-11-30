@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "PostOptionsController.h"
+
 @class LJAccount;
 @protocol PostEditorControllerDataSource, PostEditorControllerDelegate;
 
-@interface PostEditorController : UITableViewController<UITextViewDelegate, UITextFieldDelegate> {
+@interface PostEditorController : UITableViewController<UITextViewDelegate, UITextFieldDelegate, PostOptionsControllerDataSource> {
 	UITableViewCell *subjectCell;
 	UITableViewCell *textCell;
 	
@@ -22,7 +24,7 @@
 	UIBarButtonItem *doneButton;
 	UIBarButtonItem *optionsButton;
 	
-	UIViewController *navItem;
+	PostOptionsController *postOptionsController;
 	
 	id<PostEditorControllerDataSource> dataSource;
 	id<PostEditorControllerDelegate> delegate;
@@ -38,14 +40,13 @@
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *postButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
-@property (nonatomic, retain) IBOutlet UIViewController *navItem;
 
 @property (nonatomic, retain) IBOutlet id<PostEditorControllerDataSource> dataSource;
 @property (nonatomic, retain) IBOutlet id<PostEditorControllerDelegate> delegate;
 
-- (IBAction) cancel:(id)sender;
 - (IBAction) post:(id)sender;
 - (IBAction) done:(id)sender;
+- (void)openOptions;
 
 - (void)startPostEditing;
 - (void)endPostEditing;
