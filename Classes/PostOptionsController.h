@@ -26,11 +26,14 @@ typedef enum {
 	UITableViewCell *journalCell;
 	UITableViewCell *securityCell;
 	UITableViewCell *promoteCell;
+	UISwitch *promoteSwitch;
 	
 	id<PostOptionsControllerDataSource> dataSource;
 }
 
 @property (retain) id<PostOptionsControllerDataSource> dataSource;
+
+@property (readonly) BOOL promote;
 
 - (void)done;
 

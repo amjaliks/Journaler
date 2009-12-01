@@ -223,7 +223,12 @@
 		return;
 	}
 	
-	LJPostEvent *login = [LJPostEvent requestWithServer:account.server user:account.user password:account.password challenge:req.challenge subject:subjectField.text event:textField.text];
+	NSString *text = textField.text;
+	if (self.postOptionsController.promote) {
+		text = [text stringByAppendingString:@"<p><em><small>Posted via <a href=\"http://journalerapp.com/?utm_source=livejournal&amp;utm_medium=post-via-link&amp;utm_campaign=post-via-link\">Journaler</a>.</small></em></p>"];
+	}
+	
+	LJPostEvent *login = [LJPostEvent requestWithServer:account.server user:account.user password:account.password challenge:req.challenge subject:subjectField.text event:text];
 	if (![login doRequest]) {
 		showErrorMessage(@"Post error", login.error);
 		return;
@@ -241,18 +246,12 @@
 }
 
 - (void)openOptions {
-	if (!postOptionsController) {
-		postOptionsController = [[PostOptionsController alloc] init];
-		postOptionsController.dataSource = self;
-	}
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:postOptionsController];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.postOptionsController];
 	[self presentModalViewController:navigationController animated:YES];
 	[navigationController release];
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-	postButton.enabled = [textField.text length] > 0;
-	
 	[self startPostEditing];
 	
 	return YES;
@@ -282,6 +281,8 @@
 	if (editing) {
 		editing = NO;
 		
+		postButton.enabled = [textField.text length] > 0;
+
 		[textField resignFirstResponder];
 		[subjectField resignFirstResponder];
 
@@ -295,6 +296,15 @@
 		textCell.frame = CGRectMake(0, 0, 320, 336);
 		[self.tableView reloadData];
 	}
+}
+
+- (PostOptionsController *)postOptionsController {
+	if (!postOptionsController) {
+		postOptionsController = [[PostOptionsController alloc] init];
+		postOptionsController.dataSource = self;
+	}
+	
+	return postOptionsController;
 }
 
 - (LJAccount *)selectedAccount {

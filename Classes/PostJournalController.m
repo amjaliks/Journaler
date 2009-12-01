@@ -1,55 +1,33 @@
 //
-//  PostOptionsController.m
+//  PostJournalController.m
 //  Journaler
 //
-//  Created by Aleksejs Mjaliks on 09.11.30.
+//  Created by Aleksejs Mjaliks on 09.12.01.
 //  Copyright 2009 A25. All rights reserved.
 //
 
-#import "PostOptionsController.h"
+#import "PostJournalController.h"
 
-#import "LiveJournal.h"
 
-@implementation PostOptionsController
+@implementation PostJournalController
 
-@synthesize dataSource;
-
-- (id)init {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-		
+/*
+- (id)initWithStyle:(UITableViewStyle)style {
+    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+    if (self = [super initWithStyle:style]) {
     }
     return self;
 }
+*/
 
+/*
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	self.navigationItem.title = @"Options";
 
-	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
-	self.navigationItem.rightBarButtonItem = doneButton;
-	[doneButton release];
-	
-	journalCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"JournalCell"];
-	journalCell.textLabel.text = @"Journal";
-	journalCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	securityCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"SecurityCell"];
-	securityCell.textLabel.text = @"Security";
-	securityCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	promoteCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PromoteCell"];
-	promoteCell.textLabel.text = @"Promote Journaler";
-	promoteCell.selectionStyle = UITableViewCellSelectionStyleNone;
-	promoteSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(206, 9, 94, 26)];
-	[promoteCell addSubview:promoteSwitch];
-	
-	LJAccount *account = [dataSource selectedAccount];
-	
-	journal = [account.user retain];
-	security = PostSecurityPublic;
-	promoteSwitch.on = YES;
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -88,54 +66,37 @@
 }
 
 - (void)viewDidUnload {
-	[super viewDidUnload];
-	
-	[journal release];
-	
-	[journalCell release];
-}
-
-
-- (void)done {
-	[self dismissModalViewControllerAnimated:YES];
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
 }
 
 
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section == 0 ? 2 : 1;
+    return 0;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-	if (indexPath.section == 0) {
-		if (indexPath.row == 0) {
-			journalCell.detailTextLabel.text = journal;
-			return journalCell;
-		} else if (indexPath.row == 1) {
-			if (security == PostSecurityPublic) {
-				securityCell.detailTextLabel.text = @"public";
-			} else if (security == PostSecurityFriends) {
-				securityCell.detailTextLabel.text = @"friends";
-			} else {
-				securityCell.detailTextLabel.text = @"private";
-			}
-			return securityCell;
-		}
-	} else if (indexPath.section == 1) {
-		return promoteCell;
-	}
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    // Set up the cell...
 	
-    return nil;
+    return cell;
 }
 
 
@@ -189,16 +150,6 @@
 
 - (void)dealloc {
     [super dealloc];
-}
-
-#pragma mark Iestatījumu nolasīšana
-
-- (BOOL)promote {
-	if (promoteSwitch) {
-		return promoteSwitch.on; 
-	} else {
-		return YES;
-	}
 }
 
 
