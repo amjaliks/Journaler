@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Common.h"
+
 typedef enum {
 	PostSecurityPublic,
 	PostSecurityFriends,
@@ -18,6 +20,8 @@ typedef enum {
 @protocol PostOptionsControllerDataSource;
 
 @interface PostOptionsController : UITableViewController {
+	LJAccount *account;
+	
 	// vērtības
 	NSString *journal;
 	PostSecurityLevel security;
@@ -33,8 +37,13 @@ typedef enum {
 
 @property (retain) id<PostOptionsControllerDataSource> dataSource;
 
+@property (readonly) LJAccount *account;
+
+@property (retain) NSString *journal;
+@property PostSecurityLevel security;
 @property (readonly) BOOL promote;
 
+- (id)initWithAccount:(LJAccount *)account;
 - (void)done;
 
 @end

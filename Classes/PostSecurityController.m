@@ -1,18 +1,16 @@
 //
-//  PostJournalController.m
+//  PostSecurityController.m
 //  Journaler
 //
-//  Created by Aleksejs Mjaliks on 09.12.01.
+//  Created by Aleksejs Mjaliks on 09.12.02.
 //  Copyright 2009 A25. All rights reserved.
 //
 
-#import "PostJournalController.h"
+#import "PostSecurityController.h"
 
 #import "PostOptionsController.h"
-#import "LiveJournal.h"
 
-@implementation PostJournalController
-
+@implementation PostSecurityController
 
 - (id)initWithPostOptionsController:(PostOptionsController *)newPostOptionsController {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -24,11 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Journal";
-	
-	UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-	self.navigationItem.rightBarButtonItem = refreshButton;
-	[refreshButton release];
+	self.navigationItem.title = @"Security";
 }
 
 /*
@@ -76,13 +70,13 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return postOptionsController.account.communities ? 2 : 1;
+    return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return section == 0 ? 1 : [postOptionsController.account.communities count];
+    return 3;
 }
 
 
@@ -95,16 +89,16 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-
-    if (indexPath.section == 0) {
-		cell.imageView.image = [UIImage imageNamed:@"user.png"];
-		cell.textLabel.text = postOptionsController.account.user;
-	} else {
-		cell.imageView.image = [UIImage imageNamed:@"community.png"];
-		cell.textLabel.text = [postOptionsController.account.communities objectAtIndex:indexPath.row];
+    
+    if (indexPath.row == 0) {
+		cell.textLabel.text = @"public";
+	} else if (indexPath.row == 1) {
+		cell.textLabel.text = @"friends";
+	} else if (indexPath.row == 2) {
+		cell.textLabel.text = @"private";
 	}
 	
-	if ([cell.textLabel.text isEqualToString:postOptionsController.journal]) {
+	if (indexPath.row == postOptionsController.security) {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		selectedCell = cell;
 	}
@@ -115,7 +109,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	postOptionsController.journal = cell.textLabel.text;
+	postOptionsController.security = indexPath.row;
 	
 	selectedCell.accessoryType = UITableViewCellAccessoryNone;
 	cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -123,6 +117,7 @@
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -168,20 +163,6 @@
     [super dealloc];
 }
 
-- (void)refresh {
-	LJGetChallenge *req = [LJGetChallenge requestWithServer:postOptionsController.account.server];
-	if ([req doRequest]) {
-		LJLogin *login = [LJLogin requestWithServer:postOptionsController.account.server user:postOptionsController.account.user password:postOptionsController.account.password challenge:req.challenge];
-		if ([login doRequest]) {
-			if (login.usejournals) {
-				postOptionsController.account.communities = login.usejournals;
-			} else {
-				postOptionsController.account.communities = [NSArray array];
-			}
-			[self.tableView reloadData];
-		}
-	}	
-}
 
 @end
 

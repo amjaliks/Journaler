@@ -30,6 +30,7 @@ NSString* md5(NSString *str)
 @synthesize user;
 @synthesize password;
 @synthesize server;
+@synthesize communities;
 
 @synthesize synchronized;
 
@@ -38,6 +39,7 @@ NSString* md5(NSString *str)
 		user = [[coder decodeObjectForKey:@"user"] retain];
 		password = [[coder decodeObjectForKey:@"password"] retain];
 		server = [[coder decodeObjectForKey:@"server"] retain];
+		communities = [[coder decodeObjectForKey:@"communities"] retain];
 	}
 	
 	return self;
@@ -48,6 +50,7 @@ NSString* md5(NSString *str)
 	[coder encodeObject:user forKey:@"user"];
 	[coder encodeObject:password forKey:@"password"];
 	[coder encodeObject:server forKey:@"server"];
+	[coder encodeObject:communities forKey:@"communities"];
 }
 
 - (NSString *)title {
@@ -376,6 +379,8 @@ NSString* md5(NSString *str)
 
 @implementation LJLogin
 
+@synthesize usejournals;
+
 + (LJLogin *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
 	LJLogin *request = [[[LJLogin alloc] initWithServer:server method:@"LJ.XMLRPC.login"] autorelease];
 	
@@ -397,7 +402,12 @@ NSString* md5(NSString *str)
 	authResponse = md5(authResponse);
 	[parameters setValue:authResponse forKey:@"auth_response"];
 	
-	return [super doRequest];
+	if ([super doRequest]) {
+		usejournals = [result valueForKey:@"usejournals"];
+		return YES;
+	} else {
+		return NO;
+	}
 }
 
 @end
@@ -437,6 +447,9 @@ NSString* md5(NSString *str)
 
 @implementation LJPostEvent
 
+@synthesize usejournal;
+@synthesize security;
+
 + (LJPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event {
 	LJPostEvent *request = [[[LJPostEvent alloc] initWithServer:server method:@"LJ.XMLRPC.postevent"] autorelease];
 	//LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
@@ -460,8 +473,7 @@ NSString* md5(NSString *str)
 	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps day]] forKey:@"day"];
 	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps hour]] forKey:@"hour"];
 	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps minute]] forKey:@"min"];
-	
-	
+		
 	//[request->parameters setValue:@"2009-10-01 00:00:00" forKey:@"lastsync"];
 	
 	request->password = password;
@@ -472,6 +484,17 @@ NSString* md5(NSString *str)
 
 - (BOOL)doRequest {
 	
+	if (usejournal) {
+		[parameters setValue:usejournal forKey:@"usejournal"];
+	}
+	
+	if (security == PostSecurityFriends) {
+		[parameters setValue:@"usemask" forKey:@"security"];
+		[parameters setValue:[NSNumber numberWithInteger:1] forKey:@"allowmask"];
+	} else if (security == PostSecurityPrivate) {
+		[parameters setValue:@"private" forKey:@"security"];
+	}
+
 	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
 	[parameters setValue:authResponse forKey:@"auth_response"];
 	

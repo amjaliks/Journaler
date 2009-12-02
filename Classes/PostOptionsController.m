@@ -9,14 +9,23 @@
 #import "PostOptionsController.h"
 
 #import "LiveJournal.h"
+#import "PostJournalController.h"
+#import "PostSecurityController.h"
 
 @implementation PostOptionsController
 
-@synthesize dataSource;
 
-- (id)init {
+@synthesize account;
+@synthesize dataSource;
+@synthesize journal;
+@synthesize security;
+
+- (id)initWithAccount:(LJAccount *)newAccount {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+		account = newAccount;
 		
+		journal = [account.user retain];
+		security = PostSecurityPublic;
     }
     return self;
 }
@@ -42,20 +51,15 @@
 	promoteCell.textLabel.text = @"Promote Journaler";
 	promoteCell.selectionStyle = UITableViewCellSelectionStyleNone;
 	promoteSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(206, 9, 94, 26)];
-	[promoteCell addSubview:promoteSwitch];
-	
-	LJAccount *account = [dataSource selectedAccount];
-	
-	journal = [account.user retain];
-	security = PostSecurityPublic;
 	promoteSwitch.on = YES;
+	[promoteCell addSubview:promoteSwitch];
 }
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	[self.tableView reloadData];
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -93,6 +97,9 @@
 	[journal release];
 	
 	[journalCell release];
+	[securityCell release];
+	[promoteCell release];
+	[promoteSwitch release];
 }
 
 
@@ -140,10 +147,17 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+    if (indexPath.section == 0) {
+		if (indexPath.row == 0) {
+			PostJournalController *postJournalController = [[PostJournalController alloc] initWithPostOptionsController:self];
+			[self.navigationController pushViewController:postJournalController animated:YES];
+			[postJournalController release];
+		} else { 
+			PostSecurityController *postSecurityController = [[PostSecurityController alloc] initWithPostOptionsController:self];
+			[self.navigationController pushViewController:postSecurityController animated:YES];
+			[postSecurityController release];
+		}
+	}
 }
 
 

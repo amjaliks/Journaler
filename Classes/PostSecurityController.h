@@ -1,8 +1,8 @@
 //
-//  PostJournalController.h
+//  PostSecurityController.h
 //  Journaler
 //
-//  Created by Aleksejs Mjaliks on 09.12.01.
+//  Created by Aleksejs Mjaliks on 09.12.02.
 //  Copyright 2009 A25. All rights reserved.
 //
 
@@ -10,13 +10,12 @@
 
 @class PostOptionsController;
 
-@interface PostJournalController : UITableViewController {
+@interface PostSecurityController : UITableViewController {
 	PostOptionsController *postOptionsController;
 	
 	UITableViewCell *selectedCell;
 }
 
 - (id)initWithPostOptionsController:(PostOptionsController *)postOptionsController;
-- (void)refresh;
 
 @end

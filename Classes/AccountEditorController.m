@@ -274,6 +274,12 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 	if (![login doRequest]) {
 		showErrorMessage(@"Login error", login.error);
 		return;
+	} else {
+		if (login.usejournals) {
+			account.communities = login.usejournals;
+		} else {
+			account.communities = [NSArray array];
+		}
 	}
 		
 	[delegate saveAccount:account];

@@ -74,23 +74,21 @@
 	
 	doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
 	optionsButton = [[UIBarButtonItem alloc] initWithTitle:@"Options" style:UIBarButtonItemStyleBordered target:self action:@selector(openOptions)];
-}
 
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-	
-	subjectField.text = nil;
-	textField.text = nil;
-	
 	postButton.enabled = NO;
 	textField.frame = CGRectMake(0, 0, 320, 336);
 	textCell.frame = CGRectMake(0, 0, 320, 336);
 	[self.tableView reloadData];
-	//[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:0];
-	
-	//[subjectField becomeFirstResponder];
 }
+
+
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//		
+//	//[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:0];
+//	
+//	//[subjectField becomeFirstResponder];
+//}
 
 //- (void)viewDidAppear:(BOOL)animated {
 //    [super viewDidAppear:animated];
@@ -225,10 +223,13 @@
 	
 	NSString *text = textField.text;
 	if (self.postOptionsController.promote) {
-		text = [text stringByAppendingString:@"<p><em><small>Posted via <a href=\"http://journalerapp.com/?utm_source=livejournal&amp;utm_medium=post-via-link&amp;utm_campaign=post-via-link\">Journaler</a>.</small></em></p>"];
+		text = [text stringByAppendingString:@"\n<p><em><small>Posted via <a href=\"http://journalerapp.com/?utm_source=livejournal&amp;utm_medium=post-via-link&amp;utm_campaign=post-via-link\">Journaler</a>.</small></em></p>"];
 	}
 	
 	LJPostEvent *login = [LJPostEvent requestWithServer:account.server user:account.user password:account.password challenge:req.challenge subject:subjectField.text event:text];
+	login.usejournal = self.postOptionsController.journal;
+	login.security = self.postOptionsController.security;
+	
 	if (![login doRequest]) {
 		showErrorMessage(@"Post error", login.error);
 		return;
@@ -300,7 +301,7 @@
 
 - (PostOptionsController *)postOptionsController {
 	if (!postOptionsController) {
-		postOptionsController = [[PostOptionsController alloc] init];
+		postOptionsController = [[PostOptionsController alloc] initWithAccount:[dataSource selectedAccount]];
 		postOptionsController.dataSource = self;
 	}
 	

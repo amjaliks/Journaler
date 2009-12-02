@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PostOptionsController.h"
+
 NSString* md5(NSString *str);
 
 enum {
@@ -29,12 +31,16 @@ enum {
 	NSString *password;
 	NSString *server;
 	
+	NSArray *communities;
+	
 	BOOL synchronized;
 }
 
 @property (retain) NSString *user;
 @property (retain) NSString *password;
 @property (retain) NSString *server;
+@property (retain) NSArray *communities;
+
 @property BOOL synchronized;
 
 @property (readonly) NSString *title;
@@ -140,7 +146,11 @@ enum {
 @interface LJLogin : LJRequest {
 	NSString *challenge;
 	NSString *password;
+	
+	NSArray *usejournals;
 }
+
+@property (readonly) NSArray *usejournals;
 
 + (LJLogin *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
 
@@ -162,7 +172,13 @@ enum {
 @interface LJPostEvent : LJRequest {
 	NSString *challenge;
 	NSString *password;
+	
+	NSString *usejournal;
+	PostSecurityLevel security;
 }
+
+@property (retain) NSString *usejournal;
+@property PostSecurityLevel security;
 
 + (LJPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event;
 
