@@ -14,6 +14,7 @@
 #import "FriendsPageController.h"
 #import "PostEditorController.h"
 #import "LiveJournal.h"
+#import "Macros.h"
 
 @implementation AccountTabBarController
 

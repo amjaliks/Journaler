@@ -83,7 +83,9 @@
 	
 	textField.text = account.text;
 	subjectField.text = account.subject;
-	self.postOptionsController.journal = account.journal;
+	if (account.journal) {
+		self.postOptionsController.journal = account.journal;
+	}
 	self.postOptionsController.security = account.security;
 }
 
