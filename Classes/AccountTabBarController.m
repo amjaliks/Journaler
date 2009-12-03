@@ -46,7 +46,7 @@
 }
 
 - (void) setViewControllersForAccount:(LJAccount *)newAccount {
-	FriendsPageController *friendList = [@"livejournal.com" isEqual:newAccount.server] ? [[LJFriendsPageController alloc] initWithAccount:account] : [[WebFriendsPageController alloc] initWithAccount:newAccount];
+	FriendsPageController *friendList = [@"livejournal.com" isEqual:newAccount.server] ? [[LJFriendsPageController alloc] initWithAccount:newAccount] : [[WebFriendsPageController alloc] initWithAccount:newAccount];
 	self.navigationItem.rightBarButtonItem = friendList.navigationItem.rightBarButtonItem;
 	
 	PostEditorController *postEditorController = [[PostEditorController alloc] initWithNibName:@"PostEditorController" bundle:nil];

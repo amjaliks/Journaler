@@ -46,6 +46,8 @@
 	loadMoreCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LoadMoreCell"];
 	loadMoreCell.textLabel.textAlignment = UITextAlignmentCenter;
 	loadMoreCell.textLabel.textColor = [UIColor colorWithWhite:0.337 alpha:1.0];
+	loadMoreCell.selectionStyle = UITableViewCellSelectionStyleNone;
+	loadMoreCell.textLabel.text = @"Load more...";
 	
 	// izņemam tabulu, lai lietājs neredz to tukšu
 	[tableView setAlpha:0];
@@ -98,6 +100,20 @@
 - (void)viewDidUnload {
 }
 
+- (void)showStatusLine {
+	loading = YES;
+	[super showStatusLine];
+	refreshButtonItem.enabled = NO;
+	loadMoreCell.textLabel.text = @"Loading...";
+}
+
+- (void)hideStatusLine {
+	loading = NO;
+	[super hideStatusLine];
+	refreshButtonItem.enabled = YES;
+	loadMoreCell.textLabel.text = @"Load more...";
+}
+
 #pragma mark Darbs ar rakstiem
 
 #ifdef LITEVERSION
@@ -108,64 +124,74 @@
 
 // pirmā sinhronizācija pēc palaišanas
 - (void) firstSync {
-	@synchronized(self) {		
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-		
-		// parādam stāvokļa joslu
-		[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
-		
-		// lasam no keša pirmos 10 ierakstus
-		[self loadPostsFromCacheFromOffset:0];
-		
-		// atjaunojam tabulu
-		if ([loadedPosts count]) {
-			[tableView setAlpha:1.0];
-			[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
-			// veicam rakstu priekšapstrādi
-			[self performSelectorInBackground:@selector(preprocessPosts) withObject:nil];
-		}
-
-		if (DEFAULT_BOOL(@"refresh_on_start")) {
-			// atjaunojam pēdējos rakstus
-			[self loadLastPostsFromServer];
-			if ([loadedPosts count]) {
-				Post *topPost = [loadedPosts objectAtIndex:0];
-				NSUInteger count = [self loadPostsFromServerAfter:topPost.dateTime skip:0 limit:100]; 
-				if (count < 10) {
-					[self loadPostsFromServerAfter:nil skip:count limit:10 - count]; 
-				}
-			} else {
-				[self loadPostsFromServerAfter:nil skip:0 limit:10]; 
-			}
-
-			// atjaunojam tabulu
-			[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
-			// veicam rakstu priekšapstrādi
-			[self performSelectorInBackground:@selector(preprocessPosts) withObject:nil];
-		}
-		
-		// pārliecinamies, ka tabula ir redzama
-		[tableView setAlpha:1.0];
-		
-		// paslēpjam stāvokļa joslu
-		[self hideStatusLine];
-		
-		[pool release];
-	}
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	// parādam stāvokļa joslu
+	[self showStatusLine];
+	
+	[self performSelectorInBackground:@selector(firstSyncReadCache) withObject:nil];
+	
+	[pool release];
 }
+
+- (void)firstSyncReadCache {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	// lasam no keša pirmos 10 ierakstus
+	[self loadPostsFromCacheFromOffset:0];
+	
+	// atjaunojam tabulu
+	if ([loadedPosts count]) {
+		[self preprocessPosts];
+		[self reloadTable];
+		[tableView setAlpha:1.0];
+	}
+	
+	[self performSelectorInBackground:@selector(firstSyncReadServer) withObject:nil];
+
+	[pool release];
+}
+
+- (void)firstSyncReadServer {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	if (DEFAULT_BOOL(@"refresh_on_start")) {
+		// atjaunojam pēdējos rakstus
+		[self loadLastPostsFromServer];
+		if ([loadedPosts count]) {
+			Post *topPost = [loadedPosts objectAtIndex:0];
+			NSUInteger count = [self loadPostsFromServerAfter:topPost.dateTime skip:0 limit:100]; 
+			if (count < 10) {
+				[self loadPostsFromServerAfter:nil skip:count limit:10 - count]; 
+			}
+		} else {
+			[self loadPostsFromServerAfter:nil skip:0 limit:10]; 
+		}
+		
+		[self preprocessPosts];
+		[self reloadTable];
+	}
+	
+	// pārliecinamies, ka tabula ir redzama
+	[tableView setAlpha:1.0];
+	
+	// paslēpjam stāvokļa joslu
+	[self hideStatusLine];
+	
+	[pool release];
+}
+
 
 - (void) refresh {
 	refreshButtonItem.enabled = NO;
+	[self showStatusLine];
+	
 	[self performSelectorInBackground:@selector(refreshPosts) withObject:nil];
 }
 
 - (void) refreshPosts {
 	@synchronized (self) {
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
-		// parādam stāvokļa joslu
-		[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
-		//[self showStatusLine];
 
 		BOOL needToScroll = [loadedPosts count];
 		
@@ -176,9 +202,9 @@
 			[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 		}
 		// veicam rakstu priekšapstrādi
-		[self performSelectorInBackground:@selector(preprocessPosts) withObject:nil];
+		[self preprocessPosts];
 		// atjaunojam tabulu
-		[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
+		[self reloadTable];
 
 		// parādam stāvokļa joslu
 		[self hideStatusLine];
@@ -192,10 +218,6 @@
 	@synchronized (self) {
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		// parādam stāvokļa joslu
-		[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
-		
-
 		// mērķis, cik daudz jābūt ierakstu pēc ielādes
 		NSUInteger goal = [loadedPosts count] + 10;
 		if (goal > 100) {
@@ -231,9 +253,9 @@
 		}
 		
 		// veicam rakstu priekšapstrādi
-		[self performSelectorInBackground:@selector(preprocessPosts) withObject:nil];
+		[self preprocessPosts];
 		// atjaunojam tabulu
-		[self performSelectorInBackground:@selector(reloadTable) withObject:nil];
+		[self reloadTable];
 		
 		// parādam stāvokļa joslu
 		[self hideStatusLine];
@@ -394,7 +416,6 @@
 
 		return cell;
 	} else {
-		loadMoreCell.textLabel.text = @"Load more...";
 		return loadMoreCell;
 	}
 }
@@ -406,8 +427,10 @@
 	// [self.navigationController pushViewController:anotherViewController];
 	// [anotherViewController release];
 	if (indexPath.row == [loadedPosts count]) {
-		loadMoreCell.textLabel.text = @"Loading...";
-		[self performSelectorInBackground:@selector(loadMorePosts) withObject:nil];
+		if (!loading) {
+			[self showStatusLine];
+			[self performSelectorInBackground:@selector(loadMorePosts) withObject:nil];
+		}
 	} else {
 		Post *post = [loadedPosts objectAtIndex:indexPath.row];
 		PostViewController *postViewController = [[cachedPostViewControllers objectForKey:post.uniqueKey] retain];

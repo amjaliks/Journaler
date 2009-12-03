@@ -25,6 +25,10 @@
 
 	Model *model;
 	UserPicCache *userPicCache;
+	
+#ifndef LITEVERSION
+	NSMutableArray *accounts;
+#endif
 
     UIWindow *window;
     UINavigationController *navigationController;
@@ -37,11 +41,13 @@
 @property (nonatomic, retain) ALReporter *reporter;
 @property (nonatomic, retain) Model *model;
 @property (nonatomic, retain) UserPicCache *userPicCache;
+
 @property (readonly) WebViewController *webViewController;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
 #ifndef LITEVERSION
+- (void) saveAccounts;
 - (void) saveAccounts:(NSArray *)accounts;
 - (NSArray *) loadAccounts;
 #else

@@ -19,6 +19,7 @@
 	UITableView *tableView;
 	UITableViewCell *loadMoreCell;
 	BOOL canLoadMore;
+	BOOL loading;
 
 	// kešs ar rakstu skatījumiem
 	NSMutableDictionary *cachedPostViewControllers;
@@ -28,6 +29,8 @@
 
 // raksti
 - (void) firstSync;
+- (void) firstSyncReadCache;
+- (void) firstSyncReadServer;
 - (void) refreshPosts;
 - (void) loadMorePosts;
 - (NSUInteger) loadPostsFromCacheFromOffset:(NSUInteger)offset;

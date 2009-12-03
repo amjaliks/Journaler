@@ -9,7 +9,6 @@
 #import "UserPicCache.h"
 #import "Macros.h"
 #import "NSStringAdditions.h"
-#import "DelayedUserPicLoader.h"
 #import "LiveJournal.h"
 #import "JournalerAppDelegate.h"
 #import "Model.h"
@@ -78,13 +77,8 @@
 }
 
 - (UIImage *) imageFromURL:(NSString *)url forTableView:(UITableView *)tableView {
-	UIImage *image = [imageCache valueForKey:url];
-	if (image) {
-		return image;
-	} else {
-		[queue addOperation:[[[DelayedUserPicLoader alloc] initWithUserPicCache:self URL:url tableView:tableView] autorelease]];
-		return nil;
-	}
+	return nil;
+
 }
 
 - (void) cancelPendingDownloads {
@@ -119,18 +113,7 @@
 }
 
 - (UIImage *) imageFromURL:(NSString *)URL hash:(NSString *)hash forTableView:(UITableView *)tableView {
-	// ja hešs nav tad, aprēķinam
-	if (!hash) {
-		hash = md5(URL);
-	}
-	
-	UIImage *image = [imageCache objectForKey:hash];
-	if (image) {
-		return image;
-	} else {
-		[queue addOperation:[[[DelayedUserPicLoader alloc] initWithUserPicCache:self URL:URL hash:hash tableView:tableView] autorelease]];
 		return nil;
-	}
 
 //	NSString *path = [self pathForCacheImage:hash];
 //	

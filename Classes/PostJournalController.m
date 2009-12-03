@@ -8,6 +8,7 @@
 
 #import "PostJournalController.h"
 
+#import "JournalerAppDelegate.h"
 #import "PostOptionsController.h"
 #import "LiveJournal.h"
 
@@ -179,6 +180,11 @@
 				postOptionsController.account.communities = [NSArray array];
 			}
 			[self.tableView reloadData];
+#ifdef LITEVERSION
+			[APP_DELEGATE saveAccount:postOptionsController.account];
+#else
+			[APP_DELEGATE saveAccounts];
+#endif
 		}
 	}	
 }

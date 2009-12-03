@@ -70,6 +70,10 @@
 	
 	[navigationController release];
 	[window release];
+	
+#ifndef LITEVERSION
+	[accounts release];
+#endif
 	[super dealloc];
 }
 
@@ -88,15 +92,26 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *path = [paths objectAtIndex:0];
 	path = [path stringByAppendingPathComponent:@"accounts.bin"];
-	NSArray *restoredAccounts = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-	return restoredAccounts;
+	accounts = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+	
+	if (accounts) {
+		accounts = [accounts mutableCopy];
+	} else {
+		accounts = [[NSMutableArray alloc] init];
+	}
+	
+	return accounts;
 }
 
-- (void) saveAccounts:(NSArray *)accounts {
+- (void) saveAccounts:(NSArray *)accountsToSave {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *path = [paths objectAtIndex:0];
 	path = [path stringByAppendingPathComponent:@"accounts.bin"];
-	[NSKeyedArchiver archiveRootObject:accounts toFile:path];
+	[NSKeyedArchiver archiveRootObject:accountsToSave toFile:path];
+}
+
+- (void) saveAccounts {
+	[self saveAccounts:accounts];
 }
 
 #else

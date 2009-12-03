@@ -25,7 +25,7 @@
 
 - (id)initWithAccount:(LJAccount *)aAccount {
     if (self = [super initWithNibName:@"FriendsPageController" bundle:nil]) {
-		account = aAccount;
+		account = [aAccount retain];
 		
 		// cilnes bildīte
 		UIImage *image = [UIImage imageNamed:@"friends.png"];
@@ -141,9 +141,9 @@
 - (void)dealloc {
 #ifdef LITEVERSION
 	// ar reklāmām saistītie resursi
-	[adMobView release];
+//	[adMobView release];
 #endif
-	
+	[account release];
 	[super dealloc];
 }
 
