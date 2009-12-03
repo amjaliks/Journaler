@@ -37,4 +37,6 @@
 
 - (void)sendReport;
 
+- (void)saveState;
+
 @end

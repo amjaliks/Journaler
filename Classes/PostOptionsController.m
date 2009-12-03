@@ -31,9 +31,7 @@
 #ifdef LITEVERSION
 		promote = YES;
 #else
-		NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:@"promoteswitchstate"];
-		NSNumber *number = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-		promote = number ? [number boolValue] : YES;
+		promote = account.promote;
 #endif
     }
     return self;
@@ -62,9 +60,6 @@
 	promoteSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(206, 9, 94, 26)];
 	promoteSwitch.on = promote;
 	[promoteCell addSubview:promoteSwitch];
-#ifndef LITEVERSION
-	[promoteSwitch addTarget:self action:@selector(savePromoteSwitch) forControlEvents:UIControlEventValueChanged];
-#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -226,15 +221,6 @@
 		return promote;
 	}
 }
-
-#ifndef LITEVERSION
-- (void)savePromoteSwitch {
-	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:@"promoteswitchstate"];
-	NSNumber *number = [[NSNumber alloc] initWithBool:promoteSwitch.on];
-	[NSKeyedArchiver archiveRootObject:number toFile:path];
-	[number release];
-}
-#endif
 
 @end
 

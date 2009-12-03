@@ -40,13 +40,12 @@
 	userPicCache = [[UserPicCache alloc] init];
 	
 #ifndef LITEVERSION
-	UIViewController *rootViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];
+	rootViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];
 #else
-	UIViewController *rootViewController = [[AccountTabBarController alloc] initWithAccount:[self loadAccount]];
+	rootViewController = [[AccountTabBarController alloc] initWithAccount:[self loadAccount]];
 #endif
 	
 	navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-	[rootViewController release];
 	
 	[window addSubview:navigationController.view];
 	
@@ -56,6 +55,14 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {	
 	[model saveAll];
+	
+#ifdef LITEVERSION
+	[(AccountTabBarController *) rootViewController saveState];
+#else
+	[(AccountsViewController *) rootViewController saveState];
+#endif
+
+	[rootViewController release];
 }
 
 #pragma mark -

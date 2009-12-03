@@ -22,6 +22,8 @@
 @interface AccountTabBarController : UITabBarController <LVP_ACCOUNT_EDITOR_CONTROLLER PostEditorControllerDataSource, UITabBarControllerDelegate> {
 	LJAccount *account;
 	
+	PostEditorController *postEditorController;
+	
 #ifdef LITEVERSION
 	UIBarButtonItem *accountButton;
 #endif
@@ -37,5 +39,7 @@
 #ifdef LITEVERSION
 - (void) editAccount;
 #endif
+
+- (void)saveState;
 
 @end

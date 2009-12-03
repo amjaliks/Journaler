@@ -32,7 +32,22 @@ NSString* md5(NSString *str)
 @synthesize server;
 @synthesize communities;
 
+@synthesize text;
+@synthesize subject;
+@synthesize journal;
+@synthesize security;
+@synthesize promote;
+
+@synthesize selectedTab;
+
 @synthesize synchronized;
+
+- (id)init {
+	if (self = [super init]) {
+		promote = YES;
+	}
+	return self;
+}
 
 - (id)initWithCoder:(NSCoder *)coder {
 	if (self = [self init]) {
@@ -40,6 +55,14 @@ NSString* md5(NSString *str)
 		password = [[coder decodeObjectForKey:@"password"] retain];
 		server = [[coder decodeObjectForKey:@"server"] retain];
 		communities = [[coder decodeObjectForKey:@"communities"] retain];
+		
+		text = [[coder decodeObjectForKey:@"postText"] retain];
+		subject = [[coder decodeObjectForKey:@"postSubject"] retain];
+		journal = [[coder decodeObjectForKey:@"postJournal"] retain];
+		security = [coder decodeIntegerForKey:@"postSecurity"];
+		promote = [coder decodeBoolForKey:@"postPromote"];
+
+		selectedTab = [coder decodeIntegerForKey:@"selectedTab"];
 	}
 	
 	return self;
@@ -51,6 +74,14 @@ NSString* md5(NSString *str)
 	[coder encodeObject:password forKey:@"password"];
 	[coder encodeObject:server forKey:@"server"];
 	[coder encodeObject:communities forKey:@"communities"];
+
+	[coder encodeObject:text forKey:@"postText"];
+	[coder encodeObject:subject forKey:@"postSubject"];
+	[coder encodeObject:journal forKey:@"postJournal"];
+	[coder encodeInteger:security forKey:@"postSecurity"];
+	[coder encodeBool:promote forKey:@"postPromote"];
+
+	[coder encodeInteger:selectedTab forKey:@"selectedTab"];
 }
 
 - (NSString *)title {

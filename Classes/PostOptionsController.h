@@ -46,9 +46,6 @@ typedef enum {
 
 - (id)initWithAccount:(LJAccount *)account;
 - (void)done;
-#ifndef LITEVERSION
-- (void)savePromoteSwitch;
-#endif
 
 @end
 

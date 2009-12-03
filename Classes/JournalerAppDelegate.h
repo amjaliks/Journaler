@@ -32,6 +32,7 @@
 
     UIWindow *window;
     UINavigationController *navigationController;
+	UIViewController *rootViewController;
 	
 	WebViewController *webViewController;
 	

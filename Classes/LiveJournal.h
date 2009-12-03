@@ -33,6 +33,14 @@ enum {
 	
 	NSArray *communities;
 	
+	NSString *text;
+	NSString *subject;
+	NSString *journal;
+	PostSecurityLevel security;
+	BOOL promote;
+	
+	NSUInteger selectedTab;
+	
 	BOOL synchronized;
 }
 
@@ -40,6 +48,14 @@ enum {
 @property (retain) NSString *password;
 @property (retain) NSString *server;
 @property (retain) NSArray *communities;
+
+@property (retain) NSString *text;
+@property (retain) NSString *subject;
+@property (retain) NSString *journal;
+@property PostSecurityLevel security;
+@property BOOL promote;
+
+@property NSUInteger selectedTab;
 
 @property BOOL synchronized;
 

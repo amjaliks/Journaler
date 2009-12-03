@@ -49,14 +49,17 @@
 	FriendsPageController *friendList = [@"livejournal.com" isEqual:newAccount.server] ? [[LJFriendsPageController alloc] initWithAccount:newAccount] : [[WebFriendsPageController alloc] initWithAccount:newAccount];
 	self.navigationItem.rightBarButtonItem = friendList.navigationItem.rightBarButtonItem;
 	
-	PostEditorController *postEditorController = [[PostEditorController alloc] initWithNibName:@"PostEditorController" bundle:nil];
+	if (postEditorController) {
+		[postEditorController release];
+	}
+	postEditorController = [[PostEditorController alloc] initWithAccount:newAccount];
 	postEditorController.dataSource = self;
 	
 	NSArray *arrays = [[NSArray alloc] initWithObjects:friendList, postEditorController, nil];
 	self.viewControllers = arrays;
+	self.selectedIndex = newAccount.selectedTab;
 	
 	[friendList release];
-	[postEditorController release];
 	[arrays release];
 }
 
@@ -117,6 +120,8 @@
 #pragma mark Atmiņas pārvaldība
 
 - (void) dealloc {
+	[postEditorController release];
+
 	[account release];
 	
 #ifdef LITEVERSION
@@ -126,5 +131,13 @@
 	[super dealloc];
 }
 
+- (void)saveState {
+	[postEditorController saveState];
+	account.selectedTab = self.selectedIndex;
+	
+#ifdef LITEVERSION
+	[APP_DELEGATE saveAccount:account];
+#endif
+}
 
 @end

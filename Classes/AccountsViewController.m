@@ -260,5 +260,16 @@
 	[servers release];
 }
 
+- (void)saveState {
+	for (LJAccount *account in accounts) {
+		AccountTabBarController *accountTabBarController = [cacheTabBarControllers objectForKey:account.title];
+		if (accountTabBarController) {
+			[accountTabBarController saveState];
+		}
+	}
+	
+	[APP_DELEGATE saveAccounts:accounts];
+}
+
 @end
 

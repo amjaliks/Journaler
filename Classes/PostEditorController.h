@@ -14,6 +14,8 @@
 @protocol PostEditorControllerDataSource, PostEditorControllerDelegate;
 
 @interface PostEditorController : UITableViewController<UITextViewDelegate, UITextFieldDelegate, PostOptionsControllerDataSource> {
+	LJAccount *account;
+	
 	UITableViewCell *subjectCell;
 	UITableViewCell *textCell;
 	
@@ -46,12 +48,16 @@
 @property (nonatomic, retain) IBOutlet id<PostEditorControllerDataSource> dataSource;
 @property (nonatomic, retain) IBOutlet id<PostEditorControllerDelegate> delegate;
 
+- (id)initWithAccount:(LJAccount *)account;
+
 - (IBAction) post:(id)sender;
 - (IBAction) done:(id)sender;
 - (void)openOptions;
 
 - (void)startPostEditing;
 - (void)endPostEditing;
+
+- (void)saveState;
 
 @end
 

@@ -54,8 +54,9 @@
 }
 */
 
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle {
-	if (self = [super initWithNibName:nibName bundle:bundle]) {
+- (id)initWithAccount:(LJAccount *)newAccount {
+	if (self = [super initWithNibName:@"PostEditorController" bundle:nil]) {
+		account = [newAccount retain];
 		
 		UIImage *image = [UIImage imageNamed:@"newpost.png"];
 		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"New post" image:image tag:1];
@@ -79,6 +80,11 @@
 	textField.frame = CGRectMake(0, 0, 320, 336);
 	textCell.frame = CGRectMake(0, 0, 320, 336);
 	[self.tableView reloadData];
+	
+	textField.text = account.text;
+	subjectField.text = account.subject;
+	self.postOptionsController.journal = account.journal;
+	self.postOptionsController.security = account.security;
 }
 
 
@@ -205,6 +211,7 @@
 
 
 - (void)dealloc {
+	[account release];
     [super dealloc];
 }
 
@@ -213,8 +220,6 @@
 }
 
 - (IBAction) post:(id)sender {
-	LJAccount *account = [dataSource selectedAccount];
-	
 	LJGetChallenge *req = [LJGetChallenge requestWithServer:account.server];
 	if (![req doRequest]) {
 		showErrorMessage(@"Post error", req.error);
@@ -301,7 +306,7 @@
 
 - (PostOptionsController *)postOptionsController {
 	if (!postOptionsController) {
-		postOptionsController = [[PostOptionsController alloc] initWithAccount:[dataSource selectedAccount]];
+		postOptionsController = [[PostOptionsController alloc] initWithAccount:account];
 		postOptionsController.dataSource = self;
 	}
 	
@@ -310,6 +315,16 @@
 
 - (LJAccount *)selectedAccount {
 	return [dataSource selectedAccount];
+}
+
+- (void)saveState {
+	if ([self isViewLoaded]) {
+		[dataSource selectedAccount].text = textField.text;
+		[dataSource selectedAccount].subject = subjectField.text;
+		[dataSource selectedAccount].journal = self.postOptionsController.journal;
+		[dataSource selectedAccount].security = self.postOptionsController.security;
+		[dataSource selectedAccount].promote = self.postOptionsController.promote;
+	}
 }
 
 @end
