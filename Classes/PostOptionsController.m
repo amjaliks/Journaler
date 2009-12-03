@@ -8,6 +8,7 @@
 
 #import "PostOptionsController.h"
 
+#import "Macros.h"
 #import "LiveJournal.h"
 #import "PostJournalController.h"
 #import "PostSecurityController.h"
@@ -26,6 +27,14 @@
 		
 		journal = [account.user retain];
 		security = PostSecurityPublic;
+		
+#ifdef LITEVERSION
+		promote = YES;
+#else
+		NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:@"promoteswitchstate"];
+		NSNumber *number = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+		promote = number ? [number boolValue] : YES;
+#endif
     }
     return self;
 }
@@ -51,8 +60,11 @@
 	promoteCell.textLabel.text = @"Promote Journaler";
 	promoteCell.selectionStyle = UITableViewCellSelectionStyleNone;
 	promoteSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(206, 9, 94, 26)];
-	promoteSwitch.on = YES;
+	promoteSwitch.on = promote;
 	[promoteCell addSubview:promoteSwitch];
+#ifndef LITEVERSION
+	[promoteSwitch addTarget:self action:@selector(savePromoteSwitch) forControlEvents:UIControlEventValueChanged];
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -211,10 +223,18 @@
 	if (promoteSwitch) {
 		return promoteSwitch.on; 
 	} else {
-		return YES;
+		return promote;
 	}
 }
 
+#ifndef LITEVERSION
+- (void)savePromoteSwitch {
+	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:@"promoteswitchstate"];
+	NSNumber *number = [[NSNumber alloc] initWithBool:promoteSwitch.on];
+	[NSKeyedArchiver archiveRootObject:number toFile:path];
+	[number release];
+}
+#endif
 
 @end
 

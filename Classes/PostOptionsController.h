@@ -23,6 +23,7 @@ typedef enum {
 	LJAccount *account;
 	
 	// vērtības
+	BOOL promote;
 	NSString *journal;
 	PostSecurityLevel security;
 	
@@ -45,6 +46,9 @@ typedef enum {
 
 - (id)initWithAccount:(LJAccount *)account;
 - (void)done;
+#ifndef LITEVERSION
+- (void)savePromoteSwitch;
+#endif
 
 @end
 
