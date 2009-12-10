@@ -87,6 +87,10 @@
 		self.postOptionsController.journal = account.journal;
 	}
 	self.postOptionsController.security = account.security;
+	
+//	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+//	[nc addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
+//	[nc addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
 }
 
 
@@ -157,6 +161,7 @@
 		return subjectCell;
 	} else if (indexPath.row == 1) {
 		return textCell;
+		//return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"a"];
 	}
     return nil;
 }
@@ -165,7 +170,7 @@
 	if (indexPath.row == 0) {
 		return subjectCell.frame.size.height;
 	} else if (indexPath.row == 1) {
-		return textCell.frame.size.height;
+		return editing ? 168 : 336;
 	}
     return 0;
 }
@@ -222,17 +227,24 @@
 }
 
 - (IBAction) post:(id)sender {
-	LJGetChallenge *req = [LJGetChallenge requestWithServer:account.server];
-	if (![req doRequest]) {
-		showErrorMessage(@"Post error", req.error);
+	if (![account.user isEqualToString:self.postOptionsController.journal] && self.postOptionsController.security == PostSecurityPrivate) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post error" message:@"Can't post private message to the community." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
 		return;
 	}
-	
+		
 	NSString *text = textField.text;
 	if (self.postOptionsController.promote) {
 		text = [text stringByAppendingString:@"\n<p><em><small>Posted via <a href=\"http://journalerapp.com/?utm_source=livejournal&amp;utm_medium=post-via-link&amp;utm_campaign=post-via-link\">Journaler</a>.</small></em></p>"];
 	}
 	
+	LJGetChallenge *req = [LJGetChallenge requestWithServer:account.server];
+	if (![req doRequest]) {
+		showErrorMessage(@"Post error", req.error);
+		return;
+	}
+
 	LJPostEvent *login = [LJPostEvent requestWithServer:account.server user:account.user password:account.password challenge:req.challenge subject:subjectField.text event:text];
 	login.usejournal = self.postOptionsController.journal;
 	login.security = self.postOptionsController.security;
@@ -265,13 +277,40 @@
 	return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)_textField {
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)_textField {
 	[self startPostEditing];
+	return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)_textField {
 	return [textField becomeFirstResponder];
 }
+
+//- (void)keyboardWillShow:(NSNotification *) note {
+//	[self.parentViewController.navigationItem setRightBarButtonItem:doneButton animated:YES];
+//	[self.parentViewController.navigationItem setLeftBarButtonItem:optionsButton animated:YES];
+//	textCell.frame = CGRectMake(0, 0, 320, 168);
+//	textField.frame = CGRectMake(0, 0, 320, 168);
+//	[self.tableView reloadData];
+//}
+//
+//- (void)keyboardWillHide:(NSNotification *) note {
+//	postButton.enabled = [textField.text length] > 0;
+//	
+//	[textField resignFirstResponder];
+//	[subjectField resignFirstResponder];
+//	
+//	[self.parentViewController.navigationItem setRightBarButtonItem:postButton animated:YES];
+//#ifndef LITEVERSION
+//	[self.parentViewController.navigationItem setLeftBarButtonItem:nil animated:YES];
+//#else 
+//	[self.parentViewController.navigationItem setLeftBarButtonItem:((AccountTabBarController *)self.tabBarController).accountButton animated:YES];
+//#endif
+//	textField.frame = CGRectMake(0, 0, 320, 336);
+//	textCell.frame = CGRectMake(0, 0, 320, 336);
+//	[self.tableView reloadData];
+//}
+
 
 - (void)startPostEditing {
 	if (!editing) {
@@ -279,8 +318,8 @@
 		
 		[self.parentViewController.navigationItem setRightBarButtonItem:doneButton animated:YES];
 		[self.parentViewController.navigationItem setLeftBarButtonItem:optionsButton animated:YES];
-		textField.frame = CGRectMake(0, 0, 320, 168);
 		textCell.frame = CGRectMake(0, 0, 320, 168);
+		textField.frame = CGRectMake(0, 0, 320, 168);
 		[self.tableView reloadData];
 	}
 }
@@ -328,6 +367,8 @@
 		[dataSource selectedAccount].promote = self.postOptionsController.promote;
 	}
 }
+
+
 
 @end
 

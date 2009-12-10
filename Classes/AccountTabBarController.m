@@ -109,6 +109,8 @@
 			[APP_MODEL deleteAllPostsForAccount:account.title];
 			// pārlādējam arī saskarni
 			[self setViewControllersForAccount:newAccount];
+			// virsraksts
+			self.navigationItem.title = newAccount.user;
 		}
 		[account release];
 	}
