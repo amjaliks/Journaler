@@ -26,6 +26,10 @@
 		173FB97A10BCAE9C00FD0652 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 173FB97810BCAE9C00FD0652 /* lock.png */; };
 		173FBEF910C4758200FD0652 /* PostOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FBEF810C4758200FD0652 /* PostOptionsController.m */; };
 		173FBEFA10C4758300FD0652 /* PostOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FBEF810C4758200FD0652 /* PostOptionsController.m */; };
+		173FBFC210C4A3CD00FD0652 /* PostJournalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FBFC110C4A3CD00FD0652 /* PostJournalController.m */; };
+		173FBFC310C4A3CD00FD0652 /* PostJournalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FBFC110C4A3CD00FD0652 /* PostJournalController.m */; };
+		173FC15510C5F53700FD0652 /* PostSecurityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FC15410C5F53700FD0652 /* PostSecurityController.m */; };
+		173FC15610C5F53700FD0652 /* PostSecurityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FC15410C5F53700FD0652 /* PostSecurityController.m */; };
 		1746704D10AD0353008298F8 /* RefreshTurnedOff.html in Resources */ = {isa = PBXBuildFile; fileRef = 1746704C10AD0353008298F8 /* RefreshTurnedOff.html */; };
 		1746704E10AD0353008298F8 /* RefreshTurnedOff.html in Resources */ = {isa = PBXBuildFile; fileRef = 1746704C10AD0353008298F8 /* RefreshTurnedOff.html */; };
 		1750B0D71097A3B200C1D2A8 /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 1750B0D61097A3B200C1D2A8 /* video.png */; };
@@ -67,7 +71,6 @@
 		1750B1731097B3F900C1D2A8 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 1713267F108A163B007F6C24 /* Post.m */; };
 		1750B1741097B3F900C1D2A8 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 171326CF108A238E007F6C24 /* Model.m */; };
 		1750B1761097B3F900C1D2A8 /* UserPicCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 17132AA6108B3017007F6C24 /* UserPicCache.m */; };
-		1750B1771097B3F900C1D2A8 /* DelayedUserPicLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */; };
 		1750B1791097B3F900C1D2A8 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F3191093674E0008AA60 /* WebViewController.m */; };
 		1750B17B1097B3F900C1D2A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1750B17C1097B3F900C1D2A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -81,7 +84,6 @@
 		1750B3AF1098EF3300C1D2A8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3AE1098EF3300C1D2A8 /* MessageUI.framework */; };
 		1750B3F91098F42300C1D2A8 /* libAdMobSimulator3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3F71098F42300C1D2A8 /* libAdMobSimulator3_0.a */; };
 		1750B3FA1098F42300C1D2A8 /* libAdMobDevice3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1750B3F81098F42300C1D2A8 /* libAdMobDevice3_0.a */; };
-		1759F1831092F28B0008AA60 /* DelayedUserPicLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */; };
 		1759F31B1093674E0008AA60 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F3191093674E0008AA60 /* WebViewController.m */; };
 		1759F31C1093674E0008AA60 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1759F31A1093674E0008AA60 /* WebViewController.xib */; };
 		1759F49D1096514B0008AA60 /* comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 1759F49C1096514B0008AA60 /* comments.png */; };
@@ -164,6 +166,11 @@
 		173FB97810BCAE9C00FD0652 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		173FBEF710C4758200FD0652 /* PostOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostOptionsController.h; sourceTree = "<group>"; };
 		173FBEF810C4758200FD0652 /* PostOptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostOptionsController.m; sourceTree = "<group>"; };
+		173FBFC010C4A3CD00FD0652 /* PostJournalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostJournalController.h; sourceTree = "<group>"; };
+		173FBFC110C4A3CD00FD0652 /* PostJournalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostJournalController.m; sourceTree = "<group>"; };
+		173FC03F10C5CE6300FD0652 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		173FC15310C5F53700FD0652 /* PostSecurityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostSecurityController.h; sourceTree = "<group>"; };
+		173FC15410C5F53700FD0652 /* PostSecurityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostSecurityController.m; sourceTree = "<group>"; };
 		1746704C10AD0353008298F8 /* RefreshTurnedOff.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RefreshTurnedOff.html; sourceTree = "<group>"; };
 		1750B0D61097A3B200C1D2A8 /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video.png; sourceTree = "<group>"; };
 		1750B0D81097A41000C1D2A8 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
@@ -179,8 +186,6 @@
 		1750B3AE1098EF3300C1D2A8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		1750B3F71098F42300C1D2A8 /* libAdMobSimulator3_0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobSimulator3_0.a; sourceTree = "<group>"; };
 		1750B3F81098F42300C1D2A8 /* libAdMobDevice3_0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMobDevice3_0.a; sourceTree = "<group>"; };
-		1759F1811092F28B0008AA60 /* DelayedUserPicLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayedUserPicLoader.h; sourceTree = "<group>"; };
-		1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayedUserPicLoader.m; sourceTree = "<group>"; };
 		1759F3181093674E0008AA60 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = ../WebViewController.h; sourceTree = "<group>"; };
 		1759F3191093674E0008AA60 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../WebViewController.m; sourceTree = "<group>"; };
 		1759F31A1093674E0008AA60 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -309,6 +314,7 @@
 				17DB0CC010768D2900155636 /* LiveJournal.h */,
 				17DB0CC110768D2900155636 /* LiveJournal.m */,
 				17B462EF10BA28BA004D0E0F /* Macros.h */,
+				173FC03F10C5CE6300FD0652 /* Common.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -394,6 +400,10 @@
 				1789BFE0107E73BA00964DA2 /* PostEditorController.m */,
 				173FBEF710C4758200FD0652 /* PostOptionsController.h */,
 				173FBEF810C4758200FD0652 /* PostOptionsController.m */,
+				173FBFC010C4A3CD00FD0652 /* PostJournalController.h */,
+				173FBFC110C4A3CD00FD0652 /* PostJournalController.m */,
+				173FC15310C5F53700FD0652 /* PostSecurityController.h */,
+				173FC15410C5F53700FD0652 /* PostSecurityController.m */,
 			);
 			name = "New post";
 			sourceTree = "<group>";
@@ -427,8 +437,6 @@
 			children = (
 				17132AA5108B3017007F6C24 /* UserPicCache.h */,
 				17132AA6108B3017007F6C24 /* UserPicCache.m */,
-				1759F1811092F28B0008AA60 /* DelayedUserPicLoader.h */,
-				1759F1821092F28B0008AA60 /* DelayedUserPicLoader.m */,
 			);
 			name = UserPicCache;
 			sourceTree = "<group>";
@@ -717,7 +725,6 @@
 				1750B1731097B3F900C1D2A8 /* Post.m in Sources */,
 				1750B1741097B3F900C1D2A8 /* Model.m in Sources */,
 				1750B1761097B3F900C1D2A8 /* UserPicCache.m in Sources */,
-				1750B1771097B3F900C1D2A8 /* DelayedUserPicLoader.m in Sources */,
 				1750B1791097B3F900C1D2A8 /* WebViewController.m in Sources */,
 				17B6340910B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */,
 				17704A5C10A238C100C1EFB2 /* ALAppUse.m in Sources */,
@@ -732,6 +739,8 @@
 				173FB76610BB490600FD0652 /* LJFriendsPageController.m in Sources */,
 				173FB7EB10BB4F9F00FD0652 /* WebFriendsPageController.m in Sources */,
 				173FBEF910C4758200FD0652 /* PostOptionsController.m in Sources */,
+				173FBFC210C4A3CD00FD0652 /* PostJournalController.m in Sources */,
+				173FC15510C5F53700FD0652 /* PostSecurityController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,7 +769,6 @@
 				171326D0108A238E007F6C24 /* Model.m in Sources */,
 				17B6340810B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */,
 				17132AA7108B3017007F6C24 /* UserPicCache.m in Sources */,
-				1759F1831092F28B0008AA60 /* DelayedUserPicLoader.m in Sources */,
 				1759F31B1093674E0008AA60 /* WebViewController.m in Sources */,
 				17704A5F10A238C100C1EFB2 /* ALAppUse.m in Sources */,
 				17704A6010A238C100C1EFB2 /* ALDeviceInfo.m in Sources */,
@@ -774,6 +782,8 @@
 				173FB76710BB490600FD0652 /* LJFriendsPageController.m in Sources */,
 				173FB7EA10BB4F9F00FD0652 /* WebFriendsPageController.m in Sources */,
 				173FBEFA10C4758300FD0652 /* PostOptionsController.m in Sources */,
+				173FBFC310C4A3CD00FD0652 /* PostJournalController.m in Sources */,
+				173FC15610C5F53700FD0652 /* PostSecurityController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
