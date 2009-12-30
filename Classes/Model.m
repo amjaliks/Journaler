@@ -15,13 +15,7 @@
     NSError *error = nil;
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-			/*
-			 Replace this implementation with code to handle the error appropriately.
-			 
-			 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-			 */
-			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-			abort();
+			[NSException raise:@"Failed to save persistent store" format:@"Error info: domain: %@; code: %d", [error domain], [error code]];
         } 
     }
 }
@@ -58,7 +52,6 @@
     return managedObjectModel;
 }
 
-
 /**
  Returns the persistent store coordinator for the application.
  If the coordinator doesn't already exist, it is created and the application's store added to it.
@@ -69,25 +62,21 @@
         return persistentStoreCoordinator;
     }
 	
-    NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationCachesDirectory] stringByAppendingPathComponent: @"postcache.sqlite"]];
+	NSString *storePath = [[self applicationCachesDirectory] stringByAppendingPathComponent: @"postcache.sqlite"];
+    NSURL *storeUrl = [NSURL fileURLWithPath:storePath];
 	
 	NSError *error = nil;
 	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
 							 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, nil];
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error]) {
-		/*
-		 Replace this implementation with code to handle the error appropriately.
-		 
-		 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-		 
-		 Typical reasons for an error here include:
-		 * The persistent store is not accessible
-		 * The schema for the persistent store is incompatible with current managed object model
-		 Check the error message to determine what the actual problem was.
-		 */
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		abort();
+		// ja gadījusies kļūda, tad cenšamies izdzēst kešu ..
+		[[NSFileManager defaultManager] removeItemAtPath:storePath error:nil];
+		
+		// ..  un mēģinam vēlreiz
+		if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error]) {
+			[NSException raise:@"Can't open persistent store" format:@"Error info: domain: %@; code: %d", [error domain], [error code]];
+		}
     }    
 	
     return persistentStoreCoordinator;
@@ -117,8 +106,7 @@
 	NSError *error;
 	NSArray *result = [self.managedObjectContext executeFetchRequest:request error:&error];
 	if (!result) {
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		abort();
+		[NSException raise:@"Failed to perform request" format:@"Error info: domain: %@; code: %d", [error domain], [error code]];
 	}
 	[request release];
 	return result;
@@ -140,8 +128,7 @@
 	NSError *error;
 	NSArray *result = [self.managedObjectContext executeFetchRequest:request error:&error];
 	if (!result) {
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		abort();
+		[NSException raise:@"Failed to perform request" format:@"Error info: domain: %@; code: %d", [error domain], [error code]];
 	}
 	[request release];
 	return result;
@@ -157,8 +144,7 @@
 	NSError *error;
 	NSArray *result = [self.managedObjectContext executeFetchRequest:request error:&error];
 	if (!result) {
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		abort();
+		[NSException raise:@"Failed to perform request" format:@"Error info: domain: %@; code: %d", [error domain], [error code]];
 	}
 	[request release];
 	if ([result count]) {
