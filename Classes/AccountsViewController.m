@@ -34,8 +34,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    editButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleEdit)];
+    self.navigationItem.leftBarButtonItem = editButtonItem;
 	
 	NSArray *loadedAccounts = [APP_DELEGATE loadAccounts];
 	if (loadedAccounts) {
@@ -72,6 +72,7 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+	[editButtonItem release];
 }
 
 - (void)openAccount:(LJAccount *)account {
@@ -269,6 +270,28 @@
 	}
 	
 	[APP_DELEGATE saveAccounts:accounts];
+}
+
+- (void) toggleEdit {
+	if (table.editing) {
+		[table setEditing:NO animated:YES];
+		editButtonItem.title = @"Edit";
+		editButtonItem.style = UIBarButtonItemStyleBordered;
+	} else {
+		[table setEditing:YES animated:YES];
+		editButtonItem.title = @"Done";
+		editButtonItem.style = UIBarButtonItemStyleDone;
+	}
+}
+
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+	editButtonItem.title = @"Done";
+	editButtonItem.style = UIBarButtonItemStyleDone;
+}
+
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+	editButtonItem.title = @"Edit";
+	editButtonItem.style = UIBarButtonItemStyleBordered;
 }
 
 @end
