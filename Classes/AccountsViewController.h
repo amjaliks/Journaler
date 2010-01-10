@@ -44,4 +44,6 @@
 
 - (void)saveState;
 
+- (IBAction)showSettings;
+
 @end

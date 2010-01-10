@@ -101,6 +101,11 @@
 		1789BFE3107E73BA00964DA2 /* PostEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1789BFE1107E73BA00964DA2 /* PostEditorController.xib */; };
 		17A13DD410ACB15C008E5AEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A13DD310ACB15C008E5AEF /* Settings.bundle */; };
 		17A13DD510ACB15C008E5AEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A13DD310ACB15C008E5AEF /* Settings.bundle */; };
+		17B29B0810FA48A700C5EFA4 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B29B0710FA48A700C5EFA4 /* AccountsViewController.m */; };
+		17B29BE610FA826700C5EFA4 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B29BE410FA826700C5EFA4 /* SettingsController.m */; };
+		17B29BE710FA826700C5EFA4 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B29BE510FA826700C5EFA4 /* SettingsController.xib */; };
+		17B29BE810FA826700C5EFA4 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B29BE410FA826700C5EFA4 /* SettingsController.m */; };
+		17B29BE910FA826700C5EFA4 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B29BE510FA826700C5EFA4 /* SettingsController.xib */; };
 		17B462E410BA2647004D0E0F /* PostPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E310BA2647004D0E0F /* PostPreviewCell.m */; };
 		17B462E510BA2647004D0E0F /* PostPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E310BA2647004D0E0F /* PostPreviewCell.m */; };
 		17B462E810BA2659004D0E0F /* PostPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E710BA2659004D0E0F /* PostPreviewView.m */; };
@@ -128,7 +133,6 @@
 		17B6340910B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17B6340710B8CF8000C974DE /* Journaler.xcdatamodeld */; };
 		17B6345410B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */; };
 		17B6345510B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */; };
-		17DB0BD11075444F00155636 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0BCF1075444F00155636 /* AccountsViewController.m */; };
 		17DB0BD21075444F00155636 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BD01075444F00155636 /* AccountsViewController.xib */; };
 		17DB0BF31075462000155636 /* AccountEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BF11075462000155636 /* AccountEditorController.xib */; };
 		17DB0C961076616400155636 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C951076616400155636 /* Entitlements.plist */; };
@@ -204,6 +208,11 @@
 		1789BFE0107E73BA00964DA2 /* PostEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostEditorController.m; sourceTree = "<group>"; };
 		1789BFE1107E73BA00964DA2 /* PostEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostEditorController.xib; path = Classes/PostEditorController.xib; sourceTree = "<group>"; };
 		17A13DD310ACB15C008E5AEF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		17B29B0610FA48A700C5EFA4 /* AccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountsViewController.h; sourceTree = "<group>"; };
+		17B29B0710FA48A700C5EFA4 /* AccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsViewController.m; sourceTree = "<group>"; };
+		17B29BE310FA826700C5EFA4 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		17B29BE410FA826700C5EFA4 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		17B29BE510FA826700C5EFA4 /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsController.xib; path = Classes/SettingsController.xib; sourceTree = "<group>"; };
 		17B462E210BA2647004D0E0F /* PostPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPreviewCell.h; sourceTree = "<group>"; };
 		17B462E310BA2647004D0E0F /* PostPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPreviewCell.m; sourceTree = "<group>"; };
 		17B462E610BA2659004D0E0F /* PostPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPreviewView.h; sourceTree = "<group>"; };
@@ -243,8 +252,6 @@
 		17B633FC10B8CD6B00C974DE /* lock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lock.gif; sourceTree = "<group>"; };
 		17B6340A10B8CF8000C974DE /* Journaler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Journaler 2.xcdatamodel"; sourceTree = "<group>"; };
 		17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = "v1-v2.xcmappingmodel"; sourceTree = "<group>"; };
-		17DB0BCE1075444F00155636 /* AccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountsViewController.h; sourceTree = "<group>"; };
-		17DB0BCF1075444F00155636 /* AccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsViewController.m; sourceTree = "<group>"; };
 		17DB0BD01075444F00155636 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountsViewController.xib; path = Classes/AccountsViewController.xib; sourceTree = "<group>"; };
 		17DB0BF11075462000155636 /* AccountEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountEditorController.xib; path = Classes/AccountEditorController.xib; sourceTree = "<group>"; };
 		17DB0C951076616400155636 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
@@ -305,6 +312,7 @@
 				17132682108A1644007F6C24 /* Model */,
 				1759F1801092F2510008AA60 /* UserPicCache */,
 				173FBEF410C474E900FD0652 /* Accounts */,
+				17B29BE210FA824B00C5EFA4 /* Settings */,
 				173FBEF510C4751B00FD0652 /* Friends Page */,
 				173FBEF610C4755600FD0652 /* New post */,
 				1D3623240D0F684500981E51 /* JournalerAppDelegate.h */,
@@ -364,8 +372,8 @@
 		173FBEF410C474E900FD0652 /* Accounts */ = {
 			isa = PBXGroup;
 			children = (
-				17DB0BCE1075444F00155636 /* AccountsViewController.h */,
-				17DB0BCF1075444F00155636 /* AccountsViewController.m */,
+				17B29B0610FA48A700C5EFA4 /* AccountsViewController.h */,
+				17B29B0710FA48A700C5EFA4 /* AccountsViewController.m */,
 				17B62DB510B7355600C974DE /* AccountTabBarController.h */,
 				17B62DB610B7355600C974DE /* AccountTabBarController.m */,
 				17FCD7141078C70700806088 /* AccountEditorController.h */,
@@ -456,6 +464,15 @@
 			name = Appnlytics;
 			sourceTree = "<group>";
 		};
+		17B29BE210FA824B00C5EFA4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				17B29BE310FA826700C5EFA4 /* SettingsController.h */,
+				17B29BE410FA826700C5EFA4 /* SettingsController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		17B4C536108132D90005660E /* RegexKitLite */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +517,7 @@
 			children = (
 				17DB0BD01075444F00155636 /* AccountsViewController.xib */,
 				17DB0BF11075462000155636 /* AccountEditorController.xib */,
+				17B29BE510FA826700C5EFA4 /* SettingsController.xib */,
 				171323091085168F007F6C24 /* PostViewController.xib */,
 				1789BFE1107E73BA00964DA2 /* PostEditorController.xib */,
 				1759F31A1093674E0008AA60 /* WebViewController.xib */,
@@ -666,6 +684,7 @@
 				17B62E6910B74AA800C974DE /* FriendsPageController.xib in Resources */,
 				17B633FD10B8CD6B00C974DE /* lock.gif in Resources */,
 				173FB97A10BCAE9C00FD0652 /* lock.png in Resources */,
+				17B29BE910FA826700C5EFA4 /* SettingsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +715,7 @@
 				17B62E6A10B74AA800C974DE /* FriendsPageController.xib in Resources */,
 				17B633FE10B8CD6B00C974DE /* lock.gif in Resources */,
 				173FB97910BCAE9C00FD0652 /* lock.png in Resources */,
+				17B29BE710FA826700C5EFA4 /* SettingsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +761,7 @@
 				173FBEF910C4758200FD0652 /* PostOptionsController.m in Sources */,
 				173FBFC210C4A3CD00FD0652 /* PostJournalController.m in Sources */,
 				173FC15510C5F53700FD0652 /* PostSecurityController.m in Sources */,
+				17B29BE810FA826700C5EFA4 /* SettingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,7 +771,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* JournalerAppDelegate.m in Sources */,
-				17DB0BD11075444F00155636 /* AccountsViewController.m in Sources */,
 				17DB0CC210768D2900155636 /* LiveJournal.m in Sources */,
 				17FCD7161078C70700806088 /* AccountEditorController.m in Sources */,
 				1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */,
@@ -784,6 +804,8 @@
 				173FBEFA10C4758300FD0652 /* PostOptionsController.m in Sources */,
 				173FBFC310C4A3CD00FD0652 /* PostJournalController.m in Sources */,
 				173FC15610C5F53700FD0652 /* PostSecurityController.m in Sources */,
+				17B29B0810FA48A700C5EFA4 /* AccountsViewController.m in Sources */,
+				17B29BE610FA826700C5EFA4 /* SettingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

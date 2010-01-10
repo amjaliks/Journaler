@@ -13,6 +13,7 @@
 #import "Model.h"
 #import "JournalerAppDelegate.h"
 #import "ALReporter.h"
+#import "SettingsController.h"
 
 @implementation AccountsViewController
 
@@ -292,6 +293,16 @@
 - (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 	editButtonItem.title = @"Edit";
 	editButtonItem.style = UIBarButtonItemStyleBordered;
+}
+
+- (IBAction)showSettings {
+	SettingsController *settings = [[SettingsController alloc] initWithNibName:@"SettingsController" bundle:nil];
+	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settings];
+	
+	[self presentModalViewController:nav animated:YES];
+	
+	[nav release];
+	[settings release];
 }
 
 @end
