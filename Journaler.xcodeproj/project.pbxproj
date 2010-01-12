@@ -99,8 +99,6 @@
 		1789BE62107A89F200964DA2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
 		1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
 		1789BFE3107E73BA00964DA2 /* PostEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1789BFE1107E73BA00964DA2 /* PostEditorController.xib */; };
-		17A13DD410ACB15C008E5AEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A13DD310ACB15C008E5AEF /* Settings.bundle */; };
-		17A13DD510ACB15C008E5AEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A13DD310ACB15C008E5AEF /* Settings.bundle */; };
 		17B29B0810FA48A700C5EFA4 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B29B0710FA48A700C5EFA4 /* AccountsViewController.m */; };
 		17B29BE610FA826700C5EFA4 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B29BE410FA826700C5EFA4 /* SettingsController.m */; };
 		17B29BE710FA826700C5EFA4 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B29BE510FA826700C5EFA4 /* SettingsController.xib */; };
@@ -207,7 +205,6 @@
 		1789BFDF107E73BA00964DA2 /* PostEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEditorController.h; sourceTree = "<group>"; };
 		1789BFE0107E73BA00964DA2 /* PostEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostEditorController.m; sourceTree = "<group>"; };
 		1789BFE1107E73BA00964DA2 /* PostEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostEditorController.xib; path = Classes/PostEditorController.xib; sourceTree = "<group>"; };
-		17A13DD310ACB15C008E5AEF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		17B29B0610FA48A700C5EFA4 /* AccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountsViewController.h; sourceTree = "<group>"; };
 		17B29B0710FA48A700C5EFA4 /* AccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsViewController.m; sourceTree = "<group>"; };
 		17B29BE310FA826700C5EFA4 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
@@ -554,7 +551,6 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				17DB0C951076616400155636 /* Entitlements.plist */,
-				17A13DD310ACB15C008E5AEF /* Settings.bundle */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -679,7 +675,6 @@
 				1750B15D1097B3F900C1D2A8 /* comments.png in Resources */,
 				1750B15E1097B3F900C1D2A8 /* video.png in Resources */,
 				1750B15F1097B3F900C1D2A8 /* image.png in Resources */,
-				17A13DD410ACB15C008E5AEF /* Settings.bundle in Resources */,
 				1746704D10AD0353008298F8 /* RefreshTurnedOff.html in Resources */,
 				17B62E6910B74AA800C974DE /* FriendsPageController.xib in Resources */,
 				17B633FD10B8CD6B00C974DE /* lock.gif in Resources */,
@@ -710,7 +705,6 @@
 				1759F49D1096514B0008AA60 /* comments.png in Resources */,
 				1750B0D71097A3B200C1D2A8 /* video.png in Resources */,
 				1750B0D91097A41000C1D2A8 /* image.png in Resources */,
-				17A13DD510ACB15C008E5AEF /* Settings.bundle in Resources */,
 				1746704E10AD0353008298F8 /* RefreshTurnedOff.html in Resources */,
 				17B62E6A10B74AA800C974DE /* FriendsPageController.xib in Resources */,
 				17B633FE10B8CD6B00C974DE /* lock.gif in Resources */,
