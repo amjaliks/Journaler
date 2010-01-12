@@ -79,6 +79,13 @@
 
 #pragma mark Account Editor Controller DataSource metodes
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	if (!account) {
+		[self editAccount];
+	}
+}
+
 - (void)editAccount {
 	AccountEditorController  *accountEditorController = [[AccountEditorController alloc] initWithNibName:@"AccountEditorController" bundle:nil];
 	accountEditorController.dataSource = self;
@@ -113,6 +120,9 @@
 			self.navigationItem.title = newAccount.user;
 		}
 		[account release];
+	} else {
+		[self setViewControllersForAccount:newAccount];
+		self.navigationItem.title = newAccount.user;
 	}
 	account = [newAccount retain];
 	
