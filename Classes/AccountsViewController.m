@@ -61,6 +61,7 @@
 	if ([accounts count] == 0) {
 		[self addAccount:nil];
 	}
+	[table deselectRowAtIndexPath:[table indexPathForSelectedRow] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

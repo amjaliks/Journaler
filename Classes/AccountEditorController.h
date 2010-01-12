@@ -14,7 +14,7 @@ void showErrorMessage(NSString *title, NSUInteger code);
 @protocol AccountEditorControllerDataSource, AccountEditorControllerDelegate;
 
 
-@interface AccountEditorController : UITableViewController {
+@interface AccountEditorController : UITableViewController<UITextFieldDelegate> {
 	UITableViewCell *usernameCell;
 	UITableViewCell *passwordCell;
 	UITableViewCell *serverCell;
@@ -28,6 +28,10 @@ void showErrorMessage(NSString *title, NSUInteger code);
 	
 	id<AccountEditorControllerDataSource> dataSource;
 	id<AccountEditorControllerDelegate> delegate;
+	
+#ifdef LITEVERSION
+	BOOL newAccount;
+#endif
 }
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *usernameCell;

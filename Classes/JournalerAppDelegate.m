@@ -39,6 +39,10 @@
 	model = [[Model alloc] init];
 	userPicCache = [[UserPicCache alloc] init];
 	
+	// noklusēti iestatījumi
+	NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"refresh_on_start", nil];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+	
 #ifndef LITEVERSION
 	rootViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];
 #else

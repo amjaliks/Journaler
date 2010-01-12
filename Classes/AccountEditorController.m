@@ -9,6 +9,10 @@
 #import "AccountEditorController.h"
 #import "LiveJournal.h"
 
+#ifdef LITEVERSION
+#import "SettingsController.h"
+#endif
+
 
 void showErrorMessage(NSString *title, NSUInteger code) {
 	NSString *text;
@@ -78,6 +82,10 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 	
 	LJAccount *account = [dataSource selectedAccount];
 	
+#ifdef LITEVERSION
+	newAccount = account == nil;
+#endif
+	
 	if (account) {
 		self.title = @"Edit account";
 		usernameText.text = account.user;
@@ -138,38 +146,64 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#ifdef LITEVERSION
+	return 2;
+#else
     return 1;
+#endif
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+	return section == 0 ? 3 : 1;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row == 0) {
-		return usernameCell;
-	} else if (indexPath.row == 1) {
-		return passwordCell;
-	} else if (indexPath.row == 2) {
-		return serverCell;
+	if (indexPath.section == 0) {
+		if (indexPath.row == 0) {
+			return usernameCell;
+		} else if (indexPath.row == 1) {
+			return passwordCell;
+		} else if (indexPath.row == 2) {
+			return serverCell;
+		}
+	} else {
+		static NSString *cellId = @"settings";
+		UITableViewCell *settingsCell = [tableView dequeueReusableCellWithIdentifier:cellId];
+		if (!settingsCell) {
+			settingsCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+			settingsCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			settingsCell.textLabel.text = @"Settings";
+			[settingsCell autorelease];
+		}
+		return settingsCell;
 	}
     return nil;
 }
 
-
+#ifdef LITEVERSION
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+	if (indexPath.section == 1) {
+		SettingsController *settings = [[SettingsController alloc] initWithNibName:@"SettingsController" bundle:nil];
+		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settings];
+		
+		[self presentModalViewController:nav animated:YES];
+		
+		[nav release];
+		[settings release];
+	}
 }
+#endif
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+#ifdef LITEVERSION
+	return newAccount && section == 0 ? @"Enter username and password for your account. If using a LiveJournal clone enter the server name as well." : nil;
+#else
 	return @"Enter username and password for your account. If using a LiveJournal clone enter the server name as well.";
+#endif
 }
 
 
@@ -293,6 +327,18 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 // Mandatory fields are: username and password.
 - (IBAction) textFieldChanged:(id)sender {
 	doneButton.enabled = usernameText.text.length && passwordText.text.length;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	if (textField == usernameText) {
+		[passwordText becomeFirstResponder];
+	} else if (textField == passwordText) {
+		[serverText becomeFirstResponder];
+	} else {
+		[textField resignFirstResponder];
+	}
+	
+	return YES;
 }
 
 @end
