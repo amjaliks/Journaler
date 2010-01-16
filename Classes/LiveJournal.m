@@ -12,6 +12,8 @@
 #import "XMLRPCRequest.h"
 #import "XMLRPCResponse.h"
 
+#import "NetworkActivityIndicator.h"
+
 NSString* md5(NSString *str)
 {
 	const char *cStr = [str UTF8String];
@@ -319,18 +321,20 @@ NSString* md5(NSString *str)
 - (BOOL)doRequest {
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/interface/xmlrpc", _server]];
 	XMLRPCRequest *xmlreq = [[XMLRPCRequest alloc] initWithURL:url];
-	//[[XMLRPCRequest alloc] initWithHost:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/interface/xmlrpc", _server]]];
-	//[xmlreq setMethod:_method withObject:parameters];
 	[xmlreq setMethod:_method withParameter:parameters];
 #ifdef DEBUG
 	NSLog(@"request:\n%@", [xmlreq body]);
 #endif
 	NSURLRequest *req = [xmlreq request];
 	
+	[[NetworkActivityIndicator sharedInstance] show];
+	
 	NSURLResponse *res;
 	NSError *err;
 	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
-	
+
+	[[NetworkActivityIndicator sharedInstance] hide];
+
 	if (err && [NSURLErrorDomain isEqualToString:[err domain]]) {
 		NSInteger errcode = [err code];
 		if (errcode == NSURLErrorCannotFindHost) {

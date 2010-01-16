@@ -12,6 +12,7 @@
 #import "LiveJournal.h"
 #import "JournalerAppDelegate.h"
 #import "Model.h"
+#import "NetworkActivityIndicator.h"
 
 @implementation UserPicCache
 
@@ -171,10 +172,14 @@
 - (NSData *) downloadDataFromURL:(NSString *)URL {
 	NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
 	
+	[[NetworkActivityIndicator sharedInstance] show];
+	
 	NSURLResponse *res;
 	NSError *err;
 	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
-	
+
+	[[NetworkActivityIndicator sharedInstance] hide];
+
 	if (err) {
 		return nil;
 	} else {

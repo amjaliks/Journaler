@@ -10,6 +10,7 @@
 
 #import "AccountEditorController.h"
 #import "LiveJournal.h"
+#import "NetworkActivityIndicator.h"
 
 @implementation WebViewController
 
@@ -74,6 +75,8 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
+	[[NetworkActivityIndicator sharedInstance] hide];
+
 	[self.view addSubview:webView];
 	[activityIndicatorView stopAnimating];
 	[self updateToolbarButtons:NO];
@@ -83,6 +86,8 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView {
 	[activityIndicatorView startAnimating];
 	[self updateToolbarButtons:YES];
+	
+	[[NetworkActivityIndicator sharedInstance] show];
 }
 
 - (void) updateToolbarButtons:(BOOL)loading {

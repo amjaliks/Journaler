@@ -14,6 +14,7 @@
 #import "AccountEditorController.h"
 #import "JournalerAppDelegate.h"
 #import "WebViewController.h"
+#import "NetworkActivityIndicator.h"
 
 @implementation WebFriendsPageController
 
@@ -107,6 +108,8 @@
 #pragma mark WebViewDelegate metode
 
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView {
+	[[NetworkActivityIndicator sharedInstance] hide];
+
 	[self hideStatusLine];
 	refreshButtonItem.enabled = YES;
 }
@@ -114,6 +117,8 @@
 - (BOOL)webView:(UIWebView *)webView_ shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	NSURL *URL = [request URL];
 	if (navigationType == UIWebViewNavigationTypeReload || navigationType == UIWebViewNavigationTypeOther) {
+		[[NetworkActivityIndicator sharedInstance] show];
+		
 		return YES;
 	} else {
 		WebViewController *webViewController = APP_WEB_VIEW_CONTROLLER;
