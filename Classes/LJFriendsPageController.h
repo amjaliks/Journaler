@@ -14,6 +14,7 @@
 @interface LJFriendsPageController : FriendsPageController <UITableViewDataSource, UITableViewDelegate> {
 	// ielasīti raksti
 	NSMutableArray *loadedPosts;
+	NSArray *displayedPosts;
 	
 	// tabula
 	UITableView *tableView;

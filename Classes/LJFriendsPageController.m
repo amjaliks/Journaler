@@ -355,6 +355,9 @@
 
 - (void) reloadTable {
 	@synchronized(loadedPosts) {
+		[displayedPosts release];
+		displayedPosts = [loadedPosts copy];
+
 		[tableView reloadData];
 	}
 }
@@ -392,7 +395,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSUInteger count = [loadedPosts count];
+	NSUInteger count = [displayedPosts count];
 	if (count) {
 		return count < 100 && canLoadMore ? count + 1 : count;
 	} else {
@@ -403,7 +406,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row < [loadedPosts count]) {
+	if (indexPath.row < [displayedPosts count]) {
 		static NSString *MyIdentifier = @"PostPreview";
 		
 		PostPreviewCell *cell = (PostPreviewCell *)[aTableView dequeueReusableCellWithIdentifier:MyIdentifier];
@@ -411,7 +414,7 @@
 			cell = [[[PostPreviewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
 		}
 
-		Post *post = [loadedPosts objectAtIndex:indexPath.row];
+		Post *post = [displayedPosts objectAtIndex:indexPath.row];
 		[cell setPost:post];
 
 		return cell;
@@ -426,16 +429,16 @@
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
 	// [anotherViewController release];
-	if (indexPath.row == [loadedPosts count]) {
+	if (indexPath.row == [displayedPosts count]) {
 		if (!loading) {
 			[self showStatusLine];
 			[self performSelectorInBackground:@selector(loadMorePosts) withObject:nil];
 		}
 	} else {
-		Post *post = [loadedPosts objectAtIndex:indexPath.row];
+		Post *post = [displayedPosts objectAtIndex:indexPath.row];
 		PostViewController *postViewController = [[cachedPostViewControllers objectForKey:post.uniqueKey] retain];
 		if (!postViewController) {
-			postViewController = [[PostViewController alloc] initWithPost:[loadedPosts objectAtIndex:indexPath.row] account:account];
+			postViewController = [[PostViewController alloc] initWithPost:[displayedPosts objectAtIndex:indexPath.row] account:account];
 			[cachedPostViewControllers setObject:postViewController forKey:post.uniqueKey];
 		}
 		[self.navigationController pushViewController:postViewController animated:YES];
