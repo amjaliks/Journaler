@@ -8,9 +8,9 @@
 
 #import "WebViewController.h"
 
-#import "AccountEditorController.h"
 #import "LiveJournal.h"
 #import "NetworkActivityIndicator.h"
+#import "ErrorHandling.h"
 
 @implementation WebViewController
 
@@ -138,12 +138,12 @@
 					return YES;
 				} else {
 					if (!silent) {
-						showErrorMessage(@"Login error", session.error);
+						showErrorMessage(@"Login error", decodeError(session.error));
 					}
 				}
 			} else {
 				if (!silent) {
-					showErrorMessage(@"Login error", challenge.error);
+					showErrorMessage(@"Login error", decodeError(challenge.error));
 				}
 			}
 		}

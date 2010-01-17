@@ -89,6 +89,8 @@
 			if ([APP_WEB_VIEW_CONTROLLER createSessionForAccount:account silent:NO]) {
 				NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:friendsPageURL];
 				[webView loadRequest:req];
+			} else {
+				[self hideStatusLine];
 			}
 		}
 	}

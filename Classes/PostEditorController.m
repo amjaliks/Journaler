@@ -10,6 +10,7 @@
 #import "LiveJournal.h"
 #import "AccountsViewController.h"
 #import "AccountTabBarController.h"
+#import "ErrorHandling.h"
 
 //void showErrorMessage(NSUInteger code) {
 //	NSString *text;
@@ -241,7 +242,7 @@
 	
 	LJGetChallenge *req = [LJGetChallenge requestWithServer:account.server];
 	if (![req doRequest]) {
-		showErrorMessage(@"Post error", req.error);
+		showErrorMessage(@"Post error", decodeError(req.error));
 		return;
 	}
 
@@ -250,7 +251,7 @@
 	login.security = self.postOptionsController.security;
 	
 	if (![login doRequest]) {
-		showErrorMessage(@"Post error", login.error);
+		showErrorMessage(@"Post error", decodeError(login.error));
 		return;
 	}
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your post has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

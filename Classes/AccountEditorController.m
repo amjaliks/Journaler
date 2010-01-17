@@ -8,37 +8,11 @@
 
 #import "AccountEditorController.h"
 #import "LiveJournal.h"
+#import "ErrorHandling.h"
 
 #ifdef LITEVERSION
 #import "SettingsController.h"
 #endif
-
-
-void showErrorMessage(NSString *title, NSUInteger code) {
-	NSString *text;
-	if (LJErrorServerSide == code) {
-		text = @"There is something wrong with the server.";
-	} else if (LJErrorHostNotFound == code) {
-		text = @"Can't find server.";
-	} else if (LJErrorConnectionFailed == code) {
-		text = @"Can't connect to server.";
-	} else if (LJErrorNotConnectedToInternet == code) {
-		text = @"Not connected to Internet.";
-	} else if (LJErrorInvalidUsername == code) {
-		text = @"Invalid username.";
-	} else if (LJErrorInvalidPassword == code) {
-		text = @"Invalid password.";
-	} else if (LJErrorAccessIPBanDueLoginFailureRate == code) {
-		text = @"Your IP address is temporarily banned for exceeding the login failure rate.";
-	} else {
-		text = [NSString stringWithFormat:@"Unknown error (%d).", code];
-	}
-	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alert show];
-	[alert release];
-}
-
 
 @implementation AccountEditorController
 
@@ -300,13 +274,13 @@ void showErrorMessage(NSString *title, NSUInteger code) {
 	
 	LJGetChallenge *req = [LJGetChallenge requestWithServer:server];
 	if (![req doRequest]) {
-		showErrorMessage(@"Login error", req.error);
+		showErrorMessage(@"Login error", decodeError(req.error));
 		return;
 	}
 	
 	LJLogin *login = [LJLogin requestWithServer:server user:usernameText.text password:passwordText.text challenge:req.challenge];
 	if (![login doRequest]) {
-		showErrorMessage(@"Login error", login.error);
+		showErrorMessage(@"Login error", decodeError(login.error));
 		return;
 	} else {
 		if (login.usejournals) {

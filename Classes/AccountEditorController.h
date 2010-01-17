@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-void showErrorMessage(NSString *title, NSUInteger code);
-
 @class LJAccount;
 @protocol AccountEditorControllerDataSource, AccountEditorControllerDelegate;
 

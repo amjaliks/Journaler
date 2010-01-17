@@ -370,6 +370,8 @@ NSString* md5(NSString *str)
 		} else {
 			error = [((NSNumber *) faultCode) integerValue];
 		}
+	} else if (result == nil) {
+		error = LJErrorMalformedRespone;
 	}
 	
 	[xmlres release];
@@ -430,8 +432,6 @@ NSString* md5(NSString *str)
 }
 
 - (BOOL)doRequest {
-	
-	
 	NSString *authResponse = md5(password);
 	authResponse = [challenge stringByAppendingString:authResponse];
 	authResponse = md5(authResponse);

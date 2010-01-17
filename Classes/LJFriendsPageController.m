@@ -15,7 +15,9 @@
 #import "Model.h"
 #import "PostPreviewCell.h"
 #import "PostViewController.h"
-#import "AccountEditorController.h"
+#import "ErrorHandling.h"
+
+#define kServerReadError -1
 
 @implementation LJFriendsPageController
 
@@ -156,20 +158,25 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	if (DEFAULT_BOOL(@"refresh_on_start")) {
-		// atjaunojam pēdējos rakstus
-		[self loadLastPostsFromServer];
-		if ([loadedPosts count]) {
-			Post *topPost = [loadedPosts objectAtIndex:0];
-			NSUInteger count = [self loadPostsFromServerAfter:topPost.dateTime skip:0 limit:100]; 
-			if (count < 10) {
-				[self loadPostsFromServerAfter:nil skip:count limit:10 - count]; 
+		@try {
+			// atjaunojam pēdējos rakstus
+			[self loadLastPostsFromServer];
+			if ([loadedPosts count]) {
+				Post *topPost = [loadedPosts objectAtIndex:0];
+				NSUInteger count = [self loadPostsFromServerAfter:topPost.dateTime skip:0 limit:100]; 
+				if (count < 10) {
+					[self loadPostsFromServerAfter:nil skip:count limit:10 - count]; 
+				}
+			} else {
+				[self loadPostsFromServerAfter:nil skip:0 limit:10]; 
 			}
-		} else {
-			[self loadPostsFromServerAfter:nil skip:0 limit:10]; 
+			
+			[self preprocessPosts];
+			[self reloadTable];
 		}
-		
-		[self preprocessPosts];
-		[self reloadTable];
+		@catch (NSException * e) {
+			showErrorMessage([e name], [e reason]);
+		}
 	}
 	
 	// pārliecinamies, ka tabula ir redzama
@@ -195,16 +202,21 @@
 
 		BOOL needToScroll = [loadedPosts count];
 		
-		// atjaunojam rakstus
-		[self loadLastPostsFromServer];
-		
-		if (needToScroll) {
-			[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+		@try {
+			// atjaunojam rakstus
+			[self loadLastPostsFromServer];
+			
+			if (needToScroll) {
+				[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+			}
+			// veicam rakstu priekšapstrādi
+			[self preprocessPosts];
+			// atjaunojam tabulu
+			[self reloadTable];
 		}
-		// veicam rakstu priekšapstrādi
-		[self preprocessPosts];
-		// atjaunojam tabulu
-		[self reloadTable];
+		@catch (NSException * e) {
+			showErrorMessage([e name], [e reason]);
+		}
 
 		// parādam stāvokļa joslu
 		[self hideStatusLine];
@@ -218,44 +230,49 @@
 	@synchronized (self) {
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		// mērķis, cik daudz jābūt ierakstu pēc ielādes
-		NSUInteger goal = [loadedPosts count] + 10;
-		if (goal > 100) {
-			goal = 100;
-		}
-		
-		// vispirms mēģinam ielasīt rakstus no keša
-		[self loadPostsFromCacheFromOffset:[loadedPosts count]];
-		
-		if ([loadedPosts count] < goal) {
-			// ja ielādēto rakstu skaits ir mazāks par cerēto,
-			// tad cenšiemies ielādēt no servera
+		@try {
+			// mērķis, cik daudz jābūt ierakstu pēc ielādes
+			NSUInteger goal = [loadedPosts count] + 10;
+			if (goal > 100) {
+				goal = 100;
+			}
 			
-			// bet vispirms pārbaudam, vai vecākais raksts nav vecāks par 2 nedēļām
-			Post *oldestPost = [loadedPosts lastObject];
-			if ([oldestPost.dateTime timeIntervalSinceNow] <  -3600 * 24 * 14) {
-				// ja ir vecāks par 2 nedēļām, tad atzīmējam, ka vairāk ielādēt nevar
-				canLoadMore = NO;
-			} else {
-				NSUInteger skip = [loadedPosts count];
-				while ([loadedPosts count] < goal) {
-					// atkārtojam tik ilgi, līdz ir vajadzīgais ierakstu skaits
-					NSUInteger items = goal - [loadedPosts count];
-					if (items > [self loadPostsFromServerAfter:nil skip:skip limit:items]) {
-						// ja ielādējām mazāk nekā cerām, vairāk ielādēt arī nevar
-						canLoadMore = NO;
-						break;
-					} else {
-						skip += items;
+			// vispirms mēģinam ielasīt rakstus no keša
+			[self loadPostsFromCacheFromOffset:[loadedPosts count]];
+			
+			if ([loadedPosts count] < goal) {
+				// ja ielādēto rakstu skaits ir mazāks par cerēto,
+				// tad cenšiemies ielādēt no servera
+				
+				// bet vispirms pārbaudam, vai vecākais raksts nav vecāks par 2 nedēļām
+				Post *oldestPost = [loadedPosts lastObject];
+				if ([oldestPost.dateTime timeIntervalSinceNow] <  -3600 * 24 * 14) {
+					// ja ir vecāks par 2 nedēļām, tad atzīmējam, ka vairāk ielādēt nevar
+					canLoadMore = NO;
+				} else {
+					NSUInteger skip = [loadedPosts count];
+					while ([loadedPosts count] < goal) {
+						// atkārtojam tik ilgi, līdz ir vajadzīgais ierakstu skaits
+						NSUInteger items = goal - [loadedPosts count];
+						if (items > [self loadPostsFromServerAfter:nil skip:skip limit:items]) {
+							// ja ielādējām mazāk nekā cerām, vairāk ielādēt arī nevar
+							canLoadMore = NO;
+							break;
+						} else {
+							skip += items;
+						}
 					}
 				}
 			}
+			
+			// veicam rakstu priekšapstrādi
+			[self preprocessPosts];
+			// atjaunojam tabulu
+			[self reloadTable];
 		}
-		
-		// veicam rakstu priekšapstrādi
-		[self preprocessPosts];
-		// atjaunojam tabulu
-		[self reloadTable];
+		@catch (NSException * e) {
+			showErrorMessage([e name], [e reason]);
+		}
 		
 		// parādam stāvokļa joslu
 		[self hideStatusLine];
@@ -294,10 +311,10 @@
 			[self addNewOrUpdateWithPosts:friendPage.entries];
 			return [friendPage.entries count];
 		} else {
-			showErrorMessage(@"Sync error", friendPage.error);
+			[NSException raise:@"Sync error" format:decodeError(friendPage.error)];
 		}
 	} else {
-		showErrorMessage(@"Sync error", challenge.error);
+		[NSException raise:@"Sync error" format:decodeError(challenge.error)];
 	}
 	return 0;
 }

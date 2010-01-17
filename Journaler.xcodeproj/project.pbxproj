@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17070741110203D70074F836 /* NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 17070740110203D70074F836 /* NetworkActivityIndicator.m */; };
+		17070742110203D70074F836 /* NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 17070740110203D70074F836 /* NetworkActivityIndicator.m */; };
+		170707C31102914A0074F836 /* ErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 170707C21102914A0074F836 /* ErrorHandling.m */; };
+		170707C41102914A0074F836 /* ErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 170707C21102914A0074F836 /* ErrorHandling.m */; };
 		1713230A1085168F007F6C24 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171323081085168F007F6C24 /* PostViewController.m */; };
 		17132615108A1203007F6C24 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17132614108A1203007F6C24 /* CoreData.framework */; };
 		17132681108A163B007F6C24 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 1713267F108A163B007F6C24 /* Post.m */; };
@@ -145,6 +149,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1707073F110203D70074F836 /* NetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkActivityIndicator.h; sourceTree = "<group>"; };
+		17070740110203D70074F836 /* NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkActivityIndicator.m; sourceTree = "<group>"; };
+		170707C11102914A0074F836 /* ErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandling.h; sourceTree = "<group>"; };
+		170707C21102914A0074F836 /* ErrorHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorHandling.m; sourceTree = "<group>"; };
 		171323071085168F007F6C24 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		171323081085168F007F6C24 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		171323091085168F007F6C24 /* PostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostViewController.xib; path = Classes/PostViewController.xib; sourceTree = "<group>"; };
@@ -320,6 +328,10 @@
 				17DB0CC110768D2900155636 /* LiveJournal.m */,
 				17B462EF10BA28BA004D0E0F /* Macros.h */,
 				173FC03F10C5CE6300FD0652 /* Common.h */,
+				1707073F110203D70074F836 /* NetworkActivityIndicator.h */,
+				17070740110203D70074F836 /* NetworkActivityIndicator.m */,
+				170707C11102914A0074F836 /* ErrorHandling.h */,
+				170707C21102914A0074F836 /* ErrorHandling.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -756,6 +768,8 @@
 				173FBFC210C4A3CD00FD0652 /* PostJournalController.m in Sources */,
 				173FC15510C5F53700FD0652 /* PostSecurityController.m in Sources */,
 				17B29BE810FA826700C5EFA4 /* SettingsController.m in Sources */,
+				17070741110203D70074F836 /* NetworkActivityIndicator.m in Sources */,
+				170707C31102914A0074F836 /* ErrorHandling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +814,8 @@
 				173FC15610C5F53700FD0652 /* PostSecurityController.m in Sources */,
 				17B29B0810FA48A700C5EFA4 /* AccountsViewController.m in Sources */,
 				17B29BE610FA826700C5EFA4 /* SettingsController.m in Sources */,
+				17070742110203D70074F836 /* NetworkActivityIndicator.m in Sources */,
+				170707C41102914A0074F836 /* ErrorHandling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
