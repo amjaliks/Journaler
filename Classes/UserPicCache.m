@@ -231,10 +231,13 @@
 			// bildes kešā nav, tad to lejuplādējam
 			NSData *data = [self downloadDataFromURL:post.userPicURL];
 			if (data) {
-				// ja lejuplādē veiksmīga, tad to datus saglabājam
-				[data writeToFile:[self pathForCacheImage:post.userPicURLHash] atomically:NO];
+				// ja lejuplādē veiksmīga, tad mēģinam nolasīt no tiem bildi
 				image = [UIImage imageWithData:data];
-				[imageCache setObject:image forKey:post.userPicURLHash];
+				if (image) {
+					// ja bilde veiksmīgi ielādēta, tad sagalabājam datus
+					[data writeToFile:[self pathForCacheImage:post.userPicURLHash] atomically:NO];
+					[imageCache setObject:image forKey:post.userPicURLHash];
+				}
 			}
 		}
 		return image;
