@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface SettingsController : UITableViewController {
 	UITableViewCell *refreshOnStartCell;
 }
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *refreshOnStartCell;
 
-- (IBAction) refreshOnStartChanged;
-- (void) done;
+- (IBAction)refreshOnStartChanged;
+- (void)done;
+
++ (NSString *)decodeStartUpScreenValue:(NSString *)value;
 
 @end

@@ -118,6 +118,7 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="545529455"/>
+				<string key="IBUIReuseIdentifier">RefreshOnStart</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">

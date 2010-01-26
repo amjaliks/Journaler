@@ -41,6 +41,7 @@ enum {
 	BOOL promote;
 	
 	NSUInteger selectedTab;
+	NSUInteger scrollPosition;
 	
 	BOOL synchronized;
 }

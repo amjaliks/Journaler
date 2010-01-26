@@ -9,6 +9,7 @@
 #import "JournalerAppDelegate.h"
 #import "ALReporter.h"
 #import "WebViewController.h"
+#import "Settings.h"
 
 #ifndef LITEVERSION
 	#import "AccountsViewController.h"
@@ -40,8 +41,7 @@
 	userPicCache = [[UserPicCache alloc] init];
 	
 	// noklusēti iestatījumi
-	NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"refresh_on_start", nil];
-	[[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+	registerUserDefaults();
 	
 #ifndef LITEVERSION
 	rootViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];

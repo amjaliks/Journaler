@@ -11,6 +11,10 @@
 		17070742110203D70074F836 /* NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 17070740110203D70074F836 /* NetworkActivityIndicator.m */; };
 		170707C31102914A0074F836 /* ErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 170707C21102914A0074F836 /* ErrorHandling.m */; };
 		170707C41102914A0074F836 /* ErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 170707C21102914A0074F836 /* ErrorHandling.m */; };
+		170708AF1104261E0074F836 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 170708AE1104261E0074F836 /* Settings.m */; };
+		170708B01104261E0074F836 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 170708AE1104261E0074F836 /* Settings.m */; };
+		170708BB110448E50074F836 /* SettingsStartUpScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170708BA110448E50074F836 /* SettingsStartUpScreenController.m */; };
+		170708BC110448E50074F836 /* SettingsStartUpScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170708BA110448E50074F836 /* SettingsStartUpScreenController.m */; };
 		1713230A1085168F007F6C24 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171323081085168F007F6C24 /* PostViewController.m */; };
 		17132615108A1203007F6C24 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17132614108A1203007F6C24 /* CoreData.framework */; };
 		17132681108A163B007F6C24 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 1713267F108A163B007F6C24 /* Post.m */; };
@@ -153,6 +157,10 @@
 		17070740110203D70074F836 /* NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkActivityIndicator.m; sourceTree = "<group>"; };
 		170707C11102914A0074F836 /* ErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandling.h; sourceTree = "<group>"; };
 		170707C21102914A0074F836 /* ErrorHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorHandling.m; sourceTree = "<group>"; };
+		170708AD1104261E0074F836 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		170708AE1104261E0074F836 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		170708B9110448E50074F836 /* SettingsStartUpScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsStartUpScreenController.h; sourceTree = "<group>"; };
+		170708BA110448E50074F836 /* SettingsStartUpScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsStartUpScreenController.m; sourceTree = "<group>"; };
 		171323071085168F007F6C24 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		171323081085168F007F6C24 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		171323091085168F007F6C24 /* PostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostViewController.xib; path = Classes/PostViewController.xib; sourceTree = "<group>"; };
@@ -476,8 +484,12 @@
 		17B29BE210FA824B00C5EFA4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				170708AD1104261E0074F836 /* Settings.h */,
+				170708AE1104261E0074F836 /* Settings.m */,
 				17B29BE310FA826700C5EFA4 /* SettingsController.h */,
 				17B29BE410FA826700C5EFA4 /* SettingsController.m */,
+				170708B9110448E50074F836 /* SettingsStartUpScreenController.h */,
+				170708BA110448E50074F836 /* SettingsStartUpScreenController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -770,6 +782,8 @@
 				17B29BE810FA826700C5EFA4 /* SettingsController.m in Sources */,
 				17070741110203D70074F836 /* NetworkActivityIndicator.m in Sources */,
 				170707C31102914A0074F836 /* ErrorHandling.m in Sources */,
+				170708AF1104261E0074F836 /* Settings.m in Sources */,
+				170708BB110448E50074F836 /* SettingsStartUpScreenController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,6 +830,8 @@
 				17B29BE610FA826700C5EFA4 /* SettingsController.m in Sources */,
 				17070742110203D70074F836 /* NetworkActivityIndicator.m in Sources */,
 				170707C41102914A0074F836 /* ErrorHandling.m in Sources */,
+				170708B01104261E0074F836 /* Settings.m in Sources */,
+				170708BC110448E50074F836 /* SettingsStartUpScreenController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
