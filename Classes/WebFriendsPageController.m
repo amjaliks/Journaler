@@ -53,6 +53,13 @@
 #endif
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	if (!loggedin && refreshTurnedOffMessage && DEFAULT_BOOL(@"refresh_on_start")) {
+		[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+	}
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -61,11 +68,12 @@
 		if (DEFAULT_BOOL(@"refresh_on_start")) {
 			refreshButtonItem.enabled = NO;
 			[self performSelectorInBackground:@selector(login) withObject:nil];
-		} else {
+		} else if (!refreshTurnedOffMessage) {
 			NSString *path = [[NSBundle mainBundle] pathForResource:@"RefreshTurnedOff" ofType:@"html"];
 			NSURL *URL = [NSURL fileURLWithPath:path];
 			NSURLRequest *request = [NSURLRequest requestWithURL:URL];
 			[webView loadRequest:request];
+			refreshTurnedOffMessage = YES;
 		}
 	}
 }

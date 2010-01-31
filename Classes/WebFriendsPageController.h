@@ -19,6 +19,8 @@
 	NSURL *friendsPageAltURL;
 	// pazīme, vai ir veikta autorizācija
 	BOOL loggedin;
+	// pazīme, ka tiek attēlots paziņojums par atslēgtu automātisku ielādi
+	BOOL refreshTurnedOffMessage;
 }
 
 - (void)login;
