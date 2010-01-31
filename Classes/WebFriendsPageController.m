@@ -57,6 +57,7 @@
 	[super viewWillAppear:animated];
 	
 	if (!loggedin && refreshTurnedOffMessage && DEFAULT_BOOL(@"refresh_on_start")) {
+		[self showStatusLine];
 		[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
 	}
 }
@@ -72,6 +73,7 @@
 			NSString *path = [[NSBundle mainBundle] pathForResource:@"RefreshTurnedOff" ofType:@"html"];
 			NSURL *URL = [NSURL fileURLWithPath:path];
 			NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+			[self showStatusLine];
 			[webView loadRequest:request];
 			refreshTurnedOffMessage = YES;
 		}
