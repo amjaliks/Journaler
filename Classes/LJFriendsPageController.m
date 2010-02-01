@@ -16,6 +16,7 @@
 #import "PostPreviewCell.h"
 #import "PostViewController.h"
 #import "ErrorHandling.h"
+#import "AccountManager.h"
 
 #define kServerReadError -1
 
@@ -376,6 +377,18 @@
 		displayedPosts = [loadedPosts copy];
 
 		[tableView reloadData];
+		NSString *firstVisiblePost = [[AccountManager sharedManager] firstVisiblePostForAccount:account.title];
+		if (firstVisiblePost) {
+			NSUInteger row = 0;
+			for (Post *post in displayedPosts) {
+				if ([firstVisiblePost isEqualToString:post.uniqueKey]) {
+					[tableView setContentOffset:CGPointMake(0, row * 88 + [[AccountManager sharedManager] scrollPositionForOpenedPostForAccount:account.title])];
+					return;
+				}
+				row++;
+			}
+			[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndex:[displayedPosts count] - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+		}
 	}
 }
 
@@ -476,8 +489,20 @@
 	[super dealloc];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-	//NSLog(@"%2.0f %2.0f", scrollView.contentOffset.x, scrollView.contentOffset.y);
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+	NSArray *indexPaths = [tableView indexPathsForVisibleRows];
+	if (indexPaths && [indexPaths count] > 0) {
+		NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
+		NSUInteger row = indexPath.row;
+		[[AccountManager sharedManager] setFirstVisiblePost:[(Post *)[displayedPosts objectAtIndex:row] uniqueKey] forAccount:account.title];
+		[[AccountManager sharedManager] setScrollPosition:((NSUInteger)scrollView.contentOffset.y) % 88 forFirstVisiblePostForAccount:account.title];
+	}
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+	if (!decelerate) {
+		[self scrollViewDidEndDecelerating:scrollView];
+	}
 }
 
 @end

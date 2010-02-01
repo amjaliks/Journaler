@@ -10,13 +10,16 @@
 
 #define kStateInfoFileName @"stateInfo.plist"
 #define kStateInfoOpenedAccount @"opened_account"
+#define kStartInfoAccounts @"accounts"
+#define kStateInfoFirstVisiblePost @"first_visible_post" 
+#define kStateInfoFirstVisiblePostScrollPosition @"first_visible_post_scroll_position" 
 
 @class LJAccount;
 
 typedef enum {
-	FriendsPage = 1,
-	Post = 2,
-	NewPost = 3
+	OpenedScreenFriendsPage = 1,
+	OpenedScreenPost = 2,
+	OpenedScreenNewPost = 3
 } OpenedScreenType;
 
 @interface AccountManager : NSObject {
@@ -44,6 +47,7 @@ typedef enum {
 - (BOOL)isScreenRestoreEnabled;
 - (NSMutableDictionary *)stateInfo;
 // nolasīšana
+- (id)valueForPath:(NSArray *)path;
 - (NSString *)openedAccount;
 - (OpenedScreenType)openedScreenTypeForAccount:(NSString *)account;
 - (NSString *)firstVisiblePostForAccount:(NSString *)account;
@@ -51,6 +55,9 @@ typedef enum {
 - (NSString *)openedPostForAccount:(NSString *)account;
 - (NSUInteger)scrollPositionForOpenedPostForAccount:(NSString *)account;
 // uzstādīšana
+- (void)setValue:(id)value forPath:(NSArray *)path;
 - (void)setOpenedAccount:(NSString *)account;
+- (void)setFirstVisiblePost:(NSString *)post forAccount:(NSString *)account;
+- (void)setScrollPosition:(NSUInteger)position forFirstVisiblePostForAccount:(NSString *)account;
 
 @end

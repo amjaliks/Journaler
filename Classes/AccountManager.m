@@ -125,8 +125,53 @@ static AccountManager *sharedManager;
 	return stateInfo;
 }
 
+- (id)valueForPath:(NSArray *)path {
+	id obj = [self stateInfo];
+	for (NSString *name in path) {
+		obj = [obj objectForKey:name];
+		if (!obj) {
+			return nil;
+		}
+	}
+	return obj;
+}
+
 - (NSString *)openedAccount {
 	return [[self stateInfo] objectForKey:kStateInfoOpenedAccount];
+}
+
+- (NSString *)firstVisiblePostForAccount:(NSString *)key {
+	return [self valueForPath:[NSArray arrayWithObjects:kStartInfoAccounts, key, kStateInfoFirstVisiblePost, nil]];
+}
+
+- (NSUInteger)scrollPositionForOpenedPostForAccount:(NSString *)account {
+	NSNumber *number = [self valueForPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoFirstVisiblePostScrollPosition, nil]];
+	if (number) {
+		return [number unsignedIntegerValue];
+	} else {
+		return 0;
+	}
+}
+
+- (void)setValue:(id)value forPath:(NSArray *)path {
+	NSMutableDictionary *dict = stateInfo;
+	
+	NSUInteger i = 0;
+	for (NSString *name in path) {
+		i++;
+		if (i == [path count]) {
+			break;
+		} else {
+			NSMutableDictionary *nextDict = [dict objectForKey:name];
+			if (!nextDict) {
+				nextDict = [[NSMutableDictionary alloc] initWithCapacity:1];
+				[dict setObject:nextDict forKey:name];
+			}
+			dict = nextDict;
+		}
+	}
+	
+	[dict setValue:value forKey:[path lastObject]];
 }
 
 - (void)setOpenedAccount:(NSString *)account {
@@ -135,6 +180,14 @@ static AccountManager *sharedManager;
 	} else {
 		[[self stateInfo] removeObjectForKey:kStateInfoOpenedAccount];
 	}
+}
+
+- (void)setFirstVisiblePost:(NSString *)post forAccount:(NSString *)account {
+	[self setValue:post forPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoFirstVisiblePost, nil]];
+}
+
+- (void)setScrollPosition:(NSUInteger)position forFirstVisiblePostForAccount:(NSString *)account {
+	[self setValue:[NSNumber numberWithUnsignedInteger:position] forPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoFirstVisiblePostScrollPosition, nil]];
 }
 
 #pragma mark Atmiņas pārvaldīšana
