@@ -13,6 +13,7 @@
 #define kStartInfoAccounts @"accounts"
 #define kStateInfoFirstVisiblePost @"first_visible_post" 
 #define kStateInfoFirstVisiblePostScrollPosition @"first_visible_post_scroll_position" 
+#define kStateInfoLastVisiblePostIndex @"last_visible_post_index" 
 
 @class LJAccount;
 
@@ -48,16 +49,19 @@ typedef enum {
 - (NSMutableDictionary *)stateInfo;
 // nolasīšana
 - (id)valueForPath:(NSArray *)path;
+- (NSUInteger)unsignedIntegerValueForPath:(NSArray *)path;
 - (NSString *)openedAccount;
 - (OpenedScreenType)openedScreenTypeForAccount:(NSString *)account;
 - (NSString *)firstVisiblePostForAccount:(NSString *)account;
 - (NSUInteger)scrollPositionForFirstVisiblePostForAccount:(NSString *)account;
 - (NSString *)openedPostForAccount:(NSString *)account;
 - (NSUInteger)scrollPositionForOpenedPostForAccount:(NSString *)account;
+- (NSUInteger)lastVisiblePostIndexForAccount:(NSString *)account;
 // uzstādīšana
 - (void)setValue:(id)value forPath:(NSArray *)path;
 - (void)setOpenedAccount:(NSString *)account;
 - (void)setFirstVisiblePost:(NSString *)post forAccount:(NSString *)account;
 - (void)setScrollPosition:(NSUInteger)position forFirstVisiblePostForAccount:(NSString *)account;
+- (void)setLastVisiblePostIndex:(NSUInteger)index forAccount:(NSString *)account;
 
 @end

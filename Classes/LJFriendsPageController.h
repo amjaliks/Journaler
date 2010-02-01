@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FriendsPageController.h"
 
+#define kReadLimitPerAttempt 10
+
 @class LJAccount, PostSummaryCell;
 
 @interface LJFriendsPageController : FriendsPageController <UITableViewDataSource, UITableViewDelegate> {
@@ -34,7 +36,7 @@
 - (void) firstSyncReadServer;
 - (void) refreshPosts;
 - (void) loadMorePosts;
-- (NSUInteger) loadPostsFromCacheFromOffset:(NSUInteger)offset;
+- (NSUInteger) loadPostsFromCacheFromOffset:(NSUInteger)offset limit:(NSUInteger)limit;
 - (NSUInteger) loadPostsFromServerAfter:(NSDate *)lastSync skip:(NSUInteger)skip limit:(NSUInteger)limit;
 - (void) loadLastPostsFromServer;
 - (void) addNewOrUpdateWithPosts:(NSArray *)events;

@@ -141,7 +141,8 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	// lasam no keša pirmos 10 ierakstus
-	[self loadPostsFromCacheFromOffset:0];
+	NSUInteger limit = MAX(kReadLimitPerAttempt, [[AccountManager sharedManager] lastVisiblePostIndexForAccount:account.title] + 1);
+	[self loadPostsFromCacheFromOffset:0 limit:limit];
 	
 	// atjaunojam tabulu
 	if ([loadedPosts count]) {
@@ -239,7 +240,7 @@
 			}
 			
 			// vispirms mēģinam ielasīt rakstus no keša
-			[self loadPostsFromCacheFromOffset:[loadedPosts count]];
+			[self loadPostsFromCacheFromOffset:[loadedPosts count] limit:kReadLimitPerAttempt];
 			
 			if ([loadedPosts count] < goal) {
 				// ja ielādēto rakstu skaits ir mazāks par cerēto,
@@ -282,10 +283,10 @@
 	}
 }
 
-- (NSUInteger) loadPostsFromCacheFromOffset:(NSUInteger)offset {
+- (NSUInteger) loadPostsFromCacheFromOffset:(NSUInteger)offset limit:(NSUInteger)limit {
 	// ielasam rakstus no keša
 	Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
-	NSArray *posts = [model findPostsByAccount:account.title limit:10 offset:offset];
+	NSArray *posts = [model findPostsByAccount:account.title limit:limit offset:offset];
 	
 	// ieliekam no keša ielasītos rakstu kopējās masīvā
 	for (Post *post in posts) {
@@ -387,7 +388,7 @@
 				}
 				row++;
 			}
-			[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndex:[displayedPosts count] - 1] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+			[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[displayedPosts count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 		}
 	}
 }
@@ -496,6 +497,7 @@
 		NSUInteger row = indexPath.row;
 		[[AccountManager sharedManager] setFirstVisiblePost:[(Post *)[displayedPosts objectAtIndex:row] uniqueKey] forAccount:account.title];
 		[[AccountManager sharedManager] setScrollPosition:((NSUInteger)scrollView.contentOffset.y) % 88 forFirstVisiblePostForAccount:account.title];
+		[[AccountManager sharedManager] setLastVisiblePostIndex:[(NSIndexPath *)[indexPaths lastObject] row] forAccount:account.title];
 	}
 }
 

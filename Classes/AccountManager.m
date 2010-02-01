@@ -136,6 +136,15 @@ static AccountManager *sharedManager;
 	return obj;
 }
 
+- (NSUInteger)unsignedIntegerValueForPath:(NSArray *)path {
+	NSNumber *number = [self valueForPath:path];
+	if (number) {
+		return [number unsignedIntegerValue];
+	} else {
+		return 0;
+	}
+}
+
 - (NSString *)openedAccount {
 	return [[self stateInfo] objectForKey:kStateInfoOpenedAccount];
 }
@@ -145,12 +154,11 @@ static AccountManager *sharedManager;
 }
 
 - (NSUInteger)scrollPositionForOpenedPostForAccount:(NSString *)account {
-	NSNumber *number = [self valueForPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoFirstVisiblePostScrollPosition, nil]];
-	if (number) {
-		return [number unsignedIntegerValue];
-	} else {
-		return 0;
-	}
+	return [self unsignedIntegerValueForPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoFirstVisiblePostScrollPosition, nil]];
+}
+
+- (NSUInteger)lastVisiblePostIndexForAccount:(NSString *)account {
+	return [self unsignedIntegerValueForPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoLastVisiblePostIndex, nil]];
 }
 
 - (void)setValue:(id)value forPath:(NSArray *)path {
@@ -188,6 +196,10 @@ static AccountManager *sharedManager;
 
 - (void)setScrollPosition:(NSUInteger)position forFirstVisiblePostForAccount:(NSString *)account {
 	[self setValue:[NSNumber numberWithUnsignedInteger:position] forPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoFirstVisiblePostScrollPosition, nil]];
+}
+
+- (void)setLastVisiblePostIndex:(NSUInteger)index forAccount:(NSString *)account {
+	[self setValue:[NSNumber numberWithUnsignedInteger:index] forPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoLastVisiblePostIndex, nil]];
 }
 
 #pragma mark Atmiņas pārvaldīšana
