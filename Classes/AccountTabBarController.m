@@ -15,6 +15,7 @@
 #import "PostEditorController.h"
 #import "LiveJournal.h"
 #import "Macros.h"
+#import "AccountManager.h"
 
 @implementation AccountTabBarController
 
@@ -74,6 +75,10 @@
 	return account;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[[AccountManager sharedManager] setOpenedAccount:account.title];
+}
 
 #ifdef LITEVERSION
 
@@ -108,7 +113,7 @@
 }
 
 - (void)saveAccount:(LJAccount *)newAccount {
-	[APP_DELEGATE saveAccount:newAccount];
+	[[AccountManager sharedManager] storeAccount:newAccount];
 
 	if (account) {
 		if (![account.title isEqualToString:newAccount.title]) {

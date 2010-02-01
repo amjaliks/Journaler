@@ -66,7 +66,9 @@
 - (void) showStatusLine {
 	@synchronized (statusLineView) {
 		if (!statusLineShowed) {
+			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 			[self.view addSubview:statusLineView];
+			[pool release];
 		}
 		statusLineShowed++;
 	}

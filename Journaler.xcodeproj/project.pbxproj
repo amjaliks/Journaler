@@ -107,6 +107,8 @@
 		1789BE62107A89F200964DA2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
 		1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
 		1789BFE3107E73BA00964DA2 /* PostEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1789BFE1107E73BA00964DA2 /* PostEditorController.xib */; };
+		179F3FAE111645D60043E0D1 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 179F3FAD111645D60043E0D1 /* AccountManager.m */; };
+		179F3FAF111645D60043E0D1 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 179F3FAD111645D60043E0D1 /* AccountManager.m */; };
 		17B29B0810FA48A700C5EFA4 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B29B0710FA48A700C5EFA4 /* AccountsViewController.m */; };
 		17B29BE610FA826700C5EFA4 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B29BE410FA826700C5EFA4 /* SettingsController.m */; };
 		17B29BE710FA826700C5EFA4 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B29BE510FA826700C5EFA4 /* SettingsController.xib */; };
@@ -221,6 +223,8 @@
 		1789BFDF107E73BA00964DA2 /* PostEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEditorController.h; sourceTree = "<group>"; };
 		1789BFE0107E73BA00964DA2 /* PostEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostEditorController.m; sourceTree = "<group>"; };
 		1789BFE1107E73BA00964DA2 /* PostEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostEditorController.xib; path = Classes/PostEditorController.xib; sourceTree = "<group>"; };
+		179F3FAC111645D60043E0D1 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
+		179F3FAD111645D60043E0D1 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		17B29B0610FA48A700C5EFA4 /* AccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountsViewController.h; sourceTree = "<group>"; };
 		17B29B0710FA48A700C5EFA4 /* AccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsViewController.m; sourceTree = "<group>"; };
 		17B29BE310FA826700C5EFA4 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
@@ -389,6 +393,7 @@
 		173FBEF410C474E900FD0652 /* Accounts */ = {
 			isa = PBXGroup;
 			children = (
+				179F3FB011165D080043E0D1 /* Account Manager */,
 				17B29B0610FA48A700C5EFA4 /* AccountsViewController.h */,
 				17B29B0710FA48A700C5EFA4 /* AccountsViewController.m */,
 				17B62DB510B7355600C974DE /* AccountTabBarController.h */,
@@ -479,6 +484,15 @@
 				17704A5B10A238C100C1EFB2 /* ALReporter.m */,
 			);
 			name = Appnlytics;
+			sourceTree = "<group>";
+		};
+		179F3FB011165D080043E0D1 /* Account Manager */ = {
+			isa = PBXGroup;
+			children = (
+				179F3FAC111645D60043E0D1 /* AccountManager.h */,
+				179F3FAD111645D60043E0D1 /* AccountManager.m */,
+			);
+			name = "Account Manager";
 			sourceTree = "<group>";
 		};
 		17B29BE210FA824B00C5EFA4 /* Settings */ = {
@@ -784,6 +798,7 @@
 				170707C31102914A0074F836 /* ErrorHandling.m in Sources */,
 				170708AF1104261E0074F836 /* Settings.m in Sources */,
 				170708BB110448E50074F836 /* SettingsStartUpScreenController.m in Sources */,
+				179F3FAE111645D60043E0D1 /* AccountManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +847,7 @@
 				170707C41102914A0074F836 /* ErrorHandling.m in Sources */,
 				170708B01104261E0074F836 /* Settings.m in Sources */,
 				170708BC110448E50074F836 /* SettingsStartUpScreenController.m in Sources */,
+				179F3FAF111645D60043E0D1 /* AccountManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

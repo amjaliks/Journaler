@@ -34,15 +34,11 @@
 
 - (void)toggleEdit;
 
-- (void)saveAccounts;
-
 - (IBAction)addAccount:(id)sender;
 
-- (void)openAccount:(LJAccount *)account;
+- (void)openAccount:(LJAccount *)account animated:(BOOL)animated;
 
 - (void)sendReport;
-
-- (void)saveState;
 
 - (IBAction)showSettings;
 

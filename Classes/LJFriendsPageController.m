@@ -476,6 +476,9 @@
 	[super dealloc];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	//NSLog(@"%2.0f %2.0f", scrollView.contentOffset.x, scrollView.contentOffset.y);
+}
 
 @end
 

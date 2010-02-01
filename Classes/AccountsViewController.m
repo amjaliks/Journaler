@@ -14,6 +14,7 @@
 #import "JournalerAppDelegate.h"
 #import "ALReporter.h"
 #import "SettingsController.h"
+#import "AccountManager.h"
 
 @implementation AccountsViewController
 
@@ -23,14 +24,12 @@
 
 @synthesize table;
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
+	if (self = [super initWithNibName:nibName bundle:nibBundle]) {
+		cacheTabBarControllers = [[NSMutableDictionary alloc] initWithCapacity:1];
+	}
+	return self;
 }
-*/
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,14 +37,7 @@
     editButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleEdit)];
     self.navigationItem.leftBarButtonItem = editButtonItem;
 	
-	NSArray *loadedAccounts = [APP_DELEGATE loadAccounts];
-	if (loadedAccounts) {
-		accounts = [loadedAccounts mutableCopy];
-	} else {
-		accounts = [[NSMutableArray alloc] init];
-	}
-	
-	cacheTabBarControllers = [[NSMutableDictionary alloc] initWithCapacity:[accounts count]];
+	accounts = [[AccountManager sharedManager] accounts];
 	
 	// konta pievienošanas poga
 	UIBarButtonItem *addAccountButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAccount:)];
@@ -64,6 +56,11 @@
 	[table deselectRowAtIndexPath:[table indexPathForSelectedRow] animated:YES];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[[AccountManager sharedManager] setOpenedAccount:nil];
+}
+
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -77,7 +74,7 @@
 	[editButtonItem release];
 }
 
-- (void)openAccount:(LJAccount *)account {
+- (void)openAccount:(LJAccount *)account animated:(BOOL)animated {
 	// ja nav labošanas režīms, tad veram vaļā konta skatījumu
 	AccountTabBarController *tabBarController = [[cacheTabBarControllers objectForKey:account.title] retain];
 	if (!tabBarController) {
@@ -86,7 +83,7 @@
 		[cacheTabBarControllers setObject:tabBarController forKey:account.title];
 	}
 	
-	[self.navigationController pushViewController:tabBarController animated:YES];
+	[self.navigationController pushViewController:tabBarController animated:animated];
 	[tabBarController release];
 }
 
@@ -122,7 +119,7 @@
 		selectedAccountTitle = [selectedAccount.title retain];
 		[self presentModalViewController:editAccountViewController animated:YES];
 	} else {
-		[self openAccount:selectedAccount];
+		[self openAccount:selectedAccount animated:YES];
 	}
 }
 
@@ -152,7 +149,7 @@
 		
 		// izdzešam kontu un saglabājam
 		[accounts removeObject:account];
-		[self saveAccounts];
+		[[AccountManager sharedManager] storeAccounts];
 		
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 		
@@ -174,7 +171,7 @@
 	[accounts insertObject:account atIndex:toIndexPath.row];
 	[account release];
 	
-	[self saveAccounts];
+	[[AccountManager sharedManager] storeAccounts];
 }
 
 
@@ -188,13 +185,6 @@
 - (void)dealloc {
     [super dealloc];
 	[accounts dealloc];
-}
-
-- (void) saveAccounts {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *path = [paths objectAtIndex:0];
-	path = [path stringByAppendingPathComponent:@"accounts.bin"];
-	[NSKeyedArchiver archiveRootObject:accounts toFile:path];
 }
 
 // Parāda konta parametrus
@@ -220,12 +210,10 @@
 		selectedAccount = account;
 		if (table.editing) {
 			[self setEditing:NO];
-			//[self.navigationItem.rightBarButtonItem select:nil];
-			//[self.navigationItem.leftBarButtonItem = [UIBarButtonItem alloc]
 		}
-		[self openAccount:account];
+		[self openAccount:account animated:YES];
 	}
-	[self saveAccounts];
+	[[AccountManager sharedManager] storeAccounts];
 	[table reloadData];
 		
 	[self dismissModalViewControllerAnimated:YES];
@@ -261,17 +249,6 @@
 	}
 	[reporter setObject:servers forProperty:@"server"];
 	[servers release];
-}
-
-- (void)saveState {
-	for (LJAccount *account in accounts) {
-		AccountTabBarController *accountTabBarController = [cacheTabBarControllers objectForKey:account.title];
-		if (accountTabBarController) {
-			[accountTabBarController saveState];
-		}
-	}
-	
-	[APP_DELEGATE saveAccounts:accounts];
 }
 
 - (void) toggleEdit {

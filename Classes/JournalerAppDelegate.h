@@ -17,7 +17,9 @@
 
 @class ALReporter, WebViewController;
 
-#ifdef LITEVERSION
+#ifndef LITEVERSION
+@class AccountsViewController;
+#else
 @class LJAccount;
 #endif
 
@@ -26,13 +28,13 @@
 	Model *model;
 	UserPicCache *userPicCache;
 	
-#ifndef LITEVERSION
-	NSMutableArray *accounts;
-#endif
-
     UIWindow *window;
     UINavigationController *navigationController;
+#ifndef LITEVERSION
+	AccountsViewController *rootViewController;
+#else
 	UIViewController *rootViewController;
+#endif
 	
 	WebViewController *webViewController;
 	
@@ -47,13 +49,5 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-#ifndef LITEVERSION
-- (void) saveAccounts;
-- (void) saveAccounts:(NSArray *)accounts;
-- (NSArray *) loadAccounts;
-#else
-- (void) saveAccount:(LJAccount *)account;
-- (LJAccount *) loadAccount;
-#endif
 @end
 

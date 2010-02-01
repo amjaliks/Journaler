@@ -93,6 +93,8 @@
 - (void)login {
 	@synchronized (self) {
 		if (!loggedin) {
+			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+			
 			loggedin = YES;
 			[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
 			
@@ -102,6 +104,8 @@
 			} else {
 				[self hideStatusLine];
 			}
+			
+			[pool release];
 		}
 	}
 }

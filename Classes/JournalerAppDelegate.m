@@ -10,6 +10,8 @@
 #import "ALReporter.h"
 #import "WebViewController.h"
 #import "Settings.h"
+#import "AccountManager.h"
+#import "LiveJournal.h"
 
 #ifndef LITEVERSION
 	#import "AccountsViewController.h"
@@ -35,7 +37,7 @@
 #else
 	NSString *appUID = @"LrAKgAl3bA"; // lite versija
 #endif
-	reporter = [[ALReporter alloc] initWithAppUID:appUID reportURL:[NSURL URLWithString:@"http://tomcat.keeper.lv/anl/report"]];	
+	reporter = [[ALReporter alloc] initWithAppUID:appUID reportURL:[NSURL URLWithString:@"http://tomcat.keeper.lv/anldev2/report"]];	
     
 	model = [[Model alloc] init];
 	userPicCache = [[UserPicCache alloc] init];
@@ -43,13 +45,26 @@
 	// noklusēti iestatījumi
 	registerUserDefaults();
 	
+	[[AccountManager sharedManager] loadAccounts];
+	[[AccountManager sharedManager] loadScreenState];
+	
 #ifndef LITEVERSION
 	rootViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];
 #else
-	rootViewController = [[AccountTabBarController alloc] initWithAccount:[self loadAccount]];
+	rootViewController = [[AccountTabBarController alloc] initWithAccount:[[AccountManager sharedManager] account]];
 #endif
 	
 	navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+	
+#ifndef LITEVERSION
+	NSString *accountKey = [[AccountManager sharedManager] openedAccount];
+	if (accountKey) {
+		LJAccount *account = [[AccountManager sharedManager] accountForKey:accountKey];
+		if (account) {
+			[rootViewController openAccount:account animated:NO];
+		}
+	}
+#endif
 	
 	[window addSubview:navigationController.view];
 	
@@ -59,13 +74,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {	
 	[model saveAll];
+	[[AccountManager sharedManager] storeScreenState];
 	
-#ifdef LITEVERSION
-	[(AccountTabBarController *) rootViewController saveState];
-#else
-	[(AccountsViewController *) rootViewController saveState];
-#endif
-
 	[rootViewController release];
 }
 
@@ -82,9 +92,6 @@
 	[navigationController release];
 	[window release];
 	
-#ifndef LITEVERSION
-	[accounts release];
-#endif
 	[super dealloc];
 }
 
@@ -94,55 +101,6 @@
 	}
 	return webViewController;
 }
-
-#pragma mark Metodes darbam ar kontiem
-
-#ifndef LITEVERSION
-
-- (NSArray *) loadAccounts {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *path = [paths objectAtIndex:0];
-	path = [path stringByAppendingPathComponent:@"accounts.bin"];
-	accounts = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-	
-	if (accounts) {
-		accounts = [accounts mutableCopy];
-	} else {
-		accounts = [[NSMutableArray alloc] init];
-	}
-	
-	return accounts;
-}
-
-- (void) saveAccounts:(NSArray *)accountsToSave {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *path = [paths objectAtIndex:0];
-	path = [path stringByAppendingPathComponent:@"accounts.bin"];
-	[NSKeyedArchiver archiveRootObject:accountsToSave toFile:path];
-}
-
-- (void) saveAccounts {
-	[self saveAccounts:accounts];
-}
-
-#else
-
-- (LJAccount *)loadAccount {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *path = [paths objectAtIndex:0];
-	path = [path stringByAppendingPathComponent:@"account.bin"];
-	LJAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-	return account;
-}
-
-- (void) saveAccount:(LJAccount *)account {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *path = [paths objectAtIndex:0];
-	path = [path stringByAppendingPathComponent:@"account.bin"];
-	[NSKeyedArchiver archiveRootObject:account toFile:path];
-}
-
-#endif
 
 @end
 

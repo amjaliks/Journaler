@@ -297,8 +297,6 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
-// Check text fields. If required fields has some text, than makes "Done" enabled.
-// Mandatory fields are: username and password.
 - (IBAction) textFieldChanged:(id)sender {
 	doneButton.enabled = usernameText.text.length && passwordText.text.length;
 }
