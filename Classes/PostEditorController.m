@@ -11,6 +11,7 @@
 #import "AccountsViewController.h"
 #import "AccountTabBarController.h"
 #import "ErrorHandling.h"
+#import "AccountManager.h"
 
 //void showErrorMessage(NSUInteger code) {
 //	NSString *text;
@@ -82,12 +83,15 @@
 	textCell.frame = CGRectMake(0, 0, 320, 336);
 	[self.tableView reloadData];
 	
-	textField.text = account.text;
-	subjectField.text = account.subject;
-	if (account.journal) {
-		self.postOptionsController.journal = account.journal;
+	textField.text = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostText];
+	subjectField.text = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostSubject];
+	NSString *journal = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostJournal];
+	if (journal) {
+		self.postOptionsController.journal = journal;
 	}
-	self.postOptionsController.security = account.security;
+	self.postOptionsController.security = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoNewPostSecurity];
+	
+	[[AccountManager sharedManager] registerPostEditorController:self];
 	
 //	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 //	[nc addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
@@ -278,6 +282,10 @@
 	return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+	return;
+}
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)_textField {
 	[self startPostEditing];
 	return YES;
@@ -361,15 +369,10 @@
 
 - (void)saveState {
 	if ([self isViewLoaded]) {
-		[dataSource selectedAccount].text = textField.text;
-		[dataSource selectedAccount].subject = subjectField.text;
-		[dataSource selectedAccount].journal = self.postOptionsController.journal;
-		[dataSource selectedAccount].security = self.postOptionsController.security;
-		[dataSource selectedAccount].promote = self.postOptionsController.promote;
+		[[AccountManager sharedManager] setValue:subjectField.text forAccount:account.title forKey:kStateInfoNewPostSubject];
+		[[AccountManager sharedManager] setValue:textField.text forAccount:account.title forKey:kStateInfoNewPostText];
 	}
 }
-
-
 
 @end
 

@@ -10,17 +10,23 @@
 
 #define kStateInfoFileName @"stateInfo.plist"
 #define kStateInfoOpenedAccount @"opened_account"
-#define kStartInfoAccounts @"accounts"
+#define kStateInfoAccounts @"accounts"
+#define kStateInfoOpenedScreenType @"opened_screen_type"
 #define kStateInfoFirstVisiblePost @"first_visible_post" 
 #define kStateInfoFirstVisiblePostScrollPosition @"first_visible_post_scroll_position" 
-#define kStateInfoLastVisiblePostIndex @"last_visible_post_index" 
+#define kStateInfoLastVisiblePostIndex @"last_visible_post_index"
+#define kStateInfoNewPostText @"new_post_text"
+#define kStateInfoNewPostSubject @"new_post_subject"
+#define kStateInfoNewPostSecurity @"new_post_security"
+#define kStateInfoNewPostJournal @"new_post_journal"
+#define kStateInfoNewPostPromote @"new_post_promote"
 
-@class LJAccount;
+@class LJAccount, PostEditorController;
 
 typedef enum {
-	OpenedScreenFriendsPage = 1,
-	OpenedScreenPost = 2,
-	OpenedScreenNewPost = 3
+	OpenedScreenFriendsPage = 0,
+	OpenedScreenPost = 1,
+	OpenedScreenNewPost = 2
 } OpenedScreenType;
 
 @interface AccountManager : NSObject {
@@ -28,6 +34,8 @@ typedef enum {
 	NSMutableDictionary *accountsDict;
 	
 	NSMutableDictionary *stateInfo;
+	
+	NSMutableArray *postEditors;
 }
 
 + (AccountManager *)sharedManager;
@@ -45,23 +53,26 @@ typedef enum {
 // stāvokļa pārvaldīšana
 - (void)loadScreenState;
 - (void)storeScreenState;
-- (BOOL)isScreenRestoreEnabled;
 - (NSMutableDictionary *)stateInfo;
+- (void)registerPostEditorController:(PostEditorController *)controller;
+
 // nolasīšana
 - (id)valueForPath:(NSArray *)path;
 - (NSUInteger)unsignedIntegerValueForPath:(NSArray *)path;
+
+- (id)valueForAccount:(NSString *)account forKey:(NSString *)key;
+- (BOOL)boolValueForAccount:(NSString *)account forKey:(NSString *)key defaultValue:(BOOL)defaultValue;
+- (NSUInteger)unsignedIntegerValueForAccount:(NSString *)account forKey:(NSString *)key;
+
 - (NSString *)openedAccount;
-- (OpenedScreenType)openedScreenTypeForAccount:(NSString *)account;
-- (NSString *)firstVisiblePostForAccount:(NSString *)account;
-- (NSUInteger)scrollPositionForFirstVisiblePostForAccount:(NSString *)account;
-- (NSString *)openedPostForAccount:(NSString *)account;
-- (NSUInteger)scrollPositionForOpenedPostForAccount:(NSString *)account;
-- (NSUInteger)lastVisiblePostIndexForAccount:(NSString *)account;
+
 // uzstādīšana
 - (void)setValue:(id)value forPath:(NSArray *)path;
+
+- (void)setValue:(id)value forAccount:(NSString *)account forKey:(NSString *)key;
+- (void)setBoolValue:(BOOL)value forAccount:(NSString *)account forKey:(NSString *)key;
+- (void)setUnsignedIntegerValue:(NSUInteger)value forAccount:(NSString *)account forKey:(NSString *)key;
+
 - (void)setOpenedAccount:(NSString *)account;
-- (void)setFirstVisiblePost:(NSString *)post forAccount:(NSString *)account;
-- (void)setScrollPosition:(NSUInteger)position forFirstVisiblePostForAccount:(NSString *)account;
-- (void)setLastVisiblePostIndex:(NSUInteger)index forAccount:(NSString *)account;
 
 @end

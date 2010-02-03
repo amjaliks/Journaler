@@ -12,6 +12,7 @@
 #import "LiveJournal.h"
 #import "PostJournalController.h"
 #import "PostSecurityController.h"
+#import "AccountManager.h"
 
 @implementation PostOptionsController
 
@@ -31,7 +32,7 @@
 #ifdef LITEVERSION
 		promote = YES;
 #else
-		promote = account.promote;
+		promote = [[AccountManager sharedManager] boolValueForAccount:account.title forKey:kStateInfoNewPostPromote defaultValue:YES];
 #endif
     }
     return self;
@@ -59,6 +60,7 @@
 	promoteCell.selectionStyle = UITableViewCellSelectionStyleNone;
 	promoteSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(206, 9, 94, 26)];
 	promoteSwitch.on = promote;
+	[promoteSwitch addTarget:self action:@selector(promoteChanged) forControlEvents:UIControlEventValueChanged];
 	[promoteCell addSubview:promoteSwitch];
 }
 
@@ -118,7 +120,11 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#ifndef LITEVERSION
     return 2;
+#else
+	return 1;
+#endif
 }
 
 
@@ -210,6 +216,11 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+- (void)promoteChanged {
+	promote = promoteSwitch.on;
+	[[AccountManager sharedManager] setBoolValue:promote forAccount:account.title forKey:kStateInfoNewPostPromote];
 }
 
 #pragma mark Iestatījumu nolasīšana

@@ -59,7 +59,7 @@
 	
 	NSArray *arrays = [[NSArray alloc] initWithObjects:friendList, postEditorController, nil];
 	self.viewControllers = arrays;
-	self.selectedIndex = newAccount.selectedTab;
+	self.selectedIndex = [[AccountManager sharedManager] unsignedIntegerValueForAccount:newAccount.title forKey:kStateInfoOpenedScreenType] == OpenedScreenNewPost ? 1 : 0;
 	
 	[friendList release];
 	[arrays release];
@@ -69,6 +69,9 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
 	self.navigationItem.rightBarButtonItem = viewController.navigationItem.rightBarButtonItem;
+	
+	NSUInteger value = postEditorController == viewController ? OpenedScreenNewPost : OpenedScreenFriendsPage;
+	[[AccountManager sharedManager] setUnsignedIntegerValue:value forAccount:account.title forKey:kStateInfoOpenedScreenType];
 }
 
 - (LJAccount *)selectedAccount {
@@ -78,6 +81,8 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[[AccountManager sharedManager] setOpenedAccount:account.title];
+	NSUInteger value = postEditorController == self.selectedViewController ? OpenedScreenNewPost : OpenedScreenFriendsPage;
+	[[AccountManager sharedManager] setUnsignedIntegerValue:value forAccount:account.title forKey:kStateInfoOpenedScreenType];
 }
 
 #ifdef LITEVERSION

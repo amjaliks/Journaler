@@ -9,6 +9,8 @@
 #import "PostSecurityController.h"
 
 #import "PostOptionsController.h"
+#import "AccountManager.h"
+#import "LiveJournal.h"
 
 @implementation PostSecurityController
 
@@ -110,6 +112,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	postOptionsController.security = indexPath.row;
+	[[AccountManager sharedManager] setUnsignedIntegerValue:indexPath.row forAccount:postOptionsController.account.title forKey:kStateInfoNewPostSecurity];
 	
 	selectedCell.accessoryType = UITableViewCellAccessoryNone;
 	cell.accessoryType = UITableViewCellAccessoryCheckmark;

@@ -61,6 +61,7 @@
 	if (accountKey) {
 		LJAccount *account = [[AccountManager sharedManager] accountForKey:accountKey];
 		if (account) {
+			[rootViewController view];
 			[rootViewController openAccount:account animated:NO];
 		}
 	}

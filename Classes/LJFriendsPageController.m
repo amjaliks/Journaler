@@ -141,7 +141,8 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	// lasam no keša pirmos 10 ierakstus
-	NSUInteger limit = MAX(kReadLimitPerAttempt, [[AccountManager sharedManager] lastVisiblePostIndexForAccount:account.title] + 1);
+	NSUInteger lastVisiblePostIndex = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoLastVisiblePostIndex];
+	NSUInteger limit = MAX(kReadLimitPerAttempt, lastVisiblePostIndex + 1);
 	[self loadPostsFromCacheFromOffset:0 limit:limit];
 	
 	// atjaunojam tabulu
@@ -378,12 +379,13 @@
 		displayedPosts = [loadedPosts copy];
 
 		[tableView reloadData];
-		NSString *firstVisiblePost = [[AccountManager sharedManager] firstVisiblePostForAccount:account.title];
+		NSString *firstVisiblePost = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoFirstVisiblePost];
 		if (firstVisiblePost) {
 			NSUInteger row = 0;
 			for (Post *post in displayedPosts) {
 				if ([firstVisiblePost isEqualToString:post.uniqueKey]) {
-					[tableView setContentOffset:CGPointMake(0, row * 88 + [[AccountManager sharedManager] scrollPositionForOpenedPostForAccount:account.title])];
+					NSUInteger scrollPosition = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoFirstVisiblePostScrollPosition];
+					[tableView setContentOffset:CGPointMake(0, row * 88 + scrollPosition)];
 					return;
 				}
 				row++;
@@ -495,9 +497,9 @@
 	if (indexPaths && [indexPaths count] > 0) {
 		NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
 		NSUInteger row = indexPath.row;
-		[[AccountManager sharedManager] setFirstVisiblePost:[(Post *)[displayedPosts objectAtIndex:row] uniqueKey] forAccount:account.title];
-		[[AccountManager sharedManager] setScrollPosition:((NSUInteger)scrollView.contentOffset.y) % 88 forFirstVisiblePostForAccount:account.title];
-		[[AccountManager sharedManager] setLastVisiblePostIndex:[(NSIndexPath *)[indexPaths lastObject] row] forAccount:account.title];
+		[[AccountManager sharedManager] setValue:[(Post *)[displayedPosts objectAtIndex:row] uniqueKey] forAccount:account.title forKey:kStateInfoFirstVisiblePost];
+		[[AccountManager sharedManager] setUnsignedIntegerValue:((NSUInteger)scrollView.contentOffset.y) % 88 forAccount:account.title forKey:kStateInfoFirstVisiblePostScrollPosition];
+		[[AccountManager sharedManager] setUnsignedIntegerValue:[(NSIndexPath *)[indexPaths lastObject] row] forAccount:account.title forKey:kStateInfoLastVisiblePostIndex];
 	}
 }
 

@@ -47,6 +47,8 @@ typedef enum {
 - (id)initWithAccount:(LJAccount *)account;
 - (void)done;
 
+- (void)promoteChanged;
+
 @end
 
 

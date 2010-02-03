@@ -9,6 +9,7 @@
 #import "AccountManager.h"
 #import "Macros.h"
 #import "LiveJournal.h"
+#import "PostEditorController.h"
 
 #define kAccountsFileName @"accounts.bin"
 #define kAccountFileName @"account.bin"
@@ -105,6 +106,10 @@ static AccountManager *sharedManager;
 }
 
 - (void)storeScreenState {
+	for(PostEditorController *controller in postEditors) {
+		[controller saveState];
+	}
+	
     NSString *error;
     NSString *plistPath = [APP_CACHES_DIR stringByAppendingPathComponent:kStateInfoFileName];
     NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:[self stateInfo]
@@ -123,6 +128,10 @@ static AccountManager *sharedManager;
 		stateInfo = [[NSMutableDictionary alloc] init];
 	}
 	return stateInfo;
+}
+
+- (void)registerPostEditorController:(PostEditorController *)controller {
+	[postEditors addObject:controller];
 }
 
 - (id)valueForPath:(NSArray *)path {
@@ -145,20 +154,25 @@ static AccountManager *sharedManager;
 	}
 }
 
+- (id)valueForAccount:(NSString *)account forKey:(NSString *)key {
+	return [self valueForPath:[NSArray arrayWithObjects:kStateInfoAccounts, account, key, nil]];
+}
+
+- (BOOL)boolValueForAccount:(NSString *)account forKey:(NSString *)key defaultValue:(BOOL)defaultValue {
+	NSNumber *value = [self valueForAccount:account forKey:key];
+	if (value) {
+		return [value boolValue];
+	} else {
+		return defaultValue;
+	}
+}
+
+- (NSUInteger)unsignedIntegerValueForAccount:(NSString *)account forKey:(NSString *)key {
+	return [self unsignedIntegerValueForPath:[NSArray arrayWithObjects:kStateInfoAccounts, account, key, nil]];
+}
+
 - (NSString *)openedAccount {
 	return [[self stateInfo] objectForKey:kStateInfoOpenedAccount];
-}
-
-- (NSString *)firstVisiblePostForAccount:(NSString *)key {
-	return [self valueForPath:[NSArray arrayWithObjects:kStartInfoAccounts, key, kStateInfoFirstVisiblePost, nil]];
-}
-
-- (NSUInteger)scrollPositionForOpenedPostForAccount:(NSString *)account {
-	return [self unsignedIntegerValueForPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoFirstVisiblePostScrollPosition, nil]];
-}
-
-- (NSUInteger)lastVisiblePostIndexForAccount:(NSString *)account {
-	return [self unsignedIntegerValueForPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoLastVisiblePostIndex, nil]];
 }
 
 - (void)setValue:(id)value forPath:(NSArray *)path {
@@ -182,24 +196,24 @@ static AccountManager *sharedManager;
 	[dict setValue:value forKey:[path lastObject]];
 }
 
+- (void)setValue:(id)value forAccount:(NSString *)account forKey:(NSString *)key {
+	[self setValue:value forPath:[NSArray arrayWithObjects:kStateInfoAccounts, account, key, nil]];
+}
+
+- (void)setBoolValue:(BOOL)value forAccount:(NSString *)account forKey:(NSString *)key {
+	[self setValue:[NSNumber numberWithBool:value] forAccount:account forKey:key];
+}
+
+- (void)setUnsignedIntegerValue:(NSUInteger)value forAccount:(NSString *)account forKey:(NSString *)key {
+	[self setValue:[NSNumber numberWithUnsignedInteger:value] forAccount:account forKey:key];
+}
+
 - (void)setOpenedAccount:(NSString *)account {
 	if (account) {
 		[[self stateInfo] setObject:account forKey:kStateInfoOpenedAccount];
 	} else {
 		[[self stateInfo] removeObjectForKey:kStateInfoOpenedAccount];
 	}
-}
-
-- (void)setFirstVisiblePost:(NSString *)post forAccount:(NSString *)account {
-	[self setValue:post forPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoFirstVisiblePost, nil]];
-}
-
-- (void)setScrollPosition:(NSUInteger)position forFirstVisiblePostForAccount:(NSString *)account {
-	[self setValue:[NSNumber numberWithUnsignedInteger:position] forPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoFirstVisiblePostScrollPosition, nil]];
-}
-
-- (void)setLastVisiblePostIndex:(NSUInteger)index forAccount:(NSString *)account {
-	[self setValue:[NSNumber numberWithUnsignedInteger:index] forPath:[NSArray arrayWithObjects:kStartInfoAccounts, account, kStateInfoLastVisiblePostIndex, nil]];
 }
 
 #pragma mark Atmiņas pārvaldīšana
@@ -232,6 +246,7 @@ static AccountManager *sharedManager;
 	self = [super init];
 	if (self != nil) {
 		stateInfo = nil;
+		postEditors = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
