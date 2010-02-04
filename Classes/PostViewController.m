@@ -13,6 +13,7 @@
 #import "UserPicCache.h"
 #import "NSStringAdditions.h"
 #import "WebViewController.h"
+#import "AccountManager.h"
 
 @implementation PostViewController
 
@@ -118,6 +119,12 @@
 
 		[webView loadHTMLString:postHtml baseURL:nil];
 	}
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[[AccountManager sharedManager] setUnsignedIntegerValue:OpenedScreenPost forAccount:account.title forKey:kStateInfoOpenedScreenType];
+	[[AccountManager sharedManager] setValue:post.uniqueKey forAccount:account.title forKey:kStateInfoOpenedPost];
 }
 
 - (void)didReceiveMemoryWarning {

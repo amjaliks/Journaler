@@ -19,6 +19,7 @@
 
 @implementation AccountTabBarController
 
+@synthesize friendsPageController;
 #ifdef LITEVERSION
 @synthesize accountButton;
 #endif
@@ -48,8 +49,9 @@
 }
 
 - (void) setViewControllersForAccount:(LJAccount *)newAccount {
-	FriendsPageController *friendList = [@"livejournal.com" isEqual:newAccount.server] ? [[LJFriendsPageController alloc] initWithAccount:newAccount] : [[WebFriendsPageController alloc] initWithAccount:newAccount];
-	self.navigationItem.rightBarButtonItem = friendList.navigationItem.rightBarButtonItem;
+	[friendsPageController release];
+	friendsPageController = [@"livejournal.com" isEqual:newAccount.server] ? [[LJFriendsPageController alloc] initWithAccount:newAccount] : [[WebFriendsPageController alloc] initWithAccount:newAccount];
+	self.navigationItem.rightBarButtonItem = friendsPageController.navigationItem.rightBarButtonItem;
 	
 	if (postEditorController) {
 		[postEditorController release];
@@ -57,11 +59,10 @@
 	postEditorController = [[PostEditorController alloc] initWithAccount:newAccount];
 	postEditorController.dataSource = self;
 	
-	NSArray *arrays = [[NSArray alloc] initWithObjects:friendList, postEditorController, nil];
+	NSArray *arrays = [[NSArray alloc] initWithObjects:friendsPageController, postEditorController, nil];
 	self.viewControllers = arrays;
 	self.selectedIndex = [[AccountManager sharedManager] unsignedIntegerValueForAccount:newAccount.title forKey:kStateInfoOpenedScreenType] == OpenedScreenNewPost ? 1 : 0;
 	
-	[friendList release];
 	[arrays release];
 }
 
@@ -81,8 +82,6 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[[AccountManager sharedManager] setOpenedAccount:account.title];
-	NSUInteger value = postEditorController == self.selectedViewController ? OpenedScreenNewPost : OpenedScreenFriendsPage;
-	[[AccountManager sharedManager] setUnsignedIntegerValue:value forAccount:account.title forKey:kStateInfoOpenedScreenType];
 }
 
 #ifdef LITEVERSION
@@ -143,6 +142,7 @@
 #pragma mark Atmiņas pārvaldība
 
 - (void) dealloc {
+	[friendsPageController release];
 	[postEditorController release];
 
 	[account release];

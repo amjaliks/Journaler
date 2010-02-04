@@ -19,7 +19,6 @@
 	#import "AccountTabBarController.h"
 #endif
 
-
 @implementation JournalerAppDelegate
 
 @synthesize reporter;

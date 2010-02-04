@@ -15,6 +15,7 @@
 #define kStateInfoFirstVisiblePost @"first_visible_post" 
 #define kStateInfoFirstVisiblePostScrollPosition @"first_visible_post_scroll_position" 
 #define kStateInfoLastVisiblePostIndex @"last_visible_post_index"
+#define kStateInfoOpenedPost @"opened_post"
 #define kStateInfoNewPostText @"new_post_text"
 #define kStateInfoNewPostSubject @"new_post_subject"
 #define kStateInfoNewPostSecurity @"new_post_security"

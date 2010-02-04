@@ -10,6 +10,7 @@
 
 #import "JournalerAppDelegate.h"
 #import "LiveJournal.h"
+#import "AccountManager.h"
 
 
 #ifdef LITEVERSION
@@ -54,6 +55,11 @@
 //	refreshButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
 //	self.parentViewController.navigationItem.rightBarButtonItem = refreshButtonItem;
 	
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[[AccountManager sharedManager] setUnsignedIntegerValue:OpenedScreenFriendsPage forAccount:account.title forKey:kStateInfoOpenedScreenType];
 }
 
 #pragma mark Pogas

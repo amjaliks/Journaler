@@ -11,7 +11,7 @@
 
 #define kReadLimitPerAttempt 10
 
-@class LJAccount, PostSummaryCell;
+@class LJAccount, PostSummaryCell, Post;
 
 @interface LJFriendsPageController : FriendsPageController <UITableViewDataSource, UITableViewDelegate> {
 	// ielasīti raksti
@@ -26,6 +26,8 @@
 
 	// kešs ar rakstu skatījumiem
 	NSMutableDictionary *cachedPostViewControllers;
+	
+	BOOL needOpenPost;
 }
 
 #pragma mark Metodes
@@ -43,5 +45,7 @@
 - (void) reloadTable;
 - (void) preprocessPosts;
 - (void) updateStatusLineText:(NSString *)text;
+- (void) openPost:(Post *)post animated:(BOOL)animated;
+- (void) openPostByKey:(NSString *)key;
 
 @end

@@ -67,6 +67,7 @@
 
 
 - (void)viewDidAppear:(BOOL)animated {
+	needOpenPost = OpenedScreenPost == [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoOpenedScreenType];
     [super viewDidAppear:animated];
 	if (!account.synchronized) {
 		account.synchronized = YES;
@@ -144,6 +145,13 @@
 	NSUInteger lastVisiblePostIndex = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoLastVisiblePostIndex];
 	NSUInteger limit = MAX(kReadLimitPerAttempt, lastVisiblePostIndex + 1);
 	[self loadPostsFromCacheFromOffset:0 limit:limit];
+	
+	if (needOpenPost) {
+		NSString *postKey = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoOpenedPost];
+		if (postKey) {
+			[self performSelectorOnMainThread:@selector(openPostByKey:) withObject:postKey waitUntilDone:NO];
+		}
+	}
 	
 	// atjaunojam tabulu
 	if ([loadedPosts count]) {
@@ -424,6 +432,26 @@
 	statusLineLabel.text = text;
 }
 
+- (void) openPost:(Post *)post animated:(BOOL)animated {
+	PostViewController *postViewController = [[cachedPostViewControllers objectForKey:post.uniqueKey] retain];
+	if (!postViewController) {
+		postViewController = [[PostViewController alloc] initWithPost:post account:account];
+		[cachedPostViewControllers setObject:postViewController forKey:post.uniqueKey];
+	}
+	//[self view];
+	[self.navigationController pushViewController:postViewController animated:animated];
+	[postViewController release];
+}
+
+- (void) openPostByKey:(NSString *)key {
+	for (Post *post in loadedPosts) {
+		if ([key isEqualToString:post.uniqueKey]) {
+			[self openPost:post animated:NO];
+			return;
+		}
+	}
+}
+
 #pragma mark Table view methods
 
 // Customize the number of rows in the table view.
@@ -469,13 +497,7 @@
 		}
 	} else {
 		Post *post = [displayedPosts objectAtIndex:indexPath.row];
-		PostViewController *postViewController = [[cachedPostViewControllers objectForKey:post.uniqueKey] retain];
-		if (!postViewController) {
-			postViewController = [[PostViewController alloc] initWithPost:[displayedPosts objectAtIndex:indexPath.row] account:account];
-			[cachedPostViewControllers setObject:postViewController forKey:post.uniqueKey];
-		}
-		[self.navigationController pushViewController:postViewController animated:YES];
-		[postViewController release];
+		[self openPost:post animated:YES];
 	}
 }
 

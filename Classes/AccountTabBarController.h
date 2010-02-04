@@ -17,11 +17,12 @@
 	#define LVP_ACCOUNT_EDITOR_CONTROLLER
 #endif
 
-@class LJAccount;
+@class LJAccount, FriendsPageController;
 
 @interface AccountTabBarController : UITabBarController <LVP_ACCOUNT_EDITOR_CONTROLLER PostEditorControllerDataSource, UITabBarControllerDelegate> {
 	LJAccount *account;
 	
+	FriendsPageController *friendsPageController;
 	PostEditorController *postEditorController;
 	
 #ifdef LITEVERSION
@@ -29,6 +30,7 @@
 #endif
 }
 
+@property (readonly) FriendsPageController *friendsPageController;
 #ifdef LITEVERSION
 @property (readonly) UIBarButtonItem *accountButton;
 #endif
