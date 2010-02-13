@@ -598,13 +598,11 @@ NSString* md5(NSString *str)
 		
 		for (NSDictionary *entry in xmlEntries) {
 			LJEvent *event = [[LJEvent alloc] init];
-			//id subjectRaw = [entry valueForKey:@"subject_raw"];
-			event.subject = [LJRequest proceedRawValue:[entry valueForKey:@"subject_raw"]]; //[subjectRaw isKindOfClass:[NSString class]] ? subjectRaw : [[NSString alloc] initWithData:subjectRaw encoding:NSUTF8StringEncoding];;
-			//id eventRaw = [entry valueForKey:@"event_raw"];
-			event.event = [LJRequest proceedRawValue:[entry valueForKey:@"event_raw"]]; //[eventRaw isKindOfClass:[NSString class]] ? eventRaw : [[NSString alloc] initWithData:eventRaw encoding:NSUTF8StringEncoding];
-			event.journalName = [entry valueForKey:@"journalname"];
+			event.subject = [LJRequest proceedRawValue:[entry valueForKey:@"subject_raw"]];
+			event.event = [LJRequest proceedRawValue:[entry valueForKey:@"event_raw"]];
+			event.journalName = [LJRequest proceedRawValue:[entry valueForKey:@"journalname"]];
 			event.journalType = [entry valueForKey:@"journaltype"];
-			event.posterName = [entry valueForKey:@"postername"];
+			event.posterName = [LJRequest proceedRawValue:[entry valueForKey:@"postername"]];
 			event.posterType = [entry valueForKey:@"postertype"];
 			event.datetime = [NSDate dateWithTimeIntervalSince1970:[((NSNumber *) [entry valueForKey:@"logtime"]) integerValue]];
 			event.replyCount = [((NSNumber *) [entry valueForKey:@"reply_count"]) integerValue];
