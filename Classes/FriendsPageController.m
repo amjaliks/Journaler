@@ -60,6 +60,10 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[[AccountManager sharedManager] setUnsignedIntegerValue:OpenedScreenFriendsPage forAccount:account.title forKey:kStateInfoOpenedScreenType];
+	
+#ifdef LITEVERSION
+	[self refreshAdMobView];
+#endif
 }
 
 #pragma mark Pogas
@@ -98,6 +102,16 @@
 - (void)initAdMobView {
 	adMobView = [AdMobView requestAdWithDelegate:self];
 	[adMobView retain];
+	adMobLastRefresh = [[NSDate alloc] init];
+}
+
+- (void)refreshAdMobView {
+	NSTimeInterval interval = [adMobLastRefresh timeIntervalSinceNow];
+	if (interval <= -30.0f) {
+		[adMobView requestFreshAd];
+		[adMobLastRefresh release];
+		adMobLastRefresh = [[NSDate alloc] init];
+	}
 }
 
 - (NSString *)publisherId {
@@ -144,12 +158,18 @@
 }
 #endif
 
+- (NSString *)keywords {
+	return @"livejournal friends"; 
+}
+
+
 #endif
 
 - (void)dealloc {
 #ifdef LITEVERSION
 	// ar reklāmām saistītie resursi
 //	[adMobView release];
+	[adMobLastRefresh release];
 #endif
 	[account release];
 	[super dealloc];

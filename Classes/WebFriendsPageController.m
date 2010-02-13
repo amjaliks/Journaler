@@ -128,6 +128,10 @@
 
 	[self hideStatusLine];
 	refreshButtonItem.enabled = YES;
+	
+#ifdef LITEVERSION
+	[self refreshAdMobView];
+#endif
 }
 
 - (BOOL)webView:(UIWebView *)webView_ shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -144,4 +148,17 @@
 		return NO;
 	}
 }
+
+#ifdef LITEVERSION
+- (NSString *)keywords {
+	NSString *subject = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+	if (subject) {
+		return subject;
+	};
+
+	// ja neko neizdevās atrast, izmantojam iebūvētos atslēgas vārdus
+	return [super keywords]; 
+}
+#endif
+
 @end

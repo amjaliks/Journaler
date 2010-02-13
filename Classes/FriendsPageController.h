@@ -36,6 +36,7 @@
 #ifdef LITEVERSION
 	// reklāmas lauciņš
 	AdMobView *adMobView;
+	NSDate *adMobLastRefresh;
 #endif
 	
 }
@@ -57,6 +58,7 @@
 #ifdef LITEVERSION
 // reklāma
 - (void)initAdMobView;
+- (void)refreshAdMobView;
 #endif
 
 @end

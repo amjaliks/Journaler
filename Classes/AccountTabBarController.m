@@ -154,13 +154,4 @@
 	[super dealloc];
 }
 
-- (void)saveState {
-	[postEditorController saveState];
-	account.selectedTab = self.selectedIndex;
-	
-#ifdef LITEVERSION
-	[APP_DELEGATE saveAccount:account];
-#endif
-}
-
 @end

@@ -233,6 +233,11 @@
 		[self hideStatusLine];
 
 		refreshButtonItem.enabled = YES;
+		
+#ifdef LITEVERSION
+		[self refreshAdMobView];
+#endif
+
 		[pool release];
 	}
 }
@@ -288,6 +293,10 @@
 		// parādam stāvokļa joslu
 		[self hideStatusLine];
 		
+#ifdef LITEVERSION
+		[self refreshAdMobView];
+#endif
+
 		[pool release];
 	}
 }
@@ -488,7 +497,6 @@
 	}
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
@@ -501,6 +509,9 @@
 		}
 	} else {
 		Post *post = [displayedPosts objectAtIndex:indexPath.row];
+#ifdef LITEVERSION
+		selectedPostSubject = [post subjectPreview];
+#endif
 		[self openPost:post animated:YES];
 	}
 }
@@ -532,6 +543,10 @@
 		needReloadTable = NO;
 		[self reloadTable];
 	}
+	
+#ifdef LITEVERSION
+	[self refreshAdMobView];
+#endif
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -543,6 +558,39 @@
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
 	[self scrollViewDidEndDecelerating:scrollView];
 }
+
+#ifdef LITEVERSION
+- (NSString *)keywords {
+	if (selectedPostSubject) {
+		// ja ir "iegaumēts" pēdējā lasītā raksta virsraksts, tad izmantojam to
+		return selectedPostSubject;
+	};
+	
+	for (NSIndexPath *indexPath in [tableView indexPathsForVisibleRows]) {
+		Post *post = [displayedPosts objectAtIndex:indexPath.row];
+		if (post.subject) {
+			// tad mēģinam atrast virsrakstu kādam no redzamajiem rakstiem
+			return post.subjectPreview;
+		}
+	}
+	
+	for (Post *post in displayedPosts) {
+		if (post.subject) {
+			// tad mēģinam atrast vismaz vienu virsrakstu
+			return post.subjectPreview;
+		}
+	}
+	
+	// ja neko neizdevās atrast, izmantojam iebūvētos atslēgas vārdus
+	return [super keywords]; 
+}
+
+- (void)refreshAdMobView {
+	[super refreshAdMobView];
+	selectedPostSubject = nil;
+}
+
+#endif
 
 @end
 

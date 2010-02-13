@@ -42,6 +42,4 @@
 - (void) editAccount;
 #endif
 
-- (void)saveState;
-
 @end

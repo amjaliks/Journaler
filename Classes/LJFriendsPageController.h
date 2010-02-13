@@ -29,6 +29,10 @@
 	
 	BOOL needOpenPost;
 	BOOL needReloadTable;
+	
+#ifdef LITEVERSION
+	NSString *selectedPostSubject;
+#endif
 }
 
 #pragma mark Metodes
