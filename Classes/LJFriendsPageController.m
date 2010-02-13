@@ -382,23 +382,27 @@
 }
 
 - (void) reloadTable {
-	@synchronized(loadedPosts) {
-		[displayedPosts release];
-		displayedPosts = [loadedPosts copy];
+	if (tableView.dragging) {
+		needReloadTable = YES;
+	} else {
+		@synchronized(loadedPosts) {
+			[displayedPosts release];
+			displayedPosts = [loadedPosts copy];
 
-		[tableView reloadData];
-		NSString *firstVisiblePost = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoFirstVisiblePost];
-		if (firstVisiblePost) {
-			NSUInteger row = 0;
-			for (Post *post in displayedPosts) {
-				if ([firstVisiblePost isEqualToString:post.uniqueKey]) {
-					NSUInteger scrollPosition = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoFirstVisiblePostScrollPosition];
-					[tableView setContentOffset:CGPointMake(0, row * 88 + scrollPosition)];
-					return;
+			[tableView reloadData];
+			NSString *firstVisiblePost = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoFirstVisiblePost];
+			if (firstVisiblePost) {
+				NSUInteger row = 0;
+				for (Post *post in displayedPosts) {
+					if ([firstVisiblePost isEqualToString:post.uniqueKey]) {
+						NSUInteger scrollPosition = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoFirstVisiblePostScrollPosition];
+						[tableView setContentOffset:CGPointMake(0, row * 88 + scrollPosition)];
+						return;
+					}
+					row++;
 				}
-				row++;
+				[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[displayedPosts count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 			}
-			[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[displayedPosts count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 		}
 	}
 }
@@ -522,6 +526,11 @@
 		[[AccountManager sharedManager] setValue:[(Post *)[displayedPosts objectAtIndex:row] uniqueKey] forAccount:account.title forKey:kStateInfoFirstVisiblePost];
 		[[AccountManager sharedManager] setUnsignedIntegerValue:((NSUInteger)scrollView.contentOffset.y) % 88 forAccount:account.title forKey:kStateInfoFirstVisiblePostScrollPosition];
 		[[AccountManager sharedManager] setUnsignedIntegerValue:[(NSIndexPath *)[indexPaths lastObject] row] forAccount:account.title forKey:kStateInfoLastVisiblePostIndex];
+	}
+	
+	if (needReloadTable) {
+		needReloadTable = NO;
+		[self reloadTable];
 	}
 }
 

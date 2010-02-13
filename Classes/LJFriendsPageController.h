@@ -28,6 +28,7 @@
 	NSMutableDictionary *cachedPostViewControllers;
 	
 	BOOL needOpenPost;
+	BOOL needReloadTable;
 }
 
 #pragma mark Metodes
