@@ -531,5 +531,9 @@
 	}
 }
 
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
+	[self scrollViewDidEndDecelerating:scrollView];
+}
+
 @end
 
