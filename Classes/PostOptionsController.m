@@ -14,8 +14,9 @@
 #import "PostSecurityController.h"
 #import "AccountManager.h"
 
-@implementation PostOptionsController
+#define kStringsTable @"PostOptions"
 
+@implementation PostOptionsController
 
 @synthesize account;
 @synthesize dataSource;
@@ -44,7 +45,7 @@
 	self.navigationItem.title = @"Options";
 
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
-	self.navigationItem.rightBarButtonItem = doneButton;
+	self.navigationItem.leftBarButtonItem = doneButton;
 	[doneButton release];
 	
 	journalCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"JournalCell"];
@@ -94,14 +95,13 @@
 */
 
 - (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {
 	[super viewDidUnload];
+	
+	self.navigationItem.leftBarButtonItem = nil;
 	
 	[journal release];
 	
@@ -143,11 +143,11 @@
 			return journalCell;
 		} else if (indexPath.row == 1) {
 			if (security == PostSecurityPublic) {
-				securityCell.detailTextLabel.text = @"public";
+				securityCell.detailTextLabel.text = NSLocalizedStringFromTable(@"Public", @"Name for public security level", kStringsTable);
 			} else if (security == PostSecurityFriends) {
-				securityCell.detailTextLabel.text = @"friends";
+				securityCell.detailTextLabel.text = NSLocalizedStringFromTable(@"Friends only", @"Name for friends-only security level", kStringsTable);
 			} else {
-				securityCell.detailTextLabel.text = @"private";
+				securityCell.detailTextLabel.text = NSLocalizedStringFromTable(@"Private", @"Name for private security level", kStringsTable);
 			}
 			return securityCell;
 		}

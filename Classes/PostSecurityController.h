@@ -17,5 +17,6 @@
 }
 
 - (id)initWithPostOptionsController:(PostOptionsController *)postOptionsController;
+- (void)refresh;
 
 @end

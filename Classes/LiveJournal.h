@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "LJAccount.h"
 #import "PostOptionsController.h"
 
 NSString* md5(NSString *str);
@@ -25,45 +26,6 @@ enum {
 	LJErrorAccessIPBanDueLoginFailureRate = 402
 };
 
-
-// LJ server account info
-@interface LJAccount : NSObject<NSCoding> {
-	NSString *user;
-	NSString *password;
-	NSString *server;
-	
-	NSArray *communities;
-	
-	NSString *text;
-	NSString *subject;
-	NSString *journal;
-	PostSecurityLevel security;
-	BOOL promote;
-	
-	NSUInteger selectedTab;
-	NSUInteger scrollPosition;
-	
-	BOOL synchronized;
-}
-
-@property (retain) NSString *user;
-@property (retain) NSString *password;
-@property (retain) NSString *server;
-@property (retain) NSArray *communities;
-
-@property (retain) NSString *text;
-@property (retain) NSString *subject;
-@property (retain) NSString *journal;
-@property PostSecurityLevel security;
-@property BOOL promote;
-
-@property NSUInteger selectedTab;
-
-@property BOOL synchronized;
-
-@property (readonly) NSString *title;
-
-@end
 
 @interface LJEvent : NSObject {
 	NSString *journalName;
@@ -99,28 +61,6 @@ enum {
 
 @end
 
-
-// A raw object for LJ Flat API request. Use as superclass for all requests.
-//@interface LJFlatRequest : NSObject {
-//	NSString *_server;
-//	NSString *_mode;
-//	
-//	NSMutableDictionary *parameters;
-//	NSMutableDictionary *result;
-//	
-//	NSUInteger error;
-//}
-//
-//- (id)initWithServer:(NSString *)server mode:(NSString *)mode;
-//- (BOOL)doRequest;
-//- (void)proceedError;
-//
-//@property (readonly) BOOL success;
-//@property (readonly) NSUInteger error;
-//
-//@end
-
-
 @interface LJRequest : NSObject {
 	NSString *_server;
 	NSString *_method;
@@ -139,17 +79,6 @@ enum {
 @property (readonly) NSUInteger error;
 
 @end
-
-
-//@interface LJFlatGetChallenge : LJFlatRequest {
-//}
-//
-//+ (LJFlatGetChallenge *)requestWithServer:(NSString *)server;
-//
-//@property (readonly) NSString *challenge;
-//
-//@end
-
 
 @interface LJGetChallenge : LJRequest {
 }
@@ -221,15 +150,3 @@ enum {
 @property (retain) NSNumber *skip;
 
 @end
-
-//@interface LJFlatGetEvents : LJFlatRequest {
-//	NSString *challenge;
-//	NSString *password;
-//	NSMutableArray *entries;
-//}
-//
-//+ (LJFlatGetEvents *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
-//
-//@property (readonly) NSArray *entries;
-//
-//@end

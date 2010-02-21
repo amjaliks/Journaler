@@ -141,6 +141,14 @@
 		17B6340910B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17B6340710B8CF8000C974DE /* Journaler.xcdatamodeld */; };
 		17B6345410B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */; };
 		17B6345510B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */; };
+		17D8A5B41130BBDE0023FBEA /* LJFriendGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */; };
+		17D8A5B51130BBDE0023FBEA /* LJFriendGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */; };
+		17D8A5B8113126260023FBEA /* LJManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B7113126260023FBEA /* LJManager.m */; };
+		17D8A5B9113126260023FBEA /* LJManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B7113126260023FBEA /* LJManager.m */; };
+		17D8A6591131DF2E0023FBEA /* NSStringMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A6581131DF2E0023FBEA /* NSStringMD5.m */; };
+		17D8A65A1131DF2E0023FBEA /* NSStringMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A6581131DF2E0023FBEA /* NSStringMD5.m */; };
+		17D8A7371131F2ED0023FBEA /* LJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A7361131F2ED0023FBEA /* LJAccount.m */; };
+		17D8A7381131F2ED0023FBEA /* LJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A7361131F2ED0023FBEA /* LJAccount.m */; };
 		17DB0BD21075444F00155636 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BD01075444F00155636 /* AccountsViewController.xib */; };
 		17DB0BF31075462000155636 /* AccountEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BF11075462000155636 /* AccountEditorController.xib */; };
 		17DB0C961076616400155636 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C951076616400155636 /* Entitlements.plist */; };
@@ -269,6 +277,14 @@
 		17B633FC10B8CD6B00C974DE /* lock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lock.gif; sourceTree = "<group>"; };
 		17B6340A10B8CF8000C974DE /* Journaler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Journaler 2.xcdatamodel"; sourceTree = "<group>"; };
 		17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = "v1-v2.xcmappingmodel"; sourceTree = "<group>"; };
+		17D8A5B21130BBDE0023FBEA /* LJFriendGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJFriendGroup.h; sourceTree = "<group>"; };
+		17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJFriendGroup.m; sourceTree = "<group>"; };
+		17D8A5B6113126260023FBEA /* LJManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJManager.h; sourceTree = "<group>"; };
+		17D8A5B7113126260023FBEA /* LJManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJManager.m; sourceTree = "<group>"; };
+		17D8A6571131DF2E0023FBEA /* NSStringMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringMD5.h; sourceTree = "<group>"; };
+		17D8A6581131DF2E0023FBEA /* NSStringMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringMD5.m; sourceTree = "<group>"; };
+		17D8A7351131F2ED0023FBEA /* LJAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJAccount.h; sourceTree = "<group>"; };
+		17D8A7361131F2ED0023FBEA /* LJAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJAccount.m; sourceTree = "<group>"; };
 		17DB0BD01075444F00155636 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountsViewController.xib; path = Classes/AccountsViewController.xib; sourceTree = "<group>"; };
 		17DB0BF11075462000155636 /* AccountEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountEditorController.xib; path = Classes/AccountEditorController.xib; sourceTree = "<group>"; };
 		17DB0C951076616400155636 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
@@ -326,7 +342,9 @@
 			isa = PBXGroup;
 			children = (
 				173FBEDF10C474D000FD0652 /* Libaries */,
+				17D8A6561131DEF50023FBEA /* Support */,
 				17132682108A1644007F6C24 /* Model */,
+				17D8A5B11130BB850023FBEA /* LiveJournal */,
 				1759F1801092F2510008AA60 /* UserPicCache */,
 				173FBEF410C474E900FD0652 /* Accounts */,
 				17B29BE210FA824B00C5EFA4 /* Settings */,
@@ -336,8 +354,6 @@
 				1D3623250D0F684500981E51 /* JournalerAppDelegate.m */,
 				1759F3181093674E0008AA60 /* WebViewController.h */,
 				1759F3191093674E0008AA60 /* WebViewController.m */,
-				17DB0CC010768D2900155636 /* LiveJournal.h */,
-				17DB0CC110768D2900155636 /* LiveJournal.m */,
 				17B462EF10BA28BA004D0E0F /* Macros.h */,
 				173FC03F10C5CE6300FD0652 /* Common.h */,
 				1707073F110203D70074F836 /* NetworkActivityIndicator.h */,
@@ -571,6 +587,30 @@
 			name = DataModel;
 			sourceTree = "<group>";
 		};
+		17D8A5B11130BB850023FBEA /* LiveJournal */ = {
+			isa = PBXGroup;
+			children = (
+				17DB0CC010768D2900155636 /* LiveJournal.h */,
+				17DB0CC110768D2900155636 /* LiveJournal.m */,
+				17D8A7351131F2ED0023FBEA /* LJAccount.h */,
+				17D8A7361131F2ED0023FBEA /* LJAccount.m */,
+				17D8A5B21130BBDE0023FBEA /* LJFriendGroup.h */,
+				17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */,
+				17D8A5B6113126260023FBEA /* LJManager.h */,
+				17D8A5B7113126260023FBEA /* LJManager.m */,
+			);
+			name = LiveJournal;
+			sourceTree = "<group>";
+		};
+		17D8A6561131DEF50023FBEA /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				17D8A6571131DF2E0023FBEA /* NSStringMD5.h */,
+				17D8A6581131DF2E0023FBEA /* NSStringMD5.m */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -799,6 +839,10 @@
 				170708AF1104261E0074F836 /* Settings.m in Sources */,
 				170708BB110448E50074F836 /* SettingsStartUpScreenController.m in Sources */,
 				179F3FAE111645D60043E0D1 /* AccountManager.m in Sources */,
+				17D8A5B51130BBDE0023FBEA /* LJFriendGroup.m in Sources */,
+				17D8A5B9113126260023FBEA /* LJManager.m in Sources */,
+				17D8A65A1131DF2E0023FBEA /* NSStringMD5.m in Sources */,
+				17D8A7381131F2ED0023FBEA /* LJAccount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -848,6 +892,10 @@
 				170708B01104261E0074F836 /* Settings.m in Sources */,
 				170708BC110448E50074F836 /* SettingsStartUpScreenController.m in Sources */,
 				179F3FAF111645D60043E0D1 /* AccountManager.m in Sources */,
+				17D8A5B41130BBDE0023FBEA /* LJFriendGroup.m in Sources */,
+				17D8A5B8113126260023FBEA /* LJManager.m in Sources */,
+				17D8A6591131DF2E0023FBEA /* NSStringMD5.m in Sources */,
+				17D8A7371131F2ED0023FBEA /* LJAccount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

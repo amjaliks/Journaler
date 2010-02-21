@@ -8,5 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define kErrorStringsTable @"Errors"
+
 void showErrorMessage(NSString *title, NSString *text);
 NSString * decodeError(NSInteger code);
