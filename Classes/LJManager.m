@@ -36,7 +36,25 @@ LJManager *defaultManager;
 	}
 }
 
-- (NSArray *)friendGroupsForAccount:(LJAccount *)account error:(NSError **)error {
+- (BOOL)loginForAccount:(LJAccount *)account error:(NSError **)error {
+	NSString *challenge = [self challengeForAccount:account error:error];
+	
+	if (challenge) {
+		NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+		NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.login" parameters:parameters error:error] retain];
+		[parameters release];
+		if (result) {
+			account.communities = [result valueForKey:@"usejournals"];
+			account.friendGroups = [self friendGroupsFromArray:[result valueForKey:@"friendgroups"]];
+			
+			[result release];
+			return YES;
+		}
+	}
+	return NO;
+}
+
+- (BOOL)friendGroupsForAccount:(LJAccount *)account error:(NSError **)error {
 	NSString *challenge = [self challengeForAccount:account error:error];
 	if (challenge) {
 		NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
@@ -45,25 +63,13 @@ LJManager *defaultManager;
 		
 		if (result) {
 			// ja ir rezultāts, tad apstrādājam to
-			
-			// rezultātā jābūt masīvam ar grupu datiem
-			NSArray *friendGroupArrayRaw = [result valueForKey:@"friendgroups"];
-			
-			// šajā masīvā glabāsim ielasītās grupas
-			NSMutableArray *friendGroups = [[NSMutableArray alloc] initWithCapacity:[friendGroupArrayRaw count]];
-			
-			for (NSDictionary *friendGroupRaw in friendGroupArrayRaw) {
-				LJFriendGroup *friendGroup = [self newFriendGroupFromDictionary:friendGroupRaw];
-				[friendGroups addObject:friendGroup];
-				[friendGroup release];
-			}
-			
+			account.friendGroups = [self friendGroupsFromArray:[result valueForKey:@"friendgroups"]];
 			[result release];
-			return [friendGroups autorelease];
+			return YES;
 		}
 	}
 
-	return nil;
+	return NO;
 }
 
 
@@ -146,6 +152,7 @@ LJManager *defaultManager;
 	[parameters setValue:@"challenge" forKey:@"auth_method"];
 	[parameters setValue:challenge forKey:@"auth_challenge"];
 	[parameters setValue:[[challenge stringByAppendingString:[account.password MD5Hash]] MD5Hash] forKey:@"auth_response"];
+	[parameters setValue:@"1" forKey:@"ver"];
 	
 	return parameters;
 }
@@ -162,13 +169,22 @@ LJManager *defaultManager;
 }
 
 
-- (LJFriendGroup *)newFriendGroupFromDictionary:(NSDictionary *)dictionary {
-	NSNumber *groupID = [dictionary valueForKey:@"id"];
-	NSString *name = [self readStringValue:[dictionary valueForKey:@"name"]];
-	NSNumber *sortOrder = [dictionary valueForKey:@"sortorder"];
-	NSNumber *publicGroup = [dictionary valueForKey:@"public"];
+- (NSArray *)friendGroupsFromArray:(NSArray *)array {
+	NSMutableArray *friendGroups = [[NSMutableArray alloc] initWithCapacity:[array count]];
+
+	for (NSDictionary *dictionary in array) {
+		NSNumber *groupID = [dictionary valueForKey:@"id"];
+		NSString *name = [self readStringValue:[dictionary valueForKey:@"name"]];
+		NSNumber *sortOrder = [dictionary valueForKey:@"sortorder"];
+		NSNumber *publicGroup = [dictionary valueForKey:@"public"];
+
+		LJFriendGroup *friendGroup = [[LJFriendGroup alloc] initWithID:[groupID unsignedIntegerValue] name:name sortOrder:[sortOrder unsignedIntegerValue] publicGroup:[publicGroup boolValue]];
+		
+		[friendGroups addObject:friendGroup];
+		[friendGroup release];
+	}
 	
-	return [[LJFriendGroup alloc] initWithID:[groupID unsignedIntegerValue] name:name sortOrder:[sortOrder unsignedIntegerValue] publicGroup:[publicGroup boolValue]];
+	return [friendGroups autorelease];
 }
 
 

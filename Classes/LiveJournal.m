@@ -320,40 +320,6 @@ NSString* md5(NSString *str)
 @end
 
 
-@implementation LJLogin
-
-@synthesize usejournals;
-
-+ (LJLogin *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
-	LJLogin *request = [[[LJLogin alloc] initWithServer:server method:@"LJ.XMLRPC.login"] autorelease];
-	
-	[request->parameters setValue:user forKey:@"username"];
-	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
-	[request->parameters setValue:challenge forKey:@"auth_challenge"];
-
-	request->password = password;
-	request->challenge = challenge;
-	
-	return request;
-}
-
-- (BOOL)doRequest {
-	NSString *authResponse = md5(password);
-	authResponse = [challenge stringByAppendingString:authResponse];
-	authResponse = md5(authResponse);
-	[parameters setValue:authResponse forKey:@"auth_response"];
-	
-	if ([super doRequest]) {
-		usejournals = [result valueForKey:@"usejournals"];
-		return YES;
-	} else {
-		return NO;
-	}
-}
-
-@end
-
-
 @implementation LJSessionGenerate
 
 + (LJSessionGenerate *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {

@@ -12,6 +12,7 @@
 #import "PostOptionsController.h"
 #import "LiveJournal.h"
 #import "AccountManager.h"
+#import "ErrorHandling.h"
 
 #define kStringsTable @"PostOptions"
 
@@ -48,7 +49,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	// ja pie ir lietotājam ir pieeja kopienām, tad tabulai būs 2 sekcijas
-    return postOptionsController.account.communities ? 2 : 1;
+    return [postOptionsController.account.communities count] > 0 ? 2 : 1;
 }
 
 
@@ -83,6 +84,8 @@
 	if ([cell.textLabel.text isEqualToString:postOptionsController.journal]) {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		selectedCell = cell;
+	} else {
+		cell.accessoryType = UITableViewCellAccessoryNone;
 	}
 	
     return cell;
@@ -108,20 +111,18 @@
 
 
 - (void)refresh {
-	LJGetChallenge *req = [LJGetChallenge requestWithServer:postOptionsController.account.server];
-	if ([req doRequest]) {
-		LJLogin *login = [LJLogin requestWithServer:postOptionsController.account.server user:postOptionsController.account.user password:postOptionsController.account.password challenge:req.challenge];
-		if ([login doRequest]) {
-			if (login.usejournals) {
-				postOptionsController.account.communities = login.usejournals;
-			} else {
-				postOptionsController.account.communities = [NSArray array];
-			}
-			[self.tableView reloadData];
-			
-			[[AccountManager sharedManager] storeAccounts];
+	NSError *error;
+	if ([[LJManager defaultManager] loginForAccount:postOptionsController.account error:&error]) {
+		[[AccountManager sharedManager] storeAccounts];
+		
+		if (![postOptionsController.account.communities containsObject:postOptionsController.journal]) {
+			postOptionsController.journal = postOptionsController.account.user;
 		}
-	}	
+		
+		[self.tableView reloadData];	
+	} else {
+		showErrorMessage(NSLocalizedStringFromTable(@"Journal list sync error", @"Title for journal list sync error messages", kErrorStringsTable), decodeError([error code]));
+	}
 }
 
 @end

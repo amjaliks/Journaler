@@ -110,9 +110,7 @@
 	LJManager *manager = [LJManager defaultManager];
 	NSError *error;
 	
-	NSArray *friendGroups = [manager friendGroupsForAccount:postOptionsController.account error:&error];
-	if (friendGroups) {		
-		postOptionsController.account.friendGroups = friendGroups;
+	if ([manager friendGroupsForAccount:postOptionsController.account error:&error]) {		
 		[[AccountManager sharedManager] storeAccounts];
 		
 		[self.tableView reloadData];

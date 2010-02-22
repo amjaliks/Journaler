@@ -20,12 +20,13 @@
 
 #pragma mark "Lietderīgās" metodes
 - (NSString *)challengeForAccount:(LJAccount *)account error:(NSError **)error;
-- (NSArray *)friendGroupsForAccount:(LJAccount *)account error:(NSError **)error;
+- (BOOL)loginForAccount:(LJAccount *)account error:(NSError **)error;
+- (BOOL)friendGroupsForAccount:(LJAccount *)account error:(NSError **)error;
 
 #pragma mark Tehniskās metodes
 - (NSDictionary *)sendRequestToServer:(NSString *)server method:(NSString *)method parameters:(NSDictionary *)parameters error:(NSError **)error;
 - (NSMutableDictionary *)newParametersForAccount:(LJAccount *)account challenge:(NSString *)challenge;
 - (NSString *)readStringValue:(id)value;
-- (LJFriendGroup *)newFriendGroupFromDictionary:(NSDictionary *)dictionary;
+- (NSArray *)friendGroupsFromArray:(NSArray *)array;
 
 @end

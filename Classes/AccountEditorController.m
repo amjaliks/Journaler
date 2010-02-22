@@ -272,24 +272,12 @@
 		return;
 	}
 	
-	LJGetChallenge *req = [LJGetChallenge requestWithServer:server];
-	if (![req doRequest]) {
-		showErrorMessage(@"Login error", decodeError(req.error));
+	NSError *error;
+	if (![[LJManager defaultManager] loginForAccount:account error:&error]) {
+		showErrorMessage(NSLocalizedStringFromTable(@"Login error", @"Title for login error message", kErrorStringsTable), decodeError([error code]));
 		return;
 	}
 	
-	LJLogin *login = [LJLogin requestWithServer:server user:usernameText.text password:passwordText.text challenge:req.challenge];
-	if (![login doRequest]) {
-		showErrorMessage(@"Login error", decodeError(login.error));
-		return;
-	} else {
-		if (login.usejournals) {
-			account.communities = login.usejournals;
-		} else {
-			account.communities = [NSArray array];
-		}
-	}
-		
 	[delegate saveAccount:account];
 	
 	[account release];

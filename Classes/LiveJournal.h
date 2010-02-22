@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #import "LJAccount.h"
+#import "LJFriendGroup.h"
+#import "LJManager.h"
 #import "PostOptionsController.h"
 
 NSString* md5(NSString *str);
@@ -86,20 +88,6 @@ enum {
 + (LJGetChallenge *)requestWithServer:(NSString *)server;
 
 @property (readonly) NSString *challenge;
-
-@end
-
-
-@interface LJLogin : LJRequest {
-	NSString *challenge;
-	NSString *password;
-	
-	NSArray *usejournals;
-}
-
-@property (readonly) NSArray *usejournals;
-
-+ (LJLogin *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
 
 @end
 
