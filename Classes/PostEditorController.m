@@ -90,6 +90,7 @@
 		self.postOptionsController.journal = journal;
 	}
 	self.postOptionsController.security = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoNewPostSecurity];
+	[self.postOptionsController.selectedFriendGroups addObjectsFromArray:[[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostSelectedFriendGroups]];
 	
 	[[AccountManager sharedManager] registerPostEditorController:self];
 	
@@ -249,21 +250,26 @@
 		showErrorMessage(@"Post error", decodeError(req.error));
 		return;
 	}
-
-	LJPostEvent *login = [LJPostEvent requestWithServer:account.server user:account.user password:account.password challenge:req.challenge subject:subjectField.text event:text];
-	login.usejournal = self.postOptionsController.journal;
-	login.security = self.postOptionsController.security;
 	
-	if (![login doRequest]) {
-		showErrorMessage(@"Post error", decodeError(login.error));
-		return;
+	LJNewEvent *event = [[LJNewEvent alloc] init];
+	event.subject = subjectField.text;
+	event.event = text;
+	event.journal = self.postOptionsController.journal;
+	event.security = self.postOptionsController.security;
+	event.selectedFriendGroups = self.postOptionsController.selectedFriendGroups;
+	
+	NSError *error;
+	if ([[LJManager defaultManager] postEvent:event forAccount:account error:&error]) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your post has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		
+		subjectField.text = nil;
+		textField.text = nil;
+	} else {
+		showErrorMessage(@"Post error", decodeError([error code]));
 	}
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your post has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alert show];
-	[alert release];
-	
-	subjectField.text = nil;
-	textField.text = nil;
+	[event release];
 }
 
 - (IBAction)done:(id)sender {

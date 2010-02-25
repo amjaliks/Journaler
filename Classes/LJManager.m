@@ -72,6 +72,55 @@ LJManager *defaultManager;
 	return NO;
 }
 
+- (BOOL)postEvent:(LJNewEvent *)event forAccount:(LJAccount *)account error:(NSError **)error {
+	NSString *challenge = [self challengeForAccount:account error:error];
+	
+	if (challenge) {
+		NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+		
+		[parameters setValue:[event.subject dataUsingEncoding:NSUTF8StringEncoding] forKey:@"subject"];
+		[parameters setValue:[event.event dataUsingEncoding:NSUTF8StringEncoding] forKey:@"event"];
+		
+		NSCalendar *cal = [NSCalendar currentCalendar];
+		unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+		NSDate *date = [NSDate date];
+		NSDateComponents *comps = [cal components:unitFlags fromDate:date];
+		
+		[parameters setValue:[NSString stringWithFormat:@"%d", [comps year]] forKey:@"year"];
+		[parameters setValue:[NSString stringWithFormat:@"%d", [comps month]] forKey:@"mon"];
+		[parameters setValue:[NSString stringWithFormat:@"%d", [comps day]] forKey:@"day"];
+		[parameters setValue:[NSString stringWithFormat:@"%d", [comps hour]] forKey:@"hour"];
+		[parameters setValue:[NSString stringWithFormat:@"%d", [comps minute]] forKey:@"min"];		
+		
+		[parameters setValue:event.journal forKey:@"usejournal"];
+		
+		if (event.security == PostSecurityPrivate) {
+			[parameters setValue:@"private" forKey:@"security"];
+		} else if (event.security != PostSecurityPublic) {
+			[parameters setValue:@"usemask" forKey:@"security"];
+			NSUInteger allowmask = 0;
+			if (event.security == PostSecurityCustom) {
+				for (NSNumber *groupID in event.selectedFriendGroups) {
+					allowmask |= 1 << [groupID unsignedIntegerValue];
+				}
+				//allowmask <<= 1;
+			} else {
+				allowmask = 1;
+			}
+			NSNumber *allowmaskNumber = [[NSNumber alloc] initWithUnsignedInteger:allowmask];
+			[parameters setValue:allowmaskNumber forKey:@"allowmask"];
+			[allowmaskNumber release];
+		}
+		
+		NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.postevent" parameters:parameters error:error] retain];
+		[parameters release];
+		if (result) {
+			[result release];
+			return YES;
+		}
+	}
+	return NO;
+}
 
 #pragma mark Tehniskās metodes
 

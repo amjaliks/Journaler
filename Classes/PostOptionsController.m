@@ -22,6 +22,7 @@
 @synthesize dataSource;
 @synthesize journal;
 @synthesize security;
+@synthesize selectedFriendGroups;
 
 - (id)initWithAccount:(LJAccount *)newAccount {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -29,6 +30,7 @@
 		
 		journal = [account.user retain];
 		security = PostSecurityPublic;
+		selectedFriendGroups = [[NSMutableSet alloc] init];
 		
 #ifdef LITEVERSION
 		promote = YES;
@@ -146,8 +148,10 @@
 				securityCell.detailTextLabel.text = NSLocalizedStringFromTable(@"Public", @"Name for public security level", kStringsTable);
 			} else if (security == PostSecurityFriends) {
 				securityCell.detailTextLabel.text = NSLocalizedStringFromTable(@"Friends only", @"Name for friends-only security level", kStringsTable);
-			} else {
+			} else if (security == PostSecurityPrivate) {
 				securityCell.detailTextLabel.text = NSLocalizedStringFromTable(@"Private", @"Name for private security level", kStringsTable);
+			} else {
+				securityCell.detailTextLabel.text = NSLocalizedStringFromTable(@"Custom", @"Name for custom security level", kStringsTable);
 			}
 			return securityCell;
 		}
@@ -215,6 +219,7 @@
 
 
 - (void)dealloc {
+	[selectedFriendGroups release];
     [super dealloc];
 }
 

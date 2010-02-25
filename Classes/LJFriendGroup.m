@@ -40,7 +40,7 @@
 		groupID = [coder decodeIntegerForKey:@"id"];
 		name = [[coder decodeObjectForKey:@"name"] retain];
 		sortOrder = [coder decodeIntegerForKey:@"sordOrder"];
-		//publicGroup = [coder decodeBoolForKey:@"public"];
+		publicGroup = [coder decodeBoolForKey:@"public"];
 	}
 	
 	return self;

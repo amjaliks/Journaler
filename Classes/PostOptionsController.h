@@ -13,7 +13,8 @@
 typedef enum {
 	PostSecurityPublic,
 	PostSecurityFriends,
-	PostSecurityPrivate
+	PostSecurityPrivate,
+	PostSecurityCustom
 } PostSecurityLevel;
 
 @class LJAccount;
@@ -26,6 +27,7 @@ typedef enum {
 	BOOL promote;
 	NSString *journal;
 	PostSecurityLevel security;
+	NSMutableSet *selectedFriendGroups;
 	
 	// tabulas šūnas
 	UITableViewCell *journalCell;
@@ -42,6 +44,7 @@ typedef enum {
 
 @property (retain) NSString *journal;
 @property PostSecurityLevel security;
+@property (readonly) NSMutableSet *selectedFriendGroups;
 @property (readonly) BOOL promote;
 
 - (id)initWithAccount:(LJAccount *)account;

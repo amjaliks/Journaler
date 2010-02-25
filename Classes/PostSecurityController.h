@@ -12,8 +12,6 @@
 
 @interface PostSecurityController : UITableViewController {
 	PostOptionsController *postOptionsController;
-	
-	UITableViewCell *selectedCell;
 }
 
 - (id)initWithPostOptionsController:(PostOptionsController *)postOptionsController;

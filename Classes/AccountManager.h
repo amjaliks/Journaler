@@ -19,6 +19,7 @@
 #define kStateInfoNewPostText @"new_post_text"
 #define kStateInfoNewPostSubject @"new_post_subject"
 #define kStateInfoNewPostSecurity @"new_post_security"
+#define kStateInfoNewPostSelectedFriendGroups @"new_post_selected_friend_groups"
 #define kStateInfoNewPostJournal @"new_post_journal"
 #define kStateInfoNewPostPromote @"new_post_promote"
 

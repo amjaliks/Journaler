@@ -352,74 +352,74 @@ NSString* md5(NSString *str)
 @end
 
 
-@implementation LJPostEvent
-
-@synthesize usejournal;
-@synthesize security;
-
-+ (LJPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event {
-	LJPostEvent *request = [[[LJPostEvent alloc] initWithServer:server method:@"LJ.XMLRPC.postevent"] autorelease];
-	//LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
-	
-	[request->parameters setValue:user forKey:@"username"];
-	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
-	[request->parameters setValue:challenge forKey:@"auth_challenge"];
-
-	[request->parameters setValue:@"1" forKey:@"ver"];
-	[request->parameters setValue:subject forKey:@"subject"];
-	[request->parameters setValue:[event dataUsingEncoding:NSUTF8StringEncoding] forKey:@"event"];
-	//[request->parameters setValue:user forKey:@"usejournal"];
-	
-	NSCalendar *cal = [NSCalendar currentCalendar];
-	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
-	NSDate *date = [NSDate date];
-	NSDateComponents *comps = [cal components:unitFlags fromDate:date];
-
-	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps year]] forKey:@"year"];
-	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps month]] forKey:@"mon"];
-	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps day]] forKey:@"day"];
-	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps hour]] forKey:@"hour"];
-	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps minute]] forKey:@"min"];
-		
-	//[request->parameters setValue:@"2009-10-01 00:00:00" forKey:@"lastsync"];
-	
-	request->password = password;
-	request->challenge = challenge;
-	
-	return request;
-}
-
-- (BOOL)doRequest {
-	
-	if (usejournal) {
-		[parameters setValue:usejournal forKey:@"usejournal"];
-	}
-	
-	if (security == PostSecurityFriends) {
-		[parameters setValue:@"usemask" forKey:@"security"];
-		[parameters setValue:[NSNumber numberWithInteger:1] forKey:@"allowmask"];
-	} else if (security == PostSecurityPrivate) {
-		[parameters setValue:@"private" forKey:@"security"];
-	}
-
-	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
-	[parameters setValue:authResponse forKey:@"auth_response"];
-	
-	return [super doRequest];
-}
-
-- (void)proceedError {
-	NSString *errmsg = [result valueForKey:@"errmsg"];
-	if ([@"Invalid username" isEqualToString:errmsg]) {
-		error = LJErrorInvalidUsername;
-	} else if ([@"Invalid password" isEqualToString:errmsg]) {
-		error = LJErrorInvalidPassword;
-	} else {
-		error = LJErrorUnknown;
-	}
-}
-
-@end
+//@implementation LJPostEvent
+//
+//@synthesize usejournal;
+//@synthesize security;
+//
+//+ (LJPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event {
+//	LJPostEvent *request = [[[LJPostEvent alloc] initWithServer:server method:@"LJ.XMLRPC.postevent"] autorelease];
+//	//LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
+//	
+//	[request->parameters setValue:user forKey:@"username"];
+//	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
+//	[request->parameters setValue:challenge forKey:@"auth_challenge"];
+//
+//	[request->parameters setValue:@"1" forKey:@"ver"];
+//	[request->parameters setValue:subject forKey:@"subject"];
+//	[request->parameters setValue:[event dataUsingEncoding:NSUTF8StringEncoding] forKey:@"event"];
+//	//[request->parameters setValue:user forKey:@"usejournal"];
+//	
+//	NSCalendar *cal = [NSCalendar currentCalendar];
+//	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+//	NSDate *date = [NSDate date];
+//	NSDateComponents *comps = [cal components:unitFlags fromDate:date];
+//
+//	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps year]] forKey:@"year"];
+//	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps month]] forKey:@"mon"];
+//	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps day]] forKey:@"day"];
+//	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps hour]] forKey:@"hour"];
+//	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps minute]] forKey:@"min"];
+//		
+//	//[request->parameters setValue:@"2009-10-01 00:00:00" forKey:@"lastsync"];
+//	
+//	request->password = password;
+//	request->challenge = challenge;
+//	
+//	return request;
+//}
+//
+//- (BOOL)doRequest {
+//	
+//	if (usejournal) {
+//		[parameters setValue:usejournal forKey:@"usejournal"];
+//	}
+//	
+//	if (security == PostSecurityFriends) {
+//		[parameters setValue:@"usemask" forKey:@"security"];
+//		[parameters setValue:[NSNumber numberWithInteger:1] forKey:@"allowmask"];
+//	} else if (security == PostSecurityPrivate) {
+//		[parameters setValue:@"private" forKey:@"security"];
+//	}
+//
+//	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
+//	[parameters setValue:authResponse forKey:@"auth_response"];
+//	
+//	return [super doRequest];
+//}
+//
+//- (void)proceedError {
+//	NSString *errmsg = [result valueForKey:@"errmsg"];
+//	if ([@"Invalid username" isEqualToString:errmsg]) {
+//		error = LJErrorInvalidUsername;
+//	} else if ([@"Invalid password" isEqualToString:errmsg]) {
+//		error = LJErrorInvalidPassword;
+//	} else {
+//		error = LJErrorUnknown;
+//	}
+//}
+//
+//@end
 
 
 

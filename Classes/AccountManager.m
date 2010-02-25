@@ -147,7 +147,7 @@ static AccountManager *sharedManager;
 
 - (NSUInteger)unsignedIntegerValueForPath:(NSArray *)path {
 	NSNumber *number = [self valueForPath:path];
-	if (number) {
+	if (number && [number isKindOfClass:[NSNumber class]]) {
 		return [number unsignedIntegerValue];
 	} else {
 		return 0;
@@ -160,7 +160,7 @@ static AccountManager *sharedManager;
 
 - (BOOL)boolValueForAccount:(NSString *)account forKey:(NSString *)key defaultValue:(BOOL)defaultValue {
 	NSNumber *value = [self valueForAccount:account forKey:key];
-	if (value) {
+	if (value && [value isKindOfClass:[NSNumber class]]) {
 		return [value boolValue];
 	} else {
 		return defaultValue;

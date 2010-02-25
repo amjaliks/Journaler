@@ -149,6 +149,8 @@
 		17D8A65A1131DF2E0023FBEA /* NSStringMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A6581131DF2E0023FBEA /* NSStringMD5.m */; };
 		17D8A7371131F2ED0023FBEA /* LJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A7361131F2ED0023FBEA /* LJAccount.m */; };
 		17D8A7381131F2ED0023FBEA /* LJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A7361131F2ED0023FBEA /* LJAccount.m */; };
+		17D8A9891134B9D10023FBEA /* LJNewEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A9881134B9D10023FBEA /* LJNewEvent.m */; };
+		17D8A98A1134B9D10023FBEA /* LJNewEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A9881134B9D10023FBEA /* LJNewEvent.m */; };
 		17DB0BD21075444F00155636 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BD01075444F00155636 /* AccountsViewController.xib */; };
 		17DB0BF31075462000155636 /* AccountEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BF11075462000155636 /* AccountEditorController.xib */; };
 		17DB0C961076616400155636 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C951076616400155636 /* Entitlements.plist */; };
@@ -285,6 +287,8 @@
 		17D8A6581131DF2E0023FBEA /* NSStringMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringMD5.m; sourceTree = "<group>"; };
 		17D8A7351131F2ED0023FBEA /* LJAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJAccount.h; sourceTree = "<group>"; };
 		17D8A7361131F2ED0023FBEA /* LJAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJAccount.m; sourceTree = "<group>"; };
+		17D8A9871134B9D10023FBEA /* LJNewEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJNewEvent.h; sourceTree = "<group>"; };
+		17D8A9881134B9D10023FBEA /* LJNewEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJNewEvent.m; sourceTree = "<group>"; };
 		17DB0BD01075444F00155636 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountsViewController.xib; path = Classes/AccountsViewController.xib; sourceTree = "<group>"; };
 		17DB0BF11075462000155636 /* AccountEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountEditorController.xib; path = Classes/AccountEditorController.xib; sourceTree = "<group>"; };
 		17DB0C951076616400155636 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
@@ -596,6 +600,8 @@
 				17D8A7361131F2ED0023FBEA /* LJAccount.m */,
 				17D8A5B21130BBDE0023FBEA /* LJFriendGroup.h */,
 				17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */,
+				17D8A9871134B9D10023FBEA /* LJNewEvent.h */,
+				17D8A9881134B9D10023FBEA /* LJNewEvent.m */,
 				17D8A5B6113126260023FBEA /* LJManager.h */,
 				17D8A5B7113126260023FBEA /* LJManager.m */,
 			);
@@ -843,6 +849,7 @@
 				17D8A5B9113126260023FBEA /* LJManager.m in Sources */,
 				17D8A65A1131DF2E0023FBEA /* NSStringMD5.m in Sources */,
 				17D8A7381131F2ED0023FBEA /* LJAccount.m in Sources */,
+				17D8A98A1134B9D10023FBEA /* LJNewEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,6 +903,7 @@
 				17D8A5B8113126260023FBEA /* LJManager.m in Sources */,
 				17D8A6591131DF2E0023FBEA /* NSStringMD5.m in Sources */,
 				17D8A7371131F2ED0023FBEA /* LJAccount.m in Sources */,
+				17D8A9891134B9D10023FBEA /* LJNewEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
