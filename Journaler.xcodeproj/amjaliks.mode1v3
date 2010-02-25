@@ -294,13 +294,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>37</integer>
-									<integer>1</integer>
+									<integer>108</integer>
+									<integer>103</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 547}, {268, 688}}</string>
+							<string>{{0, 1466}, {268, 688}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -332,14 +332,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PostEditorController.m</string>
+								<string>JournalerLite-Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -347,11 +345,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>PostEditorController.m</string>
+										<string>JournalerLite-Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>17D8AA5B1136C3820023FBEA</string>
+										<string>17D8AA671136EFAE0023FBEA</string>
 										<key>history</key>
 										<array>
 											<string>17FCD7CA107907BE00806088</string>
@@ -424,8 +422,6 @@
 											<string>17D37CD71127479A008618D4</string>
 											<string>17D37CE9112749BE008618D4</string>
 											<string>17D37CFB11274BAB008618D4</string>
-											<string>17D8A5661130AF640023FBEA</string>
-											<string>17D8A5671130AF640023FBEA</string>
 											<string>17D8A5681130AF640023FBEA</string>
 											<string>17D8A5691130AF640023FBEA</string>
 											<string>17D8A5851130B1270023FBEA</string>
@@ -468,7 +464,9 @@
 											<string>17D8AA341136B83F0023FBEA</string>
 											<string>17D8AA3D1136B9220023FBEA</string>
 											<string>17D8AA491136BAE80023FBEA</string>
-											<string>17D8AA4A1136BAE80023FBEA</string>
+											<string>17D8AA611136EF9A0023FBEA</string>
+											<string>17D8AA621136EF9A0023FBEA</string>
+											<string>17D8A5661130AF640023FBEA</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -972,6 +970,8 @@
 											<string>17D8AA381136B83F0023FBEA</string>
 											<string>17D8AA3E1136B9220023FBEA</string>
 											<string>17D8AA4B1136BAE80023FBEA</string>
+											<string>17D8AA631136EF9B0023FBEA</string>
+											<string>17D8AA641136EF9B0023FBEA</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
