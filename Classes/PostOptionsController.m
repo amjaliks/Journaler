@@ -30,7 +30,7 @@
 		
 		journal = [account.user retain];
 		security = PostSecurityPublic;
-		selectedFriendGroups = [[NSMutableSet alloc] init];
+		selectedFriendGroups = [[NSMutableArray alloc] init];
 		
 #ifdef LITEVERSION
 		promote = YES;

@@ -27,7 +27,7 @@ typedef enum {
 	BOOL promote;
 	NSString *journal;
 	PostSecurityLevel security;
-	NSMutableSet *selectedFriendGroups;
+	NSMutableArray *selectedFriendGroups;
 	
 	// tabulas šūnas
 	UITableViewCell *journalCell;
@@ -44,7 +44,7 @@ typedef enum {
 
 @property (retain) NSString *journal;
 @property PostSecurityLevel security;
-@property (readonly) NSMutableSet *selectedFriendGroups;
+@property (readonly) NSMutableArray *selectedFriendGroups;
 @property (readonly) BOOL promote;
 
 - (id)initWithAccount:(LJAccount *)account;

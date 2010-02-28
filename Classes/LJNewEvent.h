@@ -14,13 +14,13 @@
 	NSString *subject;
 	NSString *event;
 	PostSecurityLevel security;
-	NSSet *selectedFriendGroups;
+	NSArray *selectedFriendGroups;
 }
 
 @property (nonatomic, retain) NSString *journal;
 @property (nonatomic, retain) NSString *subject;
 @property (nonatomic, retain) NSString *event;
 @property (nonatomic) PostSecurityLevel security;
-@property (nonatomic, retain) NSSet *selectedFriendGroups;
+@property (nonatomic, retain) NSArray *selectedFriendGroups;
 
 @end
