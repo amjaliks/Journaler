@@ -62,6 +62,7 @@
 	promoteCell.textLabel.text = @"Promote Journaler";
 	promoteCell.selectionStyle = UITableViewCellSelectionStyleNone;
 	promoteSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(206, 9, 94, 26)];
+	promoteSwitch.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
 	promoteSwitch.on = promote;
 	[promoteSwitch addTarget:self action:@selector(promoteChanged) forControlEvents:UIControlEventValueChanged];
 	[promoteCell addSubview:promoteSwitch];
@@ -72,29 +73,11 @@
 	[self.tableView reloadData];
 }
 
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
+#ifndef LITEVERSION
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
 }
-*/
+#endif
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

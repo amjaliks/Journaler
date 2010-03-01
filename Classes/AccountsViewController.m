@@ -71,9 +71,11 @@
 	[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
+#ifndef LITEVERSION
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
+	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
 }
+#endif
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.

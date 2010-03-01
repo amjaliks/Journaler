@@ -44,6 +44,11 @@
 	self.navigationItem.rightBarButtonItem = nil;
 }
 
+#ifndef LITEVERSION
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
+}
+#endif
 
 #pragma mark Table view methods
 

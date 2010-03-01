@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="11"/>
 			<integer value="8"/>
+			<integer value="11"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -57,7 +57,7 @@
 			</object>
 			<object class="IBUITableViewCell" id="324624382">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">294</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIView" id="580560392">
@@ -89,7 +89,7 @@
 							</object>
 							<object class="IBUITextField" id="203508559">
 								<reference key="NSNextResponder" ref="580560392"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">294</int>
 								<string key="NSFrame">{{76, 0}, {232, 31}}</string>
 								<reference key="NSSuperview" ref="580560392"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -143,7 +143,7 @@
 			</object>
 			<object class="IBUITableViewCell" id="328876458">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">294</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIView" id="797412867">
@@ -153,7 +153,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUITextView" id="301247697">
 								<reference key="NSNextResponder" ref="797412867"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">294</int>
 								<string key="NSFrameSize">{320, 315}</string>
 								<reference key="NSSuperview" ref="797412867"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -360,7 +360,7 @@
 					<string>PostEditorController</string>
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{396, 298}, {320, 364}}</string>
+					<string>{{334, 298}, {320, 364}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -405,11 +405,9 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>done:</string>
 							<string>post:</string>
-							<string>subjectChanged</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>

@@ -53,4 +53,6 @@
 - (void) openPost:(Post *)post animated:(BOOL)animated;
 - (void) openPostByKey:(NSString *)key;
 
+- (void) deviceOrientationChanged;
+
 @end

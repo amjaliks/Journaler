@@ -62,6 +62,7 @@
 	NSArray *arrays = [[NSArray alloc] initWithObjects:friendsPageController, postEditorController, nil];
 	self.viewControllers = arrays;
 	self.selectedIndex = [[AccountManager sharedManager] unsignedIntegerValueForAccount:newAccount.title forKey:kStateInfoOpenedScreenType] == OpenedScreenNewPost ? 1 : 0;
+	self.navigationItem.rightBarButtonItem = self.selectedViewController.navigationItem.rightBarButtonItem;
 	
 	[arrays release];
 }

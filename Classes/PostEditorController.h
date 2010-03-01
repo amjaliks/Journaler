@@ -57,6 +57,8 @@
 - (void)startPostEditing;
 - (void)endPostEditing;
 
+- (BOOL)isLandscape;
+
 - (void)saveState;
 
 @end

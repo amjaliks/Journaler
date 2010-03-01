@@ -61,13 +61,14 @@
 #ifdef LITEVERSION
 	[self initAdMobView];
 #endif
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	[tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 }
-
 
 - (void)viewDidAppear:(BOOL)animated {
 	needOpenPost = OpenedScreenPost == [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoOpenedScreenType];
@@ -78,7 +79,7 @@
 	}
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+- (void) deviceOrientationChanged {
 	for (UITableViewCell *cell in [tableView visibleCells]) {
 		[[cell.contentView.subviews lastObject] setNeedsDisplay];
 	}

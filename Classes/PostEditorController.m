@@ -83,6 +83,8 @@
 	textCell.frame = CGRectMake(0, 0, 320, 336);
 	[self.tableView reloadData];
 	
+	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+	
 	textField.text = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostText];
 	subjectField.text = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostSubject];
 	NSString *journal = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostJournal];
@@ -99,9 +101,17 @@
 //	[nc addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+	BOOL landscape = [self isLandscape];		
+	textField.frame = textCell.frame = CGRectMake(0, 0, landscape ? 480 : 320, landscape ? (editing ? 74 : 168) : (editing ? 187 : 336));
+	[self.tableView reloadData];
 }
+
+#ifndef LITEVERSION
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
+}
+#endif
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -147,51 +157,12 @@
 	if (indexPath.row == 0) {
 		return subjectCell.frame.size.height;
 	} else if (indexPath.row == 1) {
-		return editing ? 168 : 336;
+		BOOL landscape = [self isLandscape];
+		return editing ? (landscape ? 74 : 168) : (landscape ? 187 : 336);
 	}
     return 0;
 }
 
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 - (void)dealloc {
@@ -272,31 +243,10 @@
 	return [textField becomeFirstResponder];
 }
 
-//- (void)keyboardWillShow:(NSNotification *) note {
-//	[self.parentViewController.navigationItem setRightBarButtonItem:doneButton animated:YES];
-//	[self.parentViewController.navigationItem setLeftBarButtonItem:optionsButton animated:YES];
-//	textCell.frame = CGRectMake(0, 0, 320, 168);
-//	textField.frame = CGRectMake(0, 0, 320, 168);
-//	[self.tableView reloadData];
-//}
-//
-//- (void)keyboardWillHide:(NSNotification *) note {
-//	postButton.enabled = [textField.text length] > 0;
-//	
-//	[textField resignFirstResponder];
-//	[subjectField resignFirstResponder];
-//	
-//	[self.parentViewController.navigationItem setRightBarButtonItem:postButton animated:YES];
-//#ifndef LITEVERSION
-//	[self.parentViewController.navigationItem setLeftBarButtonItem:nil animated:YES];
-//#else 
-//	[self.parentViewController.navigationItem setLeftBarButtonItem:((AccountTabBarController *)self.tabBarController).accountButton animated:YES];
-//#endif
-//	textField.frame = CGRectMake(0, 0, 320, 336);
-//	textCell.frame = CGRectMake(0, 0, 320, 336);
-//	[self.tableView reloadData];
-//}
-
+- (BOOL)isLandscape {
+	UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+	return UIDeviceOrientationIsLandscape(orientation);
+}
 
 - (void)startPostEditing {
 	if (!editing) {
@@ -304,8 +254,10 @@
 		
 		[self.parentViewController.navigationItem setRightBarButtonItem:doneButton animated:YES];
 		[self.parentViewController.navigationItem setLeftBarButtonItem:optionsButton animated:YES];
-		textCell.frame = CGRectMake(0, 0, 320, 168);
-		textField.frame = CGRectMake(0, 0, 320, 168);
+		
+		BOOL landscape = [self isLandscape];		
+		textField.frame = textCell.frame = CGRectMake(0, 0, landscape ? 480 : 320, landscape ? 74 : 168);
+		
 		[self.tableView reloadData];
 	}
 }
@@ -325,8 +277,10 @@
 #else 
 		[self.parentViewController.navigationItem setLeftBarButtonItem:((AccountTabBarController *)self.tabBarController).accountButton animated:YES];
 #endif
-		textField.frame = CGRectMake(0, 0, 320, 336);
-		textCell.frame = CGRectMake(0, 0, 320, 336);
+
+		BOOL landscape = [self isLandscape];		
+		textField.frame = textCell.frame = CGRectMake(0, 0, landscape ? 480 : 320, landscape ? 187 : 336);
+		
 		[self.tableView reloadData];
 	}
 }

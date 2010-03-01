@@ -67,15 +67,6 @@
 	self.view = webView;
 }
 
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:YES];
 
@@ -119,8 +110,6 @@
 
 		[webView loadHTMLString:postHtml baseURL:nil];
 		webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-	} else {
-		[self setWidth];
 	}
 }
 
@@ -130,18 +119,11 @@
 	[[AccountManager sharedManager] setValue:post.uniqueKey forAccount:account.title forKey:kStateInfoOpenedPost];
 }
 
+#ifndef LITEVERSION
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
+	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
 }
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	[self setWidth];
-}
-
-- (void)setWidth {
-	int width = webView.bounds.size.width - 14;
-	[webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.body.style.width = '%dpx'", width]];
-}
+#endif
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.

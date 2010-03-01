@@ -15,7 +15,13 @@
 	UIWebView *webView;
 	UIActivityIndicatorView *activityIndicatorView;
 	
-	NSArray *toolbarItems;
+	IBOutlet UIBarItem *backButton;
+	IBOutlet UIBarItem *flexSpace1;
+	IBOutlet UIBarItem *forwardButton;
+	IBOutlet UIBarItem *flexSpace2;
+	IBOutlet UIBarItem *flexSpace3;
+	IBOutlet UIBarItem *reloadButton;
+	IBOutlet UIBarItem *stopButton;
 
 	// saraksts ar serveriem un kontiem, kuriem autorizācija ir izpildīta
 	NSMutableDictionary *loggedinServers;

@@ -44,17 +44,7 @@
 	[super viewDidLoad];
 	
 	// stāvokļa josla
-	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, 320, 24);
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-//	
-//	// pieliekam pogas
-//	if (refreshButtonItem) 
-//	refreshButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-//	self.parentViewController.navigationItem.rightBarButtonItem = refreshButtonItem;
-	
+	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -64,11 +54,20 @@
 #ifdef LITEVERSION
 	[self refreshAdMobView];
 #endif
+	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
 }
 
+#ifndef LITEVERSION
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
+	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
 }
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+	// stāvokļa josla
+	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
+}
+
+#endif
 
 #pragma mark Pogas
 
@@ -82,6 +81,7 @@
 		if (!statusLineShowed) {
 			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 			[self.view addSubview:statusLineView];
+			
 			[pool release];
 		}
 		statusLineShowed++;

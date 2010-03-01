@@ -36,6 +36,12 @@
 	[refreshButton release];
 }
 
+#ifndef LITEVERSION
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
+}
+#endif
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

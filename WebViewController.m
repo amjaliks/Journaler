@@ -25,23 +25,26 @@
     return self;
 }
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	toolbarItems = [[((UIToolbar *)[self.view viewWithTag:10]).items copy] retain];
 	UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView];
 	self.navigationItem.rightBarButtonItem = item;
-	//[activityIndicatorView startAnimating];
+	[item release];
 }
 
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)viewDidUnload {
+	self.navigationItem.rightBarButtonItem = nil;
 }
-*/
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[self.navigationController setToolbarHidden:NO animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	[self.navigationController setToolbarHidden:YES animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -50,9 +53,11 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
+#ifndef LITEVERSION
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
+	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
 }
+#endif
 
 - (void)dealloc {
 	[loggedinServers release];
@@ -89,22 +94,11 @@
 }
 
 - (void) updateToolbarButtons:(BOOL)loading {
-	UIToolbar *toolbar = (UIToolbar *)[self.view viewWithTag:10];
-	
-	NSMutableArray *items = [NSMutableArray arrayWithCapacity:7];
-	NSUInteger i = 0;
-	for (UIBarButtonItem *item in toolbarItems) {
-		i++;
-		if (i == 1) {
-			item.enabled = webView.canGoBack;
-		} else if (i == 3) {
-			item.enabled = webView.canGoForward;
-		}
-		if (((i != 6 && loading) || (i != 7 && !loading)) && i <= 7) {
-			[items addObject:item];
-		}
-	}
-	[toolbar setItems:items animated:NO];
+	backButton.enabled = webView.canGoBack;
+	forwardButton.enabled = webView.canGoForward;
+	NSMutableArray *items = [[NSMutableArray alloc] initWithObjects:backButton, flexSpace1, forwardButton, flexSpace2, flexSpace3, loading ? stopButton : reloadButton, nil];
+	self.toolbarItems = items;
+	[items release];
 }
 
 - (BOOL)createSessionForAccount:(LJAccount *)account silent:(BOOL)silent{
