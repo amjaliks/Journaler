@@ -118,6 +118,9 @@
 		[postHtml replaceOccurrencesOfString:@"@videoicon@" withString:videoIconReplace options:0 range:NSMakeRange(0, [postHtml length])];
 
 		[webView loadHTMLString:postHtml baseURL:nil];
+		webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+	} else {
+		[self setWidth];
 	}
 }
 
@@ -125,6 +128,19 @@
 	[super viewDidAppear:animated];
 	[[AccountManager sharedManager] setUnsignedIntegerValue:OpenedScreenPost forAccount:account.title forKey:kStateInfoOpenedScreenType];
 	[[AccountManager sharedManager] setValue:post.uniqueKey forAccount:account.title forKey:kStateInfoOpenedPost];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return YES;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+	[self setWidth];
+}
+
+- (void)setWidth {
+	int width = webView.bounds.size.width - 14;
+	[webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.body.style.width = '%dpx'", width]];
 }
 
 - (void)didReceiveMemoryWarning {

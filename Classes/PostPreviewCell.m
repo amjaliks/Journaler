@@ -20,6 +20,8 @@
 		self.frame = frame;
         view = [[PostPreviewView alloc] initWithFrame:frame];
 		[self.contentView addSubview:view];
+		
+		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     }
     return self;
 }

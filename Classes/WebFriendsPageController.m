@@ -46,7 +46,9 @@
 	
 	friendsPageView = webView;
 	
-	[self.view addSubview: webView];
+	[self.view addSubview:webView];
+	self.view.autoresizingMask =
+	webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	
 #ifdef LITEVERSION
 	[self initAdMobView];

@@ -66,6 +66,10 @@
 #endif
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return YES;
+}
+
 #pragma mark Pogas
 
 - (void)refresh {}

@@ -141,6 +141,8 @@
 		17B6340910B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17B6340710B8CF8000C974DE /* Journaler.xcdatamodeld */; };
 		17B6345410B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */; };
 		17B6345510B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */; };
+		17D77654113BC2F600F26322 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17D77653113BC2F600F26322 /* Default.png */; };
+		17D77655113BC2F600F26322 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17D77653113BC2F600F26322 /* Default.png */; };
 		17D8A5B41130BBDE0023FBEA /* LJFriendGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */; };
 		17D8A5B51130BBDE0023FBEA /* LJFriendGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */; };
 		17D8A5B8113126260023FBEA /* LJManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B7113126260023FBEA /* LJManager.m */; };
@@ -279,6 +281,7 @@
 		17B633FC10B8CD6B00C974DE /* lock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lock.gif; sourceTree = "<group>"; };
 		17B6340A10B8CF8000C974DE /* Journaler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Journaler 2.xcdatamodel"; sourceTree = "<group>"; };
 		17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = "v1-v2.xcmappingmodel"; sourceTree = "<group>"; };
+		17D77653113BC2F600F26322 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		17D8A5B21130BBDE0023FBEA /* LJFriendGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJFriendGroup.h; sourceTree = "<group>"; };
 		17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJFriendGroup.m; sourceTree = "<group>"; };
 		17D8A5B6113126260023FBEA /* LJManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJManager.h; sourceTree = "<group>"; };
@@ -382,6 +385,7 @@
 		17132A54108B238C007F6C24 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				17D77653113BC2F600F26322 /* Default.png */,
 				173FB97810BCAE9C00FD0652 /* lock.png */,
 				17B633FC10B8CD6B00C974DE /* lock.gif */,
 				1750B0D61097A3B200C1D2A8 /* video.png */,
@@ -764,6 +768,7 @@
 				17B633FD10B8CD6B00C974DE /* lock.gif in Resources */,
 				173FB97A10BCAE9C00FD0652 /* lock.png in Resources */,
 				17B29BE910FA826700C5EFA4 /* SettingsController.xib in Resources */,
+				17D77655113BC2F600F26322 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +799,7 @@
 				17B633FE10B8CD6B00C974DE /* lock.gif in Resources */,
 				173FB97910BCAE9C00FD0652 /* lock.png in Resources */,
 				17B29BE710FA826700C5EFA4 /* SettingsController.xib in Resources */,
+				17D77654113BC2F600F26322 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,44 +11,45 @@
 #import "Macros.h"
 #import "Model.h"
 
-#define MAX_W 220
+//#define kMaxWidth 220
+#define kRightOffset 26											// attālums no labās malas
 
-#define ICON_W 13
-#define ICON_H 13
-#define ICON_SPACE 2
-#define LOCK_ICON_X SUBJECT_X
-#define LOCK_ICON_Y 7
-#define USER_ICON_X SUBJECT_X
-#define USER_ICON_Y 22
+#define kIconWidth 13											// ikonas platums
+#define kIconHeight 13											// ikonas augstums
+#define kIconSpace 2											// attālums no ikonas līdz tekstam
+#define kLockIconX kSubjectX									// ikonas "slēdzene" X koordināte
+#define kLockIconY 7											// ikonas "slēdzene" Y koordināte
+#define kUserIconX kSubjectX									// ikonas "lietotājs" X koordināte
+#define kUserIconY 22											// ikonas "lietotājs" Y koordināte
 
-#define SUBJECT_FONT_SIZE 14
-#define SUBJECT_X 74
-#define SUBJECT_Y 5
-#define SUBJECT_W MAX_W
-#define SUBJECT_H 19
-#define PRIVATE_SUBJECT_X_DIFF (ICON_W + ICON_SPACE)
-#define PRIVATE_SUBJECT_X (SUBJECT_X + PRIVATE_SUBJECT_X_DIFF)
-#define PRIVATE_SUBJECT_W (SUBJECT_W - PRIVATE_SUBJECT_X_DIFF)
+#define kSubjectFontSize 14										// virsraksta burtu izmērs
+#define kSubjectX 74											// virsraksta X koordināte
+#define kSubjectY 5												// virsraksta Y koordināte
+//#define kSubjectWidth kMaxWidth									// virsraksta platums (šo jāmaina)
+//#define SUBJECT_H 19
+#define kPrivateSubjectXDiff (kIconWidth + kIconSpace)			// starpība starp publiskā un privātā raksta virsraksta X koordināti
+#define kPrivateSubjectX (kSubjectX + kPrivateSubjectXDiff)		// privāta raksta virsraksta X koordināte
+//#define kPrivateSubjectWidth (kSubjectWidth - kPrivateSubjectXDiff) // privāta raksta virsraksta platums (šo jāmaina)
 
 #define USER_FONT_SIZE 12
-#define USER_X (USER_ICON_X + ICON_W + ICON_SPACE)
+#define USER_X (kUserIconX + kIconWidth + kIconSpace)
 #define USER_Y 21
-#define USER_W (MAX_W - ICON_W - ICON_SPACE)
-#define USER_W_MAX 150
+// cUserWidth
+// cUserMaxWidth
 #define USER_H 15
 
 #define COMMUNITY_FONT_SIZE USER_FONT_SIZE
 
 #define DTR_FONT_SIZE 11
-#define DTR_X SUBJECT_X
+#define DTR_X kSubjectX
 #define DTR_Y 36
-#define DTR_W MAX_W
+// cDateTimeRepliesWidth
 #define DTR_H 13
 
 #define TEXT_FONT_SIZE 13
-#define TEXT_X SUBJECT_X
+#define TEXT_X kSubjectX
 #define TEXT_Y 49
-#define TEXT_W MAX_W
+// cTextWidth
 #define TEXT_H 32
 
 #define USERPIC_X 7
@@ -64,7 +65,7 @@
     if (self = [super initWithFrame:frame]) {
 		self.backgroundColor = [UIColor whiteColor];
 		
-		subjectFont = [UIFont fontWithName:@"Helvetica-Bold" size:SUBJECT_FONT_SIZE];
+		subjectFont = [UIFont fontWithName:@"Helvetica-Bold" size:kSubjectFontSize];
 		userFont = [UIFont fontWithName:@"Helvetica-Bold" size:USER_FONT_SIZE];
 		communityFont = [UIFont systemFontOfSize:COMMUNITY_FONT_SIZE];
 		dateTimeRepliesFont = [UIFont systemFontOfSize:DTR_FONT_SIZE];
@@ -74,13 +75,23 @@
 		
 		f = [[NSDateFormatter alloc] init];
 		[f setDateStyle:NSDateFormatterShortStyle];
-		[f setTimeStyle:NSDateFormatterShortStyle];		
+		[f setTimeStyle:NSDateFormatterShortStyle];
+		
+		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     }
     return self;
 }
 
 
 - (void)drawRect:(CGRect)rect {
+	CGFloat cMaxWidth = self.bounds.size.width - kSubjectX - kRightOffset;	// maksimālais platums
+	CGFloat cSubjectWidth = cMaxWidth;										// virsraksta platums
+	CGFloat cPrivateSubjectWidth = cSubjectWidth - kPrivateSubjectXDiff;	// privāta raksta virsraksta platums
+	
+	CGFloat cUserWidth = cMaxWidth;											// lietotāja vārda platums
+	CGFloat cDateTimeRepliesWidth = cMaxWidth;								// datuma, laika un atbilžu joslas platums
+	CGFloat cTextWidth = cMaxWidth;											// teksta platums
+	
 	UIColor *subjectColor;
 	UIColor *metaDataColor;
 	UIColor *textColor;
@@ -95,7 +106,7 @@
 		self.backgroundColor = [UIColor whiteColor];
 	}
 	
-	CGPoint point = CGPointMake(post.isPublic ? SUBJECT_X : PRIVATE_SUBJECT_X, SUBJECT_Y);
+	CGPoint point = CGPointMake(post.isPublic ? kSubjectX : kPrivateSubjectX, kSubjectY);
 
 	//virsraksts
 	NSString *subject = post.subjectPreview;
@@ -103,17 +114,17 @@
 		subject = @"(no subject)";
 	}
 	[subjectColor set];
-	[subject drawAtPoint:point forWidth:post.isPublic ? SUBJECT_W : PRIVATE_SUBJECT_W withFont:subjectFont fontSize:SUBJECT_FONT_SIZE lineBreakMode:UILineBreakModeTailTruncation baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
+	[subject drawAtPoint:point forWidth:post.isPublic ? cSubjectWidth : cPrivateSubjectWidth withFont:subjectFont fontSize:kSubjectFontSize lineBreakMode:UILineBreakModeTailTruncation baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
 	
 	if (!post.isPublic) {
 		// atslēdziņa
-		CGRect rect = CGRectMake(LOCK_ICON_X, LOCK_ICON_Y, ICON_W, ICON_H);
+		CGRect rect = CGRectMake(kLockIconX, kLockIconY, kIconWidth, kIconHeight);
 		UIImage *lockIcon = [UIImage imageNamed:@"lock.png"];
 		[lockIcon drawInRect:rect];
 	}
 	
 	// lietotāja ikona
-	rect = CGRectMake(USER_ICON_X, USER_ICON_Y, ICON_W, ICON_H);
+	rect = CGRectMake(kUserIconX, kUserIconY, kIconWidth, kIconHeight);
 	UIImage *userIcon = [UIImage imageNamed:@"user.png"];
 	[userIcon drawInRect:rect];
 	
@@ -121,14 +132,15 @@
 	// lietotāja vārds
 	[metaDataColor set];
 	if (community && !post.posterNameWidth) {
+		CGFloat cUserMaxWidth = cMaxWidth * 0.68f; // maksimāls platums, ko drīkst aizņemt lietotāja vārds
 		post.posterNameWidth = [post.poster sizeWithFont:userFont].width;
-		if (post.posterNameWidth > USER_W_MAX) {
-			post.posterNameWidth = USER_W_MAX;
+		if (post.posterNameWidth > cUserMaxWidth) {
+			post.posterNameWidth = cUserMaxWidth;
 		}
 	}
 	
 	point = CGPointMake(USER_X, USER_Y);
-	[post.poster drawAtPoint:point forWidth:community ? post.posterNameWidth : USER_W withFont:userFont fontSize:USER_FONT_SIZE lineBreakMode:UILineBreakModeTailTruncation baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
+	[post.poster drawAtPoint:point forWidth:community ? post.posterNameWidth : cUserWidth withFont:userFont fontSize:USER_FONT_SIZE lineBreakMode:UILineBreakModeTailTruncation baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
 	
 	if (community) {
 		// "iekš"
@@ -138,13 +150,13 @@
 		
 		// kopienas ikona
 		x += inWidth;
-		rect = CGRectMake(x, USER_ICON_Y, ICON_W, ICON_H);
+		rect = CGRectMake(x, kUserIconY, kIconWidth, kIconHeight);
 		UIImage *userIcon = [UIImage imageNamed:@"community.png"];
 		[userIcon drawInRect:rect];
 		
 		// kopienas nosaukums
-		x += ICON_W + ICON_SPACE;
-		CGFloat w = USER_ICON_X + MAX_W - x;
+		x += kIconWidth + kIconSpace;
+		CGFloat w = kUserIconX + cMaxWidth - x;
 		point = CGPointMake(x, USER_Y);
 		[post.journal drawAtPoint:point forWidth:w withFont:communityFont fontSize:COMMUNITY_FONT_SIZE lineBreakMode:UILineBreakModeTailTruncation baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
 	}
@@ -152,11 +164,11 @@
 	// datums, laiks, komentāru skaits
 	point = CGPointMake(DTR_X, DTR_Y);
     NSString *dtr = [NSString stringWithFormat:@"%@, %d%@ replies", [f stringFromDate:post.dateTime], [post.replyCount integerValue], post.updated ? @"" : @"*"];
-	[dtr drawAtPoint:point forWidth:DTR_W withFont:dateTimeRepliesFont fontSize:DTR_FONT_SIZE lineBreakMode:UILineBreakModeTailTruncation baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
+	[dtr drawAtPoint:point forWidth:cDateTimeRepliesWidth withFont:dateTimeRepliesFont fontSize:DTR_FONT_SIZE lineBreakMode:UILineBreakModeTailTruncation baselineAdjustment:UIBaselineAdjustmentAlignBaselines];
 	
 	// teksts
 	[textColor set];
-	rect = CGRectMake(TEXT_X, TEXT_Y, TEXT_W, TEXT_H);
+	rect = CGRectMake(TEXT_X, TEXT_Y, cTextWidth, TEXT_H);
 	[post.textPreview drawInRect:rect withFont:textFont lineBreakMode:UILineBreakModeTailTruncation];
 	
 	// userpic

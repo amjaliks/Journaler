@@ -25,6 +25,8 @@
 	
 	// kešs inicializēto kontrolierus glabāšanai
 	NSMutableDictionary *cacheTabBarControllers;
+	
+	IBOutlet UIBarButtonItem *settingsButton;
 }
 
 @property (nonatomic, retain) IBOutlet UIViewController *editAccountViewController;

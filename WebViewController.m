@@ -50,11 +50,9 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return YES;
 }
-
 
 - (void)dealloc {
 	[loggedinServers release];
@@ -102,7 +100,7 @@
 		} else if (i == 3) {
 			item.enabled = webView.canGoForward;
 		}
-		if (((i != 5 && loading) || (i != 6 && !loading)) && i <= 6) {
+		if (((i != 6 && loading) || (i != 7 && !loading)) && i <= 7) {
 			[items addObject:item];
 		}
 	}

@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -33,7 +33,7 @@
 			</object>
 			<object class="IBUIView" id="191373211">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">256</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIToolbar" id="993163724">
@@ -43,6 +43,7 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUIContentMode">6</int>
 						<int key="IBUITag">10</int>
 						<object class="NSMutableArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -54,10 +55,9 @@
 								</object>
 								<reference key="IBUIToolbar" ref="993163724"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="55911230">
-								<float key="IBUIWidth">2.500000e+01</float>
+							<object class="IBUIBarButtonItem" id="349843154">
 								<reference key="IBUIToolbar" ref="993163724"/>
-								<int key="IBUISystemItemIdentifier">6</int>
+								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="441784154">
 								<int key="IBUITag">3</int>
@@ -66,6 +66,10 @@
 									<string key="NSResourceName">forward.png</string>
 								</object>
 								<reference key="IBUIToolbar" ref="993163724"/>
+							</object>
+							<object class="IBUIBarButtonItem" id="841525166">
+								<reference key="IBUIToolbar" ref="993163724"/>
+								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="583307625">
 								<int key="IBUITag">4</int>
@@ -234,7 +238,8 @@
 							<reference ref="583307625"/>
 							<reference ref="1057474253"/>
 							<reference ref="615195042"/>
-							<reference ref="55911230"/>
+							<reference ref="841525166"/>
+							<reference ref="349843154"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -274,8 +279,13 @@
 						<reference key="parent" ref="367206086"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">22</int>
-						<reference key="object" ref="55911230"/>
+						<int key="objectID">23</int>
+						<reference key="object" ref="841525166"/>
+						<reference key="parent" ref="993163724"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">24</int>
+						<reference key="object" ref="349843154"/>
 						<reference key="parent" ref="993163724"/>
 					</object>
 				</object>
@@ -291,7 +301,8 @@
 					<string>10.IBPluginDependency</string>
 					<string>11.IBPluginDependency</string>
 					<string>19.IBPluginDependency</string>
-					<string>22.IBPluginDependency</string>
+					<string>23.IBPluginDependency</string>
+					<string>24.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
@@ -303,6 +314,7 @@
 					<string>WebViewController</string>
 					<string>UIResponder</string>
 					<string>{{386, 159}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -335,7 +347,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">22</int>
+			<int key="maxID">24</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

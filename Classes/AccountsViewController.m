@@ -46,6 +46,10 @@
 	
 	// virsraksts
 	self.navigationItem.title = @"Accounts";
+
+	NSArray *toolbarItems = [[NSArray alloc] initWithObjects:settingsButton, nil];
+	self.toolbarItems = toolbarItems;
+	[toolbarItems release];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,11 +58,21 @@
 		[self addAccount:nil];
 	}
 	[table deselectRowAtIndexPath:[table indexPathForSelectedRow] animated:YES];
+	[self.navigationController setToolbarHidden:NO animated:YES];	
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[[AccountManager sharedManager] setOpenedAccount:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	[self.navigationController setToolbarHidden:YES animated:YES];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,9 +83,8 @@
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
 	[editButtonItem release];
+	self.toolbarItems = nil;
 }
 
 - (void)openAccount:(LJAccount *)account animated:(BOOL)animated {
