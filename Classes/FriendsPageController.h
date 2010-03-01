@@ -29,8 +29,8 @@
 	UIBarButtonItem *refreshButtonItem;
 
 	// stāvokļa josla
-	UIView *statusLineView;
-	UILabel *statusLineLabel;
+	IBOutlet UIView *statusLineView;
+	IBOutlet UILabel *statusLineLabel;
 	NSUInteger statusLineShowed;
 	
 #ifdef LITEVERSION
@@ -40,10 +40,6 @@
 #endif
 	
 }
-
-// stāvokļa josla
-@property (nonatomic, retain) IBOutlet UIView *statusLineView;
-@property (nonatomic, retain) IBOutlet UILabel *statusLineLabel;
 
 #pragma mark Metodes
 

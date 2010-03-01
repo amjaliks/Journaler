@@ -20,10 +20,6 @@
 
 @implementation FriendsPageController
 
-// stāvokļa josla
-@synthesize statusLineView;
-@synthesize statusLineLabel;
-
 - (id)initWithAccount:(LJAccount *)aAccount {
     if (self = [super initWithNibName:@"FriendsPageController" bundle:nil]) {
 		account = [aAccount retain];
@@ -66,8 +62,8 @@
 	// stāvokļa josla
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
 }
-
 #endif
+
 
 #pragma mark Pogas
 
