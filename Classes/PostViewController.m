@@ -62,8 +62,10 @@
 	NSString *lockIconPath = [[NSBundle mainBundle] pathForResource:@"lock" ofType:@"png"];
 	lockIconReplace = [[NSString stringWithFormat:@"<img src=\"file://%@\" class=\"icon\"/> ", lockIconPath] retain];
 	
+	//webView.scalesPageToFit = YES;
 	webView = [[UIWebView alloc] initWithFrame:self.view.frame];
 	webView.delegate = self;
+	webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.view = webView;
 }
 
