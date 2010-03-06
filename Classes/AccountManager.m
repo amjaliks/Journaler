@@ -216,6 +216,13 @@ static AccountManager *sharedManager;
 	}
 }
 
+- (void)removeStateForAccount:(NSString *)account {
+	NSMutableDictionary *stateAccounts = [[self stateInfo] objectForKey:kStateInfoAccounts];
+	if (stateAccounts) {
+		[stateAccounts removeObjectForKey:account];
+	}
+}
+
 #pragma mark Atmiņas pārvaldīšana
 
 - (void)dealloc {

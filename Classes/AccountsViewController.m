@@ -159,6 +159,9 @@
 		[model deleteAllPostsForAccount:account.title];
 		[model saveAll];
 		
+		// nodzēšanam informāciju par konta stāvokli
+		[[AccountManager sharedManager] removeStateForAccount:account.title];
+		
 		// iztīram no keša konta "ekrānu"
 		[cacheTabBarControllers removeObjectForKey:account.title];
 		

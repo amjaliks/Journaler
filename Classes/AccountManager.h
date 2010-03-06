@@ -77,4 +77,7 @@ typedef enum {
 
 - (void)setOpenedAccount:(NSString *)account;
 
+// dzēšana
+- (void)removeStateForAccount:(NSString *)account;
+
 @end
