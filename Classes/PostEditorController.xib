@@ -44,8 +44,6 @@
 				<bool key="IBUIClipsSubviews">YES</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<bool key="IBUIBounces">NO</bool>
-				<bool key="IBUIScrollEnabled">NO</bool>
 				<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 				<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 				<bool key="IBUIBouncesZoom">NO</bool>
@@ -153,7 +151,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUITextView" id="301247697">
 								<reference key="NSNextResponder" ref="797412867"/>
-								<int key="NSvFlags">294</int>
+								<int key="NSvFlags">310</int>
 								<string key="NSFrameSize">{320, 315}</string>
 								<reference key="NSSuperview" ref="797412867"/>
 								<bool key="IBUIOpaque">NO</bool>

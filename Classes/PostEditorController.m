@@ -103,8 +103,10 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	BOOL landscape = [self isLandscape];		
-	textField.frame = textCell.frame = CGRectMake(0, 0, landscape ? 480 : 320, landscape ? (editing ? 74 : 168) : (editing ? 187 : 336));
-	[self.tableView reloadData];
+	textField.frame = 
+	//textCell.frame = 
+	CGRectMake(0, 0, landscape ? 480 : 320, landscape ? (editing ? 74 : 168) : (editing ? 187 : 336));
+	//[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:1 inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #ifndef LITEVERSION
@@ -157,8 +159,9 @@
 	if (indexPath.row == 0) {
 		return subjectCell.frame.size.height;
 	} else if (indexPath.row == 1) {
-		BOOL landscape = [self isLandscape];
-		return editing ? (landscape ? 74 : 168) : (landscape ? 187 : 336);
+		//BOOL landscape = [self isLandscape];
+		//return editing ? (landscape ? 74 : 168) : (landscape ? 187 : 336);
+		return 336;
 	}
     return 0;
 }
@@ -226,7 +229,6 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
 	[self startPostEditing];
-	
 	return YES;
 }
 
@@ -236,6 +238,7 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)_textField {
 	[self startPostEditing];
+	//[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 	return YES;
 }
 
@@ -256,9 +259,11 @@
 		[self.parentViewController.navigationItem setLeftBarButtonItem:optionsButton animated:YES];
 		
 		BOOL landscape = [self isLandscape];		
-		textField.frame = textCell.frame = CGRectMake(0, 0, landscape ? 480 : 320, landscape ? 74 : 168);
+		textField.frame = 
+		//textCell.frame = 
+		CGRectMake(0, 0, landscape ? 480 : 320, landscape ? 74 : 168);
 		
-		[self.tableView reloadData];
+		//[self.tableView reloadData];
 	}
 }
 
@@ -279,9 +284,11 @@
 #endif
 
 		BOOL landscape = [self isLandscape];		
-		textField.frame = textCell.frame = CGRectMake(0, 0, landscape ? 480 : 320, landscape ? 187 : 336);
+		textField.frame =
+		//textCell.frame 
+		CGRectMake(0, 0, landscape ? 480 : 320, landscape ? 187 : 336);
 		
-		[self.tableView reloadData];
+		//[self.tableView reloadData];
 	}
 }
 
@@ -303,6 +310,11 @@
 		[[AccountManager sharedManager] setValue:subjectField.text forAccount:account.title forKey:kStateInfoNewPostSubject];
 		[[AccountManager sharedManager] setValue:textField.text forAccount:account.title forKey:kStateInfoNewPostText];
 	}
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	[self.tableView setContentOffset:CGPointZero];
+	NSLog(@"!");	
 }
 
 @end
