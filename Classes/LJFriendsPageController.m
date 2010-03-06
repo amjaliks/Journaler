@@ -26,6 +26,7 @@
     if (self = [super initWithAccount:aAccount]) {
 		// rakstu masīva inicializācija
 		loadedPosts = [[NSMutableArray alloc] init];
+		postsPendingRemoval = [[NSMutableArray alloc] init];
 		
 		// kešs
 		cachedPostViewControllers = [[NSMutableDictionary alloc] init];
@@ -372,8 +373,8 @@
 			
 			while ([loadedPosts count] > 100) {
 				Post *last = [loadedPosts lastObject];
-				[model deletePost:last];
 				[loadedPosts removeLastObject];
+				[postsPendingRemoval addObject:last];
 			}
 			
 			[model saveAll];
@@ -403,6 +404,14 @@
 				}
 				[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[displayedPosts count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 			}
+			
+			// pēc tabula pārlādes, izdzēšam vecus rakstus no keša
+			Model *model = APP_MODEL;
+			for (Post *post in postsPendingRemoval) {
+				[model deletePost:post];
+			}
+			[postsPendingRemoval removeAllObjects];
+			[model saveAll];
 		}
 	}
 }
@@ -510,6 +519,7 @@
 
 - (void)dealloc {
 	[loadedPosts release];
+	[postsPendingRemoval release];
 	[cachedPostViewControllers release];
 	
 #ifdef LITEVERSION

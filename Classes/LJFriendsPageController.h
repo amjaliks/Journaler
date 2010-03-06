@@ -17,6 +17,8 @@
 	// ielasīti raksti
 	NSMutableArray *loadedPosts;
 	NSArray *displayedPosts;
+	// masīvs ar rakstiem, kurus jādzēš
+	NSMutableArray *postsPendingRemoval;
 	
 	// tabula
 	UITableView *tableView;
