@@ -79,9 +79,6 @@
 	optionsButton = [[UIBarButtonItem alloc] initWithTitle:@"Options" style:UIBarButtonItemStyleBordered target:self action:@selector(openOptions)];
 
 	postButton.enabled = NO;
-	textField.frame = CGRectMake(0, 0, 320, 336);
-	textCell.frame = CGRectMake(0, 0, 320, 336);
-	[self.tableView reloadData];
 	
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	
@@ -95,18 +92,10 @@
 	[self.postOptionsController.selectedFriendGroups addObjectsFromArray:[[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostSelectedFriendGroups]];
 	
 	[[AccountManager sharedManager] registerPostEditorController:self];
-	
-//	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-//	[nc addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
-//	[nc addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	BOOL landscape = [self isLandscape];		
-	textField.frame = 
-	//textCell.frame = 
-	CGRectMake(0, 0, landscape ? 480 : 320, landscape ? (editing ? 74 : 168) : (editing ? 187 : 336));
-	//[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:1 inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
+	[self resizeTextView];
 }
 
 #ifndef LITEVERSION
@@ -114,6 +103,8 @@
 	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
 }
 #endif
+
+
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -130,6 +121,10 @@
 	[postOptionsController release];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self resizeTextView];
+}
 
 #pragma mark Table view methods
 
@@ -150,7 +145,6 @@
 		return subjectCell;
 	} else if (indexPath.row == 1) {
 		return textCell;
-		//return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"a"];
 	}
     return nil;
 }
@@ -159,8 +153,6 @@
 	if (indexPath.row == 0) {
 		return subjectCell.frame.size.height;
 	} else if (indexPath.row == 1) {
-		//BOOL landscape = [self isLandscape];
-		//return editing ? (landscape ? 74 : 168) : (landscape ? 187 : 336);
 		return 336;
 	}
     return 0;
@@ -238,17 +230,11 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)_textField {
 	[self startPostEditing];
-	//[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 	return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)_textField {
 	return [textField becomeFirstResponder];
-}
-
-- (BOOL)isLandscape {
-	UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-	return UIDeviceOrientationIsLandscape(orientation);
 }
 
 - (void)startPostEditing {
@@ -258,12 +244,7 @@
 		[self.parentViewController.navigationItem setRightBarButtonItem:doneButton animated:YES];
 		[self.parentViewController.navigationItem setLeftBarButtonItem:optionsButton animated:YES];
 		
-		BOOL landscape = [self isLandscape];		
-		textField.frame = 
-		//textCell.frame = 
-		CGRectMake(0, 0, landscape ? 480 : 320, landscape ? 74 : 168);
-		
-		//[self.tableView reloadData];
+		[self resizeTextView];
 	}
 }
 
@@ -283,13 +264,15 @@
 		[self.parentViewController.navigationItem setLeftBarButtonItem:((AccountTabBarController *)self.tabBarController).accountButton animated:YES];
 #endif
 
-		BOOL landscape = [self isLandscape];		
-		textField.frame =
-		//textCell.frame 
-		CGRectMake(0, 0, landscape ? 480 : 320, landscape ? 187 : 336);
-		
-		//[self.tableView reloadData];
+		[self resizeTextView];
 	}
+}
+
+- (void)resizeTextView {
+	UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+	BOOL landscape = UIDeviceOrientationIsLandscape(orientation);
+	
+	textField.frame = CGRectMake(0, 0, landscape ? 480 : 320, editing ? (landscape ? 74 : 168) : (landscape ? 187 : 336));
 }
 
 - (PostOptionsController *)postOptionsController {
