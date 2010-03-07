@@ -58,7 +58,6 @@
 - (void)endPostEditing;
 
 - (void)resizeTextView;
-- (BOOL)isLandscape;
 
 - (void)saveState;
 
