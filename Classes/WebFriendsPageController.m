@@ -50,9 +50,9 @@
 	self.view.autoresizingMask =
 	webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	
-#ifdef LITEVERSION
-	[self initAdMobView];
-#endif
+//#ifdef LITEVERSION
+//	[self initAdMobView];
+//#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -131,9 +131,9 @@
 	[self hideStatusLine];
 	refreshButtonItem.enabled = YES;
 	
-#ifdef LITEVERSION
-	[self refreshAdMobView];
-#endif
+//#ifdef LITEVERSION
+//	[self refreshAdMobView];
+//#endif
 }
 
 - (BOOL)webView:(UIWebView *)webView_ shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -151,16 +151,16 @@
 	}
 }
 
-#ifdef LITEVERSION
-- (NSString *)keywords {
-	NSString *subject = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-	if (subject) {
-		return subject;
-	};
-
-	// ja neko neizdevās atrast, izmantojam iebūvētos atslēgas vārdus
-	return [super keywords]; 
-}
-#endif
+//#ifdef LITEVERSION
+//- (NSString *)keywords {
+//	NSString *subject = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+//	if (subject) {
+//		return subject;
+//	};
+//
+//	// ja neko neizdevās atrast, izmantojam iebūvētos atslēgas vārdus
+//	return [super keywords]; 
+//}
+//#endif
 
 @end

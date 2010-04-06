@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-#ifdef LITEVERSION
-	#import "AdMobDelegateProtocol.h"
-	#define LITEVERSION_PROTOCOLS <AdMobDelegate>
-	@class AdMobView;
-#else
-	#define LITEVERSION_PROTOCOLS
-#endif
+//#ifdef LITEVERSION
+//	#import "AdMobDelegateProtocol.h"
+//	#define LITEVERSION_PROTOCOLS <AdMobDelegate>
+//	@class AdMobView;
+//#else
+//	#define LITEVERSION_PROTOCOLS
+//#endif
 
 @class LJAccount;
 
-@interface FriendsPageController : UIViewController LITEVERSION_PROTOCOLS {
+@interface FriendsPageController : UIViewController { //LITEVERSION_PROTOCOLS {
 	// konts
 	LJAccount *account;
 	
@@ -33,11 +33,11 @@
 	IBOutlet UILabel *statusLineLabel;
 	NSUInteger statusLineShowed;
 	
-#ifdef LITEVERSION
-	// reklāmas lauciņš
-	AdMobView *adMobView;
-	NSDate *adMobLastRefresh;
-#endif
+//#ifdef LITEVERSION
+//	// reklāmas lauciņš
+//	AdMobView *adMobView;
+//	NSDate *adMobLastRefresh;
+//#endif
 	
 }
 
@@ -51,10 +51,10 @@
 - (void) showStatusLine;
 - (void) hideStatusLine;
 
-#ifdef LITEVERSION
-// reklāma
-- (void)initAdMobView;
-- (void)refreshAdMobView;
-#endif
+//#ifdef LITEVERSION
+//// reklāma
+//- (void)initAdMobView;
+//- (void)refreshAdMobView;
+//#endif
 
 @end

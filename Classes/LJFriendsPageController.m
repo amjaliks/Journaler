@@ -59,9 +59,9 @@
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;// || UIView;
 	
-#ifdef LITEVERSION
-	[self initAdMobView];
-#endif
+//#ifdef LITEVERSION
+//	[self initAdMobView];
+//#endif
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
@@ -226,9 +226,9 @@
 
 		refreshButtonItem.enabled = YES;
 		
-#ifdef LITEVERSION
-		[self refreshAdMobView];
-#endif
+//#ifdef LITEVERSION
+//		[self refreshAdMobView];
+//#endif
 
 		[pool release];
 	}
@@ -285,9 +285,9 @@
 		// parādam stāvokļa joslu
 		[self hideStatusLine];
 		
-#ifdef LITEVERSION
-		[self refreshAdMobView];
-#endif
+//#ifdef LITEVERSION
+//		[self refreshAdMobView];
+//#endif
 
 		[pool release];
 	}
@@ -523,10 +523,10 @@
 	[postsPendingRemoval release];
 	[cachedPostViewControllers release];
 	
-#ifdef LITEVERSION
-	// ar reklāmām saistītie resursi
-	[adMobView release];
-#endif
+//#ifdef LITEVERSION
+//	// ar reklāmām saistītie resursi
+//	[adMobView release];
+//#endif
 	
 	[super dealloc];
 }
@@ -546,9 +546,9 @@
 		[self reloadTable];
 	}
 	
-#ifdef LITEVERSION
-	[self refreshAdMobView];
-#endif
+//#ifdef LITEVERSION
+//	[self refreshAdMobView];
+//#endif
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -561,38 +561,38 @@
 	[self scrollViewDidEndDecelerating:scrollView];
 }
 
-#ifdef LITEVERSION
-- (NSString *)keywords {
-	if (selectedPostSubject) {
-		// ja ir "iegaumēts" pēdējā lasītā raksta virsraksts, tad izmantojam to
-		return selectedPostSubject;
-	};
-	
-	for (NSIndexPath *indexPath in [tableView indexPathsForVisibleRows]) {
-		Post *post = [displayedPosts objectAtIndex:indexPath.row];
-		if (post.subject) {
-			// tad mēģinam atrast virsrakstu kādam no redzamajiem rakstiem
-			return post.subjectPreview;
-		}
-	}
-	
-	for (Post *post in displayedPosts) {
-		if (post.subject) {
-			// tad mēģinam atrast vismaz vienu virsrakstu
-			return post.subjectPreview;
-		}
-	}
-	
-	// ja neko neizdevās atrast, izmantojam iebūvētos atslēgas vārdus
-	return [super keywords]; 
-}
-
-- (void)refreshAdMobView {
-	[super refreshAdMobView];
-	selectedPostSubject = nil;
-}
-
-#endif
+//#ifdef LITEVERSION
+//- (NSString *)keywords {
+//	if (selectedPostSubject) {
+//		// ja ir "iegaumēts" pēdējā lasītā raksta virsraksts, tad izmantojam to
+//		return selectedPostSubject;
+//	};
+//	
+//	for (NSIndexPath *indexPath in [tableView indexPathsForVisibleRows]) {
+//		Post *post = [displayedPosts objectAtIndex:indexPath.row];
+//		if (post.subject) {
+//			// tad mēģinam atrast virsrakstu kādam no redzamajiem rakstiem
+//			return post.subjectPreview;
+//		}
+//	}
+//	
+//	for (Post *post in displayedPosts) {
+//		if (post.subject) {
+//			// tad mēģinam atrast vismaz vienu virsrakstu
+//			return post.subjectPreview;
+//		}
+//	}
+//	
+//	// ja neko neizdevās atrast, izmantojam iebūvētos atslēgas vārdus
+//	return [super keywords]; 
+//}
+//
+//- (void)refreshAdMobView {
+//	[super refreshAdMobView];
+//	selectedPostSubject = nil;
+//}
+//
+//#endif
 
 @end
 

@@ -13,10 +13,10 @@
 #import "AccountManager.h"
 
 
-#ifdef LITEVERSION
-// Lite versijā ir reklāma
-#import "AdMobView.h"
-#endif
+//#ifdef LITEVERSION
+//// Lite versijā ir reklāma
+//#import "AdMobView.h"
+//#endif
 
 @implementation FriendsPageController
 
@@ -47,9 +47,9 @@
 	[super viewDidAppear:animated];
 	[[AccountManager sharedManager] setUnsignedIntegerValue:OpenedScreenFriendsPage forAccount:account.title forKey:kStateInfoOpenedScreenType];
 	
-#ifdef LITEVERSION
-	[self refreshAdMobView];
-#endif
+//#ifdef LITEVERSION
+//	[self refreshAdMobView];
+//#endif
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
 }
 
@@ -95,82 +95,82 @@
 }
 
 
-#ifdef LITEVERSION
+//#ifdef LITEVERSION
 
-#pragma mark Reklāma
-
-- (void)initAdMobView {
-	adMobView = [AdMobView requestAdWithDelegate:self];
-	[adMobView retain];
-	adMobLastRefresh = [[NSDate alloc] init];
-}
-
-- (void)refreshAdMobView {
-	NSTimeInterval interval = [adMobLastRefresh timeIntervalSinceNow];
-	if (interval <= -30.0f) {
-		[adMobView requestFreshAd];
-		[adMobLastRefresh release];
-		adMobLastRefresh = [[NSDate alloc] init];
-	}
-}
-
-- (NSString *)publisherId {
-	return @"a14ae77c080ab49"; // this should be prefilled; if not, get it from www.admob.com
-}
-
-- (UIColor *)adBackgroundColor {
-	return [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
-}
-
-- (UIColor *)primaryTextColor {
-	return [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-}
-
-- (UIColor *)secondaryTextColor {
-	return [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-}
-
-- (BOOL)mayAskForLocation {
-	return NO;
-}
-
-- (void)didReceiveAd:(AdMobView *)adView {
-	CGRect frame = friendsPageView.frame;
-	frame.origin.y += 48;
-	frame.size.height -= 48;
-	friendsPageView.frame = frame;
-	
-	[self.view addSubview:adView];
-}
-
-- (void)didFailToReceiveAd:(AdMobView *)adView {
-	[adMobView release];
-}
-
-// To receive test ads rather than real ads...
-#ifdef DEBUG
-- (BOOL)useTestAd {
-	return YES;
-}
-
-- (NSString *)testAdAction {
-	return @"url"; // see AdMobDelegateProtocol.h for a listing of valid values here
-}
-#endif
-
-- (NSString *)keywords {
-	return @"livejournal friends"; 
-}
-
-
-#endif
+//#pragma mark Reklāma
+//
+//- (void)initAdMobView {
+//	adMobView = [AdMobView requestAdWithDelegate:self];
+//	[adMobView retain];
+//	adMobLastRefresh = [[NSDate alloc] init];
+//}
+//
+//- (void)refreshAdMobView {
+//	NSTimeInterval interval = [adMobLastRefresh timeIntervalSinceNow];
+//	if (interval <= -30.0f) {
+//		[adMobView requestFreshAd];
+//		[adMobLastRefresh release];
+//		adMobLastRefresh = [[NSDate alloc] init];
+//	}
+//}
+//
+//- (NSString *)publisherId {
+//	return @"a14ae77c080ab49"; // this should be prefilled; if not, get it from www.admob.com
+//}
+//
+//- (UIColor *)adBackgroundColor {
+//	return [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+//}
+//
+//- (UIColor *)primaryTextColor {
+//	return [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+//}
+//
+//- (UIColor *)secondaryTextColor {
+//	return [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+//}
+//
+//- (BOOL)mayAskForLocation {
+//	return NO;
+//}
+//
+//- (void)didReceiveAd:(AdMobView *)adView {
+//	CGRect frame = friendsPageView.frame;
+//	frame.origin.y += 48;
+//	frame.size.height -= 48;
+//	friendsPageView.frame = frame;
+//	
+//	[self.view addSubview:adView];
+//}
+//
+//- (void)didFailToReceiveAd:(AdMobView *)adView {
+//	[adMobView release];
+//}
+//
+//// To receive test ads rather than real ads...
+//#ifdef DEBUG
+//- (BOOL)useTestAd {
+//	return YES;
+//}
+//
+//- (NSString *)testAdAction {
+//	return @"url"; // see AdMobDelegateProtocol.h for a listing of valid values here
+//}
+//#endif
+//
+//- (NSString *)keywords {
+//	return @"livejournal friends"; 
+//}
+//
+//
+//#endif
 
 - (void)dealloc {
-#ifdef LITEVERSION
-	// ar reklāmām saistītie resursi
-//	[adMobView release];
-	[adMobLastRefresh release];
-#endif
+//#ifdef LITEVERSION
+//	// ar reklāmām saistītie resursi
+////	[adMobView release];
+//	[adMobLastRefresh release];
+//#endif
 	[account release];
 	[super dealloc];
 }
