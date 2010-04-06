@@ -16,6 +16,7 @@
 #import "LiveJournal.h"
 #import "Macros.h"
 #import "AccountManager.h"
+#import "ALReporter.h"
 
 @implementation AccountTabBarController
 
@@ -136,6 +137,12 @@
 	}
 	account = [newAccount retain];
 	
+	[self sendReport];
+}
+
+- (void)sendReport {
+	ALReporter *reporter = ((JournalerAppDelegate *)[UIApplication sharedApplication].delegate).reporter;
+	[reporter setObject:account.server forProperty:@"server"];
 }
 
 #endif

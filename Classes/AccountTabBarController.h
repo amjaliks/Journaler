@@ -40,6 +40,7 @@
 
 #ifdef LITEVERSION
 - (void) editAccount;
+- (void) sendReport;
 #endif
 
 @end
