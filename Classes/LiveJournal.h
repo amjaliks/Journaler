@@ -26,6 +26,7 @@ enum {
 	LJErrorMalformedRespone = -9,
 	LJErrorInvalidUsername = 100,
 	LJErrorInvalidPassword = 101,
+	LJErrorIncorrectTimeValue = 153,
 	LJErrorAccessIPBanDueLoginFailureRate = 402
 };
 

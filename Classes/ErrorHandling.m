@@ -29,6 +29,8 @@ NSString * decodeError(NSInteger code) {
 		text = @"Invalid username.";
 	} else if (LJErrorInvalidPassword == code) {
 		text = @"Invalid password.";
+	} else if (LJErrorIncorrectTimeValue == code) {
+		text = @"You have an entry with the date and time in future. Edit that entry to use the \"Date Out of Order\", before you can post a new post.";
 	} else if (LJErrorMalformedRespone == code) {
 		text = @"Can't understand server response.";
 	} else if (LJErrorAccessIPBanDueLoginFailureRate == code) {
