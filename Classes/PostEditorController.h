@@ -43,7 +43,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *postButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
 
-@property (readonly) PostOptionsController *postOptionsController;
+// @property (readonly) PostOptionsController *postOptionsController;
 
 @property (nonatomic, retain) IBOutlet id<PostEditorControllerDataSource> dataSource;
 @property (nonatomic, retain) IBOutlet id<PostEditorControllerDelegate> delegate;

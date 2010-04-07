@@ -8,7 +8,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface Post :  NSManagedObject {
+@interface Post : NSManagedObject {
 	NSString *uniqueKey;
 
 	NSString *textPreview;

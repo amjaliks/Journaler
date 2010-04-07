@@ -13,25 +13,6 @@
 #import "ErrorHandling.h"
 #import "AccountManager.h"
 
-//void showErrorMessage(NSUInteger code) {
-//	NSString *text;
-//	if (LJErrorHostNotFound == code) {
-//		text = @"Can't find server";
-//	} else if (LJErrorConnectionFailed == code) {
-//		text = @"Can't connect to server";
-//	} else if (LJErrorInvalidUsername == code) {
-//		text = @"Invalid username";
-//	} else if (LJErrorInvalidPassword == code) {
-//		text = @"Invalid password";
-//	} else {
-//		text = @"Unknown error";
-//	}
-//	
-//	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login error" message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//	[alert show];
-//	[alert release];
-//}
-
 
 @implementation PostEditorController
 
@@ -46,15 +27,6 @@
 
 @synthesize dataSource;
 @synthesize delegate;
-
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
-}
-*/
 
 - (id)initWithAccount:(LJAccount *)newAccount {
 	if (self = [super initWithNibName:@"PostEditorController" bundle:nil]) {
@@ -84,12 +56,16 @@
 	
 	textField.text = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostText];
 	subjectField.text = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostSubject];
+	
+	postOptionsController = [[PostOptionsController alloc] initWithAccount:account];
+	postOptionsController.dataSource = self;
+	
 	NSString *journal = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostJournal];
 	if (journal) {
-		self.postOptionsController.journal = journal;
+		postOptionsController.journal = journal;
 	}
-	self.postOptionsController.security = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoNewPostSecurity];
-	[self.postOptionsController.selectedFriendGroups addObjectsFromArray:[[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostSelectedFriendGroups]];
+	postOptionsController.security = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoNewPostSecurity];
+	[postOptionsController.selectedFriendGroups addObjectsFromArray:[[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostSelectedFriendGroups]];
 	
 	[[AccountManager sharedManager] registerPostEditorController:self];
 }
@@ -170,7 +146,7 @@
 }
 
 - (IBAction) post:(id)sender {
-	if (![account.user isEqualToString:self.postOptionsController.journal] && self.postOptionsController.security == PostSecurityPrivate) {
+	if (![account.user isEqualToString:postOptionsController.journal] && postOptionsController.security == PostSecurityPrivate) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post error" message:@"Can't post private message to the community." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
 		[alert release];
@@ -178,7 +154,7 @@
 	}
 		
 	NSString *text = textField.text;
-	if (self.postOptionsController.promote) {
+	if (postOptionsController.promote) {
 		text = [text stringByAppendingString:@"\n<p><em><small>Posted via <a href=\"http://journalerapp.com/?utm_source=livejournal&amp;utm_medium=post-via-link&amp;utm_campaign=post-via-link\">Journaler</a>.</small></em></p>"];
 	}
 	
@@ -191,9 +167,9 @@
 	LJNewEvent *event = [[LJNewEvent alloc] init];
 	event.subject = subjectField.text;
 	event.event = text;
-	event.journal = self.postOptionsController.journal;
-	event.security = self.postOptionsController.security;
-	event.selectedFriendGroups = self.postOptionsController.selectedFriendGroups;
+	event.journal = postOptionsController.journal;
+	event.security = postOptionsController.security;
+	event.selectedFriendGroups = postOptionsController.selectedFriendGroups;
 	
 	NSError *error;
 	if ([[LJManager defaultManager] postEvent:event forAccount:account error:&error]) {
@@ -214,7 +190,7 @@
 }
 
 - (void)openOptions {
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.postOptionsController];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:postOptionsController];
 	[self presentModalViewController:navigationController animated:YES];
 	[navigationController release];
 }
@@ -273,15 +249,6 @@
 	BOOL landscape = UIDeviceOrientationIsLandscape(orientation);
 	
 	textField.frame = CGRectMake(0, 0, landscape ? 480 : 320, editing ? (landscape ? 74 : 168) : (landscape ? 187 : 336));
-}
-
-- (PostOptionsController *)postOptionsController {
-	if (!postOptionsController) {
-		postOptionsController = [[PostOptionsController alloc] initWithAccount:account];
-		postOptionsController.dataSource = self;
-	}
-	
-	return postOptionsController;
 }
 
 - (LJAccount *)selectedAccount {
