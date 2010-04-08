@@ -68,8 +68,7 @@
 - (void) openURL:(NSURL *)url account:(LJAccount *)account {
 	[self updateToolbarButtons:NO];
 
-	[webView removeFromSuperview];
-	[webView stopLoading];
+	[webView setAlpha:0.0f];
 	
 	[self createSessionForAccount:account silent:YES];
 	[webView loadRequest:[NSURLRequest requestWithURL:url]];
@@ -80,7 +79,8 @@
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
 	[[NetworkActivityIndicator sharedInstance] hide];
 
-	[self.view addSubview:webView];
+	//[self.view addSubview:webView];
+	[webView setAlpha:1.0f];
 	[activityIndicatorView stopAnimating];
 	[self updateToolbarButtons:NO];
 	self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
