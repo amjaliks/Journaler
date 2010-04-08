@@ -17,6 +17,7 @@
 	#import "AccountsViewController.h"
 #else
 	#import "AccountTabBarController.h"
+	#import "SelfAdViewController.h"
 #endif
 
 @implementation JournalerAppDelegate
@@ -36,8 +37,8 @@
 #else
 	NSString *appUID = @"LrAKgAl3bA"; // lite versija
 #endif
-	reporter = [[ALReporter alloc] initWithAppUID:appUID reportURL:[NSURL URLWithString:@"http://tomcat.keeper.lv/anl/report"]];	
-    
+	reporter = [[ALReporter alloc] initWithAppUID:appUID reportURL:[NSURL URLWithString:@"http://tomcat.keeper.lv/anl/report"]];
+	
 	model = [[Model alloc] init];
 	userPicCache = [[UserPicCache alloc] init];
 	
@@ -67,6 +68,27 @@
 #endif
 	
 	[window addSubview:navigationController.view];
+	
+#ifdef LITEVERSION
+	NSString *docDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+	NSString *nextSelfAdShowTimePath = [docDirPath stringByAppendingPathComponent:@"nextSelfAdShowTime.bin"];
+	NSDate *nextSelfAdShowTime = [NSKeyedUnarchiver unarchiveObjectWithFile:nextSelfAdShowTimePath];
+	
+	if (nextSelfAdShowTime) {
+		if ([nextSelfAdShowTime compare:[NSDate date]] != NSOrderedDescending) {
+			SelfAdViewController *selfAdViewController = [[SelfAdViewController alloc] initWithNibName:@"SelfAdViewController" bundle:nil];
+			[navigationController presentModalViewController:selfAdViewController animated:NO];
+			[selfAdViewController startCountDown];
+			[selfAdViewController release];
+			
+			nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(7.0f * 24.0f * 3600.0f)];
+			[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
+		}
+	} else {
+		nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
+		[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
+	}
+#endif
 	
     [window makeKeyAndVisible];
 }
