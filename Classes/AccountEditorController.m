@@ -76,35 +76,6 @@
 	self.navigationItem.leftBarButtonItem = [dataSource hasNoAccounts] ? nil : cancelButton;
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//	
-//	LJAccount *account = [dataSource selectedAccount];
-//	
-//#ifdef LITEVERSION
-//	newAccount = account == nil;
-//#endif
-//	
-//	if (account) {
-//		self.title = @"Edit account";
-//		usernameText.text = account.user;
-//		passwordText.text = account.password;
-//		serverText.text = account.server;
-//	} else {
-//#ifdef LITEVERSION
-//		self.title = @"Set account";
-//#else
-//		self.title = @"Add account";
-//#endif
-//		usernameText.text = nil;
-//		passwordText.text = nil;
-//		serverText.text = nil;
-//	}
-//	
-//	doneButton.enabled = NO;
-//	self.navigationItem.leftBarButtonItem = [dataSource hasNoAccounts] ? nil : cancelButton;
-//}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 	[usernameText becomeFirstResponder];

@@ -11,6 +11,8 @@
 #import "Settings.h"
 #import "SettingsStartUpScreenController.h"
 
+#define kStringTable @"AppSettings"
+
 @implementation SettingsController
 
 @synthesize refreshOnStartCell;
@@ -40,7 +42,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -48,27 +50,26 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSUInteger row = indexPath.row;
+	NSUInteger section = indexPath.section;
 	
 	NSString *cellId;
-	if (row == 0) {
+	if (section == 0) {
 		cellId = @"RefreshOnStart";
 	} else {
-		cellId = @"Cell";
+		cellId = @"About";
 	}
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil) {
-		if (row == 0) {
+		if (section == 0) {
 			cell = refreshOnStartCell;
 			UISwitch *sw = (UISwitch *)[cell viewWithTag:1];
 			sw.on = DEFAULT_BOOL(kSettingsRefreshOnStart);
 		} else {
 			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			
-			cell.textLabel.text = @"Start up screen";
-			cell.detailTextLabel.text = [SettingsController decodeStartUpScreenValue:[[NSUserDefaults standardUserDefaults] stringForKey:kSettingsStartUpScreen]];
+			cell.textLabel.text = NSLocalizedStringFromTable(@"Version", @"Version", kStringsTable);
+			cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
 		}
     }
 	
@@ -81,6 +82,10 @@
 		[self.navigationController pushViewController:controller animated:YES];
 		[controller release];
 	}
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	return section == 0 ? NSLocalizedStringFromTable(@"General", @"General", kStringsTable) : NSLocalizedStringFromTable(@"About", @"About", kStringsTable);
 }
 
 #pragma mark Iestatījum izmaiņu apstrāde
