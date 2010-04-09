@@ -132,6 +132,7 @@
 	selectedAccount = [accounts objectAtIndex:indexPath.row];
 	if (tableView.editing) {
 		selectedAccountTitle = [selectedAccount.title retain];
+		[(AccountEditorController*) editAccountViewController.visibleViewController setAccount:selectedAccount];
 		[self presentModalViewController:editAccountViewController animated:YES];
 	} else {
 		[self openAccount:selectedAccount animated:YES];
@@ -208,6 +209,7 @@
 // Parāda konta parametrus
 - (IBAction) addAccount:(id)sender {
 	selectedAccount = nil;
+	[(AccountEditorController *)editAccountViewController.visibleViewController setAccount:nil];
 	[self presentModalViewController:editAccountViewController animated:YES];
 }
 

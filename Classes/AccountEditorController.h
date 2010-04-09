@@ -50,6 +50,8 @@
 - (IBAction) saveAccount:(id)sender;
 - (IBAction) textFieldChanged:(id)sender;
 
+- (void)setAccount:(LJAccount *)account;
+
 @end
 
 

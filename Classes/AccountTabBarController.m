@@ -98,12 +98,14 @@
 }
 
 - (void)editAccount {
-	AccountEditorController  *accountEditorController = [[AccountEditorController alloc] initWithNibName:@"AccountEditorController" bundle:nil];
+	AccountEditorController *accountEditorController = [[AccountEditorController alloc] initWithNibName:@"AccountEditorController" bundle:nil];
 	accountEditorController.dataSource = self;
 	accountEditorController.delegate = self;
 	
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:accountEditorController];
 	
+	[accountEditorController view];
+	[accountEditorController setAccount:account];
 	[self presentModalViewController:navigationController animated:YES];
 	
 	[navigationController release];

@@ -11,7 +11,7 @@
 
 // kontu saraksta kontrolieris
 @interface AccountsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AccountEditorControllerDataSource, AccountEditorControllerDelegate> {
-	UIViewController *editAccountViewController;
+	UINavigationController *editAccountViewController;
 	UIViewController *accountViewController;
 	
 	UITableView *table;

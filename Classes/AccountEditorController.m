@@ -51,11 +51,7 @@
 }
 #endif
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-	
-	LJAccount *account = [dataSource selectedAccount];
-	
+- (void)setAccount:(LJAccount *)account {
 #ifdef LITEVERSION
 	newAccount = account == nil;
 #endif
@@ -79,6 +75,35 @@
 	doneButton.enabled = NO;
 	self.navigationItem.leftBarButtonItem = [dataSource hasNoAccounts] ? nil : cancelButton;
 }
+
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//	
+//	LJAccount *account = [dataSource selectedAccount];
+//	
+//#ifdef LITEVERSION
+//	newAccount = account == nil;
+//#endif
+//	
+//	if (account) {
+//		self.title = @"Edit account";
+//		usernameText.text = account.user;
+//		passwordText.text = account.password;
+//		serverText.text = account.server;
+//	} else {
+//#ifdef LITEVERSION
+//		self.title = @"Set account";
+//#else
+//		self.title = @"Add account";
+//#endif
+//		usernameText.text = nil;
+//		passwordText.text = nil;
+//		serverText.text = nil;
+//	}
+//	
+//	doneButton.enabled = NO;
+//	self.navigationItem.leftBarButtonItem = [dataSource hasNoAccounts] ? nil : cancelButton;
+//}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -166,47 +191,6 @@
 	return @"Enter username and password for your account. If using a LiveJournal clone enter the server name as well.";
 #endif
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 - (void)dealloc {
     [super dealloc];
