@@ -14,6 +14,7 @@
 #import "PostSecurityController.h"
 #import "AccountManager.h"
 #import "TagsCellView.h"
+#import "TagListController.h"
 
 // šūnu veidi
 enum {
@@ -32,6 +33,30 @@ NSString *cellIds[] = {
 // skatu tagi
 enum {
 	SwitchTag = 1
+};
+
+// sekcijas
+enum {
+	SectionBasic, // raksta pamatdati
+#ifdef BETA
+	SectionAdditional, // papildus dati par rakstu
+#endif
+	SectionPromote // promote
+	
+};
+
+// pamatdati
+enum {
+	SectionBasicRowJournal,
+	SectionBasicRowSecurity
+};
+
+enum {
+	SectionAdditionalRowTags
+};
+
+enum {
+	SecrionPromoteRowPromote
 };
 
 @implementation PostOptionsController
@@ -210,7 +235,6 @@ enum {
     return cell;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
 		if (indexPath.row == 0) {
@@ -224,6 +248,20 @@ enum {
 		}
 	}
 }
+
+#ifdef BETA
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == SectionAdditional && indexPath.row == SectionAdditionalRowTags) {
+		// nolasam tagus
+		[self tagsChanged:[tableView cellForRowAtIndexPath:indexPath]];
+
+		// atveram tagu sarakstu
+		TagListController *tagListController = [[TagListController alloc] initWithPostOptionsController:self];
+		[self.navigationController pushViewController:tagListController animated:YES];
+		[tagListController release];
+	}
+}
+#endif
 
 - (void)dealloc {
 	[selectedFriendGroups release];
