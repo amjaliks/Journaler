@@ -28,12 +28,7 @@ typedef enum {
 	NSString *journal;
 	PostSecurityLevel security;
 	NSMutableArray *selectedFriendGroups;
-	
-	// tabulas šūnas
-	UITableViewCell *journalCell;
-	UITableViewCell *securityCell;
-	UITableViewCell *promoteCell;
-	UISwitch *promoteSwitch;
+	NSArray *tags;
 	
 	id<PostOptionsControllerDataSource> dataSource;
 }
@@ -45,12 +40,14 @@ typedef enum {
 @property (retain) NSString *journal;
 @property PostSecurityLevel security;
 @property (readonly) NSMutableArray *selectedFriendGroups;
+@property (retain, nonatomic) NSArray *tags;
 @property (readonly) BOOL promote;
 
 - (id)initWithAccount:(LJAccount *)account;
 - (void)done;
 
-- (void)promoteChanged;
+- (void)tagsChanged:(id)sender;
+- (void)promoteChanged:(id)sender;
 
 @end
 

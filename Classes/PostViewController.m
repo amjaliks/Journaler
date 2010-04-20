@@ -47,7 +47,8 @@
 	// virsraksts
 	self.navigationItem.title = @"Post";
 	
-	postTemplate = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SinglePostTemplate" ofType:@"html"]] retain];
+	NSError *err;
+	postTemplate = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SinglePostTemplate" ofType:@"html"] encoding:NSUTF8StringEncoding error:&err] retain];
 	userIconPath = [[[NSBundle mainBundle] pathForResource:@"user" ofType:@"png"] retain];
 	communityIconPath = [[[NSBundle mainBundle] pathForResource:@"community" ofType:@"png"] retain];
 

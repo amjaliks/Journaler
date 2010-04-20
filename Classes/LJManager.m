@@ -112,6 +112,27 @@ LJManager *defaultManager;
 			[allowmaskNumber release];
 		}
 		
+		NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
+#ifndef LITEVERSION
+		[props setValue:@"Journaler" forKey:@"useragent"];
+#else
+		[props setValue:@"Journaler Lite" forKey:@"useragent"];
+#endif
+		
+		if (event.tags && [event.tags count]) {
+			NSString *tags = [NSString string];
+			for (NSString *tag in event.tags) {
+				if ([tags length] > 0) {
+					tags = [tags stringByAppendingString:@","];
+				}
+				tags = [tags stringByAppendingString:tag];
+			}
+			[props setValue:tags forKey:@"taglist"];
+		}
+	
+		[parameters setValue:props forKey:@"props"];
+		[props release];
+		
 		NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.postevent" parameters:parameters error:error] retain];
 		[parameters release];
 		if (result) {

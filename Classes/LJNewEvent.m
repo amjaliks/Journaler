@@ -16,6 +16,7 @@
 @synthesize event;
 @synthesize security;
 @synthesize selectedFriendGroups;
+@synthesize tags;
 
 
 - (void) dealloc {
@@ -23,6 +24,7 @@
 	[subject release];
 	[event release];
 	[selectedFriendGroups release];
+	[tags release];
 	[super dealloc];
 }
 

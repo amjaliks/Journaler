@@ -67,6 +67,7 @@
 			sw.on = DEFAULT_BOOL(kSettingsRefreshOnStart);
 		} else {
 			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 			
 			cell.textLabel.text = NSLocalizedStringFromTable(@"Version", @"Version", kStringsTable);
 			cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];

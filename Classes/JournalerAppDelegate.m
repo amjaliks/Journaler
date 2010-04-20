@@ -37,7 +37,14 @@
 #else
 	NSString *appUID = @"LrAKgAl3bA"; // lite versija
 #endif
-	reporter = [[ALReporter alloc] initWithAppUID:appUID reportURL:[NSURL URLWithString:@"http://tomcat.keeper.lv/anl/report"]];
+	
+#ifndef DEBUG
+	NSURL *reportURL = [NSURL URLWithString:@"http://tomcat.keeper.lv/anl/report"];
+#else
+	NSURL *reportURL = [NSURL URLWithString:@"http://localhost:8080/anl/report"];
+#endif
+	
+	reporter = [[ALReporter alloc] initWithAppUID:appUID reportURL:reportURL];
 	
 	model = [[Model alloc] init];
 	userPicCache = [[UserPicCache alloc] init];

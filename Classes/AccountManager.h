@@ -21,6 +21,7 @@
 #define kStateInfoNewPostSecurity @"new_post_security"
 #define kStateInfoNewPostSelectedFriendGroups @"new_post_selected_friend_groups"
 #define kStateInfoNewPostJournal @"new_post_journal"
+#define kStateInfoNewPostTags @"new_post_tags"
 #define kStateInfoNewPostPromote @"new_post_promote"
 
 @class LJAccount, PostEditorController;

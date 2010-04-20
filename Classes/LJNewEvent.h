@@ -15,6 +15,7 @@
 	NSString *event;
 	PostSecurityLevel security;
 	NSArray *selectedFriendGroups;
+	NSArray *tags;
 }
 
 @property (nonatomic, retain) NSString *journal;
@@ -22,5 +23,6 @@
 @property (nonatomic, retain) NSString *event;
 @property (nonatomic) PostSecurityLevel security;
 @property (nonatomic, retain) NSArray *selectedFriendGroups;
+@property (nonatomic, retain) NSArray *tags;
 
 @end

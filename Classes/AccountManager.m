@@ -118,7 +118,7 @@ static AccountManager *sharedManager;
     if(plistData) {
         [plistData writeToFile:plistPath atomically:YES];
     } else {
-        NSLog(error);
+        NSLog(@"%@", error);
         [error release];
     }
 }

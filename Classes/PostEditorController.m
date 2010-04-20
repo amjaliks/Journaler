@@ -66,7 +66,7 @@
 	}
 	postOptionsController.security = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoNewPostSecurity];
 	[postOptionsController.selectedFriendGroups addObjectsFromArray:[[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostSelectedFriendGroups]];
-	
+
 	[[AccountManager sharedManager] registerPostEditorController:self];
 }
 
@@ -155,7 +155,7 @@
 		
 	NSString *text = textField.text;
 	if (postOptionsController.promote) {
-		text = [text stringByAppendingString:@"\n<p><em><small>Posted via <a href=\"http://journalerapp.com/?utm_source=livejournal&amp;utm_medium=post-via-link&amp;utm_campaign=post-via-link\">Journaler</a>.</small></em></p>"];
+		text = [text stringByAppendingString:@"\n\n<em><small>Posted via <a href=\"http://journalerapp.com/?utm_source=livejournal&amp;utm_medium=post-via-link&amp;utm_campaign=post-via-link\">Journaler</a>.</small></em>"];
 	}
 	
 	LJGetChallenge *req = [LJGetChallenge requestWithServer:account.server];
@@ -170,6 +170,7 @@
 	event.journal = postOptionsController.journal;
 	event.security = postOptionsController.security;
 	event.selectedFriendGroups = postOptionsController.selectedFriendGroups;
+	event.tags = postOptionsController.tags;
 	
 	NSError *error;
 	if ([[LJManager defaultManager] postEvent:event forAccount:account error:&error]) {
@@ -179,6 +180,7 @@
 		
 		subjectField.text = nil;
 		textField.text = nil;
+		postOptionsController.tags = nil;
 	} else {
 		showErrorMessage(@"Post error", decodeError([error code]));
 	}
@@ -264,7 +266,6 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	[self.tableView setContentOffset:CGPointZero];
-	NSLog(@"!");	
 }
 
 @end

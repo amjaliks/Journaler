@@ -13,8 +13,26 @@
 #import "PostJournalController.h"
 #import "PostSecurityController.h"
 #import "AccountManager.h"
+#import "TagsCellView.h"
 
-#define kStringsTable @"PostOptions"
+// šūnu veidi
+enum {
+	SimpleCell,
+	TagsCell,
+	SwitchCell
+};
+
+// šūnu veidu ID
+NSString *cellIds[] = { 
+	@"SimpleCell",
+	@"TagsCell",
+	@"SwitchCell"
+};
+
+// skatu tagi
+enum {
+	SwitchTag = 1
+};
 
 @implementation PostOptionsController
 
@@ -23,6 +41,8 @@
 @synthesize journal;
 @synthesize security;
 @synthesize selectedFriendGroups;
+@synthesize tags;
+@synthesize promote;
 
 - (id)initWithAccount:(LJAccount *)newAccount {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -31,6 +51,8 @@
 		journal = [account.user retain];
 		security = PostSecurityPublic;
 		selectedFriendGroups = [[NSMutableArray alloc] init];
+		
+		tags = [[[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostTags] retain];
 		
 #ifdef LITEVERSION
 		promote = YES;
@@ -44,28 +66,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Options";
+	self.navigationItem.title = NSLocalizedString(@"Options", nil);
 
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
 	self.navigationItem.leftBarButtonItem = doneButton;
 	[doneButton release];
-	
-	journalCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"JournalCell"];
-	journalCell.textLabel.text = @"Journal";
-	journalCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	securityCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"SecurityCell"];
-	securityCell.textLabel.text = @"Security";
-	securityCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	promoteCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PromoteCell"];
-	promoteCell.textLabel.text = @"Promote Journaler";
-	promoteCell.selectionStyle = UITableViewCellSelectionStyleNone;
-	promoteSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(206, 9, 94, 26)];
-	promoteSwitch.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-	promoteSwitch.on = promote;
-	[promoteSwitch addTarget:self action:@selector(promoteChanged) forControlEvents:UIControlEventValueChanged];
-	[promoteCell addSubview:promoteSwitch];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -89,11 +94,6 @@
 	self.navigationItem.leftBarButtonItem = nil;
 	
 	[journal release];
-	
-	[journalCell release];
-	[securityCell release];
-	[promoteCell release];
-	[promoteSwitch release];
 }
 
 
@@ -105,44 +105,109 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#ifdef BETA
+
+#ifndef LITEVERSION
+    return 3;
+#else
+	return 2;
+#endif
+	
+#else // BETA
+	
 #ifndef LITEVERSION
     return 2;
 #else
 	return 1;
 #endif
+	
+#endif // BETA
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section == 0 ? 2 : 1;
+	if (section == 0) return 2;
+#ifdef BETA
+	if (section == 1) return 1;
+#endif
+	return 1;
 }
 
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	// nosak šūnas veidu
+	NSUInteger cellKind;
+	if (indexPath.section == 0) {
+		if (indexPath.row == 0) { cellKind = SimpleCell; }
+		else if (indexPath.row == 1) { cellKind = SimpleCell; };
+#ifdef BETA
+	} else if (indexPath.section == 1) {
+		if (indexPath.row == 0) { cellKind = TagsCell; };
+	} else if (indexPath.section == 2) {
+#else
+	} else if (indexPath.section == 1) {
+#endif // BETA
+		if (indexPath.row == 0) { cellKind = SwitchCell; };
+	}
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIds[cellKind]];
+	
+	if (!cell) {
+		// ja nav atrasta piemērota šūna, izveidojam tādu
+		if (cellKind == SimpleCell) {
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIds[SimpleCell]];
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		} else if (cellKind == TagsCell) {
+			cell = [[TagsCellView alloc] initWithReuseIdentifier:cellIds[TagsCell]];
+		} else if (cellKind == SwitchCell) {
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIds[SwitchCell]];
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			
+			UISwitch *cellSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(206, 9, 94, 26)];
+			cellSwitch.tag = SwitchTag;
+			cellSwitch.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+			[cell addSubview:cellSwitch];
+			
+			[cellSwitch release];
+		}
+	}
     
 	if (indexPath.section == 0) {
 		if (indexPath.row == 0) {
-			journalCell.detailTextLabel.text = journal;
-			return journalCell;
+			cell.textLabel.text = NSLocalizedString(@"Journal", nil);
+			cell.detailTextLabel.text = journal;
 		} else if (indexPath.row == 1) {
+			cell.textLabel.text = NSLocalizedString(@"Security", nil);
 			if (security == PostSecurityPublic) {
-				securityCell.detailTextLabel.text = NSLocalizedStringFromTable(@"Public", @"Name for public security level", kStringsTable);
+				cell.detailTextLabel.text = NSLocalizedString(@"Public", nil);
 			} else if (security == PostSecurityFriends) {
-				securityCell.detailTextLabel.text = NSLocalizedStringFromTable(@"Friends only", @"Name for friends-only security level", kStringsTable);
+				cell.detailTextLabel.text = NSLocalizedString(@"Friends only", nil);
 			} else if (security == PostSecurityPrivate) {
-				securityCell.detailTextLabel.text = NSLocalizedStringFromTable(@"Private", @"Name for private security level", kStringsTable);
+				cell.detailTextLabel.text = NSLocalizedString(@"Private", nil);
 			} else {
-				securityCell.detailTextLabel.text = NSLocalizedStringFromTable(@"Custom", @"Name for custom security level", kStringsTable);
+				cell.detailTextLabel.text = NSLocalizedString(@"Custom", nil);
 			}
-			return securityCell;
 		}
+#ifdef BETA
 	} else if (indexPath.section == 1) {
-		return promoteCell;
+		cell.textLabel.text = NSLocalizedString(@"Tags", nil);
+		[(TagsCellView *)cell setTags:tags];
+		[(TagsCellView *)cell setTarget:self action:@selector(tagsChanged:)];
+	} else if (indexPath.section == 2) {
+#else
+	} else if (indexPath.section == 1) {
+#endif
+		cell.textLabel.text = NSLocalizedString(@"Promote Journaler", nil);
+		UISwitch *cellSwitch = (UISwitch *)[cell viewWithTag:SwitchTag];
+		cellSwitch.on = promote;
+		
+		[cellSwitch removeTarget:self action:nil forControlEvents:UIControlEventValueChanged];
+		[cellSwitch addTarget:self action:@selector(promoteChanged:) forControlEvents:UIControlEventValueChanged];
 	}
 	
-    return nil;
+    return cell;
 }
 
 
@@ -160,64 +225,28 @@
 	}
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 - (void)dealloc {
 	[selectedFriendGroups release];
+	[tags release];
+	
     [super dealloc];
 }
 
-- (void)promoteChanged {
-	promote = promoteSwitch.on;
+- (void)tagsChanged:(id)sender {
+	self.tags = ((TagsCellView *)sender).tags;
+}
+
+- (void)promoteChanged:(id)sender {
+	promote = ((UISwitch *)sender).on;
 	[[AccountManager sharedManager] setBoolValue:promote forAccount:account.title forKey:kStateInfoNewPostPromote];
 }
 
-#pragma mark Iestatījumu nolasīšana
+- (void)setTags:(NSArray *)newTags {
+	if (newTags != tags) {
+		[tags release];
+		tags = [newTags retain];
 
-- (BOOL)promote {
-	if (promoteSwitch) {
-		return promoteSwitch.on; 
-	} else {
-		return promote;
+		[[AccountManager sharedManager] setValue:tags forAccount:account.title forKey:kStateInfoNewPostTags];
 	}
 }
 
