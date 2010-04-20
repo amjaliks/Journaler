@@ -403,7 +403,13 @@
 					}
 					row++;
 				}
-				[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[displayedPosts count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+
+				// LJ-100
+				// iespējams šī pārbaude ļaus izvairīties no kādas kļūdas sekām,
+				// diemžēl problēmas celoņi man nav zināmi
+				if ([displayedPosts count]) {
+					[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[displayedPosts count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+				}
 			}
 			
 			// pēc tabula pārlādes, izdzēšam vecus rakstus no keša
