@@ -197,8 +197,7 @@
 	if (![filteredTags count]) {
 		if (!postOptionsController.account.tagsSynchronized) {
 			postOptionsController.account.tagsSynchronized = YES;
-			//[self performSelectorInBackground:@selector(refreshTagsFromServer) withObject:nil];
-			[self refreshTagsFromServer];
+			[self performSelectorInBackground:@selector(refreshTagsFromServer) withObject:nil];
 		}
 		[filteredTags addObject:searchString];
 	}
