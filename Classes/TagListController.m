@@ -8,6 +8,9 @@
 
 #import "TagListController.h"
 #import "PostOptionsController.h"
+#import "LiveJournal.h"
+#import "NSArrayAdditions.h"
+#import "AccountManager.h"
 
 @implementation TagListController
 
@@ -19,21 +22,31 @@
 }
 
 - (void)updateAllTagsWithNewTag:(NSString *)newTag {
-	NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:[postOptionsController.tags count] + newTag ? 1 : 0];
-	
-	[tempArray addObjectsFromArray:postOptionsController.tags];
-	if (newTag) {
-		[tempArray addObject:newTag];
+	@synchronized (self) {
+		NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:[postOptionsController.account.tags count] + newTag ? 1 : 0];
+		
+		// tagu saraksts no konta
+		[tempArray addObjectsFromArray:postOptionsController.account.tags];
+
+		// tagi no raksta
+		for (NSString *tag in postOptionsController.tags) {
+			[tempArray addTag:tag];
+		}
+		
+		// jaunais tags
+		if (newTag) {
+			[tempArray addTag:newTag];
+		}
+		
+		NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+		NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+		
+		allTags = [[tempArray sortedArrayUsingDescriptors:sortDescriptors] retain];
+		
+		[sortDescriptors release];
+		[sortDescriptor release];
+		[tempArray release];
 	}
-	
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-	
-	allTags = [[tempArray sortedArrayUsingDescriptors:sortDescriptors] retain];
-	
-	[sortDescriptors release];
-	[sortDescriptor release];
-	[tempArray release];
 }
 
 #pragma mark -
@@ -112,7 +125,7 @@
 	}
 	
 	cell.textLabel.text = tag;
-	cell.accessoryType = [selectedTags containsObject:tag] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+	cell.accessoryType = [selectedTags containsTag:tag] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     
     return cell;
 }
@@ -130,7 +143,7 @@
 	}
 	
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	if ([selectedTags containsObject:tag]) {
+	if ([selectedTags containsTag:tag]) {
 		[selectedTags removeObject:tag];
 		cell.accessoryType = UITableViewCellAccessoryNone;
 	} else {
@@ -182,18 +195,43 @@
 	}
 	
 	if (![filteredTags count]) {
+		if (!postOptionsController.account.tagsSynchronized) {
+			postOptionsController.account.tagsSynchronized = YES;
+			//[self performSelectorInBackground:@selector(refreshTagsFromServer) withObject:nil];
+			[self refreshTagsFromServer];
+		}
 		[filteredTags addObject:searchString];
 	}
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
 	[self filterTagsForSearchString:searchString];
-	
 	return YES;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
 	[self.tableView reloadData];
+}
+
+- (void)repeatSearch {
+	if (self.searchDisplayController.active) {
+		[self filterTagsForSearchString:self.searchDisplayController.searchBar.text];
+		[self.searchDisplayController.searchResultsTableView reloadData];
+	}
+}
+
+- (void)refreshTagsFromServer {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	LJManager *manager = [LJManager defaultManager];
+	if ([manager getUserTagsForAccount:postOptionsController.account error:nil]) {
+		[self updateAllTagsWithNewTag:nil];
+		[self performSelectorOnMainThread:@selector(repeatSearch) withObject:nil waitUntilDone:NO];
+		
+		[[AccountManager sharedManager] storeAccounts];
+	}
+	
+	[pool release];
 }
 
 @end

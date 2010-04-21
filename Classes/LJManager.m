@@ -72,6 +72,31 @@ LJManager *defaultManager;
 	return NO;
 }
 
+- (BOOL)getUserTagsForAccount:(LJAccount *)account error:(NSError **)error {
+	NSString *challenge = [self challengeForAccount:account error:error];
+	if (challenge) {
+		NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+		NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getusertags" parameters:parameters error:error] retain];
+		[parameters release];
+		
+		if (result) {
+			NSArray *tagDictionaries = [result objectForKey:@"tags"];
+			NSMutableArray *tags = [[NSMutableArray alloc] initWithCapacity:[tagDictionaries count]];
+			for (NSDictionary *tagDictionary in tagDictionaries) {
+				[tags addObject: [self readStringValue:[tagDictionary objectForKey:@"name"]]];
+			}
+			
+			account.tags = [tags autorelease];
+			
+			[result release];
+			return YES;
+		}
+	}
+	
+	return NO;
+}
+
+
 - (BOOL)postEvent:(LJNewEvent *)event forAccount:(LJAccount *)account error:(NSError **)error {
 	NSString *challenge = [self challengeForAccount:account error:error];
 	
@@ -113,11 +138,14 @@ LJManager *defaultManager;
 		}
 		
 		NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
+		
+		if ([account supports:ServerFeaturePostEventUserAgent]) {
 #ifndef LITEVERSION
-		[props setValue:@"Journaler" forKey:@"useragent"];
+			[props setValue:@"Journaler" forKey:@"useragent"];
 #else
-		[props setValue:@"Journaler Lite" forKey:@"useragent"];
+			[props setValue:@"Journaler Lite" forKey:@"useragent"];
 #endif
+		}
 		
 		if (event.tags && [event.tags count]) {
 			NSString *tags = [NSString string];
@@ -207,7 +235,9 @@ LJManager *defaultManager;
 	[xmlres autorelease];
 	
 	if (code) {
-		*error = [NSError errorWithDomain:kLJErrorDomain code:code userInfo:nil];
+		if (error) {
+			*error = [NSError errorWithDomain:kLJErrorDomain code:code userInfo:nil];
+		}
 		return nil;
 	} else {
 		return [result autorelease];

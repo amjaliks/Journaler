@@ -12,6 +12,7 @@
 #import "AccountTabBarController.h"
 #import "ErrorHandling.h"
 #import "AccountManager.h"
+#import "NSArrayAdditions.h"
 
 
 @implementation PostEditorController
@@ -180,7 +181,26 @@
 		
 		subjectField.text = nil;
 		textField.text = nil;
-		postOptionsController.tags = nil;
+		
+		if (postOptionsController.tags && [postOptionsController.tags count]) {
+			NSMutableArray *newTags = [[NSMutableArray alloc] init];
+			for (NSString *tag in postOptionsController.tags) {
+				if (![account.tags containsTag:tag]) {
+					[newTags addTag:tag];
+				}
+			}
+
+			if ([newTags count]) {
+				[newTags addObjectsFromArray:account.tags];
+				account.tags = newTags;
+				
+				[[AccountManager sharedManager] storeAccounts];
+			} else {
+				[newTags release];
+			}
+			
+			postOptionsController.tags = nil;
+		}
 	} else {
 		showErrorMessage(@"Post error", decodeError([error code]));
 	}

@@ -16,20 +16,15 @@
 @synthesize server;
 @synthesize communities;
 @synthesize friendGroups;
-
-@synthesize text;
-@synthesize subject;
-@synthesize journal;
-@synthesize security;
-@synthesize promote;
-
-@synthesize selectedTab;
+@synthesize tags;
 
 @synthesize synchronized;
+@synthesize tagsSynchronized;
 
 - (id)init {
 	if (self = [super init]) {
-		promote = YES;
+		synchronized = NO;
+		tagsSynchronized = NO;
 	}
 	return self;
 }
@@ -41,14 +36,12 @@
 		server = [[coder decodeObjectForKey:@"server"] retain];
 		communities = [[coder decodeObjectForKey:@"communities"] retain];
 		friendGroups = [[coder decodeObjectForKey:@"friendGroups"] retain];
+		tags = [[coder decodeObjectForKey:@"tags"] retain];
 		
-		text = [[coder decodeObjectForKey:@"postText"] retain];
-		subject = [[coder decodeObjectForKey:@"postSubject"] retain];
-		journal = [[coder decodeObjectForKey:@"postJournal"] retain];
-		security = [coder decodeIntegerForKey:@"postSecurity"];
-		promote = [coder decodeBoolForKey:@"postPromote"];
-		
-		selectedTab = [coder decodeIntegerForKey:@"selectedTab"];
+		supportedFeatures = [LJAccount supportedFeaturesForServer:server];
+		// ja serveris neatbalsta tagu sinhronizāciju, tad atzīmējam, ka tagi ir nosinhronizēti,
+		// lai lietotne necenšas sinhronizēt tos
+		tagsSynchronized = ![self supports:ServerFeatureMethodGetUserTags];
 	}
 	
 	return self;
@@ -61,14 +54,7 @@
 	[coder encodeObject:server forKey:@"server"];
 	[coder encodeObject:communities forKey:@"communities"];
 	[coder encodeObject:friendGroups forKey:@"friendGroups"];
-	
-	[coder encodeObject:text forKey:@"postText"];
-	[coder encodeObject:subject forKey:@"postSubject"];
-	[coder encodeObject:journal forKey:@"postJournal"];
-	[coder encodeInteger:security forKey:@"postSecurity"];
-	[coder encodeBool:promote forKey:@"postPromote"];
-	
-	[coder encodeInteger:selectedTab forKey:@"selectedTab"];
+	[coder encodeObject:tags forKey:@"tags"];
 }
 
 - (NSString *)title {
@@ -88,5 +74,27 @@
 		return NO;
 	}
 }
+
++ (ServerFeature)supportedFeaturesForServer:(NSString *)server {
+	if ([@"livejournal.com" isEqualToString:server]) {
+		return ServerFeatureAll;
+	} else if ([@"klab.lv" isEqualToString:server]) {
+		return ServerFeatureNone;
+	} else if ([@"insanejournal.com" isEqualToString:server]) {
+		return ServerFeatureAll;
+	} else {
+#ifdef DEBUG
+		return ServerFeatureAll;
+#else
+		return ServerFeatureNone;
+#endif
+	}
+}
+
+- (BOOL)supports:(ServerFeature)feature {
+	return (feature & supportedFeatures) == feature;
+}
+
+
 
 @end

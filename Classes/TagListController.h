@@ -22,5 +22,7 @@
 - (id)initWithPostOptionsController:(PostOptionsController *)postOptionsController;
 - (void)filterTagsForSearchString:(NSString *)searchString;
 - (void)updateAllTagsWithNewTag:(NSString *)newTag;
+- (void)repeatSearch;
+- (void)refreshTagsFromServer;
 
 @end

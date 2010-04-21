@@ -20,8 +20,9 @@
 
 #pragma mark "Lietderīgās" metodes
 - (NSString *)challengeForAccount:(LJAccount *)account error:(NSError **)error;
-- (BOOL)loginForAccount:(LJAccount *)account error:(NSError **)error;
 - (BOOL)friendGroupsForAccount:(LJAccount *)account error:(NSError **)error;
+- (BOOL)getUserTagsForAccount:(LJAccount *)account error:(NSError **)error;
+- (BOOL)loginForAccount:(LJAccount *)account error:(NSError **)error;
 - (BOOL)postEvent:(LJNewEvent *)event forAccount:(LJAccount *)account error:(NSError **)error;
 
 #pragma mark Tehniskās metodes

@@ -7,6 +7,7 @@
 //
 
 #import "TagsCellView.h"
+#import "NSArrayAdditions.h"
 
 
 @implementation TagsCellView
@@ -61,13 +62,17 @@
 }
 
 - (NSArray *)tags {
+	// sadalam rindu pēc komatiem
 	NSArray *parts = [text.text componentsSeparatedByString:@","];
 	
+	// jauns masīvs
 	NSMutableArray *tags = [[NSMutableArray alloc] initWithCapacity:[parts count]];
+	// pārlasam atsevišķus teksta gabaliņus
 	for (NSString *part in parts) {
+		// atmetam liekos tukšumus
 		NSString *tag = [part stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 		if ([tag length]) {
-			[tags addObject:tag];
+			[tags addTag:tag];
 		}
 	}
 	
