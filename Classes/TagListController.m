@@ -182,9 +182,6 @@
 #pragma mark Search
 
 - (void)filterTagsForSearchString:(NSString *)searchString {
-	//[filteredTags release];
-	
-	//NSMutableArray *tempArray = [[NSMutableArray alloc] init];
 	[filteredTags removeAllObjects];
 	
 	for (NSString *tag in allTags) {
