@@ -41,11 +41,14 @@ LJManager *defaultManager;
 	
 	if (challenge) {
 		NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+		[parameters setValue:@"1" forKey:@"getpickws"];
+		
 		NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.login" parameters:parameters error:error] retain];
 		[parameters release];
 		if (result) {
 			account.communities = [result valueForKey:@"usejournals"];
 			account.friendGroups = [self friendGroupsFromArray:[result valueForKey:@"friendgroups"]];
+			account.picKeywords = [result valueForKey:@"pickws"];
 			
 			[result release];
 			return YES;
@@ -147,7 +150,7 @@ LJManager *defaultManager;
 #endif
 		}
 		
-		if (event.tags && [event.tags count]) {
+		if ([event.tags count]) {
 			NSString *tags = [NSString string];
 			for (NSString *tag in event.tags) {
 				if ([tags length] > 0) {
@@ -156,6 +159,10 @@ LJManager *defaultManager;
 				tags = [tags stringByAppendingString:tag];
 			}
 			[props setValue:tags forKey:@"taglist"];
+		}
+		
+		if (event.picKeyword) {
+			[props setValue:event.picKeyword forKey:@"picture_keyword"];
 		}
 	
 		[parameters setValue:props forKey:@"props"];

@@ -15,6 +15,7 @@
 #import "AccountManager.h"
 #import "TagsCellView.h"
 #import "TagListController.h"
+#import "PicKeywordListController.h"
 
 // šūnu veidi
 enum {
@@ -52,6 +53,7 @@ enum {
 };
 
 enum {
+	SectionAdditionalRowPicture,
 	SectionAdditionalRowTags
 };
 
@@ -66,6 +68,7 @@ enum {
 @synthesize journal;
 @synthesize security;
 @synthesize selectedFriendGroups;
+@synthesize picKeyword;
 @synthesize tags;
 @synthesize promote;
 
@@ -77,6 +80,7 @@ enum {
 		security = PostSecurityPublic;
 		selectedFriendGroups = [[NSMutableArray alloc] init];
 		
+		picKeyword = [[[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostPicKeyword] retain];
 		tags = [[[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostTags] retain];
 		
 #ifdef LITEVERSION
@@ -154,7 +158,7 @@ enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) return 2;
 #ifdef BETA
-	if (section == 1) return 1;
+	if (section == 1) return 2;
 #endif
 	return 1;
 }
@@ -164,16 +168,15 @@ enum {
 	
 	// nosak šūnas veidu
 	NSUInteger cellKind;
-	if (indexPath.section == 0) {
-		if (indexPath.row == 0) { cellKind = SimpleCell; }
-		else if (indexPath.row == 1) { cellKind = SimpleCell; };
+	if (indexPath.section == SectionBasic) {
+		if (indexPath.row == SectionBasicRowJournal) { cellKind = SimpleCell; }
+		else if (indexPath.row == SectionBasicRowSecurity) { cellKind = SimpleCell; };
 #ifdef BETA
-	} else if (indexPath.section == 1) {
-		if (indexPath.row == 0) { cellKind = TagsCell; };
-	} else if (indexPath.section == 2) {
-#else
-	} else if (indexPath.section == 1) {
+	} else if (indexPath.section == SectionAdditional) {
+		if (indexPath.row == SectionAdditionalRowPicture) { cellKind = SimpleCell; }
+		else if (indexPath.row == SectionAdditionalRowTags) { cellKind = TagsCell; };
 #endif // BETA
+	} else if (indexPath.section == SectionPromote) {
 		if (indexPath.row == 0) { cellKind = SwitchCell; };
 	}
 	
@@ -216,14 +219,17 @@ enum {
 			}
 		}
 #ifdef BETA
-	} else if (indexPath.section == 1) {
-		cell.textLabel.text = NSLocalizedString(@"Tags", nil);
-		[(TagsCellView *)cell setTags:tags];
-		[(TagsCellView *)cell setTarget:self action:@selector(tagsChanged:)];
-	} else if (indexPath.section == 2) {
-#else
-	} else if (indexPath.section == 1) {
-#endif
+	} else if (indexPath.section == SectionAdditional) {
+		if (indexPath.row == SectionAdditionalRowPicture) {
+			cell.textLabel.text = NSLocalizedString(@"Userpic", nil);
+			cell.detailTextLabel.text = picKeyword ? picKeyword : NSLocalizedString(@"Default", nil);
+		} else if (indexPath.row == SectionAdditionalRowTags) {
+			cell.textLabel.text = NSLocalizedString(@"Tags", nil);
+			[(TagsCellView *)cell setTags:tags];
+			[(TagsCellView *)cell setTarget:self action:@selector(tagsChanged:)];
+		}
+#endif // BETA
+	} else if (indexPath.section == SectionPromote) {
 		cell.textLabel.text = NSLocalizedString(@"Promote Journaler", nil);
 		UISwitch *cellSwitch = (UISwitch *)[cell viewWithTag:SwitchTag];
 		cellSwitch.on = promote;
@@ -236,8 +242,8 @@ enum {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-		if (indexPath.row == 0) {
+    if (indexPath.section == SectionBasic) {
+		if (indexPath.row == SectionBasicRowJournal) {
 			PostJournalController *postJournalController = [[PostJournalController alloc] initWithPostOptionsController:self];
 			[self.navigationController pushViewController:postJournalController animated:YES];
 			[postJournalController release];
@@ -245,6 +251,12 @@ enum {
 			PostSecurityController *postSecurityController = [[PostSecurityController alloc] initWithPostOptionsController:self];
 			[self.navigationController pushViewController:postSecurityController animated:YES];
 			[postSecurityController release];
+		}
+	} else if (indexPath.section == SectionAdditional) {
+		if (indexPath.row == SectionAdditionalRowPicture) {
+			PicKeywordListController *picKeywordListController = [[PicKeywordListController alloc] initWithPostOptionsController:self];
+			[self.navigationController pushViewController:picKeywordListController animated:YES];
+			[picKeywordListController release];
 		}
 	}
 }
@@ -277,6 +289,15 @@ enum {
 - (void)promoteChanged:(id)sender {
 	promote = ((UISwitch *)sender).on;
 	[[AccountManager sharedManager] setBoolValue:promote forAccount:account.title forKey:kStateInfoNewPostPromote];
+}
+
+- (void)setPicKeyword:(NSString *)newPicKeyword {
+	if (newPicKeyword != picKeyword) {
+		[picKeyword release];
+		picKeyword = [newPicKeyword retain];
+		
+		[[AccountManager sharedManager] setValue:picKeyword forAccount:account.title forKey:kStateInfoNewPostPicKeyword];
+	}
 }
 
 - (void)setTags:(NSArray *)newTags {

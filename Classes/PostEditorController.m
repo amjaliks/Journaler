@@ -171,6 +171,7 @@
 	event.journal = postOptionsController.journal;
 	event.security = postOptionsController.security;
 	event.selectedFriendGroups = postOptionsController.selectedFriendGroups;
+	event.picKeyword = postOptionsController.picKeyword;
 	event.tags = postOptionsController.tags;
 	
 	NSError *error;
@@ -181,6 +182,7 @@
 		
 		subjectField.text = nil;
 		textField.text = nil;
+		postOptionsController.picKeyword = nil;
 		
 		if (postOptionsController.tags && [postOptionsController.tags count]) {
 			NSMutableArray *newTags = [[NSMutableArray alloc] init];

@@ -16,6 +16,7 @@
 @synthesize event;
 @synthesize security;
 @synthesize selectedFriendGroups;
+@synthesize picKeyword;
 @synthesize tags;
 
 
@@ -24,6 +25,7 @@
 	[subject release];
 	[event release];
 	[selectedFriendGroups release];
+	[picKeyword release];
 	[tags release];
 	[super dealloc];
 }

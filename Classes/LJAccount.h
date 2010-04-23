@@ -27,6 +27,7 @@ enum {
 	
 	NSArray *communities;
 	NSArray *friendGroups;
+	NSArray *picKeywords;
 	NSArray *tags;
 	
 	BOOL synchronized;
@@ -38,6 +39,7 @@ enum {
 @property (retain) NSString *server;
 @property (retain) NSArray *communities;
 @property (retain) NSArray *friendGroups;
+@property (retain) NSArray *picKeywords;
 @property (retain) NSArray *tags;
 
 @property BOOL synchronized;

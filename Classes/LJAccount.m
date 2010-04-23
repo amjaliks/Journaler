@@ -16,6 +16,7 @@
 @synthesize server;
 @synthesize communities;
 @synthesize friendGroups;
+@synthesize picKeywords;
 @synthesize tags;
 
 @synthesize synchronized;
@@ -36,6 +37,7 @@
 		server = [[coder decodeObjectForKey:@"server"] retain];
 		communities = [[coder decodeObjectForKey:@"communities"] retain];
 		friendGroups = [[coder decodeObjectForKey:@"friendGroups"] retain];
+		picKeywords = [[coder decodeObjectForKey:@"picKeywords"] retain];
 		tags = [[coder decodeObjectForKey:@"tags"] retain];
 		
 		supportedFeatures = [LJAccount supportedFeaturesForServer:server];
@@ -54,6 +56,7 @@
 	[coder encodeObject:server forKey:@"server"];
 	[coder encodeObject:communities forKey:@"communities"];
 	[coder encodeObject:friendGroups forKey:@"friendGroups"];
+	[coder encodeObject:picKeywords forKey:@"picKeywords"];
 	[coder encodeObject:tags forKey:@"tags"];
 }
 

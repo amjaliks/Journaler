@@ -15,6 +15,7 @@
 	NSString *event;
 	PostSecurityLevel security;
 	NSArray *selectedFriendGroups;
+	NSString *picKeyword;
 	NSArray *tags;
 }
 
@@ -23,6 +24,7 @@
 @property (nonatomic, retain) NSString *event;
 @property (nonatomic) PostSecurityLevel security;
 @property (nonatomic, retain) NSArray *selectedFriendGroups;
+@property (nonatomic, retain) NSString *picKeyword;
 @property (nonatomic, retain) NSArray *tags;
 
 @end

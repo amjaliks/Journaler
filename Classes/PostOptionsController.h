@@ -28,6 +28,7 @@ typedef enum {
 	NSString *journal;
 	PostSecurityLevel security;
 	NSMutableArray *selectedFriendGroups;
+	NSString *picKeyword;
 	NSArray *tags;
 	
 	id<PostOptionsControllerDataSource> dataSource;
@@ -41,6 +42,7 @@ typedef enum {
 @property PostSecurityLevel security;
 @property (readonly) NSMutableArray *selectedFriendGroups;
 @property (retain, nonatomic) NSArray *tags;
+@property (retain) NSString *picKeyword;
 @property (readonly) BOOL promote;
 
 - (id)initWithAccount:(LJAccount *)account;

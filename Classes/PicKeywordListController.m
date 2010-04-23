@@ -1,23 +1,19 @@
 //
-//  PostJournalController.m
+//  PicKeywordListController.m
 //  Journaler
 //
-//  Created by Aleksejs Mjaliks on 09.12.01.
-//  Copyright 2009 A25. All rights reserved.
+//  Created by Aleksejs Mjaliks on 23.04.10.
+//  Copyright 2010 A25. All rights reserved.
 //
 
-#import "PostJournalController.h"
+#import "PicKeywordListController.h"
 
-#import "JournalerAppDelegate.h"
 #import "PostOptionsController.h"
 #import "LiveJournal.h"
 #import "AccountManager.h"
 #import "ErrorHandling.h"
 
-#define kStringsTable @"PostOptions"
-
-@implementation PostJournalController
-
+@implementation PicKeywordListController
 
 - (id)initWithPostOptionsController:(PostOptionsController *)newPostOptionsController {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -29,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = NSLocalizedString(@"Journal", nil);
+	self.navigationItem.title = NSLocalizedString(@"Userpic", nil);
 	
 	UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
 	self.navigationItem.rightBarButtonItem = refreshButton;
@@ -53,22 +49,18 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	// ja pie ir lietotājam ir pieeja kopienām, tad tabulai būs 2 sekcijas
-    return [postOptionsController.account.communities count] > 0 ? 2 : 1;
+	return [postOptionsController.account.picKeywords count] > 0 ? 2 : 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	// 0. sekcijā (savs žurnāls) vienmēr būs 1 ieraksts
-	// 1. sekcijā (kopienas) rindu skaits atkarīgs no lietotā kopienu skaita
-	return section == 0 ? 1 : [postOptionsController.account.communities count];
+	return section == 0 ? 1 : [postOptionsController.account.picKeywords count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return section == 0 ? NSLocalizedStringFromTable(@"My Journal", @"Section name for an user journal", kStringsTable) : NSLocalizedStringFromTable(@"Communities", @"Section name for communities", kStringsTable);
+	return section == 0 ? NSLocalizedString(@"Default", nil) : NSLocalizedString(@"Keywords", nil);
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
@@ -77,21 +69,27 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-
+	
     if (indexPath.section == 0) {
-		cell.imageView.image = [UIImage imageNamed:@"user.png"];
-		cell.textLabel.text = postOptionsController.account.user;
+		cell.textLabel.text = NSLocalizedString(@"Default", nil);
+		
+		if (!postOptionsController.picKeyword) {
+			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+			selectedCell = cell;
+		} else {
+			cell.accessoryType = UITableViewCellAccessoryNone;
+		}
 	} else {
-		cell.imageView.image = [UIImage imageNamed:@"community.png"];
-		cell.textLabel.text = [postOptionsController.account.communities objectAtIndex:indexPath.row];
+		cell.textLabel.text = [postOptionsController.account.picKeywords objectAtIndex:indexPath.row];
+		
+		if ([cell.textLabel.text isEqualToString:postOptionsController.picKeyword]) {
+			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+			selectedCell = cell;
+		} else {
+			cell.accessoryType = UITableViewCellAccessoryNone;
+		}
 	}
 	
-	if ([cell.textLabel.text isEqualToString:postOptionsController.journal]) {
-		cell.accessoryType = UITableViewCellAccessoryCheckmark;
-		selectedCell = cell;
-	} else {
-		cell.accessoryType = UITableViewCellAccessoryNone;
-	}
 	
     return cell;
 }
@@ -99,8 +97,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	postOptionsController.journal = cell.textLabel.text;
-	[[AccountManager sharedManager] setValue:cell.textLabel.text forAccount:postOptionsController.account.title forKey:kStateInfoNewPostJournal];
+	
+	if (indexPath.section == 0) {
+		postOptionsController.picKeyword = nil;
+		//[[AccountManager sharedManager] setValue:nil forAccount:postOptionsController.account.title forKey:kStateInfoNewPostPicKeyword];
+	} else {
+		postOptionsController.picKeyword = cell.textLabel.text;
+		//[[AccountManager sharedManager] setValue:cell.textLabel.text forAccount:postOptionsController.account.title forKey:kStateInfoNewPostPicKeyword];
+	}
 	
 	selectedCell.accessoryType = UITableViewCellAccessoryNone;
 	cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -120,15 +124,15 @@
 	if ([[LJManager defaultManager] loginForAccount:postOptionsController.account error:&error]) {
 		[[AccountManager sharedManager] storeAccounts];
 		
-		if (![postOptionsController.account.communities containsObject:postOptionsController.journal]) {
-			postOptionsController.journal = postOptionsController.account.user;
+		if (postOptionsController.picKeyword && ![postOptionsController.account.tags containsObject:postOptionsController.picKeyword]) {
+			postOptionsController.picKeyword = nil;
 		}
 		
 		[self.tableView reloadData];	
 	} else {
-		showErrorMessage(NSLocalizedStringFromTable(@"Journal list sync error", @"Title for journal list sync error messages", kErrorStringsTable), decodeError([error code]));
+		showErrorMessage(NSLocalizedString(@"Picture keyword list sync error", nil), decodeError([error code]));
 	}
 }
 
-@end
 
+@end
