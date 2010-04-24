@@ -56,9 +56,10 @@
     [super viewWillAppear:animated];
 	if ([accounts count] == 0) {
 		[self addAccount:nil];
+	} else {
+		[table deselectRowAtIndexPath:[table indexPathForSelectedRow] animated:YES];
+		[self.navigationController setToolbarHidden:NO animated:YES];	
 	}
-	[table deselectRowAtIndexPath:[table indexPathForSelectedRow] animated:YES];
-	[self.navigationController setToolbarHidden:NO animated:YES];	
 }
 
 - (void)viewDidAppear:(BOOL)animated {
