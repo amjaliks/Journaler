@@ -141,9 +141,9 @@
 		path = /Users/amjaliks/xcode/Jounaler/Classes/LJFriendsPageController.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1311, 7735}}";
-			sepNavSelRange = "{11952, 0}";
-			sepNavVisRange = "{11022, 1653}";
+			sepNavIntBoundsRect = "{{0, 0}, {1379, 7813}}";
+			sepNavSelRange = "{9204, 0}";
+			sepNavVisRange = "{8812, 703}";
 		};
 	};
 	170EE595116BCA7B00F663D2 /* WebFriendsPageController.m */ = {
@@ -465,7 +465,7 @@
 		ignoreCount = 0;
 		lineNumber = 190;
 		location = Journaler;
-		modificationTime = 293817582.904988;
+		modificationTime = 293818872.409596;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -503,7 +503,7 @@
 		ignoreCount = 0;
 		lineNumber = 47;
 		location = Journaler;
-		modificationTime = 293817582.918773;
+		modificationTime = 293818872.422645;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -583,7 +583,7 @@
 		ignoreCount = 0;
 		lineNumber = 84;
 		location = "Journaler Lite";
-		modificationTime = 293817582.959153;
+		modificationTime = 293818872.457571;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -610,6 +610,11 @@
 		name = AccountsViewController.m;
 		path = /Users/amjaliks/xcode/Jounaler/Classes/AccountsViewController.m;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1135, 4069}}";
+			sepNavSelRange = "{1823, 0}";
+			sepNavVisRange = "{790, 1555}";
+		};
 	};
 	173B9D9A11176903005F863A /* NSDictionary.h */ = {
 		isa = PBXFileReference;
@@ -657,9 +662,9 @@
 		path = /Users/amjaliks/xcode/Jounaler/Classes/PostEditorController.m;
 		sourceTree = "<group>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1565, 3887}}";
-			sepNavSelRange = "{5171, 0}";
-			sepNavVisRange = "{4746, 1644}";
+			sepNavIntBoundsRect = "{{0, 0}, {1565, 3744}}";
+			sepNavSelRange = "{5870, 0}";
+			sepNavVisRange = "{5473, 818}";
 		};
 	};
 	173DFF23113AF8B00047F661 /* PBXTextBookmark */ = {
@@ -719,9 +724,9 @@
 	};
 	173FBEF810C4758200FD0652 /* PostOptionsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1379, 5135}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1379, 5161}}";
 			sepNavSelRange = "{2546, 0}";
-			sepNavVisRange = "{3419, 335}";
+			sepNavVisRange = "{3419, 367}";
 		};
 	};
 	173FBF8010C4888A00FD0652 /* PBXTextBookmark */ = {
@@ -800,7 +805,7 @@
 		ignoreCount = 0;
 		lineNumber = 340;
 		location = Journaler;
-		modificationTime = 293817583.058152;
+		modificationTime = 293818872.590188;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -828,7 +833,7 @@
 		ignoreCount = 0;
 		lineNumber = 341;
 		location = Journaler;
-		modificationTime = 293817583.073582;
+		modificationTime = 293818872.691634;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -863,7 +868,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 20;
-		modificationTime = 293817583.113326;
+		modificationTime = 293818872.704008;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -881,7 +886,7 @@
 		ignoreCount = 0;
 		lineNumber = 20;
 		location = Journaler;
-		modificationTime = 293817583.126089;
+		modificationTime = 293818872.719493;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -899,7 +904,7 @@
 		ignoreCount = 0;
 		lineNumber = 20;
 		location = Journaler;
-		modificationTime = 293817583.139934;
+		modificationTime = 293818872.756876;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -917,7 +922,7 @@
 		ignoreCount = 0;
 		lineNumber = 153;
 		location = Journaler;
-		modificationTime = 293817583.176792;
+		modificationTime = 293818872.773095;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -935,7 +940,7 @@
 		ignoreCount = 0;
 		lineNumber = 230;
 		location = Journaler;
-		modificationTime = 293817583.201977;
+		modificationTime = 293818872.805922;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -997,7 +1002,7 @@
 		ignoreCount = 0;
 		lineNumber = 20;
 		location = Journaler;
-		modificationTime = 293817583.236261;
+		modificationTime = 293818872.822859;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1015,7 +1020,7 @@
 		ignoreCount = 0;
 		lineNumber = 337;
 		location = Journaler;
-		modificationTime = 293817583.253009;
+		modificationTime = 293818872.835909;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1033,7 +1038,7 @@
 		ignoreCount = 0;
 		lineNumber = 198;
 		location = "Journaler Lite";
-		modificationTime = 293817583.268643;
+		modificationTime = 293818872.874868;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1051,7 +1056,7 @@
 		ignoreCount = 0;
 		lineNumber = 168;
 		location = "Journaler Lite";
-		modificationTime = 293817583.307627;
+		modificationTime = 293818872.892675;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1069,7 +1074,7 @@
 		ignoreCount = 0;
 		lineNumber = 170;
 		location = "Journaler Lite";
-		modificationTime = 293817583.321497;
+		modificationTime = 293818872.927015;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1185,7 +1190,7 @@
 		ignoreCount = 0;
 		lineNumber = 24;
 		location = Journaler;
-		modificationTime = 293817583.360438;
+		modificationTime = 293818872.940122;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1781,7 +1786,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 339;
-		modificationTime = 293817583.374929;
+		modificationTime = 293818872.95286;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -1923,7 +1928,7 @@
 		ignoreCount = 0;
 		lineNumber = 88;
 		location = Journaler;
-		modificationTime = 293817583.392159;
+		modificationTime = 293818872.986634;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -1961,7 +1966,7 @@
 		ignoreCount = 0;
 		lineNumber = 59;
 		location = Journaler;
-		modificationTime = 293817583.424913;
+		modificationTime = 293818872.998577;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2234,7 +2239,7 @@
 		ignoreCount = 0;
 		lineNumber = 66;
 		location = Journaler;
-		modificationTime = 293817583.436726;
+		modificationTime = 293818873.017044;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2520,7 +2525,7 @@
 		ignoreCount = 0;
 		lineNumber = 87;
 		location = Journaler;
-		modificationTime = 293817583.450667;
+		modificationTime = 293818873.055024;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2558,7 +2563,7 @@
 		ignoreCount = 0;
 		lineNumber = 86;
 		location = Journaler;
-		modificationTime = 293817583.494498;
+		modificationTime = 293818873.069372;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -2646,7 +2651,7 @@
 		ignoreCount = 0;
 		lineNumber = 80;
 		location = Journaler;
-		modificationTime = 293817583.510498;
+		modificationTime = 293818873.104061;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -3706,7 +3711,7 @@
 		ignoreCount = 0;
 		lineNumber = 189;
 		location = Journaler;
-		modificationTime = 293817583.546772;
+		modificationTime = 293818873.1183;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -4447,7 +4452,7 @@
 		ignoreCount = 0;
 		lineNumber = 77;
 		location = Journaler;
-		modificationTime = 293817583.559415;
+		modificationTime = 293818873.131838;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -4485,7 +4490,7 @@
 		ignoreCount = 0;
 		lineNumber = 77;
 		location = Journaler;
-		modificationTime = 293817583.571465;
+		modificationTime = 293818873.17319;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -4692,7 +4697,7 @@
 		ignoreCount = 0;
 		lineNumber = 32;
 		location = Journaler;
-		modificationTime = 293817583.605855;
+		modificationTime = 293818873.191905;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -4780,7 +4785,7 @@
 		ignoreCount = 0;
 		lineNumber = 25;
 		location = Journaler;
-		modificationTime = 293817583.644009;
+		modificationTime = 293818873.224755;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -4835,7 +4840,7 @@
 		ignoreCount = 0;
 		lineNumber = 64;
 		location = Journaler;
-		modificationTime = 293817583.660157;
+		modificationTime = 293818873.240394;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -4893,7 +4898,7 @@
 		ignoreCount = 0;
 		lineNumber = 23;
 		location = Journaler;
-		modificationTime = 293817583.77829;
+		modificationTime = 293818873.252729;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -5011,7 +5016,7 @@
 		ignoreCount = 0;
 		lineNumber = 79;
 		location = Journaler;
-		modificationTime = 293817583.866175;
+		modificationTime = 293818873.304244;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -5126,7 +5131,7 @@
 		ignoreCount = 0;
 		lineNumber = 53;
 		location = Journaler;
-		modificationTime = 293817583.929433;
+		modificationTime = 293818873.343167;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -5370,7 +5375,7 @@
 		ignoreCount = 0;
 		lineNumber = 54;
 		location = Journaler;
-		modificationTime = 293817583.941658;
+		modificationTime = 293818873.369399;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -5448,7 +5453,7 @@
 		ignoreCount = 0;
 		lineNumber = 134;
 		location = Journaler;
-		modificationTime = 293817583.953296;
+		modificationTime = 293818873.392168;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -6077,7 +6082,7 @@
 		ignoreCount = 0;
 		lineNumber = 380;
 		location = Journaler;
-		modificationTime = 293817583.988147;
+		modificationTime = 293818873.40832;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -6105,7 +6110,7 @@
 		ignoreCount = 0;
 		lineNumber = 383;
 		location = Journaler;
-		modificationTime = 293817584.004542;
+		modificationTime = 293818873.423051;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -6123,7 +6128,7 @@
 		ignoreCount = 0;
 		lineNumber = 128;
 		location = Journaler;
-		modificationTime = 293817584.021444;
+		modificationTime = 293818873.441726;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -6220,7 +6225,7 @@
 		ignoreCount = 0;
 		lineNumber = 125;
 		location = Journaler;
-		modificationTime = 293817584.034906;
+		modificationTime = 293818873.497981;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -6238,7 +6243,7 @@
 		ignoreCount = 0;
 		lineNumber = 124;
 		location = Journaler;
-		modificationTime = 293817584.071498;
+		modificationTime = 293818873.526054;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -6306,7 +6311,7 @@
 		ignoreCount = 0;
 		lineNumber = 133;
 		location = Journaler;
-		modificationTime = 293817584.09185;
+		modificationTime = 293818873.582419;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -6768,6 +6773,140 @@
 		vrLen = 1737;
 		vrLoc = 2624;
 	};
+	178BF7D911834EDD00BEEFAD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 173FBEF810C4758200FD0652 /* PostOptionsController.m */;
+		name = "PostOptionsController.m: 109";
+		rLen = 0;
+		rLoc = 2546;
+		rType = 0;
+		vrLen = 367;
+		vrLoc = 3419;
+	};
+	178BF7E2118351DB00BEEFAD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 173B9FD81117A6D1005F863A /* PostEditorController.m */;
+		name = "PostEditorController.m: 168";
+		rLen = 0;
+		rLoc = 5171;
+		rType = 0;
+		vrLen = 1481;
+		vrLoc = 4964;
+	};
+	178BF7E3118351DB00BEEFAD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17D8A7361131F2ED0023FBEA /* LJAccount.m */;
+		name = "LJAccount.m: 68";
+		rLen = 0;
+		rLoc = 1349;
+		rType = 0;
+		vrLen = 902;
+		vrLoc = 0;
+	};
+	178BF7E4118351DB00BEEFAD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17B62DB510B7355600C974DE /* AccountTabBarController.h */;
+		name = "AccountTabBarController.h: 43";
+		rLen = 0;
+		rLoc = 1093;
+		rType = 0;
+		vrLen = 1080;
+		vrLoc = 47;
+	};
+	178BF7E5118351DB00BEEFAD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17C6A356116F9E8000A3F505 /* AccountTabBarController.m */;
+		name = "AccountTabBarController.m: 107";
+		rLen = 0;
+		rLoc = 3455;
+		rType = 0;
+		vrLen = 1118;
+		vrLoc = 2642;
+	};
+	178BF7E6118351DB00BEEFAD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17B29B0610FA48A700C5EFA4 /* AccountsViewController.h */;
+		name = "AccountsViewController.h: 14";
+		rLen = 0;
+		rLoc = 425;
+		rType = 0;
+		vrLen = 1177;
+		vrLoc = 0;
+	};
+	178BF7E7118351DB00BEEFAD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 173B9D7F11176821005F863A /* AccountsViewController.m */;
+		name = "AccountsViewController.m: 62";
+		rLen = 0;
+		rLoc = 1823;
+		rType = 0;
+		vrLen = 1555;
+		vrLoc = 790;
+	};
+	178BF7E8118351DB00BEEFAD /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Journaler-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSRequiresIPhoneOS,
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/Journaler-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	178BF7E9118351DB00BEEFAD /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	178BF7EA118351DB00BEEFAD /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSRequiresIPhoneOS,
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	178BF7F11183531200BEEFAD /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSRequiresIPhoneOS,
+		);
+		name = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	178BF7F21183531200BEEFAD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17D8A5B7113126260023FBEA /* LJManager.m */;
+		rLen = 0;
+		rLoc = 27;
+		rType = 1;
+	};
+	178BF7F31183531200BEEFAD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17D8A5B7113126260023FBEA /* LJManager.m */;
+		name = "LJManager.m: 40";
+		rLen = 0;
+		rLoc = 859;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 126;
+	};
 	179F3FAC111645D60043E0D1 /* AccountManager.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1089, 1157}}";
@@ -6963,9 +7102,9 @@
 	};
 	17B4C9AD1083C8BC0005660E /* XMLRPCEventBasedParser.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1089, 1274}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{382, 1199}";
+			sepNavIntBoundsRect = "{{0, 0}, {1379, 1430}}";
+			sepNavSelRange = "{2749, 0}";
+			sepNavVisRange = "{2247, 676}";
 		};
 	};
 	17B4C9AE1083C8BC0005660E /* XMLRPCEventBasedParserDelegate.h */ = {
@@ -7174,9 +7313,9 @@
 	};
 	17B62DB510B7355600C974DE /* AccountTabBarController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1089, 658}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1089, 611}}";
 			sepNavSelRange = "{1093, 0}";
-			sepNavVisRange = "{50, 1077}";
+			sepNavVisRange = "{47, 1080}";
 		};
 	};
 	17B62DB610B7355600C974DE /* AccountTabBarController.m */ = {
@@ -7407,7 +7546,7 @@
 		ignoreCount = 0;
 		lineNumber = 59;
 		location = "Journaler Lite";
-		modificationTime = 293817582.979376;
+		modificationTime = 293818872.470447;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7427,6 +7566,11 @@
 		name = AccountTabBarController.m;
 		path = /Users/amjaliks/xcode/Jounaler/Classes/AccountTabBarController.m;
 		sourceTree = "<group>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1422, 2041}}";
+			sepNavSelRange = "{3455, 0}";
+			sepNavVisRange = "{2642, 1118}";
+		};
 	};
 	17C6A358116F9E8000A3F505 /* AccountTabBarController.m:104 */ = {
 		isa = PBXFileBreakpoint;
@@ -7442,7 +7586,7 @@
 		ignoreCount = 0;
 		lineNumber = 104;
 		location = "Journaler Lite";
-		modificationTime = 293817583.030889;
+		modificationTime = 293818872.512125;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7451,7 +7595,7 @@
 		fRef = 173B9D7F11176821005F863A /* AccountsViewController.m */;
 		name = "AccountsViewController.m: 212";
 		rLen = 0;
-		rLoc = 6848;
+		rLoc = 6860;
 		rType = 0;
 		vrLen = 1517;
 		vrLoc = 5936;
@@ -7490,7 +7634,7 @@
 		ignoreCount = 0;
 		lineNumber = 105;
 		location = "Journaler Lite";
-		modificationTime = 293817583.04307;
+		modificationTime = 293818872.524981;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7627,7 +7771,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 111;
-		modificationTime = 293817582.665729;
+		modificationTime = 293818872.090032;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7655,7 +7799,7 @@
 		ignoreCount = 0;
 		lineNumber = 570;
 		location = "Journaler Lite";
-		modificationTime = 293817582.105187;
+		modificationTime = 293818871.370478;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7673,7 +7817,7 @@
 		ignoreCount = 0;
 		lineNumber = 570;
 		location = "Journaler Lite";
-		modificationTime = 293817582.120549;
+		modificationTime = 293818871.438213;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7691,7 +7835,7 @@
 		ignoreCount = 0;
 		lineNumber = 50;
 		location = "Journaler Lite";
-		modificationTime = 293817582.137719;
+		modificationTime = 293818871.474076;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7709,7 +7853,7 @@
 		ignoreCount = 0;
 		lineNumber = 570;
 		location = "Journaler Lite";
-		modificationTime = 293817582.179074;
+		modificationTime = 293818871.50378;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7727,7 +7871,7 @@
 		ignoreCount = 0;
 		lineNumber = 570;
 		location = "Journaler Lite";
-		modificationTime = 293817582.200638;
+		modificationTime = 293818871.5482;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7745,7 +7889,7 @@
 		ignoreCount = 0;
 		lineNumber = 570;
 		location = "Journaler Lite";
-		modificationTime = 293817582.233695;
+		modificationTime = 293818871.583575;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7763,7 +7907,7 @@
 		ignoreCount = 0;
 		lineNumber = 98;
 		location = Journaler;
-		modificationTime = 293817582.726078;
+		modificationTime = 293818872.105296;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7781,7 +7925,7 @@
 		ignoreCount = 0;
 		lineNumber = 83;
 		location = Journaler;
-		modificationTime = 293817582.737951;
+		modificationTime = 293818872.11771;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7809,7 +7953,7 @@
 		ignoreCount = 0;
 		lineNumber = 85;
 		location = "Journaler Lite";
-		modificationTime = 293817582.748774;
+		modificationTime = 293818872.152584;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7844,7 +7988,7 @@
 		ignoreCount = 0;
 		lineNumber = 125;
 		location = Journaler;
-		modificationTime = 293817582.763286;
+		modificationTime = 293818872.172684;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7867,7 +8011,7 @@
 		ignoreCount = 0;
 		lineNumber = 125;
 		location = Journaler;
-		modificationTime = 293817582.775811;
+		modificationTime = 293818872.207457;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7902,7 +8046,7 @@
 		ignoreCount = 0;
 		lineNumber = 99;
 		location = Journaler;
-		modificationTime = 293817582.795265;
+		modificationTime = 293818872.221567;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7920,7 +8064,7 @@
 		ignoreCount = 0;
 		lineNumber = 237;
 		location = Journaler;
-		modificationTime = 293817582.813731;
+		modificationTime = 293818872.235199;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7965,7 +8109,7 @@
 		ignoreCount = 0;
 		lineNumber = 63;
 		location = Journaler;
-		modificationTime = 293817582.828279;
+		modificationTime = 293818872.279563;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -7992,9 +8136,10 @@
 	};
 	17D8A5B7113126260023FBEA /* LJManager.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1092, 5044}}";
-			sepNavSelRange = "{4189, 0}";
-			sepNavVisRange = "{2624, 1737}";
+			sepNavIntBoundsRect = "{{0, 0}, {1092, 4836}}";
+			sepNavSelRange = "{859, 0}";
+			sepNavVisRange = "{126, 1126}";
+			sepNavWindowFrame = "{{15, 75}, {1020, 803}}";
 		};
 	};
 	17D8A5CA1131689C0023FBEA /* PostSecurityController.m:161 */ = {
@@ -8011,7 +8156,7 @@
 		ignoreCount = 0;
 		lineNumber = 161;
 		location = Journaler;
-		modificationTime = 293817582.245465;
+		modificationTime = 293818871.599493;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8059,7 +8204,7 @@
 		ignoreCount = 0;
 		lineNumber = 31;
 		location = Journaler;
-		modificationTime = 293817582.258657;
+		modificationTime = 293818871.613423;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8077,7 +8222,7 @@
 		ignoreCount = 0;
 		lineNumber = 30;
 		location = Journaler;
-		modificationTime = 293817582.29806;
+		modificationTime = 293818871.627305;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8095,7 +8240,7 @@
 		ignoreCount = 0;
 		lineNumber = 278;
 		location = Journaler;
-		modificationTime = 293817582.31641;
+		modificationTime = 293818871.641044;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8147,7 +8292,7 @@
 		ignoreCount = 0;
 		lineNumber = 104;
 		location = Journaler;
-		modificationTime = 293817582.354476;
+		modificationTime = 293818871.654201;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8165,7 +8310,7 @@
 		ignoreCount = 0;
 		lineNumber = 101;
 		location = Journaler;
-		modificationTime = 293817582.367801;
+		modificationTime = 293818871.667443;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8183,7 +8328,7 @@
 		ignoreCount = 0;
 		lineNumber = 347;
 		location = Journaler;
-		modificationTime = 293817582.381699;
+		modificationTime = 293818871.681638;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8197,9 +8342,9 @@
 	};
 	17D8A7361131F2ED0023FBEA /* LJAccount.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {961, 1989}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1089, 1976}}";
 			sepNavSelRange = "{1349, 0}";
-			sepNavVisRange = "{0, 1005}";
+			sepNavVisRange = "{0, 902}";
 			sepNavWindowFrame = "{{15, 75}, {1020, 803}}";
 		};
 	};
@@ -8234,7 +8379,7 @@
 		ignoreCount = 0;
 		lineNumber = 90;
 		location = Journaler;
-		modificationTime = 293817582.420881;
+		modificationTime = 293818871.818096;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8276,7 +8421,7 @@
 		ignoreCount = 0;
 		lineNumber = 130;
 		location = Journaler;
-		modificationTime = 293817582.437869;
+		modificationTime = 293818871.830647;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8308,7 +8453,7 @@
 		ignoreCount = 0;
 		lineNumber = 152;
 		location = Journaler;
-		modificationTime = 293817582.452041;
+		modificationTime = 293818871.844013;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8337,7 +8482,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 151;
-		modificationTime = 293817582.494211;
+		modificationTime = 293818871.942793;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8355,7 +8500,7 @@
 		ignoreCount = 0;
 		lineNumber = 150;
 		location = Journaler;
-		modificationTime = 293817582.506359;
+		modificationTime = 293818871.956424;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8373,7 +8518,7 @@
 		ignoreCount = 0;
 		lineNumber = 216;
 		location = Journaler;
-		modificationTime = 293817582.542652;
+		modificationTime = 293818871.968815;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8391,7 +8536,7 @@
 		ignoreCount = 0;
 		lineNumber = 204;
 		location = Journaler;
-		modificationTime = 293817582.555776;
+		modificationTime = 293818871.981323;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8409,7 +8554,7 @@
 		ignoreCount = 0;
 		lineNumber = 109;
 		location = Journaler;
-		modificationTime = 293817582.567923;
+		modificationTime = 293818871.994921;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8427,7 +8572,7 @@
 		ignoreCount = 0;
 		lineNumber = 153;
 		location = Journaler;
-		modificationTime = 293817582.600702;
+		modificationTime = 293818872.030846;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8445,7 +8590,7 @@
 		ignoreCount = 0;
 		lineNumber = 170;
 		location = Journaler;
-		modificationTime = 293817582.651678;
+		modificationTime = 293818872.045854;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8510,7 +8655,7 @@
 		ignoreCount = 0;
 		lineNumber = 64;
 		location = Journaler;
-		modificationTime = 293817582.843291;
+		modificationTime = 293818872.298774;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8528,7 +8673,7 @@
 		ignoreCount = 0;
 		lineNumber = 158;
 		location = Journaler;
-		modificationTime = 293817582.85787;
+		modificationTime = 293818872.337891;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8560,7 +8705,7 @@
 		ignoreCount = 0;
 		lineNumber = 399;
 		location = Journaler;
-		modificationTime = 293817582.872485;
+		modificationTime = 293818872.360188;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8578,7 +8723,7 @@
 		ignoreCount = 0;
 		lineNumber = 281;
 		location = Journaler;
-		modificationTime = 293817582.88614;
+		modificationTime = 293818872.373211;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -8695,7 +8840,7 @@
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 1787D91610753E350037B7D8 /* Journaler */;
-		activeSDKPreference = iphonesimulator3.0;
+		activeSDKPreference = iphoneos3.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Journaler */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* Journaler */,
@@ -9450,6 +9595,19 @@
 			178BF7D511834CEA00BEEFAD /* PBXTextBookmark */ = 178BF7D511834CEA00BEEFAD /* PBXTextBookmark */;
 			178BF7D711834D0000BEEFAD /* PBXTextBookmark */ = 178BF7D711834D0000BEEFAD /* PBXTextBookmark */;
 			178BF7D811834D0000BEEFAD /* PBXTextBookmark */ = 178BF7D811834D0000BEEFAD /* PBXTextBookmark */;
+			178BF7D911834EDD00BEEFAD /* PBXTextBookmark */ = 178BF7D911834EDD00BEEFAD /* PBXTextBookmark */;
+			178BF7E2118351DB00BEEFAD /* PBXTextBookmark */ = 178BF7E2118351DB00BEEFAD /* PBXTextBookmark */;
+			178BF7E3118351DB00BEEFAD /* PBXTextBookmark */ = 178BF7E3118351DB00BEEFAD /* PBXTextBookmark */;
+			178BF7E4118351DB00BEEFAD /* PBXTextBookmark */ = 178BF7E4118351DB00BEEFAD /* PBXTextBookmark */;
+			178BF7E5118351DB00BEEFAD /* PBXTextBookmark */ = 178BF7E5118351DB00BEEFAD /* PBXTextBookmark */;
+			178BF7E6118351DB00BEEFAD /* PBXTextBookmark */ = 178BF7E6118351DB00BEEFAD /* PBXTextBookmark */;
+			178BF7E7118351DB00BEEFAD /* PBXTextBookmark */ = 178BF7E7118351DB00BEEFAD /* PBXTextBookmark */;
+			178BF7E8118351DB00BEEFAD /* PlistBookmark */ = 178BF7E8118351DB00BEEFAD /* PlistBookmark */;
+			178BF7E9118351DB00BEEFAD /* PlistBookmark */ = 178BF7E9118351DB00BEEFAD /* PlistBookmark */;
+			178BF7EA118351DB00BEEFAD /* PlistBookmark */ = 178BF7EA118351DB00BEEFAD /* PlistBookmark */;
+			178BF7F11183531200BEEFAD /* PlistBookmark */ = 178BF7F11183531200BEEFAD /* PlistBookmark */;
+			178BF7F21183531200BEEFAD /* PBXTextBookmark */ = 178BF7F21183531200BEEFAD /* PBXTextBookmark */;
+			178BF7F31183531200BEEFAD /* PBXTextBookmark */ = 178BF7F31183531200BEEFAD /* PBXTextBookmark */;
 			17B4664F10BB3D98004D0E0F = 17B4664F10BB3D98004D0E0F /* PBXBookmark */;
 			17B4C6A710829E710005660E = 17B4C6A710829E710005660E /* PBXTextBookmark */;
 			17B4C6AA10829E710005660E = 17B4C6AA10829E710005660E /* PBXTextBookmark */;

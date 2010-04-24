@@ -197,48 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>178BF7D211834CEA00BEEFAD</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>LJManager.m</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>178BF7D311834CEA00BEEFAD</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>LJManager.m</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>178BF7D811834D0000BEEFAD</string>
-						<key>history</key>
-						<array>
-							<string>178BF7D411834CEA00BEEFAD</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1020, 706}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>15 131 1020 747 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -328,14 +287,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>19</integer>
-									<integer>15</integer>
-									<integer>1</integer>
+									<integer>102</integer>
+									<integer>87</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {268, 688}}</string>
+							<string>{{0, 1454}, {268, 688}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -374,7 +332,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PostEditorController.m</string>
+								<string>LJManager.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -382,11 +340,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>PostEditorController.m</string>
+										<string>LJManager.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>178BF7D711834D0000BEEFAD</string>
+										<string>178BF7F31183531200BEEFAD</string>
 										<key>history</key>
 										<array>
 											<string>17B4C6A710829E710005660E</string>
@@ -462,11 +420,8 @@
 											<string>17E8EABB116D52CD006481F5</string>
 											<string>17E8EAE4116DD689006481F5</string>
 											<string>17E8EAF4116DDCA0006481F5</string>
-											<string>17C6A359116F9E8700A3F505</string>
-											<string>17C6A35B116F9E8700A3F505</string>
 											<string>17C6A35C116F9E8700A3F505</string>
 											<string>17C6A375116FB21000A3F505</string>
-											<string>17C6A376116FB21000A3F505</string>
 											<string>17C6A377116FB21000A3F505</string>
 											<string>17C6A379116FB21000A3F505</string>
 											<string>17C6A3A0116FDEF900A3F505</string>
@@ -488,8 +443,6 @@
 											<string>1745D3A8117E7F950016E616</string>
 											<string>1745D3A9117E7F950016E616</string>
 											<string>1745D422117E8BCE0016E616</string>
-											<string>1745D434117E8E400016E616</string>
-											<string>178BF21F117F148700BEEFAD</string>
 											<string>178BF2991181ECD000BEEFAD</string>
 											<string>178BF2A411820E5300BEEFAD</string>
 											<string>178BF39F1182599A00BEEFAD</string>
@@ -525,15 +478,20 @@
 											<string>178BF7A01183490F00BEEFAD</string>
 											<string>178BF7A21183490F00BEEFAD</string>
 											<string>178BF7A31183490F00BEEFAD</string>
-											<string>178BF7A51183490F00BEEFAD</string>
 											<string>178BF7A61183490F00BEEFAD</string>
 											<string>178BF7A71183490F00BEEFAD</string>
 											<string>178BF7B511834A9800BEEFAD</string>
 											<string>178BF7B611834A9800BEEFAD</string>
-											<string>178BF7BF11834B7B00BEEFAD</string>
 											<string>178BF7C011834B7B00BEEFAD</string>
-											<string>178BF7C411834BB600BEEFAD</string>
-											<string>178BF7C511834BB600BEEFAD</string>
+											<string>178BF7E2118351DB00BEEFAD</string>
+											<string>178BF7E3118351DB00BEEFAD</string>
+											<string>178BF7E4118351DB00BEEFAD</string>
+											<string>178BF7E5118351DB00BEEFAD</string>
+											<string>178BF7E6118351DB00BEEFAD</string>
+											<string>178BF7E7118351DB00BEEFAD</string>
+											<string>178BF7E8118351DB00BEEFAD</string>
+											<string>178BF7F11183531200BEEFAD</string>
+											<string>178BF7F21183531200BEEFAD</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -729,17 +687,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>178BF7D611834CEA00BEEFAD</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>17B29B1D10FA48B100C5EFA4</string>
 		<string>178BF4271182609D00BEEFAD</string>
 		<string>178BF4291182609D00BEEFAD</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>17DB0B7E1075405300155636</string>
 		<string>178BF6631183084400BEEFAD</string>
-		<string>/Users/amjaliks/xcode/Jounaler/Journaler.xcodeproj</string>
+		<string>17DB0B7E1075405300155636</string>
 		<string>1C78EAAD065D492600B07095</string>
-		<string>178BF7D211834CEA00BEEFAD</string>
+		<string>/Users/amjaliks/xcode/Jounaler/Journaler.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 131 1440 747 0 0 1440 878 </string>
@@ -758,14 +714,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PostOptionsController.m</string>
+								<string>XMLRPCEventBasedParser.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -782,6 +736,8 @@
 							<string>338pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -832,7 +788,7 @@
 			<key>WindowToolGUID</key>
 			<string>17DB0B7E1075405300155636</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
