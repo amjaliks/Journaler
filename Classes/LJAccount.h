@@ -25,13 +25,17 @@ enum {
 	NSString *password;
 	NSString *server;
 	
+	NSString *title;
+	
 	NSArray *communities;
 	NSArray *friendGroups;
 	NSArray *picKeywords;
-	NSArray *tags;
+	NSSet *tags;
+	NSSet *moods;
 	
 	BOOL synchronized;
 	BOOL tagsSynchronized;
+	BOOL loginSynchronized;
 }
 
 @property (retain) NSString *user;
@@ -40,10 +44,12 @@ enum {
 @property (retain) NSArray *communities;
 @property (retain) NSArray *friendGroups;
 @property (retain) NSArray *picKeywords;
-@property (retain) NSArray *tags;
+@property (retain) NSSet *tags;
+@property (retain) NSSet *moods;
 
 @property BOOL synchronized;
 @property BOOL tagsSynchronized;
+@property BOOL loginSynchronized;
 
 @property (readonly) NSString *title;
 

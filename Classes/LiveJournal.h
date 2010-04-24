@@ -12,6 +12,8 @@
 #import "LJFriendGroup.h"
 #import "LJNewEvent.h"
 #import "LJManager.h"
+#import "LJMood.h"
+#import "LJTag.h"
 #import "PostOptionsController.h"
 
 NSString* md5(NSString *str);
@@ -104,22 +106,6 @@ enum {
 @property (readonly) NSString *ljsession;
 
 @end
-
-
-//@interface LJPostEvent : LJRequest {
-//	NSString *challenge;
-//	NSString *password;
-//	
-//	NSString *usejournal;
-//	PostSecurityLevel security;
-//}
-//
-//@property (retain) NSString *usejournal;
-//@property PostSecurityLevel security;
-//
-//+ (LJPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event;
-//
-//@end
 
 
 @interface LJGetFriendsPage : LJRequest {

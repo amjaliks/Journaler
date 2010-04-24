@@ -18,6 +18,7 @@
 @synthesize selectedFriendGroups;
 @synthesize picKeyword;
 @synthesize tags;
+@synthesize mood;
 
 
 - (void) dealloc {
@@ -27,6 +28,8 @@
 	[selectedFriendGroups release];
 	[picKeyword release];
 	[tags release];
+	[mood release];
+
 	[super dealloc];
 }
 

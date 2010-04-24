@@ -37,62 +37,102 @@ LJManager *defaultManager;
 }
 
 - (BOOL)loginForAccount:(LJAccount *)account error:(NSError **)error {
-	NSString *challenge = [self challengeForAccount:account error:error];
-	
-	if (challenge) {
-		NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
-		[parameters setValue:@"1" forKey:@"getpickws"];
+	@synchronized (account) {
+		NSString *challenge = [self challengeForAccount:account error:error];
 		
-		NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.login" parameters:parameters error:error] retain];
-		[parameters release];
-		if (result) {
-			account.communities = [result valueForKey:@"usejournals"];
-			account.friendGroups = [self friendGroupsFromArray:[result valueForKey:@"friendgroups"]];
-			account.picKeywords = [result valueForKey:@"pickws"];
+		if (challenge) {
+			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+			[parameters setValue:@"1" forKey:@"getpickws"];
 			
-			[result release];
-			return YES;
+			NSInteger lastKnownMoodID = 0;
+			for (LJMood *mood in account.moods) {
+				if (lastKnownMoodID < mood.ID) {
+					lastKnownMoodID = mood.ID;
+				}
+			}
+			[parameters setValue:[NSNumber numberWithInteger:lastKnownMoodID] forKey:@"getmoods"];
+			
+			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.login" parameters:parameters error:error] retain];
+			[parameters release];
+			if (result) {
+				// atzīmējam, ka konta dati ar login metodi ir nosinhronizēti
+				account.loginSynchronized = YES;
+				
+				// lietotājam pieejamās kopienas
+				account.communities = [result valueForKey:@"usejournals"];
+				
+				// lietotāju draugu grupas
+				account.friendGroups = [self friendGroupsFromArray:[result valueForKey:@"friendgroups"]];
+				
+				// lietotāja bilžu atslēgas vārdi
+				account.picKeywords = [result valueForKey:@"pickws"];
+				
+				// lietotāja noskaņojumu saraksts
+				NSMutableSet *moods = account.moods ? [account.moods mutableCopy] : [[NSMutableSet alloc] init];
+				
+				for (NSDictionary *moodDict in [result valueForKey:@"moods"]) {
+					NSNumber *ID = [moodDict objectForKey:@"id"];
+					NSString *name = [moodDict objectForKey:@"name"];
+					
+					LJMood *mood = [[LJMood alloc] initWithID:[ID integerValue] mood:name];
+					[moods addObject:mood];
+				}
+				
+				account.moods = moods;
+				
+				[result release];
+				return YES;
+			}
 		}
 	}
 	return NO;
 }
 
 - (BOOL)friendGroupsForAccount:(LJAccount *)account error:(NSError **)error {
-	NSString *challenge = [self challengeForAccount:account error:error];
-	if (challenge) {
-		NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
-		NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getfriendgroups" parameters:parameters error:error] retain];
-		[parameters release];
-		
-		if (result) {
-			// ja ir rezultāts, tad apstrādājam to
-			account.friendGroups = [self friendGroupsFromArray:[result valueForKey:@"friendgroups"]];
-			[result release];
-			return YES;
+	@synchronized (account) {
+		NSString *challenge = [self challengeForAccount:account error:error];
+		if (challenge) {
+			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getfriendgroups" parameters:parameters error:error] retain];
+			[parameters release];
+			
+			if (result) {
+				// ja ir rezultāts, tad apstrādājam to
+				account.friendGroups = [self friendGroupsFromArray:[result valueForKey:@"friendgroups"]];
+				[result release];
+				return YES;
+			}
 		}
 	}
-
 	return NO;
 }
 
-- (BOOL)getUserTagsForAccount:(LJAccount *)account error:(NSError **)error {
-	NSString *challenge = [self challengeForAccount:account error:error];
-	if (challenge) {
-		NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
-		NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getusertags" parameters:parameters error:error] retain];
-		[parameters release];
-		
-		if (result) {
-			NSArray *tagDictionaries = [result objectForKey:@"tags"];
-			NSMutableArray *tags = [[NSMutableArray alloc] initWithCapacity:[tagDictionaries count]];
-			for (NSDictionary *tagDictionary in tagDictionaries) {
-				[tags addObject: [self readStringValue:[tagDictionary objectForKey:@"name"]]];
+- (BOOL)userTagsForAccount:(LJAccount *)account error:(NSError **)error {
+	@synchronized (account) {
+		NSString *challenge = [self challengeForAccount:account error:error];
+		if (challenge) {
+			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getusertags" parameters:parameters error:error] retain];
+			[parameters release];
+			
+			if (result) {
+				// atzīmējam, ka tagi ir sinhronizēti
+				account.tagsSynchronized = YES;
+				
+				NSArray *tagDictionaries = [result objectForKey:@"tags"];
+				NSMutableSet *tags = [[NSMutableSet alloc] initWithCapacity:[tagDictionaries count]];
+				for (NSDictionary *tagDictionary in tagDictionaries) {
+					LJTag *tag = [[LJTag alloc] initWithName:[self readStringValue:[tagDictionary objectForKey:@"name"]]];
+					[tags addObject:tag];
+					[tag release];
+				}
+				
+				account.tags = tags;
+				[tags release];
+				
+				[result release];
+				return YES;
 			}
-			
-			account.tags = [tags autorelease];
-			
-			[result release];
-			return YES;
 		}
 	}
 	
@@ -101,80 +141,93 @@ LJManager *defaultManager;
 
 
 - (BOOL)postEvent:(LJNewEvent *)event forAccount:(LJAccount *)account error:(NSError **)error {
-	NSString *challenge = [self challengeForAccount:account error:error];
-	
-	if (challenge) {
-		NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+	@synchronized (account) {
+		NSString *challenge = [self challengeForAccount:account error:error];
 		
-		[parameters setValue:[event.subject dataUsingEncoding:NSUTF8StringEncoding] forKey:@"subject"];
-		[parameters setValue:[event.event dataUsingEncoding:NSUTF8StringEncoding] forKey:@"event"];
-		
-		NSCalendar *cal = [NSCalendar currentCalendar];
-		unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
-		NSDate *date = [NSDate date];
-		NSDateComponents *comps = [cal components:unitFlags fromDate:date];
-		
-		[parameters setValue:[NSString stringWithFormat:@"%d", [comps year]] forKey:@"year"];
-		[parameters setValue:[NSString stringWithFormat:@"%d", [comps month]] forKey:@"mon"];
-		[parameters setValue:[NSString stringWithFormat:@"%d", [comps day]] forKey:@"day"];
-		[parameters setValue:[NSString stringWithFormat:@"%d", [comps hour]] forKey:@"hour"];
-		[parameters setValue:[NSString stringWithFormat:@"%d", [comps minute]] forKey:@"min"];		
-		
-		[parameters setValue:event.journal forKey:@"usejournal"];
-		
-		if (event.security == PostSecurityPrivate) {
-			[parameters setValue:@"private" forKey:@"security"];
-		} else if (event.security != PostSecurityPublic) {
-			[parameters setValue:@"usemask" forKey:@"security"];
-			NSUInteger allowmask = 0;
-			if (event.security == PostSecurityCustom) {
-				for (NSNumber *groupID in event.selectedFriendGroups) {
-					allowmask |= 1 << [groupID unsignedIntegerValue];
+		if (challenge) {
+			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+			
+			[parameters setValue:[event.subject dataUsingEncoding:NSUTF8StringEncoding] forKey:@"subject"];
+			[parameters setValue:[event.event dataUsingEncoding:NSUTF8StringEncoding] forKey:@"event"];
+			
+			NSCalendar *cal = [NSCalendar currentCalendar];
+			unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+			NSDate *date = [NSDate date];
+			NSDateComponents *comps = [cal components:unitFlags fromDate:date];
+			
+			[parameters setValue:[NSString stringWithFormat:@"%d", [comps year]] forKey:@"year"];
+			[parameters setValue:[NSString stringWithFormat:@"%d", [comps month]] forKey:@"mon"];
+			[parameters setValue:[NSString stringWithFormat:@"%d", [comps day]] forKey:@"day"];
+			[parameters setValue:[NSString stringWithFormat:@"%d", [comps hour]] forKey:@"hour"];
+			[parameters setValue:[NSString stringWithFormat:@"%d", [comps minute]] forKey:@"min"];		
+			
+			[parameters setValue:event.journal forKey:@"usejournal"];
+			
+			if (event.security == PostSecurityPrivate) {
+				[parameters setValue:@"private" forKey:@"security"];
+			} else if (event.security != PostSecurityPublic) {
+				[parameters setValue:@"usemask" forKey:@"security"];
+				NSUInteger allowmask = 0;
+				if (event.security == PostSecurityCustom) {
+					for (NSNumber *groupID in event.selectedFriendGroups) {
+						allowmask |= 1 << [groupID unsignedIntegerValue];
+					}
+					//allowmask <<= 1;
+				} else {
+					allowmask = 1;
 				}
-				//allowmask <<= 1;
-			} else {
-				allowmask = 1;
+				NSNumber *allowmaskNumber = [[NSNumber alloc] initWithUnsignedInteger:allowmask];
+				[parameters setValue:allowmaskNumber forKey:@"allowmask"];
+				[allowmaskNumber release];
 			}
-			NSNumber *allowmaskNumber = [[NSNumber alloc] initWithUnsignedInteger:allowmask];
-			[parameters setValue:allowmaskNumber forKey:@"allowmask"];
-			[allowmaskNumber release];
-		}
+			
+			NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
 		
-		NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
-		
-		if ([account supports:ServerFeaturePostEventUserAgent]) {
+			if ([account supports:ServerFeaturePostEventUserAgent]) {
 #ifndef LITEVERSION
-			[props setValue:@"Journaler" forKey:@"useragent"];
+				[props setValue:@"Journaler" forKey:@"useragent"];
 #else
-			[props setValue:@"Journaler Lite" forKey:@"useragent"];
+				[props setValue:@"Journaler Lite" forKey:@"useragent"];
 #endif
-		}
-		
-		if ([event.tags count]) {
-			NSString *tags = [NSString string];
-			for (NSString *tag in event.tags) {
-				if ([tags length] > 0) {
-					tags = [tags stringByAppendingString:@","];
-				}
-				tags = [tags stringByAppendingString:tag];
 			}
-			[props setValue:tags forKey:@"taglist"];
-		}
+			
+			if ([event.tags count]) {
+				NSString *tags = [NSString string];
+				for (LJTag *tag in event.tags) {
+					if ([tags length] > 0) {
+						tags = [tags stringByAppendingString:@","];
+					}
+					tags = [tags stringByAppendingString:tag.name];
+				}
+				[props setValue:tags forKey:@"taglist"];
+			}
+			
+			if (event.picKeyword) {
+				[props setValue:event.picKeyword forKey:@"picture_keyword"];
+			}
+			
+			if (event.mood) {
+				LJMood *mood = [account.moods member:[[[LJMood alloc] initWithMood:event.mood] autorelease]];
+				if (mood) {
+					[props setValue:mood.mood forKey:@"current_mood"];
+					[props setValue:[NSNumber numberWithInteger:mood.ID] forKey:@"current_moodid"];
+				} else {
+					[props setValue:event.mood forKey:@"current_mood"];
+				}
+			}
 		
-		if (event.picKeyword) {
-			[props setValue:event.picKeyword forKey:@"picture_keyword"];
-		}
-	
-		[parameters setValue:props forKey:@"props"];
-		[props release];
-		
-		NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.postevent" parameters:parameters error:error] retain];
-		[parameters release];
-		if (result) {
-			[result release];
-			return YES;
+			[parameters setValue:props forKey:@"props"];
+			[props release];
+			
+			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.postevent" parameters:parameters error:error] retain];
+			[parameters release];
+			if (result) {
+				[result release];
+				return YES;
+			}
 		}
 	}
+	
 	return NO;
 }
 

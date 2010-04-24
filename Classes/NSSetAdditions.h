@@ -9,15 +9,17 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSArray (NSArrayAdditions)
+@interface NSSet (NSSetAdditions)
 
 - (BOOL)containsTag:(NSString *)tag;
+- (NSArray *)sortedArray;
 
 @end
 
 
-@interface NSMutableArray (NSMutableArrayAdditions)
+@interface NSMutableSet (NSMutableSetAdditions)
 
 - (void)addTag:(NSString *)tag;
+- (void)addObjectsFromSet:(NSSet *)set;
 
 @end

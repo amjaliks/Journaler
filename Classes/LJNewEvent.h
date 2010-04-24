@@ -16,7 +16,8 @@
 	PostSecurityLevel security;
 	NSArray *selectedFriendGroups;
 	NSString *picKeyword;
-	NSArray *tags;
+	NSSet *tags;
+	NSString *mood;
 }
 
 @property (nonatomic, retain) NSString *journal;
@@ -25,6 +26,7 @@
 @property (nonatomic) PostSecurityLevel security;
 @property (nonatomic, retain) NSArray *selectedFriendGroups;
 @property (nonatomic, retain) NSString *picKeyword;
-@property (nonatomic, retain) NSArray *tags;
+@property (nonatomic, retain) NSSet *tags;
+@property (nonatomic, retain) NSString *mood;
 
 @end

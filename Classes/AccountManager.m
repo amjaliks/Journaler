@@ -167,6 +167,10 @@ static AccountManager *sharedManager;
 	}
 }
 
+- (NSSet *)setForAccount:(NSString *)account forKey:(NSString *)key {
+	return [NSSet setWithArray:[self valueForAccount:account forKey:key]];
+}
+
 - (NSUInteger)unsignedIntegerValueForAccount:(NSString *)account forKey:(NSString *)key {
 	return [self unsignedIntegerValueForPath:[NSArray arrayWithObjects:kStateInfoAccounts, account, key, nil]];
 }
@@ -202,6 +206,10 @@ static AccountManager *sharedManager;
 
 - (void)setBoolValue:(BOOL)value forAccount:(NSString *)account forKey:(NSString *)key {
 	[self setValue:[NSNumber numberWithBool:value] forAccount:account forKey:key];
+}
+
+- (void)setSet:(NSSet *)set forAccount:(NSString *)account forKey:(NSString *)key {
+	[self setValue:[set allObjects] forAccount:account forKey:key];
 }
 
 - (void)setUnsignedIntegerValue:(NSUInteger)value forAccount:(NSString *)account forKey:(NSString *)key {

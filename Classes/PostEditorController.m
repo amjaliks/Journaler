@@ -12,7 +12,7 @@
 #import "AccountTabBarController.h"
 #import "ErrorHandling.h"
 #import "AccountManager.h"
-#import "NSArrayAdditions.h"
+#import "NSSetAdditions.h"
 
 
 @implementation PostEditorController
@@ -173,6 +173,7 @@
 	event.selectedFriendGroups = postOptionsController.selectedFriendGroups;
 	event.picKeyword = postOptionsController.picKeyword;
 	event.tags = postOptionsController.tags;
+	event.mood = postOptionsController.mood;
 	
 	NSError *error;
 	if ([[LJManager defaultManager] postEvent:event forAccount:account error:&error]) {
@@ -184,24 +185,13 @@
 		textField.text = nil;
 		postOptionsController.picKeyword = nil;
 		
-		if (postOptionsController.tags && [postOptionsController.tags count]) {
-			NSMutableArray *newTags = [[NSMutableArray alloc] init];
-			for (NSString *tag in postOptionsController.tags) {
-				if (![account.tags containsTag:tag]) {
-					[newTags addTag:tag];
-				}
-			}
-
-			if ([newTags count]) {
-				[newTags addObjectsFromArray:account.tags];
-				account.tags = newTags;
-				
-				[[AccountManager sharedManager] storeAccounts];
-			} else {
-				[newTags release];
-			}
+		if (![postOptionsController.tags isSubsetOfSet:account.tags]) {
+			NSMutableSet *tags = [[NSMutableSet alloc] initWithSet:account.tags];
+			[tags addObjectsFromSet:postOptionsController.tags];
+			[[AccountManager sharedManager] storeAccounts];
 			
 			postOptionsController.tags = nil;
+			postOptionsController.mood = nil;
 		}
 	} else {
 		showErrorMessage(@"Post error", decodeError([error code]));

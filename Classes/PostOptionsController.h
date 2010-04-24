@@ -29,7 +29,12 @@ typedef enum {
 	PostSecurityLevel security;
 	NSMutableArray *selectedFriendGroups;
 	NSString *picKeyword;
-	NSArray *tags;
+	NSSet *tags;
+	NSString *mood;
+	
+	BOOL hidingKeyboard;
+	BOOL viewWillDisappear;
+	BOOL viewWillDisappearAnimated;
 	
 	id<PostOptionsControllerDataSource> dataSource;
 }
@@ -41,7 +46,8 @@ typedef enum {
 @property (retain) NSString *journal;
 @property PostSecurityLevel security;
 @property (readonly) NSMutableArray *selectedFriendGroups;
-@property (retain, nonatomic) NSArray *tags;
+@property (retain, nonatomic) NSSet *tags;
+@property (retain, nonatomic) NSString *mood;
 @property (retain) NSString *picKeyword;
 @property (readonly) BOOL promote;
 
@@ -49,7 +55,11 @@ typedef enum {
 - (void)done;
 
 - (void)tagsChanged:(id)sender;
+- (void)moodChanged:(id)sender;
 - (void)promoteChanged:(id)sender;
+
+- (void)keyboardWillHide:(id)sender;
+- (void)keyboardDidHide:(id)sender;
 
 @end
 

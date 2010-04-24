@@ -163,7 +163,7 @@
 		
 		[self.tableView reloadData];
 	} else {
-		showErrorMessage(NSLocalizedStringFromTable(@"Friend groups sync error", @"Title for friend groups sync error messages", kErrorStringsTable), decodeError([error code]));
+		showErrorMessage(NSLocalizedString(@"Friend groups sync error", nil), decodeError([error code]));
 	}
 }
 

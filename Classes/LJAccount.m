@@ -8,6 +8,15 @@
 
 #import "LJAccount.h"
 
+#define kKeyUser @"user"
+#define kKeyPassword @"password"
+#define kKeyServer @"server"
+#define kKeyCommunities @"communities"
+#define kKeyFriendGroups @"friendGroups"
+#define kKeyPicKeywords @"picKeywords"
+#define kKeyTags @"tags"
+#define kKeyMoods @"moods"
+#define kKeyLastKnownMoodID @"lastKnownMoodID"
 
 @implementation LJAccount
 
@@ -18,9 +27,14 @@
 @synthesize friendGroups;
 @synthesize picKeywords;
 @synthesize tags;
+@synthesize moods;
 
 @synthesize synchronized;
 @synthesize tagsSynchronized;
+@synthesize loginSynchronized;
+
+#pragma mark -
+#pragma mark Atmiņas pārvaldīšana
 
 - (id)init {
 	if (self = [super init]) {
@@ -30,39 +44,51 @@
 	return self;
 }
 
+- (void) dealloc {
+	[user release];
+	[password release];
+	[server release];
+	[communities release];
+	[friendGroups release];
+	[picKeywords release];
+	[tags release];
+	[moods release];
+	
+	[super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark NSCoder metodes
+
 - (id)initWithCoder:(NSCoder *)coder {
 	if (self = [self init]) {
-		user = [[coder decodeObjectForKey:@"user"] retain];
-		password = [[coder decodeObjectForKey:@"password"] retain];
-		server = [[coder decodeObjectForKey:@"server"] retain];
-		communities = [[coder decodeObjectForKey:@"communities"] retain];
-		friendGroups = [[coder decodeObjectForKey:@"friendGroups"] retain];
-		picKeywords = [[coder decodeObjectForKey:@"picKeywords"] retain];
-		tags = [[coder decodeObjectForKey:@"tags"] retain];
-		
-		supportedFeatures = [LJAccount supportedFeaturesForServer:server];
-		// ja serveris neatbalsta tagu sinhronizāciju, tad atzīmējam, ka tagi ir nosinhronizēti,
-		// lai lietotne necenšas sinhronizēt tos
-		tagsSynchronized = ![self supports:ServerFeatureMethodGetUserTags];
+		user = [[coder decodeObjectForKey:kKeyUser] retain];
+		password = [[coder decodeObjectForKey:kKeyPassword] retain];
+		self.server = [[coder decodeObjectForKey:kKeyServer] retain];
+		communities = [[coder decodeObjectForKey:kKeyCommunities] retain];
+		friendGroups = [[coder decodeObjectForKey:kKeyFriendGroups] retain];
+		picKeywords = [[coder decodeObjectForKey:kKeyPicKeywords] retain];
+		tags = [[coder decodeObjectForKey:kKeyTags] retain];
+		moods = [[coder decodeObjectForKey:kKeyMoods] retain];
 	}
 	
 	return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-	[coder encodeInt:1 forKey:@"version"];
-	[coder encodeObject:user forKey:@"user"];
-	[coder encodeObject:password forKey:@"password"];
-	[coder encodeObject:server forKey:@"server"];
-	[coder encodeObject:communities forKey:@"communities"];
-	[coder encodeObject:friendGroups forKey:@"friendGroups"];
-	[coder encodeObject:picKeywords forKey:@"picKeywords"];
-	[coder encodeObject:tags forKey:@"tags"];
+	[coder encodeObject:user forKey:kKeyUser];
+	[coder encodeObject:password forKey:kKeyPassword];
+	[coder encodeObject:server forKey:kKeyServer];
+	[coder encodeObject:communities forKey:kKeyCommunities];
+	[coder encodeObject:friendGroups forKey:kKeyFriendGroups];
+	[coder encodeObject:picKeywords forKey:kKeyPicKeywords];
+	[coder encodeObject:tags forKey:kKeyTags];
+	[coder encodeObject:moods forKey:kKeyMoods];
 }
 
-- (NSString *)title {
-	return [NSString stringWithFormat:@"%@@%@", user, server];
-}
+#pragma mark -
+#pragma mark NSObject metodes
 
 - (BOOL) isEqual:(id)anObject {
 	if (self == anObject) {
@@ -77,6 +103,31 @@
 		return NO;
 	}
 }
+
+#pragma mark -
+#pragma mark Īpašības
+
+- (NSString *)title {
+	return [NSString stringWithFormat:@"%@@%@", user, server];
+}
+
+- (void)setServer:(NSString *)newServer {
+	if (![server isEqual:newServer]) {
+		[server release];
+		server = [newServer retain];
+
+		// pēc servera uzstāšīanas, nosakam savietojamo fīču sarakstu
+		supportedFeatures = [LJAccount supportedFeaturesForServer:server];
+		
+		// ja serveris neatbalsta tagu sinhronizāciju, tad atzīmējam, ka tagi ir nosinhronizēti,
+		// lai lietotne necenšas sinhronizēt tos
+		tagsSynchronized = ![self supports:ServerFeatureMethodGetUserTags];
+	}
+	
+}
+
+#pragma mark -
+#pragma mark Savietojamības ar serveriem
 
 + (ServerFeature)supportedFeaturesForServer:(NSString *)server {
 	if ([@"livejournal.com" isEqualToString:server]) {

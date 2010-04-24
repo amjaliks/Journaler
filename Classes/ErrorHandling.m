@@ -32,7 +32,7 @@ NSString * decodeError(NSInteger code) {
 	} else if (LJErrorIncorrectTimeValue == code) {
 		text = @"You have an entry with the date and time in future. Edit that entry to use the \"Date Out of Order\", before you can post a new post.";
 	} else if (LJErrorMalformedRespone == code) {
-		text = @"Can't understand server response.";
+		text = @"Can't understand server response. Please try again after a while!";
 	} else if (LJErrorAccessIPBanDueLoginFailureRate == code) {
 		text = @"Your IP address is temporarily banned for exceeding the login failure rate.";
 	} else {

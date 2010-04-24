@@ -23,6 +23,7 @@
 #define kStateInfoNewPostJournal @"new_post_journal"
 #define kStateInfoNewPostPicKeyword @"new_post_pic_keyword"
 #define kStateInfoNewPostTags @"new_post_tags"
+#define kStateInfoNewPostMood @"new_post_mood"
 #define kStateInfoNewPostPromote @"new_post_promote"
 
 @class LJAccount, PostEditorController;
@@ -66,6 +67,7 @@ typedef enum {
 
 - (id)valueForAccount:(NSString *)account forKey:(NSString *)key;
 - (BOOL)boolValueForAccount:(NSString *)account forKey:(NSString *)key defaultValue:(BOOL)defaultValue;
+- (NSSet *)setForAccount:(NSString *)account forKey:(NSString *)key;
 - (NSUInteger)unsignedIntegerValueForAccount:(NSString *)account forKey:(NSString *)key;
 
 - (NSString *)openedAccount;
@@ -75,6 +77,7 @@ typedef enum {
 
 - (void)setValue:(id)value forAccount:(NSString *)account forKey:(NSString *)key;
 - (void)setBoolValue:(BOOL)value forAccount:(NSString *)account forKey:(NSString *)key;
+- (void)setSet:(NSSet *)set forAccount:(NSString *)account forKey:(NSString *)key;
 - (void)setUnsignedIntegerValue:(NSUInteger)value forAccount:(NSString *)account forKey:(NSString *)key;
 
 - (void)setOpenedAccount:(NSString *)account;
