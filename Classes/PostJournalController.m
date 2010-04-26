@@ -100,7 +100,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	postOptionsController.journal = cell.textLabel.text;
-	[[AccountManager sharedManager] setValue:cell.textLabel.text forAccount:postOptionsController.account.title forKey:kStateInfoNewPostJournal];
+	[[AccountManager sharedManager] stateInfoForAccount:postOptionsController.account.title].newPostJournal = cell.textLabel.text;
 	
 	selectedCell.accessoryType = UITableViewCellAccessoryNone;
 	cell.accessoryType = UITableViewCellAccessoryCheckmark;

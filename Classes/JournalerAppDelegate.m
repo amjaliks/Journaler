@@ -53,7 +53,7 @@
 	registerUserDefaults();
 	
 	[[AccountManager sharedManager] loadAccounts];
-	[[AccountManager sharedManager] loadScreenState];
+	[[AccountManager sharedManager] loadAccountStateInfo];
 	
 #ifndef LITEVERSION
 	rootViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];
@@ -103,7 +103,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {	
 	[model saveAll];
-	[[AccountManager sharedManager] storeScreenState];
+	[[AccountManager sharedManager] storeAccountStateInfo];
 	
 	[rootViewController release];
 }

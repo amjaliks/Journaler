@@ -84,14 +84,14 @@ enum {
 		security = PostSecurityPublic;
 		selectedFriendGroups = [[NSMutableArray alloc] init];
 		
-		picKeyword = [[[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostPicKeyword] retain];
-		tags = [[[AccountManager sharedManager] setForAccount:account.title forKey:kStateInfoNewPostTags] retain];
-		mood = [[[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostMood] retain];
+		picKeyword = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPicKeyword retain];
+		tags = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostTags retain];
+		mood = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostMood retain];
 		
 #ifdef LITEVERSION
 		promote = YES;
 #else
-		promote = [[AccountManager sharedManager] boolValueForAccount:account.title forKey:kStateInfoNewPostPromote defaultValue:YES];
+		promote = [[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPromote;
 #endif
     }
     return self;
@@ -254,11 +254,13 @@ enum {
 			cell.detailTextLabel.text = picKeyword ? picKeyword : NSLocalizedString(@"Default", nil);
 		} else if (indexPath.row == SectionAdditionalRowTags) {
 			cell.textLabel.text = NSLocalizedString(@"Tags", nil);
+			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			[(TextFieldCellView *)cell setTags:tags];
 			((TextFieldCellView *)cell).text.placeholder = NSLocalizedString(@"separated by commas", nil);
 			[(TextFieldCellView *)cell setTarget:self action:@selector(tagsChanged:)];
 		} else if (indexPath.row == SectionAdditionalRowMood) {
 			cell.textLabel.text = NSLocalizedString(@"Mood", nil);
+			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			((TextFieldCellView *)cell).text.text = mood;
 			((TextFieldCellView *)cell).text.placeholder = NSLocalizedString(@"select from list or type here", nil);;
 			[(TextFieldCellView *)cell setTarget:self action:@selector(moodChanged:)];
@@ -300,18 +302,9 @@ enum {
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 	UIViewController *controller;
 	
-	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	[((TextFieldCellView *)cell).text resignFirstResponder];
-	
 	if (indexPath.section == SectionAdditional && indexPath.row == SectionAdditionalRowTags) {
-		// nolasam tagus
-		//[self tagsChanged:[tableView cellForRowAtIndexPath:indexPath]];
-		// atveram tagu sarakstu
 		controller = [[TagListController alloc] initWithPostOptionsController:self];
 	} else	if (indexPath.section == SectionAdditional && indexPath.row == SectionAdditionalRowMood) {
-		// nolasam garastāvokli
-		//[self moodChanged:[tableView cellForRowAtIndexPath:indexPath]];
-		// atveram garastāvokļu sarakstu
 		controller = [[MoodListController alloc] initWithPostOptionsController:self];
 	}
 	
@@ -338,7 +331,7 @@ enum {
 
 - (void)promoteChanged:(id)sender {
 	promote = ((UISwitch *)sender).on;
-	[[AccountManager sharedManager] setBoolValue:promote forAccount:account.title forKey:kStateInfoNewPostPromote];
+	[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPromote = promote;
 }
 
 - (void)setPicKeyword:(NSString *)newPicKeyword {
@@ -346,7 +339,7 @@ enum {
 		[picKeyword release];
 		picKeyword = [newPicKeyword retain];
 		
-		[[AccountManager sharedManager] setValue:picKeyword forAccount:account.title forKey:kStateInfoNewPostPicKeyword];
+		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPicKeyword = picKeyword;
 	}
 }
 
@@ -355,7 +348,7 @@ enum {
 		[tags release];
 		tags = [newTags retain];
 
-		[[AccountManager sharedManager] setSet:tags forAccount:account.title forKey:kStateInfoNewPostTags];
+		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostTags = tags;
 	}
 }
 
@@ -363,8 +356,8 @@ enum {
 	if (newMood != mood) {
 		[mood release];
 		mood = [newMood retain];
-		
-		[[AccountManager sharedManager] setValue:mood forAccount:account.title forKey:kStateInfoNewPostMood];
+
+		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostMood = mood;
 	}
 }
 

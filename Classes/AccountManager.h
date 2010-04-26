@@ -8,35 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AccountStateInfo.h"
+
 #define kStateInfoFileName @"stateInfo.plist"
-#define kStateInfoOpenedAccount @"opened_account"
 #define kStateInfoAccounts @"accounts"
-#define kStateInfoOpenedScreenType @"opened_screen_type"
-#define kStateInfoFirstVisiblePost @"first_visible_post" 
-#define kStateInfoFirstVisiblePostScrollPosition @"first_visible_post_scroll_position" 
-#define kStateInfoLastVisiblePostIndex @"last_visible_post_index"
-#define kStateInfoOpenedPost @"opened_post"
-#define kStateInfoNewPostText @"new_post_text"
-#define kStateInfoNewPostSubject @"new_post_subject"
-#define kStateInfoNewPostSecurity @"new_post_security"
-#define kStateInfoNewPostSelectedFriendGroups @"new_post_selected_friend_groups"
-#define kStateInfoNewPostJournal @"new_post_journal"
-#define kStateInfoNewPostPicKeyword @"new_post_pic_keyword"
-#define kStateInfoNewPostTags @"new_post_tags"
-#define kStateInfoNewPostMood @"new_post_mood"
-#define kStateInfoNewPostPromote @"new_post_promote"
 
-@class LJAccount, PostEditorController;
+//#define kStateInfoOpenedScreenType @"opened_screen_type"
+//#define kStateInfoFirstVisiblePost @"first_visible_post" 
+//#define kStateInfoFirstVisiblePostScrollPosition @"first_visible_post_scroll_position" 
+//#define kStateInfoLastVisiblePostIndex @"last_visible_post_index"
+//#define kStateInfoOpenedPost @"opened_post"
+//#define kStateInfoNewPostText @"new_post_text"
+//#define kStateInfoNewPostSubject @"new_post_subject"
+//#define kStateInfoNewPostSecurity @"new_post_security"
+//#define kStateInfoNewPostSelectedFriendGroups @"new_post_selected_friend_groups"
+//#define kStateInfoNewPostJournal @"new_post_journal"
+//#define kStateInfoNewPostPicKeyword @"new_post_pic_keyword"
+//#define kStateInfoNewPostTags @"new_post_tags"
+//#define kStateInfoNewPostMood @"new_post_mood"
+//#define kStateInfoNewPostPromote @"new_post_promote"
 
-typedef enum {
-	OpenedScreenFriendsPage = 0,
-	OpenedScreenPost = 1,
-	OpenedScreenNewPost = 2
-} OpenedScreenType;
+@class LJAccount, AccountStateInfo, PostEditorController;
 
 @interface AccountManager : NSObject {
 	NSMutableArray *accounts;
 	NSMutableDictionary *accountsDict;
+	NSMutableDictionary *accountStateInfo;
 	
 	NSMutableDictionary *stateInfo;
 	
@@ -56,8 +53,11 @@ typedef enum {
 #endif
 
 // stāvokļa pārvaldīšana
-- (void)loadScreenState;
-- (void)storeScreenState;
+- (void)loadAccountStateInfo;
+- (void)storeAccountStateInfo;
+
+- (AccountStateInfo *)stateInfoForAccount:(NSString *)account;
+
 - (NSMutableDictionary *)stateInfo;
 - (void)registerPostEditorController:(PostEditorController *)controller;
 

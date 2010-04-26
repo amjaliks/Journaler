@@ -12,7 +12,10 @@
 #import "PostEditorController.h"
 
 #define kAccountsFileName @"accounts.bin"
+#define kAccountStateInfoFileName @"stateinfo.bin"
 #define kAccountFileName @"account.bin"
+
+#define kAccountStateInfoOpenedAccount @"opened_account"
 
 static AccountManager *sharedManager;
 
@@ -86,41 +89,31 @@ static AccountManager *sharedManager;
 
 #pragma mark Ekrānu stāvokļa pārvaldīšana
 
-- (void)loadScreenState {
-	NSString *errorDesc = nil;
-	NSPropertyListFormat format;
-	NSString *plistPath = [APP_CACHES_DIR stringByAppendingPathComponent:kStateInfoFileName];
-	NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
-	if (plistXML) {
-		id temp = [NSPropertyListSerialization
-											  propertyListFromData:plistXML
-											  mutabilityOption:NSPropertyListMutableContainersAndLeaves
-											  format:&format
-											  errorDescription:&errorDesc];
-		if (temp && [temp isKindOfClass:[NSMutableDictionary class]]) {
-			stateInfo = [temp retain];
-		} else {
-			NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
-		}
+- (void)loadAccountStateInfo {
+	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kAccountStateInfoFileName];
+	accountStateInfo = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
+	
+	if (!accountStateInfo) {
+		accountStateInfo = [[NSMutableDictionary alloc] initWithCapacity:[accounts count] + 1];
 	}
 }
 
-- (void)storeScreenState {
+- (void)storeAccountStateInfo {
 	for(PostEditorController *controller in postEditors) {
 		[controller saveState];
 	}
-	
-    NSString *error;
-    NSString *plistPath = [APP_CACHES_DIR stringByAppendingPathComponent:kStateInfoFileName];
-    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:[self stateInfo]
-																   format:NSPropertyListBinaryFormat_v1_0
-														 errorDescription:&error];
-    if(plistData) {
-        [plistData writeToFile:plistPath atomically:YES];
-    } else {
-        NSLog(@"%@", error);
-        [error release];
-    }
+
+	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kAccountStateInfoFileName];
+	[NSKeyedArchiver archiveRootObject:accountStateInfo toFile:path];
+}
+
+- (AccountStateInfo *)stateInfoForAccount:(NSString *)account {
+	AccountStateInfo *localAccountStateInfo = [accountStateInfo objectForKey:account];
+	if (!localAccountStateInfo) {
+		localAccountStateInfo = [[[AccountStateInfo alloc] init] autorelease];
+		[accountStateInfo setObject:localAccountStateInfo forKey:account];
+	}
+	return localAccountStateInfo;
 }
 
 - (NSMutableDictionary *)stateInfo {
@@ -176,7 +169,7 @@ static AccountManager *sharedManager;
 }
 
 - (NSString *)openedAccount {
-	return [[self stateInfo] objectForKey:kStateInfoOpenedAccount];
+	return [accountStateInfo objectForKey:kAccountStateInfoOpenedAccount];
 }
 
 - (void)setValue:(id)value forPath:(NSArray *)path {
@@ -218,9 +211,9 @@ static AccountManager *sharedManager;
 
 - (void)setOpenedAccount:(NSString *)account {
 	if (account) {
-		[[self stateInfo] setObject:account forKey:kStateInfoOpenedAccount];
+		[accountStateInfo setObject:account forKey:kAccountStateInfoOpenedAccount];
 	} else {
-		[[self stateInfo] removeObjectForKey:kStateInfoOpenedAccount];
+		[accountStateInfo removeObjectForKey:kAccountStateInfoOpenedAccount];
 	}
 }
 
@@ -237,6 +230,7 @@ static AccountManager *sharedManager;
 	[accounts release];
 	[accountsDict release];
 	[stateInfo release];
+	[accountStateInfo release];
 	
 	[super dealloc];
 }

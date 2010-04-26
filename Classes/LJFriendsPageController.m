@@ -72,8 +72,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	needOpenPost = OpenedScreenPost == [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoOpenedScreenType];
-    [super viewDidAppear:animated];
+	needOpenPost = OpenedScreenPost == [[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen;
+	[super viewDidAppear:animated];
 	if (!account.synchronized) {
 		account.synchronized = YES;
 		[self performSelectorInBackground:@selector(firstSync) withObject:nil];
@@ -134,12 +134,12 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	// lasam no keša pirmos 10 ierakstus
-	NSUInteger lastVisiblePostIndex = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoLastVisiblePostIndex];
+	NSUInteger lastVisiblePostIndex = [[AccountManager sharedManager] stateInfoForAccount:account.title].lastVisiblePostIndex;
 	NSUInteger limit = MAX(kReadLimitPerAttempt, lastVisiblePostIndex + 1);
 	[self loadPostsFromCacheFromOffset:0 limit:limit];
 	
 	if (needOpenPost) {
-		NSString *postKey = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoOpenedPost];
+		NSString *postKey = [[AccountManager sharedManager] stateInfoForAccount:account.title].openedPost;
 		if (postKey) {
 			[self performSelectorOnMainThread:@selector(openPostByKey:) withObject:postKey waitUntilDone:NO];
 		}
@@ -391,12 +391,12 @@
 			displayedPosts = [loadedPosts copy];
 
 			[tableView reloadData];
-			NSString *firstVisiblePost = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoFirstVisiblePost];
+			NSString *firstVisiblePost = [[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePost;
 			if (firstVisiblePost) {
 				NSUInteger row = 0;
 				for (Post *post in displayedPosts) {
 					if ([firstVisiblePost isEqualToString:post.uniqueKey]) {
-						NSUInteger scrollPosition = row * 88 + [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoFirstVisiblePostScrollPosition];
+						NSUInteger scrollPosition = row * 88 + [[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePostScrollPosition;
 						NSUInteger lowerAllowedPosition = tableView.contentSize.height - tableView.bounds.size.height;
 						[tableView setContentOffset:CGPointMake(0, scrollPosition > lowerAllowedPosition ? lowerAllowedPosition : scrollPosition)];
 						return;
@@ -542,9 +542,9 @@
 	if (indexPaths && [indexPaths count] > 0) {
 		NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
 		NSUInteger row = indexPath.row;
-		[[AccountManager sharedManager] setValue:[(Post *)[displayedPosts objectAtIndex:row] uniqueKey] forAccount:account.title forKey:kStateInfoFirstVisiblePost];
-		[[AccountManager sharedManager] setUnsignedIntegerValue:((NSUInteger)scrollView.contentOffset.y) % 88 forAccount:account.title forKey:kStateInfoFirstVisiblePostScrollPosition];
-		[[AccountManager sharedManager] setUnsignedIntegerValue:[(NSIndexPath *)[indexPaths objectAtIndex:0] row] + 5 forAccount:account.title forKey:kStateInfoLastVisiblePostIndex];
+		[[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePost = [(Post *)[displayedPosts objectAtIndex:row] uniqueKey];
+		[[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePostScrollPosition = ((NSUInteger)scrollView.contentOffset.y) % 88;
+		[[AccountManager sharedManager] stateInfoForAccount:account.title].lastVisiblePostIndex = [(NSIndexPath *)[indexPaths objectAtIndex:0] row] + 5;
 	}
 	
 	if (needReloadTable) {

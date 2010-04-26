@@ -149,8 +149,8 @@
 		postOptionsController.security = PostSecurityCustom;
 	}
 
-	[[AccountManager sharedManager] setUnsignedIntegerValue:postOptionsController.security forAccount:postOptionsController.account.title forKey:kStateInfoNewPostSecurity];
-	[[AccountManager sharedManager] setValue:postOptionsController.selectedFriendGroups forAccount:postOptionsController.account.title forKey:kStateInfoNewPostSelectedFriendGroups];
+	[[AccountManager sharedManager] stateInfoForAccount:postOptionsController.account.title].newPostSecurity = postOptionsController.security;
+	[[AccountManager sharedManager] stateInfoForAccount:postOptionsController.account.title].newPostSelectedFriendGroups = postOptionsController.selectedFriendGroups;
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

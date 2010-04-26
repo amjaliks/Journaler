@@ -45,7 +45,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	[[AccountManager sharedManager] setUnsignedIntegerValue:OpenedScreenFriendsPage forAccount:account.title forKey:kStateInfoOpenedScreenType];
+	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen = OpenedScreenFriendsPage;
 	
 //#ifdef LITEVERSION
 //	[self refreshAdMobView];

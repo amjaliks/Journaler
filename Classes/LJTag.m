@@ -18,9 +18,9 @@
 		if (self = [super init]) {
 			newName = [newName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 			if ([newName length]) {
-				name = [newName retain];
+				self.name = newName;
 			} else {
-				name = nil;
+				self.name = nil;
 			}
 		}
 		return self;
@@ -32,6 +32,18 @@
 	[super dealloc];
 }
 
+- (void)setName:(NSString *)newName {
+	if (name != newName) {
+		[name release];
+		name = [newName retain];
+		
+		hash = [[newName lowercaseString] hash];
+	}
+}
+
+- (NSUInteger)hash {
+	return hash;
+}
 
 - (BOOL)isEqual:(id)object {
 	if (self == object) {
@@ -52,7 +64,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
 	if (self = [self init]) {
-		name = [[coder decodeObjectForKey:kKeyName] retain];
+		self.name = [[coder decodeObjectForKey:kKeyName] retain];
 	}
 	return self;
 }

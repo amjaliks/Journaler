@@ -17,9 +17,6 @@
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
-#ifndef LITEVERSION
-		self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-#endif
 		self.textLabel.backgroundColor = [UIColor clearColor];
 		
 		text = [[UITextField alloc] init];

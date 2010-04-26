@@ -48,13 +48,19 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
-	selectedTags = [postOptionsController.tags mutableCopy];
+	if (postOptionsController.tags) {
+		selectedTags = [postOptionsController.tags mutableCopy];
+	} else {
+		selectedTags = [[NSMutableSet alloc] init];
+	}
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 	
 	postOptionsController.tags = selectedTags;
+	[selectedTags release];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

@@ -62,7 +62,7 @@
 	
 	NSArray *arrays = [[NSArray alloc] initWithObjects:friendsPageController, postEditorController, nil];
 	self.viewControllers = arrays;
-	self.selectedIndex = [[AccountManager sharedManager] unsignedIntegerValueForAccount:newAccount.title forKey:kStateInfoOpenedScreenType] == OpenedScreenNewPost ? 1 : 0;
+	self.selectedIndex = [[AccountManager sharedManager] stateInfoForAccount:newAccount.title].openedScreen == OpenedScreenNewPost ? 1 : 0;
 	self.navigationItem.rightBarButtonItem = self.selectedViewController.navigationItem.rightBarButtonItem;
 	
 	[arrays release];
@@ -74,7 +74,7 @@
 	self.navigationItem.rightBarButtonItem = viewController.navigationItem.rightBarButtonItem;
 	
 	NSUInteger value = postEditorController == viewController ? OpenedScreenNewPost : OpenedScreenFriendsPage;
-	[[AccountManager sharedManager] setUnsignedIntegerValue:value forAccount:account.title forKey:kStateInfoOpenedScreenType];
+	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen = value;
 }
 
 - (LJAccount *)selectedAccount {

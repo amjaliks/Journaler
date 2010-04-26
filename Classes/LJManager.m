@@ -231,6 +231,7 @@ LJManager *defaultManager;
 	return NO;
 }
 
+#pragma mark -
 #pragma mark Tehniskās metodes
 
 - (NSDictionary *)sendRequestToServer:(NSString *)server method:(NSString *)method parameters:(NSDictionary *)parameters error:(NSError **)error {
@@ -357,6 +358,7 @@ LJManager *defaultManager;
 	return [arrayOfStrings autorelease];
 }
 
+#pragma mark -
 #pragma mark Singleton metodes
 
 + (LJManager *)defaultManager {

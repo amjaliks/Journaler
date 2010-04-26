@@ -11,6 +11,8 @@
 
 @interface LJTag : NSObject {
 	NSString *name;
+	
+	NSUInteger hash;
 }
 
 @property (retain, nonatomic) NSString *name;

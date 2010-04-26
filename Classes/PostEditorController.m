@@ -55,18 +55,18 @@
 	
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	
-	textField.text = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostText];
-	subjectField.text = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostSubject];
+	textField.text = [[AccountManager sharedManager] stateInfoForAccount:account.title].newPostText;
+	subjectField.text = [[AccountManager sharedManager] stateInfoForAccount:account.title].newPostSubject;
 	
 	postOptionsController = [[PostOptionsController alloc] initWithAccount:account];
 	postOptionsController.dataSource = self;
 	
-	NSString *journal = [[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostJournal];
+	NSString *journal = [[AccountManager sharedManager] stateInfoForAccount:account.title].newPostJournal;
 	if (journal) {
 		postOptionsController.journal = journal;
 	}
-	postOptionsController.security = [[AccountManager sharedManager] unsignedIntegerValueForAccount:account.title forKey:kStateInfoNewPostSecurity];
-	[postOptionsController.selectedFriendGroups addObjectsFromArray:[[AccountManager sharedManager] valueForAccount:account.title forKey:kStateInfoNewPostSelectedFriendGroups]];
+	postOptionsController.security = [[AccountManager sharedManager] stateInfoForAccount:account.title].newPostSecurity;
+	[postOptionsController.selectedFriendGroups addObjectsFromArray:[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostSelectedFriendGroups];
 
 	[[AccountManager sharedManager] registerPostEditorController:self];
 }
@@ -172,6 +172,7 @@
 	event.security = postOptionsController.security;
 	event.selectedFriendGroups = postOptionsController.selectedFriendGroups;
 	event.picKeyword = postOptionsController.picKeyword;
+	
 	event.tags = postOptionsController.tags;
 	event.mood = postOptionsController.mood;
 	
@@ -188,11 +189,11 @@
 		if (![postOptionsController.tags isSubsetOfSet:account.tags]) {
 			NSMutableSet *tags = [[NSMutableSet alloc] initWithSet:account.tags];
 			[tags addObjectsFromSet:postOptionsController.tags];
-			[[AccountManager sharedManager] storeAccounts];
-			
-			postOptionsController.tags = nil;
-			postOptionsController.mood = nil;
+			[[AccountManager sharedManager] storeAccounts];			
 		}
+
+		postOptionsController.tags = nil;
+		postOptionsController.mood = nil;
 	} else {
 		showErrorMessage(@"Post error", decodeError([error code]));
 	}
@@ -271,8 +272,8 @@
 
 - (void)saveState {
 	if ([self isViewLoaded]) {
-		[[AccountManager sharedManager] setValue:subjectField.text forAccount:account.title forKey:kStateInfoNewPostSubject];
-		[[AccountManager sharedManager] setValue:textField.text forAccount:account.title forKey:kStateInfoNewPostText];
+		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostSubject = subjectField.text;
+		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostText = textField.text;
 	}
 }
 

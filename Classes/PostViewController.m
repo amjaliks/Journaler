@@ -118,8 +118,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	[[AccountManager sharedManager] setUnsignedIntegerValue:OpenedScreenPost forAccount:account.title forKey:kStateInfoOpenedScreenType];
-	[[AccountManager sharedManager] setValue:post.uniqueKey forAccount:account.title forKey:kStateInfoOpenedPost];
+	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen = OpenedScreenPost;
+	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedPost = post.uniqueKey;
 }
 
 #ifndef LITEVERSION
