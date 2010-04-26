@@ -29,6 +29,7 @@
 - (NSDictionary *)sendRequestToServer:(NSString *)server method:(NSString *)method parameters:(NSDictionary *)parameters error:(NSError **)error;
 - (NSMutableDictionary *)newParametersForAccount:(LJAccount *)account challenge:(NSString *)challenge;
 - (NSString *)readStringValue:(id)value;
+- (NSArray *)readArrayOfStrings:(NSArray *)array;
 - (NSArray *)friendGroupsFromArray:(NSArray *)array;
 
 @end

@@ -59,13 +59,13 @@ LJManager *defaultManager;
 				account.loginSynchronized = YES;
 				
 				// lietotājam pieejamās kopienas
-				account.communities = [result valueForKey:@"usejournals"];
+				account.communities = [self readArrayOfStrings:[result valueForKey:@"usejournals"]];
 				
 				// lietotāju draugu grupas
 				account.friendGroups = [self friendGroupsFromArray:[result valueForKey:@"friendgroups"]];
 				
 				// lietotāja bilžu atslēgas vārdi
-				account.picKeywords = [result valueForKey:@"pickws"];
+				account.picKeywords = [self readArrayOfStrings:[result valueForKey:@"pickws"]];
 				
 				// lietotāja noskaņojumu saraksts
 				NSMutableSet *moods = account.moods ? [account.moods mutableCopy] : [[NSMutableSet alloc] init];
@@ -347,6 +347,15 @@ LJManager *defaultManager;
 	return [friendGroups autorelease];
 }
 
+- (NSArray *)readArrayOfStrings:(NSArray *)array {
+	NSMutableArray *arrayOfStrings = [[NSMutableArray alloc] initWithCapacity:[array count]];
+	
+	for (id value in array) {
+		[arrayOfStrings addObject:[self readStringValue:value]];
+	}
+	
+	return [arrayOfStrings autorelease];
+}
 
 #pragma mark Singleton metodes
 
