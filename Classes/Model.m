@@ -168,9 +168,9 @@
 #pragma mark Memory managment
 
 - (void) dealloc {
-    [managedObjectContext release];
-    [managedObjectModel release];
-    [persistentStoreCoordinator release];
+	[managedObjectContext release];
+	[managedObjectModel release];
+	[persistentStoreCoordinator release];
 	
 	[super dealloc];
 }

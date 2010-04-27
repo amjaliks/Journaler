@@ -217,6 +217,7 @@
 	NSError *error;
 	if (![[LJManager defaultManager] loginForAccount:account error:&error]) {
 		showErrorMessage(NSLocalizedStringFromTable(@"Login error", @"Title for login error message", kErrorStringsTable), decodeError([error code]));
+		[account release];
 		return;
 	}
 	

@@ -130,7 +130,7 @@ enum {
 	hidingKeyboard = NO;
 	viewWillDisappear = NO;
 	
-	locateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 29, 31)];
+	locateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 39, 39)];
 	
 	locationManager = [[CLLocationManager alloc] init];
 	if (locationManager.locationServicesEnabled) {
@@ -140,13 +140,13 @@ enum {
 		locateMeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 		[locateMeButton setImage:[UIImage imageNamed:@"locateme.png"] forState:UIControlStateNormal];
 		[locateMeButton setImage:[UIImage imageNamed:@"locateme-hover.png"] forState:UIControlStateHighlighted];
-		[locateMeButton setFrame:CGRectMake(0, 0, 29, 31)];
+		[locateMeButton setFrame:CGRectMake(0, 0, 39, 39)];
 		[locateMeButton addTarget:self action:@selector(locateMePressed:) forControlEvents:UIControlEventTouchUpInside];
 		
 		[locateView addSubview:locateMeButton];
 		
 		locateActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-		locateActivity.frame = CGRectMake(5, 5, 20, 20);
+		locateActivity.frame = CGRectMake(8, 8, 20, 20);
 		[locateActivity startAnimating];
 	}
 }
@@ -499,6 +499,7 @@ enum {
 	[locateMeButton removeFromSuperview];
 	[locateView addSubview:locateActivity];
 
+	//[self revertLocateMeButton];
 	[locationManager startUpdatingLocation];
 }
 
@@ -515,6 +516,7 @@ enum {
 		geocoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
 		geocoder.delegate = self;
 		[geocoder start];
+		[self revertLocateMeButton];
 	}
 }
 
@@ -560,7 +562,7 @@ enum {
 	cell.text.text = currentLocation;
 	self.location = currentLocation;
 	
-	[self revertLocateMeButton];
+	//[self revertLocateMeButton];
 }
 
 - (void)reverseGeocoder:(MKReverseGeocoder *)sender didFailWithError:(NSError *)error {
@@ -576,6 +578,7 @@ enum {
 - (void)releaseGeocoder {
 	[geocoder cancel];
 	[geocoder release];
+	geocoder = nil;
 }
 
 #pragma mark -

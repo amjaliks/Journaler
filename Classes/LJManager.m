@@ -290,7 +290,7 @@ LJManager *defaultManager;
 #endif
 	
 	if ([xmlres isFault]) {
-		code = LJErrorUnknown;
+		//code = LJErrorUnknown;
 		id faultCode = [xmlres faultCode];
 		if ([faultCode isKindOfClass:[NSString class]]) {
 			code = [faultCode isEqualToString:@"Server"] ? LJErrorServerSide : LJErrorClientSide;

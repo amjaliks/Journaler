@@ -31,7 +31,7 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
+- (void)applicationDidFinishLaunching:(UIApplication *)application {	
 #ifndef LITEVERSION
 	NSString *appUID = @"tM7hdncHys"; // pilnā versija
 #else

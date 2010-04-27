@@ -479,6 +479,7 @@ NSString* md5(NSString *str)
 			event.ditemid = [entry valueForKey:@"ditemid"];
 			event.security = [entry valueForKey:@"security"];
 			[entries addObject:event];
+			[event release];
 		}
 		
 	}
