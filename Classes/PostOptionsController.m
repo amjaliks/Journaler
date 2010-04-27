@@ -18,6 +18,7 @@
 #import "MoodListController.h"
 #import "PicKeywordListController.h"
 #import "UIViewAdditions.h"
+#import "ErrorHandling.h"
 
 // šūnu veidi
 enum {
@@ -128,6 +129,26 @@ enum {
 	[notificationCenter addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 	hidingKeyboard = NO;
 	viewWillDisappear = NO;
+	
+	locateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 29, 31)];
+	
+	locationManager = [[CLLocationManager alloc] init];
+	if (locationManager.locationServicesEnabled) {
+		locationManager.delegate = self;
+		locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+		
+		locateMeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+		[locateMeButton setImage:[UIImage imageNamed:@"locateme.png"] forState:UIControlStateNormal];
+		[locateMeButton setImage:[UIImage imageNamed:@"locateme-hover.png"] forState:UIControlStateHighlighted];
+		[locateMeButton setFrame:CGRectMake(0, 0, 29, 31)];
+		[locateMeButton addTarget:self action:@selector(locateMePressed:) forControlEvents:UIControlEventTouchUpInside];
+		
+		[locateView addSubview:locateMeButton];
+		
+		locateActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+		locateActivity.frame = CGRectMake(5, 5, 20, 20);
+		[locateActivity startAnimating];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -165,7 +186,13 @@ enum {
 	[super viewDidUnload];
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-
+	
+	[locateMeButton release];
+	[locateActivity release];
+	[locateView release];
+	[locationManager release];
+	locationManager = nil;
+	
 	self.navigationItem.leftBarButtonItem = nil;
 	
 	[journal release];
@@ -173,6 +200,11 @@ enum {
 
 
 - (void)done {
+	if (locating) {
+		[locationManager stopUpdatingLocation];
+		[self releaseGeocoder];
+		[self revertLocateMeButton];
+	}
 	[self dismissModalViewControllerAnimated:YES];
 }
 
@@ -293,11 +325,7 @@ enum {
 		} else if (indexPath.row == SectionAdditionalRowLocation) {
 			cell.textLabel.text = NSLocalizedString(@"Location", nil);
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-			UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-			[button setImage:[UIImage imageNamed:@"locateme.png"] forState:UIControlStateNormal];
-			[button setImage:[UIImage imageNamed:@"locateme-hover.png"] forState:UIControlStateHighlighted];
-			[button setFrame:CGRectMake(0, 0, 29, 31)];
-			cell.accessoryView = button;
+			cell.accessoryView = locateView;
 			((TextFieldCellView *)cell).text.text = location;
 			((TextFieldCellView *)cell).text.placeholder = nil;
 			[(TextFieldCellView *)cell setTarget:self action:@selector(locationChanged:)];
@@ -337,16 +365,16 @@ enum {
 
 #ifdef BETA
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-	UIViewController *controller;
-	
 	if (indexPath.section == SectionAdditional && indexPath.row == SectionAdditionalRowTags) {
-		controller = [[TagListController alloc] initWithPostOptionsController:self];
+		UIViewController *controller = [[TagListController alloc] initWithPostOptionsController:self];
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];	
 	} else	if (indexPath.section == SectionAdditional && indexPath.row == SectionAdditionalRowMood) {
-		controller = [[MoodListController alloc] initWithPostOptionsController:self];
+		UIViewController *controller = [[MoodListController alloc] initWithPostOptionsController:self];
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];	
 	}
 	
-	[self.navigationController pushViewController:controller animated:YES];
-	[controller release];	
 }
 #endif
 
@@ -461,6 +489,93 @@ enum {
 	TextFieldCellView *cell = (TextFieldCellView *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SectionAdditionalRowMusic inSection:SectionAdditional]];
 	cell.text.placeholder = currentSong;
 #endif
+}
+
+#pragma mark -
+#pragma mark Location
+
+- (void)locateMePressed:(id)sender {
+	locating = YES;
+	[locateMeButton removeFromSuperview];
+	[locateView addSubview:locateActivity];
+
+	[locationManager startUpdatingLocation];
+}
+
+- (void)revertLocateMeButton {
+	locating = NO;
+	[locateActivity removeFromSuperview];
+	[locateView addSubview:locateMeButton];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+	if (abs([[newLocation timestamp] timeIntervalSinceNow]) <= 60.0f) {
+		[manager stopUpdatingLocation];
+		
+		geocoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
+		geocoder.delegate = self;
+		[geocoder start];
+	}
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+	if ([error code] == kCLErrorDenied) {
+		[locationManager stopUpdatingLocation];
+		[self failedToLocate];
+	}
+}
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)sender didFindPlacemark:(MKPlacemark *)placemark {
+	[self releaseGeocoder];
+	NSString *currentLocation = [NSString string];
+	if (placemark.subLocality) {
+		currentLocation = placemark.subLocality;
+	}
+	if (placemark.locality) {
+		if ([currentLocation length]) {
+			currentLocation = [currentLocation stringByAppendingString:@", "];
+		}
+		currentLocation = [currentLocation stringByAppendingString:placemark.locality];
+	}
+	if (placemark.subAdministrativeArea) {
+		if ([currentLocation length]) {
+			currentLocation = [currentLocation stringByAppendingString:@", "];
+		}
+		currentLocation = [currentLocation stringByAppendingString:placemark.subAdministrativeArea];
+	}
+	if (placemark.administrativeArea) {
+		if ([currentLocation length]) {
+			currentLocation = [currentLocation stringByAppendingString:@", "];
+		}
+		currentLocation = [currentLocation stringByAppendingString:placemark.administrativeArea];
+	}
+	if (placemark.country) {
+		if ([currentLocation length]) {
+			currentLocation = [currentLocation stringByAppendingString:@", "];
+		}
+		currentLocation = [currentLocation stringByAppendingString:placemark.country];
+	}
+	
+	TextFieldCellView *cell = (TextFieldCellView *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SectionAdditionalRowLocation inSection:SectionAdditional]];
+	cell.text.text = currentLocation;
+	self.location = currentLocation;
+	
+	[self revertLocateMeButton];
+}
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)sender didFailWithError:(NSError *)error {
+	[self releaseGeocoder];
+	[self failedToLocate];
+}
+
+- (void)failedToLocate {
+	[self revertLocateMeButton];
+	showErrorMessage(NSLocalizedString(@"Location error", nil), NSLocalizedString(@"Failed to locate current position!", nil));
+}
+
+- (void)releaseGeocoder {
+	[geocoder cancel];
+	[geocoder release];
 }
 
 #pragma mark -

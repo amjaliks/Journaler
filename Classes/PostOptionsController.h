@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
 #import "Common.h"
 
@@ -21,7 +23,7 @@ typedef enum {
 @class LJAccount;
 @protocol PostOptionsControllerDataSource;
 
-@interface PostOptionsController : UITableViewController {
+@interface PostOptionsController : UITableViewController <CLLocationManagerDelegate, MKReverseGeocoderDelegate> {
 	LJAccount *account;
 	
 	// vērtības
@@ -37,6 +39,13 @@ typedef enum {
 	
 	NSString *currentSong;
 	MPMusicPlayerController *musicPlayer;
+	
+	BOOL locating;
+	UIView *locateView;
+	UIButton *locateMeButton;
+	UIActivityIndicatorView *locateActivity;
+	CLLocationManager *locationManager;
+	MKReverseGeocoder *geocoder;
 	
 	BOOL hidingKeyboard;
 	BOOL viewWillDisappear;
@@ -71,6 +80,11 @@ typedef enum {
 - (void)promoteChanged:(id)sender;
 
 - (void)musicPlayerStateChanged:(id)sender;
+
+- (void)locateMePressed:(id)sender;
+- (void)revertLocateMeButton;
+- (void)releaseGeocoder;
+- (void)failedToLocate;
 
 - (void)keyboardWillHide:(id)sender;
 - (void)keyboardDidHide:(id)sender;
