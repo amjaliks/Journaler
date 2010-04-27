@@ -57,7 +57,8 @@ enum {
 enum {
 	SectionAdditionalRowPicture,
 	SectionAdditionalRowTags,
-	SectionAdditionalRowMood
+	SectionAdditionalRowMood,
+	SectionAdditionalRowMusic
 };
 
 enum {
@@ -74,7 +75,10 @@ enum {
 @synthesize picKeyword;
 @synthesize tags;
 @synthesize mood;
+@synthesize music;
 @synthesize promote;
+
+@synthesize currentSong;
 
 - (id)initWithAccount:(LJAccount *)newAccount {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -87,13 +91,23 @@ enum {
 		picKeyword = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPicKeyword retain];
 		tags = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostTags retain];
 		mood = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostMood retain];
+
 		
 #ifdef LITEVERSION
 		promote = YES;
 #else
 		promote = [[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPromote;
 #endif
-    }
+
+    	// iPod notikumi
+		NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+		musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
+		[notificationCenter addObserver:self selector:@selector(musicPlayerStateChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:musicPlayer];
+		[notificationCenter addObserver:self selector:@selector(musicPlayerStateChanged:) name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:musicPlayer];
+		[musicPlayer beginGeneratingPlaybackNotifications];
+		[self musicPlayerStateChanged:musicPlayer];
+	}
+	
     return self;
 }
 
@@ -106,8 +120,10 @@ enum {
 	self.navigationItem.leftBarButtonItem = doneButton;
 	[doneButton release];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];	 
+	// tastatūras notikumi
+	[notificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+	[notificationCenter addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 	hidingKeyboard = NO;
 	viewWillDisappear = NO;
 }
@@ -186,7 +202,7 @@ enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) return 2;
 #ifdef BETA
-	if (section == 1) return 3;
+	if (section == 1) return 4;
 #endif
 	return 1;
 }
@@ -203,7 +219,8 @@ enum {
 	} else if (indexPath.section == SectionAdditional) {
 		if (indexPath.row == SectionAdditionalRowPicture) { cellKind = SimpleCell; }
 		else if (indexPath.row == SectionAdditionalRowTags) { cellKind = TextFieldCell; }
-		else if (indexPath.row == SectionAdditionalRowMood) { cellKind = TextFieldCell; };
+		else if (indexPath.row == SectionAdditionalRowMood) { cellKind = TextFieldCell; }
+		else if (indexPath.row == SectionAdditionalRowMusic) { cellKind = TextFieldCell; };
 #endif // BETA
 	} else if (indexPath.section == SectionPromote) {
 		if (indexPath.row == 0) { cellKind = SwitchCell; };
@@ -262,8 +279,14 @@ enum {
 			cell.textLabel.text = NSLocalizedString(@"Mood", nil);
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			((TextFieldCellView *)cell).text.text = mood;
-			((TextFieldCellView *)cell).text.placeholder = NSLocalizedString(@"select from list or type here", nil);;
+			((TextFieldCellView *)cell).text.placeholder = NSLocalizedString(@"select from list or type here", nil);
 			[(TextFieldCellView *)cell setTarget:self action:@selector(moodChanged:)];
+		} else if (indexPath.row == SectionAdditionalRowMusic) {
+			cell.textLabel.text = NSLocalizedString(@"Music", nil);
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			((TextFieldCellView *)cell).text.text = music;
+			((TextFieldCellView *)cell).text.placeholder = currentSong;
+			[(TextFieldCellView *)cell setTarget:self action:@selector(musicChanged:)];
 		}
 #endif // BETA
 	} else if (indexPath.section == SectionPromote) {
@@ -314,6 +337,14 @@ enum {
 #endif
 
 - (void)dealloc {
+	
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	
+	// iPod notikumi
+	[notificationCenter removeObserver:self name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:musicPlayer];
+	[notificationCenter removeObserver:self name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:musicPlayer];
+	[musicPlayer endGeneratingPlaybackNotifications]; 
+	
 	[selectedFriendGroups release];
 	[tags release];
 	[mood release];
@@ -327,6 +358,10 @@ enum {
 
 - (void)moodChanged:(id)sender {
 	self.mood = ((TextFieldCellView *)sender).text.text;
+}
+
+- (void)musicChanged:(id)sender {
+	self.music = ((TextFieldCellView *)sender).text.text;
 }
 
 - (void)promoteChanged:(id)sender {
@@ -359,6 +394,46 @@ enum {
 
 		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostMood = mood;
 	}
+}
+
+- (void)setMusic:(NSString *)newMusic {
+	if (newMusic != music) {
+		[music release];
+		music = [newMusic retain];
+		
+		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostMusic = music;
+	}
+}
+
+#pragma mark -
+#pragma mark Music Player
+
+- (void)musicPlayerStateChanged:(id)sender {
+	[currentSong autorelease];
+	currentSong = nil;
+	
+	if (musicPlayer.playbackState == MPMusicPlaybackStatePlaying) {
+		MPMediaItem *mediaItem = musicPlayer.nowPlayingItem;
+		if ([[mediaItem valueForProperty:MPMediaItemPropertyMediaType] intValue] == MPMediaTypeMusic) {
+			NSString *title = [mediaItem valueForProperty:MPMediaItemPropertyTitle];
+			NSString *artist = [mediaItem valueForProperty:MPMediaItemPropertyArtist];
+			
+			if (title && artist) {
+				currentSong = [NSString stringWithFormat:@"%@ - %@", artist, title];
+			} else if (title) {
+				currentSong = title;
+			} else if (artist) {
+				currentSong = artist;
+			}
+			
+			[currentSong retain];
+		}
+	}
+	
+#ifdef BETA
+	TextFieldCellView *cell = (TextFieldCellView *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SectionAdditionalRowMusic inSection:SectionAdditional]];
+	cell.text.placeholder = currentSong;
+#endif
 }
 
 #pragma mark -

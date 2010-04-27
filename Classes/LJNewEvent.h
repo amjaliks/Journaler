@@ -18,6 +18,7 @@
 	NSString *picKeyword;
 	NSSet *tags;
 	NSString *mood;
+	NSString *music;
 }
 
 @property (nonatomic, retain) NSString *journal;
@@ -28,5 +29,6 @@
 @property (nonatomic, retain) NSString *picKeyword;
 @property (nonatomic, retain) NSSet *tags;
 @property (nonatomic, retain) NSString *mood;
+@property (nonatomic, retain) NSString *music;
 
 @end

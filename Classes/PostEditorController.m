@@ -172,9 +172,9 @@
 	event.security = postOptionsController.security;
 	event.selectedFriendGroups = postOptionsController.selectedFriendGroups;
 	event.picKeyword = postOptionsController.picKeyword;
-	
 	event.tags = postOptionsController.tags;
 	event.mood = postOptionsController.mood;
+	event.music = [postOptionsController.music length] ? postOptionsController.music : postOptionsController.currentSong;
 	
 	NSError *error;
 	if ([[LJManager defaultManager] postEvent:event forAccount:account error:&error]) {
@@ -194,6 +194,7 @@
 
 		postOptionsController.tags = nil;
 		postOptionsController.mood = nil;
+		postOptionsController.music = nil;
 	} else {
 		showErrorMessage(@"Post error", decodeError([error code]));
 	}

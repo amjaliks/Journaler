@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 #import "Common.h"
 
@@ -31,6 +32,10 @@ typedef enum {
 	NSString *picKeyword;
 	NSSet *tags;
 	NSString *mood;
+	NSString *music;
+	
+	NSString *currentSong;
+	MPMusicPlayerController *musicPlayer;
 	
 	BOOL hidingKeyboard;
 	BOOL viewWillDisappear;
@@ -43,20 +48,26 @@ typedef enum {
 
 @property (readonly) LJAccount *account;
 
-@property (retain) NSString *journal;
+@property (retain, nonatomic) NSString *journal;
 @property PostSecurityLevel security;
 @property (readonly) NSMutableArray *selectedFriendGroups;
 @property (retain, nonatomic) NSSet *tags;
 @property (retain, nonatomic) NSString *mood;
-@property (retain) NSString *picKeyword;
+@property (retain, nonatomic) NSString *picKeyword;
+@property (retain, nonatomic) NSString *music;
 @property (readonly) BOOL promote;
+
+@property (readonly) NSString *currentSong;
 
 - (id)initWithAccount:(LJAccount *)account;
 - (void)done;
 
 - (void)tagsChanged:(id)sender;
 - (void)moodChanged:(id)sender;
+- (void)musicChanged:(id)sender;
 - (void)promoteChanged:(id)sender;
+
+- (void)musicPlayerStateChanged:(id)sender;
 
 - (void)keyboardWillHide:(id)sender;
 - (void)keyboardDidHide:(id)sender;

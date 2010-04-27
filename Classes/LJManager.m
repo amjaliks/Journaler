@@ -215,6 +215,10 @@ LJManager *defaultManager;
 					[props setValue:event.mood forKey:@"current_mood"];
 				}
 			}
+			
+			if (event.music) {
+				[props setValue:event.music forKey:@"current_music"];
+			}
 		
 			[parameters setValue:props forKey:@"props"];
 			[props release];

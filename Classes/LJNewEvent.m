@@ -19,6 +19,7 @@
 @synthesize picKeyword;
 @synthesize tags;
 @synthesize mood;
+@synthesize music;
 
 
 - (void) dealloc {
@@ -29,6 +30,7 @@
 	[picKeyword release];
 	[tags release];
 	[mood release];
+	[music release];
 
 	[super dealloc];
 }
