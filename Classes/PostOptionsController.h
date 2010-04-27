@@ -33,6 +33,7 @@ typedef enum {
 	NSSet *tags;
 	NSString *mood;
 	NSString *music;
+	NSString *location;
 	
 	NSString *currentSong;
 	MPMusicPlayerController *musicPlayer;
@@ -55,6 +56,7 @@ typedef enum {
 @property (retain, nonatomic) NSString *mood;
 @property (retain, nonatomic) NSString *picKeyword;
 @property (retain, nonatomic) NSString *music;
+@property (retain, nonatomic) NSString *location;
 @property (readonly) BOOL promote;
 
 @property (readonly) NSString *currentSong;
@@ -65,6 +67,7 @@ typedef enum {
 - (void)tagsChanged:(id)sender;
 - (void)moodChanged:(id)sender;
 - (void)musicChanged:(id)sender;
+- (void)locationChanged:(id)sender;
 - (void)promoteChanged:(id)sender;
 
 - (void)musicPlayerStateChanged:(id)sender;

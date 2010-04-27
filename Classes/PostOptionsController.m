@@ -58,7 +58,8 @@ enum {
 	SectionAdditionalRowPicture,
 	SectionAdditionalRowTags,
 	SectionAdditionalRowMood,
-	SectionAdditionalRowMusic
+	SectionAdditionalRowMusic,
+	SectionAdditionalRowLocation
 };
 
 enum {
@@ -76,6 +77,7 @@ enum {
 @synthesize tags;
 @synthesize mood;
 @synthesize music;
+@synthesize location;
 @synthesize promote;
 
 @synthesize currentSong;
@@ -91,7 +93,7 @@ enum {
 		picKeyword = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPicKeyword retain];
 		tags = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostTags retain];
 		mood = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostMood retain];
-
+		location = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostLocation retain];
 		
 #ifdef LITEVERSION
 		promote = YES;
@@ -202,7 +204,7 @@ enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) return 2;
 #ifdef BETA
-	if (section == 1) return 4;
+	if (section == 1) return 5;
 #endif
 	return 1;
 }
@@ -220,7 +222,8 @@ enum {
 		if (indexPath.row == SectionAdditionalRowPicture) { cellKind = SimpleCell; }
 		else if (indexPath.row == SectionAdditionalRowTags) { cellKind = TextFieldCell; }
 		else if (indexPath.row == SectionAdditionalRowMood) { cellKind = TextFieldCell; }
-		else if (indexPath.row == SectionAdditionalRowMusic) { cellKind = TextFieldCell; };
+		else if (indexPath.row == SectionAdditionalRowMusic) { cellKind = TextFieldCell; }
+		else if (indexPath.row == SectionAdditionalRowLocation) { cellKind = TextFieldCell; };
 #endif // BETA
 	} else if (indexPath.section == SectionPromote) {
 		if (indexPath.row == 0) { cellKind = SwitchCell; };
@@ -287,6 +290,17 @@ enum {
 			((TextFieldCellView *)cell).text.text = music;
 			((TextFieldCellView *)cell).text.placeholder = currentSong;
 			[(TextFieldCellView *)cell setTarget:self action:@selector(musicChanged:)];
+		} else if (indexPath.row == SectionAdditionalRowLocation) {
+			cell.textLabel.text = NSLocalizedString(@"Location", nil);
+			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+			UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+			[button setImage:[UIImage imageNamed:@"locateme.png"] forState:UIControlStateNormal];
+			[button setImage:[UIImage imageNamed:@"locateme-hover.png"] forState:UIControlStateHighlighted];
+			[button setFrame:CGRectMake(0, 0, 29, 31)];
+			cell.accessoryView = button;
+			((TextFieldCellView *)cell).text.text = location;
+			((TextFieldCellView *)cell).text.placeholder = nil;
+			[(TextFieldCellView *)cell setTarget:self action:@selector(locationChanged:)];
 		}
 #endif // BETA
 	} else if (indexPath.section == SectionPromote) {
@@ -364,6 +378,10 @@ enum {
 	self.music = ((TextFieldCellView *)sender).text.text;
 }
 
+- (void)locationChanged:(id)sender {
+	self.location = ((TextFieldCellView *)sender).text.text;
+}
+
 - (void)promoteChanged:(id)sender {
 	promote = ((UISwitch *)sender).on;
 	[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPromote = promote;
@@ -402,6 +420,15 @@ enum {
 		music = [newMusic retain];
 		
 		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostMusic = music;
+	}
+}
+
+- (void)setLocation:(NSString *)newLocation {
+	if (newLocation != location) {
+		[location release];
+		location = [newLocation retain];
+		
+		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostLocation = location;
 	}
 }
 

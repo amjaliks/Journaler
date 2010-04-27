@@ -219,6 +219,10 @@ LJManager *defaultManager;
 			if (event.music) {
 				[props setValue:event.music forKey:@"current_music"];
 			}
+			
+			if (event.location) {
+				[props setValue:event.location forKey:@"current_location"];
+			}
 		
 			[parameters setValue:props forKey:@"props"];
 			[props release];

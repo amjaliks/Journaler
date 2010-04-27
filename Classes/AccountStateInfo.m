@@ -22,6 +22,7 @@
 #define kKeyNewPostTags @"newPostTags"
 #define kKeyNewPostMood @"newPostMood"
 #define kKeyNewPostMusic @"newPostMusic"
+#define kKeyNewPostLocation @"newPostLocation"
 #define kKeyNewPostPromote @"newPostPromote"
 
 @implementation AccountStateInfo
@@ -40,6 +41,7 @@
 @synthesize newPostTags;
 @synthesize newPostMood;
 @synthesize newPostMusic;
+@synthesize newPostLocation;
 @synthesize newPostPromote;
 
 #pragma mark -
@@ -62,6 +64,7 @@
 	[newPostPicKeyword release];
 	[newPostTags release];
 	[newPostMood release];
+	[newPostLocation release];
 	[super dealloc];
 }
 
@@ -81,6 +84,7 @@
 		newPostTags = [[coder decodeObjectForKey:kKeyNewPostTags] retain];
 		newPostMood = [[coder decodeObjectForKey:kKeyNewPostMood] retain];
 		newPostMusic = [[coder decodeObjectForKey:kKeyNewPostMusic] retain];
+		newPostLocation = [[coder decodeObjectForKey:kKeyNewPostLocation] retain];
 		newPostPromote = [coder decodeBoolForKey:kKeyNewPostPromote];
 	}
 	
@@ -101,6 +105,7 @@
 	[coder encodeObject:newPostTags forKey:kKeyNewPostTags];
 	[coder encodeObject:newPostMood forKey:kKeyNewPostMood];
 	[coder encodeObject:newPostMusic forKey:kKeyNewPostMusic];
+	[coder encodeObject:newPostLocation forKey:kKeyNewPostLocation];
 	[coder encodeBool:newPostPromote forKey:kKeyNewPostPromote];
 }
 

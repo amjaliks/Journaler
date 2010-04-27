@@ -31,6 +31,7 @@ typedef enum {
 	NSSet *newPostTags;
 	NSString *newPostMood;
 	NSString *newPostMusic;
+	NSString *newPostLocation;
 	BOOL newPostPromote;
 }
 
@@ -48,6 +49,7 @@ typedef enum {
 @property (retain, nonatomic) NSSet *newPostTags;
 @property (retain, nonatomic) NSString *newPostMood;
 @property (retain, nonatomic) NSString *newPostMusic;
+@property (retain, nonatomic) NSString *newPostLocation;
 @property BOOL newPostPromote;
 
 @end

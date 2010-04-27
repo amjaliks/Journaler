@@ -20,7 +20,7 @@
 @synthesize tags;
 @synthesize mood;
 @synthesize music;
-
+@synthesize location;
 
 - (void) dealloc {
 	[journal release];
@@ -31,6 +31,7 @@
 	[tags release];
 	[mood release];
 	[music release];
+	[location release];
 
 	[super dealloc];
 }

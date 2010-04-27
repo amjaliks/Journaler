@@ -19,6 +19,7 @@
 	NSSet *tags;
 	NSString *mood;
 	NSString *music;
+	NSString *location;
 }
 
 @property (nonatomic, retain) NSString *journal;
@@ -30,5 +31,6 @@
 @property (nonatomic, retain) NSSet *tags;
 @property (nonatomic, retain) NSString *mood;
 @property (nonatomic, retain) NSString *music;
+@property (nonatomic, retain) NSString *location;
 
 @end
