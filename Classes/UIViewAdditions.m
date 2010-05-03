@@ -24,5 +24,7 @@
     return NO;
 }
 
+- (void)resizeForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {}
+
 @end
 

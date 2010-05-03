@@ -17,13 +17,11 @@
 #import "Macros.h"
 #import "AccountManager.h"
 #import "ALReporter.h"
+#import "UIViewAdditions.h"
 
 @implementation AccountTabBarController
 
 @synthesize friendsPageController;
-#ifdef LITEVERSION
-@synthesize accountButton;
-#endif
 
 - (id) initWithAccount:(LJAccount *)aAccount {
 	if (self = [super init]) {
@@ -37,16 +35,6 @@
 		[self setViewControllersForAccount:account];
 	}
 	return self;
-}
-
-- (void) viewDidLoad {
-	[super viewDidLoad];
-	
-#ifdef LITEVERSION 
-	accountButton = [[UIBarButtonItem alloc] initWithTitle:@"Account" style:UIBarButtonItemStyleBordered target:self action:@selector(editAccount)];
-	self.navigationItem.leftBarButtonItem = accountButton;
-#endif
-	
 }
 
 - (void) setViewControllersForAccount:(LJAccount *)newAccount {
@@ -63,22 +51,43 @@
 	NSArray *arrays = [[NSArray alloc] initWithObjects:friendsPageController, postEditorController, nil];
 	self.viewControllers = arrays;
 	self.selectedIndex = [[AccountManager sharedManager] stateInfoForAccount:newAccount.title].openedScreen == OpenedScreenNewPost ? 1 : 0;
-	self.navigationItem.rightBarButtonItem = self.selectedViewController.navigationItem.rightBarButtonItem;
-	
+
+	[self setNavigationItemForViewController:self.selectedViewController];
+
 	[arrays release];
 }
 
+- (void)setNavigationItemForViewController:(UIViewController *)viewController {
+	self.navigationItem.rightBarButtonItem = viewController.navigationItem.rightBarButtonItem;
+	self.navigationItem.title = viewController.navigationItem.title;
+	self.navigationItem.titleView = viewController.navigationItem.titleView;
+	
+//	NSLog(@"%f", self.navigationController.navigationBar.);
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
+#pragma mark -
 #pragma mark Tab Bar Controller Delegate
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-	self.navigationItem.rightBarButtonItem = viewController.navigationItem.rightBarButtonItem;
+	[self setNavigationItemForViewController:viewController];
 	
 	NSUInteger value = postEditorController == viewController ? OpenedScreenNewPost : OpenedScreenFriendsPage;
 	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen = value;
+	
 }
 
 - (LJAccount *)selectedAccount {
 	return account;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	[self.navigationItem.titleView resizeForInterfaceOrientation:self.interfaceOrientation];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -86,69 +95,7 @@
 	[[AccountManager sharedManager] setOpenedAccount:account.title];
 }
 
-#ifdef LITEVERSION
-
-#pragma mark Account Editor Controller DataSource metodes
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	if (!account) {
-		[self editAccount];
-	}
-}
-
-- (void)editAccount {
-	AccountEditorController *accountEditorController = [[AccountEditorController alloc] initWithNibName:@"AccountEditorController" bundle:nil];
-	accountEditorController.dataSource = self;
-	accountEditorController.delegate = self;
-	
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:accountEditorController];
-	
-	[accountEditorController view];
-	[accountEditorController setAccount:account];
-	[self presentModalViewController:navigationController animated:YES];
-	
-	[navigationController release];
-	[accountEditorController release];
-}
-
-- (BOOL)isDublicateAccount:(NSString *)title {
-	return NO;
-}
-
-- (BOOL)hasNoAccounts {
-	return account == nil;
-}
-
-- (void)saveAccount:(LJAccount *)newAccount {
-	[[AccountManager sharedManager] storeAccount:newAccount];
-
-	if (account) {
-		if (![account.title isEqualToString:newAccount.title]) {
-			// iepriekš ievadītais konts atšķiras no jaunā, tad tīram laukā kešu
-			[APP_MODEL deleteAllPostsForAccount:account.title];
-			// pārlādējam arī saskarni
-			[self setViewControllersForAccount:newAccount];
-			// virsraksts
-			self.navigationItem.title = newAccount.user;
-		}
-		[account release];
-	} else {
-		[self setViewControllersForAccount:newAccount];
-		self.navigationItem.title = newAccount.user;
-	}
-	account = [newAccount retain];
-	
-	[self sendReport];
-}
-
-- (void)sendReport {
-	ALReporter *reporter = ((JournalerAppDelegate *)[UIApplication sharedApplication].delegate).reporter;
-	[reporter setObject:account.server forProperty:@"server"];
-}
-
-#endif
-
+#pragma mark -
 #pragma mark Atmiņas pārvaldība
 
 - (void) dealloc {
@@ -156,10 +103,6 @@
 	[postEditorController release];
 
 	[account release];
-	
-#ifdef LITEVERSION
-	[accountButton release];
-#endif
 	
 	[super dealloc];
 }

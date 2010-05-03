@@ -32,19 +32,12 @@
 #pragma mark Application lifecycle
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {	
-#ifndef LITEVERSION
-	NSString *appUID = @"tM7hdncHys"; // pilnā versija
-#else
-	NSString *appUID = @"LrAKgAl3bA"; // lite versija
-#endif
-	
-#ifndef DEBUG
+	// sagatavojam satistikas savācējmoduli
+	NSString *appUID = @"tM7hdncHys";
 	NSURL *reportURL = [NSURL URLWithString:@"http://tomcat.keeper.lv/anl/report"];
-#else
-	NSURL *reportURL = [NSURL URLWithString:@"http://localhost:8080/anl/report"];
-#endif
-	
 	reporter = [[ALReporter alloc] initWithAppUID:appUID reportURL:reportURL];
+	
+	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 	
 	model = [[Model alloc] init];
 	userPicCache = [[UserPicCache alloc] init];
@@ -55,15 +48,10 @@
 	[[AccountManager sharedManager] loadAccounts];
 	[[AccountManager sharedManager] loadAccountStateInfo];
 	
-#ifndef LITEVERSION
 	rootViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];
-#else
-	rootViewController = [[AccountTabBarController alloc] initWithAccount:[[AccountManager sharedManager] account]];
-#endif
 	
 	navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
 	
-#ifndef LITEVERSION
 	NSString *accountKey = [[AccountManager sharedManager] openedAccount];
 	if (accountKey) {
 		LJAccount *account = [[AccountManager sharedManager] accountForKey:accountKey];
@@ -72,30 +60,29 @@
 			[rootViewController openAccount:account animated:NO];
 		}
 	}
-#endif
 	
 	[window addSubview:navigationController.view];
 	
-#ifdef LITEVERSION
-	NSString *docDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-	NSString *nextSelfAdShowTimePath = [docDirPath stringByAppendingPathComponent:@"nextSelfAdShowTime.bin"];
-	NSDate *nextSelfAdShowTime = [NSKeyedUnarchiver unarchiveObjectWithFile:nextSelfAdShowTimePath];
-	
-	if (nextSelfAdShowTime) {
-		if ([nextSelfAdShowTime compare:[NSDate date]] != NSOrderedDescending) {
-			SelfAdViewController *selfAdViewController = [[SelfAdViewController alloc] initWithNibName:@"SelfAdViewController" bundle:nil];
-			[navigationController presentModalViewController:selfAdViewController animated:NO];
-			[selfAdViewController startCountDown];
-			[selfAdViewController release];
-			
-			nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(7.0f * 24.0f * 3600.0f)];
-			[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
-		}
-	} else {
-		nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
-		[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
-	}
-#endif
+//#ifdef LITEVERSION
+//	NSString *docDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//	NSString *nextSelfAdShowTimePath = [docDirPath stringByAppendingPathComponent:@"nextSelfAdShowTime.bin"];
+//	NSDate *nextSelfAdShowTime = [NSKeyedUnarchiver unarchiveObjectWithFile:nextSelfAdShowTimePath];
+//	
+//	if (nextSelfAdShowTime) {
+//		if ([nextSelfAdShowTime compare:[NSDate date]] != NSOrderedDescending) {
+//			SelfAdViewController *selfAdViewController = [[SelfAdViewController alloc] initWithNibName:@"SelfAdViewController" bundle:nil];
+//			[navigationController presentModalViewController:selfAdViewController animated:NO];
+//			[selfAdViewController startCountDown];
+//			[selfAdViewController release];
+//			
+//			nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(7.0f * 24.0f * 3600.0f)];
+//			[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
+//		}
+//	} else {
+//		nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
+//		[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
+//	}
+//#endif
 	
     [window makeKeyAndVisible];
 }

@@ -12,5 +12,6 @@
 @interface UIView (FindAndResignFirstResponder) 
 
 - (BOOL)findAndResignFirstResonder;
+- (void)resizeForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 @end

@@ -8,9 +8,12 @@
 
 #import "FriendsPageController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "JournalerAppDelegate.h"
 #import "LiveJournal.h"
 #import "AccountManager.h"
+#import "FriendsPageTitleView.h"
 
 
 //#ifdef LITEVERSION
@@ -26,7 +29,7 @@
 		
 		// cilnes bildīte
 		UIImage *image = [UIImage imageNamed:@"friends.png"];
-		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Friends" image:image tag:0];
+		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Friends", nil) image:image tag:0];
 		self.tabBarItem = tabBarItem;
 		[tabBarItem release];
 
@@ -41,19 +44,20 @@
 	
 	// stāvokļa josla
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
+	
+	// virsraksta skatījums
+	UIView *titleView = [[FriendsPageTitleView alloc] initWithInterfaceOrientation:self.interfaceOrientation];
+	self.navigationItem.titleView = titleView;
+	[titleView release];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen = OpenedScreenFriendsPage;
 	
-//#ifdef LITEVERSION
-//	[self refreshAdMobView];
-//#endif
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
 }
 
-#ifndef LITEVERSION
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
 }
@@ -62,8 +66,6 @@
 	// stāvokļa josla
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
 }
-#endif
-
 
 #pragma mark Pogas
 
@@ -94,83 +96,7 @@
 	}
 }
 
-
-//#ifdef LITEVERSION
-
-//#pragma mark Reklāma
-//
-//- (void)initAdMobView {
-//	adMobView = [AdMobView requestAdWithDelegate:self];
-//	[adMobView retain];
-//	adMobLastRefresh = [[NSDate alloc] init];
-//}
-//
-//- (void)refreshAdMobView {
-//	NSTimeInterval interval = [adMobLastRefresh timeIntervalSinceNow];
-//	if (interval <= -30.0f) {
-//		[adMobView requestFreshAd];
-//		[adMobLastRefresh release];
-//		adMobLastRefresh = [[NSDate alloc] init];
-//	}
-//}
-//
-//- (NSString *)publisherId {
-//	return @"a14ae77c080ab49"; // this should be prefilled; if not, get it from www.admob.com
-//}
-//
-//- (UIColor *)adBackgroundColor {
-//	return [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
-//}
-//
-//- (UIColor *)primaryTextColor {
-//	return [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-//}
-//
-//- (UIColor *)secondaryTextColor {
-//	return [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-//}
-//
-//- (BOOL)mayAskForLocation {
-//	return NO;
-//}
-//
-//- (void)didReceiveAd:(AdMobView *)adView {
-//	CGRect frame = friendsPageView.frame;
-//	frame.origin.y += 48;
-//	frame.size.height -= 48;
-//	friendsPageView.frame = frame;
-//	
-//	[self.view addSubview:adView];
-//}
-//
-//- (void)didFailToReceiveAd:(AdMobView *)adView {
-//	[adMobView release];
-//}
-//
-//// To receive test ads rather than real ads...
-//#ifdef DEBUG
-//- (BOOL)useTestAd {
-//	return YES;
-//}
-//
-//- (NSString *)testAdAction {
-//	return @"url"; // see AdMobDelegateProtocol.h for a listing of valid values here
-//}
-//#endif
-//
-//- (NSString *)keywords {
-//	return @"livejournal friends"; 
-//}
-//
-//
-//#endif
-
 - (void)dealloc {
-//#ifdef LITEVERSION
-//	// ar reklāmām saistītie resursi
-////	[adMobView release];
-//	[adMobLastRefresh release];
-//#endif
 	[account release];
 	[super dealloc];
 }

@@ -96,11 +96,7 @@ enum {
 		mood = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostMood retain];
 		location = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostLocation retain];
 		
-#ifdef LITEVERSION
 		promote = YES;
-#else
-		promote = [[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPromote;
-#endif
 
     	// iPod notikumi
 		NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];

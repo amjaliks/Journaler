@@ -34,7 +34,7 @@
 		account = [newAccount retain];
 		
 		UIImage *image = [UIImage imageNamed:@"newpost.png"];
-		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"New post" image:image tag:1];
+		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"New post", nil) image:image tag:1];
 		self.tabBarItem = tabBarItem;
 		[tabBarItem release];
 	}
@@ -45,11 +45,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleBordered target:self action:@selector(post:)];
+	self.navigationItem.title = NSLocalizedString(@"New post", nil);
+	
+	postButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Post", nil) style:UIBarButtonItemStyleBordered target:self action:@selector(post:)];
 	self.navigationItem.rightBarButtonItem = postButton;
 	
 	doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
-	optionsButton = [[UIBarButtonItem alloc] initWithTitle:@"Options" style:UIBarButtonItemStyleBordered target:self action:@selector(openOptions)];
+	optionsButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Options", nil) style:UIBarButtonItemStyleBordered target:self action:@selector(openOptions)];
 
 	postButton.enabled = NO;
 	
