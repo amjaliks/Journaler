@@ -1,5 +1,5 @@
 //
-//  LJFriendsPageController.m
+//  FriendsPageController.m
 //  Journaler
 //
 //  Created by Aleksejs Mjaliks on 09.11.24.
@@ -14,18 +14,16 @@
 #import "LiveJournal.h"
 #import "AccountManager.h"
 #import "FriendsPageTitleView.h"
-
-
-//#ifdef LITEVERSION
-//// Lite versijā ir reklāma
-//#import "AdMobView.h"
-//#endif
+#import "FilterOptionsController.h"
 
 @implementation FriendsPageController
+
+@synthesize friendsPageFilter;
 
 - (id)initWithAccount:(LJAccount *)aAccount {
     if (self = [super initWithNibName:@"FriendsPageController" bundle:nil]) {
 		account = [aAccount retain];
+		friendsPageFilter = [[AccountManager sharedManager] stateInfoForAccount:account.title].friendsPageFilter;
 		
 		// cilnes bildīte
 		UIImage *image = [UIImage imageNamed:@"friends.png"];
@@ -45,8 +43,8 @@
 	// stāvokļa josla
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
 	
-	// virsraksta skatījums
-	UIView *titleView = [[FriendsPageTitleView alloc] initWithInterfaceOrientation:self.interfaceOrientation];
+	// virsraksta skatījums2
+	UIView *titleView = [[FriendsPageTitleView alloc] initWithTarget:self action:@selector(openFilter:) interfaceOrientation:self.interfaceOrientation];
 	self.navigationItem.titleView = titleView;
 	[titleView release];
 }
@@ -67,10 +65,21 @@
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
 }
 
+
+#pragma mark -
 #pragma mark Pogas
 
 - (void)refresh {}
 
+- (void)openFilter:(id)sender {
+	UIViewController *viewController = [[FilterOptionsController alloc] initWithFriendsPageController:self];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+	[self presentModalViewController:navigationController animated:YES];
+	[navigationController release];
+	[viewController release];
+}
+
+#pragma mark -
 #pragma mark Stāvokļa josla
 
 // parāda stāvokļa joslu

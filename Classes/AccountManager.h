@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "AccountStateInfo.h"
+#import "FriendsPageFilter.h"
 
 #define kStateInfoFileName @"stateInfo.plist"
 #define kStateInfoAccounts @"accounts"

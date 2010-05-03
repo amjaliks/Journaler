@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class LJAccount;
+@class LJAccount, FriendsPageFilter;
 
 @interface FriendsPageController : UIViewController {
 	// konts
 	LJAccount *account;
+	// filtrs
+	FriendsPageFilter *friendsPageFilter;
 	
 	// 
 	UIView *friendsPageView;
@@ -28,10 +30,13 @@
 
 #pragma mark Metodes
 
+@property (readonly) FriendsPageFilter *friendsPageFilter;
+
 // init
 - (id)initWithAccount:(LJAccount *)account;
 // pogas
 - (void)refresh;
+- (void)openFilter:(id)sender;
 // stāvokļa josla
 - (void) showStatusLine;
 - (void) hideStatusLine;

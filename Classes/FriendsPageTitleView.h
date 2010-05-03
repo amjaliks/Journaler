@@ -18,6 +18,6 @@
 
 @property (readonly) UILabel *filterLabel;
 
--(id)initWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrietation;
+-(id)initWithTarget:(id)target action:(SEL)action interfaceOrientation:(UIInterfaceOrientation)interfaceOrietation;
 
 @end

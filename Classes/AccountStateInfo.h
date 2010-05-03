@@ -10,6 +10,8 @@
 
 #import "PostOptionsController.h"
 
+@class FriendsPageFilter;
+
 typedef enum {
 	OpenedScreenFriendsPage = 0,
 	OpenedScreenPost = 1,
@@ -22,6 +24,9 @@ typedef enum {
 	NSInteger firstVisiblePostScrollPosition;
 	NSString *openedPost;
 	NSInteger lastVisiblePostIndex;
+	
+	FriendsPageFilter *friendsPageFilter;
+	
 	NSString *newPostSubject;
 	NSString *newPostText;
 	NSString *newPostJournal;
@@ -40,6 +45,7 @@ typedef enum {
 @property NSInteger firstVisiblePostScrollPosition;
 @property (retain, nonatomic) NSString *openedPost;
 @property NSInteger lastVisiblePostIndex;
+@property (retain, nonatomic) FriendsPageFilter *friendsPageFilter;
 @property (retain, nonatomic) NSString *newPostSubject;
 @property (retain, nonatomic) NSString *newPostText;
 @property (retain, nonatomic) NSString *newPostJournal;

@@ -8,11 +8,14 @@
 
 #import "AccountStateInfo.h"
 
+#import "FriendsPageFilter.h"
+
 #define kKeyOpenedScreen @"openedScreen"
 #define kKeyFirstVisiblePost @"firstVisiblePost"
 #define kKeyFirstVisiblePostScrollPosition @"firstVisiblePostScrollPosition"
 #define kKeyOpenedPost @"openedPost"
 #define kKeyLastVisiblePostIndex @"lastVisiblePostIndex"
+#define kKeyFriendsPageFilter @"friendsPageFilter"
 #define kKeyNewPostSubject @"newPostSubject"
 #define kKeyNewPostText @"newPostText"
 #define kKeyNewPostJournal @"newPostJournal"
@@ -32,6 +35,7 @@
 @synthesize firstVisiblePostScrollPosition;
 @synthesize openedPost;
 @synthesize lastVisiblePostIndex;
+@synthesize friendsPageFilter;
 @synthesize newPostSubject;
 @synthesize newPostText;
 @synthesize newPostJournal;
@@ -44,9 +48,6 @@
 @synthesize newPostLocation;
 @synthesize newPostPromote;
 
-#pragma mark -
-#pragma mark NSCoder metodes
-
 - (id) init {
 	self = [super init];
 	if (self != nil) {
@@ -58,6 +59,7 @@
 - (void) dealloc {
 	[firstVisiblePost release];
 	[openedPost release];
+	[friendsPageFilter release];
 	[newPostSubject release];
 	[newPostText release];
 	[newPostSelectedFriendGroups release];
@@ -69,6 +71,9 @@
 }
 
 
+#pragma mark -
+#pragma mark NSCoder metodes
+
 - (id)initWithCoder:(NSCoder *)coder {
 	if (self = [self init]) {
 		openedScreen = [coder decodeIntForKey:kKeyOpenedScreen];
@@ -76,6 +81,7 @@
 		firstVisiblePostScrollPosition = [coder decodeIntegerForKey:kKeyFirstVisiblePostScrollPosition];
 		openedPost = [[coder decodeObjectForKey:kKeyOpenedPost] retain];
 		lastVisiblePostIndex = [coder decodeIntegerForKey:kKeyLastVisiblePostIndex];
+		friendsPageFilter = [[coder decodeObjectForKey:kKeyFriendsPageFilter] retain];
 		newPostSubject = [[coder decodeObjectForKey:kKeyNewPostSubject] retain];
 		newPostText = [[coder decodeObjectForKey:kKeyNewPostText] retain];
 		newPostSecurity = [coder decodeIntForKey:kKeyNewPostSecurity];
@@ -97,6 +103,7 @@
 	[coder encodeInteger:firstVisiblePostScrollPosition forKey:kKeyFirstVisiblePostScrollPosition];
 	[coder encodeObject:openedPost forKey:kKeyOpenedPost];
 	[coder encodeInteger:lastVisiblePostIndex forKey:kKeyLastVisiblePostIndex];
+	[coder encodeObject:friendsPageFilter forKey:kKeyFriendsPageFilter];
 	[coder encodeObject:newPostSubject forKey:kKeyNewPostSubject];
 	[coder encodeObject:newPostText forKey:kKeyNewPostText];
 	[coder encodeInt:newPostSecurity forKey:kKeyNewPostSecurity];
@@ -107,6 +114,16 @@
 	[coder encodeObject:newPostMusic forKey:kKeyNewPostMusic];
 	[coder encodeObject:newPostLocation forKey:kKeyNewPostLocation];
 	[coder encodeBool:newPostPromote forKey:kKeyNewPostPromote];
+}
+
+#pragma mark -
+#pragma mark Īpašības
+
+-(FriendsPageFilter *)friendsPageFilter {
+	if (friendsPageFilter) {
+		friendsPageFilter = [[FriendsPageFilter alloc] init];
+	}
+	return friendsPageFilter;
 }
 
 @end

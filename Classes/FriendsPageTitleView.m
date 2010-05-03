@@ -15,9 +15,10 @@
 
 @synthesize filterLabel;
 
--(id)initWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrietation {
+-(id)initWithTarget:(id)target action:(SEL)action interfaceOrientation:(UIInterfaceOrientation)interfaceOrietation {
 	self = [super init];
 	if (self != nil) {
+		[self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 		[self resizeForInterfaceOrientation:interfaceOrietation];
 		
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -97,7 +98,7 @@
 		filterLabel.font = [UIFont systemFontOfSize:15.0f];
 		[filterLabel sizeToFit];
 		
-		CGFloat offsetTop = truncf((self.bounds.size.height - titleLabel.frame.size.height - filterLabel.frame.size.height - 2.0f) / 2.0f);
+		CGFloat offsetTop = truncf((self.bounds.size.height - titleLabel.frame.size.height - filterLabel.frame.size.height + 3.0f) / 2.0f);
 		
 		titleLabel.frame = CGRectMake(
 									  (self.bounds.size.width - titleLabel.frame.size.width) / 2.0f,
@@ -108,7 +109,7 @@
 		
 		filterLabel.frame = CGRectMake(
 									   (self.bounds.size.width - filterLabel.frame.size.width) / 2.0f,
-									   titleLabel.frame.size.height - 2.0f,
+									   offsetTop,
 									   filterLabel.frame.size.width,
 									   filterLabel.frame.size.height);
 	}
