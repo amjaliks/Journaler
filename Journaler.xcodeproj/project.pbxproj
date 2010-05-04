@@ -164,6 +164,12 @@
 		17B6340910B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17B6340710B8CF8000C974DE /* Journaler.xcdatamodeld */; };
 		17B6345410B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */; };
 		17B6345510B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */; };
+		17C3C48A118E2CAD00BB9581 /* FriendsPageTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C3C489118E2CAD00BB9581 /* FriendsPageTitleView.m */; };
+		17C3C48B118E2CAD00BB9581 /* FriendsPageTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C3C489118E2CAD00BB9581 /* FriendsPageTitleView.m */; };
+		17C3C666118F23A500BB9581 /* FilterOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C3C665118F23A500BB9581 /* FilterOptionsController.m */; };
+		17C3C667118F23A500BB9581 /* FilterOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C3C665118F23A500BB9581 /* FilterOptionsController.m */; };
+		17C3C6F5118F2DC100BB9581 /* FriendsPageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C3C6F4118F2DC100BB9581 /* FriendsPageFilter.m */; };
+		17C3C6F6118F2DC100BB9581 /* FriendsPageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C3C6F4118F2DC100BB9581 /* FriendsPageFilter.m */; };
 		17D77654113BC2F600F26322 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17D77653113BC2F600F26322 /* Default.png */; };
 		17D77655113BC2F600F26322 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17D77653113BC2F600F26322 /* Default.png */; };
 		17D8A5B41130BBDE0023FBEA /* LJFriendGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */; };
@@ -324,6 +330,12 @@
 		17B633FC10B8CD6B00C974DE /* lock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lock.gif; sourceTree = "<group>"; };
 		17B6340A10B8CF8000C974DE /* Journaler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Journaler 2.xcdatamodel"; sourceTree = "<group>"; };
 		17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = "v1-v2.xcmappingmodel"; sourceTree = "<group>"; };
+		17C3C488118E2CAD00BB9581 /* FriendsPageTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsPageTitleView.h; sourceTree = "<group>"; };
+		17C3C489118E2CAD00BB9581 /* FriendsPageTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsPageTitleView.m; sourceTree = "<group>"; };
+		17C3C664118F23A500BB9581 /* FilterOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterOptionsController.h; sourceTree = "<group>"; };
+		17C3C665118F23A500BB9581 /* FilterOptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterOptionsController.m; sourceTree = "<group>"; };
+		17C3C6F3118F2DC100BB9581 /* FriendsPageFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsPageFilter.h; sourceTree = "<group>"; };
+		17C3C6F4118F2DC100BB9581 /* FriendsPageFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsPageFilter.m; sourceTree = "<group>"; };
 		17D77653113BC2F600F26322 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		17D8A5B21130BBDE0023FBEA /* LJFriendGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJFriendGroup.h; sourceTree = "<group>"; };
 		17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJFriendGroup.m; sourceTree = "<group>"; };
@@ -494,6 +506,10 @@
 				17B462E310BA2647004D0E0F /* PostPreviewCell.m */,
 				17B462E610BA2659004D0E0F /* PostPreviewView.h */,
 				17B462E710BA2659004D0E0F /* PostPreviewView.m */,
+				17C3C488118E2CAD00BB9581 /* FriendsPageTitleView.h */,
+				17C3C489118E2CAD00BB9581 /* FriendsPageTitleView.m */,
+				17C3C664118F23A500BB9581 /* FilterOptionsController.h */,
+				17C3C665118F23A500BB9581 /* FilterOptionsController.m */,
 			);
 			name = "Friends Page";
 			sourceTree = "<group>";
@@ -562,6 +578,8 @@
 				179F3FAD111645D60043E0D1 /* AccountManager.m */,
 				178BF8241184EEFD00BEEFAD /* AccountStateInfo.h */,
 				178BF8251184EEFD00BEEFAD /* AccountStateInfo.m */,
+				17C3C6F3118F2DC100BB9581 /* FriendsPageFilter.h */,
+				17C3C6F4118F2DC100BB9581 /* FriendsPageFilter.m */,
 			);
 			name = "Account Manager";
 			sourceTree = "<group>";
@@ -934,6 +952,9 @@
 				178BF5051182E63000BEEFAD /* LJTag.m in Sources */,
 				178BF6EE1183139A00BEEFAD /* UIViewAdditions.m in Sources */,
 				178BF8271184EEFD00BEEFAD /* AccountStateInfo.m in Sources */,
+				17C3C48B118E2CAD00BB9581 /* FriendsPageTitleView.m in Sources */,
+				17C3C667118F23A500BB9581 /* FilterOptionsController.m in Sources */,
+				17C3C6F5118F2DC100BB9581 /* FriendsPageFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,6 +1019,9 @@
 				178BF5041182E63000BEEFAD /* LJTag.m in Sources */,
 				178BF6ED1183139A00BEEFAD /* UIViewAdditions.m in Sources */,
 				178BF8261184EEFD00BEEFAD /* AccountStateInfo.m in Sources */,
+				17C3C48A118E2CAD00BB9581 /* FriendsPageTitleView.m in Sources */,
+				17C3C666118F23A500BB9581 /* FilterOptionsController.m in Sources */,
+				17C3C6F6118F2DC100BB9581 /* FriendsPageFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
