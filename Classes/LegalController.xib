@@ -52,8 +52,6 @@
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIDataDetectorTypes">1</int>
-						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -139,7 +137,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>LegalController</string>
 					<string>UIResponder</string>
-					<string>{{675, 414}, {320, 480}}</string>
+					<string>{{675, 376}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
