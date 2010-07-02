@@ -351,7 +351,7 @@
 //	} else {
 //		[NSException raise:@"Sync error" format:decodeError(challenge.error)];
 //	}
-//	return 0;
+	return 0;
 }
 
 - (void) loadLastPostsFromServer {
