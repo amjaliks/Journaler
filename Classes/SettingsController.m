@@ -46,7 +46,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    if (section == 0) return 1;
+	else return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -56,7 +57,10 @@
 	if (section == 0) {
 		cellId = @"RefreshOnStart";
 	} else {
-		cellId = @"About";
+		if (indexPath.row == 0) 
+			cellId = @"Version";
+		else 
+			cellId = @"Legal";
 	}
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -66,23 +70,36 @@
 			UISwitch *sw = (UISwitch *)[cell viewWithTag:1];
 			sw.on = DEFAULT_BOOL(kSettingsRefreshOnStart);
 		} else {
-			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			
-			cell.textLabel.text = NSLocalizedStringFromTable(@"Version", @"Version", kStringsTable);
-			cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+			if (indexPath.row == 0) {
+				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+				cell.selectionStyle = UITableViewCellSelectionStyleNone;
+				
+				cell.textLabel.text = NSLocalizedStringFromTable(@"Version", @"Version", nil);
+				cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+			} else {
+				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+				
+				cell.textLabel.text = NSLocalizedStringFromTable(@"Legal", @"Legal", nil);
+				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			}
 		}
+
     }
 	
     return cell;
 }
 
+// jamaina
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 1) {
-		UIViewController *controller = [[SettingsStartUpScreenController alloc] initWithStyle:UITableViewStyleGrouped];
-		[self.navigationController pushViewController:controller animated:YES];
-		[controller release];
+	if ((indexPath.section == 1) && (indexPath.row == 1)) {
+
 	}
+		
+//    if (indexPath.row == 1) {
+//		UIViewController *controller = [[SettingsStartUpScreenController alloc] initWithStyle:UITableViewStyleGrouped];
+//		[self.navigationController pushViewController:controller animated:YES];
+//		[controller release];
+//	}
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
