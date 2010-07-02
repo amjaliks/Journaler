@@ -142,7 +142,7 @@ LJManager *defaultManager;
 					[events addObject:event];
 					[event release];
 				}
-				return [events autorelease];
+				return events;
 			}
 		}
 	}
