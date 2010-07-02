@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PostOptionsController.h"
+#import "LiveJournal.h"
 
 @class FriendsPageFilter;
 
@@ -30,7 +30,7 @@ typedef enum {
 	NSString *newPostSubject;
 	NSString *newPostText;
 	NSString *newPostJournal;
-	PostSecurityLevel newPostSecurity;
+	LJEventSecurityLevel newPostSecurity;
 	NSArray *newPostSelectedFriendGroups;
 	NSString *newPostPicKeyword;
 	NSSet *newPostTags;
@@ -49,7 +49,7 @@ typedef enum {
 @property (retain, nonatomic) NSString *newPostSubject;
 @property (retain, nonatomic) NSString *newPostText;
 @property (retain, nonatomic) NSString *newPostJournal;
-@property PostSecurityLevel newPostSecurity;
+@property LJEventSecurityLevel newPostSecurity;
 @property (retain, nonatomic) NSArray *newPostSelectedFriendGroups;
 @property (retain, nonatomic) NSString *newPostPicKeyword;
 @property (retain, nonatomic) NSSet *newPostTags;

@@ -149,7 +149,7 @@
 }
 
 - (IBAction) post:(id)sender {
-	if (![account.user isEqualToString:postOptionsController.journal] && postOptionsController.security == PostSecurityPrivate) {
+	if (![account.user isEqualToString:postOptionsController.journal] && postOptionsController.security == LJEventSecurityPrivate) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post error" message:@"Can't post private message to the community." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
 		[alert release];
@@ -161,13 +161,7 @@
 		text = [text stringByAppendingString:@"\n\n<em><small>Posted via <a href=\"http://journalerapp.com/?utm_source=livejournal&amp;utm_medium=post-via-link&amp;utm_campaign=post-via-link\">Journaler</a>.</small></em>"];
 	}
 	
-	LJGetChallenge *req = [LJGetChallenge requestWithServer:account.server];
-	if (![req doRequest]) {
-		showErrorMessage(@"Post error", decodeError(req.error));
-		return;
-	}
-	
-	LJNewEvent *event = [[LJNewEvent alloc] init];
+	LJEvent *event = [[LJEvent alloc] init];
 	event.subject = subjectField.text;
 	event.event = text;
 	event.journal = postOptionsController.journal;

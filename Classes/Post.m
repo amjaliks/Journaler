@@ -9,6 +9,8 @@
 #import "Post.h"
 #import "LiveJournal.h"
 #import "RegexKitLite.h"
+#import "NSStringMD5.h"
+#import "NSStringLJ.h"
 
 @implementation Post 
 
@@ -24,6 +26,11 @@
 @dynamic userPicURL;
 @dynamic isRead;
 @dynamic security;
+@dynamic parserVersion;
+@dynamic parsedSubjectPreview;
+@dynamic parsedSubjectView;
+@dynamic parsedTextPreview;
+@dynamic parsedTextView;
 
 @synthesize userPic;
 @synthesize view;
@@ -51,8 +58,8 @@
 			forward.location = 0;
 			forward.length = [textPreview length];
 			
-			textPreview = [LJEvent removeTagFromString:textPreview tag:@"<lj\\s*?user=\".+?\"\\s*?/?>" replacement:@"\"(.+?)\"" format:nil];
-			textPreview = [LJEvent removeTagFromString:textPreview tag:@"<lj-cut text=\".+?\">.*?</lj-cut>" replacement:@"text=\"(.+?)\"" format:@"( %@ )"];
+			textPreview = [textPreview removeTag:@"<lj\\s*?user=\".+?\"\\s*?/?>" replacement:@"\"(.+?)\"" format:nil];
+			textPreview = [textPreview removeTag:@"<lj-cut text=\".+?\">.*?</lj-cut>" replacement:@"text=\"(.+?)\"" format:@"( %@ )"];
 			textPreview = [textPreview stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
 			textPreview = [textPreview stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
 			textPreview = [textPreview stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
@@ -104,8 +111,8 @@
 			forward.length = [textView length];
 			
 			[((NSMutableString *)textView) replaceOccurrencesOfRegex:@"<lj-embed .+?/>" withString:@"@videoicon@ video" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [textView length]) error:nil];
-			textView = [LJEvent removeTagFromString:textView tag:@"<lj\\s*?user=\".+?\"\\s*?/?>" replacement:@"\"(.+?)\"" format:nil];
-			textView = [LJEvent removeTagFromString:textView tag:@"<img\\s?.*?/?>" replacement:@"src=\"?(.+?)[\"|\\s|>]" format:@"<a href=\"%@\">@imageicon@ image</a>"];
+			textView = [textView removeTag:@"<lj\\s*?user=\".+?\"\\s*?/?>" replacement:@"\"(.+?)\"" format:nil];
+			textView = [textView removeTag:@"<img\\s?.*?/?>" replacement:@"src=\"?(.+?)[\"|\\s|>]" format:@"<a href=\"%@\">@imageicon@ image</a>"];
 					
 			textView = [textView stringByReplacingOccurrencesOfString:@"\n" withString:@"<br />"];
 			
@@ -163,7 +170,7 @@
 
 - (NSString *) userPicURLHash {
 	if (!userPicURLHash && self.userPicURL) {
-		userPicURLHash = [md5(self.userPicURL) copy];
+		userPicURLHash = [[self.userPicURL MD5Hash] retain];
 	}
 	return userPicURLHash;
 }

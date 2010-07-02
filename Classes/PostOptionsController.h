@@ -11,14 +11,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
+#import "LiveJournal.h"
 #import "Common.h"
-
-typedef enum {
-	PostSecurityPublic,
-	PostSecurityFriends,
-	PostSecurityPrivate,
-	PostSecurityCustom
-} PostSecurityLevel;
 
 @class LJAccount;
 @protocol PostOptionsControllerDataSource;
@@ -29,7 +23,7 @@ typedef enum {
 	// vērtības
 	BOOL promote;
 	NSString *journal;
-	PostSecurityLevel security;
+	LJEventSecurityLevel security;
 	NSMutableArray *selectedFriendGroups;
 	NSString *picKeyword;
 	NSSet *tags;
@@ -45,7 +39,7 @@ typedef enum {
 	UIButton *locateMeButton;
 	UIActivityIndicatorView *locateActivity;
 	CLLocationManager *locationManager;
-	MKReverseGeocoder *geocoder;
+	//CMGeocoder *geocoder;
 	
 	BOOL hidingKeyboard;
 	BOOL viewWillDisappear;
@@ -59,7 +53,7 @@ typedef enum {
 @property (readonly) LJAccount *account;
 
 @property (retain, nonatomic) NSString *journal;
-@property PostSecurityLevel security;
+@property LJEventSecurityLevel security;
 @property (readonly) NSMutableArray *selectedFriendGroups;
 @property (retain, nonatomic) NSSet *tags;
 @property (retain, nonatomic) NSString *mood;

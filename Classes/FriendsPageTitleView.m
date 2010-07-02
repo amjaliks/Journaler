@@ -60,6 +60,8 @@
 }
 
 - (void)layoutSubviews{
+	[self resizeForInterfaceOrientation:0];
+	
 	if (self.highlighted) {
 		backgroundView.layer.opacity = 0.3f;
 	} else {
@@ -119,7 +121,7 @@
 
 - (void)resizeForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	BOOL landscape = UIInterfaceOrientationIsLandscape([[UIDevice currentDevice] orientation]);
-	self.frame = landscape ? CGRectMake(0, 0, 310, 26) : CGRectMake(0, 0, 150, 38);
+	self.frame = landscape ? CGRectMake(85, 3, 310, 26) : CGRectMake(85, 3, 150, 38);
 }
 
 @end

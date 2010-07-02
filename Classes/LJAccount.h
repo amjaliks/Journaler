@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PostOptionsController.h"
-
 enum {
 	ServerFeatureNone = 0,
 	ServerFeatureMethodGetUserTags = 1,

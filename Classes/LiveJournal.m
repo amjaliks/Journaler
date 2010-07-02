@@ -14,20 +14,7 @@
 
 #import "NetworkActivityIndicator.h"
 
-NSString* md5(NSString *str)
-{
-	const char *cStr = [str UTF8String];
-	unsigned char result[CC_MD5_DIGEST_LENGTH];
-	CC_MD5( cStr, strlen(cStr), result );
-	return [NSString stringWithFormat:
-			@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-			result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
-			result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15]
-	];
-} 
-
-
-@implementation LJEvent
+@implementation LJEvent2
 
 @synthesize journalName;
 @synthesize journalType;
@@ -44,9 +31,6 @@ NSString* md5(NSString *str)
 
 + (NSString *) removeTagFromString:(NSString *)string tag:(NSString *)tag replacement:(NSString *)replacement format:(NSString *)format {
 	while (true) {
-//#ifdef DEBUG
-//		NSLog(string);
-//#endif
 		NSString *match = [string stringByMatching:tag options:RKLDotAll | RKLCaseless inRange:NSMakeRange(0, [string length]) capture:0 error:nil];
 		if (!match) {
 			break;
@@ -104,13 +88,6 @@ NSString* md5(NSString *str)
 		eventView = [LJEvent removeTagFromString:eventView tag:@"<lj user=\".+?\">" replacement:@"\"(.+?)\"" format:nil];
 		eventView = [LJEvent removeTagFromString:eventView tag:@"<img\\s?.*?/?>" replacement:@"src=\"(.+?)\"" format:@"( <a href=\"%@\">img</a> )"];
 		
-		//NSMutableString *meventPreview = [NSMutableString stringWithString:eventPreview];
-		
-		//[meventPreview replaceOccurrencesOfRegex:@"<br\\s*/?>" withString:@"\n" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
-		//[meventPreview replaceOccurrencesOfRegex:@"<img\\s?.*?/?>" withString:@"( img )" options:(RKLDotAll | RKLCaseless) range:NSMakeRange(0, [meventPreview length]) error:nil];
-		
-		//[meventPreview replaceOccurrencesOfRegex:@"<.+?>" withString:@""  options:(RKLDotAll | RKLCaseless)range:NSMakeRange(0, [meventPreview length]) error:nil];
-		
 		eventView = [eventView stringByReplacingOccurrencesOfString:@"\n" withString:@"<br />"];
 		
 		[eventView retain];
@@ -120,96 +97,6 @@ NSString* md5(NSString *str)
 }
 
 @end
-
-
-//@implementation LJFlatRequest
-//
-//@synthesize error;
-//
-//- (id)initWithServer:(NSString *)server mode:(NSString *)mode; {
-//	if (self = [super init]) {
-//		_server = server;
-//		_mode = mode;
-//		
-//		error = 0;
-//		
-//		parameters = [NSMutableDictionary dictionary];
-//	}
-//	return self;
-//}
-//
-//- (BOOL)doRequest {
-//	NSString *urlString = [NSString stringWithFormat:@"http://%@/interface/flat", _server];
-//	NSURL *url = [NSURL URLWithString:urlString];
-//	
-//	NSString *request = [NSString stringWithFormat:@"mode=%@", _mode];
-//	
-//	NSArray *keys = [parameters allKeys];
-//	for (NSString * key in keys) {
-//		NSString *value = [parameters objectForKey:key];
-//		request = [request stringByAppendingFormat:@"&%@=%@", key, value]; 
-//	}
-//	
-//#ifdef DEBUG
-//	NSLog(@"request: %@", request);
-//#endif
-//	
-//	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-//	[req setHTTPMethod:@"POST"];
-//	[req setHTTPBody:[request dataUsingEncoding:NSUTF8StringEncoding]];
-//
-//	NSURLResponse *res;
-//	NSError *err;
-//	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
-//	
-//	NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//	
-//	if (err && [NSURLErrorDomain isEqualToString:[err domain]]) {
-//		NSInteger errcode = [err code];
-//		if (errcode == NSURLErrorCannotFindHost) {
-//			error = LJErrorHostNotFound;
-//		} else if (errcode == NSURLErrorTimedOut) {
-//			error = LJErrorConnectionFailed;
-//		} else if (errcode == NSURLErrorNotConnectedToInternet) {
-//			error = LJErrorNotConnectedToInternet;
-//		} else {
-//			error = LJErrorUnknown;
-//#ifdef DEBUG
-//			NSLog(@"Error: %d", errcode);
-//#endif
-//		}
-//		
-//		return NO;
-//	}
-//	
-//#ifdef DEBUG
-//	NSLog(@"respone:\n%@", response);
-//#endif
-//		
-//	NSArray *lines = [response componentsSeparatedByString:@"\n"];
-//	NSUInteger count = [lines count] / 2;
-//	result = [NSMutableDictionary dictionaryWithCapacity:count];
-//	
-//	for (NSUInteger i = 0; i < count; i++) {
-//		[result setValue:[lines objectAtIndex:(i * 2) + 1] forKey:[lines objectAtIndex:(i * 2)]];
-//	}
-//	
-//	if (![@"OK" isEqualToString:[result valueForKey:@"success"]]) {
-//		[self proceedError];
-//	}
-//	
-//	return self.success;
-//}
-//
-//- (BOOL)success {
-//	return !error;
-//}
-//
-//- (void)proceedError {
-//	error = LJErrorUnknown;
-//}
-//
-//@end
 
 
 @implementation LJRequest
@@ -227,270 +114,15 @@ NSString* md5(NSString *str)
 }
 
 - (id)initWithServer:(NSString *)server method:(NSString *)method; {
-	if (self = [super init]) {
-		_server = server;
-		_method = method;
-		
-		error = 0;
-		
-		parameters = [NSMutableDictionary dictionary];
-	}
 	return self;
 }
 
 - (BOOL)doRequest {
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/interface/xmlrpc", _server]];
-	XMLRPCRequest *xmlreq = [[XMLRPCRequest alloc] initWithURL:url];
-	[xmlreq setMethod:_method withParameter:parameters];
-#ifdef DEBUG
-	NSLog(@"request:\n%@", [xmlreq body]);
-#endif
-	NSURLRequest *req = [xmlreq request];
-	
-	[[NetworkActivityIndicator sharedInstance] show];
-	
-	NSURLResponse *res;
-	NSError *err;
-	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
-
-	[[NetworkActivityIndicator sharedInstance] hide];
-
-	if (err && [NSURLErrorDomain isEqualToString:[err domain]]) {
-		NSInteger errcode = [err code];
-		if (errcode == NSURLErrorCannotFindHost) {
-			error = LJErrorHostNotFound;
-		} else if (errcode == NSURLErrorTimedOut || errcode == NSURLErrorCannotConnectToHost) {
-			error = LJErrorConnectionFailed;
-		} else if (errcode == NSURLErrorNotConnectedToInternet) {
-			error = LJErrorNotConnectedToInternet;
-		} else {
-			error = LJErrorUnknown;
-#ifdef DEBUG
-			NSLog(@"Error: %d", errcode);
-#endif
-		}
-		
-		[xmlreq release];
-		return NO;
-	}
-
-	[xmlreq release];
-	
-	XMLRPCResponse *xmlres = [[XMLRPCResponse alloc] initWithData:data];
-	result = [[xmlres object] retain];
-#ifdef DEBUG
-	NSLog(@"respone:\n%@", [xmlres body]);
-#endif
-	
-	if ([xmlres isFault]) {
-		error = LJErrorUnknown;
-		id faultCode = [xmlres faultCode];
-		if ([faultCode isKindOfClass:[NSString class]]) {
-			error = [faultCode isEqualToString:@"Server"] ? LJErrorServerSide : LJErrorClientSide;
-		} else {
-			error = [((NSNumber *) faultCode) integerValue];
-		}
-	} else if (result == nil) {
-		error = LJErrorMalformedRespone;
-	}
-	
-	[xmlres release];
-	
-	return self.success;
+	return YES;
 }
 
 - (BOOL)success {
-	return !error;
+	return YES;
 }
-
-@end
-
-
-@implementation LJGetChallenge
-
-+ (LJGetChallenge *)requestWithServer:(NSString *)server {
-	LJGetChallenge *request = [[[LJGetChallenge alloc] initWithServer:server method:@"LJ.XMLRPC.getchallenge"] autorelease];
-	return request;
-}
-
-- (NSString *)challenge {
-	return [result valueForKey:@"challenge"];
-}
-
-@end
-
-
-@implementation LJSessionGenerate
-
-+ (LJSessionGenerate *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
-	LJSessionGenerate *request = [[[LJSessionGenerate alloc] initWithServer:server method:@"LJ.XMLRPC.sessiongenerate"] autorelease];
-	
-	[request->parameters setValue:user forKey:@"username"];
-	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
-	[request->parameters setValue:challenge forKey:@"auth_challenge"];
-
-	//[request->parameters setValue:@"2009-10-01 00:00:00" forKey:@"lastsync"];
-	
-	request->password = password;
-	request->challenge = challenge;
-	
-	return request;
-}
-
-- (BOOL)doRequest {
-	
-	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
-	[parameters setValue:authResponse forKey:@"auth_response"];
-	
-	return [super doRequest];
-}
-
-- (NSString *)ljsession {
-	return [result valueForKey:@"ljsession"];
-}
-
-@end
-
-
-//@implementation LJPostEvent
-//
-//@synthesize usejournal;
-//@synthesize security;
-//
-//+ (LJPostEvent *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge subject:(NSString *)subject event:(NSString *)event {
-//	LJPostEvent *request = [[[LJPostEvent alloc] initWithServer:server method:@"LJ.XMLRPC.postevent"] autorelease];
-//	//LJFlatSessionGenerate *request = [[[LJFlatSessionGenerate alloc] initWithServer:server mode:@"getfriendspage"] autorelease];
-//	
-//	[request->parameters setValue:user forKey:@"username"];
-//	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
-//	[request->parameters setValue:challenge forKey:@"auth_challenge"];
-//
-//	[request->parameters setValue:@"1" forKey:@"ver"];
-//	[request->parameters setValue:subject forKey:@"subject"];
-//	[request->parameters setValue:[event dataUsingEncoding:NSUTF8StringEncoding] forKey:@"event"];
-//	//[request->parameters setValue:user forKey:@"usejournal"];
-//	
-//	NSCalendar *cal = [NSCalendar currentCalendar];
-//	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
-//	NSDate *date = [NSDate date];
-//	NSDateComponents *comps = [cal components:unitFlags fromDate:date];
-//
-//	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps year]] forKey:@"year"];
-//	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps month]] forKey:@"mon"];
-//	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps day]] forKey:@"day"];
-//	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps hour]] forKey:@"hour"];
-//	[request->parameters setValue:[NSString stringWithFormat:@"%d", [comps minute]] forKey:@"min"];
-//		
-//	//[request->parameters setValue:@"2009-10-01 00:00:00" forKey:@"lastsync"];
-//	
-//	request->password = password;
-//	request->challenge = challenge;
-//	
-//	return request;
-//}
-//
-//- (BOOL)doRequest {
-//	
-//	if (usejournal) {
-//		[parameters setValue:usejournal forKey:@"usejournal"];
-//	}
-//	
-//	if (security == PostSecurityFriends) {
-//		[parameters setValue:@"usemask" forKey:@"security"];
-//		[parameters setValue:[NSNumber numberWithInteger:1] forKey:@"allowmask"];
-//	} else if (security == PostSecurityPrivate) {
-//		[parameters setValue:@"private" forKey:@"security"];
-//	}
-//
-//	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
-//	[parameters setValue:authResponse forKey:@"auth_response"];
-//	
-//	return [super doRequest];
-//}
-//
-//- (void)proceedError {
-//	NSString *errmsg = [result valueForKey:@"errmsg"];
-//	if ([@"Invalid username" isEqualToString:errmsg]) {
-//		error = LJErrorInvalidUsername;
-//	} else if ([@"Invalid password" isEqualToString:errmsg]) {
-//		error = LJErrorInvalidPassword;
-//	} else {
-//		error = LJErrorUnknown;
-//	}
-//}
-//
-//@end
-
-
-
-@implementation LJGetFriendsPage
-
-@synthesize entries;
-@synthesize lastSync;
-@synthesize itemShow;
-@synthesize skip;
-
-+ (LJGetFriendsPage *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge {
-	LJGetFriendsPage *request = [[[LJGetFriendsPage alloc] initWithServer:server method:@"LJ.XMLRPC.getfriendspage"] autorelease];
-	
-	[request->parameters setValue:user forKey:@"username"];
-	[request->parameters setValue:@"challenge" forKey:@"auth_method"];
-	[request->parameters setValue:challenge forKey:@"auth_challenge"];
-
-	[request->parameters setValue:@"1" forKey:@"ver"];
-	
-	request->password = password;
-	request->challenge = challenge;
-	
-	request->itemShow = [[NSNumber numberWithInt:10] retain];
-	request->skip = [[NSNumber numberWithInt:0] retain];
-	
-	return request;
-}
-
-- (BOOL)doRequest {
-	
-	NSString *authResponse = md5([challenge stringByAppendingString:md5(password)]);
-	[parameters setValue:authResponse forKey:@"auth_response"];
-	
-	[parameters setValue:itemShow forKey:@"itemshow"];
-	[parameters setValue:skip forKey:@"skip"];
-	if (lastSync) {
-		[parameters setValue:[NSNumber numberWithInt:[lastSync timeIntervalSince1970]] forKey:@"lastsync"];
-	}
-
-	[super doRequest];
-
-	if (self.success) {
-		NSArray *xmlEntries = [result valueForKey:@"entries"];
-		entries = [NSMutableArray arrayWithCapacity:[xmlEntries count]];
-		
-		for (NSDictionary *entry in xmlEntries) {
-			LJEvent *event = [[LJEvent alloc] init];
-			event.subject = [LJRequest proceedRawValue:[entry valueForKey:@"subject_raw"]];
-			event.event = [LJRequest proceedRawValue:[entry valueForKey:@"event_raw"]];
-			event.journalName = [LJRequest proceedRawValue:[entry valueForKey:@"journalname"]];
-			event.journalType = [entry valueForKey:@"journaltype"];
-			event.posterName = [LJRequest proceedRawValue:[entry valueForKey:@"postername"]];
-			event.posterType = [entry valueForKey:@"postertype"];
-			event.datetime = [NSDate dateWithTimeIntervalSince1970:[((NSNumber *) [entry valueForKey:@"logtime"]) integerValue]];
-			event.replyCount = [((NSNumber *) [entry valueForKey:@"reply_count"]) integerValue];
-			event.userPicUrl = [entry valueForKey:@"poster_userpic_url"];
-			event.ditemid = [entry valueForKey:@"ditemid"];
-			event.security = [entry valueForKey:@"security"];
-			[entries addObject:event];
-			[event release];
-		}
-		
-	}
-	return self.success;
-}
-
-- (void) dealloc {
-	[skip release];
-	[itemShow release];
-	[super dealloc];
-}
-
 
 @end

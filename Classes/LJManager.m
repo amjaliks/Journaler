@@ -88,6 +88,67 @@ LJManager *defaultManager;
 	return NO;
 }
 
+- (NSString *)generateSessionForAccount:(LJAccount *)account error:(NSError **)error {
+	@synchronized (account) {
+		NSString *challenge = [self challengeForAccount:account error:error];
+		if (challenge) {
+			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getfriendspage" parameters:parameters error:error] retain];
+			[parameters release];
+			
+			if (result) {
+				NSString *session = [result valueForKey:@"ljsession"];
+				[result release];
+				
+				return session;
+			}
+		}
+	}
+	return nil;
+}
+
+- (NSArray *)friendsPageEventsForAccount:(LJAccount *)account lastSync:(NSDate *)lastSync error:(NSError **)error {
+	@synchronized (account) {
+		NSString *challenge = [self challengeForAccount:account error:error];
+		if (challenge) {
+			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+			
+			// pēdējās sinhronizācijas datums
+			if (lastSync) {
+				[parameters setValue:[NSNumber numberWithInt:[lastSync timeIntervalSince1970]] forKey:@"lastsync"];
+			}
+			
+			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getfriendspage" parameters:parameters error:error] retain];
+			[parameters release];
+			
+			if (result) {
+				// ja ir rezultāts, tad apstrādājam to
+				NSArray *entries = [result valueForKey:@"entries"];
+				NSMutableArray *events = [NSMutableArray arrayWithCapacity:[entries count]];
+				
+				for (NSDictionary *entry in entries) {
+					LJEvent *event = [[LJEvent alloc] init];
+					event.subject = [LJRequest proceedRawValue:[entry valueForKey:@"subject_raw"]];
+					event.event = [LJRequest proceedRawValue:[entry valueForKey:@"event_raw"]];
+					event.journal = [LJRequest proceedRawValue:[entry valueForKey:@"journalname"]];
+					event.journalType = [LJEvent journalTypeForKey:[entry valueForKey:@"journaltype"]];
+					event.poster = [LJRequest proceedRawValue:[entry valueForKey:@"postername"]];
+					event.posterType = [LJEvent journalTypeForKey:[entry valueForKey:@"postertype"]];
+					event.datetime = [NSDate dateWithTimeIntervalSince1970:[((NSNumber *) [entry valueForKey:@"logtime"]) integerValue]];
+					event.replyCount = [((NSNumber *) [entry valueForKey:@"reply_count"]) integerValue];
+					event.userPicUrl = [entry valueForKey:@"poster_userpic_url"];
+					event.ditemid = [entry valueForKey:@"ditemid"];
+					event.security = [LJEvent securityLevelForKey:[entry valueForKey:@"security"]];
+					[events addObject:event];
+					[event release];
+				}
+				return [events autorelease];
+			}
+		}
+	}
+	return nil;
+}
+
 - (BOOL)friendGroupsForAccount:(LJAccount *)account error:(NSError **)error {
 	@synchronized (account) {
 		NSString *challenge = [self challengeForAccount:account error:error];
@@ -140,7 +201,7 @@ LJManager *defaultManager;
 }
 
 
-- (BOOL)postEvent:(LJNewEvent *)event forAccount:(LJAccount *)account error:(NSError **)error {
+- (BOOL)postEvent:(LJEvent *)event forAccount:(LJAccount *)account error:(NSError **)error {
 	@synchronized (account) {
 		NSString *challenge = [self challengeForAccount:account error:error];
 		
@@ -163,12 +224,12 @@ LJManager *defaultManager;
 			
 			[parameters setValue:event.journal forKey:@"usejournal"];
 			
-			if (event.security == PostSecurityPrivate) {
+			if (event.security == LJEventSecurityPrivate) {
 				[parameters setValue:@"private" forKey:@"security"];
-			} else if (event.security != PostSecurityPublic) {
+			} else if (event.security != LJEventSecurityPublic) {
 				[parameters setValue:@"usemask" forKey:@"security"];
 				NSUInteger allowmask = 0;
-				if (event.security == PostSecurityCustom) {
+				if (event.security == LJEventSecurityCustom) {
 					for (NSNumber *groupID in event.selectedFriendGroups) {
 						allowmask |= 1 << [groupID unsignedIntegerValue];
 					}
@@ -255,7 +316,7 @@ LJManager *defaultManager;
 	[[NetworkActivityIndicator sharedInstance] show];
 	
 	NSURLResponse *res;
-	NSError *err;
+	NSError *err = nil;
 	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
 	
 	[[NetworkActivityIndicator sharedInstance] hide];

@@ -61,12 +61,6 @@
 	self.navigationItem.rightBarButtonItem = viewController.navigationItem.rightBarButtonItem;
 	self.navigationItem.title = viewController.navigationItem.title;
 	self.navigationItem.titleView = viewController.navigationItem.titleView;
-	
-//	NSLog(@"%f", self.navigationController.navigationBar.);
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	[super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 #pragma mark -
@@ -86,13 +80,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
-	[self.navigationItem.titleView resizeForInterfaceOrientation:self.interfaceOrientation];
+	[self.navigationItem.titleView setNeedsLayout];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[[AccountManager sharedManager] setOpenedAccount:account.title];
+	//[self.navigationItem.titleView resizeForInterfaceOrientation:self.interfaceOrientation];
 }
 
 #pragma mark -

@@ -10,13 +10,10 @@
 
 #import "LJAccount.h"
 #import "LJFriendGroup.h"
-#import "LJNewEvent.h"
+#import "LJEvent.h"
 #import "LJManager.h"
 #import "LJMood.h"
 #import "LJTag.h"
-#import "PostOptionsController.h"
-
-NSString* md5(NSString *str);
 
 enum {
 	LJErrorUnknown = -1,
@@ -33,7 +30,7 @@ enum {
 };
 
 
-@interface LJEvent : NSObject {
+@interface LJEvent2 : NSObject {
 	NSString *journalName;
 	NSString *journalType;
 	NSString *posterName;
@@ -83,46 +80,5 @@ enum {
 
 @property (readonly) BOOL success;
 @property (readonly) NSUInteger error;
-
-@end
-
-@interface LJGetChallenge : LJRequest {
-}
-
-+ (LJGetChallenge *)requestWithServer:(NSString *)server;
-
-@property (readonly) NSString *challenge;
-
-@end
-
-
-@interface LJSessionGenerate : LJRequest {
-	NSString *challenge;
-	NSString *password;
-}
-
-+ (LJSessionGenerate *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
-
-@property (readonly) NSString *ljsession;
-
-@end
-
-
-@interface LJGetFriendsPage : LJRequest {
-	NSString *challenge;
-	NSString *password;
-	NSMutableArray *entries;
-	
-	NSDate *lastSync;
-	NSNumber *itemShow;
-	NSNumber *skip;
-}
-
-+ (LJGetFriendsPage *)requestWithServer:(NSString *)server user:(NSString *)user password:(NSString *)password challenge:(NSString *)challenge;
-
-@property (readonly) NSArray *entries;
-@property (retain) NSDate *lastSync;
-@property (retain) NSNumber *itemShow;
-@property (retain) NSNumber *skip;
 
 @end

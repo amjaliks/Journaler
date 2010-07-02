@@ -88,7 +88,7 @@ enum {
 		account = newAccount;
 		
 		journal = [account.user retain];
-		security = PostSecurityPublic;
+		security = LJEventSecurityPublic;
 		selectedFriendGroups = [[NSMutableArray alloc] init];
 		
 		picKeyword = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPicKeyword retain];
@@ -285,11 +285,11 @@ enum {
 			cell.detailTextLabel.text = journal;
 		} else if (indexPath.row == 1) {
 			cell.textLabel.text = NSLocalizedString(@"Security", nil);
-			if (security == PostSecurityPublic) {
+			if (security == LJEventSecurityPublic) {
 				cell.detailTextLabel.text = NSLocalizedString(@"Public", nil);
-			} else if (security == PostSecurityFriends) {
+			} else if (security == LJEventSecurityFriends) {
 				cell.detailTextLabel.text = NSLocalizedString(@"Friends only", nil);
-			} else if (security == PostSecurityPrivate) {
+			} else if (security == LJEventSecurityPrivate) {
 				cell.detailTextLabel.text = NSLocalizedString(@"Private", nil);
 			} else {
 				cell.detailTextLabel.text = NSLocalizedString(@"Custom", nil);
@@ -320,8 +320,9 @@ enum {
 			[(TextFieldCellView *)cell setTarget:self action:@selector(musicChanged:)];
 		} else if (indexPath.row == SectionAdditionalRowLocation) {
 			cell.textLabel.text = NSLocalizedString(@"Location", nil);
-			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-			cell.accessoryView = locateView;
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			//cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+			//cell.accessoryView = locateView;
 			((TextFieldCellView *)cell).text.text = location;
 			((TextFieldCellView *)cell).text.placeholder = nil;
 			[(TextFieldCellView *)cell setTarget:self action:@selector(locationChanged:)];
@@ -509,9 +510,9 @@ enum {
 	if (abs([[newLocation timestamp] timeIntervalSinceNow]) <= 60.0f) {
 		[manager stopUpdatingLocation];
 		
-		geocoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
-		geocoder.delegate = self;
-		[geocoder start];
+		//geocoder = [[CMGeocoder alloc] initWithAPIKey:@"0b6884abe4ab4a3bab551d08b232fdad" coordinate:newLocation.coordinate];
+		//geocoder.delegate = self;
+		//[geocoder start];
 		[self revertLocateMeButton];
 	}
 }
@@ -572,9 +573,9 @@ enum {
 }
 
 - (void)releaseGeocoder {
-	[geocoder cancel];
-	[geocoder release];
-	geocoder = nil;
+	//[geocoder cancel];
+	//[geocoder release];
+	//geocoder = nil;
 }
 
 #pragma mark -

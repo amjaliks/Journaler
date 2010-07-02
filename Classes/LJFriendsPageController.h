@@ -31,17 +31,14 @@
 	
 	BOOL needOpenPost;
 	BOOL needReloadTable;
-	
-#ifdef LITEVERSION
-	NSString *selectedPostSubject;
-#endif
 }
 
 #pragma mark Metodes
 
 // raksti
-- (void) firstSync;
-- (void) firstSyncReadCache;
+- (void)firstSync;
+- (BOOL)loadFriendsPageFromServer:(BOOL)allPosts;
+
 - (void) firstSyncReadServer;
 - (void) refreshPosts;
 - (void) loadMorePosts;
@@ -52,6 +49,7 @@
 - (void) reloadTable;
 - (void) preprocessPosts;
 - (void) updateStatusLineText:(NSString *)text;
+- (void) openPost:(Post *)post;
 - (void) openPost:(Post *)post animated:(BOOL)animated;
 - (void) openPostByKey:(NSString *)key;
 

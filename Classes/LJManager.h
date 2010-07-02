@@ -10,7 +10,7 @@
 
 #define kLJErrorDomain @"LJErrorDomain"
 
-@class LJAccount, LJFriendGroup, LJNewEvent;
+@class LJAccount, LJFriendGroup, LJEvent;
 
 @interface LJManager : NSObject {
 
@@ -20,10 +20,12 @@
 
 #pragma mark "Lietderīgās" metodes
 - (NSString *)challengeForAccount:(LJAccount *)account error:(NSError **)error;
+- (BOOL)loginForAccount:(LJAccount *)account error:(NSError **)error;
+- (NSString *)generateSessionForAccount:(LJAccount *)account error:(NSError **)error;
+- (NSArray *)friendsPageEventsForAccount:(LJAccount *)account lastSync:(NSDate *)lastSync error:(NSError **)error;
 - (BOOL)friendGroupsForAccount:(LJAccount *)account error:(NSError **)error;
 - (BOOL)userTagsForAccount:(LJAccount *)account error:(NSError **)error;
-- (BOOL)loginForAccount:(LJAccount *)account error:(NSError **)error;
-- (BOOL)postEvent:(LJNewEvent *)event forAccount:(LJAccount *)account error:(NSError **)error;
+- (BOOL)postEvent:(LJEvent *)event forAccount:(LJAccount *)account error:(NSError **)error;
 
 #pragma mark Tehniskās metodes
 - (NSDictionary *)sendRequestToServer:(NSString *)server method:(NSString *)method parameters:(NSDictionary *)parameters error:(NSError **)error;

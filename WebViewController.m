@@ -105,37 +105,31 @@
 	@synchronized (loggedinServers) {
 		NSString *user = [loggedinServers objectForKey:account.server];
 		if (!user || ![user isEqualToString:account.user]) {
-			LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
-			if ([challenge doRequest]) {
+			NSError *error;
+			NSString *session;
+			
+			if (session = [[LJManager defaultManager] generateSessionForAccount:account error:&error]) {
+				NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+				NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+				[cookie release];
 				
-				LJSessionGenerate *session = [LJSessionGenerate requestWithServer:account.server user:account.user password:account.password challenge:challenge.challenge];
-				if ([session doRequest]) {
-					NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-					NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-					[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-					[cookie release];
-					
-					cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljmastersession", NSHTTPCookieName, session.ljsession, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-					cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-					[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-					[cookie release];
-					
-					NSArray *parts = [session.ljsession componentsSeparatedByString:@":"];
-					cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljloggedin", NSHTTPCookieName, [NSString stringWithFormat:@"%@:%@", [parts objectAtIndex:1], [parts objectAtIndex:2]], NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
-					cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
-					[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
-					[cookie release];
-					
-					[loggedinServers setObject:account.user forKey:account.server];
-					return YES;
-				} else {
-					if (!silent) {
-						showErrorMessage(@"Login error", decodeError(session.error));
-					}
-				}
+				cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljmastersession", NSHTTPCookieName, session, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+				cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+				[cookie release];
+				
+				NSArray *parts = [session componentsSeparatedByString:@":"];
+				cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljloggedin", NSHTTPCookieName, [NSString stringWithFormat:@"%@:%@", [parts objectAtIndex:1], [parts objectAtIndex:2]], NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
+				cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
+				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+				[cookie release];
+				
+				[loggedinServers setObject:account.user forKey:account.server];
+				return YES;
 			} else {
 				if (!silent) {
-					showErrorMessage(@"Login error", decodeError(challenge.error));
+					showErrorMessage(@"Login error", decodeError([error code]));
 				}
 			}
 		}

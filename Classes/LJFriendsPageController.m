@@ -25,7 +25,6 @@
 - (id)initWithAccount:(LJAccount *)aAccount {
     if (self = [super initWithAccount:aAccount]) {
 		// rakstu masīva inicializācija
-		loadedPosts = [[NSMutableArray alloc] init];
 		postsPendingRemoval = [[NSMutableArray alloc] init];
 		
 		// kešs
@@ -59,10 +58,6 @@
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;// || UIView;
 	
-//#ifdef LITEVERSION
-//	[self initAdMobView];
-//#endif
-	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
@@ -86,16 +81,6 @@
 	}
 }
 
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-}
-
 - (void)showStatusLine {
 	loading = YES;
 	[super showStatusLine];
@@ -112,49 +97,95 @@
 
 #pragma mark Darbs ar rakstiem
 
-#ifdef LITEVERSION
-- (void)changeAccount {
-	[loadedPosts removeAllObjects];
-}
-#endif
-
 // pirmā sinhronizācija pēc palaišanas
-- (void) firstSync {
+- (void)firstSync {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	// parādam stāvokļa joslu
-	[self showStatusLine];
+	[self performSelectorOnMainThread:@selector(showStatusLine) withObject:nil waitUntilDone:YES];
 	
-	[self performSelectorInBackground:@selector(firstSyncReadCache) withObject:nil];
+	// lasam ierakstus no keša
+	Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
+	loadedPosts = [[model findPostsByAccount:account.title] mutableCopy];
+	
+	if (needOpenPost) {
+		// ja nepieciešams, tad atveram iepriekš atvērto rakstu
+		NSString *postKey = [[AccountManager sharedManager] stateInfoForAccount:account.title].openedPost;
+		if (postKey) {
+			for (Post *post in loadedPosts) {
+				if ([postKey isEqualToString:post.uniqueKey]) {
+					[self performSelectorOnMainThread:@selector(openPost:) withObject:post waitUntilDone:YES];
+					break;
+				}
+			}
+		}
+	}
+	
+	if ([loadedPosts count]) {
+		// ja kešā ir ieraksti, tad tos parādam
+		[self performSelectorOnMainThread:@selector(reloadTable) withObject:nil waitUntilDone:YES];
+	}
+	
+	// ielādējam draugu lapu no servera
+	if ([self loadFriendsPageFromServer:NO]) {
+		// ja ielāde bija veiksmīga, tad pārlādējam tabulu
+		[self performSelectorOnMainThread:@selector(reloadTable) withObject:nil waitUntilDone:YES];
+	}
+	
+	// paslēpjam stāvokļa joslu
+	[self performSelectorOnMainThread:@selector(hideStatusLine) withObject:nil waitUntilDone:YES];
 	
 	[pool release];
 }
 
-- (void)firstSyncReadCache {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+- (BOOL)loadFriendsPageFromServer:(BOOL)allPosts {
+	NSError *err;
 	
-	// lasam no keša pirmos 10 ierakstus
-	NSUInteger lastVisiblePostIndex = [[AccountManager sharedManager] stateInfoForAccount:account.title].lastVisiblePostIndex;
-	NSUInteger limit = MAX(kReadLimitPerAttempt, lastVisiblePostIndex + 1);
-	[self loadPostsFromCacheFromOffset:0 limit:limit];
+	// ielādējam notikumus no servera
+	NSArray *events = [[LJManager defaultManager] friendsPageEventsForAccount:account lastSync:nil error:&err];
 	
-	if (needOpenPost) {
-		NSString *postKey = [[AccountManager sharedManager] stateInfoForAccount:account.title].openedPost;
-		if (postKey) {
-			[self performSelectorOnMainThread:@selector(openPostByKey:) withObject:postKey waitUntilDone:NO];
+	if (!err) {
+		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
+		for (LJEvent *event in events) {
+			Post *post = [model findPostByAccount:account.title journal:event.journal dItemId:event.ditemid];
+			if (!post) {
+				post = [model createPost];
+				post.account = account.title;
+				post.journal = event.journal;
+				post.journalType = event.journalType == LJJournalTypeJournal ? @"J" : @"C";
+				post.ditemid = event.ditemid;
+				post.poster = event.poster;
+				[loadedPosts addObject:post];
+			}
+			post.dateTime = event.datetime;
+			post.subject = event.subject;
+			post.text = event.event;
+			post.replyCount = [NSNumber numberWithInt:event.replyCount];
+			post.userPicURL = event.userPicUrl;
+			post.security = event.security == LJEventSecurityPublic ? @"public" : @"private";
+			post.updated = YES;
+			post.rendered = NO;
+			[post clearPreproceedStrings];
 		}
+		
+		NSSortDescriptor *dateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateTime" ascending:NO];
+		[loadedPosts sortUsingDescriptors:[NSArray arrayWithObjects:dateSortDescriptor, nil]];
+		[dateSortDescriptor release];
+		
+		while ([loadedPosts count] > 100) {
+			Post *last = [loadedPosts lastObject];
+			[loadedPosts removeLastObject];
+			[postsPendingRemoval addObject:last];
+		}
+		
+		[model saveAll];
+		
+		return YES;
+	} else {
+		// ja ir kļūda, tad rādam paziņojumu
+		showErrorMessage(@"Sync error", decodeError([err code]));
+		return NO;
 	}
-	
-	// atjaunojam tabulu
-	if ([loadedPosts count]) {
-		[self preprocessPosts];
-		[self reloadTable];
-		[tableView setAlpha:1.0];
-	}
-	
-	[self performSelectorInBackground:@selector(firstSyncReadServer) withObject:nil];
-
-	[pool release];
 }
 
 - (void)firstSyncReadServer {
@@ -166,7 +197,7 @@
 			[self loadLastPostsFromServer];
 			if ([loadedPosts count]) {
 				Post *topPost = [loadedPosts objectAtIndex:0];
-				NSUInteger count = [self loadPostsFromServerAfter:topPost.dateTime skip:0 limit:100]; 
+				NSUInteger count = [self loadPostsFromServerAfter:nil skip:0 limit:100]; 
 				if (count < 10) {
 					[self loadPostsFromServerAfter:nil skip:count limit:10 - count]; 
 				}
@@ -221,15 +252,11 @@
 			showErrorMessage([e name], [e reason]);
 		}
 
-		// parādam stāvokļa joslu
+		// paslēpjam stāvokļa joslu
 		[self hideStatusLine];
 
 		refreshButtonItem.enabled = YES;
 		
-//#ifdef LITEVERSION
-//		[self refreshAdMobView];
-//#endif
-
 		[pool release];
 	}
 }
@@ -284,10 +311,6 @@
 		
 		// parādam stāvokļa joslu
 		[self hideStatusLine];
-		
-//#ifdef LITEVERSION
-//		[self refreshAdMobView];
-//#endif
 
 		[pool release];
 	}
@@ -309,26 +332,26 @@
 }
 
 - (NSUInteger) loadPostsFromServerAfter:(NSDate *)lastSync skip:(NSUInteger)skip limit:(NSUInteger)limit {
-	LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
-	if ([challenge doRequest]) {
-		NSString *c = [challenge.challenge retain];
-		LJGetFriendsPage *friendPage = [LJGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:c];
-		if (lastSync) {
-			friendPage.lastSync = lastSync;
-		};
-		friendPage.itemShow = [NSNumber numberWithInt:limit];
-		friendPage.skip = [NSNumber numberWithInt:skip];
-		
-		if ([friendPage doRequest]) {
-			[self addNewOrUpdateWithPosts:friendPage.entries];
-			return [friendPage.entries count];
-		} else {
-			[NSException raise:@"Sync error" format:decodeError(friendPage.error)];
-		}
-	} else {
-		[NSException raise:@"Sync error" format:decodeError(challenge.error)];
-	}
-	return 0;
+//	LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
+//	if ([challenge doRequest]) {
+//		NSString *c = [challenge.challenge retain];
+//		LJGetFriendsPage *friendPage = [LJGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:c];
+//		if (lastSync) {
+//			friendPage.lastSync = lastSync;
+//		};
+//		friendPage.itemShow = [NSNumber numberWithInt:limit];
+//		friendPage.skip = [NSNumber numberWithInt:skip];
+//		
+//		if ([friendPage doRequest]) {
+//			[self addNewOrUpdateWithPosts:friendPage.entries];
+//			return [friendPage.entries count];
+//		} else {
+//			[NSException raise:@"Sync error" format:decodeError(friendPage.error)];
+//		}
+//	} else {
+//		[NSException raise:@"Sync error" format:decodeError(challenge.error)];
+//	}
+//	return 0;
 }
 
 - (void) loadLastPostsFromServer {
@@ -344,42 +367,42 @@
 }
 
 - (void) addNewOrUpdateWithPosts:(NSArray *)events {
-	@synchronized(loadedPosts) {
-		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
-		for (LJEvent *event in events) {
-			Post *post = [model findPostByAccount:account.title journal:event.journalName dItemId:event.ditemid];
-			if (!post) {
-				post = [model createPost];
-				post.account = account.title;
-				post.journal = event.journalName;
-				post.journalType = event.journalType;
-				post.ditemid = event.ditemid;
-				post.poster = event.posterName;
-				[loadedPosts addObject:post];
-			}
-			post.dateTime = event.datetime;
-			post.subject = event.subject;
-			post.text = event.event;
-			post.replyCount = [NSNumber numberWithInt:event.replyCount];
-			post.userPicURL = event.userPicUrl;
-			post.security = event.security;
-			post.updated = YES;
-			post.rendered = NO;
-			[post clearPreproceedStrings];
-			
-			NSSortDescriptor *dateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateTime" ascending:NO];
-			[loadedPosts sortUsingDescriptors:[NSArray arrayWithObjects:dateSortDescriptor, nil]];
-			[dateSortDescriptor release];
-			
-			while ([loadedPosts count] > 100) {
-				Post *last = [loadedPosts lastObject];
-				[loadedPosts removeLastObject];
-				[postsPendingRemoval addObject:last];
-			}
-			
-			[model saveAll];
-		}
-	}
+//	@synchronized(loadedPosts) {
+//		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
+//		for (LJEvent *event in events) {
+//			Post *post = [model findPostByAccount:account.title journal:event.journalName dItemId:event.ditemid];
+//			if (!post) {
+//				post = [model createPost];
+//				post.account = account.title;
+//				post.journal = event.journalName;
+//				post.journalType = event.journalType;
+//				post.ditemid = event.ditemid;
+//				post.poster = event.posterName;
+//				[loadedPosts addObject:post];
+//			}
+//			post.dateTime = event.datetime;
+//			post.subject = event.subject;
+//			post.text = event.event;
+//			post.replyCount = [NSNumber numberWithInt:event.replyCount];
+//			post.userPicURL = event.userPicUrl;
+//			post.security = event.security;
+//			post.updated = YES;
+//			post.rendered = NO;
+//			[post clearPreproceedStrings];
+//			
+//			NSSortDescriptor *dateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateTime" ascending:NO];
+//			[loadedPosts sortUsingDescriptors:[NSArray arrayWithObjects:dateSortDescriptor, nil]];
+//			[dateSortDescriptor release];
+//			
+//			while ([loadedPosts count] > 100) {
+//				Post *last = [loadedPosts lastObject];
+//				[loadedPosts removeLastObject];
+//				[postsPendingRemoval addObject:last];
+//			}
+//			
+//			[model saveAll];
+//		}
+//	}
 }
 
 - (void) reloadTable {
@@ -391,6 +414,10 @@
 			displayedPosts = [loadedPosts copy];
 
 			[tableView reloadData];
+			
+			// pārliecinamies, ka tabula ir redzama
+			[tableView setAlpha:1.0];
+			
 			NSString *firstVisiblePost = [[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePost;
 			if (firstVisiblePost) {
 				NSUInteger row = 0;
@@ -452,18 +479,21 @@
 	statusLineLabel.text = text;
 }
 
-- (void) openPost:(Post *)post animated:(BOOL)animated {
+- (void)openPost:(Post *)post {
+	[self openPost:post animated:NO];
+}
+
+- (void)openPost:(Post *)post animated:(BOOL)animated {
 	PostViewController *postViewController = [[cachedPostViewControllers objectForKey:post.uniqueKey] retain];
 	if (!postViewController) {
 		postViewController = [[PostViewController alloc] initWithPost:post account:account];
 		[cachedPostViewControllers setObject:postViewController forKey:post.uniqueKey];
 	}
-	//[self view];
 	[self.navigationController pushViewController:postViewController animated:animated];
 	[postViewController release];
 }
 
-- (void) openPostByKey:(NSString *)key {
+- (void)openPostByKey:(NSString *)key {
 	for (Post *post in loadedPosts) {
 		if ([key isEqualToString:post.uniqueKey]) {
 			[self openPost:post animated:NO];

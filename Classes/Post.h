@@ -35,6 +35,11 @@
 @property (nonatomic, retain) NSString * userPicURL;
 @property (nonatomic, retain) NSNumber * isRead;
 @property (nonatomic, retain) NSString * security;
+@property (nonatomic, retain) NSNumber * parserVersion;
+@property (nonatomic, retain) NSString * parsedSubjectPreview;
+@property (nonatomic, retain) NSString * parsedSubjectView;
+@property (nonatomic, retain) NSString * parsedTextPreview;
+@property (nonatomic, retain) NSString * parsedTextView;
 
 @property (readonly) NSString * uniqueKey;
 

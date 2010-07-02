@@ -94,7 +94,7 @@
 	} else {
 		LJFriendGroup *friendGroup = [postOptionsController.account.friendGroups objectAtIndex:indexPath.row];
 		cell.textLabel.text = friendGroup.name;
-		cell.accessoryType = postOptionsController.security == PostSecurityCustom && [postOptionsController.selectedFriendGroups containsObject:[NSNumber numberWithUnsignedInteger:friendGroup.groupID]] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+		cell.accessoryType = postOptionsController.security == LJEventSecurityCustom && [postOptionsController.selectedFriendGroups containsObject:[NSNumber numberWithUnsignedInteger:friendGroup.groupID]] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 	}
 	
     return cell;
@@ -106,7 +106,7 @@
 
 	if (indexPath.section == 0) {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
-		if (postOptionsController.security == PostSecurityCustom) {
+		if (postOptionsController.security == LJEventSecurityCustom) {
 			for (int i = 0; i < [postOptionsController.account.friendGroups count], [postOptionsController.selectedFriendGroups count] > 0; i++) {
 				LJFriendGroup *group = [postOptionsController.account.friendGroups objectAtIndex:i];
 				NSNumber *groupID = [[NSNumber alloc] initWithUnsignedInteger:group.groupID];
@@ -126,7 +126,7 @@
 	} else {
 		LJFriendGroup *group = [postOptionsController.account.friendGroups objectAtIndex:indexPath.row];
 		NSNumber *groupID = [[NSNumber alloc] initWithUnsignedInteger:group.groupID];
-		if (postOptionsController.security == PostSecurityCustom) {
+		if (postOptionsController.security == LJEventSecurityCustom) {
 			if ([postOptionsController.selectedFriendGroups containsObject:groupID]) {
 				[postOptionsController.selectedFriendGroups removeObject:groupID];
 				cell.accessoryType = UITableViewCellAccessoryNone;
@@ -146,7 +146,7 @@
 			[postOptionsController.selectedFriendGroups addObject:groupID];
 		}
 		[groupID release];
-		postOptionsController.security = PostSecurityCustom;
+		postOptionsController.security = LJEventSecurityCustom;
 	}
 
 	[[AccountManager sharedManager] stateInfoForAccount:postOptionsController.account.title].newPostSecurity = postOptionsController.security;

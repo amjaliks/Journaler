@@ -89,7 +89,7 @@
 - (UIImage *) imageFromURL:(NSString *)URL hash:(NSString *)hash force:(BOOL)force {
 	// ja hešs nav tad, aprēķinam
 	if (!hash) {
-		hash = md5(URL);
+		hash = [URL MD5Hash];
 	}
 	
 	UIImage *image = [imageCache objectForKey:hash];
@@ -132,7 +132,7 @@
 - (UIImage *) ensureImageAvailabilityFromURL:(NSString *)URL hash:(NSString *)hash {
 	// ja hešs nav tad, aprēķinam
 	if (!hash) {
-		hash = md5(URL);
+		hash = [URL MD5Hash];
 	}
 
 	@synchronized (imageCache) {
