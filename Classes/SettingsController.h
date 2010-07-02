@@ -10,9 +10,11 @@
 
 @interface SettingsController : UITableViewController {
 	UITableViewCell *refreshOnStartCell;
+	UIViewController *legalController;
 }
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *refreshOnStartCell;
+@property (nonatomic, retain) IBOutlet UIViewController *legalController;
 
 - (IBAction)refreshOnStartChanged;
 - (void)done;

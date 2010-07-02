@@ -16,6 +16,7 @@
 @implementation SettingsController
 
 @synthesize refreshOnStartCell;
+@synthesize legalController;
 
 #pragma mark Incializācija un atmiņas pārvaldīšana
 
@@ -89,17 +90,10 @@
     return cell;
 }
 
-// jamaina
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if ((indexPath.section == 1) && (indexPath.row == 1)) {
-
+		[self.navigationController pushViewController:legalController animated:YES];
 	}
-		
-//    if (indexPath.row == 1) {
-//		UIViewController *controller = [[SettingsStartUpScreenController alloc] initWithStyle:UITableViewStyleGrouped];
-//		[self.navigationController pushViewController:controller animated:YES];
-//		[controller release];
-//	}
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
