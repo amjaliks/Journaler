@@ -45,13 +45,7 @@
 	[self.view addSubview:tableView];
 	
 	friendsPageView = tableView;
-	
-	loadMoreCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LoadMoreCell"];
-	loadMoreCell.textLabel.textAlignment = UITextAlignmentCenter;
-	loadMoreCell.textLabel.textColor = [UIColor colorWithWhite:0.337 alpha:1.0];
-	loadMoreCell.selectionStyle = UITableViewCellSelectionStyleNone;
-	loadMoreCell.textLabel.text = @"Load more...";
-	
+		
 	// izņemam tabulu, lai lietājs neredz to tukšu
 	[tableView setAlpha:0];
 	
@@ -85,14 +79,12 @@
 	loading = YES;
 	[super showStatusLine];
 	refreshButtonItem.enabled = NO;
-	loadMoreCell.textLabel.text = @"Loading...";
 }
 
 - (void)hideStatusLine {
 	loading = NO;
 	[super hideStatusLine];
 	refreshButtonItem.enabled = YES;
-	loadMoreCell.textLabel.text = @"Load more...";
 }
 
 #pragma mark Darbs ar rakstiem
@@ -506,32 +498,23 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSUInteger count = [displayedPosts count];
-	if (count) {
-		return count < 100 && canLoadMore ? count + 1 : count;
-	} else {
-		return 0;
-	}
+	return [displayedPosts count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row < [displayedPosts count]) {
-		static NSString *MyIdentifier = @"PostPreview";
-		
-		PostPreviewCell *cell = (PostPreviewCell *)[aTableView dequeueReusableCellWithIdentifier:MyIdentifier];
-		if (cell == nil) {
-			cell = [[[PostPreviewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
-		}
-
-		Post *post = [displayedPosts objectAtIndex:indexPath.row];
-		[cell setPost:post];
-
-		return cell;
-	} else {
-		return loadMoreCell;
+	static NSString *MyIdentifier = @"PostPreview";
+	
+	PostPreviewCell *cell = (PostPreviewCell *)[aTableView dequeueReusableCellWithIdentifier:MyIdentifier];
+	if (cell == nil) {
+		cell = [[[PostPreviewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
 	}
+
+	Post *post = [displayedPosts objectAtIndex:indexPath.row];
+	[cell setPost:post];
+
+	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

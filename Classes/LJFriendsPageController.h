@@ -22,7 +22,6 @@
 	
 	// tabula
 	UITableView *tableView;
-	UITableViewCell *loadMoreCell;
 	BOOL canLoadMore;
 	BOOL loading;
 
