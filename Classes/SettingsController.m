@@ -58,10 +58,7 @@
 	if (section == 0) {
 		cellId = @"RefreshOnStart";
 	} else {
-		if (indexPath.row == 0) 
-			cellId = @"Version";
-		else 
-			cellId = @"Legal";
+		cellId = @"Cell";
 	}
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -71,17 +68,20 @@
 			UISwitch *sw = (UISwitch *)[cell viewWithTag:1];
 			sw.on = DEFAULT_BOOL(kSettingsRefreshOnStart);
 		} else {
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+
 			if (indexPath.row == 0) {
-				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
 				cell.selectionStyle = UITableViewCellSelectionStyleNone;
+				cell.accessoryType = UITableViewCellAccessoryNone;
 				
 				cell.textLabel.text = NSLocalizedStringFromTable(@"Version", @"Version", nil);
 				cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
 			} else {
-				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
-				
-				cell.textLabel.text = NSLocalizedStringFromTable(@"Legal", @"Legal", nil);
+				cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+				cell.textLabel.text = NSLocalizedStringFromTable(@"Legal", @"Legal", nil);
+				cell.detailTextLabel.text = nil;
 			}
 		}
 
