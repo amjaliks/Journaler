@@ -245,14 +245,12 @@ enum {
 	if (indexPath.section == SectionBasic) {
 		if (indexPath.row == SectionBasicRowJournal) { cellKind = SimpleCell; }
 		else if (indexPath.row == SectionBasicRowSecurity) { cellKind = SimpleCell; };
-#ifdef BETA
 	} else if (indexPath.section == SectionAdditional) {
 		if (indexPath.row == SectionAdditionalRowPicture) { cellKind = SimpleCell; }
 		else if (indexPath.row == SectionAdditionalRowTags) { cellKind = TextFieldCell; }
 		else if (indexPath.row == SectionAdditionalRowMood) { cellKind = TextFieldCell; }
 		else if (indexPath.row == SectionAdditionalRowMusic) { cellKind = TextFieldCell; }
 		else if (indexPath.row == SectionAdditionalRowLocation) { cellKind = TextFieldCell; };
-#endif // BETA
 	} else if (indexPath.section == SectionPromote) {
 		if (indexPath.row == 0) { cellKind = SwitchCell; };
 	}

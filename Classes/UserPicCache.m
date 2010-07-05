@@ -9,6 +9,7 @@
 #import "UserPicCache.h"
 #import "Macros.h"
 #import "NSStringAdditions.h"
+#import "NSStringMD5.h"
 #import "LiveJournal.h"
 #import "JournalerAppDelegate.h"
 #import "Model.h"
@@ -162,7 +163,7 @@
 	path = [path stringByAppendingPathComponent:@"images"];
 	NSFileManager *mng = [NSFileManager defaultManager];
 	if (![mng fileExistsAtPath:path]) {
-		[mng createDirectoryAtPath:path attributes:nil];
+		[mng createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
 	}
 	
 	path = [path stringByAppendingPathComponent:hash];

@@ -128,11 +128,11 @@ LJManager *defaultManager;
 				
 				for (NSDictionary *entry in entries) {
 					LJEvent *event = [[LJEvent alloc] init];
-					event.subject = [LJRequest proceedRawValue:[entry valueForKey:@"subject_raw"]];
-					event.event = [LJRequest proceedRawValue:[entry valueForKey:@"event_raw"]];
-					event.journal = [LJRequest proceedRawValue:[entry valueForKey:@"journalname"]];
+					event.subject = [self readStringValue:[entry valueForKey:@"subject_raw"]];
+					event.event = [self readStringValue:[entry valueForKey:@"event_raw"]];
+					event.journal = [self readStringValue:[entry valueForKey:@"journalname"]];
 					event.journalType = [LJEvent journalTypeForKey:[entry valueForKey:@"journaltype"]];
-					event.poster = [LJRequest proceedRawValue:[entry valueForKey:@"postername"]];
+					event.poster = [self readStringValue:[entry valueForKey:@"postername"]];
 					event.posterType = [LJEvent journalTypeForKey:[entry valueForKey:@"postertype"]];
 					event.datetime = [NSDate dateWithTimeIntervalSince1970:[((NSNumber *) [entry valueForKey:@"logtime"]) integerValue]];
 					event.replyCount = [((NSNumber *) [entry valueForKey:@"reply_count"]) integerValue];
