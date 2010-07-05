@@ -31,11 +31,6 @@
 	if (self = [super init]) {
 		post = [newPost retain];
 		account = [newAccount retain];		
-		
-		// komentāru poga
-		UIBarButtonItem *commentsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"comments.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(openComments)];
-		self.navigationItem.rightBarButtonItem = commentsButton;
-		[commentsButton release];
 	}
 	return self;
 }
@@ -68,6 +63,19 @@
 	webView.delegate = self;
 	webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.view = webView;
+
+	// komentāru poga
+	UIBarButtonItem *commentsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"comments.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(openComments)];
+	self.navigationItem.rightBarButtonItem = commentsButton;
+	[commentsButton release];
+
+	// poga "Action" apakšējā rīkjoslā
+	UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showAction)];
+	NSArray *toolbarItems = [[NSArray alloc] initWithObjects:actionButton, nil];
+	self.toolbarItems = toolbarItems;
+	[toolbarItems release];
+	[actionButton release];
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -114,12 +122,19 @@
 		[webView loadHTMLString:postHtml baseURL:nil];
 		webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	}
+
+	[self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen = OpenedScreenPost;
 	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedPost = post.uniqueKey;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 #ifndef LITEVERSION
@@ -136,6 +151,8 @@
 }
 
 - (void)viewDidUnload {
+	[super viewDidUnload];
+	self.toolbarItems = nil;
 	webView.delegate = nil;
 	[webView release];
 }
@@ -175,6 +192,10 @@
 		[webViewController openURL:URL account:account];
 		return NO;
 	}
+}
+
+- (IBAction) showAction {
+	
 }
 
 

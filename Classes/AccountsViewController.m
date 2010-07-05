@@ -47,6 +47,7 @@
 	// virsraksts
 	self.navigationItem.title = @"Accounts";
 
+	// poga "Settings" apakšējā rīkjoslā
 	NSArray *toolbarItems = [[NSArray alloc] initWithObjects:settingsButton, nil];
 	self.toolbarItems = toolbarItems;
 	[toolbarItems release];

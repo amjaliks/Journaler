@@ -28,6 +28,7 @@
 
 - (id)initWithPost:(Post *)post account:(LJAccount *)account;
 - (void)openComments;
+- (IBAction)showAction;
 
 @end
 
