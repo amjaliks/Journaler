@@ -308,9 +308,9 @@ LJManager *defaultManager;
 	
 	XMLRPCRequest *xmlreq = [[XMLRPCRequest alloc] initWithURL:url];
 	[xmlreq setMethod:method withParameter:parameters];
-#ifdef DEBUG
-	NSLog(@"request:\n%@", [xmlreq body]);
-#endif
+//#ifdef DEBUG
+//	NSLog(@"request:\n%@", [xmlreq body]);
+//#endif
 	NSURLRequest *req = [xmlreq request];
 	
 	[[NetworkActivityIndicator sharedInstance] show];
@@ -346,9 +346,9 @@ LJManager *defaultManager;
 	
 	XMLRPCResponse *xmlres = [[XMLRPCResponse alloc] initWithData:data];
 	NSDictionary *result = [[xmlres object] retain];
-#ifdef DEBUG
-	NSLog(@"respone:\n%@", [xmlres body]);
-#endif
+//#ifdef DEBUG
+//	NSLog(@"respone:\n%@", [xmlres body]);
+//#endif
 	
 	if ([xmlres isFault]) {
 		//code = LJErrorUnknown;

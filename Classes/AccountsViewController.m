@@ -136,6 +136,7 @@
 		[(AccountEditorController*) editAccountViewController.visibleViewController setAccount:selectedAccount];
 		[self presentModalViewController:editAccountViewController animated:YES];
 	} else {
+		self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:selectedAccount.user style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];	
 		[self openAccount:selectedAccount animated:YES];
 	}
 }

@@ -116,12 +116,14 @@
 	if ([loadedPosts count]) {
 		// ja kešā ir ieraksti, tad tos parādam
 		[self performSelectorOnMainThread:@selector(reloadTable) withObject:nil waitUntilDone:YES];
+		[self preprocessPosts];
 	}
 	
 	// ielādējam draugu lapu no servera
-	if ([self loadFriendsPageFromServer:NO]) {
+	if ([self loadFriendsPageFromServer:YES]) {
 		// ja ielāde bija veiksmīga, tad pārlādējam tabulu
 		[self performSelectorOnMainThread:@selector(reloadTable) withObject:nil waitUntilDone:YES];
+		[self preprocessPosts];
 	}
 	
 	// paslēpjam stāvokļa joslu
@@ -131,7 +133,7 @@
 }
 
 - (BOOL)loadFriendsPageFromServer:(BOOL)allPosts {
-	NSError *err;
+	NSError *err = nil;
 	
 	// ielādējam notikumus no servera
 	NSArray *events = [[LJManager defaultManager] friendsPageEventsForAccount:account lastSync:nil error:&err];
@@ -180,41 +182,6 @@
 	}
 }
 
-- (void)firstSyncReadServer {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
-	if (DEFAULT_BOOL(@"refresh_on_start")) {
-		@try {
-			// atjaunojam pēdējos rakstus
-			[self loadLastPostsFromServer];
-			if ([loadedPosts count]) {
-				Post *topPost = [loadedPosts objectAtIndex:0];
-				NSUInteger count = [self loadPostsFromServerAfter:nil skip:0 limit:100]; 
-				if (count < 10) {
-					[self loadPostsFromServerAfter:nil skip:count limit:10 - count]; 
-				}
-			} else {
-				[self loadPostsFromServerAfter:nil skip:0 limit:10]; 
-			}
-			
-			[self preprocessPosts];
-			[self reloadTable];
-		}
-		@catch (NSException * e) {
-			showErrorMessage([e name], [e reason]);
-		}
-	}
-	
-	// pārliecinamies, ka tabula ir redzama
-	[tableView setAlpha:1.0];
-	
-	// paslēpjam stāvokļa joslu
-	[self hideStatusLine];
-	
-	[pool release];
-}
-
-
 - (void) refresh {
 	refreshButtonItem.enabled = NO;
 	[self showStatusLine];
@@ -230,7 +197,7 @@
 		
 		@try {
 			// atjaunojam rakstus
-			[self loadLastPostsFromServer];
+			[self loadFriendsPageFromServer:NO];
 			
 			if (needToScroll) {
 				[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -253,60 +220,6 @@
 	}
 }
 
-- (void) loadMorePosts {
-	@synchronized (self) {
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-		
-		@try {
-			// mērķis, cik daudz jābūt ierakstu pēc ielādes
-			NSUInteger goal = [loadedPosts count] + 10;
-			if (goal > 100) {
-				goal = 100;
-			}
-			
-			// vispirms mēģinam ielasīt rakstus no keša
-			[self loadPostsFromCacheFromOffset:[loadedPosts count] limit:kReadLimitPerAttempt];
-			
-			if ([loadedPosts count] < goal) {
-				// ja ielādēto rakstu skaits ir mazāks par cerēto,
-				// tad cenšiemies ielādēt no servera
-				
-				// bet vispirms pārbaudam, vai vecākais raksts nav vecāks par 2 nedēļām
-				Post *oldestPost = [loadedPosts lastObject];
-				if ([oldestPost.dateTime timeIntervalSinceNow] <  -3600 * 24 * 14) {
-					// ja ir vecāks par 2 nedēļām, tad atzīmējam, ka vairāk ielādēt nevar
-					canLoadMore = NO;
-				} else {
-					NSUInteger skip = [loadedPosts count];
-					while ([loadedPosts count] < goal) {
-						// atkārtojam tik ilgi, līdz ir vajadzīgais ierakstu skaits
-						NSUInteger items = goal - [loadedPosts count];
-						if (items > [self loadPostsFromServerAfter:nil skip:skip limit:items]) {
-							// ja ielādējām mazāk nekā cerām, vairāk ielādēt arī nevar
-							canLoadMore = NO;
-							break;
-						} else {
-							skip += items;
-						}
-					}
-				}
-			}
-			
-			// veicam rakstu priekšapstrādi
-			[self preprocessPosts];
-			// atjaunojam tabulu
-			[self reloadTable];
-		}
-		@catch (NSException * e) {
-			showErrorMessage([e name], [e reason]);
-		}
-		
-		// parādam stāvokļa joslu
-		[self hideStatusLine];
-
-		[pool release];
-	}
-}
 
 - (NSUInteger) loadPostsFromCacheFromOffset:(NSUInteger)offset limit:(NSUInteger)limit {
 	// ielasam rakstus no keša
@@ -321,80 +234,6 @@
 	}
 	
 	return [posts count];
-}
-
-- (NSUInteger) loadPostsFromServerAfter:(NSDate *)lastSync skip:(NSUInteger)skip limit:(NSUInteger)limit {
-//	LJGetChallenge *challenge = [LJGetChallenge requestWithServer:account.server];
-//	if ([challenge doRequest]) {
-//		NSString *c = [challenge.challenge retain];
-//		LJGetFriendsPage *friendPage = [LJGetFriendsPage requestWithServer:account.server user:account.user password:account.password challenge:c];
-//		if (lastSync) {
-//			friendPage.lastSync = lastSync;
-//		};
-//		friendPage.itemShow = [NSNumber numberWithInt:limit];
-//		friendPage.skip = [NSNumber numberWithInt:skip];
-//		
-//		if ([friendPage doRequest]) {
-//			[self addNewOrUpdateWithPosts:friendPage.entries];
-//			return [friendPage.entries count];
-//		} else {
-//			[NSException raise:@"Sync error" format:decodeError(friendPage.error)];
-//		}
-//	} else {
-//		[NSException raise:@"Sync error" format:decodeError(challenge.error)];
-//	}
-	return 0;
-}
-
-- (void) loadLastPostsFromServer {
-	if ([loadedPosts count]) {
-		Post *topPost = [loadedPosts objectAtIndex:0];
-		NSUInteger count = [self loadPostsFromServerAfter:topPost.dateTime skip:0 limit:100]; 
-		if (count < 10) {
-			[self loadPostsFromServerAfter:nil skip:count limit:10 - count]; 
-		}
-	} else {
-		[self loadPostsFromServerAfter:nil skip:0 limit:10]; 
-	}
-}
-
-- (void) addNewOrUpdateWithPosts:(NSArray *)events {
-//	@synchronized(loadedPosts) {
-//		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
-//		for (LJEvent *event in events) {
-//			Post *post = [model findPostByAccount:account.title journal:event.journalName dItemId:event.ditemid];
-//			if (!post) {
-//				post = [model createPost];
-//				post.account = account.title;
-//				post.journal = event.journalName;
-//				post.journalType = event.journalType;
-//				post.ditemid = event.ditemid;
-//				post.poster = event.posterName;
-//				[loadedPosts addObject:post];
-//			}
-//			post.dateTime = event.datetime;
-//			post.subject = event.subject;
-//			post.text = event.event;
-//			post.replyCount = [NSNumber numberWithInt:event.replyCount];
-//			post.userPicURL = event.userPicUrl;
-//			post.security = event.security;
-//			post.updated = YES;
-//			post.rendered = NO;
-//			[post clearPreproceedStrings];
-//			
-//			NSSortDescriptor *dateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateTime" ascending:NO];
-//			[loadedPosts sortUsingDescriptors:[NSArray arrayWithObjects:dateSortDescriptor, nil]];
-//			[dateSortDescriptor release];
-//			
-//			while ([loadedPosts count] > 100) {
-//				Post *last = [loadedPosts lastObject];
-//				[loadedPosts removeLastObject];
-//				[postsPendingRemoval addObject:last];
-//			}
-//			
-//			[model saveAll];
-//		}
-//	}
 }
 
 - (void) reloadTable {
@@ -450,7 +289,7 @@
 		[post textView];
 		[post subjectPreview];
 		
-		if (!post.userPic && post.userPicURL && [post.userPicURL length]) {
+		if (!post.userPic && [post.userPicURL length]) {
 			post.userPic = [APP_USER_PIC_CACHE imageFromCacheForHash:[post userPicURLHash]];
 			
 			if (post.userPic) {
@@ -464,11 +303,6 @@
 	}
 	
 	[pool release];
-}
-
-// atjauno stāvokļa rindas tekstu
-- (void) updateStatusLineText:(NSString *)text {
-	statusLineLabel.text = text;
 }
 
 - (void)openPost:(Post *)post {
@@ -542,11 +376,6 @@
 	[postsPendingRemoval release];
 	[cachedPostViewControllers release];
 	
-//#ifdef LITEVERSION
-//	// ar reklāmām saistītie resursi
-//	[adMobView release];
-//#endif
-	
 	[super dealloc];
 }
 
@@ -564,10 +393,6 @@
 		needReloadTable = NO;
 		[self reloadTable];
 	}
-	
-//#ifdef LITEVERSION
-//	[self refreshAdMobView];
-//#endif
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -579,39 +404,6 @@
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
 	[self scrollViewDidEndDecelerating:scrollView];
 }
-
-//#ifdef LITEVERSION
-//- (NSString *)keywords {
-//	if (selectedPostSubject) {
-//		// ja ir "iegaumēts" pēdējā lasītā raksta virsraksts, tad izmantojam to
-//		return selectedPostSubject;
-//	};
-//	
-//	for (NSIndexPath *indexPath in [tableView indexPathsForVisibleRows]) {
-//		Post *post = [displayedPosts objectAtIndex:indexPath.row];
-//		if (post.subject) {
-//			// tad mēģinam atrast virsrakstu kādam no redzamajiem rakstiem
-//			return post.subjectPreview;
-//		}
-//	}
-//	
-//	for (Post *post in displayedPosts) {
-//		if (post.subject) {
-//			// tad mēģinam atrast vismaz vienu virsrakstu
-//			return post.subjectPreview;
-//		}
-//	}
-//	
-//	// ja neko neizdevās atrast, izmantojam iebūvētos atslēgas vārdus
-//	return [super keywords]; 
-//}
-//
-//- (void)refreshAdMobView {
-//	[super refreshAdMobView];
-//	selectedPostSubject = nil;
-//}
-//
-//#endif
 
 @end
 

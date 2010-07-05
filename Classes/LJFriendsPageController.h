@@ -38,16 +38,9 @@
 - (void)firstSync;
 - (BOOL)loadFriendsPageFromServer:(BOOL)allPosts;
 
-- (void) firstSyncReadServer;
 - (void) refreshPosts;
-- (void) loadMorePosts;
-- (NSUInteger) loadPostsFromCacheFromOffset:(NSUInteger)offset limit:(NSUInteger)limit;
-- (NSUInteger) loadPostsFromServerAfter:(NSDate *)lastSync skip:(NSUInteger)skip limit:(NSUInteger)limit;
-- (void) loadLastPostsFromServer;
-- (void) addNewOrUpdateWithPosts:(NSArray *)events;
 - (void) reloadTable;
 - (void) preprocessPosts;
-- (void) updateStatusLineText:(NSString *)text;
 - (void) openPost:(Post *)post;
 - (void) openPost:(Post *)post animated:(BOOL)animated;
 - (void) openPostByKey:(NSString *)key;

@@ -174,8 +174,8 @@
 	
 	[[NetworkActivityIndicator sharedInstance] show];
 	
-	NSURLResponse *res;
-	NSError *err;
+	NSURLResponse *res = nil;
+	NSError *err = nil;
 	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
 
 	[[NetworkActivityIndicator sharedInstance] hide];

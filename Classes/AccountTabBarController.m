@@ -58,6 +58,7 @@
 }
 
 - (void)setNavigationItemForViewController:(UIViewController *)viewController {
+	self.navigationItem.backBarButtonItem = viewController.navigationItem.backBarButtonItem;
 	self.navigationItem.rightBarButtonItem = viewController.navigationItem.rightBarButtonItem;
 	self.navigationItem.title = viewController.navigationItem.title;
 	self.navigationItem.titleView = viewController.navigationItem.titleView;
