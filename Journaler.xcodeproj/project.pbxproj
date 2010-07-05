@@ -91,7 +91,6 @@
 		1750B15F1097B3F900C1D2A8 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 1750B0D81097A41000C1D2A8 /* image.png */; };
 		1750B1611097B3F900C1D2A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1750B1621097B3F900C1D2A8 /* JournalerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */; };
-		1750B1641097B3F900C1D2A8 /* LiveJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0CC110768D2900155636 /* LiveJournal.m */; };
 		1750B1651097B3F900C1D2A8 /* AccountEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD7151078C70700806088 /* AccountEditorController.m */; };
 		1750B1671097B3F900C1D2A8 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
 		1750B1681097B3F900C1D2A8 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C538108132E80005660E /* RegexKitLite.m */; };
@@ -191,7 +190,6 @@
 		17DB0BD21075444F00155636 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BD01075444F00155636 /* AccountsViewController.xib */; };
 		17DB0BF31075462000155636 /* AccountEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BF11075462000155636 /* AccountEditorController.xib */; };
 		17DB0C961076616400155636 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C951076616400155636 /* Entitlements.plist */; };
-		17DB0CC210768D2900155636 /* LiveJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DB0CC110768D2900155636 /* LiveJournal.m */; };
 		17E3B2A8118656C300ED729D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E3B2A7118656C300ED729D /* MediaPlayer.framework */; };
 		17FCD7161078C70700806088 /* AccountEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD7151078C70700806088 /* AccountEditorController.m */; };
 		1D3623260D0F684500981E51 /* JournalerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */; };
@@ -369,7 +367,6 @@
 		17DB0BF11075462000155636 /* AccountEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountEditorController.xib; path = Classes/AccountEditorController.xib; sourceTree = "<group>"; };
 		17DB0C951076616400155636 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		17DB0CC010768D2900155636 /* LiveJournal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveJournal.h; sourceTree = "<group>"; };
-		17DB0CC110768D2900155636 /* LiveJournal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveJournal.m; sourceTree = "<group>"; };
 		17E3B2A7118656C300ED729D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		17FCD7141078C70700806088 /* AccountEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountEditorController.h; sourceTree = "<group>"; };
 		17FCD7151078C70700806088 /* AccountEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountEditorController.m; sourceTree = "<group>"; };
@@ -694,7 +691,6 @@
 				1706433D11DD301E0076EB6D /* NSStringLJ.h */,
 				1706433E11DD301E0076EB6D /* NSStringLJ.m */,
 				17DB0CC010768D2900155636 /* LiveJournal.h */,
-				17DB0CC110768D2900155636 /* LiveJournal.m */,
 				17D8A7351131F2ED0023FBEA /* LJAccount.h */,
 				17D8A7361131F2ED0023FBEA /* LJAccount.m */,
 				17D8A5B21130BBDE0023FBEA /* LJFriendGroup.h */,
@@ -932,7 +928,6 @@
 			files = (
 				1750B1611097B3F900C1D2A8 /* main.m in Sources */,
 				1750B1621097B3F900C1D2A8 /* JournalerAppDelegate.m in Sources */,
-				1750B1641097B3F900C1D2A8 /* LiveJournal.m in Sources */,
 				1750B1651097B3F900C1D2A8 /* AccountEditorController.m in Sources */,
 				1750B1671097B3F900C1D2A8 /* PostEditorController.m in Sources */,
 				1750B1681097B3F900C1D2A8 /* RegexKitLite.m in Sources */,
@@ -1003,7 +998,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* JournalerAppDelegate.m in Sources */,
-				17DB0CC210768D2900155636 /* LiveJournal.m in Sources */,
 				17FCD7161078C70700806088 /* AccountEditorController.m in Sources */,
 				1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */,
 				17B4C53A108132E80005660E /* RegexKitLite.m in Sources */,
