@@ -93,7 +93,7 @@ LJManager *defaultManager;
 		NSString *challenge = [self challengeForAccount:account error:error];
 		if (challenge) {
 			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
-			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getfriendspage" parameters:parameters error:error] retain];
+			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.sessiongenerate" parameters:parameters error:error] retain];
 			[parameters release];
 			
 			if (result) {
