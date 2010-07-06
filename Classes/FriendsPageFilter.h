@@ -29,5 +29,6 @@ typedef enum {
 @property (nonatomic) FilterType filterType;
 @property (nonatomic) JournalType journalType;
 @property (nonatomic, retain) NSString *group;
+@property (readonly) NSString *title;
 
 @end

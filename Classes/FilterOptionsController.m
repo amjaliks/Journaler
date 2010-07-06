@@ -76,10 +76,12 @@ enum {
 }
 */
 
+#ifndef LITEVERSION
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait)
 			|| UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
+#endif
 
 
 #pragma mark -
@@ -113,6 +115,9 @@ enum {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
+	
+	BOOL selected;
+
 	if (indexPath.section == FilterTypeAll) {
 		cell.textLabel.text = NSLocalizedString(@"All journals", nil);
 		cell.accessoryType = friendsPageController.friendsPageFilter.filterType == FilterTypeAll ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
@@ -129,10 +134,36 @@ enum {
 			cell.accessoryType = (selected && friendsPageController.friendsPageFilter.journalType == JournalTypeSyndications) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 		}
 	}
+	
+	if (selected) {
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		selectedCell = cell;
+	} else {
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	}
     
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	// iepriekš izvēlētai šūnai noņemam ķesīti
+	selectedCell.accessoryType = UITableViewCellAccessoryNone;
+	
+	// saglabājam jauno filtru
+	friendsPageController.friendsPageFilter.filterType == indexPath.section;
+	if (indexPath.section == FilterTypeJournalType) {
+		friendsPageController.friendsPageFilter.journalType == indexPath.row;
+	}
+	
+	// uzliekam izvēlētai šūnai ķeksīti
+	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	selectedCell = cell;
+	
+	// noņem izcelšanu
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+}
 
 #pragma mark -
 #pragma mark Memory management

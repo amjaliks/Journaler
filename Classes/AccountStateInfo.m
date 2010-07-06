@@ -94,6 +94,10 @@
 		newPostPromote = [coder decodeBoolForKey:kKeyNewPostPromote];
 	}
 	
+	if (!friendsPageFilter) {
+		friendsPageFilter = [[FriendsPageFilter alloc] init];
+	}
+	
 	return self;
 }
 

@@ -60,5 +60,20 @@
 	[super dealloc];
 }
 
+#pragma mark -
+
+- (NSString *)title {
+	if (filterType == FilterTypeAll) {
+		return NSLocalizedString(@"All", nil);
+	} else if (filterType == FilterTypeJournalType) {
+		if (journalType == JournalTypeJournals) {
+			return NSLocalizedString(@"Journals", nil);
+		} else if (journalType == JournalTypeCommunities) {
+			return NSLocalizedString(@"Communities", nil);
+		} else { // journalType == JournalTypeSyndications
+			return NSLocalizedString(@"Syndications feeds", nil);
+		}
+	}
+}
 
 @end

@@ -12,6 +12,8 @@
 
 @interface FilterOptionsController : UITableViewController {
 	FriendsPageController *friendsPageController;
+	
+	UITableViewCell *selectedCell;
 }
 
 -(id)initWithFriendsPageController:(FriendsPageController *)friendsPageController;

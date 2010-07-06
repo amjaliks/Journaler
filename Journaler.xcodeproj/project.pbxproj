@@ -513,6 +513,7 @@
 		173FBEF510C4751B00FD0652 /* Friends Page */ = {
 			isa = PBXGroup;
 			children = (
+				17F1D9BA11E3D117001B5EBB /* Filter */,
 				171323071085168F007F6C24 /* PostViewController.h */,
 				171323081085168F007F6C24 /* PostViewController.m */,
 				17B4665F10BB4854004D0E0F /* FriendsPageController.h */,
@@ -527,8 +528,6 @@
 				17B462E710BA2659004D0E0F /* PostPreviewView.m */,
 				17C3C488118E2CAD00BB9581 /* FriendsPageTitleView.h */,
 				17C3C489118E2CAD00BB9581 /* FriendsPageTitleView.m */,
-				17C3C664118F23A500BB9581 /* FilterOptionsController.h */,
-				17C3C665118F23A500BB9581 /* FilterOptionsController.m */,
 			);
 			name = "Friends Page";
 			sourceTree = "<group>";
@@ -597,8 +596,6 @@
 				179F3FAD111645D60043E0D1 /* AccountManager.m */,
 				178BF8241184EEFD00BEEFAD /* AccountStateInfo.h */,
 				178BF8251184EEFD00BEEFAD /* AccountStateInfo.m */,
-				17C3C6F3118F2DC100BB9581 /* FriendsPageFilter.h */,
-				17C3C6F4118F2DC100BB9581 /* FriendsPageFilter.m */,
 			);
 			name = "Account Manager";
 			sourceTree = "<group>";
@@ -720,6 +717,17 @@
 				178BF6EC1183139A00BEEFAD /* UIViewAdditions.m */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		17F1D9BA11E3D117001B5EBB /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				17C3C6F3118F2DC100BB9581 /* FriendsPageFilter.h */,
+				17C3C6F4118F2DC100BB9581 /* FriendsPageFilter.m */,
+				17C3C664118F23A500BB9581 /* FilterOptionsController.h */,
+				17C3C665118F23A500BB9581 /* FilterOptionsController.m */,
+			);
+			name = Filter;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
