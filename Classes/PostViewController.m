@@ -70,8 +70,10 @@
 	[commentsButton release];
 
 	// poga "Action" apakšējā rīkjoslā
+	UIBarButtonItem *commentButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(commentPost)];
+	UIBarButtonItem	*flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showAction)];
-	NSArray *toolbarItems = [[NSArray alloc] initWithObjects:actionButton, nil];
+	NSArray *toolbarItems = [[NSArray alloc] initWithObjects:commentButton, flexibleSpace, actionButton, nil];
 	self.toolbarItems = toolbarItems;
 	[toolbarItems release];
 	[actionButton release];
@@ -152,6 +154,7 @@
 
 - (void)viewDidUnload {
 	[super viewDidUnload];
+
 	self.toolbarItems = nil;
 	webView.delegate = nil;
 	[webView release];
@@ -194,9 +197,35 @@
 	}
 }
 
-- (IBAction) showAction {
-	
+- (void)showAction {
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Open"
+													delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
+													otherButtonTitles:@"Full version", @"Mobile", @"Comments", nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+	[actionSheet showInView:self.view]; 
+	[actionSheet release];
 }
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	NSString *link = nil;
+	if (buttonIndex == 0) {
+		link = @"http://%@.livejournal.com/%@.html";
+	} else if (buttonIndex == 1) {
+		link = @"http://m.livejournal.com/read/user/%@/%@";
+	} else if (buttonIndex == 2) {
+		link = @"http://m.livejournal.com/read/user/%@/%@/comments#comments";
+	} else {
+		return;
+	}
+	
+	NSURL *URL = [[NSURL alloc] initWithString:[NSString stringWithFormat:link, post.journal, post.ditemid]];
+	[self.navigationController pushViewController:APP_WEB_VIEW_CONTROLLER animated:YES];
+	[APP_WEB_VIEW_CONTROLLER openURL:URL account:account];
+	[URL release];
+}
+
+- (void)commentPost {
+	
+}
 
 @end

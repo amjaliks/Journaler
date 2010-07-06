@@ -11,7 +11,7 @@
 @protocol PostViewControllerDataSource;
 @class Post, LJAccount;
 
-@interface PostViewController : UIViewController <UIWebViewDelegate> {
+@interface PostViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
 	LJAccount *account;
 	Post *post;
 	
@@ -28,7 +28,8 @@
 
 - (id)initWithPost:(Post *)post account:(LJAccount *)account;
 - (void)openComments;
-- (IBAction)showAction;
+- (void)showAction;
+- (void)commentPost;
 
 @end
 
