@@ -71,7 +71,7 @@
 		} else if (journalType == JournalTypeCommunities) {
 			return NSLocalizedString(@"Communities", nil);
 		} else { // journalType == JournalTypeSyndications
-			return NSLocalizedString(@"Syndications feeds", nil);
+			return NSLocalizedString(@"Syndicated feeds", nil);
 		}
 	}
 }

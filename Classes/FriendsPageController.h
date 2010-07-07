@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class LJAccount, FriendsPageFilter;
+@class LJAccount, FriendsPageFilter, FriendsPageTitleView;
 
 @interface FriendsPageController : UIViewController {
 	// konts
@@ -18,6 +18,7 @@
 	
 	// 
 	UIView *friendsPageView;
+	FriendsPageTitleView *titleView;
 	
 	// pogas
 	UIBarButtonItem *refreshButtonItem;

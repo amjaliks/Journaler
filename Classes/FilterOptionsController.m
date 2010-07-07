@@ -119,19 +119,18 @@ enum {
 	BOOL selected;
 
 	if (indexPath.section == FilterTypeAll) {
+		selected = friendsPageController.friendsPageFilter.filterType == FilterTypeAll;
+
 		cell.textLabel.text = NSLocalizedString(@"All journals", nil);
-		cell.accessoryType = friendsPageController.friendsPageFilter.filterType == FilterTypeAll ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 	} else if (indexPath.section == FilterTypeJournalType) {
-		BOOL selected = friendsPageController.friendsPageFilter.filterType == FilterTypeJournalType;
+		selected = friendsPageController.friendsPageFilter.filterType == FilterTypeJournalType && friendsPageController.friendsPageFilter.journalType == indexPath.row;
+
 		if (indexPath.row == JournalTypeJournals) {
 			cell.textLabel.text = NSLocalizedString(@"Journals", nil);
-			cell.accessoryType = (selected && friendsPageController.friendsPageFilter.journalType == JournalTypeJournals) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 		} else	if (indexPath.row == JournalTypeCommunities) {
 			cell.textLabel.text = NSLocalizedString(@"Communities", nil);
-			cell.accessoryType = (selected && friendsPageController.friendsPageFilter.journalType == JournalTypeCommunities) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 		} else	if (indexPath.row == JournalTypeSyndications) {
-			cell.textLabel.text = NSLocalizedString(@"Syndication feeds", nil);
-			cell.accessoryType = (selected && friendsPageController.friendsPageFilter.journalType == JournalTypeSyndications) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+			cell.textLabel.text = NSLocalizedString(@"Syndicated feeds", nil);
 		}
 	}
 	
@@ -150,9 +149,9 @@ enum {
 	selectedCell.accessoryType = UITableViewCellAccessoryNone;
 	
 	// saglabājam jauno filtru
-	friendsPageController.friendsPageFilter.filterType == indexPath.section;
+	friendsPageController.friendsPageFilter.filterType = indexPath.section;
 	if (indexPath.section == FilterTypeJournalType) {
-		friendsPageController.friendsPageFilter.journalType == indexPath.row;
+		friendsPageController.friendsPageFilter.journalType = indexPath.row;
 	}
 	
 	// uzliekam izvēlētai šūnai ķeksīti

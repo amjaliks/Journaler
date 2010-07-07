@@ -203,7 +203,7 @@
 													delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
 													otherButtonTitles:@"Full version", @"Mobile", @"Comments", nil];
 	actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-	[actionSheet showInView:self.view]; 
+	[actionSheet showFromToolbar:self.navigationController.toolbar]; 
 	[actionSheet release];
 }
 

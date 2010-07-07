@@ -95,6 +95,10 @@
 	[rootViewController release];
 }
 
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+	[[AccountManager sharedManager] storeAccountStateInfo];
+}
+
 #pragma mark -
 #pragma mark Memory management
 

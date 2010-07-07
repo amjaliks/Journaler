@@ -94,10 +94,6 @@
 		newPostPromote = [coder decodeBoolForKey:kKeyNewPostPromote];
 	}
 	
-	if (!friendsPageFilter) {
-		friendsPageFilter = [[FriendsPageFilter alloc] init];
-	}
-	
 	return self;
 }
 
@@ -124,7 +120,7 @@
 #pragma mark Īpašības
 
 -(FriendsPageFilter *)friendsPageFilter {
-	if (friendsPageFilter) {
+	if (!friendsPageFilter) {
 		friendsPageFilter = [[FriendsPageFilter alloc] init];
 	}
 	return friendsPageFilter;

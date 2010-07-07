@@ -44,10 +44,20 @@
 	// stāvokļa josla
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
 	
-	// virsraksta skatījums2
-	UIView *titleView = [[FriendsPageTitleView alloc] initWithTarget:self action:@selector(openFilter:) interfaceOrientation:self.interfaceOrientation];
+	// virsraksta skats
+	titleView = [[FriendsPageTitleView alloc] initWithTarget:self action:@selector(openFilter:) interfaceOrientation:self.interfaceOrientation];
 	self.navigationItem.titleView = titleView;
+}
+
+- (void)viewDidUnload {
+	// virsraksta skats
+	self.navigationItem.titleView = nil;
 	[titleView release];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	titleView.filterLabel.text = [friendsPageFilter title];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
