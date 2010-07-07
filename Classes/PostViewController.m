@@ -226,7 +226,7 @@
 }
 
 - (void)commentPost {
-	CommentController *comments = [[CommentController alloc] initWithNibName:@"CommentController" bundle:nil];
+	CommentController *comments = [[CommentController alloc] init];
 	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:comments];
 	
 	[self presentModalViewController:nav animated:YES];
