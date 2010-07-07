@@ -14,6 +14,7 @@
 #import "NSStringAdditions.h"
 #import "WebViewController.h"
 #import "AccountManager.h"
+#import "CommentController.h"
 
 @implementation PostViewController
 
@@ -69,7 +70,7 @@
 	self.navigationItem.rightBarButtonItem = commentsButton;
 	[commentsButton release];
 
-	// poga "Action" apakšējā rīkjoslā
+	// pogas "Comment" un "Action" apakšējā rīkjoslā
 	UIBarButtonItem *commentButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(commentPost)];
 	UIBarButtonItem	*flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showAction)];
@@ -225,7 +226,13 @@
 }
 
 - (void)commentPost {
+	CommentController *comments = [[CommentController alloc] initWithNibName:@"CommentController" bundle:nil];
+	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:comments];
 	
+	[self presentModalViewController:nav animated:YES];
+	
+	[nav release];
+	[comments release];
 }
 
 @end
