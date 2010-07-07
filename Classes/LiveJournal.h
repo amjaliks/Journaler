@@ -14,6 +14,7 @@
 #import "LJManager.h"
 #import "LJMood.h"
 #import "LJTag.h"
+#import "LJComment.h"
 
 enum {
 	LJErrorUnknown = -1,

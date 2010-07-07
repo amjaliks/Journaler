@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-
-@interface CommentController : UIViewController {
+@interface CommentController : UIViewController<UITextViewDelegate> {
 	UIBarButtonItem *postButton;
 
 	UITextView *textView;

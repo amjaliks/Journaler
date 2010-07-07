@@ -300,6 +300,28 @@ LJManager *defaultManager;
 	return NO;
 }
 
+- (BOOL)addComment:(LJComment *)comment forAccount:(LJAccount *)account error:(NSError **)error {
+	@synchronized (account) {
+		NSString *challenge = [self challengeForAccount:account error:error];
+		
+		if (challenge) {
+			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+			
+			[parameters setValue:[comment.journal dataUsingEncoding:NSUTF8StringEncoding] forKey:@"journal"];
+			[parameters setValue:[comment.commentBody dataUsingEncoding:NSUTF8StringEncoding] forKey:@"body"];
+			[parameters setValue:comment.ditemid forKey:@"ditemid"];
+
+			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.addcomment" parameters:parameters error:error] retain];
+			[parameters release];
+			if (result) {
+				[result release];
+				return YES;
+			}
+		}			
+	}
+	return NO;
+}
+
 #pragma mark -
 #pragma mark Tehniskās metodes
 

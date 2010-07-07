@@ -7,6 +7,7 @@
 //
 
 #import "CommentController.h"
+#import "LJAccount.h"
 
 
 @implementation CommentController
@@ -26,6 +27,7 @@
 	
 	CGRect frame = self.view.bounds;
 	textView = [[UITextView alloc] initWithFrame:frame];
+	textView.delegate = self;
 	textView.font = [UIFont systemFontOfSize:17.0f];
 	textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	[self.view addSubview:textView];
@@ -68,7 +70,28 @@
 }
 
 - (void)post:(id)sender {
+//	LJEvent *event = [[LJEvent aloc] init];
+//	event.subject = subjectField.text;
+//	event.event = textView.text;
+//	event.journal = postOptionsController.journal;
+//	event.security = postOptionsController.security;
+//	event.selectedFriendGroups = postOptionsController.selectedFriendGroups;
+//	event.picKeyword = postOptionsController.picKeyword;
+//	event.tags = postOptionsController.tags;
+//	event.mood = postOptionsController.mood;
+//	event.music = [postOptionsController.music length] ? postOptionsController.music : postOptionsController.currentSong;
+//	event.location = postOptionsController.location;
+	
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)textViewDidChange:(UITextView *)view {
+	if ([view.text length] > 0) {
+		postButton.enabled = YES;
+	} else {
+		postButton.enabled = NO;
+	}
+
 }
 
 #pragma mark -
