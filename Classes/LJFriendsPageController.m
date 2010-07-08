@@ -149,6 +149,7 @@
 				post.journalType = event.journalType == LJJournalTypeJournal ? @"J" : @"C";
 				post.ditemid = event.ditemid;
 				post.poster = event.poster;
+				post.isRead = [NSNumber numberWithBool:NO];
 				[loadedPosts addObject:post];
 			}
 			post.dateTime = event.datetime;
@@ -317,6 +318,14 @@
 	}
 	[self.navigationController pushViewController:postViewController animated:animated];
 	[postViewController release];
+	
+	// Ja ieraksts pirms tam nebija izlasīts, uzstāda pazīmi, 
+	// ka ir izlasīts
+	if (![post.isRead boolValue]) {
+		post.isRead = [NSNumber numberWithBool:YES];
+		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
+		[model saveAll];
+	}
 }
 
 - (void)openPostByKey:(NSString *)key {

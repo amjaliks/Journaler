@@ -78,6 +78,8 @@
 		[f setTimeStyle:NSDateFormatterShortStyle];
 		
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		
+		self.clearsContextBeforeDrawing = NO;
     }
     return self;
 }
@@ -103,7 +105,10 @@
 		subjectColor = [UIColor colorWithRed:0.188 green:0.333 blue:0.482 alpha:1.0];
 		metaDataColor = [UIColor colorWithRed:0.337 green:0.337 blue:0.337 alpha:1.0];
 		textColor = [UIColor blackColor];
-		self.backgroundColor = [UIColor whiteColor];
+		
+		// nokrāsojam fonu
+		[[post.isRead boolValue] ? [UIColor whiteColor] : [UIColor colorWithRed:0.773 green:0.851 blue:0.482 alpha:0.40] set];
+		CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
 	}
 	
 	CGPoint point = CGPointMake(post.isPublic ? kSubjectX : kPrivateSubjectX, kSubjectY);
