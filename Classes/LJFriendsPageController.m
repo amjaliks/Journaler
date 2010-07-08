@@ -14,7 +14,6 @@
 #import "LiveJournal.h"
 #import "Model.h"
 #import "PostPreviewCell.h"
-#import "PostViewController.h"
 #import "ErrorHandling.h"
 #import "AccountManager.h"
 
@@ -412,6 +411,22 @@
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
 	[self scrollViewDidEndDecelerating:scrollView];
+}
+
+- (BOOL)hasPreviousPost {
+	return NO;
+}
+
+- (BOOL)hasNextPost {
+	return NO;
+}
+
+- (void)openPreviousPost {
+	
+}
+
+- (void)openNextPost {
+	
 }
 
 @end

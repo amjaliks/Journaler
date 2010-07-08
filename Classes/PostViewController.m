@@ -18,6 +18,8 @@
 
 @implementation PostViewController
 
+@synthesize delegate;
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -65,11 +67,20 @@
 	webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.view = webView;
 
-	// komentāru poga
-	UIBarButtonItem *commentsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"comments.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(openComments)];
-	self.navigationItem.rightBarButtonItem = commentsButton;
-	[commentsButton release];
+	
+	// iepriekšējā un nākamā ieraksta atvēršana	
+	UISegmentedControl *navigationControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Prev", @"Next", nil]];
+	//segmentControl.momentary = YES;
 
+	navigationControl.segmentedControlStyle = UISegmentedControlStyleBar;
+	[navigationControl addTarget:self action:@selector(navigationChanged:) forControlEvents:UIControlEventValueChanged];
+		
+	UIBarButtonItem *navigationControlItem = [[UIBarButtonItem alloc] initWithCustomView:navigationControl];
+	self.navigationItem.rightBarButtonItem = navigationControlItem;
+	[navigationControlItem release];
+	[navigationControl release];
+	
+	
 	// pogas "Comment" un "Action" apakšējā rīkjoslā
 	UIBarButtonItem *commentButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(commentPost)];
 	UIBarButtonItem	*flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -233,6 +244,15 @@
 	
 	[nav release];
 	[comments release];
+}
+
+- (void)navigationChanged:(id)sender {
+	if ([sender selectedSegmentIndex] == 0) {
+//		[self.parentViewController openNextPost];
+	} else {
+		
+	}
+
 }
 
 @end

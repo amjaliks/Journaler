@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "FriendsPageController.h"
+#import "PostViewController.h"
 
 #define kReadLimitPerAttempt 10
 
 @class LJAccount, PostSummaryCell, Post;
 
-@interface LJFriendsPageController : FriendsPageController <UITableViewDataSource, UITableViewDelegate> {
+@interface LJFriendsPageController : FriendsPageController <UITableViewDataSource, UITableViewDelegate, PostViewControllerDelegate> {
 	// ielasīti raksti
 	NSMutableArray *loadedPosts;
 	NSArray *displayedPosts;
@@ -25,8 +26,9 @@
 	BOOL canLoadMore;
 	BOOL loading;
 
-	// kešs ar rakstu skatījumiem
+	// kešs ar rakstu skatiem
 	NSMutableDictionary *cachedPostViewControllers;
+	Post *openedPost;
 	
 	BOOL needOpenPost;
 	BOOL needReloadTable;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol PostViewControllerDataSource;
+@protocol PostViewControllerDelegate;
 @class Post, LJAccount;
 
 @interface PostViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
@@ -24,12 +24,26 @@
 	NSString *lockIconReplace;
 	
 	UIWebView *webView;
+	
+	id<PostViewControllerDelegate> delegate;
 }
+
+@property (nonatomic, assign) id<PostViewControllerDelegate> delegate;
 
 - (id)initWithPost:(Post *)post account:(LJAccount *)account;
 - (void)openComments;
 - (void)showAction;
 - (void)commentPost;
+- (void)navigationChanged:(id)sender;
 
 @end
 
+
+@protocol PostViewControllerDelegate 
+
+- (BOOL)hasPreviousPost;
+- (BOOL)hasNextPost;
+- (void)openPreviousPost;
+- (void)openNextPost;
+
+@end
