@@ -7,10 +7,21 @@
 //
 
 #import "CommentController.h"
-#import "LJAccount.h"
+#import "LJComment.h"
+#import "Post.h"
+#import "LJManager.h"
+#import "ErrorHandling.h"
 
 
 @implementation CommentController
+
+- (id)initWithPost:(Post *)newPost account:(LJAccount *)newAccount {
+	if (self = [super init]) {
+		account = [newAccount retain];
+		post = [newPost retain];
+	}
+	return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,6 +73,9 @@
 
 
 - (void)dealloc {
+	[account release];
+	[post release];
+	
     [super dealloc];
 }
 
@@ -70,17 +84,21 @@
 }
 
 - (void)post:(id)sender {
-//	LJEvent *event = [[LJEvent aloc] init];
-//	event.subject = subjectField.text;
-//	event.event = textView.text;
-//	event.journal = postOptionsController.journal;
-//	event.security = postOptionsController.security;
-//	event.selectedFriendGroups = postOptionsController.selectedFriendGroups;
-//	event.picKeyword = postOptionsController.picKeyword;
-//	event.tags = postOptionsController.tags;
-//	event.mood = postOptionsController.mood;
-//	event.music = [postOptionsController.music length] ? postOptionsController.music : postOptionsController.currentSong;
-//	event.location = postOptionsController.location;
+	LJComment *comment = [[LJComment alloc] init];
+	comment.commentBody = textView.text;
+	comment.ditemid = post.ditemid;
+	comment.journal = post.journal;
+	
+	NSError *error;
+	if ([[LJManager defaultManager] addComment:comment forAccount:account error:&error]) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your post has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	} else {
+		showErrorMessage(@"Post error", decodeError([error code]));
+	}
+	
+	[comment release];
 	
 	[self dismissModalViewControllerAnimated:YES];
 }

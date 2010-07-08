@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class Post, LJAccount;
+
 @interface CommentController : UIViewController<UITextViewDelegate> {
+	LJAccount *account;
+	Post *post;
+	
 	UIBarButtonItem *postButton;
 
 	UITextView *textView;
 }
+
+- (id)initWithPost:(Post *)post account:(LJAccount *)account;
 
 - (void)cancel:(id)sender;
 - (void)post:(id)sender;
