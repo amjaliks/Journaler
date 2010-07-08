@@ -100,7 +100,7 @@
 		filterLabel.font = [UIFont systemFontOfSize:15.0f];
 		[filterLabel sizeToFit];
 		
-		CGFloat offsetTop = truncf((self.bounds.size.height - titleLabel.frame.size.height - filterLabel.frame.size.height + 3.0f) / 2.0f);
+		CGFloat offsetTop = truncf((self.bounds.size.height - titleLabel.frame.size.height - filterLabel.frame.size.height + 3.0f) / 2.0f) - 1.0f;
 		
 		titleLabel.frame = CGRectMake(
 									  (self.bounds.size.width - titleLabel.frame.size.width) / 2.0f,

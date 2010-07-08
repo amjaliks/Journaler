@@ -40,13 +40,15 @@
 - (void)firstSync;
 - (BOOL)loadFriendsPageFromServer:(BOOL)allPosts;
 
-- (void) refreshPosts;
-- (void) reloadTable;
-- (void) preprocessPosts;
-- (void) openPost:(Post *)post;
-- (void) openPost:(Post *)post animated:(BOOL)animated;
-- (void) openPostByKey:(NSString *)key;
+- (void)refreshPosts;
+- (void)reloadTable;
+- (void)preprocessPosts;
+- (void)openPost:(Post *)post;
+- (void)openPost:(Post *)post animated:(BOOL)animated;
+- (void)openPostByKey:(NSString *)key;
 
-- (void) deviceOrientationChanged;
+- (void)deviceOrientationChanged;
+- (void)resetScrollPostion;
+- (void)saveScrollPosition;
 
 @end

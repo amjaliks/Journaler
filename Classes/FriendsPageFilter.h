@@ -8,27 +8,31 @@
 
 #import <Foundation/Foundation.h>
 
+#import "LiveJournal.h"
+
 typedef enum {
 	FilterTypeAll,
 	FilterTypeJournalType,
 	FilterTypeGroup
 } FilterType;
 
-typedef enum {
-	JournalTypeJournals,
-	JournalTypeCommunities,
-	JournalTypeSyndications
-} JournalType;
+//typedef enum {
+//	JournalTypeJournals,
+//	JournalTypeCommunities,
+//	JournalTypeSyndications
+//} JournalType;
 
 @interface FriendsPageFilter : NSObject<NSCoding> {
 	FilterType filterType;
-	JournalType journalType;
+	LJJournalType journalType;
 	NSString *group;
 }
 
 @property (nonatomic) FilterType filterType;
-@property (nonatomic) JournalType journalType;
+@property (nonatomic) LJJournalType journalType;
 @property (nonatomic, retain) NSString *group;
 @property (readonly) NSString *title;
+
+- (NSArray *)filterPosts:(NSArray *)posts;
 
 @end

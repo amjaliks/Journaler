@@ -131,11 +131,11 @@
 
 + (ServerFeature)supportedFeaturesForServer:(NSString *)server {
 	if ([@"livejournal.com" isEqualToString:server]) {
-		return ServerFeatureAll;
+		return ServerFeatureAll ^ ServerFeatureFriendsPageFilterByGroup;
 	} else if ([@"klab.lv" isEqualToString:server]) {
-		return ServerFeatureNone;
+		return ServerFeatureFriendsPageFilterByGroup;
 	} else if ([@"insanejournal.com" isEqualToString:server]) {
-		return ServerFeatureAll;
+		return ServerFeatureAll ^ ServerFeatureFriendsPageFilterByJournalType;
 	} else {
 #ifdef DEBUG
 		return ServerFeatureAll;

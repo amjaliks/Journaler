@@ -20,19 +20,6 @@
 
 - (id) initWithAccount:(LJAccount *)newAccount {
 	if (self = [super initWithAccount:newAccount]) {
-		NSString *URLFormat;
-		NSString *altURLFormat;
-		if ([@"dreamwidth.org" isEqualToString:account.server]) {
-			URLFormat = @"http://%@.%@/read";
-			altURLFormat = @"http://%@/~%@/read";
-			friendsPageURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:URLFormat, newAccount.user, newAccount.server]];
-			friendsPageAltURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:altURLFormat, newAccount.server, newAccount.user]];
-		} else {
-			URLFormat = @"http://%@/~%@/friends";
-			altURLFormat = @"http://%@.%@/friends";
-			friendsPageURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:URLFormat, newAccount.server, newAccount.user]];
-			friendsPageAltURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:altURLFormat, newAccount.user, newAccount.server]];
-		}
 	}
 	return self;
 }
@@ -49,10 +36,6 @@
 	[self.view addSubview:webView];
 	self.view.autoresizingMask =
 	webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	
-//#ifdef LITEVERSION
-//	[self initAdMobView];
-//#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -101,8 +84,7 @@
 			[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
 			
 			if ([APP_WEB_VIEW_CONTROLLER createSessionForAccount:account silent:NO]) {
-				NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:friendsPageURL];
-				[webView loadRequest:req];
+				[self loadFriendsPage];
 			} else {
 				[self hideStatusLine];
 			}
@@ -112,15 +94,28 @@
 	}
 }
 
+- (void)loadFriendsPage {
+	NSString *URLString = [[NSString stringWithFormat:@"http://%@/~%@/friends/%@", 
+						account.server, account.user, 
+							friendsPageFilter.filterType == FilterTypeGroup ? friendsPageFilter.group : @""] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSURL *URL = [NSURL URLWithString:URLString];
+	NSURLRequest *req = [NSURLRequest requestWithURL:URL];
+	[webView loadRequest:req];
+}
+
 #pragma mark Pogas
 - (void)refresh {
 	refreshButtonItem.enabled = NO;
 	if (loggedin) {
 		[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
-		[webView reload];
+		[self loadFriendsPage];
 	} else {
 		[self login];
 	}
+}
+
+- (void)filterFriendsPage {
+	[self refresh];
 }
 
 #pragma mark WebViewDelegate metode
@@ -130,10 +125,6 @@
 
 	[self hideStatusLine];
 	refreshButtonItem.enabled = YES;
-	
-//#ifdef LITEVERSION
-//	[self refreshAdMobView];
-//#endif
 }
 
 - (BOOL)webView:(UIWebView *)webView_ shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -150,17 +141,5 @@
 		return NO;
 	}
 }
-
-//#ifdef LITEVERSION
-//- (NSString *)keywords {
-//	NSString *subject = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-//	if (subject) {
-//		return subject;
-//	};
-//
-//	// ja neko neizdevās atrast, izmantojam iebūvētos atslēgas vārdus
-//	return [super keywords]; 
-//}
-//#endif
 
 @end

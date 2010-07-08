@@ -8,15 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FriendsPageFilter.h"
+
 @class FriendsPageController;
 
 @interface FilterOptionsController : UITableViewController {
 	FriendsPageController *friendsPageController;
 	
+	NSInteger numberOfSections;
+	NSInteger sectionJournalType;
+	NSInteger sectionGroup;
+	
 	UITableViewCell *selectedCell;
+	FriendsPageFilter *previousFilter;
 }
 
 -(id)initWithFriendsPageController:(FriendsPageController *)friendsPageController;
+-(void)updateNumberOfSections;
 -(void)done:(id)sender;
 
 @end

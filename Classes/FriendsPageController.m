@@ -18,6 +18,7 @@
 
 @implementation FriendsPageController
 
+@synthesize account;
 @synthesize friendsPageFilter;
 
 - (id)initWithAccount:(LJAccount *)aAccount {
@@ -115,6 +116,8 @@
 		}
 	}
 }
+
+- (void)filterFriendsPage {};
 
 - (void)dealloc {
 	[account release];

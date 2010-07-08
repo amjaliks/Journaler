@@ -64,7 +64,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return section == 0 ? NSLocalizedStringFromTable(@"Security level", @"Section name for default security levesls", kStringsTable) : NSLocalizedStringFromTable(@"Custom", @"Section name for custom security level", kStringsTable);
+	return section == 0 ? NSLocalizedString(@"Security level", nil) : NSLocalizedString(@"Groups", nil);
 }
 
 // Customize the appearance of table view cells.

@@ -8,6 +8,8 @@
 
 #import "FilterOptionsController.h"
 
+#import "AccountManager.h"
+#import "ErrorHandling.h"
 #import "FriendsPageFilter.h"
 #import "FriendsPageController.h"
 
@@ -36,6 +38,7 @@ enum {
 -(id)initWithFriendsPageController:(FriendsPageController *)newFriendsPageController {
 	if (self = [super initWithStyle:UITableViewStyleGrouped]) {
 		friendsPageController = newFriendsPageController;
+		[self updateNumberOfSections];
 	}
 	return self;
 }
@@ -53,28 +56,19 @@ enum {
 	UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
 	self.navigationItem.leftBarButtonItem = done;
 	[done release];
+
+	if ([friendsPageController.account supports:ServerFeatureFriendsPageFilterByGroup]) {
+		// "refresh" rādam tikai gadījumā, ja serveris atbalsts filtrēšanu pēc grupām
+		UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
+		self.navigationItem.rightBarButtonItem = refreshButton;
+		[refreshButton release];
+	}
 }
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	previousFilter = [friendsPageController.friendsPageFilter copy];
 }
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
 
 #ifndef LITEVERSION
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -87,21 +81,39 @@ enum {
 #pragma mark -
 #pragma mark Table view data source
 
+-(void)updateNumberOfSections {
+	numberOfSections = 1;
+	
+	if ([friendsPageController.account supports:ServerFeatureFriendsPageFilterByJournalType]) {
+		sectionJournalType = numberOfSections;
+		numberOfSections++;
+	} else {
+		sectionJournalType = -1;
+	}
+	
+	if ([friendsPageController.account supports:ServerFeatureFriendsPageFilterByGroup] && [friendsPageController.account.friendGroups count]) {
+		sectionGroup = numberOfSections;
+		numberOfSections++;
+	} else {
+		sectionGroup = -1;
+	}
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+	return numberOfSections;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (section == FilterTypeAll) { return 1; }
-	else if (section == FilterTypeJournalType) { return 3; }
-	else { return 0; };
+	if (section == FilterTypeAll) return 1;
+	if (section == sectionJournalType) return 3;
+	if (section == sectionGroup) return [friendsPageController.account.friendGroups count];
+	return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (section == FilterTypeAll) { return NSLocalizedString(@"All journals", nil); }
-	else if (section == FilterTypeJournalType) { return NSLocalizedString(@"Journal type", nil); }
-	else { return nil; };
+	if (section == sectionGroup) return NSLocalizedString(@"Groups", nil);
+	return nil;
 }
 
 
@@ -122,16 +134,24 @@ enum {
 		selected = friendsPageController.friendsPageFilter.filterType == FilterTypeAll;
 
 		cell.textLabel.text = NSLocalizedString(@"All journals", nil);
-	} else if (indexPath.section == FilterTypeJournalType) {
-		selected = friendsPageController.friendsPageFilter.filterType == FilterTypeJournalType && friendsPageController.friendsPageFilter.journalType == indexPath.row;
+	} else if (indexPath.section == sectionJournalType) {
+		selected = friendsPageController.friendsPageFilter.filterType == FilterTypeJournalType 
+				&& friendsPageController.friendsPageFilter.journalType == indexPath.row;
 
-		if (indexPath.row == JournalTypeJournals) {
+		if (indexPath.row == LJJournalTypeJournal) {
 			cell.textLabel.text = NSLocalizedString(@"Journals", nil);
-		} else	if (indexPath.row == JournalTypeCommunities) {
+		} else	if (indexPath.row == LJJournalTypeCommunity) {
 			cell.textLabel.text = NSLocalizedString(@"Communities", nil);
-		} else	if (indexPath.row == JournalTypeSyndications) {
+		} else	if (indexPath.row == LJJournalTypeSyndication) {
 			cell.textLabel.text = NSLocalizedString(@"Syndicated feeds", nil);
 		}
+	} else if (indexPath.section == sectionGroup) {
+		LJFriendGroup *group = [friendsPageController.account.friendGroups objectAtIndex:indexPath.row];
+		
+		selected = friendsPageController.friendsPageFilter.filterType == FilterTypeGroup 
+				&& [friendsPageController.friendsPageFilter.group isEqualToString:group.name];
+		
+		cell.textLabel.text = group.name;
 	}
 	
 	if (selected) {
@@ -149,9 +169,14 @@ enum {
 	selectedCell.accessoryType = UITableViewCellAccessoryNone;
 	
 	// saglabājam jauno filtru
-	friendsPageController.friendsPageFilter.filterType = indexPath.section;
-	if (indexPath.section == FilterTypeJournalType) {
+	if (indexPath.section == 0) {
+		friendsPageController.friendsPageFilter.filterType = FilterTypeAll;
+	} else if (indexPath.section == sectionJournalType) {
+		friendsPageController.friendsPageFilter.filterType = FilterTypeJournalType;
 		friendsPageController.friendsPageFilter.journalType = indexPath.row;
+	} else if (indexPath.section == sectionGroup) {
+		friendsPageController.friendsPageFilter.filterType = FilterTypeGroup;
+		friendsPageController.friendsPageFilter.group = [[friendsPageController.account.friendGroups objectAtIndex:indexPath.row] name];
 	}
 	
 	// uzliekam izvēlētai šūnai ķeksīti
@@ -167,19 +192,6 @@ enum {
 #pragma mark -
 #pragma mark Memory management
 
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-}
-
-
 - (void)dealloc {
     [super dealloc];
 }
@@ -189,7 +201,25 @@ enum {
 #pragma mark UI button actions
 
 - (void)done:(id)sender {
+	if (![previousFilter isEqual:friendsPageController.friendsPageFilter]) {
+		[friendsPageController filterFriendsPage];
+	}
+	[previousFilter release];
+	
 	[self.navigationController dismissModalViewControllerAnimated:YES];
+}
+
+- (void)refresh:(id)sender {
+	LJManager *manager = [LJManager defaultManager];
+	NSError *error;
+	
+	if ([manager friendGroupsForAccount:friendsPageController.account error:&error]) {		
+		[[AccountManager sharedManager] storeAccounts];
+		
+		[self.tableView reloadData];
+	} else {
+		showErrorMessage(NSLocalizedString(@"Friend groups sync error", nil), decodeError([error code]));
+	}
 }
 
 

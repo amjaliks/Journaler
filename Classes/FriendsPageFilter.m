@@ -7,6 +7,7 @@
 //
 
 #import "FriendsPageFilter.h"
+#import "Model.h"
 
 #define kKeyFilterType @"filterType"
 #define kKeyJournalType @"journalType"
@@ -18,7 +19,7 @@
 @synthesize journalType;
 @synthesize group;
 
-- (id) init {
+- (id)init {
 	self = [super init];
 	if (self != nil) {
 		filterType = FilterTypeAll;
@@ -26,6 +27,34 @@
 	return self;
 }
 
+- (id)copy {
+	FriendsPageFilter *newFilter = [[FriendsPageFilter alloc] init];
+	newFilter.filterType = self.filterType;
+	newFilter.journalType = self.journalType;
+	newFilter.group = [self.group copy];
+	
+	return newFilter;
+}
+
+- (BOOL)isEqual:(id)object {
+	if (self == object) return YES;
+	if (![object isKindOfClass:[self class]]) return NO;
+	
+	if (self.filterType != [object filterType]) return NO;
+	if (self.filterType == FilterTypeAll) {
+		return YES;
+	} else if (self.filterType == FilterTypeJournalType) {
+		return self.journalType == [object journalType];
+	} else if (self.filterType == FilterTypeGroup) {
+		return [self.group isEqualToString:[object group]];
+	}
+	
+	return NO;
+}
+	
+- (NSUInteger)hash {
+	return [self.title hash];
+}
 
 #pragma mark -
 #pragma mark NSCoding metodes
@@ -61,19 +90,46 @@
 }
 
 #pragma mark -
+#pragma mark Filtra metodes
 
+// teksts, ko rādīt virsrakstā
 - (NSString *)title {
 	if (filterType == FilterTypeAll) {
 		return NSLocalizedString(@"All", nil);
 	} else if (filterType == FilterTypeJournalType) {
-		if (journalType == JournalTypeJournals) {
+		if (journalType == LJJournalTypeJournal) {
 			return NSLocalizedString(@"Journals", nil);
-		} else if (journalType == JournalTypeCommunities) {
+		} else if (journalType == LJJournalTypeCommunity) {
 			return NSLocalizedString(@"Communities", nil);
-		} else { // journalType == JournalTypeSyndications
+		} else { // journalType == LJJournalTypeSyndication
 			return NSLocalizedString(@"Syndicated feeds", nil);
 		}
+	} else if (filterType == FilterTypeGroup) {
+		return group;
 	}
+	
+	return nil;
+}
+
+// filtrē rakstu atbilstoši filtra uzstādījumiem
+- (NSArray *)filterPosts:(NSArray *)posts {
+	if (filterType == FilterTypeAll) {
+		// nekas nav jāfiltrē, atgriežam masīva kopiju
+		return [[posts copy] autorelease];
+	}
+	
+	NSMutableArray *filteredPosts = [[NSMutableArray alloc] init];
+	
+	if (filterType == FilterTypeJournalType) {
+		// filtrējma pēc žurnāla veida
+		for (Post* post in posts) {
+			if ([post.journalType intValue] == journalType) {
+				[filteredPosts addObject:post];
+			}
+		}
+	}
+	
+	return [filteredPosts autorelease];
 }
 
 @end

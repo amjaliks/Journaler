@@ -51,7 +51,10 @@
 		return LJJournalTypeCommunity;
 	} else if ([@"N" isEqualToString:key]) {
 		return LJJournalTypeNews;
+	} else if ([@"Y" isEqualToString:key]) {
+		return LJJournalTypeSyndication;
 	}
+	
 	return LJJournalTypeCommunity;
 }
 

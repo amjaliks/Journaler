@@ -24,5 +24,6 @@
 }
 
 - (void)login;
+- (void)loadFriendsPage;
 
 @end

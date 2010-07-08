@@ -24,7 +24,8 @@
 }
 
 @property (nonatomic, retain) NSString * journal;
-@property (nonatomic, retain) NSString * journalType;
+@property (nonatomic, retain) NSNumber * journalType;
+@property (nonatomic, retain) NSString * journalTypeOld;
 @property (nonatomic, retain) NSDate * dateTime;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * subject;

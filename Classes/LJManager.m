@@ -245,11 +245,7 @@ LJManager *defaultManager;
 			NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
 		
 			if ([account supports:ServerFeaturePostEventUserAgent]) {
-#ifndef LITEVERSION
 				[props setValue:@"Journaler" forKey:@"useragent"];
-#else
-				[props setValue:@"Journaler Lite" forKey:@"useragent"];
-#endif
 			}
 			
 			if ([event.tags count]) {
@@ -368,9 +364,9 @@ LJManager *defaultManager;
 	
 	XMLRPCResponse *xmlres = [[XMLRPCResponse alloc] initWithData:data];
 	NSDictionary *result = [[xmlres object] retain];
-//#ifdef DEBUG
-//	NSLog(@"respone:\n%@", [xmlres body]);
-//#endif
+#ifdef DEBUG
+	NSLog(@"respone:\n%@", [xmlres body]);
+#endif
 	
 	if ([xmlres isFault]) {
 		//code = LJErrorUnknown;

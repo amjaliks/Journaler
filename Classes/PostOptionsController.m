@@ -290,6 +290,7 @@ enum {
 			} else if (security == LJEventSecurityPrivate) {
 				cell.detailTextLabel.text = NSLocalizedString(@"Private", nil);
 			} else {
+				
 				cell.detailTextLabel.text = NSLocalizedString(@"Custom", nil);
 			}
 		}
@@ -358,7 +359,6 @@ enum {
 	}
 }
 
-#ifdef BETA
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == SectionAdditional && indexPath.row == SectionAdditionalRowTags) {
 		UIViewController *controller = [[TagListController alloc] initWithPostOptionsController:self];
@@ -371,7 +371,6 @@ enum {
 	}
 	
 }
-#endif
 
 - (void)dealloc {
 	

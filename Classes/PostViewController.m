@@ -114,10 +114,10 @@
 		[postHtml replaceOccurrencesOfString:@"@postername@" withString:post.poster options:0 range:NSMakeRange(0, [postHtml length])];
 
 		NSString *journal;
-		if ([@"C" isEqualToString:post.journalType] || [@"N" isEqualToString:post.journalType]) {
-			journal = [NSString stringWithFormat:@"in <img class=\"icon\" src=\"file://%@\" /> %@", communityIconPath, post.journal];
-		} else {
+		if ([post.journalType intValue] == LJJournalTypeJournal) {
 			journal = @"";
+		} else {
+			journal = [NSString stringWithFormat:@"in <img class=\"icon\" src=\"file://%@\" /> %@", communityIconPath, post.journal];
 		}
 		[postHtml replaceOccurrencesOfString:@"@journalname@" withString:journal options:0 range:NSMakeRange(0, [postHtml length])];
 		

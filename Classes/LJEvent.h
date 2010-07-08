@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-enum {
+typedef enum {
 	LJJournalTypeJournal,
 	LJJournalTypeCommunity,
 	LJJournalTypeSyndication,
 	LJJournalTypeNews
-} typedef LJJournalType;
+} LJJournalType;
 
 typedef enum {
 	LJEventSecurityPublic,

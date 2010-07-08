@@ -10,6 +10,7 @@
 
 #import "Macros.h"
 #import "Model.h"
+#import "LiveJournal.h"
 
 //#define kMaxWidth 220
 #define kRightOffset 26											// attālums no labās malas
@@ -133,7 +134,7 @@
 	UIImage *userIcon = [UIImage imageNamed:@"user.png"];
 	[userIcon drawInRect:rect];
 	
-	BOOL community = [@"C" isEqualToString:post.journalType] || [@"N" isEqualToString:post.journalType];
+	BOOL community = [post.journalType intValue] != LJJournalTypeJournal;
 	// lietotāja vārds
 	[metaDataColor set];
 	if (community && !post.posterNameWidth) {

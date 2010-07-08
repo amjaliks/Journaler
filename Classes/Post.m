@@ -16,6 +16,7 @@
 
 @dynamic journal;
 @dynamic journalType;
+@dynamic journalTypeOld;
 @dynamic dateTime;
 @dynamic text;
 @dynamic subject;
@@ -37,6 +38,16 @@
 @synthesize posterNameWidth;
 @synthesize updated;
 @synthesize rendered;
+
+- (NSNumber *)journalType {
+	NSNumber *value = [self primitiveValueForKey:@"journalType"];
+	if ([value intValue] == -1) {
+		// savietojamība ar veco modeli		
+		return [NSNumber numberWithInt:[LJEvent journalTypeForKey:self.journalTypeOld]];
+	} else {
+		return value;
+	}
+}
 
 - (NSString *)uniqueKey {
 	if (!uniqueKey) {

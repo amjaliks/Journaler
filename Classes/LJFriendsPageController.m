@@ -118,11 +118,13 @@
 		[self preprocessPosts];
 	}
 	
-	// ielādējam draugu lapu no servera
-	if ([self loadFriendsPageFromServer:YES]) {
-		// ja ielāde bija veiksmīga, tad pārlādējam tabulu
-		[self performSelectorOnMainThread:@selector(reloadTable) withObject:nil waitUntilDone:YES];
-		[self preprocessPosts];
+	if (DEFAULT_BOOL(@"refresh_on_start")) {	
+		// ielādējam draugu lapu no servera
+		if ([self loadFriendsPageFromServer:YES]) {
+			// ja ielāde bija veiksmīga, tad pārlādējam tabulu
+			[self performSelectorOnMainThread:@selector(reloadTable) withObject:nil waitUntilDone:YES];
+			[self preprocessPosts];
+		}
 	}
 	
 	// paslēpjam stāvokļa joslu
@@ -135,7 +137,14 @@
 	NSError *err = nil;
 	
 	// ielādējam notikumus no servera
-	NSArray *events = [[LJManager defaultManager] friendsPageEventsForAccount:account lastSync:nil error:&err];
+	
+	NSDate *lastSync = nil;
+	if (!allPosts && [loadedPosts count]) {
+		Post *post = [loadedPosts objectAtIndex:0];
+		lastSync = post.dateTime;
+	}
+	
+	NSArray *events = [[LJManager defaultManager] friendsPageEventsForAccount:account lastSync:lastSync error:&err];
 	
 	if (!err) {
 		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
@@ -145,7 +154,8 @@
 				post = [model createPost];
 				post.account = account.title;
 				post.journal = event.journal;
-				post.journalType = event.journalType == LJJournalTypeJournal ? @"J" : @"C";
+				post.journalType = [NSNumber numberWithInt:event.journalType];
+				post.journalTypeOld = event.journalType == LJJournalTypeJournal ? @"J" : @"C"; // savietojamība
 				post.ditemid = event.ditemid;
 				post.poster = event.poster;
 				post.isRead = [NSNumber numberWithBool:NO];
@@ -221,52 +231,38 @@
 }
 
 
-- (NSUInteger) loadPostsFromCacheFromOffset:(NSUInteger)offset limit:(NSUInteger)limit {
-	// ielasam rakstus no keša
-	Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
-	NSArray *posts = [model findPostsByAccount:account.title limit:limit offset:offset];
-	
-	// ieliekam no keša ielasītos rakstu kopējās masīvā
-	for (Post *post in posts) {
-		if (![loadedPosts containsObject:post]) {
-			[loadedPosts addObject:post];
-		}
-	}
-	
-	return [posts count];
-}
-
 - (void) reloadTable {
 	if (tableView.dragging) {
 		needReloadTable = YES;
 	} else {
 		@synchronized(loadedPosts) {
 			[displayedPosts release];
-			displayedPosts = [loadedPosts copy];
+			displayedPosts = [[friendsPageFilter filterPosts:loadedPosts] retain];
 
 			[tableView reloadData];
 			
 			// pārliecinamies, ka tabula ir redzama
 			[tableView setAlpha:1.0];
 			
-			NSString *firstVisiblePost = [[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePost;
-			if (firstVisiblePost) {
-				NSUInteger row = 0;
-				for (Post *post in displayedPosts) {
-					if ([firstVisiblePost isEqualToString:post.uniqueKey]) {
-						NSUInteger scrollPosition = row * 88 + [[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePostScrollPosition;
-						NSUInteger lowerAllowedPosition = tableView.contentSize.height - tableView.bounds.size.height;
-						[tableView setContentOffset:CGPointMake(0, scrollPosition > lowerAllowedPosition ? lowerAllowedPosition : scrollPosition)];
-						return;
+			if ([displayedPosts count]) {
+				NSString *firstVisiblePost = [[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePost;
+				if (firstVisiblePost) {
+					// ja pirmais redzamais raksts ir zināms, tad cenšamies atjaunot iepriekšējo tabulas stāvokli
+					NSUInteger row = 0;
+					for (Post *post in displayedPosts) {
+						if ([firstVisiblePost isEqualToString:post.uniqueKey]) {
+							NSUInteger scrollPosition = row * 88 + [[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePostScrollPosition;
+							NSUInteger lowerAllowedPosition = tableView.contentSize.height - tableView.bounds.size.height;
+							[tableView setContentOffset:CGPointMake(0, scrollPosition > lowerAllowedPosition ? lowerAllowedPosition : scrollPosition)];
+							return;
+						}
+						row++;
 					}
-					row++;
-				}
 
-				// LJ-100
-				// iespējams šī pārbaude ļaus izvairīties no kādas kļūdas sekām,
-				// diemžēl problēmas celoņi man nav zināmi
-				if ([displayedPosts count]) {
 					[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[displayedPosts count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+				} else {
+					// ja pirmais redzamais raksts nav zināms, tad tabulu tinam uz augšu
+					[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 				}
 			}
 			
@@ -303,6 +299,11 @@
 	}
 	
 	[pool release];
+}
+
+- (void)filterFriendsPage {
+	[self resetScrollPostion];
+	[self reloadTable];
 }
 
 - (void)openPost:(Post *)post {
@@ -387,15 +388,25 @@
 	[super dealloc];
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)resetScrollPostion {
+	[[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePost = nil;
+	[[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePostScrollPosition = 0;
+	[[AccountManager sharedManager] stateInfoForAccount:account.title].lastVisiblePostIndex = 0;
+}
+
+- (void)saveScrollPosition {
 	NSArray *indexPaths = [tableView indexPathsForVisibleRows];
 	if (indexPaths && [indexPaths count] > 0) {
 		NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
 		NSUInteger row = indexPath.row;
 		[[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePost = [(Post *)[displayedPosts objectAtIndex:row] uniqueKey];
-		[[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePostScrollPosition = ((NSUInteger)scrollView.contentOffset.y) % 88;
+		[[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePostScrollPosition = ((NSUInteger)tableView.contentOffset.y) % 88;
 		[[AccountManager sharedManager] stateInfoForAccount:account.title].lastVisiblePostIndex = [(NSIndexPath *)[indexPaths objectAtIndex:0] row] + 5;
 	}
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+	[self saveScrollPosition];
 	
 	if (needReloadTable) {
 		needReloadTable = NO;
