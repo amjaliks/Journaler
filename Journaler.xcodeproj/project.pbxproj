@@ -536,6 +536,8 @@
 				17B462E710BA2659004D0E0F /* PostPreviewView.m */,
 				17C3C488118E2CAD00BB9581 /* FriendsPageTitleView.h */,
 				17C3C489118E2CAD00BB9581 /* FriendsPageTitleView.m */,
+				3780DAED11E3607D003044B6 /* CommentController.h */,
+				3780DAEE11E3607D003044B6 /* CommentController.m */,
 			);
 			name = "Friends Page";
 			sourceTree = "<group>";
@@ -558,8 +560,6 @@
 				178BF2D5118238CE00BEEFAD /* TagListController.m */,
 				178BF32B11823FB100BEEFAD /* MoodListController.h */,
 				178BF32C11823FB100BEEFAD /* MoodListController.m */,
-				3780DAED11E3607D003044B6 /* CommentController.h */,
-				3780DAEE11E3607D003044B6 /* CommentController.m */,
 			);
 			name = "New post";
 			sourceTree = "<group>";

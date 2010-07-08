@@ -91,11 +91,11 @@
 	
 	NSError *error;
 	if ([[LJManager defaultManager] addComment:comment forAccount:account error:&error]) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your post has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your comment has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
 		[alert release];
 	} else {
-		showErrorMessage(@"Post error", decodeError([error code]));
+		showErrorMessage(@"Comment error", decodeError([error code]));
 	}
 	
 	[comment release];
