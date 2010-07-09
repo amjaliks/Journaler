@@ -57,6 +57,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	[tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+	[tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
