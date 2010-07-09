@@ -202,6 +202,10 @@
 		377EFE0811E4C0AA009E9907 /* LJComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EFE0611E4C0AA009E9907 /* LJComment.m */; };
 		3780DAF011E3607D003044B6 /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3780DAEE11E3607D003044B6 /* CommentController.m */; };
 		3780DAF211E3607D003044B6 /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3780DAEE11E3607D003044B6 /* CommentController.m */; };
+		3799D17811E74CA60039226A /* SelfAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172860C9116D40BB00171A85 /* SelfAdViewController.m */; };
+		3799D18311E74CBA0039226A /* SelfAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172860CA116D40BB00171A85 /* SelfAdViewController.xib */; };
+		3799D19C11E754370039226A /* HouseAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HouseAdManager.m */; };
+		3799D19D11E754370039226A /* HouseAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HouseAdManager.m */; };
 		37A65DC111DE45DC00EEC540 /* LegalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A65DBF11DE45DC00EEC540 /* LegalController.m */; };
 		37A65DC211DE45DC00EEC540 /* LegalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A65DC011DE45DC00EEC540 /* LegalController.xib */; };
 		37A65DC311DE45DC00EEC540 /* LegalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A65DBF11DE45DC00EEC540 /* LegalController.m */; };
@@ -387,6 +391,8 @@
 		377EFE0611E4C0AA009E9907 /* LJComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJComment.m; sourceTree = "<group>"; };
 		3780DAED11E3607D003044B6 /* CommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentController.h; sourceTree = "<group>"; };
 		3780DAEE11E3607D003044B6 /* CommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentController.m; sourceTree = "<group>"; };
+		3799D19A11E754370039226A /* HouseAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAdManager.h; sourceTree = "<group>"; };
+		3799D19B11E754370039226A /* HouseAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAdManager.m; sourceTree = "<group>"; };
 		37A65DBE11DE45DC00EEC540 /* LegalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalController.h; sourceTree = "<group>"; };
 		37A65DBF11DE45DC00EEC540 /* LegalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalController.m; sourceTree = "<group>"; };
 		37A65DC011DE45DC00EEC540 /* LegalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LegalController.xib; path = Classes/LegalController.xib; sourceTree = "<group>"; };
@@ -436,6 +442,7 @@
 				173FBEF510C4751B00FD0652 /* Friends Page */,
 				173FBEF610C4755600FD0652 /* New post */,
 				172860C7116D409300171A85 /* Self-ad */,
+				3799D18B11E750D90039226A /* House Ads */,
 				1D3623240D0F684500981E51 /* JournalerAppDelegate.h */,
 				1D3623250D0F684500981E51 /* JournalerAppDelegate.m */,
 				1759F3181093674E0008AA60 /* WebViewController.h */,
@@ -802,6 +809,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3799D18B11E750D90039226A /* House Ads */ = {
+			isa = PBXGroup;
+			children = (
+				3799D19A11E754370039226A /* HouseAdManager.h */,
+				3799D19B11E754370039226A /* HouseAdManager.m */,
+			);
+			name = "House Ads";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -936,6 +952,7 @@
 				1724FF051186FFAE00639437 /* locateme.png in Resources */,
 				37A65DC211DE45DC00EEC540 /* LegalController.xib in Resources */,
 				37A65DE411DE490D00EEC540 /* Legal.html in Resources */,
+				3799D18311E74CBA0039226A /* SelfAdViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1011,6 +1028,7 @@
 				37A65DC311DE45DC00EEC540 /* LegalController.m in Sources */,
 				3780DAF011E3607D003044B6 /* CommentController.m in Sources */,
 				377EFE0711E4C0AA009E9907 /* LJComment.m in Sources */,
+				3799D19C11E754370039226A /* HouseAdManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1083,6 +1101,8 @@
 				37A65DC111DE45DC00EEC540 /* LegalController.m in Sources */,
 				3780DAF211E3607D003044B6 /* CommentController.m in Sources */,
 				377EFE0811E4C0AA009E9907 /* LJComment.m in Sources */,
+				3799D17811E74CA60039226A /* SelfAdViewController.m in Sources */,
+				3799D19D11E754370039226A /* HouseAdManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

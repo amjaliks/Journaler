@@ -12,6 +12,7 @@
 #import "Settings.h"
 #import "AccountManager.h"
 #import "LiveJournal.h"
+#import "HouseAdManager.h"
 
 #ifndef LITEVERSION
 	#import "AccountsViewController.h"
@@ -83,6 +84,10 @@
 //		[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
 //	}
 //#endif
+	
+	// šeit tiks ielādēta reklāma 
+//	HouseAdManager *houseAdManager = [[HouseAdManager alloc] init];
+//	[houseAdManager release];
 	
     [window makeKeyAndVisible];
 }
