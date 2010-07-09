@@ -25,6 +25,8 @@
 	
 	UIWebView *webView;
 	
+	UISegmentedControl *navigationControl ;
+	
 	id<PostViewControllerDelegate> delegate;
 }
 

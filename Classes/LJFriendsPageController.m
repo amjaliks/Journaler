@@ -99,6 +99,12 @@
 	Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
 	loadedPosts = [[model findPostsByAccount:account.title] mutableCopy];
 	
+	if ([loadedPosts count]) {
+		// ja kešā ir ieraksti, tad tos parādam
+		[self performSelectorOnMainThread:@selector(reloadTable) withObject:nil waitUntilDone:YES];
+		[self preprocessPosts];
+	}
+	
 	if (needOpenPost) {
 		// ja nepieciešams, tad atveram iepriekš atvērto rakstu
 		NSString *postKey = [[AccountManager sharedManager] stateInfoForAccount:account.title].openedPost;
@@ -110,12 +116,6 @@
 				}
 			}
 		}
-	}
-	
-	if ([loadedPosts count]) {
-		// ja kešā ir ieraksti, tad tos parādam
-		[self performSelectorOnMainThread:@selector(reloadTable) withObject:nil waitUntilDone:YES];
-		[self preprocessPosts];
 	}
 	
 	if (DEFAULT_BOOL(@"refresh_on_start")) {	
@@ -314,8 +314,10 @@
 	PostViewController *postViewController = [[cachedPostViewControllers objectForKey:post.uniqueKey] retain];
 	if (!postViewController) {
 		postViewController = [[PostViewController alloc] initWithPost:post account:account];
+		postViewController.delegate = self;
 		[cachedPostViewControllers setObject:postViewController forKey:post.uniqueKey];
 	}
+	openedPost = post;
 	[self.navigationController pushViewController:postViewController animated:animated];
 	[postViewController release];
 	
@@ -425,19 +427,25 @@
 }
 
 - (BOOL)hasPreviousPost {
-	return NO;
+	return [displayedPosts indexOfObjectIdenticalTo:openedPost] > 0 ? YES : NO;
 }
 
 - (BOOL)hasNextPost {
-	return NO;
+	return [displayedPosts indexOfObjectIdenticalTo:openedPost] < ([displayedPosts count] - 1)? YES : NO;
 }
 
 - (void)openPreviousPost {
-	
+	if ([self hasPreviousPost]) {
+		Post * post = [displayedPosts objectAtIndex:([displayedPosts indexOfObjectIdenticalTo:openedPost] - 1)];
+		[self openPost:post animated:NO];
+	}
 }
 
 - (void)openNextPost {
-	
+	if ([self hasNextPost]) {
+		Post * post = [displayedPosts objectAtIndex:([displayedPosts indexOfObjectIdenticalTo:openedPost] + 1)];
+		[self openPost:post animated:NO];
+	}
 }
 
 @end

@@ -67,10 +67,9 @@
 	webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.view = webView;
 
-	
 	// iepriekšējā un nākamā ieraksta atvēršana	
-	UISegmentedControl *navigationControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Prev", @"Next", nil]];
-	//segmentControl.momentary = YES;
+	navigationControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Prev", @"Next", nil]];
+	navigationControl.momentary = YES;
 
 	navigationControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	[navigationControl addTarget:self action:@selector(navigationChanged:) forControlEvents:UIControlEventValueChanged];
@@ -79,7 +78,6 @@
 	self.navigationItem.rightBarButtonItem = navigationControlItem;
 	[navigationControlItem release];
 	[navigationControl release];
-	
 	
 	// pogas "Comment" un "Action" apakšējā rīkjoslā
 	UIBarButtonItem *commentButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(commentPost)];
@@ -94,7 +92,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:YES];
-
+	
+	[navigationControl setEnabled:[delegate hasPreviousPost] forSegmentAtIndex:0];
+	[navigationControl setEnabled:[delegate hasNextPost] forSegmentAtIndex:1];
+	
 	if (!post.rendered) {
 		post.rendered = YES;
 		
@@ -247,12 +248,12 @@
 }
 
 - (void)navigationChanged:(id)sender {
+	[self.navigationController popViewControllerAnimated:NO];
 	if ([sender selectedSegmentIndex] == 0) {
-//		[self.parentViewController openNextPost];
+		[delegate openPreviousPost];
 	} else {
-		
+		[delegate openNextPost];
 	}
-
 }
 
 @end
