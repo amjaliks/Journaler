@@ -427,6 +427,9 @@
 	[self scrollViewDidEndDecelerating:scrollView];
 }
 
+#pragma mark -
+#pragma mark PostViewControllerDelegate
+
 - (BOOL)hasPreviousPost {
 	return [displayedPosts indexOfObjectIdenticalTo:openedPost] > 0 ? YES : NO;
 }
