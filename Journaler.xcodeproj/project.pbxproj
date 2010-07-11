@@ -191,6 +191,10 @@
 		17DB0BF31075462000155636 /* AccountEditorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0BF11075462000155636 /* AccountEditorController.xib */; };
 		17DB0C961076616400155636 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17DB0C951076616400155636 /* Entitlements.plist */; };
 		17E3B2A8118656C300ED729D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E3B2A7118656C300ED729D /* MediaPlayer.framework */; };
+		17EFF2A711EA7A74009D84ED /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 17EFF2A611EA7A74009D84ED /* up.png */; };
+		17EFF2A811EA7A74009D84ED /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 17EFF2A611EA7A74009D84ED /* up.png */; };
+		17EFF2AA11EA7A78009D84ED /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 17EFF2A911EA7A78009D84ED /* down.png */; };
+		17EFF2AB11EA7A78009D84ED /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 17EFF2A911EA7A78009D84ED /* down.png */; };
 		17FCD7161078C70700806088 /* AccountEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FCD7151078C70700806088 /* AccountEditorController.m */; };
 		1D3623260D0F684500981E51 /* JournalerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* JournalerAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -376,6 +380,8 @@
 		17DB0C951076616400155636 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		17DB0CC010768D2900155636 /* LiveJournal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveJournal.h; sourceTree = "<group>"; };
 		17E3B2A7118656C300ED729D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		17EFF2A611EA7A74009D84ED /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
+		17EFF2A911EA7A78009D84ED /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 		17FCD7141078C70700806088 /* AccountEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountEditorController.h; sourceTree = "<group>"; };
 		17FCD7151078C70700806088 /* AccountEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountEditorController.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -488,6 +494,8 @@
 				17132C73108BB5B8007F6C24 /* newpost.png */,
 				1724FF021186FFAE00639437 /* locateme-hover.png */,
 				1724FF031186FFAE00639437 /* locateme.png */,
+				17EFF2A911EA7A78009D84ED /* down.png */,
+				17EFF2A611EA7A74009D84ED /* up.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -916,6 +924,8 @@
 				1724FF071186FFAE00639437 /* locateme.png in Resources */,
 				37A65DC411DE45DC00EEC540 /* LegalController.xib in Resources */,
 				37A65DE511DE490D00EEC540 /* Legal.html in Resources */,
+				17EFF2A711EA7A74009D84ED /* up.png in Resources */,
+				17EFF2AA11EA7A78009D84ED /* down.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -953,6 +963,8 @@
 				37A65DC211DE45DC00EEC540 /* LegalController.xib in Resources */,
 				37A65DE411DE490D00EEC540 /* Legal.html in Resources */,
 				3799D18311E74CBA0039226A /* SelfAdViewController.xib in Resources */,
+				17EFF2A811EA7A74009D84ED /* up.png in Resources */,
+				17EFF2AB11EA7A78009D84ED /* down.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1250,6 +1262,64 @@
 			};
 			name = "Distribution (Ad Hoc)";
 		};
+		17EFF2BA11EA7B83009D84ED /* Debug (3.0) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_CFLAGS = (
+					"-DDEBUG",
+					"-DBETA",
+				);
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = "Debug (3.0)";
+		};
+		17EFF2BB11EA7B83009D84ED /* Debug (3.0) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
+				INFOPLIST_FILE = "Journaler-Info.plist";
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = Journaler;
+				SDKROOT = iphoneos4.0;
+			};
+			name = "Debug (3.0)";
+		};
+		17EFF2BC11EA7B83009D84ED /* Debug (3.0) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
+				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes\"",
+				);
+				OTHER_CFLAGS = (
+					"-DBETA",
+					"-DLITEVERSION",
+					"-DDEBUG",
+				);
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = "Journaler Lite";
+			};
+			name = "Debug (3.0)";
+		};
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1318,6 +1388,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1750B1801097B3F900C1D2A8 /* Debug */,
+				17EFF2BC11EA7B83009D84ED /* Debug (3.0) */,
 				1750B1811097B3F900C1D2A8 /* Release */,
 				1750B1821097B3F900C1D2A8 /* Distribution (Ad Hoc) */,
 				174D89D1109A418D0055AA82 /* Distribution (App Store) */,
@@ -1329,6 +1400,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
+				17EFF2BB11EA7B83009D84ED /* Debug (3.0) */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				17DB0C8210765F9300155636 /* Distribution (Ad Hoc) */,
 				174D89D0109A418D0055AA82 /* Distribution (App Store) */,
@@ -1340,6 +1412,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
+				17EFF2BA11EA7B83009D84ED /* Debug (3.0) */,
 				C01FCF5008A954540054247B /* Release */,
 				17DB0C8110765F9300155636 /* Distribution (Ad Hoc) */,
 				174D89CF109A418D0055AA82 /* Distribution (App Store) */,

@@ -68,7 +68,11 @@
 	self.view = webView;
 
 	// iepriekšējā un nākamā ieraksta atvēršana	
-	navigationControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Prev", @"Next", nil]];
+	navigationControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:[UIImage imageNamed:@"up.png"], [UIImage imageNamed:@"down.png"], nil]];
+	CGRect frame = navigationControl.frame;
+	frame.size.width = 88.0f;
+	frame.size.height = 30.0f;
+	navigationControl.frame = frame;
 	navigationControl.momentary = YES;
 
 	navigationControl.segmentedControlStyle = UISegmentedControlStyleBar;

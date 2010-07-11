@@ -42,9 +42,7 @@ enum {
 // sekcijas
 enum {
 	SectionBasic, // raksta pamatdati
-#ifdef BETA
 	SectionAdditional, // papildus dati par rakstu
-#endif
 	SectionPromote // promote
 	
 };
