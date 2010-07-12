@@ -10,14 +10,14 @@
 
 
 @interface HouseAdManager : NSObject {
-	NSMutableDictionary *dataCache;
+	NSString *dataDirPath;
 }
 
 + (HouseAdManager *)houseAdManager;
 
 - (void)loadAd;
 
-- (UIImage *) ensureFileAvailabilityFromURL:(NSString *)URL hash:(NSString *)hash;
+- (NSData *)readFile:(NSString *)fileName URL:(NSString *)URL;
 - (NSData *) downloadDataFromURL:(NSString *)URL;
 
 

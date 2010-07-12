@@ -86,8 +86,9 @@
 //#endif
 	
 	// šeit tiks ielādēta reklāma 
-//	HouseAdManager *houseAdManager = [[HouseAdManager alloc] init];
-//	[houseAdManager release];
+	HouseAdManager *houseAdManager = [[HouseAdManager alloc] init];
+	[houseAdManager loadAd];
+	[houseAdManager release];
 	
     [window makeKeyAndVisible];
 }

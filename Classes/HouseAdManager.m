@@ -7,6 +7,7 @@
 //
 
 #import "HouseAdManager.h"
+#import "Macros.h"
 #import "NSStringMD5.h"
 
 HouseAdManager *houseAdManager;
@@ -17,59 +18,41 @@ HouseAdManager *houseAdManager;
 #pragma mark Reklāmas ielāde
 
 - (void)loadAd {
-	
+	NSData *data = [self readFile:@"test.plist" URL:@"http:ndu/~ndudareva/"];
+	if (data) {
+		NSPropertyListFormat format;
+		NSString *error = nil;
+		
+		NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization 
+											  propertyListFromData:data 
+											  mutabilityOption:NSPropertyListMutableContainersAndLeaves 
+											  format:&format 
+											  errorDescription:&error];
+		if (temp) {
+//			NSString *url = [temp objectForKey:@"string"];
+//			NSLog(@"URL: %@", url);
+		}
+		
+		
+		NSLog(@"File downloaded");
+		NSLog(@"Log: %@", data);
+	} else {
+		NSLog(@"Failed");
+	}
+
 }
 
-- (UIImage *) ensureFileAvailabilityFromURL:(NSString *)URL hash:(NSString *)hash {
-	// ja hešs nav tad, aprēķinam
-	if (!hash) {
-		hash = [URL MD5Hash];
+- (NSData *)readFile:(NSString *)fileName URL:(NSString *)URL {
+	NSFileManager *mng = [NSFileManager defaultManager];
+	NSString *dataPath = [dataDirPath stringByAppendingPathComponent:fileName];
+	if (![mng fileExistsAtPath:dataPath]) {
+		NSData *file = [self downloadDataFromURL:[URL stringByAppendingPathComponent:fileName]];
+		if (file) {
+			[file writeToFile:dataPath atomically:YES];
+		}
 	}
-	
-	@synchronized (dataCache) {
-//		NSString *path = [self pathForCacheImage:hash];
-//		NSFileManager *mng = [NSFileManager defaultManager];
-//		if (![mng fileExistsAtPath:path]) {
-//			NSData *data = [self downloadDataFromURL:URL];
-//			if (data) {
-//				[data writeToFile:path atomically:YES];
-//			}
-//		}
-	}
-	
-//	@synchronized (imageCache) {
-//		UIImage *image = [imageCache objectForKey:hash];
-//		if (image) {
-//			return image;
-//		}
-//		
-//		NSString *path = [self pathForCacheImage:hash];
-//		NSFileManager *mng = [NSFileManager defaultManager];
-//		if (![mng fileExistsAtPath:path]) {
-//			NSData *data = [self downloadDataFromURL:URL];
-//			if (data) {
-//				[data writeToFile:path atomically:YES];
-//			}
-//		}
-//		image = [UIImage imageWithContentsOfFile:path];
-//		[imageCache setObject:image forKey:hash];
-//		return image;		
-//	}
-	return nil;
+	return [NSData dataWithContentsOfFile:dataPath];
 }
-
-//- (NSString *) pathForCacheImage:(NSString *)hash {
-//	NSString *path = APP_CACHES_DIR;
-//	
-//	path = [path stringByAppendingPathComponent:@"images"];
-//	NSFileManager *mng = [NSFileManager defaultManager];
-//	if (![mng fileExistsAtPath:path]) {
-//		[mng createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-//	}
-//	
-//	path = [path stringByAppendingPathComponent:hash];
-//	return path;
-//}
 
 - (NSData *) downloadDataFromURL:(NSString *)URL {
 	NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:URL] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
@@ -81,6 +64,7 @@ HouseAdManager *houseAdManager;
 	if (err) {
 		return nil;
 	} else {
+		
 		return data;
 	}
 }
@@ -104,7 +88,15 @@ HouseAdManager *houseAdManager;
 
 - (id)init {
 	self = [super init];
-	if (self != nil) {}
+	
+	if (self != nil) {
+		// 
+		dataDirPath = [[APP_CACHES_DIR stringByAppendingPathComponent:@"houseAds"] retain];
+		NSFileManager *mng = [NSFileManager defaultManager];
+		if (![mng fileExistsAtPath:dataDirPath]) {
+			[mng createDirectoryAtPath:dataDirPath withIntermediateDirectories:YES attributes:nil error:nil];
+		}
+	}
 	return self;
 }
 
@@ -127,6 +119,12 @@ HouseAdManager *houseAdManager;
 
 - (id)autorelease {
     return self;
+}
+
+- (void)dealloc {
+	[dataDirPath release];
+	
+	[super dealloc];
 }
 
 @end
