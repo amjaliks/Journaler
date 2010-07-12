@@ -206,32 +206,18 @@ enum {
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#ifdef BETA
-
 #ifndef LITEVERSION
     return 3;
 #else
 	return 2;
 #endif
-	
-#else // BETA
-	
-#ifndef LITEVERSION
-    return 2;
-#else
-	return 1;
-#endif
-	
-#endif // BETA
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) return 2;
-#ifdef BETA
 	if (section == 1) return 5;
-#endif
 	return 1;
 }
 
@@ -292,7 +278,6 @@ enum {
 				cell.detailTextLabel.text = NSLocalizedString(@"Custom", nil);
 			}
 		}
-#ifdef BETA
 	} else if (indexPath.section == SectionAdditional) {
 		if (indexPath.row == SectionAdditionalRowPicture) {
 			cell.textLabel.text = NSLocalizedString(@"Userpic", nil);
@@ -324,7 +309,6 @@ enum {
 			((TextFieldCellView *)cell).text.placeholder = nil;
 			[(TextFieldCellView *)cell setTarget:self action:@selector(locationChanged:)];
 		}
-#endif // BETA
 	} else if (indexPath.section == SectionPromote) {
 		cell.textLabel.text = NSLocalizedString(@"Promote Journaler", nil);
 		UISwitch *cellSwitch = (UISwitch *)[cell viewWithTag:SwitchTag];
@@ -477,10 +461,8 @@ enum {
 		}
 	}
 	
-#ifdef BETA
 	TextFieldCellView *cell = (TextFieldCellView *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SectionAdditionalRowMusic inSection:SectionAdditional]];
 	cell.text.placeholder = currentSong;
-#endif
 }
 
 #pragma mark -
