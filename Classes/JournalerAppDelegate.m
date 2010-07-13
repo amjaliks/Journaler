@@ -87,11 +87,15 @@
 	[houseAdManager loadAd];
 	[houseAdManager release];
 	
+	adManager = [[ADManager alloc] initWithNavigationController:navigationController];
+	
     [window makeKeyAndVisible];
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {	
+	[adManager release];
+
 	[model saveAll];
 	[[AccountManager sharedManager] storeAccountStateInfo];
 	

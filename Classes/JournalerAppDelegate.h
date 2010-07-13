@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 #import "Model.h"
 #import "UserPicCache.h"
+#import "ADManager.h"
 
 #define APP_DELEGATE ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate])
 #define APP_USER_PIC_CACHE APP_DELEGATE.userPicCache
@@ -31,6 +32,10 @@
 	WebViewController *webViewController;
 	
 	ALReporter *reporter;
+	
+#ifdef LITEVERSION
+	ADManager *adManager;
+#endif
 }
 
 @property (nonatomic, retain) ALReporter *reporter;
