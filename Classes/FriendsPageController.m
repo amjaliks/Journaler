@@ -50,6 +50,7 @@
 	self.navigationItem.titleView = titleView;
 	
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+#ifdef LITEVERSION
 	// reklāmas baneris
 	bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
 	if (bannerView) {
@@ -58,15 +59,18 @@
 		bannerView.delegate = self;
 	}
 #endif
+#endif
 }
 
 - (void)viewDidUnload {
 	// virsraksta skats
 	self.navigationItem.titleView = nil;
 	
+#ifdef LITEVERSION
 	// reklāmas baneris
 	bannerView.delegate = nil;
 	[bannerView release];
+#endif
 	
 	[titleView release];
 }
