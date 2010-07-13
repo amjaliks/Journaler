@@ -30,7 +30,11 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {	
 	// sagatavojam satistikas savācējmoduli
+#ifndef LITEVERSION
 	NSString *appUID = @"tM7hdncHys";
+#else
+	NSString *appUID = @"LrAKgAl3bA";
+#endif
 	NSURL *reportURL = [NSURL URLWithString:@"http://tomcat.keeper.lv/anl/report"];
 	reporter = [[ALReporter alloc] initWithAppUID:appUID reportURL:reportURL];
 	
