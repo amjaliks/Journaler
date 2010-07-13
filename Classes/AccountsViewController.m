@@ -39,9 +39,12 @@
 	
 	accounts = [[AccountManager sharedManager] accounts];
 	
+#ifndef LITEVERSION
 	// konta pievienošanas poga
-	addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAccount:)];
+	UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAccount:)];
 	self.navigationItem.rightBarButtonItem = addButtonItem;
+	[addButtonItem release];
+#endif
 	
 	// virsraksts
 	self.navigationItem.title = @"Accounts";
@@ -59,14 +62,6 @@
 	} else {
 		[table deselectRowAtIndexPath:[table indexPathForSelectedRow] animated:YES];
 		[self.navigationController setToolbarHidden:NO animated:YES];
-		
-#ifdef LITEVERSION
-		if ([accounts count] >= 2) {
-			self.navigationItem.rightBarButtonItem = nil;
-		} else {
-			self.navigationItem.rightBarButtonItem = addButtonItem;
-		}
-#endif
 	}
 }
 
@@ -95,12 +90,15 @@
 
 - (void)viewDidUnload {
 	[editButtonItem release];
-	[addButtonItem release];
 
+	self.navigationItem.leftBarButtonItem = nil;
+	self.navigationItem.rightBarButtonItem = nil;
 	self.toolbarItems = nil;
 }
 
 - (void)openAccount:(LJAccount *)account animated:(BOOL)animated {
+	self.table.editing = NO;
+	
 	// ja nav labošanas režīms, tad veram vaļā konta skatījumu
 	AccountTabBarController *tabBarController = [[cacheTabBarControllers objectForKey:account.title] retain];
 	if (!tabBarController) {
@@ -191,11 +189,6 @@
 		} else {
 			// nosūtam informāciju par kontiem
 			[self sendReport];
-		
-#ifdef LITEVERSION
-			// parādam "+" pogu
-			[self.navigationItem setRightBarButtonItem:addButtonItem animated:YES];
-#endif
 		}
     }   
 }

@@ -132,6 +132,8 @@
 					showErrorMessage(@"Login error", decodeError([error code]));
 				}
 			}
+		} else {
+			return YES;
 		}
 	}
 	return NO;
