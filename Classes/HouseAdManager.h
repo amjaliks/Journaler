@@ -8,14 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface HouseAdManager : NSObject {
 	NSString *dataDirPath;
+	NSMutableDictionary *houseAdInfo;
+	
+	UIImage *image;
 }
 
 + (HouseAdManager *)houseAdManager;
 
 - (void)loadAd;
+- (void)showAd:(UINavigationController *)navigationController;
+- (BOOL)prepareAd;
+
+- (void)loadHouseAdInfo;
+- (void)storeHouseAdInfo;
 
 - (NSData *)readFile:(NSString *)fileName URL:(NSString *)URL;
 - (NSData *) downloadDataFromURL:(NSString *)URL;

@@ -9,6 +9,9 @@
 #import "HouseAdManager.h"
 #import "Macros.h"
 #import "NSStringMD5.h"
+#import "HouseAdViewController.h"
+
+#define kHouseAdInfoFileName @"houseadinfo.bin"
 
 HouseAdManager *houseAdManager;
 
@@ -18,35 +21,63 @@ HouseAdManager *houseAdManager;
 #pragma mark Reklāmas ielāde
 
 - (void)loadAd {
-	NSData *data = [self readFile:@"test.plist" URL:@"http:ndu/~ndudareva/"];
+	NSData *data = [self readFile:@"test.plist" URL:@"http:ndu/~ndudareva/test.plist"];
 	if (data) {
 		NSPropertyListFormat format;
 		NSString *error = nil;
-		
-		NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization 
-											  propertyListFromData:data 
-											  mutabilityOption:NSPropertyListMutableContainersAndLeaves 
-											  format:&format 
-											  errorDescription:&error];
-		if (temp) {
-//			NSString *url = [temp objectForKey:@"string"];
-//			NSLog(@"URL: %@", url);
-		}
-		
-		
-		NSLog(@"File downloaded");
-		NSLog(@"Log: %@", data);
-	} else {
-		NSLog(@"Failed");
-	}
 
+		NSString *url = [NSPropertyListSerialization 
+						  propertyListFromData:data 
+						  mutabilityOption:NSPropertyListImmutable 
+						  format:&format 
+						  errorDescription:&error];
+		if (url) {
+			NSData *file = [self readFile:@"banner.png" URL:url];
+			image = [UIImage imageWithData:file];
+
+			// tiks ielādēta informācija par reklāmu
+		}
+	}
 }
+
+- (void)showAd:(UINavigationController *)navigationController {
+	if ([self prepareAd]) {
+		// tiek parādīts logs ar reklāmu
+		HouseAdViewController *houseAdViewController = [[HouseAdViewController alloc] initWithNibName:@"HouseAdViewController" bundle:nil];
+		[navigationController presentModalViewController:houseAdViewController animated:NO];
+		[houseAdViewController startShowing:image];
+		[houseAdViewController release];
+	}
+}
+
+- (BOOL)prepareAd {
+	[self loadHouseAdInfo];
+	
+	return YES;
+}
+
+- (void)loadHouseAdInfo {
+	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kHouseAdInfoFileName];
+	houseAdInfo = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
+	
+	if (!houseAdInfo) {
+		houseAdInfo = [[NSMutableDictionary alloc] init];
+	}
+}
+
+- (void)storeHouseAdInfo {
+	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kHouseAdInfoFileName];
+	[NSKeyedArchiver archiveRootObject:houseAdInfo toFile:path];
+}
+
+#pragma mark -
+#pragma mark Failu lasīšana un ielāde
 
 - (NSData *)readFile:(NSString *)fileName URL:(NSString *)URL {
 	NSFileManager *mng = [NSFileManager defaultManager];
 	NSString *dataPath = [dataDirPath stringByAppendingPathComponent:fileName];
 	if (![mng fileExistsAtPath:dataPath]) {
-		NSData *file = [self downloadDataFromURL:[URL stringByAppendingPathComponent:fileName]];
+		NSData *file = [self downloadDataFromURL:URL];
 		if (file) {
 			[file writeToFile:dataPath atomically:YES];
 		}
@@ -64,7 +95,6 @@ HouseAdManager *houseAdManager;
 	if (err) {
 		return nil;
 	} else {
-		
 		return data;
 	}
 }
@@ -123,6 +153,8 @@ HouseAdManager *houseAdManager;
 
 - (void)dealloc {
 	[dataDirPath release];
+	[houseAdInfo release];
+	[image release];
 	
 	[super dealloc];
 }
