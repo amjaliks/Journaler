@@ -7,22 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableViewController.h"
 #import "AccountEditorController.h"
 
 // kontu saraksta kontrolieris
-@interface AccountsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AccountEditorControllerDataSource, AccountEditorControllerDelegate> {
+@interface AccountsViewController : TableViewController<AccountEditorControllerDataSource, AccountEditorControllerDelegate> {
 	UINavigationController *editAccountViewController;
 	UIViewController *accountViewController;
-	
-	UITableView *table;
 	
 	NSMutableArray *accounts;
 	LJAccount *selectedAccount;
 	NSString *selectedAccountTitle;
-	
-	// labošanas poga
-	UIBarButtonItem *editButtonItem;
-	
+		
 	// kešs inicializēto kontrolierus glabāšanai
 	NSMutableDictionary *cacheTabBarControllers;
 	
@@ -31,10 +27,6 @@
 
 @property (nonatomic, retain) IBOutlet UIViewController *editAccountViewController;
 @property (nonatomic, retain) IBOutlet UIViewController *accountViewController;
-
-@property (nonatomic, retain) IBOutlet UITableView *table;
-
-- (void)toggleEdit;
 
 - (IBAction)addAccount:(id)sender;
 

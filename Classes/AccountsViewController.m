@@ -18,11 +18,8 @@
 
 @implementation AccountsViewController
 
-
 @synthesize editAccountViewController;
 @synthesize accountViewController;
-
-@synthesize table;
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
 	if (self = [super initWithNibName:nibName bundle:nibBundle]) {
@@ -34,8 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    editButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleEdit)];
-    self.navigationItem.leftBarButtonItem = editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 	
 	accounts = [[AccountManager sharedManager] accounts];
 	
@@ -60,7 +56,6 @@
 	if ([accounts count] == 0) {
 		[self addAccount:nil];
 	} else {
-		[table deselectRowAtIndexPath:[table indexPathForSelectedRow] animated:YES];
 		[self.navigationController setToolbarHidden:NO animated:YES];
 	}
 }
@@ -89,15 +84,13 @@
 }
 
 - (void)viewDidUnload {
-	[editButtonItem release];
-
 	self.navigationItem.leftBarButtonItem = nil;
 	self.navigationItem.rightBarButtonItem = nil;
 	self.toolbarItems = nil;
 }
 
 - (void)openAccount:(LJAccount *)account animated:(BOOL)animated {
-	self.table.editing = NO;
+	self.editing = NO;
 	
 	// ja nav labošanas režīms, tad veram vaļā konta skatījumu
 	AccountTabBarController *tabBarController = [[cacheTabBarControllers objectForKey:account.title] retain];
@@ -240,13 +233,11 @@
 	} else {
 		[accounts addObject:account];
 		selectedAccount = account;
-		if (table.editing) {
-			[self setEditing:NO];
-		}
+		self.editing = NO;
 		[self openAccount:account animated:YES];
 	}
 	[[AccountManager sharedManager] storeAccounts];
-	[table reloadData];
+	[self.tableView reloadData];
 		
 	[self dismissModalViewControllerAnimated:YES];
 	
@@ -281,28 +272,6 @@
 	}
 	[reporter setObject:servers forProperty:@"server"];
 	[servers release];
-}
-
-- (void) toggleEdit {
-	if (table.editing) {
-		[table setEditing:NO animated:YES];
-		editButtonItem.title = @"Edit";
-		editButtonItem.style = UIBarButtonItemStyleBordered;
-	} else {
-		[table setEditing:YES animated:YES];
-		editButtonItem.title = @"Done";
-		editButtonItem.style = UIBarButtonItemStyleDone;
-	}
-}
-
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-	editButtonItem.title = @"Done";
-	editButtonItem.style = UIBarButtonItemStyleDone;
-}
-
-- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-	editButtonItem.title = @"Edit";
-	editButtonItem.style = UIBarButtonItemStyleBordered;
 }
 
 - (IBAction)showSettings {

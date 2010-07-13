@@ -38,6 +38,8 @@
 		17132C77108BB6EA007F6C24 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 17132C76108BB6EA007F6C24 /* friends.png */; };
 		1722426611EC142300BE4DE2 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B29B0710FA48A700C5EFA4 /* AccountsViewController.m */; };
 		172242D011EC152900BE4DE2 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E3B2A7118656C300ED729D /* MediaPlayer.framework */; };
+		1722438C11ECA7DC00BE4DE2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1722438B11ECA7DC00BE4DE2 /* TableViewController.m */; };
+		1722438D11ECA7DC00BE4DE2 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1722438B11ECA7DC00BE4DE2 /* TableViewController.m */; };
 		1724FF041186FFAE00639437 /* locateme-hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 1724FF021186FFAE00639437 /* locateme-hover.png */; };
 		1724FF051186FFAE00639437 /* locateme.png in Resources */ = {isa = PBXBuildFile; fileRef = 1724FF031186FFAE00639437 /* locateme.png */; };
 		1724FF061186FFAE00639437 /* locateme-hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 1724FF021186FFAE00639437 /* locateme-hover.png */; };
@@ -254,6 +256,8 @@
 		17132B33108B3A47007F6C24 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		17132C73108BB5B8007F6C24 /* newpost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newpost.png; sourceTree = "<group>"; };
 		17132C76108BB6EA007F6C24 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
+		1722438A11ECA7DC00BE4DE2 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		1722438B11ECA7DC00BE4DE2 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		1724FF021186FFAE00639437 /* locateme-hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locateme-hover.png"; sourceTree = "<group>"; };
 		1724FF031186FFAE00639437 /* locateme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locateme.png; sourceTree = "<group>"; };
 		172860C8116D40BB00171A85 /* SelfAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfAdViewController.h; sourceTree = "<group>"; };
@@ -739,6 +743,8 @@
 				1745D399117E7D8C0016E616 /* NSSetAdditions.m */,
 				178BF6EB1183139A00BEEFAD /* UIViewAdditions.h */,
 				178BF6EC1183139A00BEEFAD /* UIViewAdditions.m */,
+				1722438A11ECA7DC00BE4DE2 /* TableViewController.h */,
+				1722438B11ECA7DC00BE4DE2 /* TableViewController.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -1037,6 +1043,7 @@
 				377EFE0711E4C0AA009E9907 /* LJComment.m in Sources */,
 				3799D19C11E754370039226A /* HouseAdManager.m in Sources */,
 				1722426611EC142300BE4DE2 /* AccountsViewController.m in Sources */,
+				1722438D11ECA7DC00BE4DE2 /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1111,6 +1118,7 @@
 				377EFE0811E4C0AA009E9907 /* LJComment.m in Sources */,
 				3799D17811E74CA60039226A /* SelfAdViewController.m in Sources */,
 				3799D19D11E754370039226A /* HouseAdManager.m in Sources */,
+				1722438C11ECA7DC00BE4DE2 /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
