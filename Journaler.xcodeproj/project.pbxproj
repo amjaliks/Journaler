@@ -1357,7 +1357,11 @@
 					"-DLITEVERSION",
 					"-DDEBUG",
 				);
-				OTHER_LDFLAGS = "-licucore";
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					iAd,
+					"-licucore",
+				);
 				PRODUCT_NAME = "Journaler Lite";
 			};
 			name = "Debug (3.0)";

@@ -50,16 +50,24 @@
 	self.navigationItem.titleView = titleView;
 	
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+	// reklāmas baneris
 	bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-	bannerView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifier320x50];
-	bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
-	bannerView.delegate = self;
+	if (bannerView) {
+		bannerView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifier320x50];
+		bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
+		bannerView.delegate = self;
+	}
 #endif
 }
 
 - (void)viewDidUnload {
 	// virsraksta skats
 	self.navigationItem.titleView = nil;
+	
+	// reklāmas baneris
+	bannerView.delegate = nil;
+	[bannerView release];
+	
 	[titleView release];
 }
 
