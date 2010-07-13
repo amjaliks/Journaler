@@ -87,14 +87,18 @@
 	[houseAdManager loadAd];
 	[houseAdManager release];
 	
+#ifdef LITEVERSION
 	adManager = [[ADManager alloc] initWithNavigationController:navigationController];
+#endif
 	
     [window makeKeyAndVisible];
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {	
+#ifdef LITEVERSION
 	[adManager release];
+#endif
 
 	[model saveAll];
 	[[AccountManager sharedManager] storeAccountStateInfo];
