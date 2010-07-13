@@ -39,34 +39,14 @@
 }
 */
 
-#ifdef LITEVERSION
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-	cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
-	self.navigationItem.leftBarButtonItem = cancelButton;
-
-	doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(saveAccount:)];
-	self.navigationItem.rightBarButtonItem = doneButton;
-}
-#endif
-
 - (void)setAccount:(LJAccount *)account {
-#ifdef LITEVERSION
-	newAccount = account == nil;
-#endif
-	
 	if (account) {
 		self.title = @"Edit account";
 		usernameText.text = account.user;
 		passwordText.text = account.password;
 		serverText.text = account.server;
 	} else {
-#ifdef LITEVERSION
-		self.title = @"Set account";
-#else
 		self.title = @"Add account";
-#endif
 		usernameText.text = nil;
 		passwordText.text = nil;
 		serverText.text = nil;
@@ -94,20 +74,10 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-#ifdef LITEVERSION
-- (void)viewDidUnload {
-	[cancelButton release];
-}
-#endif
-
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#ifdef LITEVERSION
-	return 2;
-#else
     return 1;
-#endif
 }
 
 
@@ -141,26 +111,8 @@
     return nil;
 }
 
-#ifdef LITEVERSION
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == 1) {
-		SettingsController *settings = [[SettingsController alloc] initWithNibName:@"SettingsController" bundle:nil];
-		UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settings];
-		
-		[self presentModalViewController:nav animated:YES];
-		
-		[nav release];
-		[settings release];
-	}
-}
-#endif
-
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-#ifdef LITEVERSION
-	return newAccount && section == 0 ? @"Enter username and password for your account. If using a LiveJournal clone enter the server name as well." : nil;
-#else
 	return @"Enter username and password for your account. If using a LiveJournal clone enter the server name as well.";
-#endif
 }
 
 - (void)dealloc {
@@ -237,6 +189,8 @@
 		[passwordText becomeFirstResponder];
 	} else if (textField == passwordText) {
 		[serverText becomeFirstResponder];
+	} else if (textField == serverText) {
+		[self saveAccount:nil];
 	} else {
 		[textField resignFirstResponder];
 	}

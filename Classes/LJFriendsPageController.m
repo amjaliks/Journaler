@@ -375,9 +375,6 @@
 		}
 	} else {
 		Post *post = [displayedPosts objectAtIndex:indexPath.row];
-#ifdef LITEVERSION
-		selectedPostSubject = [post subjectPreview];
-#endif
 		[self openPost:post animated:YES];
 	}
 }

@@ -26,10 +26,6 @@
 	
 	id<AccountEditorControllerDataSource> dataSource;
 	id<AccountEditorControllerDelegate> delegate;
-	
-#ifdef LITEVERSION
-	BOOL newAccount;
-#endif
 }
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *usernameCell;

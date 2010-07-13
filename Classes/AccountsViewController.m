@@ -40,9 +40,8 @@
 	accounts = [[AccountManager sharedManager] accounts];
 	
 	// konta pievienošanas poga
-	UIBarButtonItem *addAccountButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAccount:)];
-	self.navigationItem.rightBarButtonItem = addAccountButton;
-	[addAccountButton release];
+	addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAccount:)];
+	self.navigationItem.rightBarButtonItem = addButtonItem;
 	
 	// virsraksts
 	self.navigationItem.title = @"Accounts";
@@ -59,7 +58,15 @@
 		[self addAccount:nil];
 	} else {
 		[table deselectRowAtIndexPath:[table indexPathForSelectedRow] animated:YES];
-		[self.navigationController setToolbarHidden:NO animated:YES];	
+		[self.navigationController setToolbarHidden:NO animated:YES];
+		
+#ifdef LITEVERSION
+		if ([accounts count] >= 2) {
+			self.navigationItem.rightBarButtonItem = nil;
+		} else {
+			self.navigationItem.rightBarButtonItem = addButtonItem;
+		}
+#endif
 	}
 }
 
@@ -88,6 +95,8 @@
 
 - (void)viewDidUnload {
 	[editButtonItem release];
+	[addButtonItem release];
+
 	self.toolbarItems = nil;
 }
 
@@ -182,6 +191,11 @@
 		} else {
 			// nosūtam informāciju par kontiem
 			[self sendReport];
+		
+#ifdef LITEVERSION
+			// parādam "+" pogu
+			[self.navigationItem setRightBarButtonItem:addButtonItem animated:YES];
+#endif
 		}
     }   
 }

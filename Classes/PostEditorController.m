@@ -248,11 +248,7 @@
 		[subjectField resignFirstResponder];
 
 		[self.parentViewController.navigationItem setRightBarButtonItem:postButton animated:YES];
-#ifndef LITEVERSION
 		[self.parentViewController.navigationItem setLeftBarButtonItem:nil animated:YES];
-#else 
-		[self.parentViewController.navigationItem setLeftBarButtonItem:((AccountTabBarController *)self.tabBarController).accountButton animated:YES];
-#endif
 
 		[self resizeTextView];
 	}

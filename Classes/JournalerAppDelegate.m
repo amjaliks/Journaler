@@ -14,12 +14,8 @@
 #import "LiveJournal.h"
 #import "HouseAdManager.h"
 
-#ifndef LITEVERSION
-	#import "AccountsViewController.h"
-#else
-	#import "AccountTabBarController.h"
-	#import "SelfAdViewController.h"
-#endif
+#import "AccountsViewController.h"
+#import "SelfAdViewController.h"
 
 @implementation JournalerAppDelegate
 
@@ -49,41 +45,42 @@
 	[[AccountManager sharedManager] loadAccounts];
 	[[AccountManager sharedManager] loadAccountStateInfo];
 	
-	rootViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];
+	// atveram kontu sarakstu
+	accountsViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];
 	
-	navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+	navigationController = [[UINavigationController alloc] initWithRootViewController:accountsViewController];
 	
 	NSString *accountKey = [[AccountManager sharedManager] openedAccount];
 	if (accountKey) {
 		LJAccount *account = [[AccountManager sharedManager] accountForKey:accountKey];
 		if (account) {
-			[rootViewController view];
-			[rootViewController openAccount:account animated:NO];
+			[accountsViewController view];
+			[accountsViewController openAccount:account animated:NO];
 		}
 	}
 	
 	[window addSubview:navigationController.view];
 	
-//#ifdef LITEVERSION
-//	NSString *docDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//	NSString *nextSelfAdShowTimePath = [docDirPath stringByAppendingPathComponent:@"nextSelfAdShowTime.bin"];
-//	NSDate *nextSelfAdShowTime = [NSKeyedUnarchiver unarchiveObjectWithFile:nextSelfAdShowTimePath];
-//	
-//	if (nextSelfAdShowTime) {
-//		if ([nextSelfAdShowTime compare:[NSDate date]] != NSOrderedDescending) {
-//			SelfAdViewController *selfAdViewController = [[SelfAdViewController alloc] initWithNibName:@"SelfAdViewController" bundle:nil];
-//			[navigationController presentModalViewController:selfAdViewController animated:NO];
-//			[selfAdViewController startCountDown];
-//			[selfAdViewController release];
-//			
-//			nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(7.0f * 24.0f * 3600.0f)];
-//			[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
-//		}
-//	} else {
-//		nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
-//		[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
-//	}
-//#endif
+#ifdef LITEVERSION
+	NSString *docDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+	NSString *nextSelfAdShowTimePath = [docDirPath stringByAppendingPathComponent:@"nextSelfAdShowTime.bin"];
+	NSDate *nextSelfAdShowTime = [NSKeyedUnarchiver unarchiveObjectWithFile:nextSelfAdShowTimePath];
+	
+	if (nextSelfAdShowTime) {
+		if ([nextSelfAdShowTime compare:[NSDate date]] != NSOrderedDescending) {
+			SelfAdViewController *selfAdViewController = [[SelfAdViewController alloc] initWithNibName:@"SelfAdViewController" bundle:nil];
+			[navigationController presentModalViewController:selfAdViewController animated:NO];
+			[selfAdViewController startCountDown];
+			[selfAdViewController release];
+			
+			nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
+			[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
+		}
+	} else {
+		nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
+		[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
+	}
+#endif
 	
 	// šeit tiks ielādēta reklāma 
 	HouseAdManager *houseAdManager = [[HouseAdManager alloc] init];
@@ -98,7 +95,7 @@
 	[model saveAll];
 	[[AccountManager sharedManager] storeAccountStateInfo];
 	
-	[rootViewController release];
+	[accountsViewController release];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {

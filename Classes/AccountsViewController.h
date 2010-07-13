@@ -22,6 +22,7 @@
 	
 	// labošanas poga
 	UIBarButtonItem *editButtonItem;
+	UIBarButtonItem *addButtonItem;
 	
 	// kešs inicializēto kontrolierus glabāšanai
 	NSMutableDictionary *cacheTabBarControllers;

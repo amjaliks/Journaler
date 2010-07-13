@@ -17,11 +17,7 @@
 
 @class ALReporter, WebViewController;
 
-#ifndef LITEVERSION
 @class AccountsViewController;
-#else
-@class LJAccount;
-#endif
 
 @interface JournalerAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -30,11 +26,7 @@
 	
     UIWindow *window;
     UINavigationController *navigationController;
-#ifndef LITEVERSION
-	AccountsViewController *rootViewController;
-#else
-	UIViewController *rootViewController;
-#endif
+	AccountsViewController *accountsViewController;
 	
 	WebViewController *webViewController;
 	

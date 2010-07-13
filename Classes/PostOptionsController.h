@@ -17,7 +17,7 @@
 @class LJAccount;
 @protocol PostOptionsControllerDataSource;
 
-@interface PostOptionsController : UITableViewController <CLLocationManagerDelegate, MKReverseGeocoderDelegate> {
+@interface PostOptionsController : UITableViewController { //<CLLocationManagerDelegate, MKReverseGeocoderDelegate> {
 	LJAccount *account;
 	
 	// vērtības
@@ -38,7 +38,7 @@
 	UIView *locateView;
 	UIButton *locateMeButton;
 	UIActivityIndicatorView *locateActivity;
-	CLLocationManager *locationManager;
+//	CLLocationManager *locationManager;
 	//CMGeocoder *geocoder;
 	
 	BOOL hidingKeyboard;
@@ -75,10 +75,10 @@
 
 - (void)musicPlayerStateChanged:(id)sender;
 
-- (void)locateMePressed:(id)sender;
-- (void)revertLocateMeButton;
-- (void)releaseGeocoder;
-- (void)failedToLocate;
+//- (void)locateMePressed:(id)sender;
+//- (void)revertLocateMeButton;
+//- (void)releaseGeocoder;
+//- (void)failedToLocate;
 
 - (void)keyboardWillHide:(id)sender;
 - (void)keyboardDidHide:(id)sender;
