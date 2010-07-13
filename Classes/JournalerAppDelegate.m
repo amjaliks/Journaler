@@ -82,25 +82,17 @@
 	}
 #endif
 	
-	// šeit tiks ielādēta reklāma 
-	HouseAdManager *houseAdManager = [[HouseAdManager alloc] init];
-	[houseAdManager loadAd];
-	[houseAdManager showAd:navigationController];
-	[houseAdManager release];
-		
-#ifdef LITEVERSION
-	adManager = [[ADManager alloc] initWithNavigationController:navigationController];
-#endif
+//	// šeit tiks ielādēta reklāma 
+//	HouseAdManager *houseAdManager = [[HouseAdManager alloc] init];
+//	[houseAdManager loadAd];
+//	[houseAdManager showAd:navigationController];
+//	[houseAdManager release];
 	
     [window makeKeyAndVisible];
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {	
-#ifdef LITEVERSION
-	[adManager release];
-#endif
-
 	[model saveAll];
 	[[AccountManager sharedManager] storeAccountStateInfo];
 	

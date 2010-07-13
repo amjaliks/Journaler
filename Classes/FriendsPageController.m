@@ -48,6 +48,13 @@
 	// virsraksta skats
 	titleView = [[FriendsPageTitleView alloc] initWithTarget:self action:@selector(openFilter:) interfaceOrientation:self.interfaceOrientation];
 	self.navigationItem.titleView = titleView;
+	
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+	bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
+	bannerView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifier320x50];
+	bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
+	bannerView.delegate = self;
+#endif
 }
 
 - (void)viewDidUnload {
@@ -101,7 +108,7 @@
 	@synchronized (statusLineView) {
 		if (!statusLineShowed) {
 			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-			[self.view addSubview:statusLineView];
+			[friendsPageView addSubview:statusLineView];
 			
 			[pool release];
 		}
@@ -126,5 +133,52 @@
 	[super dealloc];
 }
 
+#pragma mark -
+#pragma mark ADBannerViewDelegate
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+	if (!showingBanner) {
+		CGRect viewFrame = friendsPageView.frame;
+		CGRect bannerFrame = banner.frame;
+		
+		// novietojam baneri zem skata
+		bannerFrame.origin.y = viewFrame.size.height;
+		banner.frame = bannerFrame;
+		[self.view addSubview:banner];
+		
+		// aprēķina jaunos izmērus un izvietojumu
+		viewFrame.size.height -= bannerFrame.size.height;
+		bannerFrame.origin.y = viewFrame.size.height;
+		
+		// parādam baneri
+		[UIView beginAnimations:@"showBanner" context:nil];
+		friendsPageView.frame = viewFrame;
+		banner.frame = bannerFrame;
+		[UIView commitAnimations];
+		
+		showingBanner = YES;
+	}
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+	if (showingBanner) {
+		CGRect viewFrame = friendsPageView.frame;
+		CGRect bannerFrame = banner.frame;
+		
+		// aprēķina jaunos izmērus un izvietojumu
+		viewFrame.size.height += bannerFrame.size.height;
+		bannerFrame.origin.y = viewFrame.size.height;
+		
+		// paslēpjam baneri
+		[UIView beginAnimations:@"hideBanner" context:nil];
+		friendsPageView.frame = viewFrame;
+		banner.frame = bannerFrame;
+		[UIView commitAnimations];
+		
+		showingBanner = NO;
+	}
+}
+#endif
 
 @end
