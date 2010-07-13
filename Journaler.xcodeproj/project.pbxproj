@@ -292,7 +292,7 @@
 		1746704C10AD0353008298F8 /* RefreshTurnedOff.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RefreshTurnedOff.html; sourceTree = "<group>"; };
 		1750B0D61097A3B200C1D2A8 /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video.png; sourceTree = "<group>"; };
 		1750B0D81097A41000C1D2A8 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
-		1750B1831097B3F900C1D2A8 /* Journaler Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Journaler Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1750B1831097B3F900C1D2A8 /* JournalerLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JournalerLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JournalerLite-Info.plist"; sourceTree = "<group>"; };
 		1759F3181093674E0008AA60 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = ../WebViewController.h; sourceTree = "<group>"; };
 		1759F3191093674E0008AA60 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../WebViewController.m; sourceTree = "<group>"; };
@@ -776,7 +776,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Journaler.app */,
-				1750B1831097B3F900C1D2A8 /* Journaler Lite.app */,
+				1750B1831097B3F900C1D2A8 /* JournalerLite.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -846,9 +846,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1750B1491097B3F900C1D2A8 /* Journaler Lite */ = {
+		1750B1491097B3F900C1D2A8 /* JournalerLite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1750B17F1097B3F900C1D2A8 /* Build configuration list for PBXNativeTarget "Journaler Lite" */;
+			buildConfigurationList = 1750B17F1097B3F900C1D2A8 /* Build configuration list for PBXNativeTarget "JournalerLite" */;
 			buildPhases = (
 				1750B14A1097B3F900C1D2A8 /* Resources */,
 				1750B1601097B3F900C1D2A8 /* Sources */,
@@ -858,9 +858,9 @@
 			);
 			dependencies = (
 			);
-			name = "Journaler Lite";
+			name = JournalerLite;
 			productName = Journaler;
-			productReference = 1750B1831097B3F900C1D2A8 /* Journaler Lite.app */;
+			productReference = 1750B1831097B3F900C1D2A8 /* JournalerLite.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1D6058900D05DD3D006BFB54 /* Journaler */ = {
@@ -900,7 +900,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Journaler */,
-				1750B1491097B3F900C1D2A8 /* Journaler Lite */,
+				1750B1491097B3F900C1D2A8 /* JournalerLite */,
 			);
 		};
 /* End PBXProject section */
@@ -1195,7 +1195,7 @@
 					iAd,
 					"-licucore",
 				);
-				PRODUCT_NAME = "Journaler Lite";
+				PRODUCT_NAME = JournalerLite;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5EE54C79-D994-4C7E-8CC5-9E9EF523EB78";
 			};
 			name = "Distribution (App Store)";
@@ -1224,7 +1224,7 @@
 					iAd,
 					"-licucore",
 				);
-				PRODUCT_NAME = "Journaler Lite";
+				PRODUCT_NAME = JournalerLite;
 			};
 			name = Debug;
 		};
@@ -1246,7 +1246,7 @@
 					iAd,
 					"-licucore",
 				);
-				PRODUCT_NAME = "Journaler Lite";
+				PRODUCT_NAME = JournalerLite;
 			};
 			name = Release;
 		};
@@ -1269,7 +1269,7 @@
 					iAd,
 					"-licucore",
 				);
-				PRODUCT_NAME = "Journaler Lite";
+				PRODUCT_NAME = JournalerLite;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D368EE81-0AAE-4FF1-9CB3-A18373338E71";
 			};
 			name = "Distribution (Ad Hoc)";
@@ -1362,7 +1362,7 @@
 					iAd,
 					"-licucore",
 				);
-				PRODUCT_NAME = "Journaler Lite";
+				PRODUCT_NAME = JournalerLite;
 			};
 			name = "Debug (3.0)";
 		};
@@ -1430,7 +1430,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1750B17F1097B3F900C1D2A8 /* Build configuration list for PBXNativeTarget "Journaler Lite" */ = {
+		1750B17F1097B3F900C1D2A8 /* Build configuration list for PBXNativeTarget "JournalerLite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1750B1801097B3F900C1D2A8 /* Debug */,
