@@ -34,7 +34,7 @@
 
     	refreshButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
 		self.navigationItem.rightBarButtonItem = refreshButtonItem;
-		self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Friends", @"Friends") style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];	
+		self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Friends", @"Friends") style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	}
     return self;
 }
@@ -44,6 +44,7 @@
 	
 	// stāvokļa josla
 	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
+	statusLineView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 	
 	// virsraksta skats
 	titleView = [[FriendsPageTitleView alloc] initWithTarget:self action:@selector(openFilter:) interfaceOrientation:self.interfaceOrientation];
@@ -54,6 +55,7 @@
 	// reklāmas baneris
 	bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
 	if (bannerView) {
+		bannerView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
 		bannerView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifier320x50];
 		bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
 		bannerView.delegate = self;
@@ -84,7 +86,7 @@
 	[super viewDidAppear:animated];
 	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen = OpenedScreenFriendsPage;
 	
-	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
+	statusLineView.frame = CGRectMake(0, friendsPageView.frame.size.height - 24, self.view.frame.size.width, 24);
 }
 
 #ifndef LITEVERSION
@@ -95,7 +97,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	// stāvokļa josla
-	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
+	statusLineView.frame = CGRectMake(0, friendsPageView.frame.size.height - 24, self.view.frame.size.width, 24);
 }
 
 
@@ -120,7 +122,7 @@
 	@synchronized (statusLineView) {
 		if (!statusLineShowed) {
 			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-			[friendsPageView addSubview:statusLineView];
+			[self.view addSubview:statusLineView];
 			
 			[pool release];
 		}
@@ -153,6 +155,7 @@
 	if (!showingBanner) {
 		CGRect viewFrame = friendsPageView.frame;
 		CGRect bannerFrame = banner.frame;
+		CGRect statusFrame = statusLineView.frame;
 		
 		// novietojam baneri zem skata
 		bannerFrame.origin.y = viewFrame.size.height;
@@ -161,12 +164,14 @@
 		
 		// aprēķina jaunos izmērus un izvietojumu
 		viewFrame.size.height -= bannerFrame.size.height;
+		statusFrame.origin.y -= bannerFrame.size.height;
 		bannerFrame.origin.y = viewFrame.size.height;
 		
 		// parādam baneri
 		[UIView beginAnimations:@"showBanner" context:nil];
 		friendsPageView.frame = viewFrame;
 		banner.frame = bannerFrame;
+		statusLineView.frame = statusFrame;
 		[UIView commitAnimations];
 		
 		showingBanner = YES;
@@ -177,15 +182,18 @@
 	if (showingBanner) {
 		CGRect viewFrame = friendsPageView.frame;
 		CGRect bannerFrame = banner.frame;
+		CGRect statusFrame = statusLineView.frame;
 		
 		// aprēķina jaunos izmērus un izvietojumu
 		viewFrame.size.height += bannerFrame.size.height;
+		statusFrame.origin.y += bannerFrame.size.height;
 		bannerFrame.origin.y = viewFrame.size.height;
 		
 		// paslēpjam baneri
 		[UIView beginAnimations:@"hideBanner" context:nil];
 		friendsPageView.frame = viewFrame;
 		banner.frame = bannerFrame;
+		statusLineView.frame = statusFrame;
 		[UIView commitAnimations];
 		
 		showingBanner = NO;
