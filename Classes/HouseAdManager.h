@@ -6,11 +6,12 @@
 //  Copyright 2010 A25. All rights reserved.
 //
 
+#import "HouseAdInfo.h"
 #import <Foundation/Foundation.h>
 
 @interface HouseAdManager : NSObject {
 	NSString *dataDirPath;
-	NSMutableDictionary *houseAdInfo;
+	HouseAdInfo *houseAdInfo;
 	
 	UIImage *image;
 }
@@ -25,7 +26,7 @@
 - (void)storeHouseAdInfo;
 
 - (NSData *)readFile:(NSString *)fileName URL:(NSString *)URL;
-- (NSData *) downloadDataFromURL:(NSString *)URL;
+- (NSData *)downloadDataFromURL:(NSString *)URL;
 
 
 @end

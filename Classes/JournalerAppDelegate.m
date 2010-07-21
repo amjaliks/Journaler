@@ -86,11 +86,8 @@
 	}
 #endif
 	
-//	// šeit tiks ielādēta reklāma 
-//	HouseAdManager *houseAdManager = [[HouseAdManager alloc] init];
-//	[houseAdManager loadAd];
-//	[houseAdManager showAd:navigationController];
-//	[houseAdManager release];
+	// tiek parādīta reklāma 
+	[[HouseAdManager houseAdManager] showAd:navigationController];
 	
     [window makeKeyAndVisible];
 }

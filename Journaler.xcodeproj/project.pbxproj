@@ -9,14 +9,6 @@
 /* Begin PBXBuildFile section */
 		1706433F11DD301E0076EB6D /* NSStringLJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 1706433E11DD301E0076EB6D /* NSStringLJ.m */; };
 		1706434011DD301E0076EB6D /* NSStringLJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 1706433E11DD301E0076EB6D /* NSStringLJ.m */; };
-		170643C611DDF9CC0076EB6D /* ALAppUse.m in Sources */ = {isa = PBXBuildFile; fileRef = 170643BF11DDF9CC0076EB6D /* ALAppUse.m */; };
-		170643C711DDF9CC0076EB6D /* ALDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 170643C111DDF9CC0076EB6D /* ALDeviceInfo.m */; };
-		170643C811DDF9CC0076EB6D /* ALProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 170643C311DDF9CC0076EB6D /* ALProperty.m */; };
-		170643C911DDF9CC0076EB6D /* ALReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 170643C511DDF9CC0076EB6D /* ALReporter.m */; };
-		170643CA11DDF9CC0076EB6D /* ALAppUse.m in Sources */ = {isa = PBXBuildFile; fileRef = 170643BF11DDF9CC0076EB6D /* ALAppUse.m */; };
-		170643CB11DDF9CC0076EB6D /* ALDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 170643C111DDF9CC0076EB6D /* ALDeviceInfo.m */; };
-		170643CC11DDF9CC0076EB6D /* ALProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 170643C311DDF9CC0076EB6D /* ALProperty.m */; };
-		170643CD11DDF9CC0076EB6D /* ALReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 170643C511DDF9CC0076EB6D /* ALReporter.m */; };
 		17070741110203D70074F836 /* NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 17070740110203D70074F836 /* NetworkActivityIndicator.m */; };
 		17070742110203D70074F836 /* NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 17070740110203D70074F836 /* NetworkActivityIndicator.m */; };
 		170707C31102914A0074F836 /* ErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 170707C21102914A0074F836 /* ErrorHandling.m */; };
@@ -208,6 +200,14 @@
 		377EFE0811E4C0AA009E9907 /* LJComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EFE0611E4C0AA009E9907 /* LJComment.m */; };
 		3780DAF011E3607D003044B6 /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3780DAEE11E3607D003044B6 /* CommentController.m */; };
 		3780DAF211E3607D003044B6 /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3780DAEE11E3607D003044B6 /* CommentController.m */; };
+		3783943211F7414A0045E55A /* ALAppUse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783942B11F7414A0045E55A /* ALAppUse.m */; };
+		3783943311F7414A0045E55A /* ALDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783942D11F7414A0045E55A /* ALDeviceInfo.m */; };
+		3783943411F7414A0045E55A /* ALProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783942F11F7414A0045E55A /* ALProperty.m */; };
+		3783943511F7414A0045E55A /* ALReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783943111F7414A0045E55A /* ALReporter.m */; };
+		3783943611F7414A0045E55A /* ALAppUse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783942B11F7414A0045E55A /* ALAppUse.m */; };
+		3783943711F7414A0045E55A /* ALDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783942D11F7414A0045E55A /* ALDeviceInfo.m */; };
+		3783943811F7414A0045E55A /* ALProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783942F11F7414A0045E55A /* ALProperty.m */; };
+		3783943911F7414A0045E55A /* ALReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783943111F7414A0045E55A /* ALReporter.m */; };
 		3788A8CD11ECC563006E43AA /* HouseAdInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8C911ECC563006E43AA /* HouseAdInfo.m */; };
 		3788A8CE11ECC563006E43AA /* HouseAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8CB11ECC563006E43AA /* HouseAdViewController.m */; };
 		3788A8CF11ECC563006E43AA /* HouseAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3788A8CC11ECC563006E43AA /* HouseAdViewController.xib */; };
@@ -229,14 +229,6 @@
 /* Begin PBXFileReference section */
 		1706433D11DD301E0076EB6D /* NSStringLJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringLJ.h; sourceTree = "<group>"; };
 		1706433E11DD301E0076EB6D /* NSStringLJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringLJ.m; sourceTree = "<group>"; };
-		170643BE11DDF9CC0076EB6D /* ALAppUse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAppUse.h; sourceTree = "<group>"; };
-		170643BF11DDF9CC0076EB6D /* ALAppUse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAppUse.m; sourceTree = "<group>"; };
-		170643C011DDF9CC0076EB6D /* ALDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALDeviceInfo.h; sourceTree = "<group>"; };
-		170643C111DDF9CC0076EB6D /* ALDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALDeviceInfo.m; sourceTree = "<group>"; };
-		170643C211DDF9CC0076EB6D /* ALProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALProperty.h; sourceTree = "<group>"; };
-		170643C311DDF9CC0076EB6D /* ALProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALProperty.m; sourceTree = "<group>"; };
-		170643C411DDF9CC0076EB6D /* ALReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALReporter.h; sourceTree = "<group>"; };
-		170643C511DDF9CC0076EB6D /* ALReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALReporter.m; sourceTree = "<group>"; };
 		1707073F110203D70074F836 /* NetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkActivityIndicator.h; sourceTree = "<group>"; };
 		17070740110203D70074F836 /* NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkActivityIndicator.m; sourceTree = "<group>"; };
 		170707C11102914A0074F836 /* ErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandling.h; sourceTree = "<group>"; };
@@ -405,6 +397,14 @@
 		377EFE0611E4C0AA009E9907 /* LJComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJComment.m; sourceTree = "<group>"; };
 		3780DAED11E3607D003044B6 /* CommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentController.h; sourceTree = "<group>"; };
 		3780DAEE11E3607D003044B6 /* CommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentController.m; sourceTree = "<group>"; };
+		3783942A11F7414A0045E55A /* ALAppUse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAppUse.h; sourceTree = APPNLYTICS_PROJECT; };
+		3783942B11F7414A0045E55A /* ALAppUse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAppUse.m; sourceTree = APPNLYTICS_PROJECT; };
+		3783942C11F7414A0045E55A /* ALDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALDeviceInfo.h; sourceTree = APPNLYTICS_PROJECT; };
+		3783942D11F7414A0045E55A /* ALDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALDeviceInfo.m; sourceTree = APPNLYTICS_PROJECT; };
+		3783942E11F7414A0045E55A /* ALProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALProperty.h; sourceTree = APPNLYTICS_PROJECT; };
+		3783942F11F7414A0045E55A /* ALProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALProperty.m; sourceTree = APPNLYTICS_PROJECT; };
+		3783943011F7414A0045E55A /* ALReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALReporter.h; sourceTree = APPNLYTICS_PROJECT; };
+		3783943111F7414A0045E55A /* ALReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALReporter.m; sourceTree = APPNLYTICS_PROJECT; };
 		3788A8C811ECC563006E43AA /* HouseAdInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAdInfo.h; sourceTree = "<group>"; };
 		3788A8C911ECC563006E43AA /* HouseAdInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAdInfo.m; sourceTree = "<group>"; };
 		3788A8CA11ECC563006E43AA /* HouseAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAdViewController.h; sourceTree = "<group>"; };
@@ -524,7 +524,7 @@
 		173FBEDF10C474D000FD0652 /* Libaries */ = {
 			isa = PBXGroup;
 			children = (
-				17704A5210A2384400C1EFB2 /* Appnlytics */,
+				3783941411F741280045E55A /* App'n'lytics */,
 				17B4C536108132D90005660E /* RegexKitLite */,
 				17B4C78C1083AC8D0005660E /* XMLRPC */,
 			);
@@ -598,21 +598,6 @@
 				17132AA6108B3017007F6C24 /* UserPicCache.m */,
 			);
 			name = UserPicCache;
-			sourceTree = "<group>";
-		};
-		17704A5210A2384400C1EFB2 /* Appnlytics */ = {
-			isa = PBXGroup;
-			children = (
-				170643BE11DDF9CC0076EB6D /* ALAppUse.h */,
-				170643BF11DDF9CC0076EB6D /* ALAppUse.m */,
-				170643C011DDF9CC0076EB6D /* ALDeviceInfo.h */,
-				170643C111DDF9CC0076EB6D /* ALDeviceInfo.m */,
-				170643C211DDF9CC0076EB6D /* ALProperty.h */,
-				170643C311DDF9CC0076EB6D /* ALProperty.m */,
-				170643C411DDF9CC0076EB6D /* ALReporter.h */,
-				170643C511DDF9CC0076EB6D /* ALReporter.m */,
-			);
-			name = Appnlytics;
 			sourceTree = "<group>";
 		};
 		178BF32611823F5200BEEFAD /* Support */ = {
@@ -828,6 +813,21 @@
 				17E3B2A7118656C300ED729D /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3783941411F741280045E55A /* App'n'lytics */ = {
+			isa = PBXGroup;
+			children = (
+				3783942A11F7414A0045E55A /* ALAppUse.h */,
+				3783942B11F7414A0045E55A /* ALAppUse.m */,
+				3783942C11F7414A0045E55A /* ALDeviceInfo.h */,
+				3783942D11F7414A0045E55A /* ALDeviceInfo.m */,
+				3783942E11F7414A0045E55A /* ALProperty.h */,
+				3783942F11F7414A0045E55A /* ALProperty.m */,
+				3783943011F7414A0045E55A /* ALReporter.h */,
+				3783943111F7414A0045E55A /* ALReporter.m */,
+			);
+			name = "App'n'lytics";
 			sourceTree = "<group>";
 		};
 		3799D18B11E750D90039226A /* House Ads */ = {
@@ -1052,10 +1052,6 @@
 				1741575311B6BADC008F7E48 /* NSFileManagerAdditions.m in Sources */,
 				1741594D11B728F4008F7E48 /* v2-v3.xcmappingmodel in Sources */,
 				1706433F11DD301E0076EB6D /* NSStringLJ.m in Sources */,
-				170643C611DDF9CC0076EB6D /* ALAppUse.m in Sources */,
-				170643C711DDF9CC0076EB6D /* ALDeviceInfo.m in Sources */,
-				170643C811DDF9CC0076EB6D /* ALProperty.m in Sources */,
-				170643C911DDF9CC0076EB6D /* ALReporter.m in Sources */,
 				37A65DC311DE45DC00EEC540 /* LegalController.m in Sources */,
 				3780DAF011E3607D003044B6 /* CommentController.m in Sources */,
 				377EFE0711E4C0AA009E9907 /* LJComment.m in Sources */,
@@ -1064,6 +1060,10 @@
 				1722438D11ECA7DC00BE4DE2 /* TableViewController.m in Sources */,
 				3788A8CD11ECC563006E43AA /* HouseAdInfo.m in Sources */,
 				3788A8CE11ECC563006E43AA /* HouseAdViewController.m in Sources */,
+				3783943211F7414A0045E55A /* ALAppUse.m in Sources */,
+				3783943311F7414A0045E55A /* ALDeviceInfo.m in Sources */,
+				3783943411F7414A0045E55A /* ALProperty.m in Sources */,
+				3783943511F7414A0045E55A /* ALReporter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1129,10 +1129,6 @@
 				1741575411B6BADC008F7E48 /* NSFileManagerAdditions.m in Sources */,
 				1741594E11B728F4008F7E48 /* v2-v3.xcmappingmodel in Sources */,
 				1706434011DD301E0076EB6D /* NSStringLJ.m in Sources */,
-				170643CA11DDF9CC0076EB6D /* ALAppUse.m in Sources */,
-				170643CB11DDF9CC0076EB6D /* ALDeviceInfo.m in Sources */,
-				170643CC11DDF9CC0076EB6D /* ALProperty.m in Sources */,
-				170643CD11DDF9CC0076EB6D /* ALReporter.m in Sources */,
 				37A65DC111DE45DC00EEC540 /* LegalController.m in Sources */,
 				3780DAF211E3607D003044B6 /* CommentController.m in Sources */,
 				377EFE0811E4C0AA009E9907 /* LJComment.m in Sources */,
@@ -1141,6 +1137,10 @@
 				1722438C11ECA7DC00BE4DE2 /* TableViewController.m in Sources */,
 				3788A8D011ECC563006E43AA /* HouseAdInfo.m in Sources */,
 				3788A8D111ECC563006E43AA /* HouseAdViewController.m in Sources */,
+				3783943611F7414A0045E55A /* ALAppUse.m in Sources */,
+				3783943711F7414A0045E55A /* ALDeviceInfo.m in Sources */,
+				3783943811F7414A0045E55A /* ALProperty.m in Sources */,
+				3783943911F7414A0045E55A /* ALReporter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

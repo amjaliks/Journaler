@@ -21,6 +21,7 @@
 
 - (IBAction)dismiss {
 	[self dismissModalViewControllerAnimated:YES];
+//	[[HouseAdManager houseAdManager] ]
 }
 
 - (void)dealloc {

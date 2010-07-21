@@ -12,6 +12,7 @@
 #import "HouseAdViewController.h"
 
 #define kHouseAdInfoFileName @"houseadinfo.bin"
+#define bannerFileName @"banner.png"
 
 HouseAdManager *houseAdManager;
 
@@ -21,6 +22,8 @@ HouseAdManager *houseAdManager;
 #pragma mark Reklāmas ielāde
 
 - (void)loadAd {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	NSData *data = [self readFile:@"test.plist" URL:@"http:ndu/~ndudareva/test.plist"];
 	if (data) {
 		NSPropertyListFormat format;
@@ -32,12 +35,14 @@ HouseAdManager *houseAdManager;
 						  format:&format 
 						  errorDescription:&error];
 		if (url) {
-			NSData *file = [self readFile:@"banner.png" URL:url];
+			NSData *file = [self readFile:bannerFileName URL:url];
 			image = [UIImage imageWithData:file];
 
 			// tiks ielādēta informācija par reklāmu
 		}
 	}
+	
+	[pool release];
 }
 
 - (void)showAd:(UINavigationController *)navigationController {
@@ -45,28 +50,50 @@ HouseAdManager *houseAdManager;
 		// tiek parādīts logs ar reklāmu
 		HouseAdViewController *houseAdViewController = [[HouseAdViewController alloc] initWithNibName:@"HouseAdViewController" bundle:nil];
 		[navigationController presentModalViewController:houseAdViewController animated:NO];
-		[houseAdViewController startShowing:image];
+		[houseAdViewController startShowing:[UIImage imageWithData:[self readFile:bannerFileName URL:nil]]];
 		[houseAdViewController release];
+		
+//		[houseAdInfo setNextShowDate:[NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)]];
+//		if ([houseAdInfo bannerShowCount] != -1) {
+//			[houseAdInfo setBannerShowCount:[houseAdInfo bannerShowCount] - 1];
+//		}
+	} 
+	if (![houseAdInfo nextServerCheckDate] || [[houseAdInfo nextServerCheckDate] compare:[NSDate date]] != NSOrderedDescending) {	
+		//[self loadAd];
+		[self performSelectorInBackground:@selector(loadAd) withObject:nil];
 	}
+
+	
 }
 
 - (BOOL)prepareAd {
 	[self loadHouseAdInfo];
-	
-	return YES;
+
+	if ([houseAdInfo adIsLoaded]) {
+		// ja nākošais rādīšanas laiks jau iestājās
+		// ja rādīšanu skaits nav 0 vai reklāma jārāda vienmēr
+		// ja reklāma vēl ir derīga
+		if ([houseAdInfo nextShowDate] && [[houseAdInfo nextShowDate] compare:[NSDate date]] != NSOrderedDescending
+			&& ([houseAdInfo bannerShowCount] > 0 || [houseAdInfo bannerShowCount] == -1)
+			&& [houseAdInfo bannerEndDate] && [[houseAdInfo bannerEndDate] compare:[NSDate date]] == NSOrderedDescending) {
+
+			return YES;
+		}
+	}
+	return NO;
 }
 
 - (void)loadHouseAdInfo {
-	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kHouseAdInfoFileName];
+	NSString *path = [dataDirPath stringByAppendingPathComponent:kHouseAdInfoFileName];
 	houseAdInfo = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
 	
 	if (!houseAdInfo) {
-		houseAdInfo = [[NSMutableDictionary alloc] init];
+		houseAdInfo = [[HouseAdInfo alloc] init];
 	}
 }
 
 - (void)storeHouseAdInfo {
-	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kHouseAdInfoFileName];
+	NSString *path = [dataDirPath stringByAppendingPathComponent:kHouseAdInfoFileName];
 	[NSKeyedArchiver archiveRootObject:houseAdInfo toFile:path];
 }
 
