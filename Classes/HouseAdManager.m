@@ -30,11 +30,10 @@ HouseAdManager *houseAdManager;
 	NSString *hwModel = deviceInfo.type;
 	NSString *osVersion = deviceInfo.osVersion;
 
-	NSString *adFileName = [NSString stringWithFormat:@"ad-%@-%@.plist", hwModel, osVersion];
-	NSString *adURL = [NSString stringWithFormat:@"http:ndu/~ndudareva/%@", adFileName];
+	NSString *adURL = [NSString stringWithFormat:@"http:ndu/~ndudareva/ad-%@-%@.plist", hwModel, osVersion];
 	[deviceInfo release];
 
-	NSData *data = [self readFile:adFileName URL:adURL];
+	NSData *data = [self downloadDataFromURL:adURL];
 	if (data) {
 		NSPropertyListFormat format;
 		NSString *error = nil;
@@ -111,7 +110,8 @@ HouseAdManager *houseAdManager;
 	
 	if (!houseAdInfo) {
 		houseAdInfo = [[HouseAdInfo alloc] init];
-		[houseAdInfo setDefaultShowDate];
+		houseAdInfo.nextShowDate = [[NSDate	alloc] initWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
+		[self storeHouseAdInfo];
 	}
 }
 
