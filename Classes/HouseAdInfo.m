@@ -45,6 +45,12 @@
 	[coder encodeBool:adIsLoaded forKey:kKeyAdIsLoaded];
 }
 
+- (void)setDefaultShowDate {
+	if (!nextShowDate) {
+		nextShowDate = [[NSDate	alloc] initWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
+	}
+}
+
 - (void)dealloc {
 	[nextShowDate release];
 	[nextServerCheckDate release];

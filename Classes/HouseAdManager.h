@@ -21,6 +21,7 @@
 - (void)loadAd;
 - (void)showAd:(UINavigationController *)navigationController;
 - (BOOL)prepareAd;
+- (void)dismissAd;
 
 - (void)loadHouseAdInfo;
 - (void)storeHouseAdInfo;

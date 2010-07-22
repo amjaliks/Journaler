@@ -11,6 +11,8 @@
 #import "NSStringMD5.h"
 #import "HouseAdViewController.h"
 
+#import "ALDeviceInfo.h"
+
 #define kHouseAdInfoFileName @"houseadinfo.bin"
 #define bannerFileName @"banner.png"
 
@@ -24,21 +26,40 @@ HouseAdManager *houseAdManager;
 - (void)loadAd {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	NSData *data = [self readFile:@"test.plist" URL:@"http:ndu/~ndudareva/test.plist"];
+	ALDeviceInfo *deviceInfo = [[ALDeviceInfo alloc] init];
+	NSString *hwModel = deviceInfo.type;
+	NSString *osVersion = deviceInfo.osVersion;
+
+	NSString *adFileName = [NSString stringWithFormat:@"ad-%@-%@.plist", hwModel, osVersion];
+	NSString *adURL = [NSString stringWithFormat:@"http:ndu/~ndudareva/%@", adFileName];
+	[deviceInfo release];
+
+	NSData *data = [self readFile:adFileName URL:adURL];
 	if (data) {
 		NSPropertyListFormat format;
 		NSString *error = nil;
-
-		NSString *url = [NSPropertyListSerialization 
-						  propertyListFromData:data 
-						  mutabilityOption:NSPropertyListImmutable 
-						  format:&format 
-						  errorDescription:&error];
-		if (url) {
-			NSData *file = [self readFile:bannerFileName URL:url];
-			image = [UIImage imageWithData:file];
-
-			// tiks ielādēta informācija par reklāmu
+		
+		NSDictionary *dictionary = (NSDictionary *)[NSPropertyListSerialization
+													propertyListFromData:data
+													mutabilityOption:NSPropertyListMutableContainersAndLeaves
+													format:&format errorDescription:&error];
+		if (dictionary) {
+			NSString *url = [dictionary objectForKey:@"bannerURL"];
+			if (url) {
+				[self readFile:bannerFileName URL:url];
+				
+				[houseAdInfo setAdIsLoaded:YES];
+				[houseAdInfo setBannerShowCount:[[dictionary objectForKey:@"impressions"] integerValue]];
+				[houseAdInfo setBannerEndDate:[dictionary objectForKey:@"validTill"]];
+				
+				if ([houseAdInfo bannerEndDate] ) {
+					[houseAdInfo setNextServerCheckDate:[houseAdInfo bannerEndDate]];
+				} else {
+					[houseAdInfo setNextServerCheckDate:[[NSDate alloc] initWithTimeIntervalSinceNow:(24.0f * 3600.0f)]];
+				}
+				
+				[self storeHouseAdInfo];
+			}
 		}
 	}
 	
@@ -52,35 +73,36 @@ HouseAdManager *houseAdManager;
 		[navigationController presentModalViewController:houseAdViewController animated:NO];
 		[houseAdViewController startShowing:[UIImage imageWithData:[self readFile:bannerFileName URL:nil]]];
 		[houseAdViewController release];
-		
-//		[houseAdInfo setNextShowDate:[NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)]];
-//		if ([houseAdInfo bannerShowCount] != -1) {
-//			[houseAdInfo setBannerShowCount:[houseAdInfo bannerShowCount] - 1];
-//		}
 	} 
+	
 	if (![houseAdInfo nextServerCheckDate] || [[houseAdInfo nextServerCheckDate] compare:[NSDate date]] != NSOrderedDescending) {	
-		//[self loadAd];
 		[self performSelectorInBackground:@selector(loadAd) withObject:nil];
 	}
-
-	
 }
 
 - (BOOL)prepareAd {
 	[self loadHouseAdInfo];
 
-	if ([houseAdInfo adIsLoaded]) {
-		// ja nākošais rādīšanas laiks jau iestājās
-		// ja rādīšanu skaits nav 0 vai reklāma jārāda vienmēr
-		// ja reklāma vēl ir derīga
-		if ([houseAdInfo nextShowDate] && [[houseAdInfo nextShowDate] compare:[NSDate date]] != NSOrderedDescending
-			&& ([houseAdInfo bannerShowCount] > 0 || [houseAdInfo bannerShowCount] == -1)
-			&& [houseAdInfo bannerEndDate] && [[houseAdInfo bannerEndDate] compare:[NSDate date]] == NSOrderedDescending) {
-
+	// ja reklāma ir ielādēta
+	// ja nākošais rādīšanas laiks jau iestājās
+	// ja rādīšanu skaits nav 0 vai reklāma jārāda vienmēr
+	// ja reklāma vēl ir derīga
+	if ([houseAdInfo adIsLoaded] 
+		&& [houseAdInfo nextShowDate] && [[houseAdInfo nextShowDate] compare:[NSDate date]] != NSOrderedDescending
+		&& ([houseAdInfo bannerShowCount] > 0 || [houseAdInfo bannerShowCount] == -1)
+		&& [houseAdInfo bannerEndDate] && [[houseAdInfo bannerEndDate] compare:[NSDate date]] == NSOrderedDescending) {
 			return YES;
-		}
 	}
 	return NO;
+}
+
+- (void)dismissAd {
+	[houseAdInfo setNextShowDate:[NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)]];
+	if ([houseAdInfo bannerShowCount] != -1) {
+		[houseAdInfo setBannerShowCount:[houseAdInfo bannerShowCount] - 1];
+	}
+	
+	[self storeHouseAdInfo];
 }
 
 - (void)loadHouseAdInfo {
@@ -89,6 +111,7 @@ HouseAdManager *houseAdManager;
 	
 	if (!houseAdInfo) {
 		houseAdInfo = [[HouseAdInfo alloc] init];
+		[houseAdInfo setDefaultShowDate];
 	}
 }
 

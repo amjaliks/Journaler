@@ -7,7 +7,7 @@
 //
 
 #import "HouseAdViewController.h"
-
+#import "HouseAdManager.h"
 
 @implementation HouseAdViewController
 
@@ -21,7 +21,7 @@
 
 - (IBAction)dismiss {
 	[self dismissModalViewControllerAnimated:YES];
-//	[[HouseAdManager houseAdManager] ]
+	[[HouseAdManager houseAdManager] dismissAd];
 }
 
 - (void)dealloc {

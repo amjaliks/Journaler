@@ -23,4 +23,6 @@
 @property NSInteger bannerShowCount;
 @property BOOL adIsLoaded;
 
+- (void)setDefaultShowDate;
+
 @end
