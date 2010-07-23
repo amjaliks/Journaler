@@ -11,12 +11,17 @@
 
 @implementation HouseAdViewController
 
-- (void)startShowing:(UIImage *)image {
-	imageView.image = image;
-	
-	dismissButton.titleLabel.textAlignment = UITextAlignmentCenter;
-	dismissButton.enabled = YES;
-	dismissButton.titleLabel.text = @"Dismiss";
+@synthesize imageView;
+
+- (void)countDown {
+	if (timeLeft) {
+		dismissButton.titleLabel.text = [NSString stringWithFormat:@"%d", timeLeft];
+		timeLeft--;
+		[self performSelector:@selector(countDown) withObject:nil afterDelay:1.0f];
+	} else {
+		dismissButton.enabled = YES;
+		dismissButton.titleLabel.text = @"Dismiss";
+	}
 }
 
 - (IBAction)dismiss {
@@ -31,5 +36,22 @@
     [super dealloc];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	if (!imageView.image) {
+		imageView.image = [UIImage imageNamed:@"selfad.png"];
+	}
+	
+	dismissButton.titleLabel.textAlignment = UITextAlignmentCenter;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+#ifndef LITEVERSION
+	timeLeft = 5;
+	[self countDown];
+#else
+	dismissButton.enabled = YES;
+	dismissButton.titleLabel.text = @"Dismiss";
+#endif
+}
 
 @end

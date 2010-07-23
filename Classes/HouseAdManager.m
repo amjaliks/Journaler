@@ -66,11 +66,13 @@ HouseAdManager *houseAdManager;
 }
 
 - (void)showAd:(UINavigationController *)navigationController {
+	[self prepareAd];
 	if ([self prepareAd]) {
 		// tiek parādīts logs ar reklāmu
 		HouseAdViewController *houseAdViewController = [[HouseAdViewController alloc] initWithNibName:@"HouseAdViewController" bundle:nil];
+		houseAdViewController.imageView.image = image;
+	
 		[navigationController presentModalViewController:houseAdViewController animated:NO];
-		[houseAdViewController startShowing:[UIImage imageWithData:[self readFile:bannerFileName URL:nil]]];
 		[houseAdViewController release];
 	} 
 	
@@ -86,17 +88,29 @@ HouseAdManager *houseAdManager;
 	// ja nākošais rādīšanas laiks jau iestājās
 	// ja rādīšanu skaits nav 0 vai reklāma jārāda vienmēr
 	// ja reklāma vēl ir derīga
-	if ([houseAdInfo adIsLoaded] 
-		&& [houseAdInfo nextShowDate] && [[houseAdInfo nextShowDate] compare:[NSDate date]] != NSOrderedDescending
-		&& ([houseAdInfo bannerShowCount] > 0 || [houseAdInfo bannerShowCount] == -1)
-		&& [houseAdInfo bannerEndDate] && [[houseAdInfo bannerEndDate] compare:[NSDate date]] == NSOrderedDescending) {
+
+	if ([houseAdInfo nextShowDate] && [[houseAdInfo nextShowDate] compare:[NSDate date]] != NSOrderedDescending) {
+		if ([houseAdInfo adIsLoaded] 
+			&& ([houseAdInfo bannerShowCount] > 0 || [houseAdInfo bannerShowCount] == -1)
+			&& [houseAdInfo bannerEndDate] && [[houseAdInfo bannerEndDate] compare:[NSDate date]] == NSOrderedDescending) {
+			
+			image = [UIImage imageWithData:[self readFile:bannerFileName URL:nil]];
 			return YES;
+		} else {
+#ifdef LITEVERSION
+			
+#endif
+		}
+
 	}
+	
+	
 	return NO;
 }
 
 - (void)dismissAd {
-	[houseAdInfo setNextShowDate:[NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)]];
+//	[houseAdInfo setNextShowDate:[NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)]];
+	[houseAdInfo setNextShowDate:[NSDate dateWithTimeIntervalSinceNow:(30.0f)]];
 	if ([houseAdInfo bannerShowCount] != -1) {
 		[houseAdInfo setBannerShowCount:[houseAdInfo bannerShowCount] - 1];
 	}
@@ -110,7 +124,8 @@ HouseAdManager *houseAdManager;
 	
 	if (!houseAdInfo) {
 		houseAdInfo = [[HouseAdInfo alloc] init];
-		houseAdInfo.nextShowDate = [[NSDate	alloc] initWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
+		[houseAdInfo setNextShowDate:[NSDate dateWithTimeIntervalSinceNow:(30.0f)]];
+//		houseAdInfo.nextShowDate = [[NSDate	alloc] initWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
 		[self storeHouseAdInfo];
 	}
 }

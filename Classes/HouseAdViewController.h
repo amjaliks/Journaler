@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface HouseAdViewController : UIViewController {
-	IBOutlet UIButton *dismissButton;
+	NSInteger timeLeft;
 	
+	IBOutlet UIButton *dismissButton;
 	IBOutlet UIImageView *imageView;
 }
 
-- (void)startShowing:(UIImage *)image;
-
+- (void)countDown;
 - (IBAction)dismiss;
+
+@property (assign) UIImageView *imageView;
 
 @end

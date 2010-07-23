@@ -65,29 +65,8 @@
 	
 	[window addSubview:navigationController.view];
 	
-#ifdef LITEVERSION
-	NSString *docDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-	NSString *nextSelfAdShowTimePath = [docDirPath stringByAppendingPathComponent:@"nextSelfAdShowTime.bin"];
-	NSDate *nextSelfAdShowTime = [NSKeyedUnarchiver unarchiveObjectWithFile:nextSelfAdShowTimePath];
-	
-	if (nextSelfAdShowTime) {
-		if ([nextSelfAdShowTime compare:[NSDate date]] != NSOrderedDescending) {
-			SelfAdViewController *selfAdViewController = [[SelfAdViewController alloc] initWithNibName:@"SelfAdViewController" bundle:nil];
-			[navigationController presentModalViewController:selfAdViewController animated:NO];
-			[selfAdViewController startCountDown];
-			[selfAdViewController release];
-			
-			nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
-			[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
-		}
-	} else {
-		nextSelfAdShowTime = [NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
-		[NSKeyedArchiver archiveRootObject:nextSelfAdShowTime toFile:nextSelfAdShowTimePath];
-	}
-#endif
-	
 	// tiek parādīta reklāma 
-	[[HouseAdManager houseAdManager] showAd:navigationController];
+//	[[HouseAdManager houseAdManager] showAd:navigationController];
 	
     [window makeKeyAndVisible];
 }
