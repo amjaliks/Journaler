@@ -13,6 +13,7 @@
 	NSString *dataDirPath;
 	HouseAdInfo *houseAdInfo;
 	
+	NSString *targetURL;
 	UIImage *image;
 }
 

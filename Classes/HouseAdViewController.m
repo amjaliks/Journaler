@@ -12,6 +12,7 @@
 @implementation HouseAdViewController
 
 @synthesize imageView;
+@synthesize url;
 
 - (void)countDown {
 	if (timeLeft) {
@@ -20,7 +21,7 @@
 		[self performSelector:@selector(countDown) withObject:nil afterDelay:1.0f];
 	} else {
 		dismissButton.enabled = YES;
-		dismissButton.titleLabel.text = @"Dismiss";
+		dismissButton.titleLabel.text = NSLocalizedString(@"Dismiss", nil);
 	}
 }
 
@@ -29,9 +30,13 @@
 	[[HouseAdManager houseAdManager] dismissAd];
 }
 
+- (IBAction)goToURL {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+
 - (void)dealloc {
 	[dismissButton release];
-	[imageView release];
+//	[imageView release];
 	
     [super dealloc];
 }
@@ -39,18 +44,19 @@
 - (void)viewWillAppear:(BOOL)animated {
 	if (!imageView.image) {
 		imageView.image = [UIImage imageNamed:@"selfad.png"];
+		url = @"http://itunes.apple.com/app/journaler/id338132860?mt=8";
 	}
 	
 	dismissButton.titleLabel.textAlignment = UITextAlignmentCenter;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-#ifndef LITEVERSION
+#ifdef LITEVERSION
 	timeLeft = 5;
 	[self countDown];
 #else
 	dismissButton.enabled = YES;
-	dismissButton.titleLabel.text = @"Dismiss";
+	dismissButton.titleLabel.text = NSLocalizedString(@"Dismiss", nil);
 #endif
 }
 

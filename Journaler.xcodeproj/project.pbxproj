@@ -214,6 +214,7 @@
 		3788A8D011ECC563006E43AA /* HouseAdInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8C911ECC563006E43AA /* HouseAdInfo.m */; };
 		3788A8D111ECC563006E43AA /* HouseAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8CB11ECC563006E43AA /* HouseAdViewController.m */; };
 		3788A8D211ECC563006E43AA /* HouseAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3788A8CC11ECC563006E43AA /* HouseAdViewController.xib */; };
+		3792F22611FDA3B400B18E9E /* JournalerLite-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */; };
 		3799D17811E74CA60039226A /* SelfAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172860C9116D40BB00171A85 /* SelfAdViewController.m */; };
 		3799D18311E74CBA0039226A /* SelfAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172860CA116D40BB00171A85 /* SelfAdViewController.xib */; };
 		3799D19C11E754370039226A /* HouseAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HouseAdManager.m */; };
@@ -944,6 +945,7 @@
 				17EFF2A711EA7A74009D84ED /* up.png in Resources */,
 				17EFF2AA11EA7A78009D84ED /* down.png in Resources */,
 				3788A8CF11ECC563006E43AA /* HouseAdViewController.xib in Resources */,
+				3792F22611FDA3B400B18E9E /* JournalerLite-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1209,7 +1211,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
-				INFOPLIST_FILE = "/Users/amjaliks/xcode/Jounaler/JournalerLite-Info.plist";
+				INFOPLIST_FILE = "JournalerLite-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",

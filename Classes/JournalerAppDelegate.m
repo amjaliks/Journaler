@@ -66,7 +66,7 @@
 	[window addSubview:navigationController.view];
 	
 	// tiek parādīta reklāma 
-//	[[HouseAdManager houseAdManager] showAd:navigationController];
+	[[HouseAdManager houseAdManager] showAd:navigationController];
 	
     [window makeKeyAndVisible];
 }

@@ -14,6 +14,7 @@
 	NSDate *nextServerCheckDate;
 	NSDate *bannerEndDate;
 	NSInteger bannerShowCount;
+	NSString *targetURL;
 	BOOL adIsLoaded;
 }
 
@@ -21,6 +22,7 @@
 @property (retain, nonatomic) NSDate *nextServerCheckDate;
 @property (retain, nonatomic) NSDate *bannerEndDate;
 @property NSInteger bannerShowCount;
+@property (retain, nonatomic) NSString *targetURL;
 @property BOOL adIsLoaded;
 
 @end

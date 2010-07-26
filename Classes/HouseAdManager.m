@@ -47,6 +47,7 @@ HouseAdManager *houseAdManager;
 			if (url) {
 				[self readFile:bannerFileName URL:url];
 				
+				[houseAdInfo setTargetURL:[dictionary objectForKey:@"targetURL"]];
 				[houseAdInfo setAdIsLoaded:YES];
 				[houseAdInfo setBannerShowCount:[[dictionary objectForKey:@"impressions"] integerValue]];
 				[houseAdInfo setBannerEndDate:[dictionary objectForKey:@"validTill"]];
@@ -66,13 +67,13 @@ HouseAdManager *houseAdManager;
 }
 
 - (void)showAd:(UINavigationController *)navigationController {
-	[self prepareAd];
 	if ([self prepareAd]) {
 		// tiek parādīts logs ar reklāmu
 		HouseAdViewController *houseAdViewController = [[HouseAdViewController alloc] initWithNibName:@"HouseAdViewController" bundle:nil];
-		houseAdViewController.imageView.image = image;
 	
 		[navigationController presentModalViewController:houseAdViewController animated:NO];
+		houseAdViewController.imageView.image = image;
+		houseAdViewController.url = targetURL;
 		[houseAdViewController release];
 	} 
 	
@@ -84,8 +85,8 @@ HouseAdManager *houseAdManager;
 - (BOOL)prepareAd {
 	[self loadHouseAdInfo];
 
+	// ja ir laiks rādīt reklāmu
 	// ja reklāma ir ielādēta
-	// ja nākošais rādīšanas laiks jau iestājās
 	// ja rādīšanu skaits nav 0 vai reklāma jārāda vienmēr
 	// ja reklāma vēl ir derīga
 
@@ -95,15 +96,15 @@ HouseAdManager *houseAdManager;
 			&& [houseAdInfo bannerEndDate] && [[houseAdInfo bannerEndDate] compare:[NSDate date]] == NSOrderedDescending) {
 			
 			image = [UIImage imageWithData:[self readFile:bannerFileName URL:nil]];
+			targetURL = [houseAdInfo targetURL];
 			return YES;
 		} else {
 #ifdef LITEVERSION
-			
+			return YES;
 #endif
 		}
 
 	}
-	
 	
 	return NO;
 }
@@ -219,7 +220,7 @@ HouseAdManager *houseAdManager;
 - (void)dealloc {
 	[dataDirPath release];
 	[houseAdInfo release];
-	[image release];
+//	[image release];
 	
 	[super dealloc];
 }

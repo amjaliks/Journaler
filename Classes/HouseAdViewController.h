@@ -10,6 +10,7 @@
 
 @interface HouseAdViewController : UIViewController {
 	NSInteger timeLeft;
+	NSString *url;
 	
 	IBOutlet UIButton *dismissButton;
 	IBOutlet UIImageView *imageView;
@@ -17,7 +18,9 @@
 
 - (void)countDown;
 - (IBAction)dismiss;
+- (IBAction)goToURL;
 
 @property (assign) UIImageView *imageView;
+@property (assign) NSString *url;
 
 @end

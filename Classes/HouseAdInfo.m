@@ -13,6 +13,7 @@
 #define kKeyBannerEndDate @"bannerEndDate"
 #define kKeyBannerShowCount @"bannerShowCount"
 #define kKeyAdIsLoaded @"adIsLoaded"
+#define kKeyTargetURL @"targetURL"
 
 @implementation HouseAdInfo
 
@@ -20,6 +21,7 @@
 @synthesize nextServerCheckDate;
 @synthesize bannerEndDate;
 @synthesize bannerShowCount;
+@synthesize targetURL;
 @synthesize adIsLoaded;
 
 #pragma mark -
@@ -31,6 +33,7 @@
 		nextServerCheckDate = [[coder decodeObjectForKey:kKeyNextServerCheckDate] retain];
 		bannerEndDate = [[coder decodeObjectForKey:kKeyBannerEndDate] retain];
 		bannerShowCount = [coder decodeIntegerForKey:kKeyBannerShowCount];
+		targetURL = [[coder decodeObjectForKey:kKeyTargetURL] retain];
 		adIsLoaded = [coder decodeBoolForKey:kKeyAdIsLoaded];
 	}
 	
@@ -42,6 +45,7 @@
 	[coder encodeObject:nextServerCheckDate forKey:kKeyNextServerCheckDate];
 	[coder encodeObject:bannerEndDate forKey:kKeyBannerEndDate];
 	[coder encodeInteger:bannerShowCount forKey:kKeyBannerShowCount];
+	[coder encodeObject:targetURL forKey:kKeyTargetURL];
 	[coder encodeBool:adIsLoaded forKey:kKeyAdIsLoaded];
 }
 
@@ -49,6 +53,7 @@
 	[nextShowDate release];
 	[nextServerCheckDate release];
 	[bannerEndDate release];
+	[targetURL release];
 	
 	[super dealloc];
 }
