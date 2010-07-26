@@ -12,12 +12,7 @@
 
 @class LJAccount, FriendsPageTitleView;
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-#import <iAd/iAd.h>
-#define PROCOTOLS <ADBannerViewDelegate>
-#endif
-
-@interface FriendsPageController : UIViewController PROCOTOLS {
+@interface FriendsPageController : UIViewController {
 	// konts
 	LJAccount *account;
 	// filtrs
@@ -29,16 +24,13 @@
 	
 	// pogas
 	UIBarButtonItem *refreshButtonItem;
+	IBOutlet UIActivityIndicatorView *spinnerView;
+	IBOutlet UIBarButtonItem *spinnerItem;
 
 	// stāvokļa josla
 	IBOutlet UIView *statusLineView;
 	IBOutlet UILabel *statusLineLabel;
 	NSUInteger statusLineShowed;
-	
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-	ADBannerView *bannerView;
-	BOOL showingBanner;
-#endif
 }
 
 #pragma mark Metodes

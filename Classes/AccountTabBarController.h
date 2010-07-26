@@ -8,20 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AccountsViewController.h"
 #import "PostEditorController.h"
 
 @class LJAccount, FriendsPageController;
 
 @interface AccountTabBarController : UITabBarController <PostEditorControllerDataSource, UITabBarControllerDelegate> {
-	LJAccount *account;
+	IBOutlet AccountsViewController *accountsViewController;
+	
+	LJAccount *previousAccount;
 	
 	FriendsPageController *friendsPageController;
 	PostEditorController *postEditorController;
+	
+	LJFriendsPageController *ljFriendsPageController;
+	WebFriendsPageController *webFriendsPageController;
 }
 
 @property (readonly) FriendsPageController *friendsPageController;
+@property (readonly) PostEditorController *postEditorController;
 
-- (id)initWithAccount:(LJAccount *)account;
+@property (readonly) LJFriendsPageController *ljFriendsPageController;
+@property (readonly) WebFriendsPageController *webFriendsPageController;
+
 - (void)setViewControllersForAccount:(LJAccount *)account;
 - (void)setNavigationItemForViewController:(UIViewController *)viewController;
 

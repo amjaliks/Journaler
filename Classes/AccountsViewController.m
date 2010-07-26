@@ -15,15 +15,19 @@
 #import "ALReporter.h"
 #import "SettingsController.h"
 #import "AccountManager.h"
+#import "BannerViewController.h"
 
 @implementation AccountsViewController
 
-@synthesize editAccountViewController;
-@synthesize accountViewController;
+@synthesize accountManager;
+@synthesize selectedAccount;
+
+#pragma mark -
+#pragma mark UIViewController
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
 	if (self = [super initWithNibName:nibName bundle:nibBundle]) {
-		cacheTabBarControllers = [[NSMutableDictionary alloc] initWithCapacity:1];
+		accountManager = [AccountManager sharedManager];
 	}
 	return self;
 }
@@ -31,29 +35,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	// Edit/Done poga
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-	
-	accounts = [[AccountManager sharedManager] accounts];
 	
 #ifndef LITEVERSION
 	// konta pievienošanas poga
-	UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAccount:)];
-	self.navigationItem.rightBarButtonItem = addButtonItem;
-	[addButtonItem release];
+	self.navigationItem.rightBarButtonItem = addButton;
 #endif
 	
 	// virsraksts
 	self.navigationItem.title = @"Accounts";
 
 	// poga "Settings" apakšējā rīkjoslā
-	NSArray *toolbarItems = [[NSArray alloc] initWithObjects:settingsButton, nil];
-	self.toolbarItems = toolbarItems;
-	[toolbarItems release];
+	self.toolbarItems = [NSArray arrayWithObjects:settingsButton, nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	if ([accounts count] == 0) {
+	if ([accountManager.accounts count] == 0) {
+		// ja kontu saraksts ir tukšs, atveram konta pievienošanas ekrānu
 		[self addAccount:nil];
 	} else {
 		[self.navigationController setToolbarHidden:NO animated:YES];
@@ -62,7 +62,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	[[AccountManager sharedManager] setOpenedAccount:nil];
+	accountManager.stateInfo.openedAccountIndex = kStateInfoOpenedAccountIndexNone;
+
+#ifdef LITEVERSION
+	[[BannerViewController controller] addBannerToView:self.view resizeView:self.tableView];
+#endif
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -76,56 +80,44 @@
 }
 #endif
 
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
 - (void)viewDidUnload {
 	self.navigationItem.leftBarButtonItem = nil;
 	self.navigationItem.rightBarButtonItem = nil;
 	self.toolbarItems = nil;
 }
 
-- (void)openAccount:(LJAccount *)account animated:(BOOL)animated {
+
+- (void)openAccountAtIndex:(NSInteger)index animated:(BOOL)animated {
 	self.editing = NO;
 	
-	// ja nav labošanas režīms, tad veram vaļā konta skatījumu
-	AccountTabBarController *tabBarController = [[cacheTabBarControllers objectForKey:account.title] retain];
-	if (!tabBarController) {
-		// ja skatījums nav atrasts, tad tādu izveidojam
-		tabBarController = [[AccountTabBarController alloc] initWithAccount:account];
-		[cacheTabBarControllers setObject:tabBarController forKey:account.title];
-	}
+	accountManager.stateInfo.openedAccountIndex = index;
+	selectedAccount = [accountManager.accounts objectAtIndex:index];
 	
 	self.navigationItem.backBarButtonItem = 
-			[[[UIBarButtonItem alloc] initWithTitle:account.user style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-	
-	[self.navigationController pushViewController:tabBarController animated:animated];
-	[tabBarController release];
+			[[[UIBarButtonItem alloc] initWithTitle:selectedAccount.user style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+
+	[self.navigationController pushViewController:accountTabBarController animated:animated];
 }
 
 #pragma mark Table view methods
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [accounts count];
+    return [accountManager.accounts count];
 }
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *ident = @"account";
-    LJAccount *account = [accounts objectAtIndex:indexPath.row];
+    LJAccount *account = [accountManager.accounts objectAtIndex:indexPath.row];
 	
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:account.title];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ident];
     if (cell == nil) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ident];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	cell.textLabel.text = account.user;
 	cell.detailTextLabel.text = account.server;
 	
@@ -133,55 +125,37 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	selectedAccount = [accounts objectAtIndex:indexPath.row];
-	if (tableView.editing) {
-		selectedAccountTitle = [selectedAccount.title retain];
-		[(AccountEditorController*) editAccountViewController.visibleViewController setAccount:selectedAccount];
-		[self presentModalViewController:editAccountViewController animated:YES];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
+	if (self.editing) {
+		selectedAccount = [accountManager.accounts objectAtIndex:indexPath.row];
+		[self presentModalViewController:accountEditorNavigationController animated:YES];
 	} else {
-		[self openAccount:selectedAccount animated:YES];
+		[self openAccountAtIndex:indexPath.row animated:YES];
 	}
 }
 
-
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
-
-
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // nosakam dzēšamo ierakstu
-		LJAccount *account = [accounts objectAtIndex:indexPath.row];
+		LJAccount *account = [accountManager.accounts objectAtIndex:indexPath.row];
 		
 		// iedzēšam rakstus no keša
 		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
 		[model deleteAllPostsForAccount:account.title];
 		[model saveAll];
 		
-		// nodzēšanam informāciju par konta stāvokli
-		[[AccountManager sharedManager] removeStateForAccount:account.title];
-		
-		// iztīram no keša konta "ekrānu"
-		[cacheTabBarControllers removeObjectForKey:account.title];
-		
-		// izdzešam kontu un saglabājam
-		[accounts removeObject:account];
-		[[AccountManager sharedManager] storeAccounts];
+		// dzēšam kontu
+		[accountManager removeAccount:account];
 		
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 		
-		if ([accounts count] == 0) {
+		if (![accountManager.accounts count]) {
 			[self addAccount:nil];
-		} else {
-			// nosūtam informāciju par kontiem
-			[self sendReport];
 		}
     }   
 }
@@ -190,98 +164,37 @@
 
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-	LJAccount *account = [[accounts objectAtIndex:fromIndexPath.row] retain];
-	[accounts removeObjectAtIndex:fromIndexPath.row];
-	[accounts insertObject:account atIndex:toIndexPath.row];
-	[account release];
-	
-	[[AccountManager sharedManager] storeAccounts];
+	[accountManager moveAccountFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
 }
 
-
-// Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
     return YES;
-}
-
-
-- (void)dealloc {
-    [super dealloc];
-	[accounts dealloc];
 }
 
 // Parāda konta parametrus
 - (IBAction) addAccount:(id)sender {
 	selectedAccount = nil;
-	[(AccountEditorController *)editAccountViewController.visibleViewController setAccount:nil];
-	[self presentModalViewController:editAccountViewController animated:YES];
+	[self presentModalViewController:accountEditorNavigationController animated:YES];
 }
 
-- (void)saveAccount:(LJAccount *)account {
-	if (selectedAccount) {
-		NSUInteger index = [accounts indexOfObject:selectedAccount];
-		[accounts removeObjectAtIndex:index];
-		[accounts insertObject:account atIndex:index];
-		
-		if (![selectedAccountTitle isEqualToString:account.title]) {
-			Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
-			[model deleteAllPostsForAccount:selectedAccountTitle];
-			[model saveAll];
-		}
-		[selectedAccountTitle release];		
-	} else {
-		[accounts addObject:account];
-		selectedAccount = account;
-		self.editing = NO;
-		[self openAccount:account animated:YES];
-	}
-	[[AccountManager sharedManager] storeAccounts];
+- (IBAction)showSettings:(id)sender {
+	[self presentModalViewController:settingsNavigationController animated:YES];
+}
+
+- (void)didAddNewAccount {
 	[self.tableView reloadData];
-		
-	[self dismissModalViewControllerAnimated:YES];
+}
+
+// atjauno saskarnes stāvokli
+- (void)restoreState {
+	// atvērtais konsts
+	NSInteger openedAccountIndex = [AccountManager sharedManager].stateInfo.openedAccountIndex;
 	
-	// nosūtam informāciju par kontiem
-	[self sendReport];
-}
-
-- (LJAccount *)selectedAccount {
-	return selectedAccount;
-}
-
-- (BOOL)isDublicateAccount:(NSString *)title {
-	for (LJAccount *account in accounts) {
-		if (selectedAccount != account && [account.title isEqualToString:title]) {
-			return YES;
-		}
+	// ja iepriekš bija atvērts konts, tad atveram to arī tagad
+	if (openedAccountIndex != kStateInfoOpenedAccountIndexNone) {
+		[self view];
+		[self openAccountAtIndex:openedAccountIndex animated:NO];
 	}
-	return NO;
-}
-
-- (BOOL)hasNoAccounts {
-	return [accounts count] == 0;
-}
-
-- (void) sendReport {
-	ALReporter *reporter = ((JournalerAppDelegate *)[UIApplication sharedApplication].delegate).reporter;
-	[reporter setInteger:[accounts count] forProperty:@"account_count"];
-	
-	NSMutableSet *servers = [[NSMutableSet alloc] init];
-	for (LJAccount *account in accounts) {
-		[servers addObject:account.server];
-	}
-	[reporter setObject:servers forProperty:@"server"];
-	[servers release];
-}
-
-- (IBAction)showSettings {
-	SettingsController *settings = [[SettingsController alloc] initWithNibName:@"SettingsController" bundle:nil];
-	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:settings];
-	
-	[self presentModalViewController:nav animated:YES];
-	
-	[nav release];
-	[settings release];
 }
 
 @end

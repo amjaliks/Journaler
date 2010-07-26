@@ -15,6 +15,7 @@
 #import "WebViewController.h"
 #import "AccountManager.h"
 #import "CommentController.h"
+#import "BannerViewController.h"
 
 @implementation PostViewController
 
@@ -62,10 +63,10 @@
 	lockIconReplace = [[NSString stringWithFormat:@"<img src=\"file://%@\" class=\"icon\"/> ", lockIconPath] retain];
 	
 	//webView.scalesPageToFit = YES;
-	webView = [[UIWebView alloc] initWithFrame:self.view.frame];
+	webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
 	webView.delegate = self;
 	webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	self.view = webView;
+	[self.view addSubview:webView];
 
 	// iepriekšējā un nākamā ieraksta atvēršana	
 	navigationControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:[UIImage imageNamed:@"up.png"], [UIImage imageNamed:@"down.png"], nil]];
@@ -147,8 +148,14 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen = OpenedScreenPost;
-	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedPost = post.uniqueKey;
+	
+	AccountStateInfo *accountStateInfo = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account];
+	accountStateInfo.openedScreen = OpenedScreenPost;
+	accountStateInfo.openedPost = post.uniqueKey;
+	
+#ifdef LITEVERSION
+	[[BannerViewController controller] addBannerToView:self.view resizeView:webView];
+#endif
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

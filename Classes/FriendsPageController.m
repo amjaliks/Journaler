@@ -15,6 +15,7 @@
 #import "AccountManager.h"
 #import "FriendsPageTitleView.h"
 #import "FilterOptionsController.h"
+#import "BannerViewController.h"
 
 @implementation FriendsPageController
 
@@ -24,7 +25,7 @@
 - (id)initWithAccount:(LJAccount *)aAccount {
     if (self = [super initWithNibName:@"FriendsPageController" bundle:nil]) {
 		account = [aAccount retain];
-		friendsPageFilter = [[AccountManager sharedManager] stateInfoForAccount:account.title].friendsPageFilter;
+		friendsPageFilter = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account].friendsPageFilter;
 		
 		// cilnes bildīte
 		UIImage *image = [UIImage imageNamed:@"friends.png"];
@@ -42,26 +43,12 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	// stāvokļa josla
-	statusLineView.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
-	statusLineView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+	// aktivitātes indikators
+	[spinnerItem setCustomView:spinnerView];
 	
 	// virsraksta skats
 	titleView = [[FriendsPageTitleView alloc] initWithTarget:self action:@selector(openFilter:) interfaceOrientation:self.interfaceOrientation];
 	self.navigationItem.titleView = titleView;
-	
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-#ifdef LITEVERSION
-	// reklāmas baneris
-	bannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-	if (bannerView) {
-		bannerView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
-		bannerView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifier320x50];
-		bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
-		bannerView.delegate = self;
-	}
-#endif
-#endif
 }
 
 - (void)viewDidUnload {
@@ -84,9 +71,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen = OpenedScreenFriendsPage;
+	[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].openedScreen = OpenedScreenFriendsPage;
 	
-	statusLineView.frame = CGRectMake(0, friendsPageView.frame.size.height - 24, self.view.frame.size.width, 24);
+#ifdef LITEVERSION
+	[[BannerViewController controller] addBannerToView:self.view resizeView:friendsPageView];
+#endif
 }
 
 #ifndef LITEVERSION
@@ -94,12 +83,6 @@
 	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
 }
 #endif
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	// stāvokļa josla
-	statusLineView.frame = CGRectMake(0, friendsPageView.frame.size.height - 24, self.view.frame.size.width, 24);
-}
-
 
 #pragma mark -
 #pragma mark Pogas
@@ -118,24 +101,27 @@
 #pragma mark Stāvokļa josla
 
 // parāda stāvokļa joslu
-- (void) showStatusLine {
-	@synchronized (statusLineView) {
-		if (!statusLineShowed) {
-			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-			[self.view addSubview:statusLineView];
-			
-			[pool release];
+- (void) showActivityIndicator {
+	@synchronized (spinnerItem) {
+		if (!spinnerVisible) {
+			self.navigationItem.rightBarButtonItem = spinnerItem;
+			if (self == self.tabBarController.selectedViewController) {
+				self.tabBarController.navigationItem.rightBarButtonItem = spinnerItem;
+			}
 		}
-		statusLineShowed++;
+		spinnerVisible++;
 	}
 }
 
 // paslēpj stāvokļa joslu
-- (void) hideStatusLine {
-	@synchronized (statusLineView) {
-		statusLineShowed--;
-		if (!statusLineShowed) {
-			[statusLineView removeFromSuperview];
+- (void) hideActivityIndicator {
+	@synchronized (spinnerItem) {
+		spinnerVisible--;
+		if (!spinnerVisible) {
+			self.navigationItem.rightBarButtonItem = refreshButtonItem;
+			if (self == self.tabBarController.selectedViewController) {
+				self.tabBarController.navigationItem.rightBarButtonItem = refreshButtonItem;
+			}
 		}
 	}
 }
@@ -146,59 +132,5 @@
 	[account release];
 	[super dealloc];
 }
-
-#pragma mark -
-#pragma mark ADBannerViewDelegate
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-	if (!showingBanner) {
-		CGRect viewFrame = friendsPageView.frame;
-		CGRect bannerFrame = banner.frame;
-		CGRect statusFrame = statusLineView.frame;
-		
-		// novietojam baneri zem skata
-		bannerFrame.origin.y = viewFrame.size.height;
-		banner.frame = bannerFrame;
-		[self.view addSubview:banner];
-		
-		// aprēķina jaunos izmērus un izvietojumu
-		viewFrame.size.height -= bannerFrame.size.height;
-		statusFrame.origin.y -= bannerFrame.size.height;
-		bannerFrame.origin.y = viewFrame.size.height;
-		
-		// parādam baneri
-		[UIView beginAnimations:@"showBanner" context:nil];
-		friendsPageView.frame = viewFrame;
-		banner.frame = bannerFrame;
-		statusLineView.frame = statusFrame;
-		[UIView commitAnimations];
-		
-		showingBanner = YES;
-	}
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-	if (showingBanner) {
-		CGRect viewFrame = friendsPageView.frame;
-		CGRect bannerFrame = banner.frame;
-		CGRect statusFrame = statusLineView.frame;
-		
-		// aprēķina jaunos izmērus un izvietojumu
-		viewFrame.size.height += bannerFrame.size.height;
-		statusFrame.origin.y += bannerFrame.size.height;
-		bannerFrame.origin.y = viewFrame.size.height;
-		
-		// paslēpjam baneri
-		[UIView beginAnimations:@"hideBanner" context:nil];
-		friendsPageView.frame = viewFrame;
-		banner.frame = bannerFrame;
-		statusLineView.frame = statusFrame;
-		[UIView commitAnimations];
-		
-		showingBanner = NO;
-	}
-}
-#endif
 
 @end

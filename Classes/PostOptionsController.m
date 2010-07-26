@@ -91,10 +91,11 @@ enum {
 		
 		promote = YES;
 
-		picKeyword = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPicKeyword retain];
-		tags = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostTags retain];
-		mood = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostMood retain];
-		location = [[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostLocation retain];
+		AccountStateInfo *accountStateInfo = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account];
+		picKeyword = [accountStateInfo.newPostPicKeyword retain];
+		tags = [accountStateInfo.newPostTags retain];
+		mood = [accountStateInfo.newPostMood retain];
+		location = [accountStateInfo.newPostLocation retain];
 		
 #ifndef LITEVERSION
     	// iPod notikumi
@@ -396,7 +397,7 @@ enum {
 
 - (void)promoteChanged:(id)sender {
 	promote = ((UISwitch *)sender).on;
-	[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPromote = promote;
+	[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostPromote = promote;
 }
 
 - (void)setPicKeyword:(NSString *)newPicKeyword {
@@ -404,7 +405,7 @@ enum {
 		[picKeyword release];
 		picKeyword = [newPicKeyword retain];
 		
-		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostPicKeyword = picKeyword;
+		[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostPicKeyword = picKeyword;
 	}
 }
 
@@ -413,7 +414,7 @@ enum {
 		[tags release];
 		tags = [newTags retain];
 
-		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostTags = tags;
+		[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostTags = tags;
 	}
 }
 
@@ -422,7 +423,7 @@ enum {
 		[mood release];
 		mood = [newMood retain];
 
-		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostMood = mood;
+		[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostMood = mood;
 	}
 }
 
@@ -431,7 +432,7 @@ enum {
 		[music release];
 		music = [newMusic retain];
 		
-		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostMusic = music;
+		[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostMusic = music;
 	}
 }
 
@@ -440,7 +441,7 @@ enum {
 		[location release];
 		location = [newLocation retain];
 		
-		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostLocation = location;
+		[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostLocation = location;
 	}
 }
 

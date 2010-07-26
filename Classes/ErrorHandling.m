@@ -10,7 +10,7 @@
 #import "LiveJournal.h"
 
 void showErrorMessage(NSString *title, NSString *text) {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:text delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
 	[alert show];
 	[alert release];
 }

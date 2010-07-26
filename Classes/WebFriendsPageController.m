@@ -30,6 +30,7 @@
 	webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
 	webView.scalesPageToFit = YES;
 	webView.delegate = self;
+	webView.alpha = 0.0f;
 	
 	friendsPageView = webView;
 	
@@ -42,7 +43,7 @@
 	[super viewWillAppear:animated];
 	
 	if (!loggedin && refreshTurnedOffMessage && DEFAULT_BOOL(@"refresh_on_start")) {
-		[self showStatusLine];
+		[self showActivityIndicator];
 		[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
 	}
 }
@@ -52,13 +53,12 @@
 	
 	if (!loggedin) {
 		if (DEFAULT_BOOL(@"refresh_on_start")) {
-			refreshButtonItem.enabled = NO;
 			[self performSelectorInBackground:@selector(login) withObject:nil];
 		} else if (!refreshTurnedOffMessage) {
 			NSString *path = [[NSBundle mainBundle] pathForResource:@"RefreshTurnedOff" ofType:@"html"];
 			NSURL *URL = [NSURL fileURLWithPath:path];
 			NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-			[self showStatusLine];
+			[self showActivityIndicator];
 			[webView loadRequest:request];
 			refreshTurnedOffMessage = YES;
 		}
@@ -81,12 +81,12 @@
 			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 			
 			loggedin = YES;
-			[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
+			[self performSelectorInBackground:@selector(showActivityIndicator) withObject:nil];
 			
 			if ([APP_WEB_VIEW_CONTROLLER createSessionForAccount:account silent:NO]) {
 				[self loadFriendsPage];
 			} else {
-				[self hideStatusLine];
+				[self hideActivityIndicator];
 			}
 			
 			[pool release];
@@ -105,9 +105,8 @@
 
 #pragma mark Pogas
 - (void)refresh {
-	refreshButtonItem.enabled = NO;
 	if (loggedin) {
-		[self performSelectorInBackground:@selector(showStatusLine) withObject:nil];
+		[self performSelectorInBackground:@selector(showActivityIndicator) withObject:nil];
 		[self loadFriendsPage];
 	} else {
 		[self login];
@@ -122,9 +121,9 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView {
 	[[NetworkActivityIndicator sharedInstance] hide];
-
-	[self hideStatusLine];
-	refreshButtonItem.enabled = YES;
+	[self hideActivityIndicator];
+	
+	webView.alpha = 1.0f;
 }
 
 - (BOOL)webView:(UIWebView *)webView_ shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

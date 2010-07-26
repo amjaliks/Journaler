@@ -10,12 +10,14 @@
 
 enum {
 	ServerFeatureNone = 0,
-	ServerFeatureMethodGetUserTags = 1,
-	ServerFeaturePostEventUserAgent = 1 << 1,
-	ServerFeatureFriendsPageFilterByJournalType = 1 << 2,
-	ServerFeatureFriendsPageFilterByGroup = 1 << 3,
+	ServerFeatureFriendsPage = 1,
+	ServerFeatureMethodGetUserTags = 1 << 1,
+	ServerFeaturePostEventUserAgent = 1 << 2,
+	ServerFeatureFriendsPageFilterByJournalType = 1 << 3,
+	ServerFeatureFriendsPageFilterByGroup = 1 << 4,
 	
-	ServerFeatureAll = ServerFeaturePostEventUserAgent 
+	ServerFeatureAll = ServerFeatureFriendsPage
+			| ServerFeaturePostEventUserAgent 
 			| ServerFeatureMethodGetUserTags 
 			| ServerFeatureFriendsPageFilterByJournalType
 			| ServerFeatureFriendsPageFilterByGroup

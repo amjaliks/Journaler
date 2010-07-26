@@ -47,21 +47,12 @@
 	registerUserDefaults();
 	
 	[[AccountManager sharedManager] loadAccounts];
-	[[AccountManager sharedManager] loadAccountStateInfo];
 	
 	// atveram kontu sarakstu
-	accountsViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];
-	
+	accountsViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];	
 	navigationController = [[UINavigationController alloc] initWithRootViewController:accountsViewController];
 	
-	NSString *accountKey = [[AccountManager sharedManager] openedAccount];
-	if (accountKey) {
-		LJAccount *account = [[AccountManager sharedManager] accountForKey:accountKey];
-		if (account) {
-			[accountsViewController view];
-			[accountsViewController openAccount:account animated:NO];
-		}
-	}
+	[accountsViewController restoreState];
 	
 	[window addSubview:navigationController.view];
 	
@@ -74,13 +65,13 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {	
 	[model saveAll];
-	[[AccountManager sharedManager] storeAccountStateInfo];
+	[[AccountManager sharedManager] storeStateInfo];
 	
 	[accountsViewController release];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-	[[AccountManager sharedManager] storeAccountStateInfo];
+	[[AccountManager sharedManager] storeStateInfo];
 }
 
 #pragma mark -

@@ -8,32 +8,31 @@
 
 #import <UIKit/UIKit.h>
 #import "TableViewController.h"
-#import "AccountEditorController.h"
+#import "AccountManager.h"
 
 // kontu saraksta kontrolieris
-@interface AccountsViewController : TableViewController<AccountEditorControllerDataSource, AccountEditorControllerDelegate> {
-	UINavigationController *editAccountViewController;
-	UIViewController *accountViewController;
+@interface AccountsViewController : TableViewController {
+	AccountManager *accountManager;
 	
-	NSMutableArray *accounts;
-	LJAccount *selectedAccount;
-	NSString *selectedAccountTitle;
-		
-	// kešs inicializēto kontrolierus glabāšanai
-	NSMutableDictionary *cacheTabBarControllers;
+	IBOutlet UINavigationController *accountEditorNavigationController;
+	IBOutlet UINavigationController *settingsNavigationController;
+	IBOutlet UITabBarController *accountTabBarController;
 	
+	IBOutlet UIBarButtonItem *addButton;
 	IBOutlet UIBarButtonItem *settingsButton;
+
+	LJAccount *selectedAccount;
 }
 
-@property (nonatomic, retain) IBOutlet UIViewController *editAccountViewController;
-@property (nonatomic, retain) IBOutlet UIViewController *accountViewController;
+@property (readonly) AccountManager *accountManager;
+@property (readonly) LJAccount *selectedAccount;
 
 - (IBAction)addAccount:(id)sender;
+- (IBAction)showSettings:(id)sender;
 
-- (void)openAccount:(LJAccount *)account animated:(BOOL)animated;
+- (void)restoreState;
 
-- (void)sendReport;
-
-- (IBAction)showSettings;
+- (void)openAccountAtIndex:(NSInteger)index animated:(BOOL)animated;
+- (void)didAddNewAccount;
 
 @end

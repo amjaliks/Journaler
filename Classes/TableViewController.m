@@ -11,22 +11,24 @@
 
 @implementation TableViewController
 
-@synthesize tableView = _tableView;
+@synthesize tableView;
 
-- (void)loadView {
-	[super loadView];
+- (void)viewDidLoad {
+	[super viewDidLoad];
 	
 	// table
-	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-	_tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	_tableView.delegate = self;
-	_tableView.dataSource = self;
-	[self.view addSubview:_tableView];
+	if (!tableView) {
+		tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+		tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		tableView.delegate = self;
+		tableView.dataSource = self;
+		[self.view addSubview:tableView];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
+
 	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 

@@ -10,18 +10,19 @@
 #import "Macros.h"
 #import "LiveJournal.h"
 #import "PostEditorController.h"
+#import "ALReporter.h"
+#import "JournalerAppDelegate.h"
 
 #define kAccountsFileName @"accounts.bin"
-#define kAccountStateInfoFileName @"stateinfo.bin"
-#define kAccountFileName @"account.bin"
-
-#define kAccountStateInfoOpenedAccount @"opened_account"
+#define kStateInfoFileName @"stateinfo"
 
 static AccountManager *sharedManager;
 
 @implementation AccountManager
 
 #pragma mark Kontu pārvaldīšana
+
+@synthesize accounts;
 
 - (void)loadAccounts {
 	// nolasam kontu sarakstu
@@ -30,30 +31,10 @@ static AccountManager *sharedManager;
 	path = [path stringByAppendingPathComponent:kAccountsFileName];
 	accounts = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
 	
-#ifdef LITEVERSION
-	// migrējam veco LITE kontu glabāšanu uz kopīgo abām versijām
-	if (!accounts) {
-		path = [[paths objectAtIndex:0] stringByAppendingPathComponent:kAccountFileName];
-		LJAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-		if (account) {
-			accounts = [NSArray arrayWithObjects:account, nil];
-			NSError *error;
-			[[NSFileManager defaultManager] removeItemAtPath:path error:&error];
-		}
-	}
-#endif
-	
 	if (accounts) {
-		// ja saraksts veiksmīgi ielādēts, tad veicam dažas tehniskas darbības
 		accounts = [accounts mutableCopy];
-		accountsDict = [[NSMutableDictionary alloc] initWithCapacity:[accounts count]];
-		for (LJAccount *account in accounts) {
-			[accountsDict setObject:account forKey:account.title];
-		}
 	} else {
-		// ja saraksts nav ielādēts, tad izveidojam tukšu masīvu
-		accounts = [[NSMutableArray alloc] initWithCapacity:1];
-		accountsDict = [[NSMutableDictionary alloc] initWithCapacity:1];
+		accounts = [[NSMutableArray alloc] init];
 	}
 }
 
@@ -64,174 +45,72 @@ static AccountManager *sharedManager;
 	[NSKeyedArchiver archiveRootObject:accounts toFile:path];
 }
 
-- (NSMutableArray *)accounts {
-	return accounts;
+- (BOOL)accountExists:(NSString *)key {
+	for (LJAccount *account in accounts) {
+		if ([account.title isEqualToString:key]) {
+			return YES;
+		}
+	}
+	return NO;
 }
 
-- (LJAccount *)accountForKey:(NSString *)key {
-	return [accountsDict objectForKey:key];
-}
-
-#ifdef LITEVERSION
-- (LJAccount *)account {
-	return [accounts lastObject];
-}
-
-- (void)storeAccount:(LJAccount *)account {
-	[accounts removeAllObjects];
-	[accountsDict removeAllObjects];
-	
+- (void)addAccount:(LJAccount *)account {
 	[accounts addObject:account];
-	[accountsDict setObject:account forKey:account.title];
+	[self storeAccounts];
+	
+	[self sendReport];
+}
+
+- (void)removeAccount:(LJAccount *)account {
+	[stateInfo removeStateInfoForAccount:account];
+	[accounts removeObject:account];
+	[self storeStateInfo];
+	[self storeAccounts];
+	
+	[self sendReport];
+}
+
+- (void)moveAccountFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
+	LJAccount *account = [[accounts objectAtIndex:fromIndex] retain];
+	[accounts removeObjectAtIndex:fromIndex];
+	[accounts insertObject:account atIndex:toIndex];
+	[account release];
+	
 	[self storeAccounts];
 }
-#endif
 
 #pragma mark Ekrānu stāvokļa pārvaldīšana
 
-- (void)loadAccountStateInfo {
-	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kAccountStateInfoFileName];
-	accountStateInfo = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
-	
-	if (!accountStateInfo) {
-		accountStateInfo = [[NSMutableDictionary alloc] initWithCapacity:[accounts count] + 1];
+- (StateInfo *)stateInfo {
+	@synchronized (self) {
+		if (!stateInfo) {
+			[self loadStateInfo];
+		}
+		return stateInfo;
 	}
 }
 
-- (void)storeAccountStateInfo {
+- (void)loadStateInfo {
+	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kStateInfoFileName];
+	stateInfo = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
+	
+	if (!stateInfo) {
+		stateInfo = [[StateInfo alloc] init];
+	}
+}
+
+- (void)storeStateInfo {
 	for(PostEditorController *controller in postEditors) {
 		[controller saveState];
 	}
 
-	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kAccountStateInfoFileName];
-	[NSKeyedArchiver archiveRootObject:accountStateInfo toFile:path];
-}
-
-- (AccountStateInfo *)stateInfoForAccount:(NSString *)account {
-	AccountStateInfo *localAccountStateInfo = [accountStateInfo objectForKey:account];
-	if (!localAccountStateInfo) {
-		localAccountStateInfo = [[[AccountStateInfo alloc] init] autorelease];
-		[accountStateInfo setObject:localAccountStateInfo forKey:account];
-	}
-	return localAccountStateInfo;
-}
-
-- (NSMutableDictionary *)stateInfo {
-	if (!stateInfo) {
-		stateInfo = [[NSMutableDictionary alloc] init];
-	}
-	return stateInfo;
+	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kStateInfoFileName];
+	[NSKeyedArchiver archiveRootObject:stateInfo toFile:path];
 }
 
 - (void)registerPostEditorController:(PostEditorController *)controller {
 	[postEditors addObject:controller];
 }
-
-- (id)valueForPath:(NSArray *)path {
-	id obj = [self stateInfo];
-	for (NSString *name in path) {
-		obj = [obj objectForKey:name];
-		if (!obj) {
-			return nil;
-		}
-	}
-	return obj;
-}
-
-- (NSUInteger)unsignedIntegerValueForPath:(NSArray *)path {
-	NSNumber *number = [self valueForPath:path];
-	if (number && [number isKindOfClass:[NSNumber class]]) {
-		return [number unsignedIntegerValue];
-	} else {
-		return 0;
-	}
-}
-
-- (id)valueForAccount:(NSString *)account forKey:(NSString *)key {
-	return [self valueForPath:[NSArray arrayWithObjects:kStateInfoAccounts, account, key, nil]];
-}
-
-- (BOOL)boolValueForAccount:(NSString *)account forKey:(NSString *)key defaultValue:(BOOL)defaultValue {
-	NSNumber *value = [self valueForAccount:account forKey:key];
-	if (value && [value isKindOfClass:[NSNumber class]]) {
-		return [value boolValue];
-	} else {
-		return defaultValue;
-	}
-}
-
-- (NSSet *)setForAccount:(NSString *)account forKey:(NSString *)key {
-	return [NSSet setWithArray:[self valueForAccount:account forKey:key]];
-}
-
-- (NSUInteger)unsignedIntegerValueForAccount:(NSString *)account forKey:(NSString *)key {
-	return [self unsignedIntegerValueForPath:[NSArray arrayWithObjects:kStateInfoAccounts, account, key, nil]];
-}
-
-- (NSString *)openedAccount {
-	return [accountStateInfo objectForKey:kAccountStateInfoOpenedAccount];
-}
-
-- (void)setValue:(id)value forPath:(NSArray *)path {
-	NSMutableDictionary *dict = stateInfo;
-	
-	NSUInteger i = 0;
-	for (NSString *name in path) {
-		i++;
-		if (i == [path count]) {
-			break;
-		} else {
-			NSMutableDictionary *nextDict = [dict objectForKey:name];
-			if (!nextDict) {
-				nextDict = [[NSMutableDictionary alloc] initWithCapacity:1];
-				[dict setObject:nextDict forKey:name];
-			}
-			dict = nextDict;
-		}
-	}
-	
-	[dict setValue:value forKey:[path lastObject]];
-}
-
-- (void)setValue:(id)value forAccount:(NSString *)account forKey:(NSString *)key {
-	[self setValue:value forPath:[NSArray arrayWithObjects:kStateInfoAccounts, account, key, nil]];
-}
-
-- (void)setBoolValue:(BOOL)value forAccount:(NSString *)account forKey:(NSString *)key {
-	[self setValue:[NSNumber numberWithBool:value] forAccount:account forKey:key];
-}
-
-- (void)setSet:(NSSet *)set forAccount:(NSString *)account forKey:(NSString *)key {
-	[self setValue:[set allObjects] forAccount:account forKey:key];
-}
-
-- (void)setUnsignedIntegerValue:(NSUInteger)value forAccount:(NSString *)account forKey:(NSString *)key {
-	[self setValue:[NSNumber numberWithUnsignedInteger:value] forAccount:account forKey:key];
-}
-
-- (void)setOpenedAccount:(NSString *)account {
-	if (account) {
-		[accountStateInfo setObject:account forKey:kAccountStateInfoOpenedAccount];
-	} else {
-		[accountStateInfo removeObjectForKey:kAccountStateInfoOpenedAccount];
-	}
-}
-
-- (void)removeStateForAccount:(NSString *)account {
-	[accountStateInfo removeObjectForKey:account];
-}
-
-#pragma mark Atmiņas pārvaldīšana
-
-- (void)dealloc {
-	[accounts release];
-	[accountsDict release];
-	[stateInfo release];
-	[accountStateInfo release];
-	
-	[super dealloc];
-}
-
 
 #pragma mark Singleton metodes
 
@@ -276,6 +155,28 @@ static AccountManager *sharedManager;
 
 - (id)autorelease {
     return self;
+}
+
+- (void)dealloc {
+	[accounts release];
+	[stateInfo release];
+	[stateInfo release];
+	
+	[super dealloc];
+}
+
+#pragma mark -
+
+- (void) sendReport {
+	ALReporter *reporter = ((JournalerAppDelegate *)[UIApplication sharedApplication].delegate).reporter;
+	[reporter setInteger:[accounts count] forProperty:@"account_count"];
+	
+	NSMutableSet *servers = [[NSMutableSet alloc] init];
+	for (LJAccount *account in accounts) {
+		[servers addObject:account.server];
+	}
+	[reporter setObject:servers forProperty:@"server"];
+	[servers release];
 }
 
 @end

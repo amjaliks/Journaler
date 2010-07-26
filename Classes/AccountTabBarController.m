@@ -23,20 +23,6 @@
 
 @synthesize friendsPageController;
 
-- (id) initWithAccount:(LJAccount *)aAccount {
-	if (self = [super init]) {
-		self.delegate = self;
-		
-		account = [aAccount retain];
-		
-		// virsraksts
-		self.navigationItem.title = account.user;
-		
-		[self setViewControllersForAccount:account];
-	}
-	return self;
-}
-
 - (void) setViewControllersForAccount:(LJAccount *)newAccount {
 	[friendsPageController release];
 	friendsPageController = [@"livejournal.com" isEqual:newAccount.server] ? [[LJFriendsPageController alloc] initWithAccount:newAccount] : [[WebFriendsPageController alloc] initWithAccount:newAccount];
@@ -50,7 +36,7 @@
 	
 	NSArray *arrays = [[NSArray alloc] initWithObjects:friendsPageController, postEditorController, nil];
 	self.viewControllers = arrays;
-	self.selectedIndex = [[AccountManager sharedManager] stateInfoForAccount:newAccount.title].openedScreen == OpenedScreenNewPost ? 1 : 0;
+	self.selectedIndex = [[AccountManager sharedManager].stateInfo stateInfoForAccount:newAccount].openedScreen == OpenedScreenNewPost ? 1 : 0;
 
 	[self setNavigationItemForViewController:self.selectedViewController];
 
@@ -65,29 +51,41 @@
 }
 
 #pragma mark -
+#pragma mark Īpašības
+
+- (LJFriendsPageController *)ljFriendsPageController {
+	@synchronized (self) {
+		if (!ljFriendsPageController) {
+			ljFriendsPageController = [[LJFriendsPageController alloc] initWithNibName:@"FriendsPageController" bundle:nil];
+		}
+		return ljFriendsPageController;
+	}
+}
+
+#pragma mark -
 #pragma mark Tab Bar Controller Delegate
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
 	[self setNavigationItemForViewController:viewController];
 	
 	NSUInteger value = postEditorController == viewController ? OpenedScreenNewPost : OpenedScreenFriendsPage;
-	[[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen = value;
+	[accountsViewController.accountManager.stateInfo stateInfoForAccount:accountsViewController.selectedAccount].openedScreen = value;
 	
 }
 
 - (LJAccount *)selectedAccount {
-	return account;
+	return accountsViewController.selectedAccount;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	
+	if (previousAccount != accountsViewController.selectedAccount) {
+		[self setViewControllersForAccount:accountsViewController.selectedAccount];
+		previousAccount = accountsViewController.selectedAccount;
+	}
+	
 	[self.navigationItem.titleView setNeedsLayout];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-	[[AccountManager sharedManager] setOpenedAccount:account.title];
-	//[self.navigationItem.titleView resizeForInterfaceOrientation:self.interfaceOrientation];
 }
 
 #pragma mark -
@@ -97,8 +95,6 @@
 	[friendsPageController release];
 	[postEditorController release];
 
-	[account release];
-	
 	[super dealloc];
 }
 

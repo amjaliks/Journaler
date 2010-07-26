@@ -76,7 +76,9 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
 	if (self = [self init]) {
+		// atvērtais ekrāns
 		openedScreen = [coder decodeIntForKey:kKeyOpenedScreen];
+		
 		firstVisiblePost = [[coder decodeObjectForKey:kKeyFirstVisiblePost] retain];
 		firstVisiblePostScrollPosition = [coder decodeIntegerForKey:kKeyFirstVisiblePostScrollPosition];
 		openedPost = [[coder decodeObjectForKey:kKeyOpenedPost] retain];
@@ -98,6 +100,7 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
+	// atvērtais ekrāns
 	[coder encodeInt:openedScreen forKey:kKeyOpenedScreen];
 	[coder encodeObject:firstVisiblePost forKey:kKeyFirstVisiblePost];
 	[coder encodeInteger:firstVisiblePostScrollPosition forKey:kKeyFirstVisiblePostScrollPosition];

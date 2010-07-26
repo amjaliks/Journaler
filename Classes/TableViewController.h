@@ -10,7 +10,7 @@
 
 
 @interface TableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-	UITableView *_tableView;
+	IBOutlet UITableView *tableView;
 }
 
 @property (readonly) UITableView *tableView;

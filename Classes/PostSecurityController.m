@@ -149,8 +149,8 @@
 		postOptionsController.security = LJEventSecurityCustom;
 	}
 
-	[[AccountManager sharedManager] stateInfoForAccount:postOptionsController.account.title].newPostSecurity = postOptionsController.security;
-	[[AccountManager sharedManager] stateInfoForAccount:postOptionsController.account.title].newPostSelectedFriendGroups = postOptionsController.selectedFriendGroups;
+	[[AccountManager sharedManager].stateInfo stateInfoForAccount:postOptionsController.account].newPostSecurity = postOptionsController.security;
+	[[AccountManager sharedManager].stateInfo stateInfoForAccount:postOptionsController.account].newPostSelectedFriendGroups = postOptionsController.selectedFriendGroups;
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

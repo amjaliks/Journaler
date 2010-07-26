@@ -61,7 +61,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	needOpenPost = OpenedScreenPost == [[AccountManager sharedManager] stateInfoForAccount:account.title].openedScreen;
+	needOpenPost = OpenedScreenPost == [[AccountManager sharedManager].stateInfo stateInfoForAccount:account].openedScreen;
 	[super viewDidAppear:animated];
 	if (!account.synchronized) {
 		account.synchronized = YES;
@@ -75,15 +75,15 @@
 	}
 }
 
-- (void)showStatusLine {
+- (void)showActivityIndicator {
 	loading = YES;
-	[super showStatusLine];
+	[super showActivityIndicator];
 	refreshButtonItem.enabled = NO;
 }
 
-- (void)hideStatusLine {
+- (void)hideActivityIndicator {
 	loading = NO;
-	[super hideStatusLine];
+	[super hideActivityIndicator];
 	refreshButtonItem.enabled = YES;
 }
 
@@ -94,7 +94,7 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	// parādam stāvokļa joslu
-	[self performSelectorOnMainThread:@selector(showStatusLine) withObject:nil waitUntilDone:YES];
+	[self performSelectorOnMainThread:@selector(showActivityIndicator) withObject:nil waitUntilDone:YES];
 	
 	// lasam ierakstus no keša
 	Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
@@ -108,7 +108,7 @@
 	
 	if (needOpenPost) {
 		// ja nepieciešams, tad atveram iepriekš atvērto rakstu
-		NSString *postKey = [[AccountManager sharedManager] stateInfoForAccount:account.title].openedPost;
+		NSString *postKey = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account].openedPost;
 		if (postKey) {
 			for (Post *post in loadedPosts) {
 				if ([postKey isEqualToString:post.uniqueKey]) {
@@ -129,7 +129,7 @@
 	}
 	
 	// paslēpjam stāvokļa joslu
-	[self performSelectorOnMainThread:@selector(hideStatusLine) withObject:nil waitUntilDone:YES];
+	[self performSelectorOnMainThread:@selector(hideActivityIndicator) withObject:nil waitUntilDone:YES];
 	
 	[pool release];
 }
@@ -195,7 +195,7 @@
 
 - (void) refresh {
 	refreshButtonItem.enabled = NO;
-	[self showStatusLine];
+	[self showActivityIndicator];
 	
 	[self performSelectorInBackground:@selector(refreshPosts) withObject:nil];
 }
@@ -223,7 +223,7 @@
 		}
 
 		// paslēpjam stāvokļa joslu
-		[self hideStatusLine];
+		[self hideActivityIndicator];
 
 		refreshButtonItem.enabled = YES;
 		
@@ -246,13 +246,13 @@
 			[tableView setAlpha:1.0];
 			
 			if ([displayedPosts count]) {
-				NSString *firstVisiblePost = [[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePost;
+				NSString *firstVisiblePost = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account].firstVisiblePost;
 				if (firstVisiblePost) {
 					// ja pirmais redzamais raksts ir zināms, tad cenšamies atjaunot iepriekšējo tabulas stāvokli
 					NSUInteger row = 0;
 					for (Post *post in displayedPosts) {
 						if ([firstVisiblePost isEqualToString:post.uniqueKey]) {
-							NSUInteger scrollPosition = row * 88 + [[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePostScrollPosition;
+							NSUInteger scrollPosition = row * 88 + [[AccountManager sharedManager].stateInfo stateInfoForAccount:account].firstVisiblePostScrollPosition;
 							NSUInteger lowerAllowedPosition = tableView.contentSize.height - tableView.bounds.size.height;
 							[tableView setContentOffset:CGPointMake(0, scrollPosition > lowerAllowedPosition ? lowerAllowedPosition : scrollPosition)];
 							return;
@@ -370,7 +370,7 @@
 	// [anotherViewController release];
 	if (indexPath.row == [displayedPosts count]) {
 		if (!loading) {
-			[self showStatusLine];
+			[self showActivityIndicator];
 			[self performSelectorInBackground:@selector(loadMorePosts) withObject:nil];
 		}
 	} else {
@@ -389,9 +389,10 @@
 }
 
 - (void)resetScrollPostion {
-	[[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePost = nil;
-	[[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePostScrollPosition = 0;
-	[[AccountManager sharedManager] stateInfoForAccount:account.title].lastVisiblePostIndex = 0;
+	AccountStateInfo *accountStateInfo = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account];
+	accountStateInfo.firstVisiblePost = nil;
+	accountStateInfo.firstVisiblePostScrollPosition = 0;
+	accountStateInfo.lastVisiblePostIndex = 0;
 }
 
 - (void)saveScrollPosition {
@@ -399,9 +400,10 @@
 	if (indexPaths && [indexPaths count] > 0) {
 		NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
 		NSUInteger row = indexPath.row;
-		[[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePost = [(Post *)[displayedPosts objectAtIndex:row] uniqueKey];
-		[[AccountManager sharedManager] stateInfoForAccount:account.title].firstVisiblePostScrollPosition = ((NSUInteger)tableView.contentOffset.y) % 88;
-		[[AccountManager sharedManager] stateInfoForAccount:account.title].lastVisiblePostIndex = [(NSIndexPath *)[indexPaths objectAtIndex:0] row] + 5;
+		AccountStateInfo *accountStateInfo = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account];
+		accountStateInfo.firstVisiblePost = [(Post *)[displayedPosts objectAtIndex:row] uniqueKey];
+		accountStateInfo.firstVisiblePostScrollPosition = ((NSUInteger)tableView.contentOffset.y) % 88;
+		accountStateInfo.lastVisiblePostIndex = [(NSIndexPath *)[indexPaths objectAtIndex:0] row] + 5;
 	}
 }
 

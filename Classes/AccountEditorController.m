@@ -16,49 +16,41 @@
 
 @implementation AccountEditorController
 
-@synthesize usernameCell;
-@synthesize passwordCell;
-@synthesize serverCell;
-
-@synthesize usernameText;
-@synthesize passwordText;
-@synthesize serverText;
-
-@synthesize cancelButton;
-@synthesize doneButton;
-
-@synthesize dataSource;
-@synthesize delegate;
-
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+	if (accountsViewController.selectedAccount) {
+		[passwordText becomeFirstResponder];
+	} else {
+		[usernameText becomeFirstResponder];
+	}
 }
-*/
 
-- (void)setAccount:(LJAccount *)account {
-	if (account) {
+- (void)viewWillAppear:(BOOL)animated {
+	if (accountsViewController.selectedAccount) {
 		self.title = @"Edit account";
-		usernameText.text = account.user;
-		passwordText.text = account.password;
-		serverText.text = account.server;
+		
+		usernameText.text = accountsViewController.selectedAccount.user;
+		passwordText.text = accountsViewController.selectedAccount.password;
+		serverText.text = accountsViewController.selectedAccount.server;
+		
+		usernameText.textColor = [UIColor darkGrayColor];
+		serverText.textColor = [UIColor darkGrayColor];
+		usernameText.enabled = NO;
+		serverText.enabled = NO;
 	} else {
 		self.title = @"Add account";
 		usernameText.text = nil;
 		passwordText.text = nil;
 		serverText.text = nil;
+		
+		usernameText.textColor = [UIColor blackColor];
+		serverText.textColor = [UIColor blackColor];
+		usernameText.enabled = YES;
+		serverText.enabled = YES;
 	}
 	
 	doneButton.enabled = NO;
-	self.navigationItem.leftBarButtonItem = [dataSource hasNoAccounts] ? nil : cancelButton;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-	[usernameText becomeFirstResponder];
+	self.navigationItem.leftBarButtonItem = [accountsViewController.accountManager.accounts count] ? cancelButton : nil;
 }
 
 #ifndef LITEVERSION
@@ -67,65 +59,41 @@
 }
 #endif
 
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return section == 0 ? 3 : 1;
+	return 3;
 }
 
-
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == 0) {
-		if (indexPath.row == 0) {
-			return usernameCell;
-		} else if (indexPath.row == 1) {
-			return passwordCell;
-		} else if (indexPath.row == 2) {
-			return serverCell;
-		}
-	} else {
-		static NSString *cellId = @"settings";
-		UITableViewCell *settingsCell = [tableView dequeueReusableCellWithIdentifier:cellId];
-		if (!settingsCell) {
-			settingsCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-			settingsCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			settingsCell.textLabel.text = @"Settings";
-			[settingsCell autorelease];
-		}
-		return settingsCell;
+	if (indexPath.row == 0) {
+		return usernameCell;
+	} else if (indexPath.row == 1) {
+		return passwordCell;
+	} else if (indexPath.row == 2) {
+		return serverCell;
 	}
-    return nil;
+	return nil;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-	return @"Enter username and password for your account. If using a LiveJournal clone enter the server name as well.";
+	if (accountsViewController.selectedAccount) {
+		return nil;
+	} else {
+		return NSLocalizedString(@"Enter username and password for your account. If using a LiveJournal clone enter the server name as well.", nil);
+	}
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
-
-- (IBAction) cancel:(id)sender {
-	//[delegate accountEditorControllerDidCancel:self];
+- (IBAction)cancel:(id)sender {
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 // Saglabājam kontu
-- (IBAction) saveAccount:(id)sender {
+- (IBAction)saveAccount:(id)sender {
 	// dažas lokālas konstantes
 	//   noklusētais serveris
 	static NSString *defaultServer = @"livejournal.com";
@@ -146,25 +114,28 @@
 	}
 	
 	if ([@"dreamwidth.org" isEqualToString:server]) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"Dreamwidth.org currently is not supported." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+		showErrorMessage(NSLocalizedString(@"Sorry!", nil), NSLocalizedString(@"Dreamwidth.org currently is not supported.", nil));
 		return;
 	}
 	
-	LJAccount *account = [[LJAccount alloc] init];
-	account.user = [usernameText.text lowercaseString];
-	account.password = passwordText.text;
-	account.server = server;
-
-	if ([dataSource isDublicateAccount:account.title]) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Account error" message:@"You have already added this account." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+	BOOL newAccount;
+	LJAccount *account;
+	account = [accountsViewController.selectedAccount retain];
+	if (account) {
+		newAccount = NO;
+	} else {
+		newAccount = YES;
+		account = [[LJAccount alloc] init];
+		account.user = [usernameText.text lowercaseString];
+		account.server = server;
 		
-		[account release];
-		return;
+		if ([accountsViewController.accountManager accountExists:account.title]) {
+			showErrorMessage(NSLocalizedString(@"Account error", nil), NSLocalizedString(@"You have already added this account.", nil));
+			[account release];
+			return;
+		}
 	}
+	account.password = passwordText.text;
 	
 	NSError *error;
 	if (![[LJManager defaultManager] loginForAccount:account error:&error]) {
@@ -173,9 +144,10 @@
 		return;
 	}
 	
-	[delegate saveAccount:account];
-	
-	[account release];
+	if (newAccount) {
+		[accountsViewController.accountManager addAccount:account];
+		[accountsViewController.tableView reloadData];
+	}
 	
 	[self dismissModalViewControllerAnimated:YES];
 }

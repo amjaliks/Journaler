@@ -18,8 +18,10 @@ typedef enum {
 	OpenedScreenNewPost = 2
 } OpenedScreenType;
 
-@interface AccountStateInfo : NSObject<NSCoding> {
+@interface AccountStateInfo : NSObject <NSCoding> {
+	// atvērtais ekrāns
 	OpenedScreenType openedScreen;
+	
 	NSString *firstVisiblePost;
 	NSInteger firstVisiblePostScrollPosition;
 	NSString *openedPost;
@@ -40,6 +42,7 @@ typedef enum {
 	BOOL newPostPromote;
 }
 
+// atvērtais ekrāns
 @property OpenedScreenType openedScreen;
 @property (retain, nonatomic) NSString *firstVisiblePost;
 @property NSInteger firstVisiblePostScrollPosition;

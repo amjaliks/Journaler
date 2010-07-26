@@ -57,18 +57,20 @@
 	
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	
-	textField.text = [[AccountManager sharedManager] stateInfoForAccount:account.title].newPostText;
-	subjectField.text = [[AccountManager sharedManager] stateInfoForAccount:account.title].newPostSubject;
+	AccountStateInfo *accountStateInfo = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account];
+	
+	textField.text = accountStateInfo.newPostText;
+	subjectField.text = accountStateInfo.newPostSubject;
 	
 	postOptionsController = [[PostOptionsController alloc] initWithAccount:account];
 	postOptionsController.dataSource = self;
 	
-	NSString *journal = [[AccountManager sharedManager] stateInfoForAccount:account.title].newPostJournal;
+	NSString *journal = accountStateInfo.newPostJournal;
 	if (journal) {
 		postOptionsController.journal = journal;
 	}
-	postOptionsController.security = [[AccountManager sharedManager] stateInfoForAccount:account.title].newPostSecurity;
-	[postOptionsController.selectedFriendGroups addObjectsFromArray:[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostSelectedFriendGroups];
+	postOptionsController.security = accountStateInfo.newPostSecurity;
+	[postOptionsController.selectedFriendGroups addObjectsFromArray:accountStateInfo.newPostSelectedFriendGroups];
 
 	[[AccountManager sharedManager] registerPostEditorController:self];
 }
@@ -267,8 +269,9 @@
 
 - (void)saveState {
 	if ([self isViewLoaded]) {
-		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostSubject = subjectField.text;
-		[[AccountManager sharedManager] stateInfoForAccount:account.title].newPostText = textField.text;
+		AccountStateInfo *accountStateInfo = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account];
+		accountStateInfo.newPostSubject = subjectField.text;
+		accountStateInfo.newPostText = textField.text;
 	}
 }
 
