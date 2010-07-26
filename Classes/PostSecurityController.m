@@ -11,7 +11,7 @@
 #import "PostOptionsController.h"
 #import "AccountManager.h"
 #import "LiveJournal.h"
-#import "LJManager.h"
+#import "LJAPIClient.h"
 
 #import "ErrorHandling.h"
 
@@ -155,7 +155,7 @@
 }
 
 - (void)refresh {
-	LJManager *manager = [LJManager defaultManager];
+	LJAPIClient *manager = [LJAPIClient client];
 	NSError *error;
 	
 	if ([manager friendGroupsForAccount:postOptionsController.account error:&error]) {		

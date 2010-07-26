@@ -49,19 +49,21 @@ BannerViewController *sharedInstance;
 }
 
 - (void)addBannerToView:(UIView *)newSuperView resizeView:(UIView *)newResizeView {
-	[self removeBannerFromView];
-	
-	superView = newSuperView;
-	resizeView = newResizeView;
-	
-	CGRect bannerFrame = bannerView.frame;
-	bannerFrame.origin.y = newResizeView.frame.size.height;
-	bannerView.frame = bannerFrame;
-	
-	[newSuperView addSubview:bannerView];
-	
-	if (bannerView.bannerLoaded) {
-		[self showBanner];
+	if (bannerView.superview != newSuperView) {	
+		[self removeBannerFromView];
+		
+		superView = newSuperView;
+		resizeView = newResizeView;
+		
+		CGRect bannerFrame = bannerView.frame;
+		bannerFrame.origin.y = newResizeView.frame.size.height;
+		bannerView.frame = bannerFrame;
+		
+		[newSuperView addSubview:bannerView];
+		
+		if (bannerView.bannerLoaded) {
+			[self showBanner];
+		}
 	}
 }
 

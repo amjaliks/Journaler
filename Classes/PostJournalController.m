@@ -117,7 +117,7 @@
 
 - (void)refresh {
 	NSError *error;
-	if ([[LJManager defaultManager] loginForAccount:postOptionsController.account error:&error]) {
+	if ([[LJAPIClient client] loginForAccount:postOptionsController.account error:&error]) {
 		[[AccountManager sharedManager] storeAccounts];
 		
 		if (![postOptionsController.account.communities containsObject:postOptionsController.journal]) {

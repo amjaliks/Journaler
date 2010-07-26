@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 
 #import "FriendsPageFilter.h"
+#import "AccountProvider.h"
 
 @class LJAccount, FriendsPageTitleView;
 
-@interface FriendsPageController : UIViewController {
-	// konts
-	LJAccount *account;
+@interface FriendsPageController : UIViewController <AccountProvider> {
+	id<AccountProvider> accountProvider;
+	LJAccount *previousAccount;
+	
 	// filtrs
 	FriendsPageFilter *friendsPageFilter;
 	
@@ -27,25 +29,20 @@
 	IBOutlet UIActivityIndicatorView *spinnerView;
 	IBOutlet UIBarButtonItem *spinnerItem;
 	NSUInteger spinnerVisible;
-
-	// stāvokļa josla
-	IBOutlet UIView *statusLineView;
-	IBOutlet UILabel *statusLineLabel;
 }
 
 #pragma mark Metodes
 
-@property (readonly) LJAccount *account;
+@property (nonatomic, assign) id<AccountProvider> accountProvider;
+@property (readonly) UIView *mainView;
 @property (readonly) FriendsPageFilter *friendsPageFilter;
 
-// init
-- (id)initWithAccount:(LJAccount *)account;
+// aktivitātes indikators
+- (void)showActivityIndicator;
+- (void)hideActivityIndicator;
 // pogas
 - (void)refresh;
 - (void)openFilter:(id)sender;
-// stāvokļa josla
-- (void)showStatusLine;
-- (void)hideStatusLine;
 
 - (void)filterFriendsPage;
 

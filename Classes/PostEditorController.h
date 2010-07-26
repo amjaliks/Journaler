@@ -9,46 +9,47 @@
 #import <UIKit/UIKit.h>
 
 #import "PostOptionsController.h"
+#import "AccountProvider.h"
 
 @class LJAccount;
 @protocol PostEditorControllerDataSource, PostEditorControllerDelegate;
 
-@interface PostEditorController : UITableViewController<UITextViewDelegate, UITextFieldDelegate, PostOptionsControllerDataSource> {
-	LJAccount *account;
+@interface PostEditorController : UITableViewController<UITextViewDelegate, UITextFieldDelegate, PostOptionsControllerDataSource, AccountProvider> {
+	id<AccountProvider> accountProvider;
 	
-	UITableViewCell *subjectCell;
-	UITableViewCell *textCell;
+	IBOutlet UITableViewCell *subjectCell;
+	IBOutlet UITableViewCell *textCell;
 	
-	UITextField *subjectField;
-	UITextView *textField;
+	IBOutlet UITextField *subjectField;
+	IBOutlet UITextView *textField;
 	
-	UIBarButtonItem *postButton;
-	UIBarButtonItem *doneButton;
-	UIBarButtonItem *optionsButton;
+	IBOutlet UIBarButtonItem *postButton;
+	IBOutlet UIBarButtonItem *doneButton;
+	IBOutlet UIBarButtonItem *optionsButton;
 	
 	PostOptionsController *postOptionsController;
 	
-	id<PostEditorControllerDataSource> dataSource;
-	id<PostEditorControllerDelegate> delegate;
+	IBOutlet id<PostEditorControllerDataSource> dataSource;
+	IBOutlet id<PostEditorControllerDelegate> delegate;
 	
 	BOOL editing;
 }
 
-@property (nonatomic, retain) IBOutlet UITableViewCell *subjectCell;
-@property (nonatomic, retain) IBOutlet UITableViewCell *textCell;
+@property (nonatomic, assign) id<AccountProvider> accountProvider;
 
-@property (nonatomic, retain) IBOutlet UITextField *subjectField;
-@property (nonatomic, retain) IBOutlet UITextView *textField;
+@property (nonatomic, retain) UITableViewCell *subjectCell;
+@property (nonatomic, retain) UITableViewCell *textCell;
 
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *postButton;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
+@property (nonatomic, retain) UITextField *subjectField;
+@property (nonatomic, retain) UITextView *textField;
+
+@property (nonatomic, retain) UIBarButtonItem *postButton;
+@property (nonatomic, retain) UIBarButtonItem *doneButton;
 
 // @property (readonly) PostOptionsController *postOptionsController;
 
-@property (nonatomic, retain) IBOutlet id<PostEditorControllerDataSource> dataSource;
-@property (nonatomic, retain) IBOutlet id<PostEditorControllerDelegate> delegate;
-
-- (id)initWithAccount:(LJAccount *)account;
+@property (nonatomic, retain) id<PostEditorControllerDataSource> dataSource;
+@property (nonatomic, retain) id<PostEditorControllerDelegate> delegate;
 
 - (IBAction) post:(id)sender;
 - (IBAction) done:(id)sender;

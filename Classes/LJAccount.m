@@ -90,7 +90,7 @@
 #pragma mark -
 #pragma mark NSObject metodes
 
-- (BOOL) isEqual:(id)anObject {
+- (BOOL)isEqual:(id)anObject {
 	if (self == anObject) {
 		return YES;
 	}
@@ -102,6 +102,16 @@
 	} else {
 		return NO;
 	}
+}
+
+- (NSUInteger)hash {
+	return [self.title hash];
+}
+
+#pragma mark NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+	return [self retain];
 }
 
 #pragma mark -

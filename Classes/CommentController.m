@@ -9,7 +9,7 @@
 #import "CommentController.h"
 #import "LJComment.h"
 #import "Post.h"
-#import "LJManager.h"
+#import "LJAPIClient.h"
 #import "ErrorHandling.h"
 
 
@@ -90,7 +90,7 @@
 	comment.journal = post.journal;
 	
 	NSError *error;
-	if ([[LJManager defaultManager] addComment:comment forAccount:account error:&error]) {
+	if ([[LJAPIClient client] addComment:comment forAccount:account error:&error]) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your comment has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
 		[alert release];

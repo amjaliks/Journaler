@@ -142,6 +142,8 @@
 		17B462E910BA2659004D0E0F /* PostPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E710BA2659004D0E0F /* PostPreviewView.m */; };
 		17B4666110BB4854004D0E0F /* FriendsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4666010BB4854004D0E0F /* FriendsPageController.m */; };
 		17B4666210BB4854004D0E0F /* FriendsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4666010BB4854004D0E0F /* FriendsPageController.m */; };
+		17B4668E11FE2E9E00C8B852 /* LJManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4668D11FE2E9E00C8B852 /* LJManager.m */; };
+		17B467D011FE43E600C8B852 /* LJManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4668D11FE2E9E00C8B852 /* LJManager.m */; };
 		17B4C53A108132E80005660E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C538108132E80005660E /* RegexKitLite.m */; };
 		17B4C63F10827C360005660E /* IconLite.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B4C63E10827C360005660E /* IconLite.png */; };
 		17B4C9B61083C8BC0005660E /* XMLRPCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9A61083C8BC0005660E /* XMLRPCConnection.m */; };
@@ -173,8 +175,8 @@
 		17D77655113BC2F600F26322 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 17D77653113BC2F600F26322 /* Default.png */; };
 		17D8A5B41130BBDE0023FBEA /* LJFriendGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */; };
 		17D8A5B51130BBDE0023FBEA /* LJFriendGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */; };
-		17D8A5B8113126260023FBEA /* LJManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B7113126260023FBEA /* LJManager.m */; };
-		17D8A5B9113126260023FBEA /* LJManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B7113126260023FBEA /* LJManager.m */; };
+		17D8A5B8113126260023FBEA /* LJAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B7113126260023FBEA /* LJAPIClient.m */; };
+		17D8A5B9113126260023FBEA /* LJAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B7113126260023FBEA /* LJAPIClient.m */; };
 		17D8A6591131DF2E0023FBEA /* NSStringMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A6581131DF2E0023FBEA /* NSStringMD5.m */; };
 		17D8A65A1131DF2E0023FBEA /* NSStringMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A6581131DF2E0023FBEA /* NSStringMD5.m */; };
 		17D8A7371131F2ED0023FBEA /* LJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A7361131F2ED0023FBEA /* LJAccount.m */; };
@@ -217,7 +219,6 @@
 		3788A8D011ECC563006E43AA /* HouseAdInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8C911ECC563006E43AA /* HouseAdInfo.m */; };
 		3788A8D111ECC563006E43AA /* HouseAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8CB11ECC563006E43AA /* HouseAdViewController.m */; };
 		3788A8D211ECC563006E43AA /* HouseAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3788A8CC11ECC563006E43AA /* HouseAdViewController.xib */; };
-		3792F22611FDA3B400B18E9E /* JournalerLite-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */; };
 		3799D17811E74CA60039226A /* SelfAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172860C9116D40BB00171A85 /* SelfAdViewController.m */; };
 		3799D18311E74CBA0039226A /* SelfAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172860CA116D40BB00171A85 /* SelfAdViewController.xib */; };
 		3799D19C11E754370039226A /* HouseAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HouseAdManager.m */; };
@@ -328,8 +329,11 @@
 		17B462E610BA2659004D0E0F /* PostPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPreviewView.h; sourceTree = "<group>"; };
 		17B462E710BA2659004D0E0F /* PostPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPreviewView.m; sourceTree = "<group>"; };
 		17B462EF10BA28BA004D0E0F /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		17B4652A11FDFC8500C8B852 /* AccountProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountProvider.h; sourceTree = "<group>"; };
 		17B4665F10BB4854004D0E0F /* FriendsPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsPageController.h; sourceTree = "<group>"; };
 		17B4666010BB4854004D0E0F /* FriendsPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsPageController.m; sourceTree = "<group>"; };
+		17B4668C11FE2E9E00C8B852 /* LJManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJManager.h; sourceTree = "<group>"; };
+		17B4668D11FE2E9E00C8B852 /* LJManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJManager.m; sourceTree = "<group>"; };
 		17B4C538108132E80005660E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		17B4C539108132E80005660E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		17B4C63E10827C360005660E /* IconLite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconLite.png; sourceTree = "<group>"; };
@@ -371,8 +375,8 @@
 		17D77653113BC2F600F26322 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		17D8A5B21130BBDE0023FBEA /* LJFriendGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJFriendGroup.h; sourceTree = "<group>"; };
 		17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJFriendGroup.m; sourceTree = "<group>"; };
-		17D8A5B6113126260023FBEA /* LJManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJManager.h; sourceTree = "<group>"; };
-		17D8A5B7113126260023FBEA /* LJManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJManager.m; sourceTree = "<group>"; };
+		17D8A5B6113126260023FBEA /* LJAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJAPIClient.h; sourceTree = "<group>"; };
+		17D8A5B7113126260023FBEA /* LJAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJAPIClient.m; sourceTree = "<group>"; };
 		17D8A6571131DF2E0023FBEA /* NSStringMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringMD5.h; sourceTree = "<group>"; };
 		17D8A6581131DF2E0023FBEA /* NSStringMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringMD5.m; sourceTree = "<group>"; };
 		17D8A7351131F2ED0023FBEA /* LJAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJAccount.h; sourceTree = "<group>"; };
@@ -486,10 +490,10 @@
 		17132682108A1644007F6C24 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1713267E108A163B007F6C24 /* Post.h */,
-				1713267F108A163B007F6C24 /* Post.m */,
 				171326CE108A238E007F6C24 /* Model.h */,
 				171326CF108A238E007F6C24 /* Model.m */,
+				1713267E108A163B007F6C24 /* Post.h */,
+				1713267F108A163B007F6C24 /* Post.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -622,6 +626,7 @@
 		179F3FB011165D080043E0D1 /* Account Manager */ = {
 			isa = PBXGroup;
 			children = (
+				17B4652A11FDFC8500C8B852 /* AccountProvider.h */,
 				179F3FAC111645D60043E0D1 /* AccountManager.h */,
 				179F3FAD111645D60043E0D1 /* AccountManager.m */,
 				17E5A04211FA156B0083C840 /* StateInfo.h */,
@@ -721,14 +726,16 @@
 				1706433D11DD301E0076EB6D /* NSStringLJ.h */,
 				1706433E11DD301E0076EB6D /* NSStringLJ.m */,
 				17DB0CC010768D2900155636 /* LiveJournal.h */,
+				17B4668C11FE2E9E00C8B852 /* LJManager.h */,
+				17B4668D11FE2E9E00C8B852 /* LJManager.m */,
+				17D8A5B6113126260023FBEA /* LJAPIClient.h */,
+				17D8A5B7113126260023FBEA /* LJAPIClient.m */,
 				17D8A7351131F2ED0023FBEA /* LJAccount.h */,
 				17D8A7361131F2ED0023FBEA /* LJAccount.m */,
 				17D8A5B21130BBDE0023FBEA /* LJFriendGroup.h */,
 				17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */,
 				17D8A9871134B9D10023FBEA /* LJEvent.h */,
 				17D8A9881134B9D10023FBEA /* LJEvent.m */,
-				17D8A5B6113126260023FBEA /* LJManager.h */,
-				17D8A5B7113126260023FBEA /* LJManager.m */,
 				178BF29E1182082800BEEFAD /* LJMood.h */,
 				178BF29F1182082800BEEFAD /* LJMood.m */,
 				178BF5021182E63000BEEFAD /* LJTag.h */,
@@ -956,7 +963,6 @@
 				17EFF2A711EA7A74009D84ED /* up.png in Resources */,
 				17EFF2AA11EA7A78009D84ED /* down.png in Resources */,
 				3788A8CF11ECC563006E43AA /* HouseAdViewController.xib in Resources */,
-				3792F22611FDA3B400B18E9E /* JournalerLite-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,7 +1050,7 @@
 				170708BB110448E50074F836 /* SettingsStartUpScreenController.m in Sources */,
 				179F3FAE111645D60043E0D1 /* AccountManager.m in Sources */,
 				17D8A5B51130BBDE0023FBEA /* LJFriendGroup.m in Sources */,
-				17D8A5B9113126260023FBEA /* LJManager.m in Sources */,
+				17D8A5B9113126260023FBEA /* LJAPIClient.m in Sources */,
 				17D8A65A1131DF2E0023FBEA /* NSStringMD5.m in Sources */,
 				17D8A7381131F2ED0023FBEA /* LJAccount.m in Sources */,
 				17D8A98A1134B9D10023FBEA /* LJEvent.m in Sources */,
@@ -1079,6 +1085,7 @@
 				3783943511F7414A0045E55A /* ALReporter.m in Sources */,
 				17E5A04411FA156B0083C840 /* StateInfo.m in Sources */,
 				37650B5911FDD23B00524AA9 /* BannerViewController.m in Sources */,
+				17B4668E11FE2E9E00C8B852 /* LJManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1124,7 +1131,7 @@
 				170708BC110448E50074F836 /* SettingsStartUpScreenController.m in Sources */,
 				179F3FAF111645D60043E0D1 /* AccountManager.m in Sources */,
 				17D8A5B41130BBDE0023FBEA /* LJFriendGroup.m in Sources */,
-				17D8A5B8113126260023FBEA /* LJManager.m in Sources */,
+				17D8A5B8113126260023FBEA /* LJAPIClient.m in Sources */,
 				17D8A6591131DF2E0023FBEA /* NSStringMD5.m in Sources */,
 				17D8A7371131F2ED0023FBEA /* LJAccount.m in Sources */,
 				17D8A9891134B9D10023FBEA /* LJEvent.m in Sources */,
@@ -1157,6 +1164,7 @@
 				3783943811F7414A0045E55A /* ALProperty.m in Sources */,
 				3783943911F7414A0045E55A /* ALReporter.m in Sources */,
 				17E5A04511FA156B0083C840 /* StateInfo.m in Sources */,
+				17B467D011FE43E600C8B852 /* LJManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,7 @@
 #import "LJAccount.h"
 #import "LJFriendGroup.h"
 #import "LJEvent.h"
-#import "LJManager.h"
+#import "LJAPIClient.h"
 #import "LJMood.h"
 #import "LJTag.h"
 #import "LJComment.h"

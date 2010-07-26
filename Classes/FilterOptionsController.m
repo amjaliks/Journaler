@@ -210,7 +210,7 @@ enum {
 }
 
 - (void)refresh:(id)sender {
-	LJManager *manager = [LJManager defaultManager];
+	LJAPIClient *manager = [LJAPIClient client];
 	NSError *error;
 	
 	if ([manager friendGroupsForAccount:friendsPageController.account error:&error]) {		

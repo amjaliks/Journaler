@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "FriendsPageController.h"
 #import "PostViewController.h"
+#import "LiveJournal.h"
 
 #define kReadLimitPerAttempt 10
 
-@class LJAccount, PostSummaryCell, Post;
+@class PostSummaryCell, Post, LJManager;
 
 @interface LJFriendsPageController : FriendsPageController <UITableViewDataSource, UITableViewDelegate, PostViewControllerDelegate> {
+	LJManager *ljManager;
+	
 	// ielasīti raksti
 	NSMutableArray *loadedPosts;
 	NSArray *displayedPosts;
@@ -37,6 +40,8 @@
 #pragma mark Metodes
 
 // raksti
+- (void)managerDidStep:(NSNotification *)notification;
+
 - (void)firstSync;
 - (BOOL)loadFriendsPageFromServer:(BOOL)allPosts;
 

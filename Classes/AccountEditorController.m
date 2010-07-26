@@ -18,7 +18,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-	if (accountsViewController.selectedAccount) {
+	if (accountsViewController.account) {
 		[passwordText becomeFirstResponder];
 	} else {
 		[usernameText becomeFirstResponder];
@@ -26,12 +26,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	if (accountsViewController.selectedAccount) {
+	if (accountsViewController.account) {
 		self.title = @"Edit account";
 		
-		usernameText.text = accountsViewController.selectedAccount.user;
-		passwordText.text = accountsViewController.selectedAccount.password;
-		serverText.text = accountsViewController.selectedAccount.server;
+		usernameText.text = accountsViewController.account.user;
+		passwordText.text = accountsViewController.account.password;
+		serverText.text = accountsViewController.account.server;
 		
 		usernameText.textColor = [UIColor darkGrayColor];
 		serverText.textColor = [UIColor darkGrayColor];
@@ -81,7 +81,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-	if (accountsViewController.selectedAccount) {
+	if (accountsViewController.account) {
 		return nil;
 	} else {
 		return NSLocalizedString(@"Enter username and password for your account. If using a LiveJournal clone enter the server name as well.", nil);
@@ -120,7 +120,7 @@
 	
 	BOOL newAccount;
 	LJAccount *account;
-	account = [accountsViewController.selectedAccount retain];
+	account = [accountsViewController.account retain];
 	if (account) {
 		newAccount = NO;
 	} else {
@@ -138,7 +138,7 @@
 	account.password = passwordText.text;
 	
 	NSError *error;
-	if (![[LJManager defaultManager] loginForAccount:account error:&error]) {
+	if (![[LJAPIClient client] loginForAccount:account error:&error]) {
 		showErrorMessage(NSLocalizedStringFromTable(@"Login error", @"Title for login error message", kErrorStringsTable), decodeError([error code]));
 		[account release];
 		return;

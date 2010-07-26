@@ -108,7 +108,7 @@
 			NSError *error;
 			NSString *session;
 			
-			if (session = [[LJManager defaultManager] generateSessionForAccount:account error:&error]) {
+			if (session = [[LJAPIClient client] generateSessionForAccount:account error:&error]) {
 				NSDictionary *cookieProperties = [NSDictionary dictionaryWithObjectsAndKeys:@"ljsession", NSHTTPCookieName, session, NSHTTPCookieValue, [NSString stringWithFormat:@".%@", account.server], NSHTTPCookieDomain, @"/", NSHTTPCookiePath, nil];
 				NSHTTPCookie *cookie = [[NSHTTPCookie alloc] initWithProperties:cookieProperties];
 				[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];

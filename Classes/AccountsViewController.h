@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "TableViewController.h"
 #import "AccountManager.h"
+#import "AccountProvider.h"
 
 // kontu saraksta kontrolieris
-@interface AccountsViewController : TableViewController {
+@interface AccountsViewController : TableViewController <AccountProvider> {
 	AccountManager *accountManager;
 	
 	IBOutlet UINavigationController *accountEditorNavigationController;
@@ -21,11 +22,11 @@
 	IBOutlet UIBarButtonItem *addButton;
 	IBOutlet UIBarButtonItem *settingsButton;
 
-	LJAccount *selectedAccount;
+	LJAccount *account;
+	AccountStateInfo *accountStateInfo;
 }
 
-@property (readonly) AccountManager *accountManager;
-@property (readonly) LJAccount *selectedAccount;
+@property (nonatomic, assign) LJAccount *account;
 
 - (IBAction)addAccount:(id)sender;
 - (IBAction)showSettings:(id)sender;

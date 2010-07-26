@@ -18,11 +18,7 @@
 
 @implementation WebFriendsPageController
 
-- (id) initWithAccount:(LJAccount *)newAccount {
-	if (self = [super initWithAccount:newAccount]) {
-	}
-	return self;
-}
+@synthesize mainView = webView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +33,12 @@
 	[self.view addSubview:webView];
 	self.view.autoresizingMask =
 	webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+}
+
+- (void)viewDidUnload {
+	[super viewDidUnload];
+	webView.delegate = nil;
+	[webView release];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -83,7 +85,7 @@
 			loggedin = YES;
 			[self performSelectorInBackground:@selector(showActivityIndicator) withObject:nil];
 			
-			if ([APP_WEB_VIEW_CONTROLLER createSessionForAccount:account silent:NO]) {
+			if ([APP_WEB_VIEW_CONTROLLER createSessionForAccount:self.account silent:NO]) {
 				[self loadFriendsPage];
 			} else {
 				[self hideActivityIndicator];
@@ -96,7 +98,7 @@
 
 - (void)loadFriendsPage {
 	NSString *URLString = [[NSString stringWithFormat:@"http://%@/~%@/friends/%@", 
-						account.server, account.user, 
+						self.account.server, self.account.user, 
 							friendsPageFilter.filterType == FilterTypeGroup ? friendsPageFilter.group : @""] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	NSURL *URL = [NSURL URLWithString:URLString];
 	NSURLRequest *req = [NSURLRequest requestWithURL:URL];
@@ -135,7 +137,7 @@
 	} else {
 		WebViewController *webViewController = APP_WEB_VIEW_CONTROLLER;
 		[self.navigationController pushViewController:webViewController animated:YES];
-		[webViewController openURL:URL account:account];
+		[webViewController openURL:URL account:self.account];
 		
 		return NO;
 	}

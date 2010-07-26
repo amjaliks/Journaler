@@ -31,6 +31,7 @@
 - (void)addAccount:(LJAccount *)account;
 - (void)removeAccount:(LJAccount *)account;
 - (void)moveAccountFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
+- (void)sendReport;
 
 // stāvokļa pārvaldīšana
 @property (readonly) StateInfo *stateInfo;
@@ -38,6 +39,5 @@
 - (void)storeStateInfo;
 - (void)registerPostEditorController:(PostEditorController *)controller;
 
-- (void)sendReport;
 
 @end

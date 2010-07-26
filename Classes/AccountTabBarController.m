@@ -18,29 +18,31 @@
 #import "AccountManager.h"
 #import "ALReporter.h"
 #import "UIViewAdditions.h"
+#import "BannerViewController.h"
 
 @implementation AccountTabBarController
 
 @synthesize friendsPageController;
 
-- (void) setViewControllersForAccount:(LJAccount *)newAccount {
-	[friendsPageController release];
-	friendsPageController = [@"livejournal.com" isEqual:newAccount.server] ? [[LJFriendsPageController alloc] initWithAccount:newAccount] : [[WebFriendsPageController alloc] initWithAccount:newAccount];
-	self.navigationItem.rightBarButtonItem = friendsPageController.navigationItem.rightBarButtonItem;
-	
-	if (postEditorController) {
-		[postEditorController release];
+- (void)viewDidUnload {
+	[super viewDidUnload];
+}
+
+- (void)setViewControllersForAccount:(LJAccount *)account {
+	if (previousAccount != account) {
+		previousAccount = account;
+		
+		if ([account supports:ServerFeatureFriendsPage]) {
+			friendsPageController = self.ljFriendsPageController;
+		} else {
+			friendsPageController = self.webFriendsPageController;
+		}
+		
+		self.viewControllers = [NSArray arrayWithObjects:friendsPageController, self.postEditorController, nil];
+		self.selectedIndex = self.accountStateInfo.openedScreen == OpenedScreenNewPost ? 1 : 0;
+		
+		[self setNavigationItemForViewController:self.selectedViewController];
 	}
-	postEditorController = [[PostEditorController alloc] initWithAccount:newAccount];
-	postEditorController.dataSource = self;
-	
-	NSArray *arrays = [[NSArray alloc] initWithObjects:friendsPageController, postEditorController, nil];
-	self.viewControllers = arrays;
-	self.selectedIndex = [[AccountManager sharedManager].stateInfo stateInfoForAccount:newAccount].openedScreen == OpenedScreenNewPost ? 1 : 0;
-
-	[self setNavigationItemForViewController:self.selectedViewController];
-
-	[arrays release];
 }
 
 - (void)setNavigationItemForViewController:(UIViewController *)viewController {
@@ -57,9 +59,40 @@
 	@synchronized (self) {
 		if (!ljFriendsPageController) {
 			ljFriendsPageController = [[LJFriendsPageController alloc] initWithNibName:@"FriendsPageController" bundle:nil];
+			ljFriendsPageController.accountProvider = self;
 		}
 		return ljFriendsPageController;
 	}
+}
+
+- (WebFriendsPageController *)webFriendsPageController {
+	@synchronized (self) {
+		if (!webFriendsPageController) {
+			webFriendsPageController = [[WebFriendsPageController alloc] initWithNibName:@"FriendsPageController" bundle:nil];
+			webFriendsPageController.accountProvider = self;
+		}
+		return webFriendsPageController;
+	}
+}
+
+- (PostEditorController *)postEditorController {
+	@synchronized (self) {
+		if (!postEditorController) {
+			postEditorController = [[PostEditorController alloc] initWithNibName:@"PostEditorController" bundle:nil];
+			postEditorController.accountProvider = self;
+		}
+		return postEditorController;
+	}
+}
+
+#pragma mark AccountProvider
+
+- (AccountStateInfo *)accountStateInfo {
+	return accountsViewController.accountStateInfo;
+}
+
+- (AccountManager *)accountManager {
+	return accountsViewController.accountManager;
 }
 
 #pragma mark -
@@ -69,30 +102,55 @@
 	[self setNavigationItemForViewController:viewController];
 	
 	NSUInteger value = postEditorController == viewController ? OpenedScreenNewPost : OpenedScreenFriendsPage;
-	[accountsViewController.accountManager.stateInfo stateInfoForAccount:accountsViewController.selectedAccount].openedScreen = value;
+	self.accountStateInfo.openedScreen = value;
 	
+#ifdef LITEVERSION
+	[self showAd];
+#endif
 }
 
-- (LJAccount *)selectedAccount {
-	return accountsViewController.selectedAccount;
+- (LJAccount *)account {
+	return accountsViewController.account;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
-	if (previousAccount != accountsViewController.selectedAccount) {
-		[self setViewControllersForAccount:accountsViewController.selectedAccount];
-		previousAccount = accountsViewController.selectedAccount;
-	}
-	
+	[self setViewControllersForAccount:self.account];
 	[self.navigationItem.titleView setNeedsLayout];
 }
+
+#ifdef LITEVERSION
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[self showAd];
+}
+
+- (void)showAd {
+	if (self.selectedIndex == 0) {
+		[[BannerViewController controller] 
+			addBannerToView:self.selectedViewController.view 
+			resizeView:((FriendsPageController *)self.selectedViewController).mainView];
+	}
+}
+#endif
 
 #pragma mark -
 #pragma mark Atmiņas pārvaldība
 
-- (void) dealloc {
-	[friendsPageController release];
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
+	
+	[ljFriendsPageController release];
+	ljFriendsPageController = nil;
+	[webFriendsPageController release];
+	webFriendsPageController = nil;
+	[postEditorController release];
+	postEditorController = nil;
+}
+
+- (void)dealloc {
+	[ljFriendsPageController release];
+	[webFriendsPageController release];
 	[postEditorController release];
 
 	[super dealloc];

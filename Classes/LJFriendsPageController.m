@@ -16,20 +16,23 @@
 #import "PostPreviewCell.h"
 #import "ErrorHandling.h"
 #import "AccountManager.h"
+#import "LJManager.h"
 
 #define kServerReadError -1
 
 @implementation LJFriendsPageController
 
-- (id)initWithAccount:(LJAccount *)aAccount {
-    if (self = [super initWithAccount:aAccount]) {
+@synthesize mainView = tableView;
+
+- (id)initWithNibName:(NSString *)nibFile bundle:(NSBundle *)bundle {
+    if (self = [super initWithNibName:nibFile bundle:bundle]) {
 		// rakstu masīva inicializācija
 		postsPendingRemoval = [[NSMutableArray alloc] init];
 		
 		// kešs
 		cachedPostViewControllers = [[NSMutableDictionary alloc] init];
 		
-		canLoadMore = YES;
+		ljManager = [LJManager manager];
     }
     return self;
 }
@@ -52,21 +55,33 @@
 	tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;// || UIView;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managerDidStep:) name:LJManagerStepCompletedNotification object:ljManager];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-	[tableView reloadData];
+	
+	if (previousAccount == self.account) {
+		[tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+		[tableView reloadData];
+	} else {
+		previousAccount = self.account;
+		
+		tableView.alpha = 0.0f;
+		tableView.userInteractionEnabled = NO;
+		[self showActivityIndicator];
+		
+		[ljManager loadPostsForAccount:self.account];
+	}
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	needOpenPost = OpenedScreenPost == [[AccountManager sharedManager].stateInfo stateInfoForAccount:account].openedScreen;
+	needOpenPost = OpenedScreenPost == self.accountStateInfo.openedScreen;
 	[super viewDidAppear:animated];
-	if (!account.synchronized) {
-		account.synchronized = YES;
-		[self performSelectorInBackground:@selector(firstSync) withObject:nil];
-	}
+//	if (!self.account.synchronized) {
+//		self.account.synchronized = YES;
+//		[self performSelectorInBackground:@selector(firstSync) withObject:nil];
+//	}
 }
 
 - (void) deviceOrientationChanged {
@@ -89,6 +104,15 @@
 
 #pragma mark Darbs ar rakstiem
 
+- (void)managerDidStep:(NSNotification *)notification {
+	if (self.account == [[notification userInfo] objectForKey:@"account"]) {
+		if (![ljManager loadingPostsForAccount:self.account]) {
+			[self hideActivityIndicator];
+		}
+		[self reloadTable];
+	}
+}
+
 // pirmā sinhronizācija pēc palaišanas
 - (void)firstSync {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -98,7 +122,7 @@
 	
 	// lasam ierakstus no keša
 	Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
-	loadedPosts = [[model findPostsByAccount:account.title] mutableCopy];
+	loadedPosts = [[model findPostsByAccount:self.account.title] mutableCopy];
 	
 	if ([loadedPosts count]) {
 		// ja kešā ir ieraksti, tad tos parādam
@@ -108,7 +132,7 @@
 	
 	if (needOpenPost) {
 		// ja nepieciešams, tad atveram iepriekš atvērto rakstu
-		NSString *postKey = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account].openedPost;
+		NSString *postKey = self.accountStateInfo.openedPost;
 		if (postKey) {
 			for (Post *post in loadedPosts) {
 				if ([postKey isEqualToString:post.uniqueKey]) {
@@ -145,15 +169,15 @@
 		lastSync = post.dateTime;
 	}
 	
-	NSArray *events = [[LJManager defaultManager] friendsPageEventsForAccount:account lastSync:lastSync error:&err];
+	NSArray *events = [[LJAPIClient client] friendsPageEventsForAccount:self.account lastSync:lastSync error:&err];
 	
 	if (!err) {
 		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
 		for (LJEvent *event in events) {
-			Post *post = [model findPostByAccount:account.title journal:event.journal dItemId:event.ditemid];
+			Post *post = [model findPostByAccount:self.account.title journal:event.journal dItemId:event.ditemid];
 			if (!post) {
 				post = [model createPost];
-				post.account = account.title;
+				post.account = self.account.title;
 				post.journal = event.journal;
 				post.journalType = [NSNumber numberWithInt:event.journalType];
 				post.journalTypeOld = event.journalType == LJJournalTypeJournal ? @"J" : @"C"; // savietojamība
@@ -238,21 +262,22 @@
 	} else {
 		@synchronized(loadedPosts) {
 			[displayedPosts release];
-			displayedPosts = [[friendsPageFilter filterPosts:loadedPosts] retain];
+			displayedPosts = [[friendsPageFilter filterPosts:[ljManager loadedPostsForAccount:self.account]] retain];
 
 			[tableView reloadData];
 			
 			// pārliecinamies, ka tabula ir redzama
-			[tableView setAlpha:1.0];
+			tableView.alpha = 1.0f;
+			tableView.userInteractionEnabled = YES;
 			
 			if ([displayedPosts count]) {
-				NSString *firstVisiblePost = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account].firstVisiblePost;
+				NSString *firstVisiblePost = self.accountStateInfo.firstVisiblePost;
 				if (firstVisiblePost) {
 					// ja pirmais redzamais raksts ir zināms, tad cenšamies atjaunot iepriekšējo tabulas stāvokli
 					NSUInteger row = 0;
 					for (Post *post in displayedPosts) {
 						if ([firstVisiblePost isEqualToString:post.uniqueKey]) {
-							NSUInteger scrollPosition = row * 88 + [[AccountManager sharedManager].stateInfo stateInfoForAccount:account].firstVisiblePostScrollPosition;
+							NSUInteger scrollPosition = row * 88 + self.accountStateInfo.firstVisiblePostScrollPosition;
 							NSUInteger lowerAllowedPosition = tableView.contentSize.height - tableView.bounds.size.height;
 							[tableView setContentOffset:CGPointMake(0, scrollPosition > lowerAllowedPosition ? lowerAllowedPosition : scrollPosition)];
 							return;
@@ -314,7 +339,7 @@
 - (void)openPost:(Post *)post animated:(BOOL)animated {
 	PostViewController *postViewController = [[cachedPostViewControllers objectForKey:post.uniqueKey] retain];
 	if (!postViewController) {
-		postViewController = [[PostViewController alloc] initWithPost:post account:account];
+		postViewController = [[PostViewController alloc] initWithPost:post account:self.account];
 		postViewController.delegate = self;
 		[cachedPostViewControllers setObject:postViewController forKey:post.uniqueKey];
 	}
@@ -389,10 +414,9 @@
 }
 
 - (void)resetScrollPostion {
-	AccountStateInfo *accountStateInfo = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account];
-	accountStateInfo.firstVisiblePost = nil;
-	accountStateInfo.firstVisiblePostScrollPosition = 0;
-	accountStateInfo.lastVisiblePostIndex = 0;
+	self.accountStateInfo.firstVisiblePost = nil;
+	self.accountStateInfo.firstVisiblePostScrollPosition = 0;
+	self.accountStateInfo.lastVisiblePostIndex = 0;
 }
 
 - (void)saveScrollPosition {
@@ -400,10 +424,9 @@
 	if (indexPaths && [indexPaths count] > 0) {
 		NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
 		NSUInteger row = indexPath.row;
-		AccountStateInfo *accountStateInfo = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account];
-		accountStateInfo.firstVisiblePost = [(Post *)[displayedPosts objectAtIndex:row] uniqueKey];
-		accountStateInfo.firstVisiblePostScrollPosition = ((NSUInteger)tableView.contentOffset.y) % 88;
-		accountStateInfo.lastVisiblePostIndex = [(NSIndexPath *)[indexPaths objectAtIndex:0] row] + 5;
+		self.accountStateInfo.firstVisiblePost = [(Post *)[displayedPosts objectAtIndex:row] uniqueKey];
+		self.accountStateInfo.firstVisiblePostScrollPosition = ((NSUInteger)tableView.contentOffset.y) % 88;
+		self.accountStateInfo.lastVisiblePostIndex = [(NSIndexPath *)[indexPaths objectAtIndex:0] row] + 5;
 	}
 }
 

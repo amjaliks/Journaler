@@ -19,8 +19,9 @@
 
 @implementation AccountsViewController
 
+@synthesize account;
+@synthesize accountStateInfo;
 @synthesize accountManager;
-@synthesize selectedAccount;
 
 #pragma mark -
 #pragma mark UIViewController
@@ -91,12 +92,20 @@
 	self.editing = NO;
 	
 	accountManager.stateInfo.openedAccountIndex = index;
-	selectedAccount = [accountManager.accounts objectAtIndex:index];
+	self.account = [accountManager.accounts objectAtIndex:index];
 	
 	self.navigationItem.backBarButtonItem = 
-			[[[UIBarButtonItem alloc] initWithTitle:selectedAccount.user style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+			[[[UIBarButtonItem alloc] initWithTitle:account.user style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 
 	[self.navigationController pushViewController:accountTabBarController animated:animated];
+}
+
+#pragma mark -
+#pragma mark Īpašības
+
+- (void)setAccount:(LJAccount *)newAccount {
+	account = newAccount;
+	accountStateInfo = [accountManager.stateInfo stateInfoForAccount:newAccount];
 }
 
 #pragma mark Table view methods
@@ -110,7 +119,7 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *ident = @"account";
-    LJAccount *account = [accountManager.accounts objectAtIndex:indexPath.row];
+    LJAccount *tmpAccount = [accountManager.accounts objectAtIndex:indexPath.row];
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ident];
     if (cell == nil) {
@@ -118,8 +127,8 @@
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 
-	cell.textLabel.text = account.user;
-	cell.detailTextLabel.text = account.server;
+	cell.textLabel.text = tmpAccount.user;
+	cell.detailTextLabel.text = tmpAccount.server;
 	
     return cell;
 }
@@ -127,7 +136,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
 	if (self.editing) {
-		selectedAccount = [accountManager.accounts objectAtIndex:indexPath.row];
+		account = [accountManager.accounts objectAtIndex:indexPath.row];
 		[self presentModalViewController:accountEditorNavigationController animated:YES];
 	} else {
 		[self openAccountAtIndex:indexPath.row animated:YES];
@@ -142,15 +151,15 @@
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // nosakam dzēšamo ierakstu
-		LJAccount *account = [accountManager.accounts objectAtIndex:indexPath.row];
+		LJAccount *tmpAccount = [accountManager.accounts objectAtIndex:indexPath.row];
 		
 		// iedzēšam rakstus no keša
 		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
-		[model deleteAllPostsForAccount:account.title];
+		[model deleteAllPostsForAccount:tmpAccount.title];
 		[model saveAll];
 		
 		// dzēšam kontu
-		[accountManager removeAccount:account];
+		[accountManager removeAccount:tmpAccount];
 		
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 		
@@ -173,7 +182,7 @@
 
 // Parāda konta parametrus
 - (IBAction) addAccount:(id)sender {
-	selectedAccount = nil;
+	account = nil;
 	[self presentModalViewController:accountEditorNavigationController animated:YES];
 }
 

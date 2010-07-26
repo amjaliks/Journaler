@@ -17,6 +17,8 @@
 
 @implementation PostEditorController
 
+@synthesize accountProvider;
+
 @synthesize subjectCell;
 @synthesize textCell;
 
@@ -29,10 +31,8 @@
 @synthesize dataSource;
 @synthesize delegate;
 
-- (id)initWithAccount:(LJAccount *)newAccount {
-	if (self = [super initWithNibName:@"PostEditorController" bundle:nil]) {
-		account = [newAccount retain];
-		
+- (id)initWithNibName:(NSString *)nibFile bundle:bundle {
+	if (self = [super initWithNibName:nibFile bundle:bundle]) {
 		UIImage *image = [UIImage imageNamed:@"newpost.png"];
 		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"New post", nil) image:image tag:1];
 		self.tabBarItem = tabBarItem;
@@ -57,20 +57,18 @@
 	
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	
-	AccountStateInfo *accountStateInfo = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account];
+	textField.text = self.accountStateInfo.newPostText;
+	subjectField.text = self.accountStateInfo.newPostSubject;
 	
-	textField.text = accountStateInfo.newPostText;
-	subjectField.text = accountStateInfo.newPostSubject;
-	
-	postOptionsController = [[PostOptionsController alloc] initWithAccount:account];
+	postOptionsController = [[PostOptionsController alloc] initWithAccount:self.account];
 	postOptionsController.dataSource = self;
 	
-	NSString *journal = accountStateInfo.newPostJournal;
+	NSString *journal = self.accountStateInfo.newPostJournal;
 	if (journal) {
 		postOptionsController.journal = journal;
 	}
-	postOptionsController.security = accountStateInfo.newPostSecurity;
-	[postOptionsController.selectedFriendGroups addObjectsFromArray:accountStateInfo.newPostSelectedFriendGroups];
+	postOptionsController.security = self.accountStateInfo.newPostSecurity;
+	[postOptionsController.selectedFriendGroups addObjectsFromArray:self.accountStateInfo.newPostSelectedFriendGroups];
 
 	[[AccountManager sharedManager] registerPostEditorController:self];
 }
@@ -107,6 +105,22 @@
 	[self resizeTextView];
 }
 
+#pragma mark -
+#pragma mark AccountProvider
+
+- (LJAccount *)account {
+	return accountProvider.account;
+}
+
+- (AccountStateInfo *)accountStateInfo {
+	return accountProvider.accountStateInfo;
+}
+
+- (AccountManager *)accountManager {
+	return accountProvider.accountManager;
+}
+
+#pragma mark -
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -142,7 +156,6 @@
 
 
 - (void)dealloc {
-	[account release];
     [super dealloc];
 }
 
@@ -151,7 +164,7 @@
 }
 
 - (IBAction) post:(id)sender {
-	if (![account.user isEqualToString:postOptionsController.journal] && postOptionsController.security == LJEventSecurityPrivate) {
+	if (![self.account.user isEqualToString:postOptionsController.journal] && postOptionsController.security == LJEventSecurityPrivate) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post error" message:@"Can't post private message to the community." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
 		[alert release];
@@ -176,7 +189,7 @@
 	event.location = postOptionsController.location;
 	
 	NSError *error;
-	if ([[LJManager defaultManager] postEvent:event forAccount:account error:&error]) {
+	if ([[LJAPIClient client] postEvent:event forAccount:self.account error:&error]) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your post has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
 		[alert release];
@@ -185,8 +198,8 @@
 		textField.text = nil;
 		postOptionsController.picKeyword = nil;
 		
-		if (![postOptionsController.tags isSubsetOfSet:account.tags]) {
-			NSMutableSet *tags = [[NSMutableSet alloc] initWithSet:account.tags];
+		if (![postOptionsController.tags isSubsetOfSet:self.account.tags]) {
+			NSMutableSet *tags = [[NSMutableSet alloc] initWithSet:self.account.tags];
 			[tags addObjectsFromSet:postOptionsController.tags];
 			[[AccountManager sharedManager] storeAccounts];			
 		}
@@ -269,9 +282,8 @@
 
 - (void)saveState {
 	if ([self isViewLoaded]) {
-		AccountStateInfo *accountStateInfo = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account];
-		accountStateInfo.newPostSubject = subjectField.text;
-		accountStateInfo.newPostText = textField.text;
+		self.accountStateInfo.newPostSubject = subjectField.text;
+		self.accountStateInfo.newPostText = textField.text;
 	}
 }
 

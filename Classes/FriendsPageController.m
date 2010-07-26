@@ -16,17 +16,15 @@
 #import "FriendsPageTitleView.h"
 #import "FilterOptionsController.h"
 #import "BannerViewController.h"
+#import "AccountTabBarController.h"
 
 @implementation FriendsPageController
 
-@synthesize account;
+@synthesize accountProvider;
 @synthesize friendsPageFilter;
 
-- (id)initWithAccount:(LJAccount *)aAccount {
-    if (self = [super initWithNibName:@"FriendsPageController" bundle:nil]) {
-		account = [aAccount retain];
-		friendsPageFilter = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account].friendsPageFilter;
-		
+- (id)initWithNibName:(NSString *)nibFile bundle:(NSBundle *)bundle {
+    if (self = [super initWithNibName:nibFile bundle:bundle]) {
 		// cilnes bildīte
 		UIImage *image = [UIImage imageNamed:@"friends.png"];
 		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Friends", nil) image:image tag:0];
@@ -60,16 +58,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	friendsPageFilter = self.accountStateInfo.friendsPageFilter;
 	titleView.filterLabel.text = [friendsPageFilter title];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].openedScreen = OpenedScreenFriendsPage;
-	
-#ifdef LITEVERSION
-	[[BannerViewController controller] addBannerToView:self.view resizeView:friendsPageView];
-#endif
+	self.accountStateInfo.openedScreen = OpenedScreenFriendsPage;
+}
+
+- (UIView *)mainView {
+	return nil;
 }
 
 #ifndef LITEVERSION
@@ -77,6 +76,21 @@
 	return interfaceOrientation == UIDeviceOrientationPortrait || UIDeviceOrientationIsLandscape(interfaceOrientation);
 }
 #endif
+
+#pragma mark -
+#pragma mark AccountProvider
+
+- (LJAccount *)account {
+	return accountProvider.account;
+}
+
+- (AccountStateInfo *)accountStateInfo {
+	return accountProvider.accountStateInfo;
+}
+
+- (AccountManager *)accountManager {
+	return accountProvider.accountManager;
+}
 
 #pragma mark -
 #pragma mark Pogas
@@ -123,7 +137,6 @@
 - (void)filterFriendsPage {};
 
 - (void)dealloc {
-	[account release];
 	[super dealloc];
 }
 
