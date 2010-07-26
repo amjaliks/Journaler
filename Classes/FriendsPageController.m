@@ -55,12 +55,6 @@
 	// virsraksta skats
 	self.navigationItem.titleView = nil;
 	
-#ifdef LITEVERSION
-	// reklāmas baneris
-	bannerView.delegate = nil;
-	[bannerView release];
-#endif
-	
 	[titleView release];
 }
 

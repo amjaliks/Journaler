@@ -56,8 +56,10 @@
 	
 	[window addSubview:navigationController.view];
 	
-	// tiek parādīta reklāma 
-	[[HouseAdManager houseAdManager] showAd:navigationController];
+	// ja ir izveidots kaut viens konts, tiek parādīta reklāma 
+	if ([[AccountManager sharedManager].accounts count]) {
+		[[HouseAdManager houseAdManager] showAd:navigationController];
+	}
 	
     [window makeKeyAndVisible];
 }

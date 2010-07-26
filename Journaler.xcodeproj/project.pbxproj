@@ -198,6 +198,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		37650B5911FDD23B00524AA9 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37650B5811FDD23B00524AA9 /* BannerViewController.m */; };
 		377EFE0711E4C0AA009E9907 /* LJComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EFE0611E4C0AA009E9907 /* LJComment.m */; };
 		377EFE0811E4C0AA009E9907 /* LJComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EFE0611E4C0AA009E9907 /* LJComment.m */; };
 		3780DAF011E3607D003044B6 /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3780DAEE11E3607D003044B6 /* CommentController.m */; };
@@ -398,6 +399,8 @@
 		28A0AAE50D9B0CCF005BE974 /* Journaler_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journaler_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		37650B5711FDD23B00524AA9 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
+		37650B5811FDD23B00524AA9 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
 		377EFE0511E4C0AA009E9907 /* LJComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJComment.h; sourceTree = "<group>"; };
 		377EFE0611E4C0AA009E9907 /* LJComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJComment.m; sourceTree = "<group>"; };
 		3780DAED11E3607D003044B6 /* CommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentController.h; sourceTree = "<group>"; };
@@ -840,6 +843,8 @@
 		3799D18B11E750D90039226A /* House Ads */ = {
 			isa = PBXGroup;
 			children = (
+				37650B5711FDD23B00524AA9 /* BannerViewController.h */,
+				37650B5811FDD23B00524AA9 /* BannerViewController.m */,
 				3788A8C811ECC563006E43AA /* HouseAdInfo.h */,
 				3788A8C911ECC563006E43AA /* HouseAdInfo.m */,
 				3788A8CA11ECC563006E43AA /* HouseAdViewController.h */,
@@ -1073,6 +1078,7 @@
 				3783943411F7414A0045E55A /* ALProperty.m in Sources */,
 				3783943511F7414A0045E55A /* ALReporter.m in Sources */,
 				17E5A04411FA156B0083C840 /* StateInfo.m in Sources */,
+				37650B5911FDD23B00524AA9 /* BannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

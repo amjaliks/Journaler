@@ -72,8 +72,10 @@ HouseAdManager *houseAdManager;
 		HouseAdViewController *houseAdViewController = [[HouseAdViewController alloc] initWithNibName:@"HouseAdViewController" bundle:nil];
 	
 		[navigationController presentModalViewController:houseAdViewController animated:NO];
-		houseAdViewController.imageView.image = image;
-		houseAdViewController.url = targetURL;
+		if (image) {
+			houseAdViewController.imageView.image = image;
+			houseAdViewController.url = targetURL;
+		}
 		[houseAdViewController release];
 	} 
 	
@@ -110,9 +112,8 @@ HouseAdManager *houseAdManager;
 }
 
 - (void)dismissAd {
-//	[houseAdInfo setNextShowDate:[NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)]];
-	[houseAdInfo setNextShowDate:[NSDate dateWithTimeIntervalSinceNow:(30.0f)]];
-	if ([houseAdInfo bannerShowCount] != -1) {
+	[houseAdInfo setNextShowDate:[NSDate dateWithTimeIntervalSinceNow:(24.0f * 3600.0f)]];
+	if ([houseAdInfo bannerShowCount] > 0) {
 		[houseAdInfo setBannerShowCount:[houseAdInfo bannerShowCount] - 1];
 	}
 	
@@ -125,8 +126,7 @@ HouseAdManager *houseAdManager;
 	
 	if (!houseAdInfo) {
 		houseAdInfo = [[HouseAdInfo alloc] init];
-		[houseAdInfo setNextShowDate:[NSDate dateWithTimeIntervalSinceNow:(30.0f)]];
-//		houseAdInfo.nextShowDate = [[NSDate	alloc] initWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
+		houseAdInfo.nextShowDate = [[NSDate	alloc] initWithTimeIntervalSinceNow:(24.0f * 3600.0f)];
 		[self storeHouseAdInfo];
 	}
 }

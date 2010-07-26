@@ -32,6 +32,7 @@
 
 - (IBAction)goToURL {
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+	[[HouseAdManager houseAdManager] dismissAd];
 }
 
 - (void)dealloc {
