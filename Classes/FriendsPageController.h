@@ -26,11 +26,11 @@
 	UIBarButtonItem *refreshButtonItem;
 	IBOutlet UIActivityIndicatorView *spinnerView;
 	IBOutlet UIBarButtonItem *spinnerItem;
+	NSUInteger spinnerVisible;
 
 	// stāvokļa josla
 	IBOutlet UIView *statusLineView;
 	IBOutlet UILabel *statusLineLabel;
-	NSUInteger statusLineShowed;
 }
 
 #pragma mark Metodes

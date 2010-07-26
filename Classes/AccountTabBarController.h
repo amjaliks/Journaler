@@ -11,7 +11,7 @@
 #import "AccountsViewController.h"
 #import "PostEditorController.h"
 
-@class LJAccount, FriendsPageController;
+@class LJAccount, FriendsPageController, LJFriendsPageController, WebFriendsPageController;
 
 @interface AccountTabBarController : UITabBarController <PostEditorControllerDataSource, UITabBarControllerDelegate> {
 	IBOutlet AccountsViewController *accountsViewController;
