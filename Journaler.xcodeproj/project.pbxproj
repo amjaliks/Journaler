@@ -229,6 +229,11 @@
 		37A65DC411DE45DC00EEC540 /* LegalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A65DC011DE45DC00EEC540 /* LegalController.xib */; };
 		37A65DE411DE490D00EEC540 /* Legal.html in Resources */ = {isa = PBXBuildFile; fileRef = 37A65DE311DE490D00EEC540 /* Legal.html */; };
 		37A65DE511DE490D00EEC540 /* Legal.html in Resources */ = {isa = PBXBuildFile; fileRef = 37A65DE311DE490D00EEC540 /* Legal.html */; };
+		37AC5DD411FEBBBD006C9E5C /* TellAFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AC5DD211FEBBBD006C9E5C /* TellAFriendController.m */; };
+		37AC5DD511FEBBBD006C9E5C /* TellAFriendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37AC5DD311FEBBBD006C9E5C /* TellAFriendController.xib */; };
+		37AC5EC411FED5D2006C9E5C /* TellAFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AC5DD211FEBBBD006C9E5C /* TellAFriendController.m */; };
+		37AC5ECB11FED66A006C9E5C /* TellAFriendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37AC5DD311FEBBBD006C9E5C /* TellAFriendController.xib */; };
+		37AC5F4B11FEE24A006C9E5C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AC5F4A11FEE24A006C9E5C /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -428,6 +433,10 @@
 		37A65DBF11DE45DC00EEC540 /* LegalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalController.m; sourceTree = "<group>"; };
 		37A65DC011DE45DC00EEC540 /* LegalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LegalController.xib; path = Classes/LegalController.xib; sourceTree = "<group>"; };
 		37A65DE311DE490D00EEC540 /* Legal.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Legal.html; sourceTree = "<group>"; };
+		37AC5DD111FEBBBD006C9E5C /* TellAFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TellAFriendController.h; sourceTree = "<group>"; };
+		37AC5DD211FEBBBD006C9E5C /* TellAFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TellAFriendController.m; sourceTree = "<group>"; };
+		37AC5DD311FEBBBD006C9E5C /* TellAFriendController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TellAFriendController.xib; path = Classes/TellAFriendController.xib; sourceTree = "<group>"; };
+		37AC5F4A11FEE24A006C9E5C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Journaler-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Journaler-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -453,6 +462,7 @@
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				17132615108A1203007F6C24 /* CoreData.framework in Frameworks */,
 				17E3B2A8118656C300ED729D /* MediaPlayer.framework in Frameworks */,
+				37AC5F4B11FEE24A006C9E5C /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,6 +658,8 @@
 				170708BA110448E50074F836 /* SettingsStartUpScreenController.m */,
 				37A65DBE11DE45DC00EEC540 /* LegalController.h */,
 				37A65DBF11DE45DC00EEC540 /* LegalController.m */,
+				37AC5DD111FEBBBD006C9E5C /* TellAFriendController.h */,
+				37AC5DD211FEBBBD006C9E5C /* TellAFriendController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -694,6 +706,7 @@
 		17B62D9D10B733E000C974DE /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				37AC5DD311FEBBBD006C9E5C /* TellAFriendController.xib */,
 				37A65DC011DE45DC00EEC540 /* LegalController.xib */,
 				17DB0BD01075444F00155636 /* AccountsViewController.xib */,
 				17DB0BF11075462000155636 /* AccountEditorController.xib */,
@@ -828,6 +841,7 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				17E3B2A7118656C300ED729D /* MediaPlayer.framework */,
+				37AC5F4A11FEE24A006C9E5C /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -963,6 +977,7 @@
 				17EFF2A711EA7A74009D84ED /* up.png in Resources */,
 				17EFF2AA11EA7A78009D84ED /* down.png in Resources */,
 				3788A8CF11ECC563006E43AA /* HouseAdViewController.xib in Resources */,
+				37AC5DD511FEBBBD006C9E5C /* TellAFriendController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1003,6 +1018,7 @@
 				17EFF2A811EA7A74009D84ED /* up.png in Resources */,
 				17EFF2AB11EA7A78009D84ED /* down.png in Resources */,
 				3788A8D211ECC563006E43AA /* HouseAdViewController.xib in Resources */,
+				37AC5ECB11FED66A006C9E5C /* TellAFriendController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,6 +1102,7 @@
 				17E5A04411FA156B0083C840 /* StateInfo.m in Sources */,
 				37650B5911FDD23B00524AA9 /* BannerViewController.m in Sources */,
 				17B4668E11FE2E9E00C8B852 /* LJManager.m in Sources */,
+				37AC5DD411FEBBBD006C9E5C /* TellAFriendController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1165,6 +1182,7 @@
 				3783943911F7414A0045E55A /* ALReporter.m in Sources */,
 				17E5A04511FA156B0083C840 /* StateInfo.m in Sources */,
 				17B467D011FE43E600C8B852 /* LJManager.m in Sources */,
+				37AC5EC411FED5D2006C9E5C /* TellAFriendController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

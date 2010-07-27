@@ -9,12 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsController : UITableViewController {
-	UITableViewCell *refreshOnStartCell;
-	UIViewController *legalController;
+	IBOutlet UITableViewCell *refreshOnStartCell;
+	IBOutlet UIViewController *legalController;
+	IBOutlet UITableViewController *tellAFriendController;
 }
-
-@property (nonatomic, retain) IBOutlet UITableViewCell *refreshOnStartCell;
-@property (nonatomic, retain) IBOutlet UIViewController *legalController;
 
 - (IBAction)refreshOnStartChanged;
 - (void)done;

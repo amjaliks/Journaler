@@ -10,13 +10,11 @@
 #import "Macros.h"
 #import "Settings.h"
 #import "SettingsStartUpScreenController.h"
+#import "TellAFriendController.h"
 
 #define kStringTable @"AppSettings"
 
 @implementation SettingsController
-
-@synthesize refreshOnStartCell;
-@synthesize legalController;
 
 #pragma mark Incializācija un atmiņas pārvaldīšana
 
@@ -48,7 +46,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) return 1;
-	else return 2;
+	else return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -74,13 +72,19 @@
 				cell.selectionStyle = UITableViewCellSelectionStyleNone;
 				cell.accessoryType = UITableViewCellAccessoryNone;
 				
-				cell.textLabel.text = NSLocalizedStringFromTable(@"Version", @"Version", nil);
+				cell.textLabel.text = NSLocalizedString(@"Version", nil);
 				cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+			} else if (indexPath.row == 1) {
+				cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+				
+				cell.textLabel.text = NSLocalizedString(@"Tell a friend", nil);
+				cell.detailTextLabel.text = nil;
 			} else {
 				cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-				cell.textLabel.text = NSLocalizedStringFromTable(@"Legal", @"Legal", nil);
+				cell.textLabel.text = NSLocalizedString(@"Legal", nil);
 				cell.detailTextLabel.text = nil;
 			}
 		}
@@ -91,8 +95,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if ((indexPath.section == 1) && (indexPath.row == 1)) {
-		[self.navigationController pushViewController:legalController animated:YES];
+	if (indexPath.section == 1) {
+		if (indexPath.row == 1) {
+			[self.navigationController pushViewController:tellAFriendController animated:YES];
+		} else if (indexPath.row == 2) {
+			[self.navigationController pushViewController:legalController animated:YES];
+		}
 	}
 }
 
