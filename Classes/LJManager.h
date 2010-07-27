@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Model.h"
 
-#define LJManagerStepCompletedNotification @"LJManagerStepCompletedNotification"
+#define LJManagerDidLoadPostsNotification @"LJManagerDidLoadPostsNotification"
 
 @class LJAccount;
 
@@ -23,12 +23,20 @@
 
 + (LJManager *)manager;
 
+#pragma mark Raksti
+#pragma mark - komandas
 - (void)loadPostsForAccount:(LJAccount *)account;
 - (void)refreshPostsForAccount:(LJAccount *)account;
-
-- (void)backgroundLoadPostsForAccount:(LJAccount *)account;
-
+#pragma mark - dati
 - (BOOL)loadingPostsForAccount:(LJAccount *)account;
 - (NSArray *)loadedPostsForAccount:(LJAccount *)account;
+#pragma mark - rutīnas metodes
+- (void)backgroundLoadPostsForAccount:(LJAccount *)account;
+
+#pragma mark Sesijas
+- (void)createSessionForPost:(LJAccount *)account;
+
+#pragma mark Rutīnas metodes
+- (void)postNotification:(NSString *)name account:(LJAccount *)account;
 
 @end

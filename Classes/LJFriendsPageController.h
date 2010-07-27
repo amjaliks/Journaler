@@ -40,7 +40,7 @@
 #pragma mark Metodes
 
 // raksti
-- (void)managerDidStep:(NSNotification *)notification;
+- (void)managerDidLoadPosts:(NSNotification *)notification;
 
 - (void)firstSync;
 - (BOOL)loadFriendsPageFromServer:(BOOL)allPosts;

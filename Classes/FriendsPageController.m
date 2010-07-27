@@ -126,10 +126,14 @@
 	@synchronized (spinnerItem) {
 		spinnerVisible--;
 		if (!spinnerVisible) {
+			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
 			self.navigationItem.rightBarButtonItem = refreshButtonItem;
 			if (self == self.tabBarController.selectedViewController) {
 				self.tabBarController.navigationItem.rightBarButtonItem = refreshButtonItem;
 			}
+			
+			[pool release];
 		}
 	}
 }

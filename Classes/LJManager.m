@@ -23,9 +23,7 @@ LJManager *ljManager;
 			[loadingPosts addObject:account];
 			[self performSelectorInBackground:@selector(backgroundLoadPostsForAccount:) withObject:account];
 		} else {
-			[notificationCenter postNotificationName:LJManagerStepCompletedNotification 
-											object:self 
-											userInfo:[NSDictionary dictionaryWithObject:account forKey:@"account"]];
+			[self postNotification:LJManagerDidLoadPostsNotification account:account];
 		}
 	}
 }
@@ -51,11 +49,15 @@ LJManager *ljManager;
 	}
 	
 	// izsūtam paziņojumu
-	[notificationCenter postNotificationName:LJManagerStepCompletedNotification 
-									object:self 
-									userInfo:[NSDictionary dictionaryWithObject:account forKey:@"account"]];
+	[self postNotification:LJManagerDidLoadPostsNotification account:account];
 	
 	[pool release];
+}
+
+- (void)postNotification:(NSString *)name account:(LJAccount *)account {
+	[notificationCenter postNotificationName:name 
+									  object:self 
+									userInfo:[NSDictionary dictionaryWithObject:account forKey:@"account"]];
 }
 
 #pragma mark -

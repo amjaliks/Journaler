@@ -24,8 +24,15 @@
 
 @synthesize friendsPageController;
 
+- (void)viewDidLoad {
+	webFriendsPageControllerCache = [[NSMutableDictionary alloc] init];
+}
+
 - (void)viewDidUnload {
 	[super viewDidUnload];
+	
+	[webFriendsPageControllerCache release];
+	webFriendsPageControllerCache = nil;
 }
 
 - (void)setViewControllersForAccount:(LJAccount *)account {
@@ -33,9 +40,9 @@
 		previousAccount = account;
 		
 		if ([account supports:ServerFeatureFriendsPage]) {
-			friendsPageController = self.ljFriendsPageController;
+			friendsPageController = [self ljFriendsPageController];
 		} else {
-			friendsPageController = self.webFriendsPageController;
+			friendsPageController = [self webFriendsPageControllerForAccount:account];
 		}
 		
 		self.viewControllers = [NSArray arrayWithObjects:friendsPageController, self.postEditorController, nil];
@@ -65,13 +72,15 @@
 	}
 }
 
-- (WebFriendsPageController *)webFriendsPageController {
+- (WebFriendsPageController *)webFriendsPageControllerForAccount:(LJAccount *)account {
 	@synchronized (self) {
+		WebFriendsPageController *webFriendsPageController = [[webFriendsPageControllerCache objectForKey:account] retain];
 		if (!webFriendsPageController) {
 			webFriendsPageController = [[WebFriendsPageController alloc] initWithNibName:@"FriendsPageController" bundle:nil];
 			webFriendsPageController.accountProvider = self;
+			[webFriendsPageControllerCache setObject:webFriendsPageController forKey:account];
 		}
-		return webFriendsPageController;
+		return [webFriendsPageController autorelease];
 	}
 }
 
@@ -138,19 +147,18 @@
 #pragma mark Atmiņas pārvaldība
 
 - (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	
 	[ljFriendsPageController release];
 	ljFriendsPageController = nil;
-	[webFriendsPageController release];
-	webFriendsPageController = nil;
 	[postEditorController release];
 	postEditorController = nil;
+	[webFriendsPageControllerCache removeAllObjects];
+	
+	[super didReceiveMemoryWarning];	
 }
 
 - (void)dealloc {
 	[ljFriendsPageController release];
-	[webFriendsPageController release];
+	[webFriendsPageControllerCache release];
 	[postEditorController release];
 
 	[super dealloc];

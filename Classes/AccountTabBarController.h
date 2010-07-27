@@ -23,15 +23,14 @@
 	PostEditorController *postEditorController;
 	
 	LJFriendsPageController *ljFriendsPageController;
-	WebFriendsPageController *webFriendsPageController;
+	NSMutableDictionary *webFriendsPageControllerCache;
 }
 
 @property (readonly) FriendsPageController *friendsPageController;
 @property (readonly) PostEditorController *postEditorController;
 
-@property (readonly) LJFriendsPageController *ljFriendsPageController;
-@property (readonly) WebFriendsPageController *webFriendsPageController;
-
+- (LJFriendsPageController *)ljFriendsPageController;
+- (WebFriendsPageController *)webFriendsPageControllerForAccount:(LJAccount *)account;
 - (void)setViewControllersForAccount:(LJAccount *)account;
 - (void)setNavigationItemForViewController:(UIViewController *)viewController;
 #ifdef LITEVERSION

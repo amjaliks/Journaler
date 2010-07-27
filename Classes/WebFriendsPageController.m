@@ -83,7 +83,7 @@
 			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 			
 			loggedin = YES;
-			[self performSelectorInBackground:@selector(showActivityIndicator) withObject:nil];
+			[self showActivityIndicator];
 			
 			if ([APP_WEB_VIEW_CONTROLLER createSessionForAccount:self.account silent:NO]) {
 				[self loadFriendsPage];
@@ -108,7 +108,7 @@
 #pragma mark Pogas
 - (void)refresh {
 	if (loggedin) {
-		[self performSelectorInBackground:@selector(showActivityIndicator) withObject:nil];
+		[self showActivityIndicator];
 		[self loadFriendsPage];
 	} else {
 		[self login];

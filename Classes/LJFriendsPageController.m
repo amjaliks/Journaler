@@ -55,7 +55,18 @@
 	tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;// || UIView;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managerDidStep:) name:LJManagerStepCompletedNotification object:ljManager];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managerDidLoadPosts:) name:LJManagerDidLoadPostsNotification object:ljManager];
+}
+
+- (void)viewDidUnload {
+	[tableView release];
+	tableView = nil;
+	
+	friendsPageView = nil;
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	
+	[super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,10 +89,6 @@
 - (void)viewDidAppear:(BOOL)animated {
 	needOpenPost = OpenedScreenPost == self.accountStateInfo.openedScreen;
 	[super viewDidAppear:animated];
-//	if (!self.account.synchronized) {
-//		self.account.synchronized = YES;
-//		[self performSelectorInBackground:@selector(firstSync) withObject:nil];
-//	}
 }
 
 - (void) deviceOrientationChanged {
@@ -104,7 +111,7 @@
 
 #pragma mark Darbs ar rakstiem
 
-- (void)managerDidStep:(NSNotification *)notification {
+- (void)managerDidLoadPosts:(NSNotification *)notification {
 	if (self.account == [[notification userInfo] objectForKey:@"account"]) {
 		if (![ljManager loadingPostsForAccount:self.account]) {
 			[self hideActivityIndicator];
