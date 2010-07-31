@@ -18,7 +18,7 @@
 #import "MoodListController.h"
 #import "PicKeywordListController.h"
 #import "UIViewAdditions.h"
-#import "ErrorHandling.h"
+#import "ErrorHandler.h"
 
 // šūnu veidi
 enum {
@@ -91,7 +91,7 @@ enum {
 		
 		promote = YES;
 
-		AccountStateInfo *accountStateInfo = [[AccountManager sharedManager].stateInfo stateInfoForAccount:account];
+		AccountStateInfo *accountStateInfo = [accountManager.stateInfo stateInfoForAccount:account];
 		picKeyword = [accountStateInfo.newPostPicKeyword retain];
 		tags = [accountStateInfo.newPostTags retain];
 		mood = [accountStateInfo.newPostMood retain];
@@ -397,7 +397,7 @@ enum {
 
 - (void)promoteChanged:(id)sender {
 	promote = ((UISwitch *)sender).on;
-	[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostPromote = promote;
+	[accountManager.stateInfo stateInfoForAccount:account].newPostPromote = promote;
 }
 
 - (void)setPicKeyword:(NSString *)newPicKeyword {
@@ -405,7 +405,7 @@ enum {
 		[picKeyword release];
 		picKeyword = [newPicKeyword retain];
 		
-		[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostPicKeyword = picKeyword;
+		[accountManager.stateInfo stateInfoForAccount:account].newPostPicKeyword = picKeyword;
 	}
 }
 
@@ -414,7 +414,7 @@ enum {
 		[tags release];
 		tags = [newTags retain];
 
-		[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostTags = tags;
+		[accountManager.stateInfo stateInfoForAccount:account].newPostTags = tags;
 	}
 }
 
@@ -423,7 +423,7 @@ enum {
 		[mood release];
 		mood = [newMood retain];
 
-		[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostMood = mood;
+		[accountManager.stateInfo stateInfoForAccount:account].newPostMood = mood;
 	}
 }
 
@@ -432,7 +432,7 @@ enum {
 		[music release];
 		music = [newMusic retain];
 		
-		[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostMusic = music;
+		[accountManager.stateInfo stateInfoForAccount:account].newPostMusic = music;
 	}
 }
 
@@ -441,7 +441,7 @@ enum {
 		[location release];
 		location = [newLocation retain];
 		
-		[[AccountManager sharedManager].stateInfo stateInfoForAccount:account].newPostLocation = location;
+		[accountManager.stateInfo stateInfoForAccount:account].newPostLocation = location;
 	}
 }
 

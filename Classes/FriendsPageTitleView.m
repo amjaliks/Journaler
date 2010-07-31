@@ -103,14 +103,14 @@
 		CGFloat offsetTop = truncf((self.bounds.size.height - titleLabel.frame.size.height - filterLabel.frame.size.height + 3.0f) / 2.0f) - 1.0f;
 		
 		titleLabel.frame = CGRectMake(
-									  (self.bounds.size.width - titleLabel.frame.size.width) / 2.0f,
+									  truncf((self.bounds.size.width - titleLabel.frame.size.width) / 2.0f),
 									  offsetTop,
 									  titleLabel.frame.size.width,
 									  titleLabel.frame.size.height);
 		offsetTop += titleLabel.frame.size.height - 3.0f;
 		
 		filterLabel.frame = CGRectMake(
-									   (self.bounds.size.width - filterLabel.frame.size.width) / 2.0f,
+									   truncf((self.bounds.size.width - filterLabel.frame.size.width) / 2.0f),
 									   offsetTop,
 									   filterLabel.frame.size.width,
 									   filterLabel.frame.size.height);

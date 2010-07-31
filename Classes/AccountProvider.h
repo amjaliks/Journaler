@@ -15,6 +15,5 @@
 @required
 @property (nonatomic, readonly) LJAccount *account;
 @property (nonatomic, readonly) AccountStateInfo *accountStateInfo;
-@property (nonatomic, readonly) AccountManager *accountManager;
 
 @end

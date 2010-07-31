@@ -11,19 +11,18 @@
 #import "FriendsPageController.h"
 
 @interface WebFriendsPageController : FriendsPageController <UIWebViewDelegate> {
-	//
+	LJAccount *account;
 	UIWebView *webView;
 	
-	// draugu lapas adrese
-	NSURL *friendsPageURL;
-	NSURL *friendsPageAltURL;
 	// pazīme, vai ir veikta autorizācija
-	BOOL loggedin;
-	// pazīme, ka tiek attēlots paziņojums par atslēgtu automātisku ielādi
-	BOOL refreshTurnedOffMessage;
+	BOOL initialized;
 }
 
 - (void)login;
 - (void)loadFriendsPage;
+- (void)loadBlankPage;
+- (void)loadRefreshRequiredPage;
+
+- (void)managerDidCreateSession:(NSNotification *)notification;
 
 @end

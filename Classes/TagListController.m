@@ -113,12 +113,11 @@
 
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		LJAPIClient *manager = [LJAPIClient client];
-		if ([manager userTagsForAccount:postOptionsController.account error:nil]) {
+		if ([client userTagsForAccount:postOptionsController.account error:nil]) {
 			[self updateFullListWithNewItem:nil];
 			[self performSelectorOnMainThread:@selector(repeatSearch) withObject:nil waitUntilDone:NO];
 			
-			[[AccountManager sharedManager] storeAccounts];
+			[accountManager storeAccounts];
 		}
 		
 		[pool release];

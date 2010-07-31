@@ -9,34 +9,48 @@
 #import <Foundation/Foundation.h>
 #import "Model.h"
 
-#define LJManagerDidLoadPostsNotification @"LJManagerDidLoadPostsNotification"
+#define ljManager [LJManager sharedLJManager]
 
-@class LJAccount;
+#define LJManagerDidFailNotification @"LJManagerDidFailNotification"
+#define LJManagerDidLoadPostsNotification @"LJManagerDidLoadPostsNotification"
+#define LJManagerDidCreateSessionNotification @"LJManagerDidCreateSessionNotification"
+
+@class LJAccount, LJAPIClient;
 
 @interface LJManager : NSObject {
 	NSMutableSet *loadingPosts;
 	NSMutableDictionary *loadedPosts;
 	
-	Model *model;
+	NSMutableSet *generatingSession;
+	NSMutableDictionary *sessions;
+	
 	NSNotificationCenter *notificationCenter;
 }
 
-+ (LJManager *)manager;
++ (LJManager *)sharedLJManager;
 
 #pragma mark Raksti
 #pragma mark - komandas
 - (void)loadPostsForAccount:(LJAccount *)account;
+- (void)forceLoadPostsForAccount:(LJAccount *)account;
 - (void)refreshPostsForAccount:(LJAccount *)account;
+- (void)removePostsForAccount:(LJAccount *)account;
 #pragma mark - dati
 - (BOOL)loadingPostsForAccount:(LJAccount *)account;
 - (NSArray *)loadedPostsForAccount:(LJAccount *)account;
-#pragma mark - rutīnas metodes
+#pragma mark - fona procesi
 - (void)backgroundLoadPostsForAccount:(LJAccount *)account;
+- (void)backgroundRefreshPostsForAccount:(LJAccount *)account;
+- (void)mergeCachedPosts:(NSMutableArray *)cachedPosts withNewPosts:(NSArray *)newPosts forAccount:(LJAccount *)account;
 
 #pragma mark Sesijas
-- (void)createSessionForPost:(LJAccount *)account;
+- (void)createSessionForAccount:(LJAccount *)account;
+- (void)setHTTPCookiesForAccount:(LJAccount *)account;
+- (void)backgroundCreateSessionForAccount:(LJAccount *)account;
 
 #pragma mark Rutīnas metodes
 - (void)postNotification:(NSString *)name account:(LJAccount *)account;
+- (void)postFailNotificationForAccount:(LJAccount *)account error:(NSError *)error;
+- (void)didReceiveMemoryWarning;
 
 @end

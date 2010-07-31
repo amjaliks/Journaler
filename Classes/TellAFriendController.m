@@ -7,10 +7,11 @@
 //
 
 #import "TellAFriendController.h"
-#import "ErrorHandling.h"
+#import "ErrorHandler.h"
 
 #import "ALDeviceInfo.h"
 #import "AccountManager.h"
+
 
 @implementation TellAFriendController
 

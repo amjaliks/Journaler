@@ -65,7 +65,7 @@
 - (LJFriendsPageController *)ljFriendsPageController {
 	@synchronized (self) {
 		if (!ljFriendsPageController) {
-			ljFriendsPageController = [[LJFriendsPageController alloc] initWithNibName:@"FriendsPageController" bundle:nil];
+			ljFriendsPageController = [[LJFriendsPageController alloc] initWithNibName:@"LJFriendsPageController" bundle:nil];
 			ljFriendsPageController.accountProvider = self;
 		}
 		return ljFriendsPageController;
@@ -100,10 +100,6 @@
 	return accountsViewController.accountStateInfo;
 }
 
-- (AccountManager *)accountManager {
-	return accountsViewController.accountManager;
-}
-
 #pragma mark -
 #pragma mark Tab Bar Controller Delegate
 
@@ -123,9 +119,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
 	[self setViewControllersForAccount:self.account];
 	[self.navigationItem.titleView setNeedsLayout];
+	[super viewWillAppear:animated];
+}
+
+- (void)restoreState {
+	[self view];
+	[self setViewControllersForAccount:self.account];
+	[friendsPageController restoreState];
 }
 
 #ifdef LITEVERSION

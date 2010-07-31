@@ -10,10 +10,10 @@
 
 @class LJAccount;
 
-@interface WebViewController : UIViewController {
-	
-	UIWebView *webView;
-	UIActivityIndicatorView *activityIndicatorView;
+@interface WebViewController : UIViewController {	
+	IBOutlet UIWebView *webView;
+	IBOutlet UIBarButtonItem *activityIndicatorItem;
+	IBOutlet UIActivityIndicatorView *activityIndicatorView;
 	
 	IBOutlet UIBarItem *backButton;
 	IBOutlet UIBarItem *flexSpace1;
@@ -22,16 +22,13 @@
 	IBOutlet UIBarItem *flexSpace3;
 	IBOutlet UIBarItem *reloadButton;
 	IBOutlet UIBarItem *stopButton;
-
-	// saraksts ar serveriem un kontiem, kuriem autorizācija ir izpildīta
-	NSMutableDictionary *loggedinServers;
+	
+	NSURL *lastURL;
+	LJAccount *lastAccount;
 }
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicatorView;
-
-- (void)openURL:(NSURL *)url account:(LJAccount *)account;
+- (void)managerDidCreateSession:(NSNotification *)notitication;
+- (void)openURL:(NSURL *)URL account:(LJAccount *)account;
 - (void)updateToolbarButtons:(BOOL)loading;
-- (BOOL)createSessionForAccount:(LJAccount *)account silent:(BOOL)silent;
 
 @end

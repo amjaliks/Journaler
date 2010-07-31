@@ -11,6 +11,7 @@
 #import "Macros.h"
 #import "Model.h"
 #import "LiveJournal.h"
+#import "UserPicCache.h"
 
 //#define kMaxWidth 220
 #define kRightOffset 26											// attālums no labās malas
@@ -178,6 +179,10 @@
 	[post.textPreview drawInRect:rect withFont:textFont lineBreakMode:UILineBreakModeTailTruncation];
 	
 	// userpic
+	if (post.userPicURLHash && !post.userPic) {
+		post.userPic = [userPicCache imageForHash:post.userPicURLHash URLString:post.userPicURL wait:NO];
+	}
+	
 	if (post.userPic) {
 		rect = CGRectMake(USERPIC_X, USERPIC_Y, USERPIC_W, USERPIC_H);
 
@@ -213,6 +218,15 @@
 		
 		post = [newPost retain];
 		post.view = self;
+		
+		if (post.userPicURLHash && !post.userPic) {
+			[[NSNotificationCenter defaultCenter] addObserver:self 
+													 selector:@selector(setNeedsDisplay) 
+														 name:UserPicCacheDidDownloadUserPicNotification 
+													   object:userPicCache];
+		} else {
+			[[NSNotificationCenter defaultCenter] removeObserver:self];
+		}
 	}
 	
 	[self setNeedsDisplay];

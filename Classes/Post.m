@@ -39,6 +39,13 @@
 @synthesize updated;
 @synthesize rendered;
 
+- (void)dealloc {
+	[userPic release];
+	[self clearPreproceedStrings];
+	
+	[super dealloc];
+}
+
 - (NSNumber *)journalType {
 	NSNumber *value = [self primitiveValueForKey:@"journalType"];
 	if ([value intValue] == -1) {
@@ -196,6 +203,8 @@
 		subjectPreview = nil;
 		[userPicURLHash release];
 		userPicURLHash = nil;
+		[rendered release];
+		rendered = nil;
 	}
 }
 

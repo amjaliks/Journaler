@@ -13,7 +13,7 @@
 #import "LiveJournal.h"
 #import "LJAPIClient.h"
 
-#import "ErrorHandling.h"
+#import "ErrorHandler.h"
 
 #define kStringsTable @"PostOptions"
 
@@ -149,17 +149,16 @@
 		postOptionsController.security = LJEventSecurityCustom;
 	}
 
-	[[AccountManager sharedManager].stateInfo stateInfoForAccount:postOptionsController.account].newPostSecurity = postOptionsController.security;
-	[[AccountManager sharedManager].stateInfo stateInfoForAccount:postOptionsController.account].newPostSelectedFriendGroups = postOptionsController.selectedFriendGroups;
+	[accountManager.stateInfo stateInfoForAccount:postOptionsController.account].newPostSecurity = postOptionsController.security;
+	[accountManager.stateInfo stateInfoForAccount:postOptionsController.account].newPostSelectedFriendGroups = postOptionsController.selectedFriendGroups;
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)refresh {
-	LJAPIClient *manager = [LJAPIClient client];
 	NSError *error;
 	
-	if ([manager friendGroupsForAccount:postOptionsController.account error:&error]) {		
-		[[AccountManager sharedManager] storeAccounts];
+	if ([client friendGroupsForAccount:postOptionsController.account error:&error]) {		
+		[accountManager storeAccounts];
 		
 		[self.tableView reloadData];
 	} else {

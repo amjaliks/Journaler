@@ -12,7 +12,7 @@
 #import "PostEditorController.h"
 #import "AccountProvider.h"
 
-@class LJAccount, FriendsPageController, LJFriendsPageController, WebFriendsPageController;
+@class LJAccount, FriendsPageController, LJFriendsPageController, WebFriendsPageController, AccountsViewController;
 
 @interface AccountTabBarController : UITabBarController <UITabBarControllerDelegate, AccountProvider> {
 	IBOutlet AccountsViewController *accountsViewController;
@@ -33,6 +33,7 @@
 - (WebFriendsPageController *)webFriendsPageControllerForAccount:(LJAccount *)account;
 - (void)setViewControllersForAccount:(LJAccount *)account;
 - (void)setNavigationItemForViewController:(UIViewController *)viewController;
+- (void)restoreState;
 #ifdef LITEVERSION
 - (void)showAd;
 #endif

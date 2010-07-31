@@ -7,7 +7,7 @@
  *
  */
 
-#define APP_CACHES_DIR [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
+#define appCachesDir [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
 #define APP_IMAGE_CACHE_DIR [APP_CACHES_DIR stringByAppendingPathComponent:@"images"]
 #define CACHED_IMAGE_PATH(hash) [APP_IMAGE_CACHE_DIR stringByAppendingPathComponent:hash]
 

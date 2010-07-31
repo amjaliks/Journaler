@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "LJAccount.h"
+#import "LJSession.h"
 #import "LJFriendGroup.h"
 #import "LJEvent.h"
 #import "LJAPIClient.h"

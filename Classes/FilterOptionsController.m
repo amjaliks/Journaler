@@ -9,7 +9,7 @@
 #import "FilterOptionsController.h"
 
 #import "AccountManager.h"
-#import "ErrorHandling.h"
+#import "ErrorHandler.h"
 #import "FriendsPageFilter.h"
 #import "FriendsPageController.h"
 
@@ -210,11 +210,10 @@ enum {
 }
 
 - (void)refresh:(id)sender {
-	LJAPIClient *manager = [LJAPIClient client];
 	NSError *error;
 	
-	if ([manager friendGroupsForAccount:friendsPageController.account error:&error]) {		
-		[[AccountManager sharedManager] storeAccounts];
+	if ([client friendGroupsForAccount:friendsPageController.account error:&error]) {		
+		[accountManager storeAccounts];
 		
 		[self.tableView reloadData];
 	} else {

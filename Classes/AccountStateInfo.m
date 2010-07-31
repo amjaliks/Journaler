@@ -13,7 +13,7 @@
 #define kKeyOpenedScreen @"openedScreen"
 #define kKeyFirstVisiblePost @"firstVisiblePost"
 #define kKeyFirstVisiblePostScrollPosition @"firstVisiblePostScrollPosition"
-#define kKeyOpenedPost @"openedPost"
+#define kKeyOpenedPostIndex @"openedPostIndex"
 #define kKeyLastVisiblePostIndex @"lastVisiblePostIndex"
 #define kKeyFriendsPageFilter @"friendsPageFilter"
 #define kKeyNewPostSubject @"newPostSubject"
@@ -31,10 +31,13 @@
 @implementation AccountStateInfo
 
 @synthesize openedScreen;
+
 @synthesize firstVisiblePost;
 @synthesize firstVisiblePostScrollPosition;
-@synthesize openedPost;
 @synthesize lastVisiblePostIndex;
+
+@synthesize openedPostIndex;
+
 @synthesize friendsPageFilter;
 @synthesize newPostSubject;
 @synthesize newPostText;
@@ -58,7 +61,6 @@
 
 - (void) dealloc {
 	[firstVisiblePost release];
-	[openedPost release];
 	[friendsPageFilter release];
 	[newPostSubject release];
 	[newPostText release];
@@ -81,8 +83,10 @@
 		
 		firstVisiblePost = [[coder decodeObjectForKey:kKeyFirstVisiblePost] retain];
 		firstVisiblePostScrollPosition = [coder decodeIntegerForKey:kKeyFirstVisiblePostScrollPosition];
-		openedPost = [[coder decodeObjectForKey:kKeyOpenedPost] retain];
 		lastVisiblePostIndex = [coder decodeIntegerForKey:kKeyLastVisiblePostIndex];
+
+		openedPostIndex = [coder decodeIntegerForKey:kKeyOpenedPostIndex];
+
 		friendsPageFilter = [[coder decodeObjectForKey:kKeyFriendsPageFilter] retain];
 		newPostSubject = [[coder decodeObjectForKey:kKeyNewPostSubject] retain];
 		newPostText = [[coder decodeObjectForKey:kKeyNewPostText] retain];
@@ -102,10 +106,13 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
 	// atvērtais ekrāns
 	[coder encodeInt:openedScreen forKey:kKeyOpenedScreen];
+	
 	[coder encodeObject:firstVisiblePost forKey:kKeyFirstVisiblePost];
 	[coder encodeInteger:firstVisiblePostScrollPosition forKey:kKeyFirstVisiblePostScrollPosition];
-	[coder encodeObject:openedPost forKey:kKeyOpenedPost];
 	[coder encodeInteger:lastVisiblePostIndex forKey:kKeyLastVisiblePostIndex];
+
+	[coder encodeInteger:openedPostIndex forKey:kKeyOpenedPostIndex];
+
 	[coder encodeObject:friendsPageFilter forKey:kKeyFriendsPageFilter];
 	[coder encodeObject:newPostSubject forKey:kKeyNewPostSubject];
 	[coder encodeObject:newPostText forKey:kKeyNewPostText];

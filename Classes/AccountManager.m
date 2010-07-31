@@ -12,11 +12,11 @@
 #import "PostEditorController.h"
 #import "ALReporter.h"
 #import "JournalerAppDelegate.h"
+#import "LJManager.h"
+#import "SynthesizeSingleton.h"
 
 #define kAccountsFileName @"accounts.bin"
 #define kStateInfoFileName @"stateinfo"
-
-static AccountManager *sharedManager;
 
 @implementation AccountManager
 
@@ -62,6 +62,7 @@ static AccountManager *sharedManager;
 }
 
 - (void)removeAccount:(LJAccount *)account {
+	[ljManager removePostsForAccount:account];
 	[stateInfo removeStateInfoForAccount:account];
 	[accounts removeObject:account];
 	[self storeStateInfo];
@@ -91,7 +92,7 @@ static AccountManager *sharedManager;
 }
 
 - (void)loadStateInfo {
-	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kStateInfoFileName];
+	NSString *path = [appCachesDir stringByAppendingPathComponent:kStateInfoFileName];
 	stateInfo = [[NSKeyedUnarchiver unarchiveObjectWithFile:path] retain];
 	
 	if (!stateInfo) {
@@ -104,7 +105,7 @@ static AccountManager *sharedManager;
 		[controller saveState];
 	}
 
-	NSString *path = [APP_CACHES_DIR stringByAppendingPathComponent:kStateInfoFileName];
+	NSString *path = [appCachesDir stringByAppendingPathComponent:kStateInfoFileName];
 	[NSKeyedArchiver archiveRootObject:stateInfo toFile:path];
 }
 
@@ -113,19 +114,6 @@ static AccountManager *sharedManager;
 }
 
 #pragma mark Singleton metodes
-
-+ (AccountManager *)sharedManager {
-	@synchronized (self) {
-		if (sharedManager == nil) {
-			sharedManager = [[super allocWithZone:nil] init];
-		}
-	}
-	return sharedManager;
-}
-
-+ (id)allocWithZone:(NSZone *)zone {
-    return [[self sharedManager] retain];
-}
 
 - (id)init {
 	self = [super init];
@@ -136,34 +124,7 @@ static AccountManager *sharedManager;
 	return self;
 }
 
-
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-- (void)release {
-    //do nothing
-}
-
-- (id)autorelease {
-    return self;
-}
-
-- (void)dealloc {
-	[accounts release];
-	[stateInfo release];
-	[stateInfo release];
-	
-	[super dealloc];
-}
+SYNTHESIZE_SINGLETON_FOR_CLASS(AccountManager)
 
 #pragma mark -
 

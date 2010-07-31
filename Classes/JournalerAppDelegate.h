@@ -10,36 +10,26 @@
 #import "Model.h"
 #import "UserPicCache.h"
 
-#define APP_DELEGATE ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate])
-#define APP_USER_PIC_CACHE APP_DELEGATE.userPicCache
-#define APP_WEB_VIEW_CONTROLLER APP_DELEGATE.webViewController
-#define APP_MODEL APP_DELEGATE.model
+#define appDelegate ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate])
+#define appWebViewController appDelegate.webViewController
+#define APP_USER_PIC_CACHE appDelegate.userPicCache
 
 @class ALReporter, WebViewController;
 
 @class AccountsViewController;
 
 @interface JournalerAppDelegate : NSObject <UIApplicationDelegate> {
+    IBOutlet UIWindow *window;
+	IBOutlet WebViewController *webViewController;
 
-	Model *model;
-	UserPicCache *userPicCache;
-	
-    UIWindow *window;
-    UINavigationController *navigationController;
-	AccountsViewController *accountsViewController;
-	
-	WebViewController *webViewController;
+    IBOutlet UINavigationController *navigationController;
+	IBOutlet AccountsViewController *accountsViewController;
 	
 	ALReporter *reporter;
 }
 
 @property (nonatomic, retain) ALReporter *reporter;
-@property (nonatomic, retain) Model *model;
-@property (nonatomic, retain) UserPicCache *userPicCache;
-
 @property (readonly) WebViewController *webViewController;
-
-@property (nonatomic, retain) IBOutlet UIWindow *window;
 
 @end
 

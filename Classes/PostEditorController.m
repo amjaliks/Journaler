@@ -10,7 +10,7 @@
 #import "LiveJournal.h"
 #import "AccountsViewController.h"
 #import "AccountTabBarController.h"
-#import "ErrorHandling.h"
+#import "ErrorHandler.h"
 #import "AccountManager.h"
 #import "NSSetAdditions.h"
 
@@ -70,7 +70,7 @@
 	postOptionsController.security = self.accountStateInfo.newPostSecurity;
 	[postOptionsController.selectedFriendGroups addObjectsFromArray:self.accountStateInfo.newPostSelectedFriendGroups];
 
-	[[AccountManager sharedManager] registerPostEditorController:self];
+	[accountManager registerPostEditorController:self];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -114,10 +114,6 @@
 
 - (AccountStateInfo *)accountStateInfo {
 	return accountProvider.accountStateInfo;
-}
-
-- (AccountManager *)accountManager {
-	return accountProvider.accountManager;
 }
 
 #pragma mark -
@@ -189,7 +185,7 @@
 	event.location = postOptionsController.location;
 	
 	NSError *error;
-	if ([[LJAPIClient client] postEvent:event forAccount:self.account error:&error]) {
+	if ([client postEvent:event forAccount:self.account error:&error]) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your post has been published." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
 		[alert release];
@@ -201,7 +197,7 @@
 		if (![postOptionsController.tags isSubsetOfSet:self.account.tags]) {
 			NSMutableSet *tags = [[NSMutableSet alloc] initWithSet:self.account.tags];
 			[tags addObjectsFromSet:postOptionsController.tags];
-			[[AccountManager sharedManager] storeAccounts];			
+			[accountManager storeAccounts];			
 		}
 
 		postOptionsController.tags = nil;

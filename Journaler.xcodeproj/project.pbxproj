@@ -11,12 +11,16 @@
 		1706434011DD301E0076EB6D /* NSStringLJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 1706433E11DD301E0076EB6D /* NSStringLJ.m */; };
 		17070741110203D70074F836 /* NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 17070740110203D70074F836 /* NetworkActivityIndicator.m */; };
 		17070742110203D70074F836 /* NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 17070740110203D70074F836 /* NetworkActivityIndicator.m */; };
-		170707C31102914A0074F836 /* ErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 170707C21102914A0074F836 /* ErrorHandling.m */; };
-		170707C41102914A0074F836 /* ErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 170707C21102914A0074F836 /* ErrorHandling.m */; };
+		170707C31102914A0074F836 /* ErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 170707C21102914A0074F836 /* ErrorHandler.m */; };
+		170707C41102914A0074F836 /* ErrorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 170707C21102914A0074F836 /* ErrorHandler.m */; };
 		170708AF1104261E0074F836 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 170708AE1104261E0074F836 /* Settings.m */; };
 		170708B01104261E0074F836 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 170708AE1104261E0074F836 /* Settings.m */; };
 		170708BB110448E50074F836 /* SettingsStartUpScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170708BA110448E50074F836 /* SettingsStartUpScreenController.m */; };
 		170708BC110448E50074F836 /* SettingsStartUpScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170708BA110448E50074F836 /* SettingsStartUpScreenController.m */; };
+		170FE40F12001EA000D2F676 /* LJSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FE40E12001EA000D2F676 /* LJSession.m */; };
+		170FE41012001EA000D2F676 /* LJSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FE40E12001EA000D2F676 /* LJSession.m */; };
+		170FE4BC120175ED00D2F676 /* ErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FE4BB120175ED00D2F676 /* ErrorMessage.m */; };
+		170FE4BD120175ED00D2F676 /* ErrorMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 170FE4BB120175ED00D2F676 /* ErrorMessage.m */; };
 		1713230A1085168F007F6C24 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171323081085168F007F6C24 /* PostViewController.m */; };
 		17132615108A1203007F6C24 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17132614108A1203007F6C24 /* CoreData.framework */; };
 		17132681108A163B007F6C24 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 1713267F108A163B007F6C24 /* Post.m */; };
@@ -109,6 +113,10 @@
 		1759F31B1093674E0008AA60 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1759F3191093674E0008AA60 /* WebViewController.m */; };
 		1759F31C1093674E0008AA60 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1759F31A1093674E0008AA60 /* WebViewController.xib */; };
 		1759F49D1096514B0008AA60 /* comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 1759F49C1096514B0008AA60 /* comments.png */; };
+		1781DA44120382F000BA8D83 /* LJFriendsPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1781DA43120382F000BA8D83 /* LJFriendsPageController.xib */; };
+		1781DA45120382F000BA8D83 /* LJFriendsPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1781DA43120382F000BA8D83 /* LJFriendsPageController.xib */; };
+		1781DAB1120393C300BA8D83 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171323091085168F007F6C24 /* PostViewController.xib */; };
+		1781DAB2120393C900BA8D83 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171323091085168F007F6C24 /* PostViewController.xib */; };
 		1789BE60107A894B00964DA2 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE5F107A894B00964DA2 /* forward.png */; };
 		1789BE62107A89F200964DA2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
 		1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
@@ -241,15 +249,20 @@
 		1706433E11DD301E0076EB6D /* NSStringLJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringLJ.m; sourceTree = "<group>"; };
 		1707073F110203D70074F836 /* NetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkActivityIndicator.h; sourceTree = "<group>"; };
 		17070740110203D70074F836 /* NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkActivityIndicator.m; sourceTree = "<group>"; };
-		170707C11102914A0074F836 /* ErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandling.h; sourceTree = "<group>"; };
-		170707C21102914A0074F836 /* ErrorHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorHandling.m; sourceTree = "<group>"; };
+		170707C11102914A0074F836 /* ErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandler.h; sourceTree = "<group>"; };
+		170707C21102914A0074F836 /* ErrorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorHandler.m; sourceTree = "<group>"; };
 		170708AD1104261E0074F836 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		170708AE1104261E0074F836 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		170708B9110448E50074F836 /* SettingsStartUpScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsStartUpScreenController.h; sourceTree = "<group>"; };
 		170708BA110448E50074F836 /* SettingsStartUpScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsStartUpScreenController.m; sourceTree = "<group>"; };
+		170FE40D12001EA000D2F676 /* LJSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJSession.h; sourceTree = "<group>"; };
+		170FE40E12001EA000D2F676 /* LJSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJSession.m; sourceTree = "<group>"; };
+		170FE4AF1200EBBE00D2F676 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		170FE4BA120175ED00D2F676 /* ErrorMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorMessage.h; sourceTree = "<group>"; };
+		170FE4BB120175ED00D2F676 /* ErrorMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorMessage.m; sourceTree = "<group>"; };
 		171323071085168F007F6C24 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		171323081085168F007F6C24 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
-		171323091085168F007F6C24 /* PostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostViewController.xib; path = Classes/PostViewController.xib; sourceTree = "<group>"; };
+		171323091085168F007F6C24 /* PostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
 		17132614108A1203007F6C24 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1713267E108A163B007F6C24 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		1713267F108A163B007F6C24 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
@@ -270,7 +283,7 @@
 		1724FF031186FFAE00639437 /* locateme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locateme.png; sourceTree = "<group>"; };
 		172860C8116D40BB00171A85 /* SelfAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfAdViewController.h; sourceTree = "<group>"; };
 		172860C9116D40BB00171A85 /* SelfAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfAdViewController.m; sourceTree = "<group>"; };
-		172860CA116D40BB00171A85 /* SelfAdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SelfAdViewController.xib; path = Classes/SelfAdViewController.xib; sourceTree = "<group>"; };
+		172860CA116D40BB00171A85 /* SelfAdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelfAdViewController.xib; sourceTree = "<group>"; };
 		172860D6116D40D800171A85 /* selfad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selfad.png; sourceTree = "<group>"; };
 		173FB76510BB490600FD0652 /* LJFriendsPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJFriendsPageController.m; sourceTree = "<group>"; };
 		173FB7E810BB4F9F00FD0652 /* WebFriendsPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebFriendsPageController.h; sourceTree = "<group>"; };
@@ -288,7 +301,7 @@
 		1741594C11B728F4008F7E48 /* v2-v3.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = "v2-v3.xcmappingmodel"; sourceTree = "<group>"; };
 		1745D2A5117E47320016E616 /* SearchableListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchableListController.h; sourceTree = "<group>"; };
 		1745D2A6117E47320016E616 /* SearchableListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchableListController.m; sourceTree = "<group>"; };
-		1745D2A7117E47320016E616 /* SearchableListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchableListController.xib; path = Classes/SearchableListController.xib; sourceTree = "<group>"; };
+		1745D2A7117E47320016E616 /* SearchableListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchableListController.xib; sourceTree = "<group>"; };
 		1745D398117E7D8C0016E616 /* NSSetAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSSetAdditions.h; sourceTree = "<group>"; };
 		1745D399117E7D8C0016E616 /* NSSetAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSSetAdditions.m; sourceTree = "<group>"; };
 		1746704C10AD0353008298F8 /* RefreshTurnedOff.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RefreshTurnedOff.html; sourceTree = "<group>"; };
@@ -298,13 +311,14 @@
 		1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JournalerLite-Info.plist"; sourceTree = "<group>"; };
 		1759F3181093674E0008AA60 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = ../WebViewController.h; sourceTree = "<group>"; };
 		1759F3191093674E0008AA60 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../WebViewController.m; sourceTree = "<group>"; };
-		1759F31A1093674E0008AA60 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		1759F31A1093674E0008AA60 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WebViewController.xib; path = ../WebViewController.xib; sourceTree = "<group>"; };
 		1759F49C1096514B0008AA60 /* comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comments.png; sourceTree = "<group>"; };
+		1781DA43120382F000BA8D83 /* LJFriendsPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LJFriendsPageController.xib; sourceTree = "<group>"; };
 		1789BE5F107A894B00964DA2 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
 		1789BE61107A89F200964DA2 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		1789BFDF107E73BA00964DA2 /* PostEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEditorController.h; sourceTree = "<group>"; };
 		1789BFE0107E73BA00964DA2 /* PostEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostEditorController.m; sourceTree = "<group>"; };
-		1789BFE1107E73BA00964DA2 /* PostEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostEditorController.xib; path = Classes/PostEditorController.xib; sourceTree = "<group>"; };
+		1789BFE1107E73BA00964DA2 /* PostEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostEditorController.xib; sourceTree = "<group>"; };
 		178BF24B1181D47B00BEEFAD /* PostJournalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostJournalController.h; sourceTree = "<group>"; };
 		178BF24C1181D4A500BEEFAD /* PicKeywordListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicKeywordListController.h; sourceTree = "<group>"; };
 		178BF24D1181D4A500BEEFAD /* PicKeywordListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicKeywordListController.m; sourceTree = "<group>"; };
@@ -328,7 +342,7 @@
 		17B29B0710FA48A700C5EFA4 /* AccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsViewController.m; sourceTree = "<group>"; };
 		17B29BE310FA826700C5EFA4 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		17B29BE410FA826700C5EFA4 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
-		17B29BE510FA826700C5EFA4 /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsController.xib; path = Classes/SettingsController.xib; sourceTree = "<group>"; };
+		17B29BE510FA826700C5EFA4 /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsController.xib; sourceTree = "<group>"; };
 		17B462E210BA2647004D0E0F /* PostPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPreviewCell.h; sourceTree = "<group>"; };
 		17B462E310BA2647004D0E0F /* PostPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPreviewCell.m; sourceTree = "<group>"; };
 		17B462E610BA2659004D0E0F /* PostPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPreviewView.h; sourceTree = "<group>"; };
@@ -367,7 +381,7 @@
 		17B62DB510B7355600C974DE /* AccountTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTabBarController.h; sourceTree = "<group>"; };
 		17B62DB610B7355600C974DE /* AccountTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTabBarController.m; sourceTree = "<group>"; };
 		17B62E1B10B741B500C974DE /* LJFriendsPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJFriendsPageController.h; sourceTree = "<group>"; };
-		17B62E6810B74AA800C974DE /* FriendsPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsPageController.xib; sourceTree = "<group>"; };
+		17B62E6810B74AA800C974DE /* FriendsPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendsPageController.xib; path = ../FriendsPageController.xib; sourceTree = "<group>"; };
 		17B633FC10B8CD6B00C974DE /* lock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lock.gif; sourceTree = "<group>"; };
 		17B6340A10B8CF8000C974DE /* Journaler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Journaler 2.xcdatamodel"; sourceTree = "<group>"; };
 		17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = "v1-v2.xcmappingmodel"; sourceTree = "<group>"; };
@@ -388,8 +402,8 @@
 		17D8A7361131F2ED0023FBEA /* LJAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJAccount.m; sourceTree = "<group>"; };
 		17D8A9871134B9D10023FBEA /* LJEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJEvent.h; sourceTree = "<group>"; };
 		17D8A9881134B9D10023FBEA /* LJEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJEvent.m; sourceTree = "<group>"; };
-		17DB0BD01075444F00155636 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountsViewController.xib; path = Classes/AccountsViewController.xib; sourceTree = "<group>"; };
-		17DB0BF11075462000155636 /* AccountEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AccountEditorController.xib; path = Classes/AccountEditorController.xib; sourceTree = "<group>"; };
+		17DB0BD01075444F00155636 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewController.xib; sourceTree = "<group>"; };
+		17DB0BF11075462000155636 /* AccountEditorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountEditorController.xib; sourceTree = "<group>"; };
 		17DB0C951076616400155636 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		17DB0CC010768D2900155636 /* LiveJournal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveJournal.h; sourceTree = "<group>"; };
 		17E3B2A7118656C300ED729D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -406,7 +420,7 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* Journaler_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journaler_Prefix.pch; sourceTree = "<group>"; };
-		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ../MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37650B5711FDD23B00524AA9 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
 		37650B5811FDD23B00524AA9 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
@@ -426,16 +440,16 @@
 		3788A8C911ECC563006E43AA /* HouseAdInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAdInfo.m; sourceTree = "<group>"; };
 		3788A8CA11ECC563006E43AA /* HouseAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAdViewController.h; sourceTree = "<group>"; };
 		3788A8CB11ECC563006E43AA /* HouseAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAdViewController.m; sourceTree = "<group>"; };
-		3788A8CC11ECC563006E43AA /* HouseAdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HouseAdViewController.xib; path = Classes/HouseAdViewController.xib; sourceTree = "<group>"; };
+		3788A8CC11ECC563006E43AA /* HouseAdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseAdViewController.xib; sourceTree = "<group>"; };
 		3799D19A11E754370039226A /* HouseAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAdManager.h; sourceTree = "<group>"; };
 		3799D19B11E754370039226A /* HouseAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAdManager.m; sourceTree = "<group>"; };
 		37A65DBE11DE45DC00EEC540 /* LegalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalController.h; sourceTree = "<group>"; };
 		37A65DBF11DE45DC00EEC540 /* LegalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalController.m; sourceTree = "<group>"; };
-		37A65DC011DE45DC00EEC540 /* LegalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LegalController.xib; path = Classes/LegalController.xib; sourceTree = "<group>"; };
+		37A65DC011DE45DC00EEC540 /* LegalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LegalController.xib; sourceTree = "<group>"; };
 		37A65DE311DE490D00EEC540 /* Legal.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Legal.html; sourceTree = "<group>"; };
 		37AC5DD111FEBBBD006C9E5C /* TellAFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TellAFriendController.h; sourceTree = "<group>"; };
 		37AC5DD211FEBBBD006C9E5C /* TellAFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TellAFriendController.m; sourceTree = "<group>"; };
-		37AC5DD311FEBBBD006C9E5C /* TellAFriendController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TellAFriendController.xib; path = Classes/TellAFriendController.xib; sourceTree = "<group>"; };
+		37AC5DD311FEBBBD006C9E5C /* TellAFriendController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TellAFriendController.xib; sourceTree = "<group>"; };
 		37AC5F4A11FEE24A006C9E5C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Journaler-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Journaler-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -483,18 +497,30 @@
 				173FBEF610C4755600FD0652 /* New post */,
 				172860C7116D409300171A85 /* Self-ad */,
 				3799D18B11E750D90039226A /* House Ads */,
+				170FE4B8120175DA00D2F676 /* Errors */,
 				1D3623240D0F684500981E51 /* JournalerAppDelegate.h */,
 				1D3623250D0F684500981E51 /* JournalerAppDelegate.m */,
+				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				1759F3181093674E0008AA60 /* WebViewController.h */,
 				1759F3191093674E0008AA60 /* WebViewController.m */,
+				1759F31A1093674E0008AA60 /* WebViewController.xib */,
 				17B462EF10BA28BA004D0E0F /* Macros.h */,
 				173FC03F10C5CE6300FD0652 /* Common.h */,
 				1707073F110203D70074F836 /* NetworkActivityIndicator.h */,
 				17070740110203D70074F836 /* NetworkActivityIndicator.m */,
-				170707C11102914A0074F836 /* ErrorHandling.h */,
-				170707C21102914A0074F836 /* ErrorHandling.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		170FE4B8120175DA00D2F676 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				170FE4BA120175ED00D2F676 /* ErrorMessage.h */,
+				170FE4BB120175ED00D2F676 /* ErrorMessage.m */,
+				170707C11102914A0074F836 /* ErrorHandler.h */,
+				170707C21102914A0074F836 /* ErrorHandler.m */,
+			);
+			name = Errors;
 			sourceTree = "<group>";
 		};
 		17132682108A1644007F6C24 /* Model */ = {
@@ -539,6 +565,7 @@
 			children = (
 				172860C8116D40BB00171A85 /* SelfAdViewController.h */,
 				172860C9116D40BB00171A85 /* SelfAdViewController.m */,
+				172860CA116D40BB00171A85 /* SelfAdViewController.xib */,
 			);
 			name = "Self-ad";
 			sourceTree = "<group>";
@@ -559,10 +586,12 @@
 				179F3FB011165D080043E0D1 /* Account Manager */,
 				17B29B0610FA48A700C5EFA4 /* AccountsViewController.h */,
 				17B29B0710FA48A700C5EFA4 /* AccountsViewController.m */,
+				17DB0BD01075444F00155636 /* AccountsViewController.xib */,
 				17B62DB510B7355600C974DE /* AccountTabBarController.h */,
 				17B62DB610B7355600C974DE /* AccountTabBarController.m */,
 				17FCD7141078C70700806088 /* AccountEditorController.h */,
 				17FCD7151078C70700806088 /* AccountEditorController.m */,
+				17DB0BF11075462000155636 /* AccountEditorController.xib */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -573,10 +602,13 @@
 				17F1D9BA11E3D117001B5EBB /* Filter */,
 				171323071085168F007F6C24 /* PostViewController.h */,
 				171323081085168F007F6C24 /* PostViewController.m */,
+				171323091085168F007F6C24 /* PostViewController.xib */,
 				17B4665F10BB4854004D0E0F /* FriendsPageController.h */,
 				17B4666010BB4854004D0E0F /* FriendsPageController.m */,
+				17B62E6810B74AA800C974DE /* FriendsPageController.xib */,
 				17B62E1B10B741B500C974DE /* LJFriendsPageController.h */,
 				173FB76510BB490600FD0652 /* LJFriendsPageController.m */,
+				1781DA43120382F000BA8D83 /* LJFriendsPageController.xib */,
 				173FB7E810BB4F9F00FD0652 /* WebFriendsPageController.h */,
 				173FB7E910BB4F9F00FD0652 /* WebFriendsPageController.m */,
 				17B462E210BA2647004D0E0F /* PostPreviewCell.h */,
@@ -597,6 +629,7 @@
 				178BF32611823F5200BEEFAD /* Support */,
 				1789BFDF107E73BA00964DA2 /* PostEditorController.h */,
 				1789BFE0107E73BA00964DA2 /* PostEditorController.m */,
+				1789BFE1107E73BA00964DA2 /* PostEditorController.xib */,
 				173FBEF710C4758200FD0652 /* PostOptionsController.h */,
 				173FBEF810C4758200FD0652 /* PostOptionsController.m */,
 				178BF24B1181D47B00BEEFAD /* PostJournalController.h */,
@@ -609,6 +642,7 @@
 				178BF2D5118238CE00BEEFAD /* TagListController.m */,
 				178BF32B11823FB100BEEFAD /* MoodListController.h */,
 				178BF32C11823FB100BEEFAD /* MoodListController.m */,
+				1745D2A7117E47320016E616 /* SearchableListController.xib */,
 			);
 			name = "New post";
 			sourceTree = "<group>";
@@ -654,12 +688,15 @@
 				170708AE1104261E0074F836 /* Settings.m */,
 				17B29BE310FA826700C5EFA4 /* SettingsController.h */,
 				17B29BE410FA826700C5EFA4 /* SettingsController.m */,
+				17B29BE510FA826700C5EFA4 /* SettingsController.xib */,
 				170708B9110448E50074F836 /* SettingsStartUpScreenController.h */,
 				170708BA110448E50074F836 /* SettingsStartUpScreenController.m */,
 				37A65DBE11DE45DC00EEC540 /* LegalController.h */,
 				37A65DBF11DE45DC00EEC540 /* LegalController.m */,
+				37A65DC011DE45DC00EEC540 /* LegalController.xib */,
 				37AC5DD111FEBBBD006C9E5C /* TellAFriendController.h */,
 				37AC5DD211FEBBBD006C9E5C /* TellAFriendController.m */,
+				37AC5DD311FEBBBD006C9E5C /* TellAFriendController.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -703,26 +740,6 @@
 			path = XMLRPC;
 			sourceTree = "<group>";
 		};
-		17B62D9D10B733E000C974DE /* XIBs */ = {
-			isa = PBXGroup;
-			children = (
-				37AC5DD311FEBBBD006C9E5C /* TellAFriendController.xib */,
-				37A65DC011DE45DC00EEC540 /* LegalController.xib */,
-				17DB0BD01075444F00155636 /* AccountsViewController.xib */,
-				17DB0BF11075462000155636 /* AccountEditorController.xib */,
-				17B29BE510FA826700C5EFA4 /* SettingsController.xib */,
-				171323091085168F007F6C24 /* PostViewController.xib */,
-				1789BFE1107E73BA00964DA2 /* PostEditorController.xib */,
-				1745D2A7117E47320016E616 /* SearchableListController.xib */,
-				1759F31A1093674E0008AA60 /* WebViewController.xib */,
-				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
-				17B62E6810B74AA800C974DE /* FriendsPageController.xib */,
-				172860CA116D40BB00171A85 /* SelfAdViewController.xib */,
-				3788A8CC11ECC563006E43AA /* HouseAdViewController.xib */,
-			);
-			name = XIBs;
-			sourceTree = "<group>";
-		};
 		17B6345210B8D2F700C974DE /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -745,6 +762,8 @@
 				17D8A5B7113126260023FBEA /* LJAPIClient.m */,
 				17D8A7351131F2ED0023FBEA /* LJAccount.h */,
 				17D8A7361131F2ED0023FBEA /* LJAccount.m */,
+				170FE40D12001EA000D2F676 /* LJSession.h */,
+				170FE40E12001EA000D2F676 /* LJSession.m */,
 				17D8A5B21130BBDE0023FBEA /* LJFriendGroup.h */,
 				17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */,
 				17D8A9871134B9D10023FBEA /* LJEvent.h */,
@@ -762,6 +781,7 @@
 		17D8A6561131DEF50023FBEA /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				170FE4AF1200EBBE00D2F676 /* SynthesizeSingleton.h */,
 				1741575111B6BADC008F7E48 /* NSFileManagerAdditions.h */,
 				1741575211B6BADC008F7E48 /* NSFileManagerAdditions.m */,
 				17D8A6571131DF2E0023FBEA /* NSStringMD5.h */,
@@ -822,7 +842,6 @@
 			isa = PBXGroup;
 			children = (
 				17B6345210B8D2F700C974DE /* DataModel */,
-				17B62D9D10B733E000C974DE /* XIBs */,
 				17132A54108B238C007F6C24 /* Images */,
 				8D1107310486CEB800E47090 /* Journaler-Info.plist */,
 				1750B1911097B45000C1D2A8 /* JournalerLite-Info.plist */,
@@ -870,6 +889,7 @@
 				3788A8C911ECC563006E43AA /* HouseAdInfo.m */,
 				3788A8CA11ECC563006E43AA /* HouseAdViewController.h */,
 				3788A8CB11ECC563006E43AA /* HouseAdViewController.m */,
+				3788A8CC11ECC563006E43AA /* HouseAdViewController.xib */,
 				3799D19A11E754370039226A /* HouseAdManager.h */,
 				3799D19B11E754370039226A /* HouseAdManager.m */,
 			);
@@ -978,6 +998,8 @@
 				17EFF2AA11EA7A78009D84ED /* down.png in Resources */,
 				3788A8CF11ECC563006E43AA /* HouseAdViewController.xib in Resources */,
 				37AC5DD511FEBBBD006C9E5C /* TellAFriendController.xib in Resources */,
+				1781DA45120382F000BA8D83 /* LJFriendsPageController.xib in Resources */,
+				1781DAB2120393C900BA8D83 /* PostViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,6 +1041,8 @@
 				17EFF2AB11EA7A78009D84ED /* down.png in Resources */,
 				3788A8D211ECC563006E43AA /* HouseAdViewController.xib in Resources */,
 				37AC5ECB11FED66A006C9E5C /* TellAFriendController.xib in Resources */,
+				1781DA44120382F000BA8D83 /* LJFriendsPageController.xib in Resources */,
+				1781DAB1120393C300BA8D83 /* PostViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1061,7 +1085,7 @@
 				173FC15510C5F53700FD0652 /* PostSecurityController.m in Sources */,
 				17B29BE810FA826700C5EFA4 /* SettingsController.m in Sources */,
 				17070741110203D70074F836 /* NetworkActivityIndicator.m in Sources */,
-				170707C31102914A0074F836 /* ErrorHandling.m in Sources */,
+				170707C31102914A0074F836 /* ErrorHandler.m in Sources */,
 				170708AF1104261E0074F836 /* Settings.m in Sources */,
 				170708BB110448E50074F836 /* SettingsStartUpScreenController.m in Sources */,
 				179F3FAE111645D60043E0D1 /* AccountManager.m in Sources */,
@@ -1103,6 +1127,8 @@
 				37650B5911FDD23B00524AA9 /* BannerViewController.m in Sources */,
 				17B4668E11FE2E9E00C8B852 /* LJManager.m in Sources */,
 				37AC5DD411FEBBBD006C9E5C /* TellAFriendController.m in Sources */,
+				170FE40F12001EA000D2F676 /* LJSession.m in Sources */,
+				170FE4BD120175ED00D2F676 /* ErrorMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,7 +1169,7 @@
 				17B29B0810FA48A700C5EFA4 /* AccountsViewController.m in Sources */,
 				17B29BE610FA826700C5EFA4 /* SettingsController.m in Sources */,
 				17070742110203D70074F836 /* NetworkActivityIndicator.m in Sources */,
-				170707C41102914A0074F836 /* ErrorHandling.m in Sources */,
+				170707C41102914A0074F836 /* ErrorHandler.m in Sources */,
 				170708B01104261E0074F836 /* Settings.m in Sources */,
 				170708BC110448E50074F836 /* SettingsStartUpScreenController.m in Sources */,
 				179F3FAF111645D60043E0D1 /* AccountManager.m in Sources */,
@@ -1183,6 +1209,8 @@
 				17E5A04511FA156B0083C840 /* StateInfo.m in Sources */,
 				17B467D011FE43E600C8B852 /* LJManager.m in Sources */,
 				37AC5EC411FED5D2006C9E5C /* TellAFriendController.m in Sources */,
+				170FE41012001EA000D2F676 /* LJSession.m in Sources */,
+				170FE4BC120175ED00D2F676 /* ErrorMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

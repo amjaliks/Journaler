@@ -22,11 +22,14 @@ typedef enum {
 	// atvērtais ekrāns
 	OpenedScreenType openedScreen;
 	
+	// draugu lapas stāvoklis
 	NSString *firstVisiblePost;
 	NSInteger firstVisiblePostScrollPosition;
-	NSString *openedPost;
 	NSInteger lastVisiblePostIndex;
-	
+
+	// atvērtā raksta indekss
+	NSInteger openedPostIndex;
+
 	FriendsPageFilter *friendsPageFilter;
 	
 	NSString *newPostSubject;
@@ -44,10 +47,15 @@ typedef enum {
 
 // atvērtais ekrāns
 @property OpenedScreenType openedScreen;
+
+// draugu lapas stāvoklis
 @property (retain, nonatomic) NSString *firstVisiblePost;
 @property NSInteger firstVisiblePostScrollPosition;
-@property (retain, nonatomic) NSString *openedPost;
 @property NSInteger lastVisiblePostIndex;
+
+// atvērtā raksta indekss
+@property (nonatomic) NSInteger openedPostIndex;
+
 @property (retain, nonatomic) FriendsPageFilter *friendsPageFilter;
 @property (retain, nonatomic) NSString *newPostSubject;
 @property (retain, nonatomic) NSString *newPostText;

@@ -9,19 +9,20 @@
 #import <Foundation/Foundation.h>
 
 #define kLJErrorDomain @"LJErrorDomain"
+#define client [LJAPIClient sharedLJAPIClient]
 
-@class LJAccount, LJFriendGroup, LJEvent, LJComment;
+@class LJAccount, LJSession, LJFriendGroup, LJEvent, LJComment;
 
 @interface LJAPIClient : NSObject {
 
 }
 
-+ (LJAPIClient *)client;
++ (LJAPIClient *)sharedLJAPIClient;
 
 #pragma mark "Lietderīgās" metodes
 - (NSString *)challengeForAccount:(LJAccount *)account error:(NSError **)error;
 - (BOOL)loginForAccount:(LJAccount *)account error:(NSError **)error;
-- (NSString *)generateSessionForAccount:(LJAccount *)account error:(NSError **)error;
+- (LJSession *)generateSessionForAccount:(LJAccount *)account error:(NSError **)error;
 - (NSArray *)friendsPageEventsForAccount:(LJAccount *)account lastSync:(NSDate *)lastSync error:(NSError **)error;
 - (BOOL)friendGroupsForAccount:(LJAccount *)account error:(NSError **)error;
 - (BOOL)userTagsForAccount:(LJAccount *)account error:(NSError **)error;

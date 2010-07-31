@@ -20,7 +20,7 @@
 	UIView *view;
 	NSUInteger posterNameWidth;
 	BOOL updated;
-	BOOL rendered;
+	NSString *rendered;
 }
 
 @property (nonatomic, retain) NSString * journal;
@@ -48,15 +48,15 @@
 @property (readonly) NSString * textView;
 @property (readonly) NSString * subjectPreview;
 @property (readonly) NSString * userPicURLHash;
-@property (retain) UIImage * userPic;
+@property (nonatomic, retain) UIImage * userPic;
 @property (readonly) BOOL isPublic;
 
 @property (retain) UIView *view;
 @property NSUInteger posterNameWidth;
 @property BOOL updated;
-@property BOOL rendered;
+@property (nonatomic, retain) NSString* rendered;
 
-- (void) clearPreproceedStrings;
+- (void)clearPreproceedStrings;
 
 @end
 

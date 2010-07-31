@@ -12,6 +12,7 @@
 #import "Settings.h"
 #import "AccountManager.h"
 #import "LiveJournal.h"
+#import "LJManager.h"
 #import "HouseAdManager.h"
 
 #import "AccountsViewController.h"
@@ -19,11 +20,8 @@
 
 @implementation JournalerAppDelegate
 
+@synthesize webViewController;
 @synthesize reporter;
-@synthesize model;
-@synthesize userPicCache;
-
-@synthesize window;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -40,40 +38,37 @@
 	
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 	
-	model = [[Model alloc] init];
-	userPicCache = [[UserPicCache alloc] init];
-	
 	// noklusēti iestatījumi
 	registerUserDefaults();
 	
-	[[AccountManager sharedManager] loadAccounts];
-	
-	// atveram kontu sarakstu
-	accountsViewController = [[AccountsViewController alloc] initWithNibName:@"AccountsViewController" bundle:nil];	
-	navigationController = [[UINavigationController alloc] initWithRootViewController:accountsViewController];
-	
+	[accountManager loadAccounts];
 	[accountsViewController restoreState];
 	
-	[window addSubview:navigationController.view];
-	
+
 	// ja ir izveidots kaut viens konts, tiek parādīta reklāma 
-	if ([[AccountManager sharedManager].accounts count]) {
+	if ([accountManager.accounts count]) {
 		[[HouseAdManager houseAdManager] showAd:navigationController];
 	}
 	
+	[window addSubview:navigationController.view];
     [window makeKeyAndVisible];
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {	
 	[model saveAll];
-	[[AccountManager sharedManager] storeStateInfo];
+	[accountManager storeStateInfo];
 	
 	[accountsViewController release];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-	[[AccountManager sharedManager] storeStateInfo];
+	[accountManager storeStateInfo];
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+	[ljManager didReceiveMemoryWarning];
+	[userPicCache didReceiveMemoryWarning];
 }
 
 #pragma mark -
@@ -82,21 +77,10 @@
 - (void)dealloc {
 	[reporter release];
 
-	[model release];
-	[userPicCache release];
-	[webViewController release];
-	
 	[navigationController release];
 	[window release];
 	
 	[super dealloc];
-}
-
-- (WebViewController *)webViewController {
-	if (!webViewController) {
-		webViewController = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
-	}
-	return webViewController;
 }
 
 @end

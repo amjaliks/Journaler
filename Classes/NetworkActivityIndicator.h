@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#define networkActivityIndicator [NetworkActivityIndicator sharedNetworkActivityIndicator]
 
 @interface NetworkActivityIndicator : NSObject {
 	NSUInteger showCount;
 }
 
-+ (NetworkActivityIndicator *)sharedInstance;
++ (NetworkActivityIndicator *)sharedNetworkActivityIndicator;
 
 - (void)show;
 - (void)hide;

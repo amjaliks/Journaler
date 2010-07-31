@@ -11,7 +11,7 @@
 #import "PostOptionsController.h"
 #import "LiveJournal.h"
 #import "AccountManager.h"
-#import "ErrorHandling.h"
+#import "ErrorHandler.h"
 
 @implementation PicKeywordListController
 
@@ -100,10 +100,10 @@
 	
 	if (indexPath.section == 0) {
 		postOptionsController.picKeyword = nil;
-		//[[AccountManager sharedManager] setValue:nil forAccount:postOptionsController.account.title forKey:kStateInfoNewPostPicKeyword];
+		//[accountManager setValue:nil forAccount:postOptionsController.account.title forKey:kStateInfoNewPostPicKeyword];
 	} else {
 		postOptionsController.picKeyword = cell.textLabel.text;
-		//[[AccountManager sharedManager] setValue:cell.textLabel.text forAccount:postOptionsController.account.title forKey:kStateInfoNewPostPicKeyword];
+		//[accountManager setValue:cell.textLabel.text forAccount:postOptionsController.account.title forKey:kStateInfoNewPostPicKeyword];
 	}
 	
 	selectedCell.accessoryType = UITableViewCellAccessoryNone;
@@ -121,8 +121,8 @@
 
 - (void)refresh {
 	NSError *error;
-	if ([[LJAPIClient client] loginForAccount:postOptionsController.account error:&error]) {
-		[[AccountManager sharedManager] storeAccounts];
+	if ([client loginForAccount:postOptionsController.account error:&error]) {
+		[accountManager storeAccounts];
 		
 		if (postOptionsController.picKeyword && ![postOptionsController.account.tags containsObject:postOptionsController.picKeyword]) {
 			postOptionsController.picKeyword = nil;

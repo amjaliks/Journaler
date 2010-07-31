@@ -187,7 +187,7 @@ HouseAdManager *houseAdManager;
 	
 	if (self != nil) {
 		// 
-		dataDirPath = [[APP_CACHES_DIR stringByAppendingPathComponent:@"houseAds"] retain];
+		dataDirPath = [[appCachesDir stringByAppendingPathComponent:@"houseAds"] retain];
 		NSFileManager *mng = [NSFileManager defaultManager];
 		if (![mng fileExistsAtPath:dataDirPath]) {
 			[mng createDirectoryAtPath:dataDirPath withIntermediateDirectories:YES attributes:nil error:nil];

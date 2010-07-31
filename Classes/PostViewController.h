@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol PostViewControllerDelegate;
-@class Post, LJAccount;
+@class Post, LJAccount, LJFriendsPageController;
 
 @interface PostViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
-	LJAccount *account;
+	IBOutlet LJFriendsPageController *friendsPageController;
+	IBOutlet UIWebView *webView;
+	IBOutlet UISegmentedControl *navigationControl;
+	IBOutlet UIBarButtonItem *navigationControlItem;
+	
+	IBOutlet UIBarButtonItem *commentItem;
+	IBOutlet UIBarButtonItem *flexItem;
+	IBOutlet UIBarButtonItem *actionItem;
+	
 	Post *post;
 	
 	NSString *postTemplate;
@@ -23,29 +30,13 @@
 	NSString *videoIconReplace;
 	NSString *lockIconReplace;
 	
-	UIWebView *webView;
-	
-	UISegmentedControl *navigationControl ;
-	
-	id<PostViewControllerDelegate> delegate;
 }
 
-@property (nonatomic, assign) id<PostViewControllerDelegate> delegate;
+- (IBAction)showAction;
+- (IBAction)commentPost;
+- (IBAction)navigationChanged:(id)sender;
 
-- (id)initWithPost:(Post *)post account:(LJAccount *)account;
-- (void)openComments;
-- (void)showAction;
-- (void)commentPost;
-- (void)navigationChanged:(id)sender;
+- (void)loadPost;
 
 @end
 
-
-@protocol PostViewControllerDelegate 
-
-- (BOOL)hasPreviousPost;
-- (BOOL)hasNextPost;
-- (void)openPreviousPost;
-- (void)openNextPost;
-
-@end

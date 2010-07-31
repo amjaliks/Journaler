@@ -12,6 +12,8 @@
 #import "AccountStateInfo.h"
 #import "FriendsPageFilter.h"
 
+#define accountManager [AccountManager sharedAccountManager]
+
 @class LJAccount, PostEditorController;
 
 @interface AccountManager : NSObject {
@@ -21,7 +23,7 @@
 	NSMutableArray *postEditors;
 }
 
-+ (AccountManager *)sharedManager;
++ (AccountManager *)sharedAccountManager;
 
 // kontu pārvaldīšana
 @property (readonly) NSArray *accounts;

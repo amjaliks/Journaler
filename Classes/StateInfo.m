@@ -45,7 +45,7 @@
 }
 
 - (void)removeStateInfoForAccount:(LJAccount *)account {
-	[accountsStateInfo removeObjectForKey:account];
+	[accountsStateInfo removeObjectForKey:account.title];
 }
 
 #pragma mark -

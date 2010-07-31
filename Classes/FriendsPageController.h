@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LiveJournal.h"
 
 #import "FriendsPageFilter.h"
 #import "AccountProvider.h"
+#import "LJManager.h"
 
-@class LJAccount, FriendsPageTitleView;
+@class FriendsPageTitleView;
 
 @interface FriendsPageController : UIViewController <AccountProvider> {
 	id<AccountProvider> accountProvider;
@@ -45,5 +47,9 @@
 - (void)openFilter:(id)sender;
 
 - (void)filterFriendsPage;
+
+- (void)managerDidFail:(NSNotification *)notification;
+
+- (void)restoreState;
 
 @end

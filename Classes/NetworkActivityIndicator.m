@@ -7,8 +7,8 @@
 //
 
 #import "NetworkActivityIndicator.h"
+#import "SynthesizeSingleton.h"
 
-static NetworkActivityIndicator *sharedInstance;
 
 @implementation NetworkActivityIndicator
 
@@ -34,37 +34,6 @@ static NetworkActivityIndicator *sharedInstance;
 
 #pragma mark Singleton metodes
 
-+ (NetworkActivityIndicator *)sharedInstance {
-	@synchronized (self) {
-		if (sharedInstance == nil) {
-			sharedInstance = [[super allocWithZone:nil] init];
-		}
-	}
-	return sharedInstance;
-}
-
-+ (id)allocWithZone:(NSZone *)zone {
-    return [[self sharedInstance] retain];
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-- (void)release {
-    //do nothing
-}
-
-- (id)autorelease {
-    return self;
-}
+SYNTHESIZE_SINGLETON_FOR_CLASS(NetworkActivityIndicator)
 
 @end

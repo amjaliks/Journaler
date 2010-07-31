@@ -11,6 +11,8 @@
 
 #import "Post.h"
 
+#define model [Model sharedModel]
+
 @interface Model : NSObject {
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;	    
@@ -20,6 +22,8 @@
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
++ (Model *)sharedModel;
 
 - (NSString *)applicationCachesDirectory;
 

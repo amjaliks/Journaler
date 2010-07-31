@@ -15,23 +15,15 @@
 
 @class PostSummaryCell, Post, LJManager;
 
-@interface LJFriendsPageController : FriendsPageController <UITableViewDataSource, UITableViewDelegate, PostViewControllerDelegate> {
-	LJManager *ljManager;
+@interface LJFriendsPageController : FriendsPageController <UITableViewDataSource, UITableViewDelegate> {
+	IBOutlet UITableView *tableView;
+	IBOutlet PostViewController *postViewController;
 	
 	// ielasīti raksti
-	NSMutableArray *loadedPosts;
 	NSArray *displayedPosts;
-	// masīvs ar rakstiem, kurus jādzēš
-	NSMutableArray *postsPendingRemoval;
-	
-	// tabula
-	UITableView *tableView;
-	BOOL canLoadMore;
-	BOOL loading;
 
-	// kešs ar rakstu skatiem
-	NSMutableDictionary *cachedPostViewControllers;
-	Post *openedPost;
+	// atvērtā raksta indekss
+	NSInteger openedPostIndex;
 	
 	BOOL needOpenPost;
 	BOOL needReloadTable;
@@ -39,21 +31,23 @@
 
 #pragma mark Metodes
 
+@property (readonly) Post *openedPost;
+
 // raksti
 - (void)managerDidLoadPosts:(NSNotification *)notification;
 
-- (void)firstSync;
-- (BOOL)loadFriendsPageFromServer:(BOOL)allPosts;
-
-- (void)refreshPosts;
 - (void)reloadTable;
-- (void)preprocessPosts;
-- (void)openPost:(Post *)post;
-- (void)openPost:(Post *)post animated:(BOOL)animated;
-- (void)openPostByKey:(NSString *)key;
 
 - (void)deviceOrientationChanged;
 - (void)resetScrollPostion;
 - (void)saveScrollPosition;
+
+- (NSInteger)postCount;
+- (NSInteger)openedPostIndex;
+- (BOOL)hasPreviousPost;
+- (BOOL)hasNextPost;
+- (void)openPreviousPost;
+- (void)openNextPost;
+- (void)selectOpenedPost;
 
 @end

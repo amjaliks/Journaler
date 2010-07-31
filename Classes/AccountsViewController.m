@@ -21,17 +21,9 @@
 
 @synthesize account;
 @synthesize accountStateInfo;
-@synthesize accountManager;
 
 #pragma mark -
 #pragma mark UIViewController
-
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
-	if (self = [super initWithNibName:nibName bundle:nibBundle]) {
-		accountManager = [AccountManager sharedManager];
-	}
-	return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -154,7 +146,6 @@
 		LJAccount *tmpAccount = [accountManager.accounts objectAtIndex:indexPath.row];
 		
 		// iedzēšam rakstus no keša
-		Model *model = ((JournalerAppDelegate *)[[UIApplication sharedApplication] delegate]).model;
 		[model deleteAllPostsForAccount:tmpAccount.title];
 		[model saveAll];
 		
@@ -197,12 +188,14 @@
 // atjauno saskarnes stāvokli
 - (void)restoreState {
 	// atvērtais konsts
-	NSInteger openedAccountIndex = [AccountManager sharedManager].stateInfo.openedAccountIndex;
+	NSInteger openedAccountIndex = accountManager.stateInfo.openedAccountIndex;
 	
 	// ja iepriekš bija atvērts konts, tad atveram to arī tagad
 	if (openedAccountIndex != kStateInfoOpenedAccountIndexNone) {
 		[self view];
 		[self openAccountAtIndex:openedAccountIndex animated:NO];
+		
+		[accountTabBarController restoreState];
 	}
 }
 

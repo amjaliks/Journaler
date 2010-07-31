@@ -7,7 +7,7 @@
 //
 
 #import "Model.h"
-
+#import "SynthesizeSingleton.h"
 
 @implementation Model
 
@@ -165,14 +165,6 @@
 	}
 }
 
-#pragma mark Memory managment
-
-- (void) dealloc {
-	[managedObjectContext release];
-	[managedObjectModel release];
-	[persistentStoreCoordinator release];
-	
-	[super dealloc];
-}
+SYNTHESIZE_SINGLETON_FOR_CLASS(Model)
 
 @end

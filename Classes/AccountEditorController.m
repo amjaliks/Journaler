@@ -8,11 +8,7 @@
 
 #import "AccountEditorController.h"
 #import "LiveJournal.h"
-#import "ErrorHandling.h"
-
-#ifdef LITEVERSION
-#import "SettingsController.h"
-#endif
+#import "ErrorHandler.h"
 
 @implementation AccountEditorController
 
@@ -50,7 +46,7 @@
 	}
 	
 	doneButton.enabled = NO;
-	self.navigationItem.leftBarButtonItem = [accountsViewController.accountManager.accounts count] ? cancelButton : nil;
+	self.navigationItem.leftBarButtonItem = [accountManager.accounts count] ? cancelButton : nil;
 }
 
 #ifndef LITEVERSION
@@ -114,7 +110,7 @@
 	}
 	
 	if ([@"dreamwidth.org" isEqualToString:server]) {
-		showErrorMessage(NSLocalizedString(@"Sorry!", nil), NSLocalizedString(@"Dreamwidth.org currently is not supported.", nil));
+		showErrorMessage(NSLocalizedString(@"Sorry!", nil), NSLocalizedString(@"Dreamwidth.org is not supported.", nil));
 		return;
 	}
 	
@@ -129,7 +125,7 @@
 		account.user = [usernameText.text lowercaseString];
 		account.server = server;
 		
-		if ([accountsViewController.accountManager accountExists:account.title]) {
+		if ([accountManager accountExists:account.title]) {
 			showErrorMessage(NSLocalizedString(@"Account error", nil), NSLocalizedString(@"You have already added this account.", nil));
 			[account release];
 			return;
@@ -138,15 +134,16 @@
 	account.password = passwordText.text;
 	
 	NSError *error;
-	if (![[LJAPIClient client] loginForAccount:account error:&error]) {
-		showErrorMessage(NSLocalizedStringFromTable(@"Login error", @"Title for login error message", kErrorStringsTable), decodeError([error code]));
+	if (![client loginForAccount:account error:&error]) {
+		showErrorMessage(NSLocalizedString(@"Login error", nil), decodeError([error code]));
 		[account release];
 		return;
 	}
 	
 	if (newAccount) {
-		[accountsViewController.accountManager addAccount:account];
+		[accountManager addAccount:account];
 		[accountsViewController.tableView reloadData];
+		[accountsViewController openAccountAtIndex:[accountManager.accounts count] - 1 animated:NO];
 	}
 	
 	[self dismissModalViewControllerAnimated:YES];

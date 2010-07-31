@@ -15,9 +15,7 @@
 
 #import "NetworkActivityIndicator.h"
 #import "NSStringMD5.h"
-
-
-LJAPIClient *sharedInstance;
+#import "SynthesizeSingleton.h"
 
 
 @implementation LJAPIClient
@@ -88,7 +86,7 @@ LJAPIClient *sharedInstance;
 	return NO;
 }
 
-- (NSString *)generateSessionForAccount:(LJAccount *)account error:(NSError **)error {
+- (LJSession *)generateSessionForAccount:(LJAccount *)account error:(NSError **)error {
 	@synchronized (account) {
 		NSString *challenge = [self challengeForAccount:account error:error];
 		if (challenge) {
@@ -97,10 +95,10 @@ LJAPIClient *sharedInstance;
 			[parameters release];
 			
 			if (result) {
-				NSString *session = [result valueForKey:@"ljsession"];
+				LJSession *session = [[LJSession alloc] initWithID:[result valueForKey:@"ljsession"]];
 				[result release];
 				
-				return session;
+				return [session autorelease];
 			}
 		}
 	}
@@ -331,13 +329,13 @@ LJAPIClient *sharedInstance;
 //#endif
 	NSURLRequest *req = [xmlreq request];
 	
-	[[NetworkActivityIndicator sharedInstance] show];
+	[networkActivityIndicator show];
 	
 	NSURLResponse *res;
 	NSError *err = nil;
 	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
 	
-	[[NetworkActivityIndicator sharedInstance] hide];
+	[networkActivityIndicator hide];
 	
 	[xmlreq release];
 	
@@ -445,46 +443,6 @@ LJAPIClient *sharedInstance;
 	return [arrayOfStrings autorelease];
 }
 
-#pragma mark -
-#pragma mark Singleton metodes
+SYNTHESIZE_SINGLETON_FOR_CLASS(LJAPIClient)
 
-+ (LJAPIClient *)client {
-	@synchronized (self) {
-		if (sharedInstance == nil) {
-			sharedInstance = [[super allocWithZone:nil] init];
-		}
-	}
-	return sharedInstance;
-}
-
-+ (id)allocWithZone:(NSZone *)zone {
-    return [[self client] retain];
-}
-
-- (id)init {
-	self = [super init];
-	if (self != nil) {}
-	return self;
-}
-
-
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-- (void)release {
-    //do nothing
-}
-
-- (id)autorelease {
-    return self;
-}
 @end

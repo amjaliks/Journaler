@@ -8,32 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+#define userPicCache [UserPicCache sharedUserPicCache]
+
+#define UserPicCacheDidDownloadUserPicNotification @"UserPicCacheDidDownloadUserPicNotification"
+
 @class Post;
 
 @interface UserPicCache : NSObject {
-	NSMutableDictionary *dataCache;
+	NSString *dirPath;
 	NSMutableDictionary *imageCache;
-	NSMutableDictionary *base64DataCache;
-	
-	NSOperationQueue *queue;
 }
 
-- (NSData *) dataFromURL:(NSString *)url;
-- (UIImage *) imageFromURL:(NSString *)url force:(BOOL)force;
-- (NSString *) base64DataFromURL:(NSString *)url;
-- (UIImage *) imageFromURL:(NSString *)url forTableView:(UITableView *)tableView;
++ (UserPicCache *)sharedUserPicCache;
 
-- (UIImage *) imageFromURL:(NSString *)url hash:(NSString *)hash force:(BOOL)force;
-- (UIImage *) imageFromURL:(NSString *)url hash:(NSString *)hash forTableView:(UITableView *)tableView;
+- (NSString *)pathForCachedImage:(NSString *)hash;
+- (UIImage *)imageForHash:(NSString *)hash URLString:(NSString *)URLString wait:(BOOL)wait;
+- (void)downloadImageFromURL:(NSString *)URLString;
 
-- (void) cancelPendingDownloads;
-
-- (NSString *) pathForCacheImage:(NSString *)hash;
-- (UIImage *) ensureImageAvailabilityFromURL:(NSString *)url hash:(NSString *)hash;
-- (NSData *) downloadDataFromURL:(NSString *)URL;
-
-- (UIImage *)imageFromCacheForHash:(NSString *)hash;
-- (void)downloadUserPicForPost:(Post *)post;
-- (UIImage *)userPicForPost:(Post *)post;
+- (void)didReceiveMemoryWarning;
 
 @end

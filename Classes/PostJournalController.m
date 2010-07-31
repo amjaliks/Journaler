@@ -12,7 +12,7 @@
 #import "PostOptionsController.h"
 #import "LiveJournal.h"
 #import "AccountManager.h"
-#import "ErrorHandling.h"
+#import "ErrorHandler.h"
 
 #define kStringsTable @"PostOptions"
 
@@ -100,7 +100,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	postOptionsController.journal = cell.textLabel.text;
-	[[AccountManager sharedManager].stateInfo stateInfoForAccount:postOptionsController.account].newPostJournal = cell.textLabel.text;
+	[accountManager.stateInfo stateInfoForAccount:postOptionsController.account].newPostJournal = cell.textLabel.text;
 	
 	selectedCell.accessoryType = UITableViewCellAccessoryNone;
 	cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -117,8 +117,8 @@
 
 - (void)refresh {
 	NSError *error;
-	if ([[LJAPIClient client] loginForAccount:postOptionsController.account error:&error]) {
-		[[AccountManager sharedManager] storeAccounts];
+	if ([client loginForAccount:postOptionsController.account error:&error]) {
+		[accountManager storeAccounts];
 		
 		if (![postOptionsController.account.communities containsObject:postOptionsController.journal]) {
 			postOptionsController.journal = postOptionsController.account.user;

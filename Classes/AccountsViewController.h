@@ -10,14 +10,15 @@
 #import "TableViewController.h"
 #import "AccountManager.h"
 #import "AccountProvider.h"
+#import "AccountTabBarController.h"
+
+@class AccountTabBarController;
 
 // kontu saraksta kontrolieris
 @interface AccountsViewController : TableViewController <AccountProvider> {
-	AccountManager *accountManager;
-	
 	IBOutlet UINavigationController *accountEditorNavigationController;
 	IBOutlet UINavigationController *settingsNavigationController;
-	IBOutlet UITabBarController *accountTabBarController;
+	AccountTabBarController *accountTabBarController;
 	
 	IBOutlet UIBarButtonItem *addButton;
 	IBOutlet UIBarButtonItem *settingsButton;

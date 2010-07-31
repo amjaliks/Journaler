@@ -11,12 +11,12 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "JournalerAppDelegate.h"
-#import "LiveJournal.h"
 #import "AccountManager.h"
 #import "FriendsPageTitleView.h"
 #import "FilterOptionsController.h"
 #import "BannerViewController.h"
 #import "AccountTabBarController.h"
+#import "ErrorHandler.h"
 
 @implementation FriendsPageController
 
@@ -47,25 +47,38 @@
 	// virsraksta skats
 	titleView = [[FriendsPageTitleView alloc] initWithTarget:self action:@selector(openFilter:) interfaceOrientation:self.interfaceOrientation];
 	self.navigationItem.titleView = titleView;
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managerDidFail:) name:LJManagerDidFailNotification object:ljManager];
 }
 
 - (void)viewDidUnload {
 	// virsraksta skats
 	self.navigationItem.titleView = nil;
-	
 	[titleView release];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	
+	[super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	friendsPageFilter = self.accountStateInfo.friendsPageFilter;
-	titleView.filterLabel.text = [friendsPageFilter title];
+	titleView.filterLabel.text = [friendsPageFilter title];	
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	self.accountStateInfo.openedScreen = OpenedScreenFriendsPage;
+	[errorHandler viewDidAppearForAccount:self.account];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	[errorHandler viewWillDisappear];
+}
+
+- (void)managerDidFail:(NSNotification *)notification {}
 
 - (UIView *)mainView {
 	return nil;
@@ -86,10 +99,6 @@
 
 - (AccountStateInfo *)accountStateInfo {
 	return accountProvider.accountStateInfo;
-}
-
-- (AccountManager *)accountManager {
-	return accountProvider.accountManager;
 }
 
 #pragma mark -
@@ -139,6 +148,9 @@
 }
 
 - (void)filterFriendsPage {};
+
+- (void)restoreState {
+};
 
 - (void)dealloc {
 	[super dealloc];
