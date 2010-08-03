@@ -13,6 +13,7 @@
 @interface PostViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
 	IBOutlet LJFriendsPageController *friendsPageController;
 	IBOutlet UIWebView *webView;
+	IBOutlet UIBarButtonItem *backButtonItem;
 	IBOutlet UISegmentedControl *navigationControl;
 	IBOutlet UIBarButtonItem *navigationControlItem;
 	

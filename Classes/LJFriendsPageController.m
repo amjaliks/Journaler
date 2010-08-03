@@ -62,6 +62,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	needOpenPost = OpenedScreenPost == self.accountStateInfo.openedScreen;
+	[self saveScrollPosition];
 	[super viewDidAppear:animated];
 }
 
@@ -256,7 +257,6 @@
 
 - (void)selectOpenedPost {
 	[tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:openedPostIndex inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-	[self saveScrollPosition];
 }
 
 @end

@@ -26,6 +26,7 @@
 	
 	// virsraksts
 	self.navigationItem.title = @"Post";
+	self.navigationItem.backBarButtonItem = backButtonItem;
 	
 	NSError *err;
 	postTemplate = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SinglePostTemplate" ofType:@"html"] encoding:NSUTF8StringEncoding error:&err] retain];

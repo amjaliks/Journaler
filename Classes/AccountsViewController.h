@@ -18,10 +18,11 @@
 @interface AccountsViewController : TableViewController <AccountProvider> {
 	IBOutlet UINavigationController *accountEditorNavigationController;
 	IBOutlet UINavigationController *settingsNavigationController;
-	AccountTabBarController *accountTabBarController;
+	IBOutlet AccountTabBarController *accountTabBarController;
 	
 	IBOutlet UIBarButtonItem *addButton;
 	IBOutlet UIBarButtonItem *settingsButton;
+	IBOutlet UIBarButtonItem *backButtonItem;
 
 	LJAccount *account;
 	AccountStateInfo *accountStateInfo;

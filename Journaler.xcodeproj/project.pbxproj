@@ -43,6 +43,7 @@
 		172860CB116D40BB00171A85 /* SelfAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172860C9116D40BB00171A85 /* SelfAdViewController.m */; };
 		172860CC116D40BB00171A85 /* SelfAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172860CA116D40BB00171A85 /* SelfAdViewController.xib */; };
 		172860D7116D40D800171A85 /* selfad.png in Resources */ = {isa = PBXBuildFile; fileRef = 172860D6116D40D800171A85 /* selfad.png */; };
+		1733CDB712075DFF00CEEBFC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AC5F4A11FEE24A006C9E5C /* MessageUI.framework */; };
 		173FB76610BB490600FD0652 /* LJFriendsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FB76510BB490600FD0652 /* LJFriendsPageController.m */; };
 		173FB76710BB490600FD0652 /* LJFriendsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FB76510BB490600FD0652 /* LJFriendsPageController.m */; };
 		173FB7EA10BB4F9F00FD0652 /* WebFriendsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FB7E910BB4F9F00FD0652 /* WebFriendsPageController.m */; };
@@ -464,6 +465,7 @@
 				1750B17D1097B3F900C1D2A8 /* CoreGraphics.framework in Frameworks */,
 				1750B17E1097B3F900C1D2A8 /* CoreData.framework in Frameworks */,
 				172242D011EC152900BE4DE2 /* MediaPlayer.framework in Frameworks */,
+				1733CDB712075DFF00CEEBFC /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1340,7 +1342,7 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = JournalerLite;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D368EE81-0AAE-4FF1-9CB3-A18373338E71";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FA2FE544-6382-4592-B4F9-D5FA06316316";
 			};
 			name = "Distribution (Ad Hoc)";
 		};
@@ -1371,6 +1373,7 @@
 				INFOPLIST_FILE = "Journaler-Info.plist";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Journaler;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7549FAA8-B58F-489D-80AB-406946F78327";
 			};
 			name = "Distribution (Ad Hoc)";
 		};
@@ -1440,6 +1443,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aleksejs Mjaliks (3UTAC3M885)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1448,6 +1452,7 @@
 				INFOPLIST_FILE = "Journaler-Info.plist";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Journaler;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B2E2F95D-74A9-443B-B67E-0EB1A5931FAB";
 				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;

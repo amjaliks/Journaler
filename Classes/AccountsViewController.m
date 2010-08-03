@@ -28,16 +28,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	// Edit/Done poga
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-	
+	self.navigationItem.backBarButtonItem = backButtonItem;
 #ifndef LITEVERSION
-	// konta pievienošanas poga
 	self.navigationItem.rightBarButtonItem = addButton;
 #endif
-	
-	// virsraksts
-	self.navigationItem.title = @"Accounts";
 
 	// poga "Settings" apakšējā rīkjoslā
 	self.toolbarItems = [NSArray arrayWithObjects:settingsButton, nil];
@@ -74,6 +69,7 @@
 #endif
 
 - (void)viewDidUnload {
+	self.navigationItem.backBarButtonItem = nil;
 	self.navigationItem.leftBarButtonItem = nil;
 	self.navigationItem.rightBarButtonItem = nil;
 	self.toolbarItems = nil;
@@ -86,8 +82,7 @@
 	accountManager.stateInfo.openedAccountIndex = index;
 	self.account = [accountManager.accounts objectAtIndex:index];
 	
-	self.navigationItem.backBarButtonItem = 
-			[[[UIBarButtonItem alloc] initWithTitle:account.user style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+	backButtonItem.title = account.user;
 
 	[self.navigationController pushViewController:accountTabBarController animated:animated];
 }

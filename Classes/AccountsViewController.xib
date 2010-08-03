@@ -12,10 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="109"/>
-			<integer value="38"/>
 			<integer value="70"/>
-			<integer value="100"/>
+			<integer value="101"/>
+			<integer value="38"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -173,6 +172,11 @@
 						<bool key="IBUIHorizontal">NO</bool>
 					</object>
 				</object>
+			</object>
+			<object class="IBUIBarButtonItem" id="532167978">
+				<string key="IBUITitle">Accounts</string>
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUIStyle">1</int>
 			</object>
 			<object class="IBUITabBarController" id="329825530">
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
@@ -340,6 +344,14 @@
 					</object>
 					<int key="connectionID">116</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">backButtonItem</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="532167978"/>
+					</object>
+					<int key="connectionID">125</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -461,6 +473,11 @@
 						<reference key="parent" ref="582771724"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">124</int>
+						<reference key="object" ref="532167978"/>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">109</int>
 						<reference key="object" ref="329825530"/>
 						<object class="NSMutableArray" key="children">
@@ -492,6 +509,7 @@
 					<string>109.IBEditorWindowLastContentRect</string>
 					<string>109.IBPluginDependency</string>
 					<string>110.IBPluginDependency</string>
+					<string>124.IBPluginDependency</string>
 					<string>38.IBEditorWindowLastContentRect</string>
 					<string>38.IBPluginDependency</string>
 					<string>39.CustomClassName</string>
@@ -510,7 +528,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>AccountsViewController</string>
 					<string>UIResponder</string>
-					<string>{{239, 315}, {320, 480}}</string>
+					<string>{{329, 315}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>SettingsController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -518,6 +536,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>AccountTabBarController</string>
 					<string>{{820, 372}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{691, 372}, {320, 480}}</string>
@@ -551,7 +570,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">123</int>
+			<int key="maxID">125</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -745,13 +764,15 @@
 							<string>accountEditorNavigationController</string>
 							<string>accountTabBarController</string>
 							<string>addButton</string>
+							<string>backButtonItem</string>
 							<string>settingsButton</string>
 							<string>settingsNavigationController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UINavigationController</string>
-							<string>UITabBarController</string>
+							<string>AccountTabBarController</string>
+							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UIBarButtonItem</string>
 							<string>UINavigationController</string>
@@ -764,6 +785,7 @@
 							<string>accountEditorNavigationController</string>
 							<string>accountTabBarController</string>
 							<string>addButton</string>
+							<string>backButtonItem</string>
 							<string>settingsButton</string>
 							<string>settingsNavigationController</string>
 						</object>
@@ -775,10 +797,14 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">accountTabBarController</string>
-								<string key="candidateClassName">UITabBarController</string>
+								<string key="candidateClassName">AccountTabBarController</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">addButton</string>
+								<string key="candidateClassName">UIBarButtonItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">backButtonItem</string>
 								<string key="candidateClassName">UIBarButtonItem</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -816,11 +842,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>legalController</string>
 							<string>refreshOnStartCell</string>
+							<string>tellAFriendController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIViewController</string>
 							<string>UITableViewCell</string>
+							<string>UITableViewController</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -829,6 +857,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>legalController</string>
 							<string>refreshOnStartCell</string>
+							<string>tellAFriendController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -839,6 +868,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">refreshOnStartCell</string>
 								<string key="candidateClassName">UITableViewCell</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">tellAFriendController</string>
+								<string key="candidateClassName">UITableViewController</string>
 							</object>
 						</object>
 					</object>
