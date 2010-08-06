@@ -12,6 +12,7 @@
 #import "NetworkActivityIndicator.h"
 #import "ErrorHandler.h"
 #import "LJManager.h"
+#import "BannerViewController.h"
 
 @implementation WebViewController
 
@@ -41,6 +42,10 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[self.navigationController setToolbarHidden:NO animated:YES];
+	
+#ifdef LITEVERSION
+	[bannerViewController addBannerToView:self.view resizeView:webView];
+#endif
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -59,19 +64,16 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)wv {
 	[networkActivityIndicator hide];
+	
 	webView.alpha = 1.0f;
 	self.navigationItem.rightBarButtonItem = nil;
-	[self updateToolbarButtons:NO];
 	self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-}
-
-- (void)webView:(UIWebView *)wv didFailLoadWithError:(NSError *)error {
-	[self webViewDidFinishLoad:wv];
-	[errorHandler showErrorMessage:NSLocalizedString(@"Failed to load a web page", nil) title:NSLocalizedString(@"Web page error", nil)];
+	[self updateToolbarButtons:NO];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)wv {
 	self.navigationItem.rightBarButtonItem = activityIndicatorItem;
+	self.navigationItem.title = NSLocalizedString(@"Loading...", nil);
 	[self updateToolbarButtons:YES];
 
 	[networkActivityIndicator show];
@@ -79,7 +81,6 @@
 
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	[ljManager setHTTPCookiesForAccount:lastAccount];
-	self.navigationItem.title = [[request URL] absoluteString];
 	return YES;
 }
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HouseAdViewController : UIViewController {
+@interface HAViewController : UIViewController {
 	NSInteger timeLeft;
 	NSString *url;
 	

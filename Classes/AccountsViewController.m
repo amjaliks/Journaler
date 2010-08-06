@@ -53,7 +53,7 @@
 	accountManager.stateInfo.openedAccountIndex = kStateInfoOpenedAccountIndexNone;
 
 #ifdef LITEVERSION
-	[[BannerViewController controller] addBannerToView:self.view resizeView:self.tableView];
+	[bannerViewController addBannerToView:self.view resizeView:self.tableView];
 #endif
 }
 

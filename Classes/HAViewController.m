@@ -6,10 +6,10 @@
 //  Copyright 2010 A25. All rights reserved.
 //
 
-#import "HouseAdViewController.h"
-#import "HouseAdManager.h"
+#import "HAViewController.h"
+#import "HAManager.h"
 
-@implementation HouseAdViewController
+@implementation HAViewController
 
 @synthesize imageView;
 @synthesize url;
@@ -27,12 +27,12 @@
 
 - (IBAction)dismiss {
 	[self dismissModalViewControllerAnimated:YES];
-	[[HouseAdManager houseAdManager] dismissAd];
+	[houseAdManager dismissAd];
 }
 
 - (IBAction)goToURL {
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-	[[HouseAdManager houseAdManager] dismissAd];
+	[houseAdManager dismissAd];
 }
 
 - (void)dealloc {

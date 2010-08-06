@@ -6,29 +6,36 @@
 //  Copyright 2010 A25. All rights reserved.
 //
 
-#import "HouseAdInfo.h"
+#import "HAInfo.h"
 #import <Foundation/Foundation.h>
 
-@interface HouseAdManager : NSObject {
+#define houseAdManager [HAManager sharedHAManager]
+
+@interface HAManager : NSObject {
 	NSString *dataDirPath;
-	HouseAdInfo *houseAdInfo;
+	HAInfo *info;
+	
+	NSString *bannerPath;
+	NSString *smallBannerPath;
 	
 	NSString *targetURL;
 	UIImage *image;
 }
 
-+ (HouseAdManager *)houseAdManager;
++ (HAManager *)sharedHAManager;
 
 - (void)loadAd;
 - (void)showAd:(UINavigationController *)navigationController;
 - (BOOL)prepareAd;
 - (void)dismissAd;
 
-- (void)loadHouseAdInfo;
-- (void)storeHouseAdInfo;
+- (void)loadInfo;
+- (void)storeInfo;
 
-- (NSData *)readFile:(NSString *)fileName URL:(NSString *)URL;
+- (void)downloadDataFromURL:(NSString *)URL toPath:(NSString *)path;
 - (NSData *)downloadDataFromURL:(NSString *)URL;
+
+- (UIView *)bannerView;
 
 
 @end

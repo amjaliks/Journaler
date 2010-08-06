@@ -7,14 +7,34 @@
 //
 
 #import "BannerViewController.h"
+#import "SynthesizeSingleton.h"
+#import "HAManager.h"
 
-BannerViewController *sharedInstance;
 
 @implementation BannerViewController
+
+- (void)setVisibleBanner:(UIView *)visibleBannerView animated:(BOOL)animated {
+	if ([bannerView.subviews lastObject] != visibleBannerView) {
+		if (visibleBannerView) {
+			// ja nepieciešams animēt un baneris ir redzams, tad vispirms paslēpjam baneri
+			[self hideBannerAnimated:animated];
+		}
+		
+		// izņemam šobrīd rādāmo baneri no banera vietas		
+		[[[bannerView subviews] lastObject] removeFromSuperview];
+		
+		if (visibleBannerView) {
+			// ievietojam jauno baneri šajā vietā
+			[bannerView addSubview:visibleBannerView];
+			[self showBanner];
+		}
+	}
+}
 
 - (void)showBanner {
 	if (!visible) {
 		visible = YES;
+		
 		CGRect bannerFrame = bannerView.frame;
 		CGRect viewFrame = resizeView.frame;
 		
@@ -30,7 +50,6 @@ BannerViewController *sharedInstance;
 
 - (void)hideBannerAnimated:(BOOL)animated {
 	if (visible) {
-		visible = NO;
 		CGRect bannerFrame = bannerView.frame;
 		CGRect viewFrame = resizeView.frame;
 		
@@ -45,6 +64,8 @@ BannerViewController *sharedInstance;
 		if (animated) {
 			[UIView commitAnimations];
 		}
+		
+		visible = NO;
 	}
 }
 
@@ -61,7 +82,7 @@ BannerViewController *sharedInstance;
 		
 		[newSuperView addSubview:bannerView];
 		
-		if (bannerView.bannerLoaded) {
+		if ([bannerView.subviews count]) {
 			[self showBanner];
 		}
 	}
@@ -69,73 +90,50 @@ BannerViewController *sharedInstance;
 
 - (void)removeBannerFromView {
 	if ([bannerView superview]) {
-		if (bannerView.bannerLoaded) {
-			[self hideBannerAnimated:NO];
-		}
+		[self hideBannerAnimated:NO];
 		[bannerView removeFromSuperview];
 	}
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-	[self showBanner];
+	[self setVisibleBanner:[houseAdManager bannerView] animated:YES];
+//	[self setVisibleBanner:iAdBannerView animated:YES];
+#ifdef DEBUG
 	NSLog(@"ad loaded: %5.0f", -([startDate timeIntervalSinceNow]));
+#endif
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-	[self hideBannerAnimated:YES];
-	NSLog(@"ad failed: %.0f", -([startDate timeIntervalSinceNow]));
+	[self setVisibleBanner:[houseAdManager bannerView] animated:YES];
+#ifdef DEBUG
+	NSLog(@"ad failed: %5.0f", -([startDate timeIntervalSinceNow]));
+#endif
 }
 
 #pragma mark -
 #pragma mark singleton metodes
 
-+ (BannerViewController *)controller {
-	@synchronized (self) {
-		if (sharedInstance == nil) {
-			sharedInstance = [[super allocWithZone:nil] init];
-		}
-	}
-	return sharedInstance;
-}
-
-+ (id)allocWithZone:(NSZone *)zone {
-    return [[self controller] retain];
-}
-
 - (id)init {
 	if (self = [super init]) {
 		visible = NO;
-		bannerView = [[ADBannerView alloc] init];
-		if (bannerView) {
-			bannerView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
-			bannerView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifier320x50];
-			bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
-			bannerView.delegate = self;
+		
+		bannerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 50.0f)];
+		
+		iAdBannerView = [[ADBannerView alloc] init];
+		if (iAdBannerView) {
+			iAdBannerView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
+			iAdBannerView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifier320x50];
+			iAdBannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
+			iAdBannerView.delegate = self;
 		}
+#ifdef DEBUG
 		startDate = [[NSDate alloc] init];
+#endif
 	}
 	
 	return self;
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-- (void)release {
-    //do nothing
-}
-
-- (id)autorelease {
-    return self;
-}
+SYNTHESIZE_SINGLETON_FOR_CLASS(BannerViewController)
 
 @end

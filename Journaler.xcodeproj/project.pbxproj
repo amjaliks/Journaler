@@ -164,6 +164,8 @@
 		17B4C9BC1083C8BC0005660E /* XMLRPCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9B31083C8BC0005660E /* XMLRPCResponse.m */; };
 		17B4C9C31083C8DA0005660E /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9BF1083C8DA0005660E /* NSStringAdditions.m */; };
 		17B4C9C41083C8DA0005660E /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4C9C11083C8DA0005660E /* NSDataAdditions.m */; };
+		17B4FFED120C972200A5C55B /* HABannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4FFEC120C972200A5C55B /* HABannerView.m */; };
+		17B4FFEE120C972200A5C55B /* HABannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4FFEC120C972200A5C55B /* HABannerView.m */; };
 		17B62DB710B7355600C974DE /* AccountTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B62DB610B7355600C974DE /* AccountTabBarController.m */; };
 		17B62DB810B7355600C974DE /* AccountTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B62DB610B7355600C974DE /* AccountTabBarController.m */; };
 		17B62E6910B74AA800C974DE /* FriendsPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B62E6810B74AA800C974DE /* FriendsPageController.xib */; };
@@ -222,16 +224,16 @@
 		3783943711F7414A0045E55A /* ALDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783942D11F7414A0045E55A /* ALDeviceInfo.m */; };
 		3783943811F7414A0045E55A /* ALProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783942F11F7414A0045E55A /* ALProperty.m */; };
 		3783943911F7414A0045E55A /* ALReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783943111F7414A0045E55A /* ALReporter.m */; };
-		3788A8CD11ECC563006E43AA /* HouseAdInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8C911ECC563006E43AA /* HouseAdInfo.m */; };
-		3788A8CE11ECC563006E43AA /* HouseAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8CB11ECC563006E43AA /* HouseAdViewController.m */; };
-		3788A8CF11ECC563006E43AA /* HouseAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3788A8CC11ECC563006E43AA /* HouseAdViewController.xib */; };
-		3788A8D011ECC563006E43AA /* HouseAdInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8C911ECC563006E43AA /* HouseAdInfo.m */; };
-		3788A8D111ECC563006E43AA /* HouseAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8CB11ECC563006E43AA /* HouseAdViewController.m */; };
-		3788A8D211ECC563006E43AA /* HouseAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3788A8CC11ECC563006E43AA /* HouseAdViewController.xib */; };
+		3788A8CD11ECC563006E43AA /* HAInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8C911ECC563006E43AA /* HAInfo.m */; };
+		3788A8CE11ECC563006E43AA /* HAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8CB11ECC563006E43AA /* HAViewController.m */; };
+		3788A8CF11ECC563006E43AA /* HAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3788A8CC11ECC563006E43AA /* HAViewController.xib */; };
+		3788A8D011ECC563006E43AA /* HAInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8C911ECC563006E43AA /* HAInfo.m */; };
+		3788A8D111ECC563006E43AA /* HAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8CB11ECC563006E43AA /* HAViewController.m */; };
+		3788A8D211ECC563006E43AA /* HAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3788A8CC11ECC563006E43AA /* HAViewController.xib */; };
 		3799D17811E74CA60039226A /* SelfAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172860C9116D40BB00171A85 /* SelfAdViewController.m */; };
 		3799D18311E74CBA0039226A /* SelfAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172860CA116D40BB00171A85 /* SelfAdViewController.xib */; };
-		3799D19C11E754370039226A /* HouseAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HouseAdManager.m */; };
-		3799D19D11E754370039226A /* HouseAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HouseAdManager.m */; };
+		3799D19C11E754370039226A /* HAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HAManager.m */; };
+		3799D19D11E754370039226A /* HAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HAManager.m */; };
 		37A65DC111DE45DC00EEC540 /* LegalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A65DBF11DE45DC00EEC540 /* LegalController.m */; };
 		37A65DC211DE45DC00EEC540 /* LegalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A65DC011DE45DC00EEC540 /* LegalController.xib */; };
 		37A65DC311DE45DC00EEC540 /* LegalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A65DBF11DE45DC00EEC540 /* LegalController.m */; };
@@ -379,6 +381,8 @@
 		17B4C9C01083C8DA0005660E /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataAdditions.h; sourceTree = "<group>"; };
 		17B4C9C11083C8DA0005660E /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
 		17B4C9C21083C8DA0005660E /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
+		17B4FFEB120C972200A5C55B /* HABannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HABannerView.h; sourceTree = "<group>"; };
+		17B4FFEC120C972200A5C55B /* HABannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HABannerView.m; sourceTree = "<group>"; };
 		17B62DB510B7355600C974DE /* AccountTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTabBarController.h; sourceTree = "<group>"; };
 		17B62DB610B7355600C974DE /* AccountTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTabBarController.m; sourceTree = "<group>"; };
 		17B62E1B10B741B500C974DE /* LJFriendsPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJFriendsPageController.h; sourceTree = "<group>"; };
@@ -437,13 +441,13 @@
 		3783942F11F7414A0045E55A /* ALProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALProperty.m; sourceTree = APPNLYTICS_PROJECT; };
 		3783943011F7414A0045E55A /* ALReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALReporter.h; sourceTree = APPNLYTICS_PROJECT; };
 		3783943111F7414A0045E55A /* ALReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALReporter.m; sourceTree = APPNLYTICS_PROJECT; };
-		3788A8C811ECC563006E43AA /* HouseAdInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAdInfo.h; sourceTree = "<group>"; };
-		3788A8C911ECC563006E43AA /* HouseAdInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAdInfo.m; sourceTree = "<group>"; };
-		3788A8CA11ECC563006E43AA /* HouseAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAdViewController.h; sourceTree = "<group>"; };
-		3788A8CB11ECC563006E43AA /* HouseAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAdViewController.m; sourceTree = "<group>"; };
-		3788A8CC11ECC563006E43AA /* HouseAdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseAdViewController.xib; sourceTree = "<group>"; };
-		3799D19A11E754370039226A /* HouseAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAdManager.h; sourceTree = "<group>"; };
-		3799D19B11E754370039226A /* HouseAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAdManager.m; sourceTree = "<group>"; };
+		3788A8C811ECC563006E43AA /* HAInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAInfo.h; sourceTree = "<group>"; };
+		3788A8C911ECC563006E43AA /* HAInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAInfo.m; sourceTree = "<group>"; };
+		3788A8CA11ECC563006E43AA /* HAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAViewController.h; sourceTree = "<group>"; };
+		3788A8CB11ECC563006E43AA /* HAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAViewController.m; sourceTree = "<group>"; };
+		3788A8CC11ECC563006E43AA /* HAViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HAViewController.xib; sourceTree = "<group>"; };
+		3799D19A11E754370039226A /* HAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAManager.h; sourceTree = "<group>"; };
+		3799D19B11E754370039226A /* HAManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAManager.m; sourceTree = "<group>"; };
 		37A65DBE11DE45DC00EEC540 /* LegalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalController.h; sourceTree = "<group>"; };
 		37A65DBF11DE45DC00EEC540 /* LegalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalController.m; sourceTree = "<group>"; };
 		37A65DC011DE45DC00EEC540 /* LegalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LegalController.xib; sourceTree = "<group>"; };
@@ -498,7 +502,7 @@
 				173FBEF510C4751B00FD0652 /* Friends Page */,
 				173FBEF610C4755600FD0652 /* New post */,
 				172860C7116D409300171A85 /* Self-ad */,
-				3799D18B11E750D90039226A /* House Ads */,
+				3799D18B11E750D90039226A /* Ads */,
 				170FE4B8120175DA00D2F676 /* Errors */,
 				1D3623240D0F684500981E51 /* JournalerAppDelegate.h */,
 				1D3623250D0F684500981E51 /* JournalerAppDelegate.m */,
@@ -882,20 +886,22 @@
 			name = "App'n'lytics";
 			sourceTree = "<group>";
 		};
-		3799D18B11E750D90039226A /* House Ads */ = {
+		3799D18B11E750D90039226A /* Ads */ = {
 			isa = PBXGroup;
 			children = (
 				37650B5711FDD23B00524AA9 /* BannerViewController.h */,
 				37650B5811FDD23B00524AA9 /* BannerViewController.m */,
-				3788A8C811ECC563006E43AA /* HouseAdInfo.h */,
-				3788A8C911ECC563006E43AA /* HouseAdInfo.m */,
-				3788A8CA11ECC563006E43AA /* HouseAdViewController.h */,
-				3788A8CB11ECC563006E43AA /* HouseAdViewController.m */,
-				3788A8CC11ECC563006E43AA /* HouseAdViewController.xib */,
-				3799D19A11E754370039226A /* HouseAdManager.h */,
-				3799D19B11E754370039226A /* HouseAdManager.m */,
+				3788A8C811ECC563006E43AA /* HAInfo.h */,
+				3788A8C911ECC563006E43AA /* HAInfo.m */,
+				3788A8CA11ECC563006E43AA /* HAViewController.h */,
+				3788A8CB11ECC563006E43AA /* HAViewController.m */,
+				3788A8CC11ECC563006E43AA /* HAViewController.xib */,
+				3799D19A11E754370039226A /* HAManager.h */,
+				3799D19B11E754370039226A /* HAManager.m */,
+				17B4FFEB120C972200A5C55B /* HABannerView.h */,
+				17B4FFEC120C972200A5C55B /* HABannerView.m */,
 			);
-			name = "House Ads";
+			name = Ads;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -998,7 +1004,7 @@
 				37A65DE511DE490D00EEC540 /* Legal.html in Resources */,
 				17EFF2A711EA7A74009D84ED /* up.png in Resources */,
 				17EFF2AA11EA7A78009D84ED /* down.png in Resources */,
-				3788A8CF11ECC563006E43AA /* HouseAdViewController.xib in Resources */,
+				3788A8CF11ECC563006E43AA /* HAViewController.xib in Resources */,
 				37AC5DD511FEBBBD006C9E5C /* TellAFriendController.xib in Resources */,
 				1781DA45120382F000BA8D83 /* LJFriendsPageController.xib in Resources */,
 				1781DAB2120393C900BA8D83 /* PostViewController.xib in Resources */,
@@ -1041,7 +1047,7 @@
 				3799D18311E74CBA0039226A /* SelfAdViewController.xib in Resources */,
 				17EFF2A811EA7A74009D84ED /* up.png in Resources */,
 				17EFF2AB11EA7A78009D84ED /* down.png in Resources */,
-				3788A8D211ECC563006E43AA /* HouseAdViewController.xib in Resources */,
+				3788A8D211ECC563006E43AA /* HAViewController.xib in Resources */,
 				37AC5ECB11FED66A006C9E5C /* TellAFriendController.xib in Resources */,
 				1781DA44120382F000BA8D83 /* LJFriendsPageController.xib in Resources */,
 				1781DAB1120393C300BA8D83 /* PostViewController.xib in Resources */,
@@ -1116,11 +1122,11 @@
 				37A65DC311DE45DC00EEC540 /* LegalController.m in Sources */,
 				3780DAF011E3607D003044B6 /* CommentController.m in Sources */,
 				377EFE0711E4C0AA009E9907 /* LJComment.m in Sources */,
-				3799D19C11E754370039226A /* HouseAdManager.m in Sources */,
+				3799D19C11E754370039226A /* HAManager.m in Sources */,
 				1722426611EC142300BE4DE2 /* AccountsViewController.m in Sources */,
 				1722438D11ECA7DC00BE4DE2 /* TableViewController.m in Sources */,
-				3788A8CD11ECC563006E43AA /* HouseAdInfo.m in Sources */,
-				3788A8CE11ECC563006E43AA /* HouseAdViewController.m in Sources */,
+				3788A8CD11ECC563006E43AA /* HAInfo.m in Sources */,
+				3788A8CE11ECC563006E43AA /* HAViewController.m in Sources */,
 				3783943211F7414A0045E55A /* ALAppUse.m in Sources */,
 				3783943311F7414A0045E55A /* ALDeviceInfo.m in Sources */,
 				3783943411F7414A0045E55A /* ALProperty.m in Sources */,
@@ -1131,6 +1137,7 @@
 				37AC5DD411FEBBBD006C9E5C /* TellAFriendController.m in Sources */,
 				170FE40F12001EA000D2F676 /* LJSession.m in Sources */,
 				170FE4BD120175ED00D2F676 /* ErrorMessage.m in Sources */,
+				17B4FFEE120C972200A5C55B /* HABannerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1200,10 +1207,10 @@
 				3780DAF211E3607D003044B6 /* CommentController.m in Sources */,
 				377EFE0811E4C0AA009E9907 /* LJComment.m in Sources */,
 				3799D17811E74CA60039226A /* SelfAdViewController.m in Sources */,
-				3799D19D11E754370039226A /* HouseAdManager.m in Sources */,
+				3799D19D11E754370039226A /* HAManager.m in Sources */,
 				1722438C11ECA7DC00BE4DE2 /* TableViewController.m in Sources */,
-				3788A8D011ECC563006E43AA /* HouseAdInfo.m in Sources */,
-				3788A8D111ECC563006E43AA /* HouseAdViewController.m in Sources */,
+				3788A8D011ECC563006E43AA /* HAInfo.m in Sources */,
+				3788A8D111ECC563006E43AA /* HAViewController.m in Sources */,
 				3783943611F7414A0045E55A /* ALAppUse.m in Sources */,
 				3783943711F7414A0045E55A /* ALDeviceInfo.m in Sources */,
 				3783943811F7414A0045E55A /* ALProperty.m in Sources */,
@@ -1213,6 +1220,7 @@
 				37AC5EC411FED5D2006C9E5C /* TellAFriendController.m in Sources */,
 				170FE41012001EA000D2F676 /* LJSession.m in Sources */,
 				170FE4BC120175ED00D2F676 /* ErrorMessage.m in Sources */,
+				17B4FFED120C972200A5C55B /* HABannerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1373,7 +1381,6 @@
 				INFOPLIST_FILE = "Journaler-Info.plist";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Journaler;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7549FAA8-B58F-489D-80AB-406946F78327";
 			};
 			name = "Distribution (Ad Hoc)";
 		};

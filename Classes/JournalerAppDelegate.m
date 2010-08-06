@@ -13,7 +13,7 @@
 #import "AccountManager.h"
 #import "LiveJournal.h"
 #import "LJManager.h"
-#import "HouseAdManager.h"
+#import "HAManager.h"
 
 #import "AccountsViewController.h"
 #import "SelfAdViewController.h"
@@ -47,7 +47,7 @@
 
 	// ja ir izveidots kaut viens konts, tiek parādīta reklāma 
 	if ([accountManager.accounts count]) {
-		[[HouseAdManager houseAdManager] showAd:navigationController];
+		[houseAdManager showAd:navigationController];
 	}
 	
 	[window addSubview:navigationController.view];

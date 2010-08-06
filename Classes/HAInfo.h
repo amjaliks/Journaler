@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 
 
-@interface HouseAdInfo : NSObject<NSCoding> {
+@interface HAInfo : NSObject<NSCoding> {
 	NSDate *nextShowDate;
 	NSDate *nextServerCheckDate;
 	NSDate *bannerEndDate;
 	NSInteger bannerShowCount;
 	NSString *targetURL;
 	BOOL adIsLoaded;
+	BOOL smallBannerLoaded;
 }
 
 @property (retain, nonatomic) NSDate *nextShowDate;
@@ -24,5 +25,6 @@
 @property NSInteger bannerShowCount;
 @property (retain, nonatomic) NSString *targetURL;
 @property BOOL adIsLoaded;
+@property BOOL smallBannerLoaded;
 
 @end

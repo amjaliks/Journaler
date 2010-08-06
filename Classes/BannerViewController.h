@@ -9,17 +9,30 @@
 #import <Foundation/Foundation.h>
 #import <iAd/iAd.h>
 
+#import "HABannerView.h"
+
+#define bannerViewController [BannerViewController sharedBannerViewController]
+
 @interface BannerViewController : NSObject <ADBannerViewDelegate> {
-	ADBannerView *bannerView;
+	ADBannerView *iAdBannerView;
+	
+	// vieta (laukums), kurā attēlot baneri
+	UIView *bannerView;
+	
+	// pazīme, ka baneris ir redzams
+	BOOL visible;
+	
 	UIView *superView;
 	UIView *resizeView;
 	
-	BOOL visible;
-	
+#ifdef DEBUG
 	NSDate *startDate;
+#endif
 }
 
-+ (BannerViewController *)controller;
++ (BannerViewController *)sharedBannerViewController;
+
+- (void)setVisibleBanner:(UIView *)visibleBannerView animated:(BOOL)animated;
 
 - (void)showBanner;
 - (void)hideBannerAnimated:(BOOL)animated;

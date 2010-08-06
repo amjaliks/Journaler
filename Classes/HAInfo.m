@@ -6,7 +6,7 @@
 //  Copyright 2010 A25. All rights reserved.
 //
 
-#import "HouseAdInfo.h"
+#import "HAInfo.h"
 
 #define kKeyNextShowDate @"nextShowDate"
 #define kKeyNextServerCheckDate @"nextServerCheckDate"
@@ -14,8 +14,9 @@
 #define kKeyBannerShowCount @"bannerShowCount"
 #define kKeyAdIsLoaded @"adIsLoaded"
 #define kKeyTargetURL @"targetURL"
+#define kKeySmallBannerLoaded @"smallBannerLoaded"
 
-@implementation HouseAdInfo
+@implementation HAInfo
 
 @synthesize nextShowDate;
 @synthesize nextServerCheckDate;
@@ -23,6 +24,7 @@
 @synthesize bannerShowCount;
 @synthesize targetURL;
 @synthesize adIsLoaded;
+@synthesize smallBannerLoaded;
 
 #pragma mark -
 #pragma mark NSCoder metodes
@@ -35,6 +37,7 @@
 		bannerShowCount = [coder decodeIntegerForKey:kKeyBannerShowCount];
 		targetURL = [[coder decodeObjectForKey:kKeyTargetURL] retain];
 		adIsLoaded = [coder decodeBoolForKey:kKeyAdIsLoaded];
+		smallBannerLoaded = [coder decodeBoolForKey:kKeySmallBannerLoaded];
 	}
 	
 	return self;
@@ -47,6 +50,7 @@
 	[coder encodeInteger:bannerShowCount forKey:kKeyBannerShowCount];
 	[coder encodeObject:targetURL forKey:kKeyTargetURL];
 	[coder encodeBool:adIsLoaded forKey:kKeyAdIsLoaded];
+	[coder encodeBool:smallBannerLoaded forKey:kKeySmallBannerLoaded];
 }
 
 - (void)dealloc {

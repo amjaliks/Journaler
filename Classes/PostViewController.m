@@ -137,7 +137,7 @@
 	friendsPageController.accountStateInfo.openedScreen = OpenedScreenPost;
 	
 #ifdef LITEVERSION
-	[[BannerViewController controller] addBannerToView:self.view resizeView:webView];
+	[bannerViewController addBannerToView:self.view resizeView:webView];
 #endif
 }
 
