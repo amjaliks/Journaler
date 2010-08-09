@@ -16,7 +16,6 @@
 #import "HAManager.h"
 
 #import "AccountsViewController.h"
-#import "SelfAdViewController.h"
 
 @implementation JournalerAppDelegate
 
@@ -44,10 +43,13 @@
 	[accountManager loadAccounts];
 	[accountsViewController restoreState];
 	
+	// reklāma
+	houseAdManager.rootViewController = navigationController;
+	[houseAdManager prepareAd];
 
 	// ja ir izveidots kaut viens konts, tiek parādīta reklāma 
-	if ([accountManager.accounts count]) {
-		[houseAdManager showAd:navigationController];
+	if ([accountManager.accounts count] && houseAdManager.showAdOnStart) {
+		[houseAdManager showAd];
 	}
 	
 	[window addSubview:navigationController.view];

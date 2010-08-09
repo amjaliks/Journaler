@@ -96,8 +96,7 @@
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-	[self setVisibleBanner:[houseAdManager bannerView] animated:YES];
-//	[self setVisibleBanner:iAdBannerView animated:YES];
+	[self setVisibleBanner:iAdBannerView animated:YES];
 #ifdef DEBUG
 	NSLog(@"ad loaded: %5.0f", -([startDate timeIntervalSinceNow]));
 #endif

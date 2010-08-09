@@ -18,21 +18,28 @@
 	NSString *bannerPath;
 	NSString *smallBannerPath;
 	
-	NSString *targetURL;
-	UIImage *image;
+	BOOL campaingActive;
+	BOOL showAdOnStart;
+	
+	UIButton *bannerView;
+	
+	UIViewController *rootViewController;
 }
+
+@property (nonatomic, assign) UIViewController *rootViewController;
+@property (readonly) BOOL showAdOnStart;
 
 + (HAManager *)sharedHAManager;
 
 - (void)loadAd;
-- (void)showAd:(UINavigationController *)navigationController;
-- (BOOL)prepareAd;
+- (void)showAd;
+- (void)prepareAd;
 - (void)dismissAd;
 
 - (void)loadInfo;
 - (void)storeInfo;
 
-- (void)downloadDataFromURL:(NSString *)URL toPath:(NSString *)path;
+- (BOOL)downloadDataFromURL:(NSString *)URL toPath:(NSString *)path;
 - (NSData *)downloadDataFromURL:(NSString *)URL;
 
 - (UIView *)bannerView;

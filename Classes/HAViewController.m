@@ -12,18 +12,7 @@
 @implementation HAViewController
 
 @synthesize imageView;
-@synthesize url;
-
-- (void)countDown {
-	if (timeLeft) {
-		dismissButton.titleLabel.text = [NSString stringWithFormat:@"%d", timeLeft];
-		timeLeft--;
-		[self performSelector:@selector(countDown) withObject:nil afterDelay:1.0f];
-	} else {
-		dismissButton.enabled = YES;
-		dismissButton.titleLabel.text = NSLocalizedString(@"Dismiss", nil);
-	}
-}
+@synthesize URL;
 
 - (IBAction)dismiss {
 	[self dismissModalViewControllerAnimated:YES];
@@ -31,34 +20,14 @@
 }
 
 - (IBAction)goToURL {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:URL]];
 	[houseAdManager dismissAd];
 }
 
 - (void)dealloc {
 	[dismissButton release];
-//	[imageView release];
-	
     [super dealloc];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	if (!imageView.image) {
-		imageView.image = [UIImage imageNamed:@"selfad.png"];
-		url = @"http://itunes.apple.com/app/journaler/id338132860?mt=8";
-	}
-	
-	dismissButton.titleLabel.textAlignment = UITextAlignmentCenter;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-#ifdef LITEVERSION
-	timeLeft = 5;
-	[self countDown];
-#else
-	dismissButton.enabled = YES;
-	dismissButton.titleLabel.text = NSLocalizedString(@"Dismiss", nil);
-#endif
-}
 
 @end

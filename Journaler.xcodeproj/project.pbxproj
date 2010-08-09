@@ -40,8 +40,6 @@
 		1724FF051186FFAE00639437 /* locateme.png in Resources */ = {isa = PBXBuildFile; fileRef = 1724FF031186FFAE00639437 /* locateme.png */; };
 		1724FF061186FFAE00639437 /* locateme-hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 1724FF021186FFAE00639437 /* locateme-hover.png */; };
 		1724FF071186FFAE00639437 /* locateme.png in Resources */ = {isa = PBXBuildFile; fileRef = 1724FF031186FFAE00639437 /* locateme.png */; };
-		172860CB116D40BB00171A85 /* SelfAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172860C9116D40BB00171A85 /* SelfAdViewController.m */; };
-		172860CC116D40BB00171A85 /* SelfAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172860CA116D40BB00171A85 /* SelfAdViewController.xib */; };
 		172860D7116D40D800171A85 /* selfad.png in Resources */ = {isa = PBXBuildFile; fileRef = 172860D6116D40D800171A85 /* selfad.png */; };
 		1733CDB712075DFF00CEEBFC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AC5F4A11FEE24A006C9E5C /* MessageUI.framework */; };
 		173FB76610BB490600FD0652 /* LJFriendsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 173FB76510BB490600FD0652 /* LJFriendsPageController.m */; };
@@ -230,8 +228,6 @@
 		3788A8D011ECC563006E43AA /* HAInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8C911ECC563006E43AA /* HAInfo.m */; };
 		3788A8D111ECC563006E43AA /* HAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8CB11ECC563006E43AA /* HAViewController.m */; };
 		3788A8D211ECC563006E43AA /* HAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3788A8CC11ECC563006E43AA /* HAViewController.xib */; };
-		3799D17811E74CA60039226A /* SelfAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172860C9116D40BB00171A85 /* SelfAdViewController.m */; };
-		3799D18311E74CBA0039226A /* SelfAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172860CA116D40BB00171A85 /* SelfAdViewController.xib */; };
 		3799D19C11E754370039226A /* HAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HAManager.m */; };
 		3799D19D11E754370039226A /* HAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HAManager.m */; };
 		37A65DC111DE45DC00EEC540 /* LegalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A65DBF11DE45DC00EEC540 /* LegalController.m */; };
@@ -286,9 +282,6 @@
 		1722438B11ECA7DC00BE4DE2 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		1724FF021186FFAE00639437 /* locateme-hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locateme-hover.png"; sourceTree = "<group>"; };
 		1724FF031186FFAE00639437 /* locateme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locateme.png; sourceTree = "<group>"; };
-		172860C8116D40BB00171A85 /* SelfAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfAdViewController.h; sourceTree = "<group>"; };
-		172860C9116D40BB00171A85 /* SelfAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfAdViewController.m; sourceTree = "<group>"; };
-		172860CA116D40BB00171A85 /* SelfAdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelfAdViewController.xib; sourceTree = "<group>"; };
 		172860D6116D40D800171A85 /* selfad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selfad.png; sourceTree = "<group>"; };
 		173FB76510BB490600FD0652 /* LJFriendsPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJFriendsPageController.m; sourceTree = "<group>"; };
 		173FB7E810BB4F9F00FD0652 /* WebFriendsPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebFriendsPageController.h; sourceTree = "<group>"; };
@@ -505,7 +498,6 @@
 				17B29BE210FA824B00C5EFA4 /* Settings */,
 				173FBEF510C4751B00FD0652 /* Friends Page */,
 				173FBEF610C4755600FD0652 /* New post */,
-				172860C7116D409300171A85 /* Self-ad */,
 				3799D18B11E750D90039226A /* Ads */,
 				170FE4B8120175DA00D2F676 /* Errors */,
 				1D3623240D0F684500981E51 /* JournalerAppDelegate.h */,
@@ -568,16 +560,6 @@
 				17EFF2A611EA7A74009D84ED /* up.png */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		172860C7116D409300171A85 /* Self-ad */ = {
-			isa = PBXGroup;
-			children = (
-				172860C8116D40BB00171A85 /* SelfAdViewController.h */,
-				172860C9116D40BB00171A85 /* SelfAdViewController.m */,
-				172860CA116D40BB00171A85 /* SelfAdViewController.xib */,
-			);
-			name = "Self-ad";
 			sourceTree = "<group>";
 		};
 		173FBEDF10C474D000FD0652 /* Libaries */ = {
@@ -1001,7 +983,6 @@
 				173FB97A10BCAE9C00FD0652 /* lock.png in Resources */,
 				17B29BE910FA826700C5EFA4 /* SettingsController.xib in Resources */,
 				17D77655113BC2F600F26322 /* Default.png in Resources */,
-				172860CC116D40BB00171A85 /* SelfAdViewController.xib in Resources */,
 				172860D7116D40D800171A85 /* selfad.png in Resources */,
 				1745D2AB117E47320016E616 /* SearchableListController.xib in Resources */,
 				1724FF061186FFAE00639437 /* locateme-hover.png in Resources */,
@@ -1050,7 +1031,6 @@
 				1724FF051186FFAE00639437 /* locateme.png in Resources */,
 				37A65DC211DE45DC00EEC540 /* LegalController.xib in Resources */,
 				37A65DE411DE490D00EEC540 /* Legal.html in Resources */,
-				3799D18311E74CBA0039226A /* SelfAdViewController.xib in Resources */,
 				17EFF2A811EA7A74009D84ED /* up.png in Resources */,
 				17EFF2AB11EA7A78009D84ED /* down.png in Resources */,
 				3788A8D211ECC563006E43AA /* HAViewController.xib in Resources */,
@@ -1108,7 +1088,6 @@
 				17D8A65A1131DF2E0023FBEA /* NSStringMD5.m in Sources */,
 				17D8A7381131F2ED0023FBEA /* LJAccount.m in Sources */,
 				17D8A98A1134B9D10023FBEA /* LJEvent.m in Sources */,
-				172860CB116D40BB00171A85 /* SelfAdViewController.m in Sources */,
 				1745D2AA117E47320016E616 /* SearchableListController.m in Sources */,
 				1745D39B117E7D8C0016E616 /* NSSetAdditions.m in Sources */,
 				178BF24E1181D4A500BEEFAD /* PicKeywordListController.m in Sources */,
@@ -1213,7 +1192,6 @@
 				37A65DC111DE45DC00EEC540 /* LegalController.m in Sources */,
 				3780DAF211E3607D003044B6 /* CommentController.m in Sources */,
 				377EFE0811E4C0AA009E9907 /* LJComment.m in Sources */,
-				3799D17811E74CA60039226A /* SelfAdViewController.m in Sources */,
 				3799D19D11E754370039226A /* HAManager.m in Sources */,
 				1722438C11ECA7DC00BE4DE2 /* TableViewController.m in Sources */,
 				3788A8D011ECC563006E43AA /* HAInfo.m in Sources */,

@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 
-@interface UIView (FindAndResignFirstResponder) 
+@interface UIView (UIViewAdditions) 
 
 - (BOOL)findAndResignFirstResonder;
 - (void)resizeForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (UIViewController *)viewController;
 
 @end

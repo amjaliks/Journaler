@@ -20,6 +20,9 @@
 
 @implementation HAManager
 
+@synthesize rootViewController;
+@synthesize showAdOnStart;
+
 #pragma mark -
 #pragma mark Reklāmas ielāde
 
@@ -48,16 +51,9 @@
 													format:&format errorDescription:&error];
 		if (dictionary) {
 			NSString *bannerURL = [dictionary objectForKey:@"bannerURL"];
-			if (bannerURL) {
-				[self downloadDataFromURL:bannerURL toPath:bannerPath];
-				
+			if (bannerURL && [self downloadDataFromURL:bannerURL toPath:bannerPath]) {
 				NSString *smallBannerURL = [dictionary objectForKey:@"smallBannerURL"];
-				if (smallBannerURL) {
-					[self downloadDataFromURL:smallBannerURL toPath:smallBannerPath];
-					info.smallBannerLoaded = YES;
-				} else {
-					info.smallBannerLoaded = NO;
-				}
+				info.smallBannerLoaded = smallBannerURL && [self downloadDataFromURL:smallBannerURL toPath:smallBannerPath];
 				
 				info.targetURL = [dictionary objectForKey:@"targetURL"];
 				info.adIsLoaded = YES;
@@ -78,25 +74,17 @@
 	[pool release];
 }
 
-- (void)showAd:(UINavigationController *)navigationController {
-	if ([self prepareAd]) {
-		// tiek parādīts logs ar reklāmu
-		HAViewController *houseAdViewController = [[HAViewController alloc] initWithNibName:@"HAViewController" bundle:nil];
-	
-		[navigationController presentModalViewController:houseAdViewController animated:NO];
-		if (image) {
-			houseAdViewController.imageView.image = image;
-			houseAdViewController.url = targetURL;
-		}
-		[houseAdViewController release];
-	} 
-	
-	if (YES || !info.nextServerCheckDate || [info.nextServerCheckDate compare:[NSDate date]] != NSOrderedDescending) {	
-		[self performSelectorInBackground:@selector(loadAd) withObject:nil];
-	}
+- (void)showAd {
+	// tiek parādīts logs ar reklāmu
+	HAViewController *houseAdViewController = [[HAViewController alloc] initWithNibName:@"HAViewController" bundle:nil];
+	[houseAdViewController view];
+	houseAdViewController.imageView.image = [UIImage imageWithContentsOfFile:bannerPath];
+	houseAdViewController.URL = [info targetURL];
+	[rootViewController presentModalViewController:houseAdViewController animated:YES];
+	[houseAdViewController release];
 }
 
-- (BOOL)prepareAd {
+- (void)prepareAd {
 	[self loadInfo];
 
 	// ja ir laiks rādīt reklāmu
@@ -104,23 +92,18 @@
 	// ja rādīšanu skaits nav 0 vai reklāma jārāda vienmēr
 	// ja reklāma vēl ir derīga
 
-	if ([info nextShowDate] && [[info nextShowDate] compare:[NSDate date]] != NSOrderedDescending) {
-		if ([info adIsLoaded] 
-			&& ([info bannerShowCount] > 0 || [info bannerShowCount] == -1)
-			&& [info bannerEndDate] && [[info bannerEndDate] compare:[NSDate date]] == NSOrderedDescending) {
-			
-			image = [UIImage imageWithContentsOfFile:bannerPath];
-			targetURL = [info targetURL];
-			return YES;
-		} else {
-#ifdef LITEVERSION
-			return YES;
-#endif
+	if ([info adIsLoaded]) {
+		if (!info.bannerEndDate || [info.bannerEndDate compare:[NSDate date]] == NSOrderedDescending) {
+			campaingActive = YES;
+			if (info.bannerShowCount && info.nextShowDate && [info.nextShowDate compare:[NSDate date]] != NSOrderedDescending) {
+				showAdOnStart = YES;
+			}
 		}
-
 	}
 	
-	return NO;
+	if (!info.nextServerCheckDate || [info.nextServerCheckDate compare:[NSDate date]] != NSOrderedDescending) {	
+		[self performSelectorInBackground:@selector(loadAd) withObject:nil];
+	}
 }
 
 - (void)dismissAd {
@@ -149,23 +132,23 @@
 }
 
 - (UIView *)bannerView {
-	UIImage *bannerImage = [UIImage imageWithContentsOfFile:smallBannerPath];
-	if (bannerImage) {
-		UIButton *bannerView = [UIButton buttonWithType:UIButtonTypeCustom];
-		[bannerView addTarget:self action:@selector(showAd:) forControlEvents:UIControlEventTouchUpInside];
-		[bannerView setImage:bannerImage forState:UIControlStateNormal];
-		bannerView.frame = CGRectMake(0, 0, 320.0f, 50.0f);
+	if (campaingActive && info.smallBannerLoaded) {
+		if (!bannerView) {
+			bannerView = [UIButton buttonWithType:UIButtonTypeCustom];
+			bannerView.frame = CGRectMake(0, 0, 320.0f, 50.0f);
+			[bannerView addTarget:self action:@selector(showAd) forControlEvents:UIControlEventTouchUpInside];
+			[bannerView setImage:[UIImage imageWithContentsOfFile:smallBannerPath] forState:UIControlStateNormal];
+		}
 		return bannerView;
-	} else {
-		return nil;
 	}
+	return nil;
 }
 
 #pragma mark -
 #pragma mark Failu lasīšana un ielāde
 
-- (void)downloadDataFromURL:(NSString *)URL toPath:(NSString *)path {
-	[[self downloadDataFromURL:URL] writeToFile:path atomically:YES];
+- (BOOL)downloadDataFromURL:(NSString *)URL toPath:(NSString *)path {
+	return [[self downloadDataFromURL:URL] writeToFile:path atomically:YES];
 }
 
 - (NSData *)downloadDataFromURL:(NSString *)URL {
@@ -175,7 +158,7 @@
 	NSError *err = nil;
 	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
 	
-	if (err || [res statusCode] != 200) {
+	if (err || [(NSHTTPURLResponse *)res statusCode] != 200) {
 		return nil;
 	} else {
 		return data;

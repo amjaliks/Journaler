@@ -8,7 +8,7 @@
 
 #import "UIViewAdditions.h"
 
-@implementation UIView (FindAndResignFirstResponder)
+@implementation UIView (UIViewAdditions)
 
 
 // http://stackoverflow.com/questions/1823317/how-do-i-legally-get-the-current-first-responder-on-the-screen-on-an-iphone
@@ -25,6 +25,18 @@
 }
 
 - (void)resizeForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {}
+
+// http://stackoverflow.com/questions/2309569/how-to-get-uiviewcontroller-of-a-uiviews-superview-in-iphone-sdk/2309978#2309978
+- (UIViewController *)viewController {
+	for (UIView *next = [self superview]; next; next = next.superview) {
+		UIResponder *nextResponder = [next nextResponder];
+		if ([nextResponder isKindOfClass:[UIViewController class]]) {
+			return (UIViewController*)nextResponder;
+		}
+	}
+	return nil;
+}
+
 
 @end
 

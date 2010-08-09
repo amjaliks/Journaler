@@ -10,17 +10,16 @@
 
 @interface HAViewController : UIViewController {
 	NSInteger timeLeft;
-	NSString *url;
+	NSString *URL;
 	
 	IBOutlet UIButton *dismissButton;
 	IBOutlet UIImageView *imageView;
 }
 
-- (void)countDown;
 - (IBAction)dismiss;
 - (IBAction)goToURL;
 
 @property (assign) UIImageView *imageView;
-@property (assign) NSString *url;
+@property (assign) NSString *URL;
 
 @end
