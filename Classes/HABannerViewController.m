@@ -6,12 +6,12 @@
 //  Copyright 2010 A25. All rights reserved.
 //
 
-#import "BannerViewController.h"
+#import "HABannerViewController.h"
 #import "SynthesizeSingleton.h"
 #import "HAManager.h"
 
 
-@implementation BannerViewController
+@implementation HABannerViewController
 
 - (void)setVisibleBanner:(UIView *)visibleBannerView animated:(BOOL)animated {
 	if ([bannerView.subviews lastObject] != visibleBannerView) {
@@ -133,6 +133,6 @@
 	return self;
 }
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(BannerViewController)
+SYNTHESIZE_SINGLETON_FOR_CLASS(HABannerViewController)
 
 @end

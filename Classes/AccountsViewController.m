@@ -15,7 +15,7 @@
 #import "ALReporter.h"
 #import "SettingsController.h"
 #import "AccountManager.h"
-#import "BannerViewController.h"
+#import "HouseAds.h"
 
 @implementation AccountsViewController
 

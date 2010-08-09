@@ -12,7 +12,7 @@
 #import "NetworkActivityIndicator.h"
 #import "ErrorHandler.h"
 #import "LJManager.h"
-#import "BannerViewController.h"
+#import "HouseAds.h"
 
 @implementation WebViewController
 

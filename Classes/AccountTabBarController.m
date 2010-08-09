@@ -18,7 +18,7 @@
 #import "AccountManager.h"
 #import "ALReporter.h"
 #import "UIViewAdditions.h"
-#import "BannerViewController.h"
+#import "HouseAds.h"
 
 @implementation AccountTabBarController
 

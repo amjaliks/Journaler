@@ -11,9 +11,9 @@
 
 #import "HABannerView.h"
 
-#define bannerViewController [BannerViewController sharedBannerViewController]
+#define bannerViewController [HABannerViewController sharedHABannerViewController]
 
-@interface BannerViewController : NSObject <ADBannerViewDelegate> {
+@interface HABannerViewController : NSObject <ADBannerViewDelegate> {
 	ADBannerView *iAdBannerView;
 	
 	// vieta (laukums), kurā attēlot baneri
@@ -30,7 +30,7 @@
 #endif
 }
 
-+ (BannerViewController *)sharedBannerViewController;
++ (HABannerViewController *)sharedHABannerViewController;
 
 - (void)setVisibleBanner:(UIView *)visibleBannerView animated:(BOOL)animated;
 

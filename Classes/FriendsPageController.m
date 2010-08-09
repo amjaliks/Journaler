@@ -14,7 +14,7 @@
 #import "AccountManager.h"
 #import "FriendsPageTitleView.h"
 #import "FilterOptionsController.h"
-#import "BannerViewController.h"
+#import "HouseAds.h"
 #import "AccountTabBarController.h"
 #import "ErrorHandler.h"
 

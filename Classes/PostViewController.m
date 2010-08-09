@@ -15,7 +15,7 @@
 #import "WebViewController.h"
 #import "AccountManager.h"
 #import "CommentController.h"
-#import "BannerViewController.h"
+#import "HABannerViewController.h"
 #import "LJFriendsPageController.h"
 
 @implementation PostViewController
