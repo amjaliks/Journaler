@@ -245,6 +245,8 @@
 		37AC5EC411FED5D2006C9E5C /* TellAFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AC5DD211FEBBBD006C9E5C /* TellAFriendController.m */; };
 		37AC5ECB11FED66A006C9E5C /* TellAFriendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37AC5DD311FEBBBD006C9E5C /* TellAFriendController.xib */; };
 		37AC5F4B11FEE24A006C9E5C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37AC5F4A11FEE24A006C9E5C /* MessageUI.framework */; };
+		37D4AB521210360700D20E9E /* LJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D4AB511210360700D20E9E /* LJUser.m */; };
+		37D4AB531210360700D20E9E /* LJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D4AB511210360700D20E9E /* LJUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -456,6 +458,8 @@
 		37AC5DD211FEBBBD006C9E5C /* TellAFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TellAFriendController.m; sourceTree = "<group>"; };
 		37AC5DD311FEBBBD006C9E5C /* TellAFriendController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TellAFriendController.xib; sourceTree = "<group>"; };
 		37AC5F4A11FEE24A006C9E5C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		37D4AB501210360700D20E9E /* LJUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJUser.h; sourceTree = "<group>"; };
+		37D4AB511210360700D20E9E /* LJUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJUser.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Journaler-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Journaler-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -780,6 +784,8 @@
 				178BF5031182E63000BEEFAD /* LJTag.m */,
 				377EFE0511E4C0AA009E9907 /* LJComment.h */,
 				377EFE0611E4C0AA009E9907 /* LJComment.m */,
+				37D4AB501210360700D20E9E /* LJUser.h */,
+				37D4AB511210360700D20E9E /* LJUser.m */,
 			);
 			name = LiveJournal;
 			sourceTree = "<group>";
@@ -1138,6 +1144,7 @@
 				170FE40F12001EA000D2F676 /* LJSession.m in Sources */,
 				170FE4BD120175ED00D2F676 /* ErrorMessage.m in Sources */,
 				17B4FFEE120C972200A5C55B /* HABannerView.m in Sources */,
+				37D4AB521210360700D20E9E /* LJUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1221,6 +1228,7 @@
 				170FE41012001EA000D2F676 /* LJSession.m in Sources */,
 				170FE4BC120175ED00D2F676 /* ErrorMessage.m in Sources */,
 				17B4FFED120C972200A5C55B /* HABannerView.m in Sources */,
+				37D4AB531210360700D20E9E /* LJUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
