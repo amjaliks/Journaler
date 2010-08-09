@@ -11,7 +11,7 @@
 #define kLJErrorDomain @"LJErrorDomain"
 #define client [LJAPIClient sharedLJAPIClient]
 
-@class LJAccount, LJSession, LJFriendGroup, LJEvent, LJComment;
+@class LJAccount, LJSession, LJFriendGroup, LJEvent, LJComment, LJUser;
 
 @interface LJAPIClient : NSObject {
 
@@ -28,6 +28,7 @@
 - (BOOL)userTagsForAccount:(LJAccount *)account error:(NSError **)error;
 - (BOOL)postEvent:(LJEvent *)event forAccount:(LJAccount *)account error:(NSError **)error;
 - (BOOL)addComment:(LJComment *)comment forAccount:(LJAccount *)account error:(NSError **)error;
+- (BOOL)getFriends:(LJAccount *)account error:(NSError **)error;
 
 #pragma mark Tehniskās metodes
 - (NSDictionary *)sendRequestToServer:(NSString *)server method:(NSString *)method parameters:(NSDictionary *)parameters error:(NSError **)error;
@@ -35,5 +36,6 @@
 - (NSString *)readStringValue:(id)value;
 - (NSArray *)readArrayOfStrings:(NSArray *)array;
 - (NSArray *)friendGroupsFromArray:(NSArray *)array;
+- (NSArray *)friendsFromArray:(NSArray *)array;
 
 @end

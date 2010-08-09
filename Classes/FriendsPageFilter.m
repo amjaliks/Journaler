@@ -127,6 +127,10 @@
 				[filteredPosts addObject:post];
 			}
 		}
+//	} else if (filterType == FilterTypeGroup) {
+//		for (Post* post in posts) {
+//			
+//		}
 	}
 	
 	return [filteredPosts autorelease];

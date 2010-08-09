@@ -13,6 +13,7 @@
 #define kKeyServer @"server"
 #define kKeyCommunities @"communities"
 #define kKeyFriendGroups @"friendGroups"
+#define kKeyFriends @"friends"
 #define kKeyPicKeywords @"picKeywords"
 #define kKeyTags @"tags"
 #define kKeyMoods @"moods"
@@ -25,6 +26,7 @@
 @synthesize server;
 @synthesize communities;
 @synthesize friendGroups;
+@synthesize friends;
 @synthesize picKeywords;
 @synthesize tags;
 @synthesize moods;
@@ -50,6 +52,7 @@
 	[server release];
 	[communities release];
 	[friendGroups release];
+	[friends release];
 	[picKeywords release];
 	[tags release];
 	[moods release];
@@ -68,6 +71,7 @@
 		self.server = [[coder decodeObjectForKey:kKeyServer] retain];
 		communities = [[coder decodeObjectForKey:kKeyCommunities] retain];
 		friendGroups = [[coder decodeObjectForKey:kKeyFriendGroups] retain];
+		friends = [[coder decodeObjectForKey:kKeyFriends] retain];
 		picKeywords = [[coder decodeObjectForKey:kKeyPicKeywords] retain];
 		tags = [[coder decodeObjectForKey:kKeyTags] retain];
 		moods = [[coder decodeObjectForKey:kKeyMoods] retain];
@@ -82,6 +86,7 @@
 	[coder encodeObject:server forKey:kKeyServer];
 	[coder encodeObject:communities forKey:kKeyCommunities];
 	[coder encodeObject:friendGroups forKey:kKeyFriendGroups];
+	[coder encodeObject:friends forKey:kKeyFriends];
 	[coder encodeObject:picKeywords forKey:kKeyPicKeywords];
 	[coder encodeObject:tags forKey:kKeyTags];
 	[coder encodeObject:moods forKey:kKeyMoods];
@@ -141,7 +146,8 @@
 
 + (ServerFeature)supportedFeaturesForServer:(NSString *)server {
 	if ([@"livejournal.com" isEqualToString:server]) {
-		return ServerFeatureAll ^ ServerFeatureFriendsPageFilterByGroup;
+//		return ServerFeatureAll ^ ServerFeatureFriendsPageFilterByGroup;
+		return ServerFeatureAll;
 	} else if ([@"klab.lv" isEqualToString:server]) {
 		return ServerFeatureFriendsPageFilterByGroup;
 	} else if ([@"insanejournal.com" isEqualToString:server]) {

@@ -34,6 +34,7 @@ enum {
 	
 	NSArray *communities;
 	NSArray *friendGroups;
+	NSArray *friends;
 	NSArray *picKeywords;
 	NSSet *tags;
 	NSSet *moods;
@@ -48,6 +49,7 @@ enum {
 @property (retain) NSString *server;
 @property (retain) NSArray *communities;
 @property (retain) NSArray *friendGroups;
+@property (retain) NSArray *friends;
 @property (retain) NSArray *picKeywords;
 @property (retain) NSSet *tags;
 @property (retain) NSSet *moods;

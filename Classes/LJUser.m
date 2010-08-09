@@ -13,11 +13,22 @@
 
 @synthesize username;
 @synthesize fullname;
-@synthesize identity_type;
-@synthesize identity_value;
-@synthesize identity_display;
-@synthesize fgcolor;
-@synthesize bgcolor;
 @synthesize groupmask;
+
+- (id)initWithUsername:(NSString *)name group:(NSUInteger)mask {
+	if (self = [super init]) {
+		username = [name retain];
+		groupmask = mask;
+	}
+
+	return self;
+}
+
+- (void)dealloc {
+	[username release];
+	[fullname release];
+	
+	[super dealloc];
+}
 
 @end

@@ -8,6 +8,7 @@
 
 #import "LJAPIClient.h"
 #import "LJFriendGroup.h"
+#import "LJUser.h"
 #import "LiveJournal.h"
 
 #import "XMLRPCRequest.h"
@@ -316,6 +317,25 @@
 	return NO;
 }
 
+- (BOOL)getFriends:(LJAccount *)account error:(NSError **)error {
+	@synchronized (account) {
+		NSString *challenge = [self challengeForAccount:account error:error];
+
+		if (challenge) {
+			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getfriends" parameters:parameters error:error] retain];
+			[parameters release];
+			
+			if (result) {
+				account.friends = [self friendsFromArray:[result valueForKey:@"friends"]];
+				[result release];
+				return YES;
+			}
+		}
+	}
+	return NO;
+}
+
 #pragma mark -
 #pragma mark Tehniskās metodes
 
@@ -431,6 +451,22 @@
 	}
 	
 	return [friendGroups autorelease];
+}
+
+- (NSArray *)friendsFromArray:(NSArray *)array {
+	NSMutableArray *friends = [[NSMutableArray alloc] initWithCapacity:[array count]];
+	
+	for (NSDictionary *dictionary in array) {
+		NSString *username = [dictionary valueForKey:@"username"];
+		NSNumber *groupMask = [dictionary valueForKey:@"groupmask"];
+		
+		LJUser *user = [[LJUser alloc] initWithUsername:username group:[groupMask unsignedIntegerValue]];
+		
+		[friends addObject:user];
+		[user release];
+	}
+	
+	return [friends autorelease];
 }
 
 - (NSArray *)readArrayOfStrings:(NSArray *)array {

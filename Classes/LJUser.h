@@ -12,21 +12,13 @@
 @interface LJUser : NSObject {
 	NSString *username;
 	NSString *fullname;
-	NSString *identity_type;
-	NSString *identity_value;
-	NSString *identity_display;
-	NSString *fgcolor;
-	NSString *bgcolor;
-	NSString *groupmask;
+	NSUInteger groupmask;
 }
 
-@property (nonatomic, retain) NSString *username;
-@property (nonatomic, retain) NSString *fullname;
-@property (nonatomic, retain) NSString *identity_type;
-@property (nonatomic, retain) NSString *identity_value;
-@property (nonatomic, retain) NSString *identity_display;
-@property (nonatomic, retain) NSString *fgcolor;
-@property (nonatomic, retain) NSString *bgcolor;
-@property (nonatomic, retain) NSString *groupmask;
+@property (readonly) NSString *username;
+@property (readonly) NSString *fullname;
+@property (readonly) NSUInteger groupmask;
+
+- (id)initWithUsername:(NSString *)name group:(NSUInteger)groupmask;
 
 @end
