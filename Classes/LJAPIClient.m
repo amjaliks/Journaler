@@ -327,7 +327,7 @@
 			[parameters release];
 			
 			if (result) {
-				account.friends = [self friendsFromArray:[result valueForKey:@"friends"]];
+				account.friends = [self friendsFromArray:[result valueForKey:@"friends"] account:account];
 				[result release];
 				return YES;
 			}
@@ -453,14 +453,26 @@
 	return [friendGroups autorelease];
 }
 
-- (NSArray *)friendsFromArray:(NSArray *)array {
+- (NSArray *)friendsFromArray:(NSArray *)array account:(LJAccount *)account {
 	NSMutableArray *friends = [[NSMutableArray alloc] initWithCapacity:[array count]];
 	
 	for (NSDictionary *dictionary in array) {
 		NSString *username = [dictionary valueForKey:@"username"];
-		NSNumber *groupMask = [dictionary valueForKey:@"groupmask"];
+		NSUInteger groupMask = [[dictionary valueForKey:@"groupmask"] unsignedIntegerValue];
 		
-		LJUser *user = [[LJUser alloc] initWithUsername:username group:[groupMask unsignedIntegerValue]];
+		NSLog(@"User: %@, mask: %d",username, groupMask);
+		NSMutableArray *friendGroups = [[NSMutableArray alloc] init];
+		
+		if (groupMask) {
+			for (int i = 0; i < [account.friendGroups count]; i++) {
+				if ((groupMask % 2) == 1) {
+					[friendGroups addObject:[account.friendGroups objectAtIndex: i]];
+				}
+				groupMask = groupMask >> 1;
+			}
+		}
+		
+		LJUser *user = [[LJUser alloc] initWithUsername:username group:friendGroups];
 		
 		[friends addObject:user];
 		[user release];

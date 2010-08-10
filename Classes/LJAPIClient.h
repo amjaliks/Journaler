@@ -36,6 +36,6 @@
 - (NSString *)readStringValue:(id)value;
 - (NSArray *)readArrayOfStrings:(NSArray *)array;
 - (NSArray *)friendGroupsFromArray:(NSArray *)array;
-- (NSArray *)friendsFromArray:(NSArray *)array;
+- (NSArray *)friendsFromArray:(NSArray *)array account:(LJAccount *)account;
 
 @end

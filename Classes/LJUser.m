@@ -12,13 +12,12 @@
 @implementation LJUser
 
 @synthesize username;
-@synthesize fullname;
-@synthesize groupmask;
+@synthesize group;
 
-- (id)initWithUsername:(NSString *)name group:(NSUInteger)mask {
+- (id)initWithUsername:(NSString *)name group:(NSMutableArray *)groupArray {
 	if (self = [super init]) {
 		username = [name retain];
-		groupmask = mask;
+		group = groupArray;
 	}
 
 	return self;
@@ -26,7 +25,7 @@
 
 - (void)dealloc {
 	[username release];
-	[fullname release];
+	[group release];
 	
 	[super dealloc];
 }

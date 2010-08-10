@@ -68,6 +68,11 @@ enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	previousFilter = [friendsPageController.friendsPageFilter copy];
+	
+	if (![friendsPageController.account.friends count]) {
+		NSError *error;
+		[client getFriends:friendsPageController.account error:&error];
+	}
 }
 
 #ifndef LITEVERSION
@@ -146,11 +151,6 @@ enum {
 			cell.textLabel.text = NSLocalizedString(@"Syndicated feeds", nil);
 		}
 	} else if (indexPath.section == sectionGroup) {
-		NSError *error;
-		if ([client getFriends:friendsPageController.account error:&error]) {
-			
-		}
-		
 		LJFriendGroup *group = [friendsPageController.account.friendGroups objectAtIndex:indexPath.row];
 		
 		selected = friendsPageController.friendsPageFilter.filterType == FilterTypeGroup 

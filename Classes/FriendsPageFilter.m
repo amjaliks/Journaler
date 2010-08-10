@@ -8,6 +8,7 @@
 
 #import "FriendsPageFilter.h"
 #import "Model.h"
+#import "LJUser.h"
 
 #define kKeyFilterType @"filterType"
 #define kKeyJournalType @"journalType"
@@ -112,7 +113,7 @@
 }
 
 // filtrē rakstu atbilstoši filtra uzstādījumiem
-- (NSArray *)filterPosts:(NSArray *)posts {
+- (NSArray *)filterPosts:(NSArray *)posts account:(LJAccount *)account {
 	if (filterType == FilterTypeAll) {
 		// nekas nav jāfiltrē, atgriežam masīva kopiju
 		return [[posts copy] autorelease];
@@ -121,16 +122,24 @@
 	NSMutableArray *filteredPosts = [[NSMutableArray alloc] init];
 	
 	if (filterType == FilterTypeJournalType) {
-		// filtrējma pēc žurnāla veida
+		// filtrējam pēc žurnāla veida
 		for (Post* post in posts) {
 			if ([post.journalType intValue] == journalType) {
 				[filteredPosts addObject:post];
 			}
 		}
-//	} else if (filterType == FilterTypeGroup) {
-//		for (Post* post in posts) {
-//			
-//		}
+	} else if (filterType == FilterTypeGroup) {
+		for (Post* post in posts) {
+			for (LJUser *user in account.friends) {
+				if ([post.poster isEqualToString: user.username]) {
+					for (LJFriendGroup *userGroup in user.group) {
+						if ([group isEqualToString: userGroup.name]) {
+							[filteredPosts addObject:post];
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	return [filteredPosts autorelease];

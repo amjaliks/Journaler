@@ -104,7 +104,7 @@
 		needReloadTable = YES;
 	} else {
 		[displayedPosts release];
-		displayedPosts = [[friendsPageFilter filterPosts:[ljManager loadedPostsForAccount:self.account]] retain];
+		displayedPosts = [[friendsPageFilter filterPosts:[ljManager loadedPostsForAccount:self.account] account:self.account] retain];
 
 		[tableView reloadData];
 		

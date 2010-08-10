@@ -33,6 +33,6 @@ typedef enum {
 @property (nonatomic, retain) NSString *group;
 @property (readonly) NSString *title;
 
-- (NSArray *)filterPosts:(NSArray *)posts;
+- (NSArray *)filterPosts:(NSArray *)posts account:(LJAccount *)account;
 
 @end

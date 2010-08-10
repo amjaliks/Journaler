@@ -11,14 +11,12 @@
 
 @interface LJUser : NSObject {
 	NSString *username;
-	NSString *fullname;
-	NSUInteger groupmask;
+	NSMutableArray *group;
 }
 
 @property (readonly) NSString *username;
-@property (readonly) NSString *fullname;
-@property (readonly) NSUInteger groupmask;
+@property (readonly) NSMutableArray *group;
 
-- (id)initWithUsername:(NSString *)name group:(NSUInteger)groupmask;
+- (id)initWithUsername:(NSString *)name group:(NSMutableArray *)group;
 
 @end
