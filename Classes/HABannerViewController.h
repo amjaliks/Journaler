@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <iAd/iAd.h>
 
-#import "HABannerView.h"
-
 #define bannerViewController [HABannerViewController sharedHABannerViewController]
 
 @interface HABannerViewController : NSObject <ADBannerViewDelegate> {
