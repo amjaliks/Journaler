@@ -44,7 +44,7 @@
 	[self.navigationController setToolbarHidden:NO animated:YES];
 	
 #ifdef LITEVERSION
-	[bannerViewController addBannerToView:self.view resizeView:webView];
+	[shBannerViewController addBannerToView:self.view resizeView:webView];
 #endif
 }
 

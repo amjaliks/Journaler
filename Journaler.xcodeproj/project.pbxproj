@@ -116,6 +116,18 @@
 		1781DA45120382F000BA8D83 /* LJFriendsPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1781DA43120382F000BA8D83 /* LJFriendsPageController.xib */; };
 		1781DAB1120393C300BA8D83 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171323091085168F007F6C24 /* PostViewController.xib */; };
 		1781DAB2120393C900BA8D83 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171323091085168F007F6C24 /* PostViewController.xib */; };
+		1788E2EC1212C89E00E55682 /* NSStringMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2EA1212C89E00E55682 /* NSStringMD5.m */; };
+		1788E2ED1212C89E00E55682 /* NSStringMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2EA1212C89E00E55682 /* NSStringMD5.m */; };
+		1788E2F91212C8C300E55682 /* HABannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2F01212C8C300E55682 /* HABannerViewController.m */; };
+		1788E2FA1212C8C300E55682 /* HAInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2F21212C8C300E55682 /* HAInfo.m */; };
+		1788E2FB1212C8C300E55682 /* HAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2F41212C8C300E55682 /* HAManager.m */; };
+		1788E2FC1212C8C300E55682 /* HAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1788E2F51212C8C300E55682 /* HAViewController.xib */; };
+		1788E2FD1212C8C300E55682 /* HAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2F71212C8C300E55682 /* HAViewController.m */; };
+		1788E2FE1212C8C300E55682 /* HABannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2F01212C8C300E55682 /* HABannerViewController.m */; };
+		1788E2FF1212C8C300E55682 /* HAInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2F21212C8C300E55682 /* HAInfo.m */; };
+		1788E3001212C8C300E55682 /* HAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2F41212C8C300E55682 /* HAManager.m */; };
+		1788E3011212C8C300E55682 /* HAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1788E2F51212C8C300E55682 /* HAViewController.xib */; };
+		1788E3021212C8C300E55682 /* HAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2F71212C8C300E55682 /* HAViewController.m */; };
 		1789BE60107A894B00964DA2 /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE5F107A894B00964DA2 /* forward.png */; };
 		1789BE62107A89F200964DA2 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1789BE61107A89F200964DA2 /* back.png */; };
 		1789BFE2107E73BA00964DA2 /* PostEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1789BFE0107E73BA00964DA2 /* PostEditorController.m */; };
@@ -207,7 +219,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
-		37650B5911FDD23B00524AA9 /* HABannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37650B5811FDD23B00524AA9 /* HABannerViewController.m */; };
 		377EFE0711E4C0AA009E9907 /* LJComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EFE0611E4C0AA009E9907 /* LJComment.m */; };
 		377EFE0811E4C0AA009E9907 /* LJComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 377EFE0611E4C0AA009E9907 /* LJComment.m */; };
 		3780DAF011E3607D003044B6 /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3780DAEE11E3607D003044B6 /* CommentController.m */; };
@@ -220,14 +231,6 @@
 		3783943711F7414A0045E55A /* ALDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783942D11F7414A0045E55A /* ALDeviceInfo.m */; };
 		3783943811F7414A0045E55A /* ALProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783942F11F7414A0045E55A /* ALProperty.m */; };
 		3783943911F7414A0045E55A /* ALReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3783943111F7414A0045E55A /* ALReporter.m */; };
-		3788A8CD11ECC563006E43AA /* HAInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8C911ECC563006E43AA /* HAInfo.m */; };
-		3788A8CE11ECC563006E43AA /* HAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8CB11ECC563006E43AA /* HAViewController.m */; };
-		3788A8CF11ECC563006E43AA /* HAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3788A8CC11ECC563006E43AA /* HAViewController.xib */; };
-		3788A8D011ECC563006E43AA /* HAInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8C911ECC563006E43AA /* HAInfo.m */; };
-		3788A8D111ECC563006E43AA /* HAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3788A8CB11ECC563006E43AA /* HAViewController.m */; };
-		3788A8D211ECC563006E43AA /* HAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3788A8CC11ECC563006E43AA /* HAViewController.xib */; };
-		3799D19C11E754370039226A /* HAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HAManager.m */; };
-		3799D19D11E754370039226A /* HAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799D19B11E754370039226A /* HAManager.m */; };
 		37A65DC111DE45DC00EEC540 /* LegalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A65DBF11DE45DC00EEC540 /* LegalController.m */; };
 		37A65DC211DE45DC00EEC540 /* LegalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A65DC011DE45DC00EEC540 /* LegalController.xib */; };
 		37A65DC311DE45DC00EEC540 /* LegalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A65DBF11DE45DC00EEC540 /* LegalController.m */; };
@@ -310,6 +313,20 @@
 		1759F31A1093674E0008AA60 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WebViewController.xib; path = ../WebViewController.xib; sourceTree = "<group>"; };
 		1759F49C1096514B0008AA60 /* comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comments.png; sourceTree = "<group>"; };
 		1781DA43120382F000BA8D83 /* LJFriendsPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LJFriendsPageController.xib; sourceTree = "<group>"; };
+		1788E2E81212C89E00E55682 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = ADDITIONS_PROJECT; };
+		1788E2E91212C89E00E55682 /* NSStringMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringMD5.h; sourceTree = ADDITIONS_PROJECT; };
+		1788E2EA1212C89E00E55682 /* NSStringMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringMD5.m; sourceTree = ADDITIONS_PROJECT; };
+		1788E2EB1212C89E00E55682 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = ADDITIONS_PROJECT; };
+		1788E2EF1212C8C300E55682 /* HABannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HABannerViewController.h; sourceTree = HOUSEADS_PROJECT; };
+		1788E2F01212C8C300E55682 /* HABannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HABannerViewController.m; sourceTree = HOUSEADS_PROJECT; };
+		1788E2F11212C8C300E55682 /* HAInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAInfo.h; sourceTree = HOUSEADS_PROJECT; };
+		1788E2F21212C8C300E55682 /* HAInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAInfo.m; sourceTree = HOUSEADS_PROJECT; };
+		1788E2F31212C8C300E55682 /* HAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAManager.h; sourceTree = HOUSEADS_PROJECT; };
+		1788E2F41212C8C300E55682 /* HAManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAManager.m; sourceTree = HOUSEADS_PROJECT; };
+		1788E2F51212C8C300E55682 /* HAViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HAViewController.xib; sourceTree = HOUSEADS_PROJECT; };
+		1788E2F61212C8C300E55682 /* HAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAViewController.h; sourceTree = HOUSEADS_PROJECT; };
+		1788E2F71212C8C300E55682 /* HAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAViewController.m; sourceTree = HOUSEADS_PROJECT; };
+		1788E2F81212C8C300E55682 /* HouseAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAds.h; sourceTree = HOUSEADS_PROJECT; };
 		1789BE5F107A894B00964DA2 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
 		1789BE61107A89F200964DA2 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		1789BFDF107E73BA00964DA2 /* PostEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEditorController.h; sourceTree = "<group>"; };
@@ -387,7 +404,6 @@
 		17C3C665118F23A500BB9581 /* FilterOptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterOptionsController.m; sourceTree = "<group>"; };
 		17C3C6F3118F2DC100BB9581 /* FriendsPageFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsPageFilter.h; sourceTree = "<group>"; };
 		17C3C6F4118F2DC100BB9581 /* FriendsPageFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsPageFilter.m; sourceTree = "<group>"; };
-		17D629CA1210C479004F4201 /* HouseAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAds.h; sourceTree = "<group>"; };
 		17D77653113BC2F600F26322 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		17D8A5B21130BBDE0023FBEA /* LJFriendGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJFriendGroup.h; sourceTree = "<group>"; };
 		17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJFriendGroup.m; sourceTree = "<group>"; };
@@ -419,8 +435,6 @@
 		28A0AAE50D9B0CCF005BE974 /* Journaler_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journaler_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ../MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		37650B5711FDD23B00524AA9 /* HABannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HABannerViewController.h; sourceTree = "<group>"; };
-		37650B5811FDD23B00524AA9 /* HABannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HABannerViewController.m; sourceTree = "<group>"; };
 		377EFE0511E4C0AA009E9907 /* LJComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJComment.h; sourceTree = "<group>"; };
 		377EFE0611E4C0AA009E9907 /* LJComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJComment.m; sourceTree = "<group>"; };
 		3780DAED11E3607D003044B6 /* CommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentController.h; sourceTree = "<group>"; };
@@ -433,13 +447,6 @@
 		3783942F11F7414A0045E55A /* ALProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALProperty.m; sourceTree = APPNLYTICS_PROJECT; };
 		3783943011F7414A0045E55A /* ALReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALReporter.h; sourceTree = APPNLYTICS_PROJECT; };
 		3783943111F7414A0045E55A /* ALReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALReporter.m; sourceTree = APPNLYTICS_PROJECT; };
-		3788A8C811ECC563006E43AA /* HAInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAInfo.h; sourceTree = "<group>"; };
-		3788A8C911ECC563006E43AA /* HAInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAInfo.m; sourceTree = "<group>"; };
-		3788A8CA11ECC563006E43AA /* HAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAViewController.h; sourceTree = "<group>"; };
-		3788A8CB11ECC563006E43AA /* HAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAViewController.m; sourceTree = "<group>"; };
-		3788A8CC11ECC563006E43AA /* HAViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HAViewController.xib; sourceTree = "<group>"; };
-		3799D19A11E754370039226A /* HAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAManager.h; sourceTree = "<group>"; };
-		3799D19B11E754370039226A /* HAManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAManager.m; sourceTree = "<group>"; };
 		37A65DBE11DE45DC00EEC540 /* LegalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalController.h; sourceTree = "<group>"; };
 		37A65DBF11DE45DC00EEC540 /* LegalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalController.m; sourceTree = "<group>"; };
 		37A65DC011DE45DC00EEC540 /* LegalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LegalController.xib; sourceTree = "<group>"; };
@@ -495,7 +502,6 @@
 				17B29BE210FA824B00C5EFA4 /* Settings */,
 				173FBEF510C4751B00FD0652 /* Friends Page */,
 				173FBEF610C4755600FD0652 /* New post */,
-				3799D18B11E750D90039226A /* HouseAds */,
 				170FE4B8120175DA00D2F676 /* Errors */,
 				1D3623240D0F684500981E51 /* JournalerAppDelegate.h */,
 				1D3623250D0F684500981E51 /* JournalerAppDelegate.m */,
@@ -563,6 +569,8 @@
 			isa = PBXGroup;
 			children = (
 				3783941411F741280045E55A /* App'n'lytics */,
+				1788E2E41212C85E00E55682 /* HouseAds */,
+				1788E2E51212C87200E55682 /* ObjCAdditions */,
 				17B4C536108132D90005660E /* RegexKitLite */,
 				17B4C78C1083AC8D0005660E /* XMLRPC */,
 			);
@@ -643,6 +651,34 @@
 				17132AA6108B3017007F6C24 /* UserPicCache.m */,
 			);
 			name = UserPicCache;
+			sourceTree = "<group>";
+		};
+		1788E2E41212C85E00E55682 /* HouseAds */ = {
+			isa = PBXGroup;
+			children = (
+				1788E2F81212C8C300E55682 /* HouseAds.h */,
+				1788E2EF1212C8C300E55682 /* HABannerViewController.h */,
+				1788E2F01212C8C300E55682 /* HABannerViewController.m */,
+				1788E2F11212C8C300E55682 /* HAInfo.h */,
+				1788E2F21212C8C300E55682 /* HAInfo.m */,
+				1788E2F31212C8C300E55682 /* HAManager.h */,
+				1788E2F41212C8C300E55682 /* HAManager.m */,
+				1788E2F51212C8C300E55682 /* HAViewController.xib */,
+				1788E2F61212C8C300E55682 /* HAViewController.h */,
+				1788E2F71212C8C300E55682 /* HAViewController.m */,
+			);
+			name = HouseAds;
+			sourceTree = "<group>";
+		};
+		1788E2E51212C87200E55682 /* ObjCAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				1788E2E81212C89E00E55682 /* Macros.h */,
+				1788E2E91212C89E00E55682 /* NSStringMD5.h */,
+				1788E2EA1212C89E00E55682 /* NSStringMD5.m */,
+				1788E2EB1212C89E00E55682 /* SynthesizeSingleton.h */,
+			);
+			name = ObjCAdditions;
 			sourceTree = "<group>";
 		};
 		178BF32611823F5200BEEFAD /* Support */ = {
@@ -871,23 +907,6 @@
 			name = "App'n'lytics";
 			sourceTree = "<group>";
 		};
-		3799D18B11E750D90039226A /* HouseAds */ = {
-			isa = PBXGroup;
-			children = (
-				17D629CA1210C479004F4201 /* HouseAds.h */,
-				37650B5711FDD23B00524AA9 /* HABannerViewController.h */,
-				37650B5811FDD23B00524AA9 /* HABannerViewController.m */,
-				3799D19A11E754370039226A /* HAManager.h */,
-				3799D19B11E754370039226A /* HAManager.m */,
-				3788A8C811ECC563006E43AA /* HAInfo.h */,
-				3788A8C911ECC563006E43AA /* HAInfo.m */,
-				3788A8CA11ECC563006E43AA /* HAViewController.h */,
-				3788A8CB11ECC563006E43AA /* HAViewController.m */,
-				3788A8CC11ECC563006E43AA /* HAViewController.xib */,
-			);
-			name = HouseAds;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -987,10 +1006,10 @@
 				37A65DE511DE490D00EEC540 /* Legal.html in Resources */,
 				17EFF2A711EA7A74009D84ED /* up.png in Resources */,
 				17EFF2AA11EA7A78009D84ED /* down.png in Resources */,
-				3788A8CF11ECC563006E43AA /* HAViewController.xib in Resources */,
 				37AC5DD511FEBBBD006C9E5C /* TellAFriendController.xib in Resources */,
 				1781DA45120382F000BA8D83 /* LJFriendsPageController.xib in Resources */,
 				1781DAB2120393C900BA8D83 /* PostViewController.xib in Resources */,
+				1788E2FC1212C8C300E55682 /* HAViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,10 +1048,10 @@
 				37A65DE411DE490D00EEC540 /* Legal.html in Resources */,
 				17EFF2A811EA7A74009D84ED /* up.png in Resources */,
 				17EFF2AB11EA7A78009D84ED /* down.png in Resources */,
-				3788A8D211ECC563006E43AA /* HAViewController.xib in Resources */,
 				37AC5ECB11FED66A006C9E5C /* TellAFriendController.xib in Resources */,
 				1781DA44120382F000BA8D83 /* LJFriendsPageController.xib in Resources */,
 				1781DAB1120393C300BA8D83 /* PostViewController.xib in Resources */,
+				1788E3011212C8C300E55682 /* HAViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1103,22 +1122,23 @@
 				37A65DC311DE45DC00EEC540 /* LegalController.m in Sources */,
 				3780DAF011E3607D003044B6 /* CommentController.m in Sources */,
 				377EFE0711E4C0AA009E9907 /* LJComment.m in Sources */,
-				3799D19C11E754370039226A /* HAManager.m in Sources */,
 				1722426611EC142300BE4DE2 /* AccountsViewController.m in Sources */,
 				1722438D11ECA7DC00BE4DE2 /* TableViewController.m in Sources */,
-				3788A8CD11ECC563006E43AA /* HAInfo.m in Sources */,
-				3788A8CE11ECC563006E43AA /* HAViewController.m in Sources */,
 				3783943211F7414A0045E55A /* ALAppUse.m in Sources */,
 				3783943311F7414A0045E55A /* ALDeviceInfo.m in Sources */,
 				3783943411F7414A0045E55A /* ALProperty.m in Sources */,
 				3783943511F7414A0045E55A /* ALReporter.m in Sources */,
 				17E5A04411FA156B0083C840 /* StateInfo.m in Sources */,
-				37650B5911FDD23B00524AA9 /* HABannerViewController.m in Sources */,
 				17B4668E11FE2E9E00C8B852 /* LJManager.m in Sources */,
 				37AC5DD411FEBBBD006C9E5C /* TellAFriendController.m in Sources */,
 				170FE40F12001EA000D2F676 /* LJSession.m in Sources */,
 				170FE4BD120175ED00D2F676 /* ErrorMessage.m in Sources */,
 				37D4AB521210360700D20E9E /* LJUser.m in Sources */,
+				1788E2EC1212C89E00E55682 /* NSStringMD5.m in Sources */,
+				1788E2F91212C8C300E55682 /* HABannerViewController.m in Sources */,
+				1788E2FA1212C8C300E55682 /* HAInfo.m in Sources */,
+				1788E2FB1212C8C300E55682 /* HAManager.m in Sources */,
+				1788E2FD1212C8C300E55682 /* HAViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1187,10 +1207,7 @@
 				37A65DC111DE45DC00EEC540 /* LegalController.m in Sources */,
 				3780DAF211E3607D003044B6 /* CommentController.m in Sources */,
 				377EFE0811E4C0AA009E9907 /* LJComment.m in Sources */,
-				3799D19D11E754370039226A /* HAManager.m in Sources */,
 				1722438C11ECA7DC00BE4DE2 /* TableViewController.m in Sources */,
-				3788A8D011ECC563006E43AA /* HAInfo.m in Sources */,
-				3788A8D111ECC563006E43AA /* HAViewController.m in Sources */,
 				3783943611F7414A0045E55A /* ALAppUse.m in Sources */,
 				3783943711F7414A0045E55A /* ALDeviceInfo.m in Sources */,
 				3783943811F7414A0045E55A /* ALProperty.m in Sources */,
@@ -1201,6 +1218,11 @@
 				170FE41012001EA000D2F676 /* LJSession.m in Sources */,
 				170FE4BC120175ED00D2F676 /* ErrorMessage.m in Sources */,
 				37D4AB531210360700D20E9E /* LJUser.m in Sources */,
+				1788E2ED1212C89E00E55682 /* NSStringMD5.m in Sources */,
+				1788E2FE1212C8C300E55682 /* HABannerViewController.m in Sources */,
+				1788E2FF1212C8C300E55682 /* HAInfo.m in Sources */,
+				1788E3001212C8C300E55682 /* HAManager.m in Sources */,
+				1788E3021212C8C300E55682 /* HAViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

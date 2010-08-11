@@ -44,13 +44,7 @@
 	[accountsViewController restoreState];
 	
 	// reklāma
-	houseAdManager.rootViewController = navigationController;
-	[houseAdManager prepareAd];
-
-	// ja ir izveidots kaut viens konts, tiek parādīta reklāma 
-	if ([accountManager.accounts count] && houseAdManager.showAdOnStart) {
-		[houseAdManager showAd];
-	}
+	[shAdManager applicationDidFinishLaunchingUID:appUID rootViewController:navigationController showAd:[accountManager.accounts count]];
 	
 	[window addSubview:navigationController.view];
     [window makeKeyAndVisible];

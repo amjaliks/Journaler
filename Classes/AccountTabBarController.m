@@ -138,8 +138,8 @@
 
 - (void)showAd {
 	if (self.selectedIndex == 0) {
-		[bannerViewController addBannerToView:self.selectedViewController.view 
-								   resizeView:((FriendsPageController *)self.selectedViewController).mainView];
+		[shBannerViewController addBannerToView:self.selectedViewController.view 
+									 resizeView:((FriendsPageController *)self.selectedViewController).mainView];
 	}
 }
 #endif
