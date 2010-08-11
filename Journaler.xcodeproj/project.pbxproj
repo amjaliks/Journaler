@@ -1459,7 +1459,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
-				OTHER_LDFLAGS = "-licucore";
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					iAd,
+					"-licucore",
+				);
 				PRODUCT_NAME = Journaler;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B2E2F95D-74A9-443B-B67E-0EB1A5931FAB";
 				SDKROOT = iphoneos4.0;
