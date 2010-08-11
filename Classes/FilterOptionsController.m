@@ -70,8 +70,7 @@ enum {
 	previousFilter = [friendsPageController.friendsPageFilter copy];
 	
 	if (![friendsPageController.account.friends count]) {
-		NSError *error;
-		[client getFriends:friendsPageController.account error:&error];
+		[self refresh:nil];
 	}
 }
 
@@ -218,7 +217,7 @@ enum {
 	NSError *error;
 	
 	if ([client friendGroupsForAccount:friendsPageController.account error:&error]) {	
-		[client getFriends:friendsPageController.account error:&error];
+		[client friendsForAccount:friendsPageController.account error:&error];
 		[accountManager storeAccounts];
 		
 		[self.tableView reloadData];

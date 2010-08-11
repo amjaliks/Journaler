@@ -196,8 +196,6 @@
 		17D8A5B51130BBDE0023FBEA /* LJFriendGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */; };
 		17D8A5B8113126260023FBEA /* LJAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B7113126260023FBEA /* LJAPIClient.m */; };
 		17D8A5B9113126260023FBEA /* LJAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A5B7113126260023FBEA /* LJAPIClient.m */; };
-		17D8A6591131DF2E0023FBEA /* NSStringMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A6581131DF2E0023FBEA /* NSStringMD5.m */; };
-		17D8A65A1131DF2E0023FBEA /* NSStringMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A6581131DF2E0023FBEA /* NSStringMD5.m */; };
 		17D8A7371131F2ED0023FBEA /* LJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A7361131F2ED0023FBEA /* LJAccount.m */; };
 		17D8A7381131F2ED0023FBEA /* LJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A7361131F2ED0023FBEA /* LJAccount.m */; };
 		17D8A9891134B9D10023FBEA /* LJEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D8A9881134B9D10023FBEA /* LJEvent.m */; };
@@ -259,7 +257,6 @@
 		170708BA110448E50074F836 /* SettingsStartUpScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsStartUpScreenController.m; sourceTree = "<group>"; };
 		170FE40D12001EA000D2F676 /* LJSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJSession.h; sourceTree = "<group>"; };
 		170FE40E12001EA000D2F676 /* LJSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJSession.m; sourceTree = "<group>"; };
-		170FE4AF1200EBBE00D2F676 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		170FE4BA120175ED00D2F676 /* ErrorMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorMessage.h; sourceTree = "<group>"; };
 		170FE4BB120175ED00D2F676 /* ErrorMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorMessage.m; sourceTree = "<group>"; };
 		171323071085168F007F6C24 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
@@ -409,8 +406,6 @@
 		17D8A5B31130BBDE0023FBEA /* LJFriendGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJFriendGroup.m; sourceTree = "<group>"; };
 		17D8A5B6113126260023FBEA /* LJAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJAPIClient.h; sourceTree = "<group>"; };
 		17D8A5B7113126260023FBEA /* LJAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJAPIClient.m; sourceTree = "<group>"; };
-		17D8A6571131DF2E0023FBEA /* NSStringMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringMD5.h; sourceTree = "<group>"; };
-		17D8A6581131DF2E0023FBEA /* NSStringMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringMD5.m; sourceTree = "<group>"; };
 		17D8A7351131F2ED0023FBEA /* LJAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJAccount.h; sourceTree = "<group>"; };
 		17D8A7361131F2ED0023FBEA /* LJAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJAccount.m; sourceTree = "<group>"; };
 		17D8A9871134B9D10023FBEA /* LJEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJEvent.h; sourceTree = "<group>"; };
@@ -808,11 +803,8 @@
 		17D8A6561131DEF50023FBEA /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				170FE4AF1200EBBE00D2F676 /* SynthesizeSingleton.h */,
 				1741575111B6BADC008F7E48 /* NSFileManagerAdditions.h */,
 				1741575211B6BADC008F7E48 /* NSFileManagerAdditions.m */,
-				17D8A6571131DF2E0023FBEA /* NSStringMD5.h */,
-				17D8A6581131DF2E0023FBEA /* NSStringMD5.m */,
 				1745D398117E7D8C0016E616 /* NSSetAdditions.h */,
 				1745D399117E7D8C0016E616 /* NSSetAdditions.m */,
 				178BF6EB1183139A00BEEFAD /* UIViewAdditions.h */,
@@ -1100,7 +1092,6 @@
 				179F3FAE111645D60043E0D1 /* AccountManager.m in Sources */,
 				17D8A5B51130BBDE0023FBEA /* LJFriendGroup.m in Sources */,
 				17D8A5B9113126260023FBEA /* LJAPIClient.m in Sources */,
-				17D8A65A1131DF2E0023FBEA /* NSStringMD5.m in Sources */,
 				17D8A7381131F2ED0023FBEA /* LJAccount.m in Sources */,
 				17D8A98A1134B9D10023FBEA /* LJEvent.m in Sources */,
 				1745D2AA117E47320016E616 /* SearchableListController.m in Sources */,
@@ -1185,7 +1176,6 @@
 				179F3FAF111645D60043E0D1 /* AccountManager.m in Sources */,
 				17D8A5B41130BBDE0023FBEA /* LJFriendGroup.m in Sources */,
 				17D8A5B8113126260023FBEA /* LJAPIClient.m in Sources */,
-				17D8A6591131DF2E0023FBEA /* NSStringMD5.m in Sources */,
 				17D8A7371131F2ED0023FBEA /* LJAccount.m in Sources */,
 				17D8A9891134B9D10023FBEA /* LJEvent.m in Sources */,
 				1745D2A8117E47320016E616 /* SearchableListController.m in Sources */,

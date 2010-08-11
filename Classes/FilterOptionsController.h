@@ -23,8 +23,9 @@
 	FriendsPageFilter *previousFilter;
 }
 
--(id)initWithFriendsPageController:(FriendsPageController *)friendsPageController;
--(void)updateNumberOfSections;
--(void)done:(id)sender;
+- (id)initWithFriendsPageController:(FriendsPageController *)friendsPageController;
+- (void)updateNumberOfSections;
+- (void)done:(id)sender;
+- (void)refresh:(id)sender;
 
 @end

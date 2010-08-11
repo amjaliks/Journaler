@@ -167,6 +167,26 @@
 	return NO;
 }
 
+
+- (BOOL)friendsForAccount:(LJAccount *)account error:(NSError **)error {
+	@synchronized (account) {
+		NSString *challenge = [self challengeForAccount:account error:error];
+		
+		if (challenge) {
+			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getfriends" parameters:parameters error:error] retain];
+			[parameters release];
+			
+			if (result) {
+				account.friends = [self friendsFromArray:[result valueForKey:@"friends"] account:account];
+				[result release];
+				return YES;
+			}
+		}
+	}
+	return NO;
+}
+
 - (BOOL)userTagsForAccount:(LJAccount *)account error:(NSError **)error {
 	@synchronized (account) {
 		NSString *challenge = [self challengeForAccount:account error:error];
@@ -317,25 +337,6 @@
 	return NO;
 }
 
-- (BOOL)getFriends:(LJAccount *)account error:(NSError **)error {
-	@synchronized (account) {
-		NSString *challenge = [self challengeForAccount:account error:error];
-
-		if (challenge) {
-			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
-			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getfriends" parameters:parameters error:error] retain];
-			[parameters release];
-			
-			if (result) {
-				account.friends = [self friendsFromArray:[result valueForKey:@"friends"] account:account];
-				[result release];
-				return YES;
-			}
-		}
-	}
-	return NO;
-}
-
 #pragma mark -
 #pragma mark Tehniskās metodes
 
@@ -460,7 +461,6 @@
 		NSString *username = [dictionary valueForKey:@"username"];
 		NSUInteger groupMask = [[dictionary valueForKey:@"groupmask"] unsignedIntegerValue];
 		
-		NSLog(@"User: %@, mask: %d",username, groupMask);
 		NSMutableArray *friendGroups = [[NSMutableArray alloc] init];
 		
 		if (groupMask) {
