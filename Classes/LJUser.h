@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface LJUser : NSObject {
+@interface LJUser : NSObject<NSCoding> {
 	NSString *username;
 	NSMutableArray *group;
 }

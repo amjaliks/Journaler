@@ -30,4 +30,22 @@
 	[super dealloc];
 }
 
+
+#pragma mark NSCoding
+
+- (id)initWithCoder:(NSCoder *)coder {
+	if (self = [self init]) {
+		username = [[coder decodeObjectForKey:@"username"] retain];
+		group = [[coder decodeObjectForKey:@"group"] retain];
+	}
+	
+	return self;
+}
+
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeObject:username forKey:@"username"];
+	[coder encodeObject:group forKey:@"group"];
+}
+
 @end

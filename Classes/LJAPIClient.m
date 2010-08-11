@@ -465,17 +465,17 @@
 		
 		if (groupMask) {
 			for (int i = 0; i < [account.friendGroups count]; i++) {
+				groupMask = groupMask >> 1;
 				if ((groupMask % 2) == 1) {
 					[friendGroups addObject:[account.friendGroups objectAtIndex: i]];
 				}
-				groupMask = groupMask >> 1;
 			}
+		
+			LJUser *user = [[LJUser alloc] initWithUsername:username group:friendGroups];
+			
+			[friends addObject:user];
+			[user release];
 		}
-		
-		LJUser *user = [[LJUser alloc] initWithUsername:username group:friendGroups];
-		
-		[friends addObject:user];
-		[user release];
 	}
 	
 	return [friends autorelease];

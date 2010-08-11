@@ -217,7 +217,8 @@ enum {
 - (void)refresh:(id)sender {
 	NSError *error;
 	
-	if ([client friendGroupsForAccount:friendsPageController.account error:&error]) {		
+	if ([client friendGroupsForAccount:friendsPageController.account error:&error]) {	
+		[client getFriends:friendsPageController.account error:&error];
 		[accountManager storeAccounts];
 		
 		[self.tableView reloadData];

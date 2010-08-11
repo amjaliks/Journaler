@@ -131,7 +131,7 @@
 	} else if (filterType == FilterTypeGroup) {
 		for (Post* post in posts) {
 			for (LJUser *user in account.friends) {
-				if ([post.poster isEqualToString: user.username]) {
+				if ([post.poster isEqualToString: user.username] || [post.journal isEqualToString: user.username]) {
 					for (LJFriendGroup *userGroup in user.group) {
 						if ([group isEqualToString: userGroup.name]) {
 							[filteredPosts addObject:post];
