@@ -17,7 +17,7 @@
 - (id)initWithUsername:(NSString *)name group:(NSMutableArray *)groupArray {
 	if (self = [super init]) {
 		username = [name retain];
-		group = groupArray;
+		group = [groupArray copy];
 	}
 
 	return self;

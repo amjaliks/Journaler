@@ -174,10 +174,13 @@
 		
 		if (challenge) {
 			NSMutableDictionary *parameters = [self newParametersForAccount:account	challenge:challenge];
+			[parameters setValue:@"1" forKey:@"includegroups"];
+			
 			NSDictionary *result = [[self sendRequestToServer:account.server method:@"LJ.XMLRPC.getfriends" parameters:parameters error:error] retain];
 			[parameters release];
 			
 			if (result) {
+				account.friendGroups = [self friendGroupsFromArray:[result valueForKey:@"friendgroups"]];
 				account.friends = [self friendsFromArray:[result valueForKey:@"friends"] account:account];
 				[result release];
 				return YES;
@@ -458,24 +461,29 @@
 	NSMutableArray *friends = [[NSMutableArray alloc] initWithCapacity:[array count]];
 	
 	for (NSDictionary *dictionary in array) {
+		NSMutableArray *friendGroups = [[NSMutableArray alloc] init];
+
 		NSString *username = [dictionary valueForKey:@"username"];
 		NSUInteger groupMask = [[dictionary valueForKey:@"groupmask"] unsignedIntegerValue];
-		
-		NSMutableArray *friendGroups = [[NSMutableArray alloc] init];
 		
 		if (groupMask) {
 			for (int i = 0; i < [account.friendGroups count]; i++) {
 				groupMask = groupMask >> 1;
 				if ((groupMask % 2) == 1) {
-					[friendGroups addObject:[account.friendGroups objectAtIndex: i]];
+					for (LJFriendGroup *group in account.friendGroups) {
+						if (group.groupID == (i + 1)) {
+							[friendGroups addObject:group];
+						}
+					}
 				}
 			}
-		
-			LJUser *user = [[LJUser alloc] initWithUsername:username group:friendGroups];
-			
-			[friends addObject:user];
-			[user release];
 		}
+		
+		LJUser *user = [[LJUser alloc] initWithUsername:username group:friendGroups];
+		[friends addObject:user];
+
+		[user release];
+		[friendGroups release];
 	}
 	
 	return [friends autorelease];
