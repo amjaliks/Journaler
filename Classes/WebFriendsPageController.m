@@ -74,7 +74,7 @@
 - (void)loadFriendsPage {
 	NSString *URLString = [[NSString stringWithFormat:@"http://%@/~%@/friends/%@", 
 						self.account.server, self.account.user, 
-							friendsPageFilter.filterType == FilterTypeGroup ? friendsPageFilter.group : @""] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+							friendsPageFilter.filterType == FilterTypeGroup ? friendsPageFilter.group.name : @""] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URLString]]];
 }
 

@@ -461,25 +461,26 @@
 	NSMutableArray *friends = [[NSMutableArray alloc] initWithCapacity:[array count]];
 	
 	for (NSDictionary *dictionary in array) {
-		NSMutableArray *friendGroups = [[NSMutableArray alloc] init];
-
 		NSString *username = [dictionary valueForKey:@"username"];
 		NSUInteger groupMask = [[dictionary valueForKey:@"groupmask"] unsignedIntegerValue];
 		
+		NSMutableArray *friendGroups = [[NSMutableArray alloc] init];
+		
 		if (groupMask) {
-			for (int i = 0; i < [account.friendGroups count]; i++) {
+			for (int i = 1; i <= [account.friendGroups count]; i++) {
 				groupMask = groupMask >> 1;
-				if ((groupMask % 2) == 1) {
+				if (groupMask & 1) {
 					for (LJFriendGroup *group in account.friendGroups) {
-						if (group.groupID == (i + 1)) {
+						if (group.groupID == i) {
 							[friendGroups addObject:group];
+							break;
 						}
 					}
 				}
 			}
 		}
 		
-		LJUser *user = [[LJUser alloc] initWithUsername:username group:friendGroups];
+		LJUser *user = [[LJUser alloc] initWithUsername:username groups:friendGroups];
 		[friends addObject:user];
 
 		[user release];

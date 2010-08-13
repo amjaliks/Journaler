@@ -12,7 +12,7 @@
 
 #define kKeyFilterType @"filterType"
 #define kKeyJournalType @"journalType"
-#define kKeyGroup @"group"
+#define kKeyGroup @"ljgroup"
 
 @implementation FriendsPageFilter
 
@@ -47,7 +47,7 @@
 	} else if (self.filterType == FilterTypeJournalType) {
 		return self.journalType == [object journalType];
 	} else if (self.filterType == FilterTypeGroup) {
-		return [self.group isEqualToString:[object group]];
+		return self.group.groupID == [[object group] groupID];
 	}
 	
 	return NO;
@@ -65,7 +65,7 @@
 		filterType = [decoder decodeIntForKey:kKeyFilterType];
 		if (filterType == FilterTypeJournalType) {
 			journalType = [decoder decodeIntForKey:kKeyJournalType];
-		} else if (filterType == FilterTypeGroup) {
+		} else if (filterType == FilterTypeGroup) {			
 			group = [[decoder decodeObjectForKey:kKeyGroup] retain];
 		}
 	}
@@ -106,7 +106,7 @@
 			return NSLocalizedString(@"Syndicated feeds", nil);
 		}
 	} else if (filterType == FilterTypeGroup) {
-		return group;
+		return group.name;
 	}
 	
 	return nil;
@@ -132,8 +132,8 @@
 		for (Post* post in posts) {
 			for (LJUser *user in account.friends) {
 				if ([post.poster isEqualToString: user.username] || [post.journal isEqualToString: user.username]) {
-					for (LJFriendGroup *userGroup in user.group) {
-						if ([group isEqualToString: userGroup.name]) {
+					for (LJFriendGroup *userGroup in user.groups) {
+						if (group.groupID == userGroup.groupID) {
 							[filteredPosts addObject:post];
 						}
 					}
@@ -141,7 +141,7 @@
 			}
 		}
 	}
-	
+
 	return [filteredPosts autorelease];
 }
 

@@ -32,6 +32,10 @@
 	[super dealloc];
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+	return [self retain];	
+}
+
 
 #pragma mark NSCoding
 

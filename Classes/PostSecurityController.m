@@ -157,7 +157,7 @@
 - (void)refresh {
 	NSError *error;
 	
-	if ([client friendGroupsForAccount:postOptionsController.account error:&error]) {		
+	if ([client friendsForAccount:postOptionsController.account error:&error]) {		
 		[accountManager storeAccounts];
 		
 		[self.tableView reloadData];

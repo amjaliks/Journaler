@@ -25,12 +25,12 @@ typedef enum {
 @interface FriendsPageFilter : NSObject<NSCoding> {
 	FilterType filterType;
 	LJJournalType journalType;
-	NSString *group;
+	LJFriendGroup *group;
 }
 
 @property (nonatomic) FilterType filterType;
 @property (nonatomic) LJJournalType journalType;
-@property (nonatomic, retain) NSString *group;
+@property (nonatomic, retain) LJFriendGroup *group;
 @property (readonly) NSString *title;
 
 - (NSArray *)filterPosts:(NSArray *)posts account:(LJAccount *)account;

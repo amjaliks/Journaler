@@ -66,9 +66,9 @@ enum {
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
 	previousFilter = [friendsPageController.friendsPageFilter copy];
-	
+
 	if (![friendsPageController.account.friends count]) {
 		[self refresh:nil];
 	}
@@ -104,6 +104,7 @@ enum {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	[self refreshSelectedGroup];
 	return numberOfSections;
 }
 
@@ -153,7 +154,7 @@ enum {
 		LJFriendGroup *group = [friendsPageController.account.friendGroups objectAtIndex:indexPath.row];
 		
 		selected = friendsPageController.friendsPageFilter.filterType == FilterTypeGroup 
-				&& [friendsPageController.friendsPageFilter.group isEqualToString:group.name];
+				&& friendsPageController.friendsPageFilter.group.groupID == group.groupID;
 		
 		cell.textLabel.text = group.name;
 	}
@@ -180,7 +181,7 @@ enum {
 		friendsPageController.friendsPageFilter.journalType = indexPath.row;
 	} else if (indexPath.section == sectionGroup) {
 		friendsPageController.friendsPageFilter.filterType = FilterTypeGroup;
-		friendsPageController.friendsPageFilter.group = [[friendsPageController.account.friendGroups objectAtIndex:indexPath.row] name];
+		friendsPageController.friendsPageFilter.group = [friendsPageController.account.friendGroups objectAtIndex:indexPath.row];
 	}
 	
 	// uzliekam izvēlētai šūnai ķeksīti
@@ -216,9 +217,9 @@ enum {
 - (void)refresh:(id)sender {
 	NSError *error;
 	
-	if ([client friendGroupsForAccount:friendsPageController.account error:&error]) {	
-		[client friendsForAccount:friendsPageController.account error:&error];
+	if ([client friendsForAccount:friendsPageController.account error:&error]) {
 		[accountManager storeAccounts];
+		[self refreshSelectedGroup];
 		
 		[self.tableView reloadData];
 	} else {
@@ -226,6 +227,23 @@ enum {
 	}
 }
 
+- (void)refreshSelectedGroup {
+	if (friendsPageController.friendsPageFilter.filterType == FilterTypeGroup) {
+		BOOL selectedDeletedGroup = YES;
+		
+		for (LJFriendGroup *friendGroup in friendsPageController.account.friendGroups) {
+			if (friendGroup.groupID == friendsPageController.friendsPageFilter.group.groupID) {
+				selectedDeletedGroup = NO;
+				break;
+			}
+		}
+		
+		if (selectedDeletedGroup) {
+			friendsPageController.friendsPageFilter.filterType = FilterTypeAll;
+			[friendsPageController filterFriendsPage];
+		}
+	}
+}
 
 @end
 

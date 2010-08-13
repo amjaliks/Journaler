@@ -27,5 +27,6 @@
 - (void)updateNumberOfSections;
 - (void)done:(id)sender;
 - (void)refresh:(id)sender;
+- (void)refreshSelectedGroup;
 
 @end

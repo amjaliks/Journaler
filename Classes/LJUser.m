@@ -12,12 +12,12 @@
 @implementation LJUser
 
 @synthesize username;
-@synthesize group;
+@synthesize groups;
 
-- (id)initWithUsername:(NSString *)name group:(NSMutableArray *)groupArray {
+- (id)initWithUsername:(NSString *)name groups:(NSMutableArray *)groupArray {
 	if (self = [super init]) {
 		username = [name retain];
-		group = [groupArray copy];
+		groups = [groupArray copy];
 	}
 
 	return self;
@@ -25,7 +25,7 @@
 
 - (void)dealloc {
 	[username release];
-	[group release];
+	[groups release];
 	
 	[super dealloc];
 }
@@ -36,7 +36,7 @@
 - (id)initWithCoder:(NSCoder *)coder {
 	if (self = [self init]) {
 		username = [[coder decodeObjectForKey:@"username"] retain];
-		group = [[coder decodeObjectForKey:@"group"] retain];
+		groups = [[coder decodeObjectForKey:@"groups"] retain];
 	}
 	
 	return self;
@@ -45,7 +45,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder {
 	[coder encodeObject:username forKey:@"username"];
-	[coder encodeObject:group forKey:@"group"];
+	[coder encodeObject:groups forKey:@"groups"];
 }
 
 @end
