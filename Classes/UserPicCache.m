@@ -22,7 +22,7 @@
 - (id)init {
 	if (self = [super init]) {
 		dirPath = [[appCachesDir stringByAppendingPathComponent:@"images"] retain];
-		if ([[NSFileManager defaultManager] fileExistsAtPath:dirPath]) {
+		if (![[NSFileManager defaultManager] fileExistsAtPath:dirPath]) {
 			[[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:nil];
 		}
 		imageCache = [[NSMutableDictionary alloc] init];

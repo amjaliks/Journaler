@@ -90,8 +90,8 @@
 		
 		NSString *userPicHtml;
 		if (post.userPicURL && [post.userPicURL length]) {
-			[userPicCache imageForHash:post.userPicURLHash URLString:post.userPicURL wait:NO];
-			userPicHtml = [NSString stringWithFormat:@"<div class=\"userpic\"><img class=\"userpic\" src=\"file://%@\"/></div>", [userPicCache pathForCachedImage:post.userPicURLHash]];
+			[userPicCache imageForHash:post.userPicURLHash URLString:post.userPicURL wait:YES];
+			userPicHtml = [NSString stringWithFormat:@"<div class=\"userpic\"><img class=\"userpic\" src=\"%@\"/></div>", [[NSURL fileURLWithPath:[userPicCache pathForCachedImage:post.userPicURLHash]] absoluteString]];
 		} else {
 			userPicHtml = @"";
 		}

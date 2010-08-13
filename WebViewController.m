@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	[self updateToolbarButtons:NO];
+	
 	activityIndicatorItem.customView = activityIndicatorView;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managerDidCreateSession:) name:LJManagerDidCreateSessionNotification object:ljManager];
@@ -63,20 +65,28 @@
 #pragma mark UIWebView delegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)wv {
-	[networkActivityIndicator hide];
-	
-	webView.alpha = 1.0f;
-	self.navigationItem.rightBarButtonItem = nil;
-	self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-	[self updateToolbarButtons:NO];
+	loading--;
+	if (!loading) {
+		[networkActivityIndicator hide];
+
+		webView.alpha = 1.0f;
+		self.navigationItem.rightBarButtonItem = nil;
+		self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+		[self updateToolbarButtons:NO];
+	}
+}
+
+- (void)webView:(UIWebView *)wv didFailLoadWithError:(NSError *)error {
+	[self webViewDidFinishLoad:wv];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)wv {
-	self.navigationItem.rightBarButtonItem = activityIndicatorItem;
-	self.navigationItem.title = NSLocalizedString(@"Loading...", nil);
-	[self updateToolbarButtons:YES];
-
-	[networkActivityIndicator show];
+	if (!loading) {
+		self.navigationItem.rightBarButtonItem = activityIndicatorItem;
+		[self updateToolbarButtons:YES];		
+		[networkActivityIndicator show];
+	}
+	loading++;
 }
 
 - (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -105,10 +115,10 @@
 	[ljManager createSessionForAccount:account];
 }
 
-- (void)updateToolbarButtons:(BOOL)loading {
+- (void)updateToolbarButtons:(BOOL)stop {
 	backButton.enabled = webView.canGoBack;
 	forwardButton.enabled = webView.canGoForward;
-	self.toolbarItems = [NSArray arrayWithObjects:backButton, flexSpace1, forwardButton, flexSpace2, flexSpace3, loading ? stopButton : reloadButton, nil];
+	self.toolbarItems = [NSArray arrayWithObjects:backButton, flexSpace1, forwardButton, flexSpace2, flexSpace3, stop ? stopButton : reloadButton, nil];
 }
 
 @end

@@ -23,6 +23,8 @@
 	IBOutlet UIBarItem *reloadButton;
 	IBOutlet UIBarItem *stopButton;
 	
+	NSInteger loading;
+	
 	NSURL *lastURL;
 	LJAccount *lastAccount;
 }

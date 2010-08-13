@@ -25,6 +25,7 @@
 @synthesize friendsPageController;
 
 - (void)viewDidLoad {
+	self.delegate = self;
 	webFriendsPageControllerCache = [[NSMutableDictionary alloc] init];
 }
 
