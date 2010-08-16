@@ -1243,8 +1243,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
-				OTHER_LDFLAGS = "-licucore";
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					iAd,
+					"-licucore",
+				);
 				PRODUCT_NAME = Journaler;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5D403493-7C8A-44E1-90AA-F3F64974853C";
 			};
 			name = "Distribution (App Store)";
 		};
@@ -1268,7 +1273,7 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = JournalerLite;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5EE54C79-D994-4C7E-8CC5-9E9EF523EB78";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "78A2A399-C023-4AB9-AAC7-FD67211C159D";
 			};
 			name = "Distribution (App Store)";
 		};
@@ -1371,8 +1376,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
-				OTHER_LDFLAGS = "-licucore";
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					iAd,
+					"-licucore",
+				);
 				PRODUCT_NAME = Journaler;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7549FAA8-B58F-489D-80AB-406946F78327";
 			};
 			name = "Distribution (Ad Hoc)";
 		};
@@ -1404,7 +1414,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
-				OTHER_LDFLAGS = "-licucore";
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					iAd,
+					"-licucore",
+				);
 				PRODUCT_NAME = Journaler;
 				SDKROOT = iphoneos4.0;
 			};
@@ -1468,7 +1482,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
-				OTHER_LDFLAGS = "-licucore";
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					iAd,
+					"-licucore",
+				);
 				PRODUCT_NAME = Journaler;
 			};
 			name = Release;

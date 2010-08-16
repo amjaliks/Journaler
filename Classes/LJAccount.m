@@ -146,8 +146,11 @@
 
 + (ServerFeature)supportedFeaturesForServer:(NSString *)server {
 	if ([@"livejournal.com" isEqualToString:server]) {
-//		return ServerFeatureAll ^ ServerFeatureFriendsPageFilterByGroup;
+#ifndef LITEVERSION
 		return ServerFeatureAll;
+#else
+		return ServerFeatureAll ^ ServerFeatureFriendsPageFilterByGroup;
+#endif
 	} else if ([@"klab.lv" isEqualToString:server]) {
 		return ServerFeatureFriendsPageFilterByGroup;
 	} else if ([@"insanejournal.com" isEqualToString:server]) {
