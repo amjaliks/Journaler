@@ -100,7 +100,7 @@
 			if ([MFMailComposeViewController canSendMail]) {
 				[self sendMail];
 			} else {
-				[[[[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"Your device is not configured to send e-mail.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] autorelease] show];
+				showErrorMessage(NSLocalizedString(@"No email account", nil), NSLocalizedString(@"Please setup email account in Settings", nil));	
 				[tableView deselectRowAtIndexPath:indexPath animated:YES];
 			}
 		} else if (indexPath.row == 2) {
@@ -156,9 +156,9 @@
 -(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
 	[self dismissModalViewControllerAnimated:YES];
 	if (result == MFMailComposeResultSent) {
-		[[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success!", nil) message:NSLocalizedString(@"Mail has been sent", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] autorelease] show];
+		showErrorMessage(NSLocalizedString(@"Thank you!", nil), NSLocalizedString(@"Mail has been sent", nil));	
 	} else if (result == MFMailComposeResultFailed) {
-		showErrorMessage(NSLocalizedString(@"Sending error", nil), decodeError([error code]));	
+		showErrorMessage(NSLocalizedString(@"Sending error", nil), NSLocalizedString(@"Something has gone wrong, please try again!", nil));	
 	}
 }
 
