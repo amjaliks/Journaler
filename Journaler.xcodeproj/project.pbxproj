@@ -1383,6 +1383,7 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = Journaler;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7549FAA8-B58F-489D-80AB-406946F78327";
 			};
 			name = "Distribution (Ad Hoc)";
 		};
