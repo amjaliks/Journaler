@@ -154,7 +154,7 @@
 	} else if ([@"klab.lv" isEqualToString:server]) {
 		return ServerFeatureFriendsPageFilterByGroup;
 	} else if ([@"insanejournal.com" isEqualToString:server]) {
-		return ServerFeatureAll ^ ServerFeatureFriendsPageFilterByJournalType;
+		return ServerFeatureAll ^ ServerFeatureFriendsPageFilterByJournalType ^ ServerFeatureFriendsPage;
 	} else {
 #ifdef DEBUG
 		return ServerFeatureAll;

@@ -60,7 +60,6 @@
     [super viewWillDisappear:animated];
 	
 	postOptionsController.tags = selectedTags;
-	[selectedTags release];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
