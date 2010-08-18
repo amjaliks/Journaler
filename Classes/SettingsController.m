@@ -10,7 +10,7 @@
 #import "Macros.h"
 #import "Settings.h"
 #import "SettingsStartUpScreenController.h"
-#import "TellAFriendController.h"
+#import "ErrorHandler.h"
 
 #define kStringTable @"AppSettings"
 
@@ -76,7 +76,7 @@
 				cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
 			} else if (indexPath.row == 1) {
 				cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+				cell.accessoryType = UITableViewCellAccessoryNone;
 				
 				cell.textLabel.text = NSLocalizedString(@"Tell a friend", nil);
 				cell.detailTextLabel.text = nil;
@@ -97,7 +97,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 1) {
 		if (indexPath.row == 1) {
-			[self.navigationController pushViewController:tellAFriendController animated:YES];
+			if ([MFMailComposeViewController canSendMail]) {
+				[self sendMail];
+			} else {
+				[[[[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"Your device is not configured to send e-mail.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] autorelease] show];
+				[tableView deselectRowAtIndexPath:indexPath animated:YES];
+			}
 		} else if (indexPath.row == 2) {
 			[self.navigationController pushViewController:legalController animated:YES];
 		}
@@ -131,6 +136,32 @@
 	}
 	return nil;
 }
+
+#pragma mark Mail sending
+
+- (void)sendMail {
+	NSString *device = [UIDevice currentDevice].model;
+	NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Hi!\n\nI found a really cool LiveJournal client for my %@. I think you may interested to check it out as well: http://itunes.com/app/journaler", nil), device];
+	
+	MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+	mailController.mailComposeDelegate = self;
+
+	[mailController setSubject:NSLocalizedString(@"Check out Journaler app!", nil)];
+	[mailController setMessageBody:message isHTML:NO];
+
+	[self presentModalViewController:mailController animated:YES];
+	[mailController release];
+}
+
+-(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+	[self dismissModalViewControllerAnimated:YES];
+	if (result == MFMailComposeResultSent) {
+		[[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success!", nil) message:NSLocalizedString(@"Mail has been sent", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] autorelease] show];
+	} else if (result == MFMailComposeResultFailed) {
+		showErrorMessage(NSLocalizedString(@"Sending error", nil), decodeError([error code]));	
+	}
+}
+
 
 @end
 

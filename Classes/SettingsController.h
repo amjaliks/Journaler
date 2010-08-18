@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsController : UITableViewController {
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
+@interface SettingsController : UITableViewController<MFMailComposeViewControllerDelegate> {
 	IBOutlet UITableViewCell *refreshOnStartCell;
 	IBOutlet UIViewController *legalController;
 	IBOutlet UITableViewController *tellAFriendController;
@@ -16,6 +19,8 @@
 
 - (IBAction)refreshOnStartChanged;
 - (void)done;
+
+- (void)sendMail;
 
 + (NSString *)decodeStartUpScreenValue:(NSString *)value;
 
