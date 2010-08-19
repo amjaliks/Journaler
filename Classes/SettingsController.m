@@ -100,7 +100,7 @@
 			if ([MFMailComposeViewController canSendMail]) {
 				[self sendMail];
 			} else {
-				[[ErrorHandler sharedErrorHandler] showErrorMessage:NSLocalizedString(@"No email account", nil) title:NSLocalizedString(@"Please setup email account in Settings", nil)];
+				[[ErrorHandler sharedErrorHandler] showErrorMessage:NSLocalizedString(@"Please setup email account in Settings", nil) title:NSLocalizedString(@"No email account", nil)];
 				[tableView deselectRowAtIndexPath:indexPath animated:YES];
 			}
 		} else if (indexPath.row == 2) {
@@ -110,7 +110,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return section == 0 ? NSLocalizedStringFromTable(@"General", @"General", kStringsTable) : NSLocalizedStringFromTable(@"About", @"About", kStringsTable);
+	return section == 0 ? NSLocalizedString(@"General", nil) : NSLocalizedString(@"About", nil);
 }
 
 #pragma mark Iestatījum izmaiņu apstrāde
@@ -156,9 +156,9 @@
 -(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
 	[self dismissModalViewControllerAnimated:YES];
 	if (result == MFMailComposeResultSent) {
-		[[ErrorHandler sharedErrorHandler] showErrorMessage:NSLocalizedString(@"Thank you!", nil) title:NSLocalizedString(@"Mail has been sent", nil)];
+		[[ErrorHandler sharedErrorHandler] showErrorMessage:NSLocalizedString(@"Mail has been sent", nil) title:NSLocalizedString(@"Thank you!", nil)];
 	} else if (result == MFMailComposeResultFailed) {
-		[[ErrorHandler sharedErrorHandler] showErrorMessage:NSLocalizedString(@"Sending error", nil) title:NSLocalizedString(@"Something has gone wrong, please try again!", nil)];
+		[[ErrorHandler sharedErrorHandler] showErrorMessage:NSLocalizedString(@"Something has gone wrong, please try again!", nil) title:NSLocalizedString(@"Sending error", nil)];
 	}
 }
 
