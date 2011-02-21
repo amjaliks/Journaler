@@ -9,7 +9,7 @@
 #import "UserPicCache.h"
 #import "Macros.h"
 #import "NSStringAdditions.h"
-#import "NSStringMD5.h"
+#import "NSString+MD5.h"
 #import "LiveJournal.h"
 #import "JournalerAppDelegate.h"
 #import "Model.h"

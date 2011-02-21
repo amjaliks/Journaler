@@ -9,7 +9,7 @@
 #import "Post.h"
 #import "LiveJournal.h"
 #import "RegexKitLite.h"
-#import "NSStringMD5.h"
+#import "NSString+MD5.h"
 #import "NSStringLJ.h"
 
 @implementation Post 

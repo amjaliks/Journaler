@@ -116,8 +116,6 @@
 		1781DA45120382F000BA8D83 /* LJFriendsPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1781DA43120382F000BA8D83 /* LJFriendsPageController.xib */; };
 		1781DAB1120393C300BA8D83 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171323091085168F007F6C24 /* PostViewController.xib */; };
 		1781DAB2120393C900BA8D83 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171323091085168F007F6C24 /* PostViewController.xib */; };
-		1788E2EC1212C89E00E55682 /* NSStringMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2EA1212C89E00E55682 /* NSStringMD5.m */; };
-		1788E2ED1212C89E00E55682 /* NSStringMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2EA1212C89E00E55682 /* NSStringMD5.m */; };
 		1788E2F91212C8C300E55682 /* HABannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2F01212C8C300E55682 /* HABannerViewController.m */; };
 		1788E2FA1212C8C300E55682 /* HAInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2F21212C8C300E55682 /* HAInfo.m */; };
 		1788E2FB1212C8C300E55682 /* HAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788E2F41212C8C300E55682 /* HAManager.m */; };
@@ -155,6 +153,10 @@
 		17B29BE710FA826700C5EFA4 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B29BE510FA826700C5EFA4 /* SettingsController.xib */; };
 		17B29BE810FA826700C5EFA4 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B29BE410FA826700C5EFA4 /* SettingsController.m */; };
 		17B29BE910FA826700C5EFA4 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B29BE510FA826700C5EFA4 /* SettingsController.xib */; };
+		17B4321213131905005CAC17 /* ha-closead.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B4320F13131905005CAC17 /* ha-closead.png */; };
+		17B4321313131905005CAC17 /* HABannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4321113131905005CAC17 /* HABannerView.m */; };
+		17B432161313190A005CAC17 /* HABannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4321113131905005CAC17 /* HABannerView.m */; };
+		17B432171313190B005CAC17 /* ha-closead.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B4320F13131905005CAC17 /* ha-closead.png */; };
 		17B462E410BA2647004D0E0F /* PostPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E310BA2647004D0E0F /* PostPreviewCell.m */; };
 		17B462E510BA2647004D0E0F /* PostPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E310BA2647004D0E0F /* PostPreviewCell.m */; };
 		17B462E810BA2659004D0E0F /* PostPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E710BA2659004D0E0F /* PostPreviewView.m */; };
@@ -244,6 +246,30 @@
 		37D4AB531210360700D20E9E /* LJUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D4AB511210360700D20E9E /* LJUser.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		17B431D61313169C005CAC17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17B431CC1313169C005CAC17 /* ObjCAdditions-iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libobjcadd.a */;
+			remoteInfo = iOS;
+		};
+		17B431D81313169C005CAC17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17B431CC1313169C005CAC17 /* ObjCAdditions-iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17AC0DFD129F225C0010FE39 /* iOSTests.octest */;
+			remoteInfo = iOSTests;
+		};
+		17B431DE131316C9005CAC17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17B431CC1313169C005CAC17 /* ObjCAdditions-iOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D /* iOS */;
+			remoteInfo = iOS;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1706433D11DD301E0076EB6D /* NSStringLJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringLJ.h; sourceTree = "<group>"; };
 		1706433E11DD301E0076EB6D /* NSStringLJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringLJ.m; sourceTree = "<group>"; };
@@ -310,10 +336,6 @@
 		1759F31A1093674E0008AA60 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WebViewController.xib; path = ../WebViewController.xib; sourceTree = "<group>"; };
 		1759F49C1096514B0008AA60 /* comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comments.png; sourceTree = "<group>"; };
 		1781DA43120382F000BA8D83 /* LJFriendsPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LJFriendsPageController.xib; sourceTree = "<group>"; };
-		1788E2E81212C89E00E55682 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = ADDITIONS_PROJECT; };
-		1788E2E91212C89E00E55682 /* NSStringMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringMD5.h; sourceTree = ADDITIONS_PROJECT; };
-		1788E2EA1212C89E00E55682 /* NSStringMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringMD5.m; sourceTree = ADDITIONS_PROJECT; };
-		1788E2EB1212C89E00E55682 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = ADDITIONS_PROJECT; };
 		1788E2EF1212C8C300E55682 /* HABannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HABannerViewController.h; sourceTree = HOUSEADS_PROJECT; };
 		1788E2F01212C8C300E55682 /* HABannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HABannerViewController.m; sourceTree = HOUSEADS_PROJECT; };
 		1788E2F11212C8C300E55682 /* HAInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAInfo.h; sourceTree = HOUSEADS_PROJECT; };
@@ -353,6 +375,10 @@
 		17B29BE310FA826700C5EFA4 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		17B29BE410FA826700C5EFA4 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		17B29BE510FA826700C5EFA4 /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsController.xib; sourceTree = "<group>"; };
+		17B431CC1313169C005CAC17 /* ObjCAdditions-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "ObjCAdditions-iOS.xcodeproj"; path = "Projects/iOS/ObjCAdditions-iOS.xcodeproj"; sourceTree = ADDITIONS_PROJECT; };
+		17B4320F13131905005CAC17 /* ha-closead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ha-closead.png"; path = "../HouseAds/ha-closead.png"; sourceTree = ADDITIONS_PROJECT; };
+		17B4321013131905005CAC17 /* HABannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HABannerView.h; path = ../HouseAds/HABannerView.h; sourceTree = ADDITIONS_PROJECT; };
+		17B4321113131905005CAC17 /* HABannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HABannerView.m; path = ../HouseAds/HABannerView.m; sourceTree = ADDITIONS_PROJECT; };
 		17B462E210BA2647004D0E0F /* PostPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPreviewCell.h; sourceTree = "<group>"; };
 		17B462E310BA2647004D0E0F /* PostPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPreviewCell.m; sourceTree = "<group>"; };
 		17B462E610BA2659004D0E0F /* PostPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPreviewView.h; sourceTree = "<group>"; };
@@ -565,7 +591,6 @@
 			children = (
 				3783941411F741280045E55A /* App'n'lytics */,
 				1788E2E41212C85E00E55682 /* HouseAds */,
-				1788E2E51212C87200E55682 /* ObjCAdditions */,
 				17B4C536108132D90005660E /* RegexKitLite */,
 				17B4C78C1083AC8D0005660E /* XMLRPC */,
 			);
@@ -651,6 +676,9 @@
 		1788E2E41212C85E00E55682 /* HouseAds */ = {
 			isa = PBXGroup;
 			children = (
+				17B4320F13131905005CAC17 /* ha-closead.png */,
+				17B4321013131905005CAC17 /* HABannerView.h */,
+				17B4321113131905005CAC17 /* HABannerView.m */,
 				1788E2F81212C8C300E55682 /* HouseAds.h */,
 				1788E2EF1212C8C300E55682 /* HABannerViewController.h */,
 				1788E2F01212C8C300E55682 /* HABannerViewController.m */,
@@ -663,17 +691,6 @@
 				1788E2F71212C8C300E55682 /* HAViewController.m */,
 			);
 			name = HouseAds;
-			sourceTree = "<group>";
-		};
-		1788E2E51212C87200E55682 /* ObjCAdditions */ = {
-			isa = PBXGroup;
-			children = (
-				1788E2E81212C89E00E55682 /* Macros.h */,
-				1788E2E91212C89E00E55682 /* NSStringMD5.h */,
-				1788E2EA1212C89E00E55682 /* NSStringMD5.m */,
-				1788E2EB1212C89E00E55682 /* SynthesizeSingleton.h */,
-			);
-			name = ObjCAdditions;
 			sourceTree = "<group>";
 		};
 		178BF32611823F5200BEEFAD /* Support */ = {
@@ -719,6 +736,15 @@
 				37AC5DD311FEBBBD006C9E5C /* TellAFriendController.xib */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		17B431D21313169C005CAC17 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17B431D71313169C005CAC17 /* libobjcadd.a */,
+				17B431D91313169C005CAC17 /* iOSTests.octest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		17B4C536108132D90005660E /* RegexKitLite */ = {
@@ -838,6 +864,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				17B431CC1313169C005CAC17 /* ObjCAdditions-iOS.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -930,6 +957,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				17B431DF131316C9005CAC17 /* PBXTargetDependency */,
 			);
 			name = Journaler;
 			productName = Journaler;
@@ -954,6 +982,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 17B431D21313169C005CAC17 /* Products */;
+					ProjectRef = 17B431CC1313169C005CAC17 /* ObjCAdditions-iOS.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Journaler */,
@@ -961,6 +995,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		17B431D71313169C005CAC17 /* libobjcadd.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libobjcadd.a;
+			remoteRef = 17B431D61313169C005CAC17 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17B431D91313169C005CAC17 /* iOSTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = iOSTests.octest;
+			remoteRef = 17B431D81313169C005CAC17 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1750B14A1097B3F900C1D2A8 /* Resources */ = {
@@ -1003,6 +1054,7 @@
 				1781DA45120382F000BA8D83 /* LJFriendsPageController.xib in Resources */,
 				1781DAB2120393C900BA8D83 /* PostViewController.xib in Resources */,
 				1788E2FC1212C8C300E55682 /* HAViewController.xib in Resources */,
+				17B432171313190B005CAC17 /* ha-closead.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1045,6 +1097,7 @@
 				1781DA44120382F000BA8D83 /* LJFriendsPageController.xib in Resources */,
 				1781DAB1120393C300BA8D83 /* PostViewController.xib in Resources */,
 				1788E3011212C8C300E55682 /* HAViewController.xib in Resources */,
+				17B4321213131905005CAC17 /* ha-closead.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1126,11 +1179,11 @@
 				170FE40F12001EA000D2F676 /* LJSession.m in Sources */,
 				170FE4BD120175ED00D2F676 /* ErrorMessage.m in Sources */,
 				37D4AB521210360700D20E9E /* LJUser.m in Sources */,
-				1788E2EC1212C89E00E55682 /* NSStringMD5.m in Sources */,
 				1788E2F91212C8C300E55682 /* HABannerViewController.m in Sources */,
 				1788E2FA1212C8C300E55682 /* HAInfo.m in Sources */,
 				1788E2FB1212C8C300E55682 /* HAManager.m in Sources */,
 				1788E2FD1212C8C300E55682 /* HAViewController.m in Sources */,
+				17B432161313190A005CAC17 /* HABannerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1209,15 +1262,23 @@
 				170FE41012001EA000D2F676 /* LJSession.m in Sources */,
 				170FE4BC120175ED00D2F676 /* ErrorMessage.m in Sources */,
 				37D4AB531210360700D20E9E /* LJUser.m in Sources */,
-				1788E2ED1212C89E00E55682 /* NSStringMD5.m in Sources */,
 				1788E2FE1212C8C300E55682 /* HABannerViewController.m in Sources */,
 				1788E2FF1212C8C300E55682 /* HAInfo.m in Sources */,
 				1788E3001212C8C300E55682 /* HAManager.m in Sources */,
 				1788E3021212C8C300E55682 /* HAViewController.m in Sources */,
+				17B4321313131905005CAC17 /* HABannerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		17B431DF131316C9005CAC17 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOS;
+			targetProxy = 17B431DE131316C9005CAC17 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		174D89CF109A418D0055AA82 /* Distribution (App Store) */ = {
@@ -1233,6 +1294,7 @@
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67BC3A29-F724-45F9-974A-33D04C375EC2";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
 			};
 			name = "Distribution (App Store)";
 		};
@@ -1367,6 +1429,7 @@
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "060BFBEA-B685-42C5-A1DB-50C907384D46";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
 			};
 			name = "Distribution (Ad Hoc)";
 		};
@@ -1402,6 +1465,7 @@
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.0;
+				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
 			};
 			name = "Debug (3.0)";
 		};
@@ -1505,6 +1569,7 @@
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
 			};
 			name = Debug;
 		};
@@ -1519,6 +1584,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
+				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
 			};
 			name = Release;
 		};

@@ -15,7 +15,7 @@
 #import "XMLRPCResponse.h"
 
 #import "NetworkActivityIndicator.h"
-#import "NSStringMD5.h"
+#import "NSString+MD5.h"
 #import "SynthesizeSingleton.h"
 
 
