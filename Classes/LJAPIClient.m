@@ -71,7 +71,7 @@
 				
 				for (NSDictionary *moodDict in [result valueForKey:@"moods"]) {
 					NSNumber *ID = [moodDict objectForKey:@"id"];
-					NSString *name = [moodDict objectForKey:@"name"];
+					NSString *name = [self readStringValue:[moodDict objectForKey:@"name"]];
 					
 					LJMood *mood = [[LJMood alloc] initWithID:[ID integerValue] mood:name];
 					[moods addObject:mood];
@@ -417,7 +417,7 @@
 
 - (NSMutableDictionary *)newParametersForAccount:(LJAccount *)account challenge:(NSString *)challenge {
 	NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-	
+
 	[parameters setValue:account.user forKey:@"username"];
 	[parameters setValue:@"challenge" forKey:@"auth_method"];
 	[parameters setValue:challenge forKey:@"auth_challenge"];
