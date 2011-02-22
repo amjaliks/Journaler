@@ -19,10 +19,10 @@
 		NSMutableSet *set = [[NSMutableSet alloc] initWithSet:postOptionsController.account.moods];
 		
 		// noskaņojums no raksta
-		if ([postOptionsController.mood length]) {
-			LJMood *mood = [set member:[[[LJMood alloc] initWithMood:postOptionsController.mood] autorelease]];
+		if ([postOptionsController.accountStateInfo.newPostMood length]) {
+			LJMood *mood = [set member:[[[LJMood alloc] initWithMood:postOptionsController.accountStateInfo.newPostMood] autorelease]];
 			if (!mood) {
-				mood = [[LJMood alloc] initWithID:0 mood:postOptionsController.mood];
+				mood = [[LJMood alloc] initWithID:0 mood:postOptionsController.accountStateInfo.newPostMood];
 				[set addObject:mood];
 				[mood release];
 			}
@@ -51,13 +51,13 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
-	selectedMood = [[LJMood alloc] initWithID:0 mood:postOptionsController.mood];
+	selectedMood = [[LJMood alloc] initWithID:0 mood:postOptionsController.accountStateInfo.newPostMood];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	
-	postOptionsController.mood = selectedMood.mood;
+	postOptionsController.accountStateInfo.newPostMood = selectedMood.mood;
 	[selectedMood release];
 }
 

@@ -16,7 +16,8 @@
 @implementation PicKeywordListController
 
 - (id)initWithPostOptionsController:(PostOptionsController *)newPostOptionsController {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+	self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self) {
 		postOptionsController = newPostOptionsController;
     }
     return self;
@@ -73,7 +74,7 @@
     if (indexPath.section == 0) {
 		cell.textLabel.text = NSLocalizedString(@"Default", nil);
 		
-		if (!postOptionsController.picKeyword) {
+		if (!postOptionsController.accountStateInfo.newPostPicKeyword) {
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 			selectedCell = cell;
 		} else {
@@ -82,7 +83,7 @@
 	} else {
 		cell.textLabel.text = [postOptionsController.account.picKeywords objectAtIndex:indexPath.row];
 		
-		if ([cell.textLabel.text isEqualToString:postOptionsController.picKeyword]) {
+		if ([cell.textLabel.text isEqualToString:postOptionsController.accountStateInfo.newPostPicKeyword]) {
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 			selectedCell = cell;
 		} else {
@@ -99,11 +100,9 @@
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	
 	if (indexPath.section == 0) {
-		postOptionsController.picKeyword = nil;
-		//[accountManager setValue:nil forAccount:postOptionsController.account.title forKey:kStateInfoNewPostPicKeyword];
+		postOptionsController.accountStateInfo.newPostPicKeyword = nil;
 	} else {
-		postOptionsController.picKeyword = cell.textLabel.text;
-		//[accountManager setValue:cell.textLabel.text forAccount:postOptionsController.account.title forKey:kStateInfoNewPostPicKeyword];
+		postOptionsController.accountStateInfo.newPostPicKeyword = cell.textLabel.text;
 	}
 	
 	selectedCell.accessoryType = UITableViewCellAccessoryNone;
@@ -124,8 +123,8 @@
 	if ([client loginForAccount:postOptionsController.account error:&error]) {
 		[accountManager storeAccounts];
 		
-		if (postOptionsController.picKeyword && ![postOptionsController.account.tags containsObject:postOptionsController.picKeyword]) {
-			postOptionsController.picKeyword = nil;
+		if (postOptionsController.accountStateInfo.newPostPicKeyword && ![postOptionsController.account.tags containsObject:postOptionsController.accountStateInfo.newPostPicKeyword]) {
+			postOptionsController.accountStateInfo.newPostPicKeyword = nil;
 		}
 		
 		[self.tableView reloadData];	

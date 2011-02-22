@@ -13,24 +13,15 @@
 
 #import "LiveJournal.h"
 #import "Common.h"
+#import "AccountProvider.h"
 
 @class LJAccount;
 @protocol PostOptionsControllerDataSource;
 
-@interface PostOptionsController : UITableViewController { //<CLLocationManagerDelegate, MKReverseGeocoderDelegate> {
-	LJAccount *account;
+@interface PostOptionsController : UITableViewController <AccountProvider> { //<CLLocationManagerDelegate, MKReverseGeocoderDelegate> {
+	id<AccountProvider> accountProvider;
 	
 	// vērtības
-	BOOL promote;
-	NSString *journal;
-	LJEventSecurityLevel security;
-	NSMutableArray *selectedFriendGroups;
-	NSString *picKeyword;
-	NSSet *tags;
-	NSString *mood;
-	NSString *music;
-	NSString *location;
-	
 	NSString *currentSong;
 	MPMusicPlayerController *musicPlayer;
 	
@@ -48,23 +39,9 @@
 	id<PostOptionsControllerDataSource> dataSource;
 }
 
-@property (retain) id<PostOptionsControllerDataSource> dataSource;
-
-@property (readonly) LJAccount *account;
-
-@property (retain, nonatomic) NSString *journal;
-@property LJEventSecurityLevel security;
-@property (readonly) NSMutableArray *selectedFriendGroups;
-@property (retain, nonatomic) NSSet *tags;
-@property (retain, nonatomic) NSString *mood;
-@property (retain, nonatomic) NSString *picKeyword;
-@property (retain, nonatomic) NSString *music;
-@property (retain, nonatomic) NSString *location;
-@property (readonly) BOOL promote;
-
 @property (readonly) NSString *currentSong;
 
-- (id)initWithAccount:(LJAccount *)account;
+- (id)initWithAccountProvider:(id<AccountProvider>)accountProvider;
 - (void)done;
 
 - (void)tagsChanged:(id)sender;
@@ -82,12 +59,5 @@
 
 - (void)keyboardWillHide:(id)sender;
 - (void)keyboardDidHide:(id)sender;
-
-@end
-
-
-@protocol PostOptionsControllerDataSource<NSObject> 
-
-- (LJAccount *)selectedAccount;
 
 @end

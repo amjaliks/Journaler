@@ -32,7 +32,8 @@
 @synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibFile bundle:bundle {
-	if (self = [super initWithNibName:nibFile bundle:bundle]) {
+	self = [super initWithNibName:nibFile bundle:bundle];
+	if (self) {
 		UIImage *image = [UIImage imageNamed:@"newpost.png"];
 		UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"New post", nil) image:image tag:1];
 		self.tabBarItem = tabBarItem;
@@ -57,20 +58,7 @@
 	
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	
-	textField.text = self.accountStateInfo.newPostText;
-	subjectField.text = self.accountStateInfo.newPostSubject;
-	
-	postOptionsController = [[PostOptionsController alloc] initWithAccount:self.account];
-	postOptionsController.dataSource = self;
-	
-	NSString *journal = self.accountStateInfo.newPostJournal;
-	if (journal) {
-		postOptionsController.journal = journal;
-	}
-	postOptionsController.security = self.accountStateInfo.newPostSecurity;
-	[postOptionsController.selectedFriendGroups addObjectsFromArray:self.accountStateInfo.newPostSelectedFriendGroups];
-
-	[accountManager registerPostEditorController:self];
+	postOptionsController = [[PostOptionsController alloc] initWithAccountProvider:self];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -101,20 +89,25 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	textField.text = self.accountStateInfo.newPostText;
+	subjectField.text = self.accountStateInfo.newPostSubject;
+	
 	[super viewWillAppear:animated];
 	[self resizeTextView];
 }
 
+
 #pragma mark -
-#pragma mark AccountProvider
+#pragma mark Account Provider
 
 - (LJAccount *)account {
-	return accountProvider.account;
+    return ((id<AccountProvider>)self.parentViewController).account;
 }
 
 - (AccountStateInfo *)accountStateInfo {
-	return accountProvider.accountStateInfo;
+    return ((id<AccountProvider>)self.parentViewController).accountStateInfo;
 }
+
 
 #pragma mark -
 #pragma mark Table view methods
@@ -160,7 +153,7 @@
 }
 
 - (IBAction) post:(id)sender {
-	if (![self.account.user isEqualToString:postOptionsController.journal] && postOptionsController.security == LJEventSecurityPrivate) {
+	if (![self.account.user isEqualToString:self.accountStateInfo.newPostJournal] && self.accountStateInfo.newPostSecurity == LJEventSecurityPrivate) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post error" message:@"Can't post private message to the community." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert show];
 		[alert release];
@@ -168,21 +161,22 @@
 	}
 		
 	NSString *text = textField.text;
-	if (postOptionsController.promote) {
+	if (self.accountStateInfo.newPostPromote) {
 		text = [text stringByAppendingString:@"\n\n<em><small>Posted via <a href=\"http://journalerapp.com/?utm_source=livejournal&amp;utm_medium=post-via-link&amp;utm_campaign=post-via-link\">Journaler</a>.</small></em>"];
 	}
 	
 	LJEvent *event = [[LJEvent alloc] init];
 	event.subject = subjectField.text;
 	event.event = text;
-	event.journal = postOptionsController.journal;
-	event.security = postOptionsController.security;
-	event.selectedFriendGroups = postOptionsController.selectedFriendGroups;
-	event.picKeyword = postOptionsController.picKeyword;
-	event.tags = postOptionsController.tags;
-	event.mood = postOptionsController.mood;
-	event.music = [postOptionsController.music length] ? postOptionsController.music : postOptionsController.currentSong;
-	event.location = postOptionsController.location;
+	event.journal = self.accountStateInfo.newPostJournal;
+	event.security = self.accountStateInfo.newPostSecurity;
+	event.selectedFriendGroups = self.accountStateInfo.newPostSelectedFriendGroups;
+	event.picKeyword =  self.accountStateInfo.newPostPicKeyword;
+	event.tags = self.accountStateInfo.newPostTags;
+	event.mood =  self.accountStateInfo.newPostMood;
+	NSString *music = self.accountStateInfo.newPostMusic;
+	event.music = [music length] ? music : postOptionsController.currentSong;
+	event.location = self.accountStateInfo.newPostLocation;
 	
 	NSError *error;
 	if ([client postEvent:event forAccount:self.account error:&error]) {
@@ -192,18 +186,20 @@
 		
 		subjectField.text = nil;
 		textField.text = nil;
-		postOptionsController.picKeyword = nil;
+		self.accountStateInfo.newPostSubject = nil;
+		self.accountStateInfo.newPostText = nil;
+		self.accountStateInfo.newPostPicKeyword = nil;
 		
-		if (![postOptionsController.tags isSubsetOfSet:self.account.tags]) {
+		if (![self.accountStateInfo.newPostTags isSubsetOfSet:self.account.tags]) {
 			NSMutableSet *tags = [[NSMutableSet alloc] initWithSet:self.account.tags];
-			[tags addObjectsFromSet:postOptionsController.tags];
+			[tags addObjectsFromSet:self.accountStateInfo.newPostTags];
 			[accountManager storeAccounts];			
 		}
 
-		postOptionsController.tags = nil;
-		postOptionsController.mood = nil;
-		postOptionsController.music = nil;
-		postOptionsController.location = nil;
+		self.accountStateInfo.newPostTags = nil;
+		self.accountStateInfo.newPostMood = nil;
+		self.accountStateInfo.newPostMusic = nil;
+		self.accountStateInfo.newPostLocation = nil;
 	} else {
 		showErrorMessage(@"Post error", decodeError([error code]));
 	}
@@ -225,8 +221,16 @@
 	return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-	return;
+- (void)textViewDidEndEditing:(UITextView *)textView {
+	if (textView == self.textField) {
+		self.accountStateInfo.newPostText = self.textField.text;
+	}
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)aTextField {
+	if (aTextField == self.subjectField) {
+		self.accountStateInfo.newPostSubject = self.subjectField.text;
+	}
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)_textField {
@@ -272,14 +276,8 @@
 	textField.frame = CGRectMake(0, 0, landscape ? 480 : 320, editing ? (landscape ? 74 : 168) : (landscape ? 187 : 336));
 }
 
-- (LJAccount *)selectedAccount {
-	return [dataSource selectedAccount];
-}
-
 - (void)saveState {
 	if ([self isViewLoaded]) {
-		self.accountStateInfo.newPostSubject = subjectField.text;
-		self.accountStateInfo.newPostText = textField.text;
 	}
 }
 
@@ -288,4 +286,3 @@
 }
 
 @end
-

@@ -39,7 +39,5 @@
 @property (readonly) StateInfo *stateInfo;
 - (void)loadStateInfo;
 - (void)storeStateInfo;
-- (void)registerPostEditorController:(PostEditorController *)controller;
-
 
 @end

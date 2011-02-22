@@ -20,7 +20,8 @@
 
 
 - (id)initWithPostOptionsController:(PostOptionsController *)newPostOptionsController {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+	self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self) {
 		postOptionsController = newPostOptionsController;
     }
     return self;
@@ -86,7 +87,7 @@
 		cell.textLabel.text = [postOptionsController.account.communities objectAtIndex:indexPath.row];
 	}
 	
-	if ([cell.textLabel.text isEqualToString:postOptionsController.journal]) {
+	if ([cell.textLabel.text isEqualToString:postOptionsController.accountStateInfo.newPostJournal]) {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		selectedCell = cell;
 	} else {
@@ -99,7 +100,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	postOptionsController.journal = cell.textLabel.text;
+	postOptionsController.accountStateInfo.newPostJournal = cell.textLabel.text;
 	[accountManager.stateInfo stateInfoForAccount:postOptionsController.account].newPostJournal = cell.textLabel.text;
 	
 	selectedCell.accessoryType = UITableViewCellAccessoryNone;
@@ -120,8 +121,8 @@
 	if ([client loginForAccount:postOptionsController.account error:&error]) {
 		[accountManager storeAccounts];
 		
-		if (![postOptionsController.account.communities containsObject:postOptionsController.journal]) {
-			postOptionsController.journal = postOptionsController.account.user;
+		if (![postOptionsController.account.communities containsObject:postOptionsController.accountStateInfo.newPostJournal]) {
+			postOptionsController.accountStateInfo.newPostJournal = postOptionsController.account.user;
 		}
 		
 		[self.tableView reloadData];	

@@ -65,37 +65,22 @@ enum {
 	SecrionPromoteRowPromote
 };
 
+@interface PostOptionsController ()
+
+@property (readonly) id<AccountProvider> accountProvider;
+
+@end
+
+
 @implementation PostOptionsController
 
-@synthesize account;
-@synthesize dataSource;
-@synthesize journal;
-@synthesize security;
-@synthesize selectedFriendGroups;
-@synthesize picKeyword;
-@synthesize tags;
-@synthesize mood;
-@synthesize music;
-@synthesize location;
-@synthesize promote;
-
+@synthesize accountProvider;
 @synthesize currentSong;
 
-- (id)initWithAccount:(LJAccount *)newAccount {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-		account = newAccount;
-		
-		journal = [account.user retain];
-		security = LJEventSecurityPublic;
-		selectedFriendGroups = [[NSMutableArray alloc] init];
-		
-		promote = YES;
-
-		AccountStateInfo *accountStateInfo = [accountManager.stateInfo stateInfoForAccount:account];
-		picKeyword = [accountStateInfo.newPostPicKeyword retain];
-		tags = [accountStateInfo.newPostTags retain];
-		mood = [accountStateInfo.newPostMood retain];
-		location = [accountStateInfo.newPostLocation retain];
+- (id)initWithAccountProvider:(id<AccountProvider>)newAccountProvider {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self) {
+		accountProvider = newAccountProvider;
 		
 #ifndef LITEVERSION
     	// iPod notikumi
@@ -191,8 +176,6 @@ enum {
 //	locationManager = nil;
 	
 	self.navigationItem.leftBarButtonItem = nil;
-	
-	[journal release];
 }
 
 
@@ -267,23 +250,23 @@ enum {
 	if (indexPath.section == 0) {
 		if (indexPath.row == 0) {
 			cell.textLabel.text = NSLocalizedString(@"Journal", nil);
-			cell.detailTextLabel.text = journal;
+			cell.detailTextLabel.text = self.accountStateInfo.newPostJournal;
 		} else if (indexPath.row == 1) {
 			cell.textLabel.text = NSLocalizedString(@"Security", nil);
-			if (security == LJEventSecurityPublic) {
+			if (self.accountStateInfo.newPostSecurity == LJEventSecurityPublic) {
 				cell.detailTextLabel.text = NSLocalizedString(@"Public", nil);
-			} else if (security == LJEventSecurityFriends) {
+			} else if (self.accountStateInfo.newPostSecurity == LJEventSecurityFriends) {
 				cell.detailTextLabel.text = NSLocalizedString(@"Friends only", nil);
-			} else if (security == LJEventSecurityPrivate) {
+			} else if (self.accountStateInfo.newPostSecurity == LJEventSecurityPrivate) {
 				cell.detailTextLabel.text = NSLocalizedString(@"Private", nil);
 			} else {
-				
 				cell.detailTextLabel.text = NSLocalizedString(@"Custom", nil);
 			}
 		}
 	} else if (indexPath.section == SectionAdditional) {
 		if (indexPath.row == SectionAdditionalRowPicture) {
 			cell.textLabel.text = NSLocalizedString(@"Userpic", nil);
+            NSString *picKeyword = self.accountStateInfo.newPostPicKeyword;
 			cell.detailTextLabel.text = picKeyword ? picKeyword : NSLocalizedString(@"Default", nil);
 		} else if (indexPath.row == SectionAdditionalRowTags) {
 			cell.textLabel.text = NSLocalizedString(@"Tags", nil);
@@ -291,7 +274,7 @@ enum {
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			((TextFieldCellView *)cell).text.placeholder = NSLocalizedString(@"separated by commas", nil);
 #endif
-			[(TextFieldCellView *)cell setTags:tags];
+			[(TextFieldCellView *)cell setTags:self.accountStateInfo.newPostTags];
 			[(TextFieldCellView *)cell setTarget:self action:@selector(tagsChanged:)];
 		} else if (indexPath.row == SectionAdditionalRowMood) {
 			cell.textLabel.text = NSLocalizedString(@"Mood", nil);
@@ -299,12 +282,12 @@ enum {
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			((TextFieldCellView *)cell).text.placeholder = NSLocalizedString(@"select from list or type here", nil);
 #endif
-			((TextFieldCellView *)cell).text.text = mood;
+			((TextFieldCellView *)cell).text.text = self.accountStateInfo.newPostMood;
 			[(TextFieldCellView *)cell setTarget:self action:@selector(moodChanged:)];
 		} else if (indexPath.row == SectionAdditionalRowMusic) {
 			cell.textLabel.text = NSLocalizedString(@"Music", nil);
 			cell.accessoryType = UITableViewCellAccessoryNone;
-			((TextFieldCellView *)cell).text.text = music;
+			((TextFieldCellView *)cell).text.text = self.accountStateInfo.newPostMusic;
 			((TextFieldCellView *)cell).text.placeholder = currentSong;
 			[(TextFieldCellView *)cell setTarget:self action:@selector(musicChanged:)];
 		} else if (indexPath.row == SectionAdditionalRowLocation) {
@@ -312,14 +295,14 @@ enum {
 			cell.accessoryType = UITableViewCellAccessoryNone;
 			//cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			//cell.accessoryView = locateView;
-			((TextFieldCellView *)cell).text.text = location;
+			((TextFieldCellView *)cell).text.text = self.accountStateInfo.newPostLocation;
 			((TextFieldCellView *)cell).text.placeholder = nil;
 			[(TextFieldCellView *)cell setTarget:self action:@selector(locationChanged:)];
 		}
 	} else if (indexPath.section == SectionPromote) {
 		cell.textLabel.text = NSLocalizedString(@"Promote Journaler", nil);
 		UISwitch *cellSwitch = (UISwitch *)[cell viewWithTag:SwitchTag];
-		cellSwitch.on = promote;
+		cellSwitch.on = self.accountStateInfo.newPostPromote;
 		
 		[cellSwitch removeTarget:self action:nil forControlEvents:UIControlEventValueChanged];
 		[cellSwitch addTarget:self action:@selector(promoteChanged:) forControlEvents:UIControlEventValueChanged];
@@ -362,7 +345,6 @@ enum {
 }
 
 - (void)dealloc {
-	
 #ifndef LITEVERSION
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
 	
@@ -371,78 +353,47 @@ enum {
 	[notificationCenter removeObserver:self name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:musicPlayer];
 	[musicPlayer endGeneratingPlaybackNotifications]; 
 #endif
-	
-	[selectedFriendGroups release];
-	[tags release];
-	[mood release];
-	
 	[super dealloc];
 }
 
 - (void)tagsChanged:(id)sender {
-	self.tags = ((TextFieldCellView *)sender).tags;
+	self.accountStateInfo.newPostTags = ((TextFieldCellView *)sender).tags;
 }
 
 - (void)moodChanged:(id)sender {
-	self.mood = ((TextFieldCellView *)sender).text.text;
+	self.accountStateInfo.newPostMood = ((TextFieldCellView *)sender).text.text;
 }
 
 - (void)musicChanged:(id)sender {
-	self.music = ((TextFieldCellView *)sender).text.text;
+	self.accountStateInfo.newPostMusic = ((TextFieldCellView *)sender).text.text;
 }
 
 - (void)locationChanged:(id)sender {
-	self.location = ((TextFieldCellView *)sender).text.text;
+	self.accountStateInfo.newPostLocation = ((TextFieldCellView *)sender).text.text;
 }
 
 - (void)promoteChanged:(id)sender {
-	promote = ((UISwitch *)sender).on;
-	[accountManager.stateInfo stateInfoForAccount:account].newPostPromote = promote;
+	self.accountStateInfo.newPostPromote = ((UISwitch *)sender).on;
 }
 
 - (void)setPicKeyword:(NSString *)newPicKeyword {
-	if (newPicKeyword != picKeyword) {
-		[picKeyword release];
-		picKeyword = [newPicKeyword retain];
-		
-		[accountManager.stateInfo stateInfoForAccount:account].newPostPicKeyword = picKeyword;
-	}
+    self.accountStateInfo.newPostPicKeyword = newPicKeyword;
 }
 
 - (void)setTags:(NSSet *)newTags {
-	if (newTags != tags) {
-		[tags release];
-		tags = [newTags retain];
-
-		[accountManager.stateInfo stateInfoForAccount:account].newPostTags = tags;
-	}
+    self.accountStateInfo.newPostTags = newTags;
 }
 
 - (void)setMood:(NSString *)newMood {
-	if (newMood != mood) {
-		[mood release];
-		mood = [newMood retain];
-
-		[accountManager.stateInfo stateInfoForAccount:account].newPostMood = mood;
-	}
+    self.accountStateInfo.newPostMood = newMood;
 }
 
 - (void)setMusic:(NSString *)newMusic {
-	if (newMusic != music) {
-		[music release];
-		music = [newMusic retain];
-		
-		[accountManager.stateInfo stateInfoForAccount:account].newPostMusic = music;
-	}
+    self.accountStateInfo.newPostMusic = newMusic;
 }
 
 - (void)setLocation:(NSString *)newLocation {
-	if (newLocation != location) {
-		[location release];
-		location = [newLocation retain];
-		
-		[accountManager.stateInfo stateInfoForAccount:account].newPostLocation = location;
-	}
+	self.accountStateInfo.newPostLocation = newLocation;
 }
 
 #pragma mark -
@@ -578,6 +529,17 @@ enum {
 		viewWillDisappear = NO;
 		[super viewWillAppear:viewWillDisappearAnimated];
 	}
+}
+
+#pragma mark -
+#pragma mark Account Provider
+
+- (LJAccount *)account {
+    return self.accountProvider.account;
+}
+
+- (AccountStateInfo *)accountStateInfo {
+    return  self.accountProvider.accountStateInfo;
 }
 
 @end

@@ -109,10 +109,6 @@
 	[NSKeyedArchiver archiveRootObject:stateInfo toFile:path];
 }
 
-- (void)registerPostEditorController:(PostEditorController *)controller {
-	[postEditors addObject:controller];
-}
-
 #pragma mark Singleton metodes
 
 - (id)init {

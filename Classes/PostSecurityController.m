@@ -20,7 +20,8 @@
 @implementation PostSecurityController
 
 - (id)initWithPostOptionsController:(PostOptionsController *)newPostOptionsController {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+	self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self) {
 		postOptionsController = newPostOptionsController;
     }
     return self;
@@ -86,7 +87,7 @@
 			cell.textLabel.text = NSLocalizedStringFromTable(@"Private", @"Name for private security level", kStringsTable);
 		}
 		
-		if (indexPath.row == postOptionsController.security) {
+		if (indexPath.row == postOptionsController.accountStateInfo.newPostSecurity) {
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		} else {
 			cell.accessoryType = UITableViewCellAccessoryNone;
@@ -94,7 +95,7 @@
 	} else {
 		LJFriendGroup *friendGroup = [postOptionsController.account.friendGroups objectAtIndex:indexPath.row];
 		cell.textLabel.text = friendGroup.name;
-		cell.accessoryType = postOptionsController.security == LJEventSecurityCustom && [postOptionsController.selectedFriendGroups containsObject:[NSNumber numberWithUnsignedInteger:friendGroup.groupID]] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+		cell.accessoryType = postOptionsController.accountStateInfo.newPostSecurity == LJEventSecurityCustom && [postOptionsController.accountStateInfo.newPostSelectedFriendGroups containsObject:[NSNumber numberWithUnsignedInteger:friendGroup.groupID]] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 	}
 	
     return cell;
@@ -104,14 +105,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
+	NSMutableArray *selectedFriendGroups = [[postOptionsController.accountStateInfo.newPostSelectedFriendGroups mutableCopy] autorelease];
+	
 	if (indexPath.section == 0) {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
-		if (postOptionsController.security == LJEventSecurityCustom) {
-			for (int i = 0; i < [postOptionsController.account.friendGroups count], [postOptionsController.selectedFriendGroups count] > 0; i++) {
+		if (postOptionsController.accountStateInfo.newPostSecurity == LJEventSecurityCustom) {
+			for (int i = 0; i < [postOptionsController.account.friendGroups count] && [selectedFriendGroups count] > 0; i++) {
 				LJFriendGroup *group = [postOptionsController.account.friendGroups objectAtIndex:i];
 				NSNumber *groupID = [[NSNumber alloc] initWithUnsignedInteger:group.groupID];
-				if ([postOptionsController.selectedFriendGroups containsObject:groupID]) {
-					[postOptionsController.selectedFriendGroups removeObject:groupID];
+				if ([selectedFriendGroups containsObject:groupID]) {
+					[selectedFriendGroups removeObject:groupID];
 					UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:1]];
 					selectedCell.accessoryType = UITableViewCellAccessoryNone;
 				}
@@ -119,38 +122,37 @@
 			}
 			[self.navigationItem setHidesBackButton:NO animated:YES];
 		} else {
-			UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:postOptionsController.security inSection:0]];
+			UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:postOptionsController.accountStateInfo.newPostSecurity inSection:0]];
 			selectedCell.accessoryType = UITableViewCellAccessoryNone;
 		}
-		postOptionsController.security = indexPath.row;
+		postOptionsController.accountStateInfo.newPostSecurity = indexPath.row;
 	} else {
 		LJFriendGroup *group = [postOptionsController.account.friendGroups objectAtIndex:indexPath.row];
 		NSNumber *groupID = [[NSNumber alloc] initWithUnsignedInteger:group.groupID];
-		if (postOptionsController.security == LJEventSecurityCustom) {
-			if ([postOptionsController.selectedFriendGroups containsObject:groupID]) {
-				[postOptionsController.selectedFriendGroups removeObject:groupID];
+		if (postOptionsController.accountStateInfo.newPostSecurity == LJEventSecurityCustom) {
+			if ([selectedFriendGroups containsObject:groupID]) {
+				[selectedFriendGroups removeObject:groupID];
 				cell.accessoryType = UITableViewCellAccessoryNone;
 				
-				if ([postOptionsController.selectedFriendGroups count] == 0) {
+				if ([selectedFriendGroups count] == 0) {
 					[self.navigationItem setHidesBackButton:YES animated:YES];
 				}
 			} else {
-				[postOptionsController.selectedFriendGroups addObject:groupID];
+				[selectedFriendGroups addObject:groupID];
 				cell.accessoryType = UITableViewCellAccessoryCheckmark;
 				[self.navigationItem setHidesBackButton:NO animated:YES];
 			}
 		} else {
-			UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:postOptionsController.security inSection:0]];
+			UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:postOptionsController.accountStateInfo.newPostSecurity inSection:0]];
 			selectedCell.accessoryType = UITableViewCellAccessoryNone;
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
-			[postOptionsController.selectedFriendGroups addObject:groupID];
+			[selectedFriendGroups addObject:groupID];
 		}
 		[groupID release];
-		postOptionsController.security = LJEventSecurityCustom;
+		postOptionsController.accountStateInfo.newPostSecurity = LJEventSecurityCustom;
 	}
 
-	[accountManager.stateInfo stateInfoForAccount:postOptionsController.account].newPostSecurity = postOptionsController.security;
-	[accountManager.stateInfo stateInfoForAccount:postOptionsController.account].newPostSelectedFriendGroups = postOptionsController.selectedFriendGroups;
+	postOptionsController.accountStateInfo.newPostSelectedFriendGroups = selectedFriendGroups;
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

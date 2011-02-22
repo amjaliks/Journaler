@@ -14,7 +14,7 @@
 @class LJAccount;
 @protocol PostEditorControllerDataSource, PostEditorControllerDelegate;
 
-@interface PostEditorController : UITableViewController<UITextViewDelegate, UITextFieldDelegate, PostOptionsControllerDataSource, AccountProvider> {
+@interface PostEditorController : UITableViewController<UITextViewDelegate, UITextFieldDelegate, AccountProvider> {
 	id<AccountProvider> accountProvider;
 	
 	IBOutlet UITableViewCell *subjectCell;
@@ -61,13 +61,6 @@
 - (void)resizeTextView;
 
 - (void)saveState;
-
-@end
-
-
-@protocol PostEditorControllerDataSource<NSObject> 
-
-- (LJAccount *)selectedAccount;
 
 @end
 

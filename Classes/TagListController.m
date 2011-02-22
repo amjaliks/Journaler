@@ -23,7 +23,7 @@
 		[set addObjectsFromSet:postOptionsController.account.tags];
 		
 		// tagi no raksta
-		[set addObjectsFromSet:postOptionsController.tags];
+		[set addObjectsFromSet:postOptionsController.accountStateInfo.newPostTags];
 		
 		// jaunais tags
 		if (newItem) {
@@ -48,8 +48,8 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
-	if (postOptionsController.tags) {
-		selectedTags = [postOptionsController.tags mutableCopy];
+	if (postOptionsController.accountStateInfo.newPostTags) {
+		selectedTags = [postOptionsController.accountStateInfo.newPostTags mutableCopy];
 	} else {
 		selectedTags = [[NSMutableSet alloc] init];
 	}
@@ -59,7 +59,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 	
-	postOptionsController.tags = selectedTags;
+	postOptionsController.accountStateInfo.newPostTags = selectedTags;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

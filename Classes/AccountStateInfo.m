@@ -64,6 +64,7 @@
 	[friendsPageFilter release];
 	[newPostSubject release];
 	[newPostText release];
+	[newPostJournal release];
 	[newPostSelectedFriendGroups release];
 	[newPostPicKeyword release];
 	[newPostTags release];
@@ -77,7 +78,8 @@
 #pragma mark NSCoder metodes
 
 - (id)initWithCoder:(NSCoder *)coder {
-	if (self = [self init]) {
+	self = [self init];
+	if (self) {
 		// atvērtais ekrāns
 		openedScreen = [coder decodeIntForKey:kKeyOpenedScreen];
 		
@@ -90,6 +92,7 @@
 		friendsPageFilter = [[coder decodeObjectForKey:kKeyFriendsPageFilter] retain];
 		newPostSubject = [[coder decodeObjectForKey:kKeyNewPostSubject] retain];
 		newPostText = [[coder decodeObjectForKey:kKeyNewPostText] retain];
+		newPostJournal = [[coder decodeObjectForKey:kKeyNewPostJournal] retain];
 		newPostSecurity = [coder decodeIntForKey:kKeyNewPostSecurity];
 		newPostSelectedFriendGroups = [[coder decodeObjectForKey:kKeyNewPostSelectedFriendGroups] retain];
 		newPostPicKeyword = [[coder decodeObjectForKey:kKeyNewPostPicKeyword] retain];
@@ -116,6 +119,7 @@
 	[coder encodeObject:friendsPageFilter forKey:kKeyFriendsPageFilter];
 	[coder encodeObject:newPostSubject forKey:kKeyNewPostSubject];
 	[coder encodeObject:newPostText forKey:kKeyNewPostText];
+	[coder encodeObject:newPostJournal forKey:kKeyNewPostJournal];
 	[coder encodeInt:newPostSecurity forKey:kKeyNewPostSecurity];
 	[coder encodeObject:newPostSelectedFriendGroups forKey:kKeyNewPostSelectedFriendGroups];
 	[coder encodeObject:newPostPicKeyword forKey:kKeyNewPostPicKeyword];

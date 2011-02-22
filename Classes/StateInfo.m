@@ -16,7 +16,8 @@
 @synthesize openedAccountIndex;
 
 - (id)init {
-	if (self = [super init]) {
+	self = [super init];
+	if (self) {
 		openedAccountIndex = kStateInfoOpenedAccountIndexNone;
 		accountsStateInfo = [[NSMutableDictionary alloc] init];
 	}
@@ -37,6 +38,8 @@
 
 		if (!accountStateInfo) {
 			accountStateInfo = [[AccountStateInfo alloc] init];
+			accountStateInfo.newPostJournal = account.user;
+			accountStateInfo.newPostSecurity = LJEventSecurityPublic;
 			[accountsStateInfo setObject:accountStateInfo forKey:account.title];
 		}
 		
