@@ -157,6 +157,10 @@
 		17B4321313131905005CAC17 /* HABannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4321113131905005CAC17 /* HABannerView.m */; };
 		17B432161313190A005CAC17 /* HABannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4321113131905005CAC17 /* HABannerView.m */; };
 		17B432171313190B005CAC17 /* ha-closead.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B4320F13131905005CAC17 /* ha-closead.png */; };
+		17B432DD13131EBB005CAC17 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B432DC13131EBB005CAC17 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		17B4331D1313252C005CAC17 /* libobjcadd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B431D71313169C005CAC17 /* libobjcadd.a */; };
+		17B4334813132770005CAC17 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B4334713132770005CAC17 /* AVFoundation.framework */; };
+		17B4336813132785005CAC17 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B4336713132785005CAC17 /* AudioToolbox.framework */; };
 		17B462E410BA2647004D0E0F /* PostPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E310BA2647004D0E0F /* PostPreviewCell.m */; };
 		17B462E510BA2647004D0E0F /* PostPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E310BA2647004D0E0F /* PostPreviewCell.m */; };
 		17B462E810BA2659004D0E0F /* PostPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E710BA2659004D0E0F /* PostPreviewView.m */; };
@@ -251,21 +255,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 17B431CC1313169C005CAC17 /* ObjCAdditions-iOS.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libobjcadd.a */;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = iOS;
 		};
 		17B431D81313169C005CAC17 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 17B431CC1313169C005CAC17 /* ObjCAdditions-iOS.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 17AC0DFD129F225C0010FE39 /* iOSTests.octest */;
+			remoteGlobalIDString = 17AC0DFD129F225C0010FE39;
 			remoteInfo = iOSTests;
 		};
 		17B431DE131316C9005CAC17 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 17B431CC1313169C005CAC17 /* ObjCAdditions-iOS.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D /* iOS */;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = iOS;
 		};
 /* End PBXContainerItemProxy section */
@@ -379,6 +383,9 @@
 		17B4320F13131905005CAC17 /* ha-closead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ha-closead.png"; path = "../HouseAds/ha-closead.png"; sourceTree = ADDITIONS_PROJECT; };
 		17B4321013131905005CAC17 /* HABannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HABannerView.h; path = ../HouseAds/HABannerView.h; sourceTree = ADDITIONS_PROJECT; };
 		17B4321113131905005CAC17 /* HABannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HABannerView.m; path = ../HouseAds/HABannerView.m; sourceTree = ADDITIONS_PROJECT; };
+		17B432DC13131EBB005CAC17 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		17B4334713132770005CAC17 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		17B4336713132785005CAC17 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		17B462E210BA2647004D0E0F /* PostPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPreviewCell.h; sourceTree = "<group>"; };
 		17B462E310BA2647004D0E0F /* PostPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPreviewCell.m; sourceTree = "<group>"; };
 		17B462E610BA2659004D0E0F /* PostPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPreviewView.h; sourceTree = "<group>"; };
@@ -505,6 +512,10 @@
 				17132615108A1203007F6C24 /* CoreData.framework in Frameworks */,
 				17E3B2A8118656C300ED729D /* MediaPlayer.framework in Frameworks */,
 				37AC5F4B11FEE24A006C9E5C /* MessageUI.framework in Frameworks */,
+				17B432DD13131EBB005CAC17 /* iAd.framework in Frameworks */,
+				17B4331D1313252C005CAC17 /* libobjcadd.a in Frameworks */,
+				17B4334813132770005CAC17 /* AVFoundation.framework in Frameworks */,
+				17B4336813132785005CAC17 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,12 +912,15 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				17B432DC13131EBB005CAC17 /* iAd.framework */,
 				17132614108A1203007F6C24 /* CoreData.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				17E3B2A7118656C300ED729D /* MediaPlayer.framework */,
 				37AC5F4A11FEE24A006C9E5C /* MessageUI.framework */,
+				17B4334713132770005CAC17 /* AVFoundation.framework */,
+				17B4336713132785005CAC17 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1291,6 +1305,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67BC3A29-F724-45F9-974A-33D04C375EC2";
 				SDKROOT = iphoneos;
@@ -1302,18 +1320,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: A25 Ltd.";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					iAd,
-					"-licucore",
-				);
 				PRODUCT_NAME = Journaler;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5D403493-7C8A-44E1-90AA-F3F64974853C";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Distribution (App Store)";
 		};
@@ -1426,6 +1438,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "-DBETA";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "060BFBEA-B685-42C5-A1DB-50C907384D46";
 				SDKROOT = iphoneos;
@@ -1441,12 +1457,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					iAd,
-					"-licucore",
-				);
 				PRODUCT_NAME = Journaler;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Distribution (Ad Hoc)";
 		};
@@ -1462,6 +1474,10 @@
 				OTHER_CFLAGS = (
 					"-DDEBUG",
 					"-DBETA",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.0;
@@ -1479,12 +1495,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					iAd,
-					"-licucore",
-				);
 				PRODUCT_NAME = Journaler;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug (3.0)";
 		};
@@ -1527,13 +1539,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					iAd,
-					"-licucore",
-				);
 				PRODUCT_NAME = Journaler;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1545,12 +1553,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					iAd,
-					"-licucore",
-				);
 				PRODUCT_NAME = Journaler;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1567,6 +1571,10 @@
 					"-DDEBUG",
 					"-DBETA",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
@@ -1582,8 +1590,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
 			};
 			name = Release;
