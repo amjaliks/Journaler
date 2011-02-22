@@ -158,7 +158,7 @@
 		17B432161313190A005CAC17 /* HABannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B4321113131905005CAC17 /* HABannerView.m */; };
 		17B432171313190B005CAC17 /* ha-closead.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B4320F13131905005CAC17 /* ha-closead.png */; };
 		17B432DD13131EBB005CAC17 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B432DC13131EBB005CAC17 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		17B4331D1313252C005CAC17 /* libobjcadd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B431D71313169C005CAC17 /* libobjcadd.a */; };
+		17B4331D1313252C005CAC17 /* libobjcadd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B431D71313169C005CAC17 /* libobjcadd.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		17B4334813132770005CAC17 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B4334713132770005CAC17 /* AVFoundation.framework */; };
 		17B4336813132785005CAC17 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B4336713132785005CAC17 /* AudioToolbox.framework */; };
 		17B462E410BA2647004D0E0F /* PostPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B462E310BA2647004D0E0F /* PostPreviewCell.m */; };
@@ -1320,11 +1320,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: A25 Ltd.";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
 				PRODUCT_NAME = Journaler;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5D403493-7C8A-44E1-90AA-F3F64974853C";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Distribution (App Store)";
@@ -1453,11 +1455,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: A25 Ltd.";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
 				PRODUCT_NAME = Journaler;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7549FAA8-B58F-489D-80AB-406946F78327";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Distribution (Ad Hoc)";
