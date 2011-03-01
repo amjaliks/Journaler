@@ -73,7 +73,7 @@
 					NSNumber *ID = [moodDict objectForKey:@"id"];
 					NSString *name = [self readStringValue:[moodDict objectForKey:@"name"]];
 					
-					LJMood *mood = [[LJMood alloc] initWithID:[ID integerValue] mood:name];
+					LJMood *mood = [[[LJMood alloc] initWithID:[ID integerValue] mood:name] autorelease];
 					[moods addObject:mood];
 				}
 				
@@ -380,7 +380,9 @@
 			code = LJErrorUnknown;
 		}
 		
-		*error = [NSError errorWithDomain:kLJErrorDomain code:code userInfo:nil];
+		if (error) {
+			*error = [NSError errorWithDomain:kLJErrorDomain code:code userInfo:nil];
+		}
 		return nil;
 	}
 	

@@ -1311,8 +1311,10 @@
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67BC3A29-F724-45F9-974A-33D04C375EC2";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = "Distribution (App Store)";
 		};
@@ -1446,8 +1448,10 @@
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "060BFBEA-B685-42C5-A1DB-50C907384D46";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = "Distribution (Ad Hoc)";
 		};
@@ -1484,8 +1488,10 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos3.0;
 				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = "Debug (3.0)";
 		};
@@ -1580,8 +1586,10 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -1599,8 +1607,10 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
