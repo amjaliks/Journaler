@@ -344,6 +344,10 @@
 #pragma mark Tehniskās metodes
 
 - (NSDictionary *)sendRequestToServer:(NSString *)server method:(NSString *)method parameters:(NSDictionary *)parameters error:(NSError **)error {
+	// some work around for last changes in LJ server
+	if ([@"livejournal.com" isEqualToString:server]) {
+		server = @"www.livejournal.com";
+	}
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/interface/xmlrpc", server]];
 	
 	XMLRPCRequest *xmlreq = [[XMLRPCRequest alloc] initWithURL:url];
@@ -387,7 +391,7 @@
 	}
 	
 	XMLRPCResponse *xmlres = [[XMLRPCResponse alloc] initWithData:data];
-	NSDictionary *result = [[xmlres object] retain];
+	NSDictionary *result = [xmlres object];
 #ifdef DEBUG
 	NSLog(@"respone:\n%@", [xmlres body]);
 #endif
@@ -412,7 +416,7 @@
 		}
 		return nil;
 	} else {
-		return [result autorelease];
+		return result;
 	}
 }
 
