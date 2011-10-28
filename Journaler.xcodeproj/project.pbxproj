@@ -1298,7 +1298,10 @@
 		174D89CF109A418D0055AA82 /* Distribution (App Store) */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: A25 Ltd.";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1311,7 +1314,7 @@
 					"-all_load",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67BC3A29-F724-45F9-974A-33D04C375EC2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "373B91DA-4384-43F5-870D-E7FD2268DF7D";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(ADDITIONS_PROJECT)/**";
@@ -1323,13 +1326,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: A25 Ltd.";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
 				PRODUCT_NAME = Journaler;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5D403493-7C8A-44E1-90AA-F3F64974853C";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Distribution (App Store)";
@@ -1435,7 +1436,10 @@
 		17DB0C8110765F9300155636 /* Distribution (Ad Hoc) */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: A25 Ltd.";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1467,7 +1471,7 @@
 				GCC_PREFIX_HEADER = Journaler_Prefix.pch;
 				INFOPLIST_FILE = "Journaler-Info.plist";
 				PRODUCT_NAME = Journaler;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7549FAA8-B58F-489D-80AB-406946F78327";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D3604FA4-A43D-4ED4-BFD6-F06D2B688257";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Distribution (Ad Hoc)";
@@ -1475,7 +1479,10 @@
 		17EFF2BA11EA7B83009D84ED /* Debug (3.0) */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1574,7 +1581,10 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1600,7 +1610,10 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
