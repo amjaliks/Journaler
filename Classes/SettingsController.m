@@ -73,7 +73,7 @@
 				cell.accessoryType = UITableViewCellAccessoryNone;
 				
 				cell.textLabel.text = NSLocalizedString(@"Version", nil);
-				cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+				cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 			} else if (indexPath.row == 1) {
 				cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 				cell.accessoryType = UITableViewCellAccessoryNone;
