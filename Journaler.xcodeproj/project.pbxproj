@@ -184,8 +184,6 @@
 		17B62DB810B7355600C974DE /* AccountTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B62DB610B7355600C974DE /* AccountTabBarController.m */; };
 		17B62E6910B74AA800C974DE /* FriendsPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B62E6810B74AA800C974DE /* FriendsPageController.xib */; };
 		17B62E6A10B74AA800C974DE /* FriendsPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B62E6810B74AA800C974DE /* FriendsPageController.xib */; };
-		17B633FD10B8CD6B00C974DE /* lock.gif in Resources */ = {isa = PBXBuildFile; fileRef = 17B633FC10B8CD6B00C974DE /* lock.gif */; };
-		17B633FE10B8CD6B00C974DE /* lock.gif in Resources */ = {isa = PBXBuildFile; fileRef = 17B633FC10B8CD6B00C974DE /* lock.gif */; };
 		17B6340810B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17B6340710B8CF8000C974DE /* Journaler.xcdatamodeld */; };
 		17B6340910B8CF8000C974DE /* Journaler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17B6340710B8CF8000C974DE /* Journaler.xcdatamodeld */; };
 		17B6345410B8D31900C974DE /* v1-v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */; };
@@ -425,7 +423,6 @@
 		17B62DB610B7355600C974DE /* AccountTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTabBarController.m; sourceTree = "<group>"; };
 		17B62E1B10B741B500C974DE /* LJFriendsPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJFriendsPageController.h; sourceTree = "<group>"; };
 		17B62E6810B74AA800C974DE /* FriendsPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FriendsPageController.xib; path = ../FriendsPageController.xib; sourceTree = "<group>"; };
-		17B633FC10B8CD6B00C974DE /* lock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lock.gif; sourceTree = "<group>"; };
 		17B6340A10B8CF8000C974DE /* Journaler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Journaler 2.xcdatamodel"; sourceTree = "<group>"; };
 		17B6345310B8D31900C974DE /* v1-v2.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = "v1-v2.xcmappingmodel"; sourceTree = "<group>"; };
 		17C3C488118E2CAD00BB9581 /* FriendsPageTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsPageTitleView.h; sourceTree = "<group>"; };
@@ -577,7 +574,6 @@
 				17D77653113BC2F600F26322 /* Default.png */,
 				172860D6116D40D800171A85 /* selfad.png */,
 				173FB97810BCAE9C00FD0652 /* lock.png */,
-				17B633FC10B8CD6B00C974DE /* lock.gif */,
 				1750B0D61097A3B200C1D2A8 /* video.png */,
 				1759F49C1096514B0008AA60 /* comments.png */,
 				1750B0D81097A41000C1D2A8 /* image.png */,
@@ -1052,7 +1048,6 @@
 				1750B15F1097B3F900C1D2A8 /* image.png in Resources */,
 				1746704D10AD0353008298F8 /* RefreshTurnedOff.html in Resources */,
 				17B62E6910B74AA800C974DE /* FriendsPageController.xib in Resources */,
-				17B633FD10B8CD6B00C974DE /* lock.gif in Resources */,
 				173FB97A10BCAE9C00FD0652 /* lock.png in Resources */,
 				17B29BE910FA826700C5EFA4 /* SettingsController.xib in Resources */,
 				17D77655113BC2F600F26322 /* Default.png in Resources */,
@@ -1096,7 +1091,6 @@
 				1750B0D91097A41000C1D2A8 /* image.png in Resources */,
 				1746704E10AD0353008298F8 /* RefreshTurnedOff.html in Resources */,
 				17B62E6A10B74AA800C974DE /* FriendsPageController.xib in Resources */,
-				17B633FE10B8CD6B00C974DE /* lock.gif in Resources */,
 				173FB97910BCAE9C00FD0652 /* lock.png in Resources */,
 				17B29BE710FA826700C5EFA4 /* SettingsController.xib in Resources */,
 				17D77654113BC2F600F26322 /* Default.png in Resources */,
